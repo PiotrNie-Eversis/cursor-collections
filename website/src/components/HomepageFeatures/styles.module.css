@@ -1,0 +1,85 @@
+.framework {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 80px 80px;
+}
+
+.frameworkInner {
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  gap: 60px;
+  align-items: start;
+}
+
+.frameworkLabel {
+  font-size: 26px;
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  padding-top: 8px;
+}
+
+.cardsGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.cardDark {
+  background: var(--bg-dark);
+  border-radius: 10px;
+  padding: 28px 24px;
+  color: #ffffff;
+}
+
+:global([data-theme='dark']) .cardDark {
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.cardIcon {
+  width: 36px;
+  height: 36px;
+  margin-bottom: 16px;
+  opacity: 0.9;
+}
+
+.cardDark h3 {
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 8px;
+  line-height: 1.3;
+  color: #ffffff;
+}
+
+.cardDark p {
+  font-size: 13px;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.62);
+  font-weight: 300;
+  margin: 0;
+}
+
+@media (max-width: 996px) {
+  .framework {
+    padding: 60px 40px;
+  }
+
+  .frameworkInner {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .frameworkLabel {
+    font-size: 22px;
+  }
+}
+
+@media (max-width: 576px) {
+  .framework {
+    padding: 48px 24px;
+  }
+
+  .cardsGrid {
+    grid-template-columns: 1fr;
+  }
+}
