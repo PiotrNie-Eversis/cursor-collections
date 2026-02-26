@@ -27,7 +27,7 @@ This repository supports the **full product development lifecycle** with AI-powe
 
 ### 🛠 Development – Architecture & Implementation
 
-- 🧑‍💻 **Agents** – Context Engineer, Architect, Software Engineer, Copilot Engineer.
+- 🧑‍💻 **Agents** – Context Engineer, Architect, Software Engineer, Copilot Engineer, Copilot Orchestrator.
 - 💬 **Prompts** – `/research`, `/plan`, `/implement`, `/implement-ui`.
 - 🧰 **Skills** – Architecture Design, Technical Context Discovery, Frontend Implementation, Implementation Gap Analysis, SQL & Database Engineering, Codebase Analysis.
 
@@ -252,6 +252,12 @@ These are configured as Copilot **agents / sub-agents**, organized by lifecycle 
 - Expert in prompt engineering, context engineering, and AI engineering for custom agents, skills, prompts, and instructions.
 - Enforces separation of concerns between customization types (agent = WHO, skill = HOW, prompt = WHAT, instructions = RULES).
 - Optimizes token efficiency, context architecture, and signal-to-noise ratio within context windows.
+
+### 🔀 Copilot Orchestrator *(experimental)*
+- Focus: **coordinating complex, multi-step Copilot engineering tasks** using specialized sub-agents.
+- Decomposes work into focused subtasks and delegates to three workers: Researcher, Creator, and Reviewer — each running in an isolated context window.
+- Solves the "context rot" problem where complex tasks degrade quality in a monolithic agent's context window.
+- Coexists alongside Copilot Engineer for A/B comparison — see [Orchestrator Pattern](docs/orchestrator-pattern.md) for the full deep-dive.
 
 Each agent is designed to be used together with the workflow prompts below.
 
