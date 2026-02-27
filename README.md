@@ -29,7 +29,7 @@ This repository supports the **full product development lifecycle** with AI-powe
 
 - 🧑‍💻 **Agents** – Context Engineer, Architect, Software Engineer, Copilot Engineer, Copilot Orchestrator.
 - 💬 **Prompts** – `/research`, `/plan`, `/implement`, `/implement-ui`.
-- 🧰 **Skills** – Architecture Design, Technical Context Discovery, Frontend Implementation, Implementation Gap Analysis, SQL & Database Engineering, Codebase Analysis, Creating Agents, Creating Skills, Creating Prompts.
+- 🧰 **Skills** – Architecture Design, Technical Context Discovery, Frontend Implementation, Implementation Gap Analysis, SQL & Database Engineering, Codebase Analysis, Creating Agents, Creating Skills, Creating Prompts, Creating Instructions.
 
 ### ✅ Quality – Review & Testing
 
@@ -390,6 +390,13 @@ Skills are stored in `.github/skills/` and are picked up automatically by Copilo
 - Provides templates and guidelines for building prompt files that trigger specific workflows.
 - Routes workflows to the right custom agent and AI model via frontmatter configuration.
 - Ensures prompts focus on workflow steps without redefining agent identity or behavior.
+
+#### 📜 Creating Instructions
+- Focus: **creating custom instruction files** (.instructions.md) for GitHub Copilot in VS Code.
+- Covers both repository-level instructions (the project constitution) and granular scoped instructions with applyTo glob patterns.
+- Provides templates, decision framework for when conventions belong in instructions vs. skills, and validation checklists.
+- Ensures instruction files are concise, self-contained, and focused on rules that linters and formatters don't enforce.
+
 ---
 
 ## 💬 Prompts & Chat Commands
