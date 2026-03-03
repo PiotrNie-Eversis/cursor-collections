@@ -199,6 +199,6 @@ Variables are useful for prompts that operate on dynamic context (e.g., the curr
 
 - `creating-agents` - to understand agent patterns and ensure prompts don't overlap with agent responsibilities
 - `creating-skills` - to ensure this skill's own structure follows the canonical skill creation requirements
-- `technical-context-discovery` - to understand existing prompt patterns and project conventions before creating a new one
-- `codebase-analysis` - to analyze existing prompts and identify patterns to follow
+- `technical-context-discovering` - to understand existing prompt patterns and project conventions before creating a new one
+- `codebase-analysing` - to analyze existing prompts and identify patterns to follow
 - `creating-instructions` - to understand when coding standards belong in instruction files rather than prompt definitions

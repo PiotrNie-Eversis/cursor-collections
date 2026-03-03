@@ -146,8 +146,6 @@ Avoid:
 | Overly generic | `documents`, `data`, `files` | Too broad — will trigger on irrelevant tasks |
 | Inconsistent form | Mix of `code-review` and `creating-agents` | Breaks convention — confuses pattern recognition |
 
-> **Note**: Some existing skills in this workspace use noun-phrase form (e.g., `code-review`, `task-analysis`). Gerund form is the preferred convention for new skills. Existing skills will be renamed to gerund form incrementally.
-
 ### Shortening Long Names
 
 When the gerund form gets too long (over ~20 chars), simplify the object — let the `description` field carry the specificity.
@@ -333,6 +331,6 @@ For standard workflow patterns (checklists, templates, conditional workflows, fe
 
 - `creating-agents` - to understand how skills relate to agent definitions and avoid overlap
 - `creating-prompts` - to understand how prompts reference and trigger skills
-- `technical-context-discovery` - to discover existing skill patterns in the project before creating a new one
-- `codebase-analysis` - to analyze existing skills and identify conventions to follow
+- `technical-context-discovering` - to discover existing skill patterns in the project before creating a new one
+- `codebase-analysing` - to analyze existing skills and identify conventions to follow
 - `creating-instructions` - to understand when project rules belong in instruction files rather than skill content

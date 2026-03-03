@@ -179,6 +179,6 @@ Role: You are a...
 
 - `creating-prompts` - to understand how prompts reference agents and ensure agents don't overlap with prompt responsibilities
 - `creating-skills` - to ensure this skill's own structure follows the canonical skill creation requirements
-- `technical-context-discovery` - to understand existing agent patterns in the project before creating a new one
-- `codebase-analysis` - to analyze existing agents and identify patterns to follow
+- `technical-context-discovering` - to understand existing agent patterns in the project before creating a new one
+- `codebase-analysing` - to analyze existing agents and identify patterns to follow
 - `creating-instructions` - to understand when coding standards and project conventions belong in instruction files rather than agent definitions

@@ -187,5 +187,5 @@ Higher takes precedence on conflict:
 - `creating-agents` - to ensure agent files don't embed coding standards that belong in instructions
 - `creating-skills` - to understand the boundary between procedural knowledge (skills) and declarative rules (instructions)
 - `creating-prompts` - to ensure prompts reference instructions rather than duplicating conventions
-- `technical-context-discovery` - the complementary skill that discovers and reads existing instruction files
-- `codebase-analysis` - to analyze existing instruction files and identify patterns to follow
+- `technical-context-discovering` - the complementary skill that discovers and reads existing instruction files
+- `codebase-analysing` - to analyze existing instruction files and identify patterns to follow
