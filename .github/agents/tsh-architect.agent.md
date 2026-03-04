@@ -1,6 +1,6 @@
 ---
 description: "Agent specializing in designing the solution architecture and technical specifications for development tasks."
-tools: ['atlassian/*', 'context7/*', 'figma-mcp-server/*', 'pdf-reader/*', 'sequential-thinking/*', 'read', 'edit', 'search', 'todo', 'agent', 'vscode/runCommand', 'vscode/askQuestions']
+tools: ['execute', 'atlassian/*', 'context7/*', 'figma-mcp-server/*', 'pdf-reader/*', 'sequential-thinking/*', 'read', 'edit', 'search', 'todo', 'agent', 'vscode/runCommand', 'vscode/askQuestions']
 handoffs: 
   - label: Start Implementation
     agent: tsh-software-engineer
@@ -104,6 +104,21 @@ You have access to the `pdf-reader` tool.
 - **SHOULD NOT use for**:
   - Non-PDF file formats (use standard file reading tools instead).
   - When the user has already provided the PDF content as pasted text in the conversation.
+
+You have access to the `terminal` (execute) tool.
+
+- **MUST use when**:
+  - Inspecting project configuration, installed dependencies, or runtime environment details that are not visible from file contents alone.
+  - Running commands to verify infrastructure assumptions (e.g., checking database engine version, available CLI tools, installed SDK versions).
+  - Exploring build or compilation outputs to understand how the project is assembled.
+- **IMPORTANT**:
+  - Use read-only, non-destructive commands only. Do not modify files, install packages, or alter the environment.
+  - Prefer short, targeted commands (`cat`, `head`, `grep`, `ls`, `which`, `node -v`, `dotnet --info`, etc.) over long-running processes.
+  - Never start servers, run migrations, or execute test suites — those are the software engineer's responsibility.
+- **SHOULD NOT use for**:
+  - Making changes to the codebase or environment (use `edit` tools instead).
+  - Running builds, tests, or deployments.
+  - Long-running or interactive processes.
 
 You have access to the `sequential-thinking` tool.
 
