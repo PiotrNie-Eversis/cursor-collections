@@ -1,7 +1,7 @@
 ---
 description: "Research specialist that gathers, analyzes, and summarizes information from codebases and documentation for Copilot engineering tasks. Returns structured research summaries — read-only, does not create or modify files."
 tools: ['read', 'search', 'web/fetch', 'context7/*']
-user-invokable: false
+user-invocable: false
 ---
 
 ## Agent Role and Responsibilities
