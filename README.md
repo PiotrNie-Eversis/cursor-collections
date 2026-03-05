@@ -22,25 +22,25 @@ This repository supports the **full product development lifecycle** with AI-powe
 ### 📋 Product Ideation – Requirements & Planning
 
 - 🧑‍💻 **Agents** – Business Analyst.
-- 💬 **Prompts** – `/analyze-materials`, `/clean-transcript`, `/create-jira-tasks`.
+- 💬 **Prompts** – `/tsh-analyze-materials`, `/tsh-clean-transcript`, `/tsh-create-jira-tasks`.
 - 🧰 **Skills** – Task Analysis, Transcript Processing, Task Extraction, Jira Task Formatting.
 
 ### 🛠 Development – Architecture & Implementation
 
 - 🧑‍💻 **Agents** – Context Engineer, Architect, Software Engineer.
-- 💬 **Prompts** – `/research`, `/plan`, `/implement`, `/implement-ui`.
+- 💬 **Prompts** – `/tsh-research`, `/tsh-plan`, `/tsh-implement`, `/tsh-implement-ui`.
 - 🧰 **Skills** – Architecture Design, Technical Context Discovery, Frontend Implementation, Implementation Gap Analysis, SQL & Database Engineering, Codebase Analysis.
 
 ### ✅ Quality – Review & Testing
 
 - 🧑‍💻 **Agents** – Code Reviewer, UI Reviewer, E2E Engineer.
-- 💬 **Prompts** – `/review`, `/review-ui`, `/review-codebase`, `/implement-e2e`.
+- 💬 **Prompts** – `/tsh-review`, `/tsh-review-ui`, `/tsh-review-codebase`, `/tsh-implement-e2e`.
 - 🧰 **Skills** – Code Review, UI Verification, E2E Testing.
 
 ### ⚙️ Copilot Customization – Extending the Toolchain
 
 - 🧑‍💻 **Agents** – Copilot Engineer, Copilot Orchestrator.
-- 💬 **Prompts** – `/create-custom-agent`, `/create-custom-skill`, `/create-custom-prompt`, `/create-custom-instructions`.
+- 💬 **Prompts** – `/tsh-create-custom-agent`, `/tsh-create-custom-skill`, `/tsh-create-custom-prompt`, `/tsh-create-custom-instructions`.
 - 🧰 **Skills** – Creating Agents, Creating Skills, Creating Prompts, Creating Instructions.
 
 ### 🔌 Infrastructure
@@ -86,8 +86,8 @@ We support the **full product development lifecycle**, organized into three phas
 
 | | **Standard Flow** | **UI Flow** (with Figma) |
 |---|---|---|
-| Plan | `/plan` – architecture & steps | `/plan` – component breakdown with Figma refs |
-| Implement | `/implement` – backend & frontend code | `/implement-ui` – UI code + iterative Figma verification |
+| Plan | `/tsh-plan` – architecture & steps | `/tsh-plan` – component breakdown with Figma refs |
+| Implement | `/tsh-implement` – backend & frontend code | `/tsh-implement-ui` – UI code + iterative Figma verification |
 
 ### Phase 3: ✅ Quality – Review & Testing
 
@@ -102,29 +102,29 @@ We support the **full product development lifecycle**, organized into three phas
 
 ```text
 📋 PRODUCT IDEATION
-1️⃣ /analyze-materials <transcript + workshop materials>
+1️⃣ /tsh-analyze-materials <transcript + workshop materials>
    ↳ 📖 Review cleaned transcript, extracted tasks, Jira-formatted output
    ↳ ✅ Approve at each gate before proceeding
 
 🛠 DEVELOPMENT
-2️⃣ /research <JIRA_ID or task description>
+2️⃣ /tsh-research <JIRA_ID or task description>
    ↳ 📖 Review the generated research document
    ↳ ✅ Verify accuracy, iterate if needed
 
-3️⃣ /plan     <JIRA_ID or task description>
+3️⃣ /tsh-plan     <JIRA_ID or task description>
    ↳ 📖 Review the implementation plan
    ↳ ✅ Confirm scope, phases, and acceptance criteria
 
-4️⃣ /implement <JIRA_ID or task description>
+4️⃣ /tsh-implement <JIRA_ID or task description>
    ↳ 📖 Review code changes after each phase
    ↳ ✅ Test functionality, verify against plan
 
 ✅ QUALITY
-5️⃣ /review   <JIRA_ID or task description>
+5️⃣ /tsh-review   <JIRA_ID or task description>
    ↳ 📖 Review findings and recommendations
    ↳ ✅ Address blockers before merging
 
-6️⃣ /implement-e2e <JIRA_ID or task description>
+6️⃣ /tsh-implement-e2e <JIRA_ID or task description>
    ↳ 📖 Review generated Page Objects, test files, and fixtures
    ↳ ✅ Run tests locally, verify they pass
 ```
@@ -133,30 +133,30 @@ We support the **full product development lifecycle**, organized into three phas
 
 ```text
 📋 PRODUCT IDEATION
-1️⃣ /analyze-materials <transcript + workshop materials>
+1️⃣ /tsh-analyze-materials <transcript + workshop materials>
    ↳ 📖 Review cleaned transcript, extracted tasks, Jira-formatted output
    ↳ ✅ Approve at each gate before proceeding
 
 🛠 DEVELOPMENT
-2️⃣ /research <JIRA_ID or task description>
+2️⃣ /tsh-research <JIRA_ID or task description>
    ↳ 📖 Review research doc – verify Figma links, requirements
    ↳ ✅ Iterate until context is complete and accurate
 
-3️⃣ /plan         <JIRA_ID or task description>
+3️⃣ /tsh-plan         <JIRA_ID or task description>
    ↳ 📖 Review plan – check component breakdown, design references
    ↳ ✅ Confirm phases align with Figma structure
 
-4️⃣ /implement-ui <JIRA_ID or task description>
+4️⃣ /tsh-implement-ui <JIRA_ID or task description>
    ↳ 📖 Review code changes and UI Verification Summary
    ↳ ✅ Manually verify critical UI elements in browser
-   ↳ 🔄 Agent calls /review-ui in a loop until PASS or escalation
+   ↳ 🔄 Agent calls /tsh-review-ui in a loop until PASS or escalation
 
 ✅ QUALITY
-5️⃣ /review       <JIRA_ID or task description>
+5️⃣ /tsh-review       <JIRA_ID or task description>
    ↳ 📖 Review findings – code quality, a11y, performance
    ↳ ✅ Address all blockers before merging
 
-6️⃣ /implement-e2e <JIRA_ID or task description>
+6️⃣ /tsh-implement-e2e <JIRA_ID or task description>
    ↳ 📖 Review generated tests for the UI feature
    ↳ ✅ Run tests locally, verify they pass
 ```
@@ -167,10 +167,10 @@ You can run any flow with either a **Jira ticket ID** or a **free-form task desc
 
 ### How the UI Verification Loop Works
 
-1. `/implement-ui` implements a UI component
-2. Calls `/review-ui` to perform **single-pass verification** (read-only)
-3. `/review-ui` uses **Figma MCP** (EXPECTED) + **Playwright MCP** (ACTUAL) → returns PASS or FAIL with diff table
-4. If FAIL → `/implement-ui` fixes the code and calls `/review-ui` again
+1. `/tsh-implement-ui` implements a UI component
+2. Calls `/tsh-review-ui` to perform **single-pass verification** (read-only)
+3. `/tsh-review-ui` uses **Figma MCP** (EXPECTED) + **Playwright MCP** (ACTUAL) → returns PASS or FAIL with diff table
+4. If FAIL → `/tsh-implement-ui` fixes the code and calls `/tsh-review-ui` again
 5. Repeats until PASS or max 5 iterations (then escalates)
 
 ### Example: Standalone Product Ideation
@@ -179,7 +179,7 @@ For converting discovery workshop recordings into Jira-ready tasks without conti
 
 ```text
 📋 PRODUCT IDEATION
-1️⃣ /analyze-materials <transcript + workshop materials>
+1️⃣ /tsh-analyze-materials <transcript + workshop materials>
    ↳ 📖 Review cleaned transcript – verify topics, decisions, action items
    ↳ ✅ Confirm nothing important was removed during cleaning
 
@@ -243,7 +243,7 @@ These are configured as Copilot **agents / sub-agents**, organized by lifecycle 
 - Focus: **single-pass UI verification against Figma designs**.
 - Performs read-only comparison: Figma (EXPECTED) vs Playwright (ACTUAL).
 - Returns PASS/FAIL verdict with structured difference table.
-- Called by `/implement-ui` in a loop; can also be used standalone.
+- Called by `/tsh-implement-ui` prompt in a loop; can also be used standalone.
 
 #### 🧪 E2E Engineer
 
@@ -256,12 +256,14 @@ These are configured as Copilot **agents / sub-agents**, organized by lifecycle 
 ### ⚙️ Copilot Customization Agents
 
 #### ⚙️ Copilot Engineer
+
 - Focus: **designing, creating, reviewing, and improving Copilot customization artifacts**.
 - Expert in prompt engineering, context engineering, and AI engineering for custom agents, skills, prompts, and instructions.
 - Enforces separation of concerns between customization types (agent = WHO, skill = HOW, prompt = WHAT, instructions = RULES).
 - Optimizes token efficiency, context architecture, and signal-to-noise ratio within context windows.
 
 #### 🔀 Copilot Orchestrator *(experimental)*
+
 - Focus: **coordinating complex, multi-step Copilot customization tasks** using specialized sub-agents.
 - Decomposes work into focused subtasks and delegates to three workers: Researcher, Creator, and Reviewer — each running in an isolated context window.
 - Solves the "context rot" problem where complex tasks degrade quality in a monolithic agent's context window.
@@ -382,24 +384,28 @@ Skills are stored in `.github/skills/` and are picked up automatically by Copilo
 ### ⚙️ Copilot Customization Skills
 
 #### 🏗️ Creating Agents
+
 - Focus: **creating custom agents** (.agent.md) for GitHub Copilot in VS Code.
 - Provides templates, guidelines, and a structured process for building agent definitions.
 - Enforces separation of concerns between agents (WHO), skills (HOW), and prompts (WHAT).
 - Ensures consistent agent structure with clear behavior, personality, and responsibility definitions.
 
 #### ✍️ Creating Skills
+
 - Focus: **creating well-structured, reusable skills** (SKILL.md) for GitHub Copilot.
 - Enforces gerund-form naming conventions, description guidelines, and body structure rules.
 - Provides templates, examples, and a validation checklist for consistent skill authoring.
 - Implements progressive disclosure patterns to optimize token usage across discovery, activation, and resource tiers.
 
 #### 📝 Creating Prompts
+
 - Focus: **creating custom prompt files** (.prompt.md) for GitHub Copilot in VS Code.
 - Provides templates and guidelines for building prompt files that trigger specific workflows.
 - Routes workflows to the right custom agent and AI model via frontmatter configuration.
 - Ensures prompts focus on workflow steps without redefining agent identity or behavior.
 
 #### 📜 Creating Instructions
+
 - Focus: **creating custom instruction files** (.instructions.md) for GitHub Copilot in VS Code.
 - Covers both repository-level instructions (the project constitution) and granular scoped instructions with applyTo glob patterns.
 - Provides templates, decision framework for when conventions belong in instructions vs. skills, and validation checklists.
@@ -413,7 +419,7 @@ All commands work with either a **Jira ID** or a **plain-text description**.
 
 ### 📋 Product Ideation Commands
 
-#### `/analyze-materials <workshop materials>`
+#### `/tsh-analyze-materials <workshop materials>`
 
 - Processes discovery workshop materials end-to-end: clean transcript → extract tasks → format for Jira → push.
 - Accepts raw transcripts, Figma design links, codebase references, and other documents.
@@ -421,13 +427,13 @@ All commands work with either a **Jira ID** or a **plain-text description**.
 - Includes two mandatory review gates before Jira creation.
 - Outputs: Jira-ready epics and stories, created in your Jira project after approval.
 
-#### `/clean-transcript <transcript>`
+#### `/tsh-clean-transcript <transcript>`
 
 - Standalone command to clean a raw workshop transcript.
 - Removes small talk, structures content by discussion topics, extracts decisions and action items.
 - Outputs: `cleaned-transcript.md` in the specifications directory.
 
-#### `/create-jira-tasks <extracted-tasks reference>`
+#### `/tsh-create-jira-tasks <extracted-tasks reference>`
 
 - Formats an existing `extracted-tasks.md` into Jira-ready structure and pushes to Jira.
 - Applies the benchmark template, validates completeness, and manages review gates.
@@ -435,49 +441,49 @@ All commands work with either a **Jira ID** or a **plain-text description**.
 
 ### 🛠 Development Commands
 
-#### `/research <JIRA_ID | description>`
+#### `/tsh-research <JIRA_ID | description>`
 
 - Gathers all available information about the task.
 - Pulls context from Jira, design artifacts, and code (via MCPs where applicable).
 - Outputs: task summary, assumptions, open questions, and suggested next steps.
 
-#### `/plan <JIRA_ID | description>`
+#### `/tsh-plan <JIRA_ID | description>`
 
 - Creates a **multi-step implementation plan**.
 - Groups work into phases and tasks aligned with your repo structure.
 - Outputs: checklist-style plan that can be executed by the Software Engineer agent.
 
-#### `/implement <JIRA_ID | description>`
+#### `/tsh-implement <JIRA_ID | description>`
 
 - Implements the previously defined plan.
 - Proposes file changes, refactors, and new code in a focused way.
 - Outputs: concrete modifications and guidance on how to apply/test them.
 
-#### `/implement-ui <JIRA_ID | description>`
+#### `/tsh-implement-ui <JIRA_ID | description>`
 
 - Implements UI features with **iterative Figma verification**.
-- Extends `/implement` with a verification loop after each component.
+- Extends `/tsh-implement` with a verification loop after each component.
 - Uses **Playwright** to capture current UI state and **Figma MCP** to compare with designs.
 - Automatically fixes mismatches and re-verifies until implementation matches design.
 - Outputs: code changes + UI Verification Summary with iteration counts.
 
 ### ✅ Quality Commands
 
-#### `/review <JIRA_ID | description>`
+#### `/tsh-review <JIRA_ID | description>`
 
 - Reviews the final implementation against the plan and requirements.
 - Highlights security, reliability, performance, and maintainability concerns.
 - Outputs: structured review with clear "pass/blockers/suggestions".
 
-#### `/review-ui`
+#### `/tsh-review-ui`
 
 - Performs **single-pass UI verification** comparing implementation against Figma.
 - Uses **Figma MCP** (EXPECTED) and **Playwright MCP** (ACTUAL) to compare.
 - **Read-only** – reports differences but does not fix them.
-- Called by `/implement-ui` in a loop; can also be used standalone.
+- Called by `/tsh-implement-ui` in a loop; can also be used standalone.
 - Outputs: PASS/FAIL verdict + structured difference table with exact values.
 
-#### `/review-codebase`
+#### `/tsh-review-codebase`
 
 - Performs a **comprehensive code quality analysis** of the repository.
 - Detects dead code, unused imports, unreachable code paths, and orphaned files.
@@ -487,7 +493,7 @@ All commands work with either a **Jira ID** or a **plain-text description**.
 - For monorepos, analyzes each layer/app separately using parallel subagents.
 - Outputs: prioritized `code-quality-report.md` with severity levels (🔴 Critical / 🟡 Important / 🟢 Nice to Have) and a recommended action plan.
 
-#### `/implement-e2e <JIRA_ID | description>`
+#### `/tsh-implement-e2e <JIRA_ID | description>`
 
 - Creates comprehensive **end-to-end tests** for the feature using Playwright.
 - Analyzes the application, designs test scenarios, and implements Page Objects.
@@ -499,7 +505,7 @@ All commands work with either a **Jira ID** or a **plain-text description**.
 
 > To create or modify Copilot customization artifacts (agents, skills, prompts, instructions), use the `/create-custom-*` commands below. These route to the orchestrator which handles research, creation, and review automatically.
 
-#### `/create-custom-agent`
+#### `/tsh-create-custom-agent`
 
 - Creates a new custom agent (`.agent.md`) for VS Code Copilot.
 - Analyzes existing agents for patterns and conventions, guides through design decisions.
@@ -507,7 +513,7 @@ All commands work with either a **Jira ID** or a **plain-text description**.
 - Routes to `tsh-copilot-orchestrator` which handles the research → create → review workflow.
 - Outputs: a new agent file in `.github/agents/` following workspace conventions.
 
-#### `/create-custom-skill`
+#### `/tsh-create-custom-skill`
 
 - Creates a new custom skill (`SKILL.md`) for VS Code Copilot.
 - Analyzes existing skills for patterns, enforces gerund naming convention.
@@ -515,7 +521,7 @@ All commands work with either a **Jira ID** or a **plain-text description**.
 - Routes to `tsh-copilot-orchestrator` which handles the research → create → review workflow.
 - Outputs: skill directory with SKILL.md and supporting files in `.github/skills/`.
 
-#### `/create-custom-prompt`
+#### `/tsh-create-custom-prompt`
 
 - Creates a new custom prompt (`.prompt.md`) for VS Code Copilot.
 - Analyzes existing prompts, identifies the right agent routing target.
@@ -523,7 +529,7 @@ All commands work with either a **Jira ID** or a **plain-text description**.
 - Routes to `tsh-copilot-orchestrator` which handles the research → create → review workflow.
 - Outputs: prompt file in `.github/prompts/` with correct routing.
 
-#### `/create-custom-instructions`
+#### `/tsh-create-custom-instructions`
 
 - Creates custom instructions (`.instructions.md` or `copilot-instructions.md`) for VS Code Copilot.
 - Helps decide between repository-level and file-scoped instructions.
@@ -660,7 +666,7 @@ To enable this, modify your `mcp.json` configuration (User or Workspace) to use 
 
 ### What each MCP is used for
 
-- 🧩 **Atlassian MCP** – access Jira issues for `/research`, `/plan`, `/implement`, `/review`.
+- 🧩 **Atlassian MCP** – access Jira issues for `/tsh-research`, `/tsh-plan`, `/tsh-implement`, `/tsh-review`.
 - 🎨 **Figma MCP Server** – pull design details, components, and variables for design‑driven work.
 - 📚 **Context7 MCP** – semantic search in external docs and knowledge bases.
 - 🧪 **Playwright MCP** – run browser interactions and end‑to‑end style checks from Copilot.
@@ -690,34 +696,34 @@ Once the repo is cloned and VS Code User Settings are configured:
 
 | Agent | Prompt | Purpose |
 |---|---|---|
-| Business Analyst | `/analyze-materials <materials>` | Clean transcript → extract tasks → push to Jira |
+| Business Analyst | `/tsh-analyze-materials <materials>` | Clean transcript → extract tasks → push to Jira |
 
 ### 🛠 Development – Architect & implement
 
 | Agent | Prompt | Purpose |
 |---|---|---|
-| Context Engineer | `/research <JIRA_ID>` | Gather context, identify gaps & risks |
-| Architect | `/plan <JIRA_ID>` | Create multi-step implementation plan |
-| Software Engineer | `/implement <JIRA_ID>` | Standard backend & frontend implementation |
-| Software Engineer | `/implement-ui <JIRA_ID>` | UI implementation with iterative Figma verification |
+| Context Engineer | `/tsh-research <JIRA_ID>` | Gather context, identify gaps & risks |
+| Architect | `/tsh-plan <JIRA_ID>` | Create multi-step implementation plan |
+| Software Engineer | `/tsh-implement <JIRA_ID>` | Standard backend & frontend implementation |
+| Software Engineer | `/tsh-implement-ui <JIRA_ID>` | UI implementation with iterative Figma verification |
 
 ### ✅ Quality – Review & test
 
 | Agent | Prompt | Purpose |
 |---|---|---|
-| Code Reviewer | `/review <JIRA_ID>` | Structured code review against criteria |
-| UI Reviewer | `/review-ui` | Single-pass UI vs Figma comparison |
-| E2E Engineer | `/implement-e2e <JIRA_ID>` | End-to-end test creation with Playwright |
-| — | `/review-codebase` | Full codebase quality analysis |
+| Code Reviewer | `/tsh-review <JIRA_ID>` | Structured code review against criteria |
+| UI Reviewer | `/tsh-review-ui` | Single-pass UI vs Figma comparison |
+| E2E Engineer | `/tsh-implement-e2e <JIRA_ID>` | End-to-end test creation with Playwright |
+| — | `/tsh-review-codebase` | Full codebase quality analysis |
 
 ### ⚙️ Copilot Customization – Extend the toolchain
 
 | Agent | Prompt | Purpose |
 |---|---|---|
-| Copilot Engineer / Orchestrator | `/create-custom-agent` | Create a new custom agent |
-| Copilot Engineer / Orchestrator | `/create-custom-skill` | Create a new custom skill |
-| Copilot Engineer / Orchestrator | `/create-custom-prompt` | Create a new custom prompt |
-| Copilot Engineer / Orchestrator | `/create-custom-instructions` | Create custom instruction files |
+| Copilot Engineer / Orchestrator | `/tsh-create-custom-agent` | Create a new custom agent |
+| Copilot Engineer / Orchestrator | `/tsh-create-custom-skill` | Create a new custom skill |
+| Copilot Engineer / Orchestrator | `/tsh-create-custom-prompt` | Create a new custom prompt |
+| Copilot Engineer / Orchestrator | `/tsh-create-custom-instructions` | Create custom instruction files |
 
 All of these will leverage the shared configuration from `copilot-collections` while still respecting your project's own code and context.
 
