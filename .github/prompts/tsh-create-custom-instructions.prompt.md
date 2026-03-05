@@ -10,8 +10,8 @@ Create custom instructions for VS Code Copilot. There are two types: repository-
 
 Before starting, load and follow these skills:
 - `creating-instructions` - for instructions file creation workflow, type selection, scope decisions, and validation checklist
-- `technical-context-discovery` - for discovering project conventions and workspace patterns before creating
-- `codebase-analysis` - for analyzing workspace for existing coding conventions and patterns
+- `technical-context-discovering` - for discovering project conventions and workspace patterns before creating
+- `codebase-analysing` - for analyzing workspace for existing coding conventions and patterns
 
 ## Workflow
 

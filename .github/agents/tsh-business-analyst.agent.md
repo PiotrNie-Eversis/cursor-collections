@@ -4,11 +4,11 @@ tools: ['atlassian/*', 'figma-mcp-server/*', 'pdf-reader/*', 'sequential-thinkin
 handoffs: 
   - label: Deep-dive Research per Task
     agent: tsh-context-engineer
-    prompt: /research Research the task for deeper business context
+    prompt: /tsh-research Research the task for deeper business context
     send: false
   - label: Prepare Implementation Plan
     agent: tsh-architect
-    prompt: /plan Create implementation plan for the current task
+    prompt: /tsh-plan Create implementation plan for the current task
     send: false
 ---
 

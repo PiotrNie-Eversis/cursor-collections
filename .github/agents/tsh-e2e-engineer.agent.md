@@ -4,7 +4,7 @@ tools: ['execute', 'read', 'atlassian/search', 'context7/*', 'figma-mcp-server/*
 handoffs:
   - label: Report critical bug found during testing
     agent: tsh-software-engineer
-    prompt: /implement Fix the bug discovered during E2E testing
+    prompt: /tsh-implement Fix the bug discovered during E2E testing
     send: false
 ---
 

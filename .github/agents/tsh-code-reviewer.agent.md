@@ -4,7 +4,7 @@ tools: ['execute', 'read', 'atlassian/*', 'context7/*', 'figma-mcp-server/*', 's
 handoffs: 
   - label: Implement changes requested after code review
     agent: tsh-software-engineer
-    prompt: /implement Implement changes requested after code review
+    prompt: /tsh-implement Implement changes requested after code review
     send: false
 ---
 

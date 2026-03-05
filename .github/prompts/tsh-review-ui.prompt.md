@@ -6,7 +6,7 @@ description: "Single-pass UI verification: compare implementation against Figma 
 
 Your goal is to perform a **single verification pass** comparing the current implementation against the Figma design. This is a **read-only** operation – you report differences but do not fix them.
 
-This prompt is called by `implement-ui.prompt.md` in a loop. Your job is to provide accurate comparison results so the implementation agent can fix issues.
+This prompt is called by `tsh-implement-ui.prompt.md` in a loop. Your job is to provide accurate comparison results so the implementation agent can fix issues.
 
 ## Required Skills
 

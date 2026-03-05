@@ -4,7 +4,7 @@ tools: ['atlassian/*', 'figma-mcp-server/*', 'pdf-reader/*', 'sequential-thinkin
 handoffs: 
   - label: Prepare Implementation Plan
     agent: tsh-architect
-    prompt: /plan Create implementation plan for the current task
+    prompt: /tsh-plan Create implementation plan for the current task
     send: false
 ---
 

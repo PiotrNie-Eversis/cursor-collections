@@ -10,8 +10,8 @@ Create a new custom prompt for VS Code Copilot. Every prompt must specify an age
 
 Before starting, load and follow these skills:
 - `creating-prompts` - for prompt file creation workflow, templates, and validation checklist
-- `technical-context-discovery` - for discovering project conventions and workspace patterns before creating
-- `codebase-analysis` - for analyzing existing prompts for structural patterns and routing conventions
+- `technical-context-discovering` - for discovering project conventions and workspace patterns before creating
+- `codebase-analysing` - for analyzing existing prompts for structural patterns and routing conventions
 
 ## Workflow
 

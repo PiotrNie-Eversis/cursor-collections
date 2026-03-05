@@ -4,11 +4,11 @@ tools: ['execute', 'atlassian/*', 'context7/*', 'figma-mcp-server/*', 'pdf-reade
 handoffs: 
   - label: Start Implementation
     agent: tsh-software-engineer
-    prompt: /implement Implement feature according to the plan
+    prompt: /tsh-implement Implement feature according to the plan
     send: false
   - label: Start UI Implementation
     agent: tsh-software-engineer
-    prompt: /implement-ui Implement UI feature according to the plan with Figma verification
+    prompt: /tsh-implement-ui Implement UI feature according to the plan with Figma verification
     send: false
 ---
 

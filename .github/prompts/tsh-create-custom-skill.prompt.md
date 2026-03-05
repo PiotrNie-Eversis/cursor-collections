@@ -10,8 +10,8 @@ Create a new custom skill for VS Code Copilot. The orchestrator handles research
 
 Before starting, load and follow these skills:
 - `creating-skills` - for skill file creation workflow, naming conventions, progressive disclosure, and validation checklist
-- `technical-context-discovery` - for discovering project conventions and workspace patterns before creating
-- `codebase-analysis` - for analyzing existing skills for structural patterns and naming conventions
+- `technical-context-discovering` - for discovering project conventions and workspace patterns before creating
+- `codebase-analysing` - for analyzing existing skills for structural patterns and naming conventions
 
 ## Workflow
 

@@ -4,7 +4,7 @@ model: "Claude Opus 4.6"
 description: "Implement UI feature according to the plan with iterative Figma verification until pixel-perfect."
 ---
 
-> **PREREQUISITE**: Before using this prompt, you MUST first read and understand [implement.prompt.md](./implement.prompt.md). This prompt extends the base implementation workflow – you will execute all 11 steps from the base workflow, with UI-specific additions described below.
+> **PREREQUISITE**: Before using this prompt, you MUST first read and understand [tsh-implement.prompt.md](./tsh-implement.prompt.md). This prompt extends the base implementation workflow – you will execute all 11 steps from the base workflow, with UI-specific additions described below.
 
 Implement the UI feature according to the **research context** and **implementation plan**, with continuous verification against Figma designs until the implementation matches the design within the agreed tolerance.
 
@@ -16,16 +16,16 @@ Before starting, load and follow these skills:
 - `ui-verifying` - for understanding verification criteria, tolerances, and what constitutes PASS/FAIL
 - `technical-context-discovering` - to establish project conventions before implementing
 
-This prompt **extends and does not replace** the base implementation workflow defined in [implement.prompt.md](./implement.prompt.md).
+This prompt **extends and does not replace** the base implementation workflow defined in [tsh-implement.prompt.md](./tsh-implement.prompt.md).
 
 ---
 
 ## Relationship to Base Workflow
 
-- **IMPORTANT**: First, read and fully understand [implement.prompt.md](./implement.prompt.md) – it defines the complete base workflow steps
-- You MUST execute **all steps** from `implement.prompt.md`, including **final code review by `tsh-code-reviewer` agent**.
+- **IMPORTANT**: First, read and fully understand [tsh-implement.prompt.md](./tsh-implement.prompt.md) – it defines the complete base workflow steps
+- You MUST execute **all steps** from `tsh-implement.prompt.md`, including **final code review by `tsh-code-reviewer` agent**.
 - Treat this prompt as an **extension focused on UI and Figma verification** – it adds UI-specific behaviors but does not remove or replace any base workflow steps.
-- All constraints from `research.prompt.md` and `plan.prompt.md` remain valid: do not go out of scope, do not re‑implement existing solutions, and always update the plan/checklists instead of silently changing scope.
+- All constraints from `tsh-research.prompt.md` and `tsh-plan.prompt.md` remain valid: do not go out of scope, do not re‑implement existing solutions, and always update the plan/checklists instead of silently changing scope.
 
 ---
 
@@ -83,20 +83,20 @@ BEFORE starting:
     0. Ensure you have a Figma URL → if not, ASK user
 
 REPEAT (max 5 iterations):
-    1. Call /review-ui to verify current implementation
+    1. Call /tsh-review-ui to verify current implementation
     2. If PASS → done, exit loop
     3. If FAIL → fix the reported differences → go to step 1
 ```
 
 ### Rules
 
-1. **Call `/review-ui` for every verification** – do not verify manually or skip this step
+1. **Call `/tsh-review-ui` for every verification** – do not verify manually or skip this step
 2. **Fix all reported differences** – do not skip or rationalize
-3. **Verify again after fixing** – always re-run `/review-ui`
+3. **Verify again after fixing** – always re-run `/tsh-review-ui`
 4. **Maximum 5 iterations** – escalate if still not matching
-5. **Check confidence level** – if `/review-ui` returns LOW confidence, consider manual verification before fixing
+5. **Check confidence level** – if `/tsh-review-ui` returns LOW confidence, consider manual verification before fixing
 
-### When `/review-ui` returns FAIL
+### When `/tsh-review-ui` returns FAIL
 
 1. Read the difference table from the report
 2. Check confidence level:
@@ -104,11 +104,11 @@ REPEAT (max 5 iterations):
    - **MEDIUM**: Fix obvious differences, manually verify unclear ones
    - **LOW**: Manually verify before making changes, tool data may be incomplete
 3. Document fix in Changelog
-4. Run `/review-ui` again
+4. Run `/tsh-review-ui` again
 
 ### Fallback: When Tools Are Unreliable
 
-If `/review-ui` consistently returns LOW confidence or tool errors:
+If `/tsh-review-ui` consistently returns LOW confidence or tool errors:
 
 1. **Do not continue the automated loop blindly**
 2. **Perform manual verification**:
