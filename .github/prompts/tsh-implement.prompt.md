@@ -17,9 +17,9 @@ If you need to make changes to the original solution during implementation, wait
 ## Required Skills
 
 Before starting, load and follow these skills:
-- `technical-context-discovering` - to establish project conventions, coding standards, and existing patterns
-- `implementation-gap-analysing` - to verify current state before making changes
-- `sql-and-database-understanding` - when implementing database schemas, migrations, SQL queries, ORM-based data access, or working with transactions and locking
+- `tsh-technical-context-discovering` - to establish project conventions, coding standards, and existing patterns
+- `tsh-implementation-gap-analysing` - to verify current state before making changes
+- `tsh-sql-and-database-understanding` - when implementing database schemas, migrations, SQL queries, ORM-based data access, or working with transactions and locking
 
 ## Workflow
 

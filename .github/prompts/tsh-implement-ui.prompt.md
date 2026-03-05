@@ -12,9 +12,9 @@ Implement the UI feature according to the **research context** and **implementat
 
 Before starting, load and follow these skills:
 
-- `implementing-frontend` - for accessibility, design system usage, component patterns, and performance guidelines
-- `ui-verifying` - for understanding verification criteria, tolerances, and what constitutes PASS/FAIL
-- `technical-context-discovering` - to establish project conventions before implementing
+- `tsh-implementing-frontend` - for accessibility, design system usage, component patterns, and performance guidelines
+- `tsh-ui-verifying` - for understanding verification criteria, tolerances, and what constitutes PASS/FAIL
+- `tsh-technical-context-discovering` - to establish project conventions before implementing
 
 This prompt **extends and does not replace** the base implementation workflow defined in [tsh-implement.prompt.md](./tsh-implement.prompt.md).
 
@@ -74,7 +74,7 @@ Before step 6 of the base workflow (starting implementation), ensure:
 
 ## UI Verification Loop (per UI component/section)
 
-After implementing each UI component, run a verification loop using `review-ui.prompt.md` until the implementation matches the Figma design.
+After implementing each UI component, run a verification loop using `./tsh-review-ui.prompt.md` until the implementation matches the Figma design.
 
 ### Core Loop
 

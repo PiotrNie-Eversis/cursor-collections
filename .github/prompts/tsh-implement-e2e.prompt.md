@@ -11,15 +11,15 @@ description: "Create, maintain, and execute E2E tests for given feature or user 
 ## Required Skills
 
 Before starting, load and follow these skills:
-- `task-analysing` - to determine the input source and gather task requirements
-- `technical-context-discovering` - to establish test conventions, existing patterns, and project configuration
-- `e2e-testing` - for Page Object patterns, test structure, mocking strategies, verification loop rules, error recovery, and CI readiness checklist
+- `tsh-task-analysing` - to determine the input source and gather task requirements
+- `tsh-technical-context-discovering` - to establish test conventions, existing patterns, and project configuration
+- `tsh-e2e-testing` - for Page Object patterns, test structure, mocking strategies, verification loop rules, error recovery, and CI readiness checklist
 
 ---
 
 ## 1. Context
 
-Follow the `task-analysing` skill's **Step 0 (Determine input source)** to identify whether context comes from research/plan files, a Jira ID, or directly from the prompt message.
+Follow the `tsh-task-analysing` skill's **Step 0 (Determine input source)** to identify whether context comes from research/plan files, a Jira ID, or directly from the prompt message.
 
 Additionally, always:
 - Check `*.instructions.md` → project-specific conventions
@@ -45,7 +45,7 @@ Checklist:
 
 ## 3. Implementation & Verification
 
-Follow the `e2e-testing` skill for:
+Follow the `tsh-e2e-testing` skill for:
 - Page Object patterns and test structure
 - Mocking strategies (external APIs only)
 - Verification loop rules and iteration limits

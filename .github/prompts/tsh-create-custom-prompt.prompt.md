@@ -9,9 +9,9 @@ Create a new custom prompt for VS Code Copilot. Every prompt must specify an age
 ## Required Skills
 
 Before starting, load and follow these skills:
-- `creating-prompts` - for prompt file creation workflow, templates, and validation checklist
-- `technical-context-discovering` - for discovering project conventions and workspace patterns before creating
-- `codebase-analysing` - for analyzing existing prompts for structural patterns and routing conventions
+- `tsh-creating-prompts` - for prompt file creation workflow, templates, and validation checklist
+- `tsh-technical-context-discovering` - for discovering project conventions and workspace patterns before creating
+- `tsh-codebase-analysing` - for analyzing existing prompts for structural patterns and routing conventions
 
 ## Workflow
 
@@ -29,7 +29,7 @@ Before starting, load and follow these skills:
    - Which agent should handle the prompt (based on agent research)
    - Required skills the prompt should reference
    - If the user's message already contains requirements, confirm understanding before proceeding
-4. **Create the prompt file**: Create the `.prompt.md` file in `.github/prompts/` with correct agent routing, model, and skill references. Apply the `creating-prompts` skill workflow for structure and validation.
+4. **Create the prompt file**: Create the `.prompt.md` file in `.github/prompts/` with correct agent routing, model, and skill references. Apply the `tsh-creating-prompts` skill workflow for structure and validation.
 5. **Review and validate**: Review the created prompt against best practices:
    - Verify the routing agent exists in `.github/agents/`
    - Confirm structural consistency with existing prompts

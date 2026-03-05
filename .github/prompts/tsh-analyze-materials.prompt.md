@@ -15,28 +15,28 @@ The file outcomes should be markdown files placed in the `specifications` direct
 ## Required Skills
 
 Before starting, load and follow these skills in order:
-- `transcript-processing` - for cleaning and structuring raw transcripts
-- `task-extracting` - for identifying epics and user stories from all materials
-- `task-quality-reviewing` - for analyzing extracted tasks for gaps, edge cases, and improvements
-- `jira-task-formatting` - for formatting tasks per the benchmark template and managing Jira push
-- `codebase-analysing` - for understanding the existing codebase when relevant
+- `tsh-transcript-processing` - for cleaning and structuring raw transcripts
+- `tsh-task-extracting` - for identifying epics and user stories from all materials
+- `tsh-task-quality-reviewing` - for analyzing extracted tasks for gaps, edge cases, and improvements
+- `tsh-jira-task-formatting` - for formatting tasks per the benchmark template and managing Jira push
+- `tsh-codebase-analysing` - for understanding the existing codebase when relevant
 
 ## Workflow
 
 Determine the entry point based on what the user provides:
 
-**If the user provides existing Jira issue keys or a project key instead of workshop materials**, skip transcript processing and task extraction. Use the `jira-task-formatting` **Import Mode** to fetch and convert existing tasks into `jira-tasks.md`. Then proceed to quality review (Step 5) and formatting.
+**If the user provides existing Jira issue keys or a project key instead of workshop materials**, skip transcript processing and task extraction. Use the `tsh-jira-task-formatting` **Import Mode** to fetch and convert existing tasks into `jira-tasks.md`. Then proceed to quality review (Step 5) and formatting.
 
 **Standard workflow (workshop materials provided):**
 
-1. **Process transcript**: If a raw transcript is provided, clean it using the `transcript-processing` skill. Remove small talk, structure by topics, extract decisions and action items. Save as `cleaned-transcript.md`.
-2. **Analyze additional materials**: Review Figma designs (using `figma-mcp-server` tool), read PDF documents (using `pdf-reader` tool), existing codebase (using `codebase-analysing` skill), and any other reference documents provided.
-3. **Extract tasks**: Using the `task-extracting` skill, identify epics and user stories from all processed materials. Save as `extracted-tasks.md`.
+1. **Process transcript**: If a raw transcript is provided, clean it using the `tsh-transcript-processing` skill. Remove small talk, structure by topics, extract decisions and action items. Save as `cleaned-transcript.md`.
+2. **Analyze additional materials**: Review Figma designs (using `figma-mcp-server` tool), read PDF documents (using `pdf-reader` tool), existing codebase (using `tsh-codebase-analysing` skill), and any other reference documents provided.
+3. **Extract tasks**: Using the `tsh-task-extracting` skill, identify epics and user stories from all processed materials. Save as `extracted-tasks.md`.
 4. **Review Gate 1**: Present the extracted task list to the user for validation. Ask if any tasks were missed, should be split, merged, or removed. Iterate until the user approves.
-5. **Quality review**: Using the `task-quality-reviewing` skill, run all analysis passes against the approved task list. Build the domain model, identify gaps, and produce structured suggestions. This step runs automatically after Gate 1 approval — do not ask the user whether to run it.
+5. **Quality review**: Using the `tsh-task-quality-reviewing` skill, run all analysis passes against the approved task list. Build the domain model, identify gaps, and produce structured suggestions. This step runs automatically after Gate 1 approval — do not ask the user whether to run it.
 6. **Review Gate 1.5**: Present all quality review suggestions to the user, grouped by epic and ordered by confidence. The user accepts or rejects each suggestion individually. Apply accepted suggestions to `extracted-tasks.md` and save the quality review report as `quality-review.md`.
 7. **Confirm updated tasks**: After applying accepted suggestions, briefly summarize the changes made to `extracted-tasks.md` (new stories added, criteria added, stories modified). If the user wants to review the full updated task list, present it. Proceed when the user confirms.
-8. **Format for Jira**: Using the `jira-task-formatting` skill, apply the benchmark template to format all tasks for Jira. Save as `jira-tasks.md`.
+8. **Format for Jira**: Using the `tsh-jira-task-formatting` skill, apply the benchmark template to format all tasks for Jira. Save as `jira-tasks.md`.
 9. **Review Gate 2**: Present the final formatted tasks to the user. Confirm the target Jira project and get explicit approval before pushing.
 10. **Push to Jira**: Create or update issues in Jira. For new tasks (no Jira key), create epics first, then stories linked to their parent epics. For tasks with existing Jira keys, update the corresponding issues. Present a sync summary before pushing. Report created/updated issue keys back to the user.
 

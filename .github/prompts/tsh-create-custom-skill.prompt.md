@@ -9,9 +9,9 @@ Create a new custom skill for VS Code Copilot. The orchestrator handles research
 ## Required Skills
 
 Before starting, load and follow these skills:
-- `creating-skills` - for skill file creation workflow, naming conventions, progressive disclosure, and validation checklist
-- `technical-context-discovering` - for discovering project conventions and workspace patterns before creating
-- `codebase-analysing` - for analyzing existing skills for structural patterns and naming conventions
+- `tsh-creating-skills` - for skill file creation workflow, naming conventions, progressive disclosure, and validation checklist
+- `tsh-technical-context-discovering` - for discovering project conventions and workspace patterns before creating
+- `tsh-codebase-analysing` - for analyzing existing skills for structural patterns and naming conventions
 
 ## Workflow
 
@@ -30,7 +30,7 @@ Before starting, load and follow these skills:
    - Folder structure and supporting resource types
    - Progressive disclosure tiers (discovery, activation, resource)
    - How the skill fits within the existing skill ecosystem
-4. **Create the skill files**: Create `SKILL.md` and any supporting files in `.github/skills/<skill-name>/` following established conventions. Apply the `creating-skills` skill workflow for structure and validation.
+4. **Create the skill files**: Create `SKILL.md` and any supporting files in `.github/skills/<skill-name>/` following established conventions. Apply the `tsh-creating-skills` skill workflow for structure and validation.
 5. **Review and validate**: Review the created skill against best practices:
    - Verify gerund naming convention is followed
    - Confirm structural consistency with existing skills

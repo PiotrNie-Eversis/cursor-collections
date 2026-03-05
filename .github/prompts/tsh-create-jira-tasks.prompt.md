@@ -11,21 +11,21 @@ The file outcome should be a markdown file named `jira-tasks.md` placed in the s
 ## Required Skills
 
 Before starting, load and follow this skill:
-- `jira-task-formatting` - for the formatting process, benchmark template, Jira push guidelines, and Import Mode
+- `tsh-jira-task-formatting` - for the formatting process, benchmark template, Jira push guidelines, and Import Mode
 
 ## Workflow
 
 Determine the entry point based on what the user provides:
 
 **If the user provides Jira issue keys or a project key to import:**
-1. Use the `jira-task-formatting` **Import Mode** (Steps I-1 through I-6) to fetch and convert existing Jira tasks into local `jira-tasks.md` format.
+1. Use the `tsh-jira-task-formatting` **Import Mode** (Steps I-1 through I-6) to fetch and convert existing Jira tasks into local `jira-tasks.md` format.
 2. Present the imported tasks for user review.
 3. Save the file locally.
 4. After import, the user can request modifications to individual tasks — each change triggers a "Push to Jira now?" prompt via the Per-Change Modification Flow.
 
 **If the user provides an `extracted-tasks.md` file:**
 1. Locate and read the `extracted-tasks.md` file provided by the user or referenced in the conversation.
-2. Load the benchmark template (`jira-task.example.md`) from the `jira-task-formatting` skill.
+2. Load the benchmark template (`jira-task.example.md`) from the `tsh-jira-task-formatting` skill.
 3. Format each epic and story according to the benchmark template fields and structure.
 4. Validate completeness — flag any tasks where required fields cannot be confidently filled.
 5. Ask the user to resolve any flagged fields or ambiguities (one question per task).

@@ -59,11 +59,11 @@ This policy is the **single source of truth** for the protected status list. All
 
 ## Skills Usage Guidelines
 
-- `transcript-processing` - to clean raw workshop transcripts from small talk, structure by topics, and extract key decisions, action items, and open questions. Use at the beginning of the workflow when raw transcripts are provided.
-- `task-extracting` - to identify epics and user stories from all processed materials (cleaned transcript, Figma designs, codebase context). Use after transcript processing and material analysis are complete.
-- `jira-task-formatting` - to format extracted tasks into Jira-ready structure following the benchmark template, manage review gates, and guide Jira issue creation. Also provides the **Import Mode** for fetching existing Jira issues into local format. Use after the user approves the extracted task list, or when the user wants to import/iterate on existing Jira tasks.
-- `task-quality-reviewing` - to analyze the Gate 1-approved task list for quality gaps, missing edge cases, and improvement opportunities. Runs automatically after Gate 1 approval. Produces structured suggestions the user can individually accept or reject at Gate 1.5, then applies accepted changes to `extracted-tasks.md`.
-- `codebase-analysing` - to analyze the existing codebase and understand what already exists, informing the scope of new tasks. Use during material analysis when codebase context is relevant.
+- `tsh-transcript-processing` - to clean raw workshop transcripts from small talk, structure by topics, and extract key decisions, action items, and open questions. Use at the beginning of the workflow when raw transcripts are provided.
+- `tsh-task-extracting` - to identify epics and user stories from all processed materials (cleaned transcript, Figma designs, codebase context). Use after transcript processing and material analysis are complete.
+- `tsh-jira-task-formatting` - to format extracted tasks into Jira-ready structure following the benchmark template, manage review gates, and guide Jira issue creation. Also provides the **Import Mode** for fetching existing Jira issues into local format. Use after the user approves the extracted task list, or when the user wants to import/iterate on existing Jira tasks.
+- `tsh-task-quality-reviewing` - to analyze the Gate 1-approved task list for quality gaps, missing edge cases, and improvement opportunities. Runs automatically after Gate 1 approval. Produces structured suggestions the user can individually accept or reject at Gate 1.5, then applies accepted changes to `extracted-tasks.md`.
+- `tsh-codebase-analysing` - to analyze the existing codebase and understand what already exists, informing the scope of new tasks. Use during material analysis when codebase context is relevant.
 
 ## Tool Usage Guidelines
 

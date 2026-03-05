@@ -11,7 +11,7 @@ The file outcome should be a markdown file named `cleaned-transcript.md` placed 
 ## Required Skills
 
 Before starting, load and follow this skill:
-- `transcript-processing` - for the structured cleaning process and output template
+- `tsh-transcript-processing` - for the structured cleaning process and output template
 
 ## Workflow
 

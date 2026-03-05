@@ -9,9 +9,9 @@ Create a new custom agent for VS Code Copilot. The orchestrator handles research
 ## Required Skills
 
 Before starting, load and follow these skills:
-- `creating-agents` - for agent file creation workflow, templates, and validation checklist
-- `technical-context-discovering` - for discovering project conventions and workspace patterns before creating
-- `codebase-analysing` - for analyzing existing agents for structural patterns and naming conventions
+- `tsh-creating-agents` - for agent file creation workflow, templates, and validation checklist
+- `tsh-technical-context-discovering` - for discovering project conventions and workspace patterns before creating
+- `tsh-codebase-analysing` - for analyzing existing agents for structural patterns and naming conventions
 
 ## Workflow
 
@@ -30,7 +30,7 @@ Before starting, load and follow these skills:
    - Tool list and skill references
    - Behavioral constraints and operational boundaries
    - How the agent fits within the existing agent ecosystem
-4. **Create the agent file**: Create the `.agent.md` file in `.github/agents/` following established conventions. Apply the `creating-agents` skill workflow for structure and validation.
+4. **Create the agent file**: Create the `.agent.md` file in `.github/agents/` following established conventions. Apply the `tsh-creating-agents` skill workflow for structure and validation.
 5. **Review and validate**: Review the created agent against best practices:
    - Verify skill and tool references point to valid targets
    - Confirm structural consistency with existing agents

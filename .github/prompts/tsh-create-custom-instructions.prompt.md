@@ -9,9 +9,9 @@ Create custom instructions for VS Code Copilot. There are two types: repository-
 ## Required Skills
 
 Before starting, load and follow these skills:
-- `creating-instructions` - for instructions file creation workflow, type selection, scope decisions, and validation checklist
-- `technical-context-discovering` - for discovering project conventions and workspace patterns before creating
-- `codebase-analysing` - for analyzing workspace for existing coding conventions and patterns
+- `tsh-creating-instructions` - for instructions file creation workflow, type selection, scope decisions, and validation checklist
+- `tsh-technical-context-discovering` - for discovering project conventions and workspace patterns before creating
+- `tsh-codebase-analysing` - for analyzing workspace for existing coding conventions and patterns
 
 ## Workflow
 
@@ -29,7 +29,7 @@ Before starting, load and follow these skills:
    - Framework-specific patterns and conventions
    - Behavioral guidelines for Copilot in this workspace
    - If the user's message already contains requirements, confirm understanding before proceeding
-4. **Create the instructions file**: Create the instructions file with appropriate type, scope, and content. Apply the `creating-instructions` skill workflow for structure and validation.
+4. **Create the instructions file**: Create the instructions file with appropriate type, scope, and content. Apply the `tsh-creating-instructions` skill workflow for structure and validation.
 5. **Review and validate**: Review the created instructions against best practices:
    - Verify scope is appropriate for the instruction type
    - Confirm guidelines are clear and actionable for Copilot
