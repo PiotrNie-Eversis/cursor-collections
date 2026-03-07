@@ -1,0 +1,287 @@
+/**
+ * Custom CSS variables for Copilot Collections documentation site.
+ * TSH purple accent (#6D28D9) — dark-mode-first palette.
+ */
+
+:root {
+  --ifm-color-primary: #6D28D9;
+  --ifm-color-primary-dark: #5b21b6;
+  --ifm-color-primary-darker: #5017a8;
+  --ifm-color-primary-darkest: #3b0f7a;
+  --ifm-color-primary-light: #7c3aed;
+  --ifm-color-primary-lighter: #8b5cf6;
+  --ifm-color-primary-lightest: #a78bfa;
+  --ifm-code-font-size: 95%;
+  --ifm-font-family-base: 'Inter', system-ui, -apple-system, sans-serif;
+  --ifm-font-family-monospace: 'JetBrains Mono', ui-monospace, monospace;
+  --docusaurus-highlighted-code-line-bg: rgba(109, 40, 217, 0.1);
+
+  /* Page background — matches HTML material (#E8E8E8) */
+  --ifm-background-color: #E8E8E8;
+  --ifm-background-surface-color: #FFFFFF;
+
+  /* Navbar — always dark regardless of theme */
+  --ifm-navbar-background-color: #1A1A1A;
+  --ifm-navbar-link-color: rgba(255, 255, 255, 0.55);
+  --ifm-navbar-link-hover-color: #ffffff;
+  --ifm-navbar-shadow: none;
+
+  /* Prototype design tokens */
+  --bg: #E8E8E8;
+  --bg-card: #F0F0F0;
+  --bg-dark: #1C1C1C;
+  --text: #1A1A1A;
+  --text-mid: #3A3A3A;
+  --text-muted: #767676;
+  --accent: #6D28D9;
+  --accent-light: #A78BFA;
+  --accent-lighter: #C4B5FD;
+  --border: rgba(0, 0, 0, 0.10);
+}
+
+[data-theme='dark'] {
+  --ifm-color-primary: #A78BFA;
+  --ifm-color-primary-dark: #8b5cf6;
+  --ifm-color-primary-darker: #7c3aed;
+  --ifm-color-primary-darkest: #6D28D9;
+  --ifm-color-primary-light: #c4b5fd;
+  --ifm-color-primary-lighter: #ddd6fe;
+  --ifm-color-primary-lightest: #ede9fe;
+  --docusaurus-highlighted-code-line-bg: rgba(167, 139, 250, 0.15);
+
+  /* Page background — dark mode */
+  --ifm-background-color: #1A1A1A;
+  --ifm-background-surface-color: #2A2A2A;
+
+  /* Navbar — stays dark in dark mode too */
+  --ifm-navbar-background-color: #1A1A1A;
+  --ifm-navbar-link-color: rgba(255, 255, 255, 0.55);
+  --ifm-navbar-link-hover-color: #ffffff;
+
+  /* Prototype design tokens — dark mode */
+  --bg: #1A1A1A;
+  --bg-card: #2A2A2A;
+  --text: #E8E8E8;
+  --text-mid: #B0B0B0;
+  --text-muted: #888888;
+  --border: rgba(255, 255, 255, 0.10);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+}
+
+/* ── Navbar — match HTML material (always dark, 52px, light text) ── */
+.navbar {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+  height: 52px;
+  min-height: unset;
+  box-shadow: none;
+}
+
+.navbar__inner {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 80px;
+  height: 100%;
+}
+
+.navbar__title {
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.navbar__brand:hover .navbar__title {
+  color: #ffffff;
+}
+
+.navbar__link {
+  color: rgba(255, 255, 255, 0.55);
+  font-size: 13.5px;
+  font-weight: 400;
+  padding: 5px 10px;
+  border-radius: 5px;
+  transition: color 0.12s, background 0.12s;
+}
+
+.navbar__link:hover {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.navbar__link--active {
+  color: #ffffff;
+  font-weight: 500;
+}
+
+/* "For CTOs" navbar link — purple accent */
+.navbar__link--cto {
+  color: #A78BFA !important;
+  font-weight: 500;
+}
+.navbar__link--cto:hover {
+  color: #C4B5FD !important;
+  background: rgba(109, 40, 217, 0.12);
+}
+
+/* GitHub nav link — bordered button style */
+.navbar__link--github {
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 5px;
+  color: rgba(255, 255, 255, 0.75) !important;
+  font-weight: 500;
+}
+.navbar__link--github:hover {
+  border-color: rgba(255, 255, 255, 0.28);
+  color: #ffffff !important;
+}
+
+/* Navbar dropdown menu — dark to match navbar */
+.dropdown__menu {
+  background: #1A1A1A;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+}
+
+.dropdown__link {
+  color: rgba(255, 255, 255, 0.55);
+}
+
+.dropdown__link:hover,
+.dropdown__link--active {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.06);
+}
+
+/* Navbar toggle (mobile) */
+.navbar__toggle {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+/* Color mode toggle in navbar */
+.navbar .clean-btn[class*='toggle'] {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+/* Navbar sidebar (mobile) — dark */
+.navbar-sidebar {
+  background: #1A1A1A;
+}
+
+.navbar-sidebar .navbar__link {
+  color: rgba(255, 255, 255, 0.55);
+}
+
+.navbar-sidebar .navbar__link:hover,
+.navbar-sidebar .navbar__link--active {
+  color: #ffffff;
+}
+
+@media (max-width: 996px) {
+  .navbar__inner {
+    padding: 0 24px;
+  }
+}
+
+/* ── Footer — simple row layout matching HTML material ── */
+.footer {
+  background: #FFFFFF !important;
+  border-top: 1px solid var(--border) !important;
+  padding: 0 !important;
+}
+
+[data-theme='dark'] .footer {
+  background: #1C1C1C !important;
+}
+
+.footer .container {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 32px 80px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.footer .row.footer__links {
+  flex: none;
+  margin: 0;
+  order: 1;
+}
+
+.footer__col {
+  flex: none !important;
+  padding: 0;
+}
+
+.footer__title {
+  display: none;
+}
+
+.footer__items {
+  display: flex;
+  gap: 24px;
+  flex-direction: row;
+}
+
+.footer__item {
+  margin-bottom: 0 !important;
+}
+
+.footer__link-item {
+  font-size: 13px;
+  color: var(--text-muted) !important;
+  text-decoration: none;
+}
+
+.footer__link-item:hover {
+  color: var(--text) !important;
+  text-decoration: none;
+}
+
+.footer__bottom {
+  order: -1;
+  margin: 0 !important;
+  text-align: left;
+  flex: 1;
+}
+
+.footer__copyright {
+  font-size: 13px;
+  color: var(--text-muted);
+  text-align: left;
+}
+
+.footer__copyright a {
+  color: var(--text-muted);
+  text-decoration: none;
+}
+
+.footer__copyright a:hover {
+  color: var(--text);
+}
+
+@media (max-width: 768px) {
+  .footer .container {
+    padding: 24px 24px;
+    flex-direction: column;
+    gap: 16px;
+    align-items: flex-start;
+  }
+}
+
+/* ── Docs pages — retain white bg instead of global grey ── */
+.docs-wrapper {
+  --ifm-background-color: #FFFFFF;
+}
+
+[data-theme='dark'] .docs-wrapper {
+  --ifm-background-color: #1A1A1A;
+}
