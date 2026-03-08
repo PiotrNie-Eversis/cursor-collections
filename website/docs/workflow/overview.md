@@ -43,11 +43,11 @@ Think of this workflow as a **relay race**. Each phase produces a deliverable �
 
 ### 4. Implement
 
-- **Agent:** Software Engineer
+- **Agent:** Engineering Manager (orchestrates specialized agents)
 - **Command:** `/tsh-implement <JIRA_ID or description>`
-- Executes against the agreed plan.
-- Writes or modifies code with a focus on safety and clarity.
-- **Produces:** Concrete code modifications scoped to the task, respecting existing architecture.
+- Delegates tasks from the plan to specialized agents: Software Engineer for application code, DevOps Engineer for infrastructure, E2E Engineer for tests.
+- Tracks progress, runs quality checks after each task, and auto-triggers code review.
+- **Produces:** Concrete code modifications scoped to the task, applied by delegated agents.
 
 ### 5. Review
 
@@ -67,18 +67,16 @@ Think of this workflow as a **relay race**. Each phase produces a deliverable �
                                          ▼
 ┌──────────────┐  ┌──────────┐  ┌────────────────┐  ┌──────────────┐
 │/tsh-research │─▶│ /tsh-plan│─▶│ /tsh-implement │─▶│ /tsh-review  │
-│  (CE)        │  │ (Arch)   │  │ (SE)           │  │  (CR)        │
-└──────────────┘  └──────────┘  └────────────────┘  └──────────────┘
-                                         │                   │
-                                         ▼                   ▼
-                                  ┌────────────────┐ ┌────────────────┐
-                                  │/tsh-implement- │ │/tsh-implement- │
-                                  │  ui            │ │  e2e           │
-                                  │  ┌─loop──────┐ │ │ (E2E Eng.)    │
-                                  │  │/tsh-review-│ │ └────────────────┘
-                                  │  │  ui       │ │
-                                  │  └───────────┘ │
-                                  └────────────────┘
+│  (CE)        │  │ (Arch)   │  │ (Eng. Manager) │  │  (CR)        │
+└──────────────┘  └──────────┘  └────────┬───────┘  └──────────────┘
+                                         │
+                                ┌────────┴────────┐
+                                │ Delegates to:      │
+                                │ • Software Engineer │
+                                │ • DevOps Engineer   │
+                                │ • E2E Engineer      │
+                                │ • UI Reviewer       │
+                                └───────────────────┘
 ```
 
 ## Human Review at Every Step
@@ -94,4 +92,4 @@ The full lifecycle has specialized variants for different task types:
 - **[Workshop Analysis Flow](./workshop-flow)** — Convert discovery workshop materials into Jira-ready epics and stories using `/tsh-analyze-materials`.
 - **[Standard Flow](./standard-flow)** — Backend/fullstack tasks using `/tsh-research` → `/tsh-plan` → `/tsh-implement` → `/tsh-review`.
 - **[Frontend Flow](./frontend-flow)** — UI tasks with Figma verification using `/tsh-implement-ui` and `/tsh-review-ui`.
-- **[E2E Testing Flow](./e2e-flow)** — End-to-end test creation using `/tsh-implement-e2e`.
+- **[E2E Testing Flow](./e2e-flow)** — End-to-end test creation delegated by the Engineering Manager to the E2E Engineer via `/tsh-implement`.

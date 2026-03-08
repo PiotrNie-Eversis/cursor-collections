@@ -65,11 +65,22 @@ export default function SdlcDiagram(): React.JSX.Element {
               writing a line of code
             </div>
           </div>
-          <div className={styles.parallelLabel}>↓ parallel execution</div>
+          <div className={styles.innerConn} />
+          <div className={styles.card}>
+            <div className={styles.cardCmd}>
+              <strong className={styles.cardCmdStrong}>/implement</strong>
+              <span style={{fontSize: '0.7rem', opacity: 0.7, marginLeft: '0.5rem'}}>Engineering Manager</span>
+            </div>
+            <div className={styles.cardDesc}>
+              Orchestrates work — delegates backend, frontend, infra, and tests
+              to specialized agents
+            </div>
+          </div>
+          <div className={styles.parallelLabel}>↓ delegates to</div>
           <div className={styles.grid2}>
             <div className={styles.card}>
               <div className={styles.cardCmd}>
-                <strong className={styles.cardCmdStrong}>/implement</strong>
+                <strong className={styles.cardCmdStrong}>Software Engineer</strong>
               </div>
               <div className={styles.cardDesc}>
                 Backend logic, APIs, data layer
@@ -77,7 +88,7 @@ export default function SdlcDiagram(): React.JSX.Element {
             </div>
             <div className={styles.card}>
               <div className={styles.cardCmd}>
-                <strong className={styles.cardCmdStrong}>/implement-ui</strong>
+                <strong className={styles.cardCmdStrong}>+ /implement-ui</strong>
               </div>
               <div className={styles.cardDesc}>
                 Frontend against Figma specs

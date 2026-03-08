@@ -5,10 +5,10 @@ title: /tsh-implement-ui
 
 # /tsh-implement-ui
 
-**Agent:** Software Engineer  
+**Agent:** Engineering Manager  
 **File:** `.github/prompts/tsh-implement-ui.prompt.md`
 
-Extends the base `/tsh-implement` workflow with iterative Figma verification for UI tasks.
+Orchestrates the implementation of UI features with iterative Figma verification, delegating to specialized agents.
 
 ## Usage
 
@@ -20,14 +20,14 @@ Extends the base `/tsh-implement` workflow with iterative Figma verification for
 
 Everything from [`/tsh-implement`](./implement), plus:
 
-1. **Locates Figma URLs** from the research and plan files.
-2. **Ensures dev server is running** and the target page is accessible.
-3. **Runs a verification loop** for each UI component:
-   - Delegates verification to the `tsh-ui-reviewer` subagent (does not verify UI itself).
+1. **Extracts Figma URLs** from the research and plan files.
+2. **Confirms dev server URL** with the user before the first verification.
+3. **Delegates UI implementation** to the Software Engineer using the `tsh-implement-ui-common-task` internal prompt.
+4. **Delegates UI verification** to the `tsh-ui-reviewer` subagent after each UI component:
    - If PASS → moves to next component.
-   - If FAIL → fixes reported differences and re-runs the subagent.
+   - If FAIL → delegates fix to Software Engineer, then re-runs verification.
    - Maximum **5 iterations** per component, then escalates.
-4. **Produces a UI Verification Summary** before handing off to code review.
+5. **Produces a UI Verification Summary** before handing off to code review.
 
 ## Verification Loop
 

@@ -289,8 +289,12 @@ This page shows how teams integrate Copilot Collections into their daily routine
 **With Copilot Collections:**
 
 ```text
-/tsh-implement-e2e PROJ-654
+/tsh-implement PROJ-654
 ```
+
+:::tip
+When the implementation plan contains E2E test tasks, the Engineering Manager automatically delegates them to the E2E Engineer agent. You don't need to invoke E2E testing separately — just use `/tsh-implement`.
+:::
 
 | Step | What Happens |
 |---|---|
@@ -299,7 +303,7 @@ This page shows how teams integrate Copilot Collections into their daily routine
 | **3. Test implementation** | Tests follow BDD-style Arrange-Act-Assert structure with dynamic test data (timestamps/UUIDs) — no shared state between tests. |
 | **4. Stability verification** | Tests must pass **3+ consecutive times** in headless mode before being committed. Flaky detection is built into the verification loop. |
 
-**Key prompts & agents:** `/tsh-implement-e2e` → E2E Engineer  
+**Key prompts & agents:** `/tsh-implement` → Engineering Manager → E2E Engineer  
 **Key skills:** `tsh-e2e-testing`, `tsh-technical-context-discovering`
 
 **Value:** E2E test flakiness is reduced by 50–80%. Tests use proper auto-waiting assertions instead of arbitrary timeouts. Page Object patterns make tests maintainable and resistant to UI refactors.

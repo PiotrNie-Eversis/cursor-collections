@@ -1,20 +1,16 @@
 ---
 sidebar_position: 12
-title: /tsh-create-jira-tasks
+title: Jira Task Formatting (sub-workflow)
 ---
 
-# /tsh-create-jira-tasks
+# Jira Task Formatting
 
-**Agent:** Business Analyst  
-**File:** `.github/prompts/tsh-create-jira-tasks.prompt.md`
+:::info Sub-workflow
+Jira task formatting is **not a standalone prompt** — it is a sub-workflow within [`/tsh-analyze-materials`](./analyze-materials). The Business Analyst agent handles task formatting and Jira push as the final steps of the workshop analysis workflow.
+:::
 
-Formats an existing `extracted-tasks.md` into Jira-ready structure and pushes to Jira. Can also import existing Jira tasks for local iteration.
-
-## Usage
-
-```text
-/tsh-create-jira-tasks <extracted-tasks reference or Jira project key>
-```
+**Agent:** Business Analyst (within `/tsh-analyze-materials`)  
+**Skill:** `tsh-jira-task-formatting`
 
 ## What It Does
 

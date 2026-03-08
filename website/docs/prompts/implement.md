@@ -5,10 +5,10 @@ title: /tsh-implement
 
 # /tsh-implement
 
-**Agent:** Software Engineer  
+**Agent:** Engineering Manager  
 **File:** `.github/prompts/tsh-implement.prompt.md`
 
-Executes the implementation plan created by the Architect.
+Orchestrates the implementation of a feature by delegating tasks from the plan to specialized agents.
 
 ## Usage
 
@@ -19,33 +19,39 @@ Executes the implementation plan created by the Architect.
 ## What It Does
 
 1. Reviews the implementation plan and feature context thoroughly.
-2. Reviews project coding standards (`*.instructions.md`) and codebase architecture.
-3. Gathers build/test/lint commands; runs tests and linters **before** starting.
-4. Implements the plan step by step — follows each task without deviating.
-5. Updates the plan checkboxes after completing each task.
-6. After each phase: reviews implementation against plan, runs tests.
-7. Asks for confirmation before making any changes to the original solution.
-8. Documents all changes in the plan's Changelog section.
-9. Ensures all tasks are complete before handoff.
-10. Runs tests and linters **after** each phase.
-11. **Automatically runs `tsh-code-reviewer`** at the end — no user confirmation needed.
+2. Creates a **todo for every task** in the plan — each task gets its own tracked item.
+3. Delegates codebase analysis to the **Architect** agent to establish project conventions and patterns.
+4. Processes each task in plan order, delegating based on task type:
+   - **`[CREATE]` / `[MODIFY]`** → delegates to **Software Engineer** (app code), **DevOps Engineer** (infrastructure), or **E2E Engineer** (tests).
+   - **`[REUSE]`** → executes as described in the task definition (e.g., UI verification via **UI Reviewer**).
+5. After each task, updates plan checkboxes and runs quality checks (tsc, lint, build).
+6. Asks for confirmation before deviating from the plan.
+7. Documents all changes in the plan's Changelog section.
+8. **Automatically runs Code Reviewer** at the end if no review phase is defined.
 
-## Skills Loaded
+## How Delegation Works
 
-- `tsh-technical-context-discovering` — Project conventions and existing patterns.
-- `tsh-implementation-gap-analysing` — Verify current state before making changes.
-- `tsh-sql-and-database-understanding` — When implementing database-related features.
+The Engineering Manager uses **internal prompts** to provide consistent context when delegating:
+
+| Task Type | Agent | Internal Prompt Used |
+|---|---|---|
+| Backend / general code | Software Engineer | `tsh-implement-common-task` |
+| Frontend with Figma | Software Engineer | `tsh-implement-ui-common-task` |
+| E2E tests | E2E Engineer | `tsh-implement-e2e` |
+| Infrastructure | DevOps Engineer | `tsh-deploy-kubernetes`, `tsh-implement-terraform`, etc. |
+| UI verification | UI Reviewer | `tsh-review-ui` |
 
 ## Key Behaviors
 
+- **Orchestrates, never implements** — Delegates all coding to specialized agents.
 - **Strictly follows the plan** — No deviations unless explicitly approved.
-- **Does not implement improvements** from the plan's improvements section unless instructed.
-- **Updates plan checkboxes** after each completed task step.
-- **Runs automatic code review** at the end of implementation.
+- **Tracks progress with todos** — Each plan task gets its own tracked item.
+- **Runs quality checks after each task** — Ensures nothing breaks as implementation progresses.
+- **Auto-triggers Code Reviewer** — Ensures every implementation gets reviewed.
 
 ## Output
 
-- Code changes as specified in the implementation plan.
+- Code changes applied by delegated agents as specified in the plan.
 - Updated plan checkboxes showing completion status.
 - Changelog entries for any modifications.
 - Code review findings from the automatic `tsh-code-reviewer` run.

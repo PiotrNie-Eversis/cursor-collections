@@ -1,20 +1,16 @@
 ---
 sidebar_position: 11
-title: /tsh-clean-transcript
+title: Transcript Cleaning (sub-workflow)
 ---
 
-# /tsh-clean-transcript
+# Transcript Cleaning
 
-**Agent:** Business Analyst  
-**File:** `.github/prompts/tsh-clean-transcript.prompt.md`
+:::info Sub-workflow
+Transcript cleaning is **not a standalone prompt** — it is a sub-workflow within [`/tsh-analyze-materials`](./analyze-materials). The Business Analyst agent automatically cleans transcripts as the first step when raw workshop materials are provided.
+:::
 
-Standalone command to clean a raw workshop or meeting transcript from small talk and structure it by topics.
-
-## Usage
-
-```text
-/tsh-clean-transcript <transcript>
-```
+**Agent:** Business Analyst (within `/tsh-analyze-materials`)  
+**Skill:** `tsh-transcript-processing`
 
 ## What It Does
 

@@ -1,12 +1,18 @@
 ---
 sidebar_position: 13
-title: /tsh-implement-terraform
+title: /tsh-implement-terraform (internal)
 ---
 
-# /tsh-implement-terraform
+# /tsh-implement-terraform *(internal prompt)*
+
+:::info Internal Prompt
+This is an **internal prompt** — it is not invoked directly by users. It lives in `.github/internal-prompts/` and is used by the [Engineering Manager](../agents/engineering-manager) agent to delegate Terraform tasks to the DevOps Engineer.
+
+To trigger Terraform implementation, use [`/tsh-implement`](./implement) — the Engineering Manager will automatically delegate infrastructure tasks from the plan to the DevOps Engineer using this internal prompt.
+:::
 
 **Agent:** DevOps Engineer
-**File:** `.github/prompts/tsh-implement-terraform.prompt.md`
+**File:** `.github/internal-prompts/tsh-implement-terraform.prompt.md`
 
 Creates Terraform modules and provisions cloud infrastructure safely following established IaC patterns and safety guardrails.
 
