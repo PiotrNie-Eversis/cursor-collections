@@ -135,7 +135,8 @@ The cleanup must execute when the hook unmounts or when dependencies change. See
 
 **Error handling**:
 
-- Never throw from the render/setup phase — surface errors via the return value (`{ error }`).
+- Don’t throw for expected runtime errors from the render/setup phase — surface those via the return value (`{ error }`).
+- It is acceptable to throw during render/setup for programmer errors (for example, a `useX` hook used outside its Provider) or when integrating with Error Boundaries / Suspense.
 - Catch async errors inside effects and store them in state.
 
 **Conditional execution**:
