@@ -7,7 +7,7 @@ title: For CTOs
 
 Copilot Collections is an AI product engineering framework used daily by **300+ engineers** at The Software House across **50+ commercial projects** — delivering a **30% average lead time reduction**.
 
-:::tldr TL;DR:
+:::brand TL;DR:
 - Only 10% of teams see real gains from AI coding tools - the gap is structural, not technological
 - Copilot Collections restructures your delivery workflow around AI, rather than adding AI on top of it
 - 300+ engineers at TSH use it daily across 50+ commercial projects with great result: average lead time down 30%
@@ -100,4 +100,6 @@ Copilot Collections is MIT-licensed and free.
 - See it applied to real use cases - nine scenarios across the full delivery lifecycle
 - [Get the repo](https://github.com/TheSoftwareHouse/copilot-collections) - install it in an afternoon, run it against a real ticket, see what changes
 
-If you want to talk through fit for your team's specific context, the TSH team is reachable at [tsh.io](https://tsh.io).
+:::brand
+If you want to talk through fit for your team's specific context, reach out to us at [hello@tsh.io](mailto:hello@tsh.io). I'd love to hear from you.
+:::

@@ -3,10 +3,10 @@ import type * as Preset from '@docusaurus/preset-classic';
 
 const config: Config = {
   title: 'Copilot Collections',
-  tagline: 'AI-powered product engineering framework — from ideation to delivery',
+  tagline: 'AI-powered product engineering framework - from ideation to delivery',
   favicon: 'img/favicon.ico',
 
-  url: 'https://copilot-collections.vercel.app',
+  url: 'https://copilot-collections.tsh.io',
   baseUrl: '/',
 
   onBrokenLinks: 'throw',
@@ -24,7 +24,7 @@ const config: Config = {
           sidebarPath: './sidebars.ts',
           routeBasePath: 'docs',
           admonitions: {
-            keywords: ['note', 'tip', 'info', 'warning', 'danger', 'tldr'],
+            keywords: ['note', 'tip', 'info', 'warning', 'danger', 'brand'],
           },
         },
         blog: false,

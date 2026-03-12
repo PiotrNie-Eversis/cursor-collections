@@ -286,8 +286,8 @@
   --ifm-background-color: #1A1A1A;
 }
 
-/* ── Custom admonition: "tldr" — TSH brand accent ── */
-.alert--tldr {
+/* ── Custom admonition: "brand" — TSH purple accent ── */
+.alert--brand {
   --ifm-alert-background-color: rgba(109, 40, 217, 0.1);
   --ifm-alert-background-color-highlight: rgba(109, 40, 217, 0.2);
   --ifm-alert-foreground-color: #5b21b6;
@@ -298,7 +298,7 @@
   color: #5b21b6;
 }
 
-[data-theme='dark'] .alert--tldr {
+[data-theme='dark'] .alert--brand {
   --ifm-alert-background-color: rgba(167, 139, 250, 0.1);
   --ifm-alert-background-color-highlight: rgba(167, 139, 250, 0.2);
   --ifm-alert-foreground-color: #c4b5fd;

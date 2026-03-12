@@ -4,7 +4,7 @@ import AdmonitionTypeInfo from '@theme/Admonition/Type/Info';
 import AdmonitionTypeWarning from '@theme/Admonition/Type/Warning';
 import AdmonitionTypeDanger from '@theme/Admonition/Type/Danger';
 import AdmonitionTypeCaution from '@theme/Admonition/Type/Caution';
-import AdmonitionTypeTldr from './Type/Tldr';
+import AdmonitionTypeBrand from './Type/Brand';
 
 const admonitionTypes = {
   note: AdmonitionTypeNote,
@@ -13,7 +13,7 @@ const admonitionTypes = {
   warning: AdmonitionTypeWarning,
   danger: AdmonitionTypeDanger,
   caution: AdmonitionTypeCaution,
-  tldr: AdmonitionTypeTldr,
+  brand: AdmonitionTypeBrand,
 };
 
 export default admonitionTypes;
