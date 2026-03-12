@@ -21,7 +21,7 @@
   --ifm-background-surface-color: #FFFFFF;
 
   /* Navbar — always dark regardless of theme */
-  --ifm-navbar-background-color: #1A1A1A;
+  --ifm-navbar-background-color: #2C2F30;
   --ifm-navbar-link-color: rgba(255, 255, 255, 0.55);
   --ifm-navbar-link-hover-color: #ffffff;
   --ifm-navbar-shadow: none;
@@ -50,21 +50,30 @@
   --docusaurus-highlighted-code-line-bg: rgba(167, 139, 250, 0.15);
 
   /* Page background — dark mode */
-  --ifm-background-color: #1A1A1A;
-  --ifm-background-surface-color: #2A2A2A;
+  --ifm-background-color: #111116;
+  --ifm-background-surface-color: #1A1A20;
 
   /* Navbar — stays dark in dark mode too */
-  --ifm-navbar-background-color: #1A1A1A;
+  --ifm-navbar-background-color: #2C2F30;
   --ifm-navbar-link-color: rgba(255, 255, 255, 0.55);
   --ifm-navbar-link-hover-color: #ffffff;
 
   /* Prototype design tokens — dark mode */
-  --bg: #1A1A1A;
-  --bg-card: #2A2A2A;
-  --text: #E8E8E8;
-  --text-mid: #B0B0B0;
-  --text-muted: #888888;
-  --border: rgba(255, 255, 255, 0.10);
+  --bg: #111116;
+  --bg-card: #1A1A20;
+  --bg-dark: #0D0D10;
+  --text: #EDF1F4;
+  --text-mid: #A0A5A7;
+  --text-muted: #62686A;
+  --border: rgba(237, 241, 244, 0.12);
+
+  /* Accent tokens */
+  --purple: #B4B4FF;
+  --purple-light: #3A3860;
+  --purple-mid: #D7D6FF;
+  --blue: #3B82F6;
+  --teal: #14B8A6;
+  --amber: #F59E0B;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -78,7 +87,7 @@
 
 /* ── Navbar — match HTML material (always dark, 52px, light text) ── */
 .navbar {
-  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+  border-bottom: 1px solid rgba(237, 241, 244, 0.10);
   height: 52px;
   min-height: unset;
   box-shadow: none;
@@ -123,7 +132,7 @@
 
 /* "For CTOs" navbar link — purple accent */
 .navbar__link--cto {
-  color: #A78BFA !important;
+  color: #B4B4FF !important;
   font-weight: 500;
 }
 .navbar__link--cto:hover {
@@ -145,7 +154,7 @@
 
 /* Navbar dropdown menu — dark to match navbar */
 .dropdown__menu {
-  background: #1A1A1A;
+  background: #2C2F30;
   border: 1px solid rgba(255, 255, 255, 0.1);
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
 }
@@ -172,7 +181,7 @@
 
 /* Navbar sidebar (mobile) — dark */
 .navbar-sidebar {
-  background: #1A1A1A;
+  background: #2C2F30;
 }
 
 .navbar-sidebar .navbar__link {
@@ -198,7 +207,7 @@
 }
 
 [data-theme='dark'] .footer {
-  background: #1C1C1C !important;
+  background: #1E1E24 !important;
 }
 
 .footer .container {
@@ -283,7 +292,7 @@
 }
 
 [data-theme='dark'] .docs-wrapper {
-  --ifm-background-color: #1A1A1A;
+  --ifm-background-color: #111116;
 }
 
 /* ── Custom admonition: "brand" — TSH purple accent ── */
