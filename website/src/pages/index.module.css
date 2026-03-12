@@ -1,11 +1,12 @@
 .homePage {
-  background: #151518;
-  color: #EDF1F4;
+  min-height: 100%;
+  background: var(--bg);
+  color: var(--text);
 }
 
 .divider {
   height: 1px;
-  background: rgba(237, 241, 244, 0.12);
+  background: var(--border);
   max-width: 1440px;
   margin: 0 auto;
 }

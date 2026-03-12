@@ -18,8 +18,7 @@ export default function Home(): React.JSX.Element {
       title={siteConfig.title}
       description="AI-powered product engineering framework — specialized agents, structured workflows, and MCP integrations covering the full product lifecycle from ideation to delivery."
     >
-      <div className={styles.homePage} data-theme="dark">
-        <main>
+      <main className={styles.homePage}>
           <HeroSection />
           <div className={styles.divider} />
           <HomepageFeatures />
@@ -31,8 +30,7 @@ export default function Home(): React.JSX.Element {
           <QuickWins />
           <div className={styles.divider} />
           <GettingStartedSection />
-        </main>
-      </div>
+      </main>
     </Layout>
   );
 }

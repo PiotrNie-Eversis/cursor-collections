@@ -20,7 +20,7 @@
     line-height: 0.95;
     letter-spacing: -0.03em;
     margin: 0;
-    color: #EDF1F4;
+    color: var(--text);
 }
 
 .heroRight {
@@ -32,7 +32,7 @@
 .heroSub {
     font-size: 19px;
     font-weight: 400;
-    color: #A0A5A7;
+    color: var(--text-mid);
     line-height: 1.55;
     margin-bottom: 32px;
 }
@@ -46,10 +46,10 @@
 
 .heroProof {
     font-size: 13px;
-    color: #62686A;
+    color: var(--text-muted);
     line-height: 1.5;
     padding-top: 20px;
-    border-top: 1px solid rgba(237, 241, 244, 0.12);
+    border-top: 1px solid var(--border);
 }
 
 .btnPrimary {
@@ -64,8 +64,8 @@
     transition: background 0.15s;
 }
 .btnPrimary:hover {
-    background: rgba(180, 180, 255, 0.35);
-    color: #D7D6FF;
+    background: #D7D6FF;
+    color: #313435;
     text-decoration: none;
 }
 

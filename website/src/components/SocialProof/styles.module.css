@@ -44,12 +44,12 @@
 }
 
 [data-theme='dark'] .readMore {
-  background: #ffffff;
-  color: #1A1A1A;
+  background: var(--bg-dark);
+  color: #ffffff;
 }
 [data-theme='dark'] .readMore:hover {
-  background: #E8E8E8;
-  color: #1A1A1A;
+  background: #1A1A20;
+  color: #ffffff;
 }
 
 .statsCards {
@@ -68,22 +68,30 @@
 }
 
 .statNum {
-  font-size: 11px;
+  font-size: 13px;
   font-weight: 500;
   color: var(--text-muted);
   letter-spacing: 0.05em;
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 8px;
 }
 
 .statNum::before {
   content: '';
   display: inline-block;
-  width: 6px;
-  height: 10px;
+  width: 9px;
+  height: 14px;
   background: var(--text);
   border-radius: 2px;
+}
+
+.statCard:nth-child(1) .statNum::before {
+  background: #8DD4FF;
+}
+
+.statCard:nth-child(2) .statNum::before {
+  background: #FFC269;
 }
 
 .statCard p {

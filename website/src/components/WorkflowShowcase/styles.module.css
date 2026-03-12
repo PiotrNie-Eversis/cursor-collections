@@ -30,7 +30,7 @@
 .flowCanvasWrap {
   display: flex;
   justify-content: center;
-  background: #111116;
+  background: #2C2F30;
   border-radius: 12px;
   border: 1px solid var(--border);
   overflow: hidden;
@@ -39,7 +39,7 @@
 }
 
 [data-theme='dark'] .flowCanvasWrap {
-  background: #111116;
+  background: #2C2F30;
 }
 
 .flowCaption {
