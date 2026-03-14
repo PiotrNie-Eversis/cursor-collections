@@ -1,14 +1,12 @@
 ---
 sidebar_position: 8
-title: /tsh-implement-e2e (internal)
+title: /tsh-implement-e2e
 ---
 
-# /tsh-implement-e2e *(internal prompt)*
+# /tsh-implement-e2e
 
-:::info Internal Prompt
-This is an **internal prompt** — it is not invoked directly by users. It lives in `.github/internal-prompts/` and is used by the [Engineering Manager](../agents/engineering-manager) agent to delegate E2E test tasks to the E2E Engineer.
-
-To trigger E2E test implementation, use [`/tsh-implement`](./implement) — the Engineering Manager will automatically delegate E2E tasks from the plan to the E2E Engineer using this internal prompt.
+:::info
+Not invoked directly by users. To trigger E2E test implementation, use [`/tsh-implement`](../public/implement) — the [Engineering Manager](../../agents/engineering-manager) will automatically delegate to the [E2E Engineer](../../agents/e2e-engineer).
 :::
 
 **Agent:** E2E Engineer  
@@ -16,11 +14,13 @@ To trigger E2E test implementation, use [`/tsh-implement`](./implement) — the 
 
 Creates comprehensive end-to-end tests for a feature using Playwright.
 
-## Usage
+## How It’s Triggered
 
 ```text
-/tsh-implement-e2e <JIRA_ID or task description>
+/tsh-implement <JIRA_ID or task description>
 ```
+
+The Engineering Manager identifies E2E test tasks in the plan and delegates them to the E2E Engineer automatically.
 
 ## What It Does
 

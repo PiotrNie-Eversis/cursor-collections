@@ -31,15 +31,15 @@ Orchestrates the implementation of a feature by delegating tasks from the plan t
 
 ## How Delegation Works
 
-The Engineering Manager uses **internal prompts** to provide consistent context when delegating:
+The Engineering Manager automatically delegates each task to the right agent based on the plan:
 
-| Task Type | Agent | Internal Prompt Used |
-|---|---|---|
-| Backend / general code | Software Engineer | `tsh-implement-common-task` |
-| Frontend with Figma | Software Engineer | `tsh-implement-ui-common-task` |
-| E2E tests | E2E Engineer | `tsh-implement-e2e` |
-| Infrastructure | DevOps Engineer | `tsh-deploy-kubernetes`, `tsh-implement-terraform`, etc. |
-| UI verification | UI Reviewer | `tsh-review-ui` |
+| Task Type | Agent |
+|---|---|
+| Backend / general code | Software Engineer |
+| Frontend with Figma | Software Engineer |
+| E2E tests | E2E Engineer |
+| Infrastructure (Kubernetes, Terraform, CI/CD, observability) | DevOps Engineer |
+| UI verification | UI Reviewer |
 
 ## Key Behaviors
 

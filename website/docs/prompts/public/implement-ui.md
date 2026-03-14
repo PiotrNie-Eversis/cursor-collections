@@ -22,7 +22,7 @@ Everything from [`/tsh-implement`](./implement), plus:
 
 1. **Extracts Figma URLs** from the research and plan files.
 2. **Confirms dev server URL** with the user before the first verification.
-3. **Delegates UI implementation** to the Software Engineer using the `tsh-implement-ui-common-task` internal prompt.
+3. **Delegates UI implementation** to the Software Engineer with Figma design context.
 4. **Delegates UI verification** to the `tsh-ui-reviewer` subagent after each UI component:
    - If PASS → moves to next component.
    - If FAIL → delegates fix to Software Engineer, then re-runs verification.

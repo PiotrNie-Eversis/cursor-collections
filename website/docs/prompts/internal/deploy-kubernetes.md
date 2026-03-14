@@ -1,14 +1,12 @@
 ---
 sidebar_position: 12
-title: /tsh-deploy-kubernetes (internal)
+title: /tsh-deploy-kubernetes
 ---
 
-# /tsh-deploy-kubernetes *(internal prompt)*
+# /tsh-deploy-kubernetes
 
-:::info Internal Prompt
-This is an **internal prompt** — it is not invoked directly by users. It lives in `.github/internal-prompts/` and is used by the [Engineering Manager](../agents/engineering-manager) agent to delegate Kubernetes deployment tasks to the DevOps Engineer.
-
-To trigger Kubernetes deployments, use [`/tsh-implement`](./implement) — the Engineering Manager will automatically delegate infrastructure tasks from the plan to the DevOps Engineer using this internal prompt.
+:::info
+Not invoked directly by users. To trigger Kubernetes deployments, use [`/tsh-implement`](../public/implement) — the [Engineering Manager](../../agents/engineering-manager) will automatically delegate to the [DevOps Engineer](../../agents/devops-engineer).
 :::
 
 **Agent:** DevOps Engineer
@@ -16,11 +14,13 @@ To trigger Kubernetes deployments, use [`/tsh-implement`](./implement) — the E
 
 Creates Kubernetes deployments, Helm charts, and configures workload resources following production-ready patterns.
 
-## Usage
+## How It’s Triggered
 
 ```text
-/tsh-deploy-kubernetes <describe what to deploy or modify in Kubernetes>
+/tsh-implement <describe what to deploy or modify in Kubernetes>
 ```
+
+The Engineering Manager identifies Kubernetes tasks in the plan and delegates them to the DevOps Engineer automatically.
 
 ## What It Does
 

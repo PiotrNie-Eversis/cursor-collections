@@ -1,14 +1,12 @@
 ---
 sidebar_position: 14
-title: /tsh-implement-pipeline (internal)
+title: /tsh-implement-pipeline
 ---
 
-# /tsh-implement-pipeline *(internal prompt)*
+# /tsh-implement-pipeline
 
-:::info Internal Prompt
-This is an **internal prompt** — it is not invoked directly by users. It lives in `.github/internal-prompts/` and is used by the [Engineering Manager](../agents/engineering-manager) agent to delegate CI/CD pipeline tasks to the DevOps Engineer.
-
-To trigger pipeline implementation, use [`/tsh-implement`](./implement) — the Engineering Manager will automatically delegate pipeline tasks from the plan to the DevOps Engineer using this internal prompt.
+:::info
+Not invoked directly by users. To trigger CI/CD pipeline implementation, use [`/tsh-implement`](../public/implement) — the [Engineering Manager](../../agents/engineering-manager) will automatically delegate to the [DevOps Engineer](../../agents/devops-engineer).
 :::
 
 **Agent:** DevOps Engineer
@@ -16,11 +14,13 @@ To trigger pipeline implementation, use [`/tsh-implement`](./implement) — the 
 
 Creates or modifies CI/CD pipelines with proper deployment stages, environment protection, and secure authentication.
 
-## Usage
+## How It’s Triggered
 
 ```text
-/tsh-implement-pipeline <describe the pipeline to create or modify>
+/tsh-implement <describe the pipeline to create or modify>
 ```
+
+The Engineering Manager identifies CI/CD pipeline tasks in the plan and delegates them to the DevOps Engineer automatically.
 
 ## What It Does
 

@@ -79,7 +79,7 @@ This page shows how teams integrate Copilot Collections into their daily routine
 **With Copilot Collections:**
 
 ```text
-/research PROJ-456
+/tsh-research PROJ-456
 ```
 
 | Step | What Happens |
@@ -154,7 +154,7 @@ This page shows how teams integrate Copilot Collections into their daily routine
 ```text
 /tsh-research PROJ-555
 /tsh-plan PROJ-555
-/tsh-implement PROJ-555
+/tsh-implement Add new tables and migrate existing data for PROJ-555
 ```
 
 | Step | What Happens |
@@ -289,7 +289,7 @@ This page shows how teams integrate Copilot Collections into their daily routine
 **With Copilot Collections:**
 
 ```text
-/tsh-implement PROJ-654
+/tsh-implement Add E2E tests for the checkout flow in PROJ-654
 ```
 
 :::tip
@@ -346,19 +346,19 @@ When the implementation plan contains E2E test tasks, the Engineering Manager au
 **With Copilot Collections:**
 
 ```text
-/tsh-implement-terraform Create a VPC with public and private subnets for EKS
-/tsh-deploy-kubernetes Deploy the payment service with HPA and PDB
-/tsh-implement-pipeline Create GitHub Actions CI/CD for the monorepo
+/tsh-implement Create a VPC with public and private subnets for EKS
+/tsh-implement Deploy the payment service with HPA and PDB
+/tsh-implement Create GitHub Actions CI/CD for the monorepo
 ```
 
 | Step | What Happens |
 |---|---|
-| **1. Context discovery** | The DevOps Engineer agent discovers existing IaC patterns, naming conventions, tagging policies, and CI/CD platform. |
-| **2. Architecture consultation** | For new designs, the agent delegates to the Architect sub-agent for architectural guidance before implementing. |
+| **1. Delegation** | The Engineering Manager reads the plan and delegates infrastructure tasks to the DevOps Engineer. |
+| **2. Context discovery** | The DevOps Engineer discovers existing IaC patterns, naming conventions, tagging policies, and CI/CD platform. |
 | **3. Implementation** | Infrastructure code is written following project conventions with proper naming, tagging, cost estimation, and safety guardrails. |
 | **4. Safety checks** | `terraform plan`, `--dry-run`, or `validate` is run before any changes. Destructive operations require explicit authorization. |
 
-**Key prompts & agents:** `/tsh-implement-terraform`, `/tsh-deploy-kubernetes`, `/tsh-implement-pipeline` → DevOps Engineer
+**Key prompt:** `/tsh-implement` → Engineering Manager delegates to DevOps Engineer
 **Key skills:** `tsh-implementing-terraform-modules`, `tsh-implementing-kubernetes`, `tsh-implementing-ci-cd`, `tsh-managing-secrets`
 
 **Value:** Infrastructure follows production patterns from day one. Cost estimation is built into every proposal. Safety guardrails prevent accidental destruction. Reusable modules reduce duplication across projects.

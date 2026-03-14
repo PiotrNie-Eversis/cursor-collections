@@ -1,14 +1,12 @@
 ---
 sidebar_position: 15
-title: /tsh-implement-observability (internal)
+title: /tsh-implement-observability
 ---
 
-# /tsh-implement-observability *(internal prompt)*
+# /tsh-implement-observability
 
-:::info Internal Prompt
-This is an **internal prompt** — it is not invoked directly by users. It lives in `.github/internal-prompts/` and is used by the [Engineering Manager](../agents/engineering-manager) agent to delegate observability tasks to the DevOps Engineer.
-
-To trigger observability implementation, use [`/tsh-implement`](./implement) — the Engineering Manager will automatically delegate observability tasks from the plan to the DevOps Engineer using this internal prompt.
+:::info
+Not invoked directly by users. To trigger observability implementation, use [`/tsh-implement`](../public/implement) — the [Engineering Manager](../../agents/engineering-manager) will automatically delegate to the [DevOps Engineer](../../agents/devops-engineer).
 :::
 
 **Agent:** DevOps Engineer
@@ -16,11 +14,13 @@ To trigger observability implementation, use [`/tsh-implement`](./implement) —
 
 Implements comprehensive observability solutions covering metrics, logs, traces, and alerting.
 
-## Usage
+## How It’s Triggered
 
 ```text
-/tsh-implement-observability <describe what to monitor or observe>
+/tsh-implement <describe what to monitor or observe>
 ```
+
+The Engineering Manager identifies observability tasks in the plan and delegates them to the DevOps Engineer automatically.
 
 ## What It Does
 

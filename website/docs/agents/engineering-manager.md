@@ -37,19 +37,9 @@ The Engineering Manager is bound to the `/tsh-implement` and `/tsh-implement-ui`
 | **Code Reviewer** | Code quality, best practices | After implementation completes, or when no review phase is defined |
 | **UI Reviewer** | Figma verification, visual correctness | After UI implementation, to verify against design specifications |
 
-## Internal Prompts
+## How to Use
 
-The Engineering Manager uses internal prompts (stored in `.github/internal-prompts/`) to ensure consistent delegation context across all tasks:
-
-- **`tsh-implement-common-task`** — Standard delegation prompt for general implementation tasks routed to the Software Engineer.
-- **`tsh-implement-ui-common-task`** — Delegation prompt for UI implementation tasks, includes design context and Figma references.
-- **`tsh-implement-e2e`** — Delegation prompt for E2E test writing, includes test scope and coverage expectations.
-- **`tsh-deploy-kubernetes`** — Delegation prompt for Kubernetes deployments, Helm charts, and workload resources.
-- **`tsh-implement-terraform`** — Delegation prompt for Terraform modules and cloud infrastructure provisioning.
-- **`tsh-implement-pipeline`** — Delegation prompt for CI/CD pipeline creation and modification.
-- **`tsh-implement-observability`** — Delegation prompt for observability solutions: metrics, logs, traces, and alerting.
-
-These internal prompts package the relevant plan context, acceptance criteria, and technical constraints so that each specialized agent receives a complete brief.
+All delegation happens automatically when you run [`/tsh-implement`](../prompts/public/implement). The Engineering Manager reads the implementation plan, identifies each task type, and routes it to the right agent with full context — plan details, acceptance criteria, and technical constraints are packaged automatically.
 
 ## Tool Access
 
@@ -67,7 +57,7 @@ These internal prompts package the relevant plan context, acceptance criteria, a
 
 - **Delegates every task** — Never writes code itself; all implementation is routed to specialized agents.
 - **Routes based on task type** — Application code → Software Engineer, E2E tests → E2E Engineer, infrastructure → DevOps Engineer.
-- **Uses internal prompts for consistent context** — Each delegation includes structured context from the implementation plan.
+- **Packages context automatically** — Each delegation includes structured context from the implementation plan.
 - **Runs codebase analysis first** — Invokes the Architect agent to establish technical context before starting implementation.
 - **Auto-triggers Code Reviewer** — Automatically runs the Code Reviewer at the end of implementation if no review phase is defined in the plan.
 - **Tracks progress** — Updates plan checkboxes after each completed task.
