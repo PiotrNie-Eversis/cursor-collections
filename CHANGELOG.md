@@ -4,6 +4,18 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## 2026-03-20
+
+### Changed
+
+- `/tsh-implement` prompt — Now auto-detects missing context and missing plan; delegates to `tsh-context-engineer` for research and `tsh-architect` for planning before implementation, with user confirmation between phases
+- `/tsh-plan` prompt — Moved from public `.github/prompts/` to internal `.github/internal-prompts/`; no longer invoked directly by users — the Engineering Manager delegates to the Architect automatically when a plan is needed
+- `/tsh-research` prompt — Moved from public `.github/prompts/` to internal `.github/internal-prompts/`; no longer invoked directly by users — the Engineering Manager delegates to the Context Engineer automatically when research is needed
+- Engineering Manager agent (`tsh-engineering-manager`) — Added `tsh-context-engineer` to subagents; added structured workflow to decide between research, planning, and implementation phases; added delegation rules for `tsh-context-engineer` (missing context) and `tsh-architect` (missing plan); added Sequential Thinking usage for phase routing decisions
+- Business Analyst agent (`tsh-business-analyst`) — Replaced "Deep-dive Research per Task" and "Prepare Implementation Plan" handoff buttons with single "Start Implementation" handoff routing to Engineering Manager
+- Context Engineer agent (`tsh-context-engineer`) — Replaced "Prepare Implementation Plan" handoff button with "Start Implementation" handoff routing to Engineering Manager
+- Updated website documentation: moved `/tsh-plan` and `/tsh-research` prompt pages from public to internal section; updated agents overview, prompts overview, workflow docs, and getting started pages
+
 ## 2026-03-17
 
 ### Added
