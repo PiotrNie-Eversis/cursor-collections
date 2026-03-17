@@ -27,14 +27,14 @@ This repository supports the **full product development lifecycle** with AI-powe
 
 ### 🛠 Development – Architecture & Implementation
 
-- 🧑‍💻 **Agents** – Context Engineer, Architect, Software Engineer.
-- 💬 **Prompts** – `/tsh-research`, `/tsh-plan`, `/tsh-implement`.
+- 🧑‍💻 **Agents** – Engineering Manager, Context Engineer, Architect, Software Engineer.
+- 💬 **Prompts** – `/tsh-implement` (internally delegates to Context Engineer for research and Architect for planning).
 - 🧰 **Skills** – Architecture Design, Technical Context Discovery, Frontend Implementation, Implementation Gap Analysis, SQL & Database Engineering, Codebase Analysis.
 
 ### ✅ Quality – Review & Testing
 
 - 🧑‍💻 **Agents** – Code Reviewer, UI Reviewer, E2E Engineer.
-- 💬 **Prompts** – `/tsh-review`, `/tsh-review-ui`, `/tsh-review-codebase`, `/tsh-implement-e2e`.
+- 💬 **Prompts** – `/tsh-review`, `/tsh-review-ui`, `/tsh-review-codebase`.
 - 🧰 **Skills** – Code Review, UI Verification, E2E Testing.
 
 ### ⚙️ Copilot Customization – Extending the Toolchain
@@ -50,7 +50,7 @@ This repository supports the **full product development lifecycle** with AI-powe
 
 ---
 
-> **Why the `tsh-` prefix?** All artifacts in this repository use the `tsh-` prefix (e.g., `/tsh-plan`, `tsh-architect`) to avoid naming collisions with your own project-specific agents, skills, and prompts. You can safely use this alongside your own customizations without renaming anything.
+> **Why the `tsh-` prefix?** All artifacts in this repository use the `tsh-` prefix (e.g., `/tsh-implement`, `tsh-architect`) to avoid naming collisions with your own project-specific agents, skills, and prompts. You can safely use this alongside your own customizations without renaming anything.
 
 ---
 
@@ -86,12 +86,12 @@ We support the **full product development lifecycle**, organized into three phas
 - Keeps changes scoped to the task, respecting existing architecture.
 - For UI tasks: automatically includes iterative Figma verification to match designs.
 
-**Single flow: Plan → Implement**
+**Single flow: Implement → Review**
 
 | Step | Command | What happens |
 |---|---|---|
-| Plan | `/tsh-plan` | Architecture & steps; for UI tasks includes component breakdown with Figma refs |
-| Implement | `/tsh-implement` | Backend & frontend code; for UI tasks includes iterative Figma verification (via internal prompt) |
+| Implement | `/tsh-implement` | Engineering Manager orchestrates the full cycle: research → plan → implementation. For UI tasks includes iterative Figma verification. |
+| Review | `/tsh-review` | Structured code review against acceptance criteria, security, and reliability |
 
 ### Phase 3: ✅ Quality – Review & Testing
 
@@ -111,26 +111,21 @@ We support the **full product development lifecycle**, organized into three phas
    ↳ ✅ Approve at each gate before proceeding
 
 🛠 DEVELOPMENT
-2️⃣ /tsh-research <JIRA_ID or task description>
+2️⃣ /tsh-implement <JIRA_ID or task description>
+   ↳ 🔍 Engineering Manager delegates to Context Engineer for research
    ↳ 📖 Review the generated research document
-   ↳ ✅ Verify accuracy, iterate if needed
-
-3️⃣ /tsh-plan     <JIRA_ID or task description>
+   ↳ ✅ Confirm to proceed to planning
+   ↳ 🧱 Engineering Manager delegates to Architect for planning
    ↳ 📖 Review the implementation plan
    ↳ ✅ Confirm scope, phases, and acceptance criteria
-
-4️⃣ /tsh-implement <JIRA_ID or task description>
+   ↳ 💻 Engineering Manager delegates implementation to specialized agents
    ↳ 📖 Review code changes after each phase
    ↳ ✅ Test functionality, verify against plan
 
 ✅ QUALITY
-5️⃣ /tsh-review   <JIRA_ID or task description>
+3️⃣ /tsh-review   <JIRA_ID or task description>
    ↳ 📖 Review findings and recommendations
    ↳ ✅ Address blockers before merging
-
-6️⃣ /tsh-implement-e2e <JIRA_ID or task description>
-   ↳ 📖 Review generated Page Objects, test files, and fixtures
-   ↳ ✅ Run tests locally, verify they pass
 ```
 
 ### Example: Full Lifecycle (UI Flow with Figma)
@@ -142,27 +137,22 @@ We support the **full product development lifecycle**, organized into three phas
    ↳ ✅ Approve at each gate before proceeding
 
 🛠 DEVELOPMENT
-2️⃣ /tsh-research <JIRA_ID or task description>
+2️⃣ /tsh-implement <JIRA_ID or task description>
+   ↳ 🔍 Engineering Manager delegates to Context Engineer for research
    ↳ 📖 Review research doc – verify Figma links, requirements
-   ↳ ✅ Iterate until context is complete and accurate
-
-3️⃣ /tsh-plan         <JIRA_ID or task description>
+   ↳ ✅ Confirm to proceed to planning
+   ↳ 🧱 Engineering Manager delegates to Architect for planning
    ↳ 📖 Review plan – check component breakdown, design references
    ↳ ✅ Confirm phases align with Figma structure
-
-4️⃣ /tsh-implement <JIRA_ID or task description>
+   ↳ 💻 Engineering Manager delegates UI tasks to Software Engineer
    ↳ 📖 Review code changes and UI Verification Summary
    ↳ ✅ Manually verify critical UI elements in browser
-   ↳ 🔄 Agent calls /tsh-review-ui in a loop until PASS or escalation
+   ↳ 🔄 Engineering Manager calls /tsh-review-ui in a loop until PASS or escalation
 
 ✅ QUALITY
-5️⃣ /tsh-review       <JIRA_ID or task description>
+3️⃣ /tsh-review       <JIRA_ID or task description>
    ↳ 📖 Review findings – code quality, a11y, performance
    ↳ ✅ Address all blockers before merging
-
-6️⃣ /tsh-implement-e2e <JIRA_ID or task description>
-   ↳ 📖 Review generated tests for the UI feature
-   ↳ ✅ Run tests locally, verify they pass
 ```
 
 You can run any flow with either a **Jira ticket ID** or a **free-form task description**.
@@ -445,23 +435,12 @@ All commands work with either a **Jira ID** or a **plain-text description**.
 
 ### 🛠 Development Commands
 
-#### `/tsh-research <JIRA_ID | description>`
-
-- Gathers all available information about the task.
-- Pulls context from Jira, design artifacts, and code (via MCPs where applicable).
-- Outputs: task summary, assumptions, open questions, and suggested next steps.
-
-#### `/tsh-plan <JIRA_ID | description>`
-
-- Creates a **multi-step implementation plan**.
-- Groups work into phases and tasks aligned with your repo structure.
-- Outputs: checklist-style plan that can be executed by the Software Engineer agent.
-
 #### `/tsh-implement <JIRA_ID | description>`
 
-- Implements the previously defined plan.
-- Proposes file changes, refactors, and new code in a focused way.
-- Outputs: concrete modifications and guidance on how to apply/test them.
+- Orchestrates the full development cycle: research → plan → implement.
+- The Engineering Manager automatically delegates to Context Engineer (research) and Architect (planning) when needed, then to specialized agents for implementation.
+- Asks for user confirmation between research, planning, and implementation phases.
+- Outputs: research document, implementation plan, and concrete code modifications.
 
 ### ✅ Quality Commands
 
@@ -488,14 +467,6 @@ All commands work with either a **Jira ID** or a **plain-text description**.
 - Includes an **architecture review** evaluating module boundaries, dependency graph, and separation of concerns.
 - For monorepos, analyzes each layer/app separately using parallel subagents.
 - Outputs: prioritized `code-quality-report.md` with severity levels (🔴 Critical / 🟡 Important / 🟢 Nice to Have) and a recommended action plan.
-
-#### `/tsh-implement-e2e <JIRA_ID | description>`
-
-- Creates comprehensive **end-to-end tests** for the feature using Playwright.
-- Analyzes the application, designs test scenarios, and implements Page Objects.
-- Uses **Playwright MCP** for real-time interaction and test verification.
-- Follows BDD-style scenarios with proper Arrange-Act-Assert structure.
-- Outputs: Page Objects, test files, fixtures, and execution report.
 
 ### ⚙️ Copilot Customization Commands
 
@@ -662,7 +633,7 @@ To enable this, modify your `mcp.json` configuration (User or Workspace) to use 
 
 ### What each MCP is used for
 
-- 🧩 **Atlassian MCP** – access Jira issues for `/tsh-research`, `/tsh-plan`, `/tsh-implement`, `/tsh-review`.
+- 🧩 **Atlassian MCP** – access Jira issues for `/tsh-implement` and `/tsh-review` (and internally during research and planning phases).
 - 🎨 **Figma MCP Server** – pull design details, components, and variables for design‑driven work.
 - 📚 **Context7 MCP** – semantic search in external docs and knowledge bases.
 - 🧪 **Playwright MCP** – run browser interactions and end‑to‑end style checks from Copilot.
@@ -698,9 +669,17 @@ Once the repo is cloned and VS Code User Settings are configured:
 
 | Agent | Prompt | Purpose |
 |---|---|---|
-| Context Engineer | `/tsh-research <JIRA_ID>` | Gather context, identify gaps & risks |
-| Architect | `/tsh-plan <JIRA_ID>` | Create multi-step implementation plan |
-| Software Engineer | `/tsh-implement <JIRA_ID>` | Backend, frontend, and UI implementation (UI tasks include iterative Figma verification) |
+| Engineering Manager | `/tsh-implement <JIRA_ID>` | Orchestrates research → plan → implementation by delegating to specialized agents |
+
+The Engineering Manager automatically delegates to:
+
+| Delegated Agent | Phase | Purpose |
+|---|---|---|
+| Context Engineer | Research (internal) | Gather context, identify gaps & risks |
+| Architect | Planning (internal) | Create multi-step implementation plan |
+| Software Engineer | Implementation | Backend, frontend, and UI implementation |
+| DevOps Engineer | Implementation | Infrastructure, CI/CD, Kubernetes, Terraform |
+| E2E Engineer | Implementation | End-to-end tests with Playwright |
 
 ### ✅ Quality – Review & test
 
@@ -708,7 +687,6 @@ Once the repo is cloned and VS Code User Settings are configured:
 |---|---|---|
 | Code Reviewer | `/tsh-review <JIRA_ID>` | Structured code review against criteria |
 | UI Reviewer | `/tsh-review-ui` | Single-pass UI vs Figma comparison |
-| E2E Engineer | `/tsh-implement-e2e <JIRA_ID>` | End-to-end test creation with Playwright |
 | Architect | `/tsh-review-codebase` | Full codebase quality analysis |
 
 ### ⚙️ Copilot Customization – Extend the toolchain

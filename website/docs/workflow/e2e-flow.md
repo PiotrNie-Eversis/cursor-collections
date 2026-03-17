@@ -10,16 +10,14 @@ For features that need end-to-end test coverage, use the E2E testing workflow. T
 ## Command Sequence
 
 ```text
-1️⃣ /tsh-research <JIRA_ID or task description>
+1️⃣ /tsh-implement <JIRA_ID or task description>
+   ↳ 🔍 Engineering Manager delegates to Context Engineer for research
    ↳ 📖 Review research doc – understand feature scope and user journeys
    ↳ ✅ Identify critical paths that need E2E coverage
-
-2️⃣ /tsh-plan <JIRA_ID or task description>
+   ↳ 🧱 Engineering Manager delegates to Architect for planning
    ↳ 📖 Review plan – confirm test scenarios and acceptance criteria
    ↳ ✅ Ensure E2E testing is included in the plan
-
-3️⃣ /tsh-implement <JIRA_ID or task description>
-   ↳ 📖 Engineering Manager delegates E2E tasks to the E2E Engineer agent
+   ↳ 🧪 Engineering Manager delegates E2E tasks to the E2E Engineer agent
    ↳ 📖 Implements Page Objects, test files, and fixtures
    ↳ ✅ Run tests locally, verify they pass
    ↳ 🔄 Iterate on flaky or failing tests

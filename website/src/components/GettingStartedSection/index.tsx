@@ -42,7 +42,7 @@ const steps = [
     description: (
       <>
         Open Copilot Chat → select an agent → type{' '}
-        <code>/tsh-research [JIRA_ID]</code>. If agents appear in the dropdown,
+        <code>/tsh-implement [JIRA_ID]</code>. If agents appear in the dropdown,
         you're ready.
       </>
     ),
@@ -63,7 +63,7 @@ export default function GettingStartedSection(): React.JSX.Element {
           </h2>
           <p className={styles.sub}>
             Clone the repo next to your projects, configure VS Code User
-            Settings once, and start using <code>/tsh-research</code> in any
+            Settings once, and start using <code>/tsh-implement</code> in any
             workspace immediately.
           </p>
           <div className={styles.gsActions}>
