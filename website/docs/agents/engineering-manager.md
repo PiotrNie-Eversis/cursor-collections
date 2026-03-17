@@ -24,7 +24,7 @@ Implementation Plan
  SE   E2E  DevOps Arch  CR  UIR
 ```
 
-The Engineering Manager is bound to the `/tsh-implement` and `/tsh-implement-ui` public prompts. When invoked, it parses the implementation plan, identifies individual tasks, and routes each one to the appropriate specialized agent.
+The Engineering Manager is bound to the `/tsh-implement` public prompt. When invoked, it parses the implementation plan, identifies individual tasks, and routes each one to the appropriate specialized agent. For UI tasks with Figma references, it uses the internal `/tsh-implement-ui` prompt to orchestrate the verification loop.
 
 ## Agent Delegation
 

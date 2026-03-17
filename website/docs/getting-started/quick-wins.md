@@ -126,7 +126,7 @@ This page shows how teams integrate Copilot Collections into their daily routine
 **With Copilot Collections:**
 
 ```text
-/tsh-implement-ui PROJ-321
+/tsh-implement PROJ-321
 ```
 
 | Step | What Happens |
@@ -136,7 +136,7 @@ This page shows how teams integrate Copilot Collections into their daily routine
 | **3. Automated verification loop** | `/tsh-review-ui` is called automatically. Playwright captures the running app; Figma MCP provides expected values. A structured PASS/FAIL diff table is generated. |
 | **4. Auto-fix cycle** | If FAIL, the agent fixes mismatches and re-verifies — up to 5 iterations — until the component passes or escalates. |
 
-**Key prompts & agents:** `/tsh-implement-ui` → Software Engineer, `/tsh-review-ui` → UI Reviewer  
+**Key prompts & agents:** `/tsh-implement` → Engineering Manager → Software Engineer, `/tsh-review-ui` → UI Reviewer  
 **Key skills:** `tsh-implementing-frontend`, `tsh-ui-verifying`, `tsh-technical-context-discovering`
 
 **Value:** Design-to-code accuracy reaches 95–99%. Design QA feedback rounds are reduced by 60–80%. Accessibility compliance is built in from the start, not bolted on after review.

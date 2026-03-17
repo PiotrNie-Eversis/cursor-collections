@@ -1,24 +1,30 @@
 ---
-sidebar_position: 5
+sidebar_position: 8
 title: /tsh-implement-ui
 ---
 
 # /tsh-implement-ui
 
+:::info
+Not invoked directly by users. The UI implementation workflow is triggered via [`/tsh-implement`](../public/implement) — the [Engineering Manager](../../agents/engineering-manager) uses this internal prompt to orchestrate UI tasks with Figma verification.
+:::
+
 **Agent:** Engineering Manager  
-**File:** `.github/prompts/tsh-implement-ui.prompt.md`
+**File:** `.github/internal-prompts/tsh-implement-ui.prompt.md`
 
 Orchestrates the implementation of UI features with iterative Figma verification, delegating to specialized agents.
 
-## Usage
+## How It's Triggered
 
 ```text
-/tsh-implement-ui <JIRA_ID or task description>
+/tsh-implement <JIRA_ID or task description>
 ```
+
+When the implementation plan contains UI tasks with Figma references, the Engineering Manager automatically uses this internal prompt to manage the verification loop.
 
 ## What It Does
 
-Everything from [`/tsh-implement`](./implement), plus:
+Everything from [`/tsh-implement`](../public/implement), plus:
 
 1. **Extracts Figma URLs** from the research and plan files.
 2. **Confirms dev server URL** with the user before the first verification.

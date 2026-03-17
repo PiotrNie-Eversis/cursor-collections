@@ -18,7 +18,7 @@ For UI-heavy tasks with Figma designs, use the specialized frontend workflow. Th
    ↳ 📖 Review plan – check component breakdown, design references
    ↳ ✅ Confirm phases align with Figma structure
 
-3️⃣ /tsh-implement-ui <JIRA_ID or task description>
+3️⃣ /tsh-implement <JIRA_ID or task description>
    ↳ 📖 Engineering Manager delegates UI tasks to Software Engineer
    ↳ 📖 Review code changes and UI Verification Summary
    ↳ ✅ Manually verify critical UI elements in browser
@@ -31,7 +31,7 @@ For UI-heavy tasks with Figma designs, use the specialized frontend workflow. Th
 
 ## How the Verification Loop Works
 
-1. The Engineering Manager delegates a UI component implementation to the Software Engineer via `/tsh-implement-ui`.
+1. The Engineering Manager delegates a UI component implementation to the Software Engineer via the internal `/tsh-implement-ui` prompt.
 2. After the Software Engineer completes, the Engineering Manager calls `/tsh-review-ui` to perform **single-pass verification** (read-only).
 3. `/tsh-review-ui` uses **Figma MCP** (EXPECTED) + **Playwright MCP** (ACTUAL) → returns PASS or FAIL with diff table.
 4. If FAIL → the Engineering Manager delegates the fix to the Software Engineer and calls `/tsh-review-ui` again.
@@ -46,6 +46,10 @@ For UI-heavy tasks with Figma designs, use the specialized frontend workflow. Th
 - Covers: structure (containers, nesting), dimensions (width, height, spacing), visual (typography, colors, radii), and components (variants, tokens, states).
 
 ## What `/tsh-implement-ui` Does
+
+:::info Internal Prompt
+`/tsh-implement-ui` is an internal prompt — not invoked directly by users. It is triggered automatically by `/tsh-implement` when the plan contains UI tasks with Figma references.
+:::
 
 - Orchestrated by the **Engineering Manager** agent, which delegates to the Software Engineer and UI Reviewer.
 - Implements UI components following the plan.

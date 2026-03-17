@@ -21,7 +21,7 @@ Most teams use AI for code completion. **Copilot Collections turns AI into an en
 | Capability | Count | Description |
 |---|---|---|
 | 🧑‍💻 **Specialized Agents** | 11 | Business Analyst, Context Engineer, Architect, Engineering Manager, Software Engineer, Code Reviewer, UI Reviewer, E2E Engineer, DevOps Engineer, Copilot Engineer, Copilot Orchestrator |
-| 💬 **Public Prompts** | 15 | `/tsh-analyze-materials`, `/tsh-research`, `/tsh-plan`, `/tsh-implement`, `/tsh-implement-ui`, `/tsh-review`, `/tsh-review-ui`, `/tsh-review-codebase`, `/tsh-create-custom-agent`, `/tsh-create-custom-skill`, `/tsh-create-custom-prompt`, `/tsh-create-custom-instructions`, `/tsh-audit-infrastructure`, `/tsh-analyze-aws-costs`, `/tsh-analyze-gcp-costs` |
+| 💬 **Public Prompts** | 14 | `/tsh-analyze-materials`, `/tsh-research`, `/tsh-plan`, `/tsh-implement`, `/tsh-review`, `/tsh-review-ui`, `/tsh-review-codebase`, `/tsh-create-custom-agent`, `/tsh-create-custom-skill`, `/tsh-create-custom-prompt`, `/tsh-create-custom-instructions`, `/tsh-audit-infrastructure`, `/tsh-analyze-aws-costs`, `/tsh-analyze-gcp-costs` |
 | 🔧 **Automatic Delegation** | via `/tsh-implement` | The Engineering Manager automatically routes tasks to Software Engineer, E2E Engineer, DevOps Engineer, and UI Reviewer based on the implementation plan |
 | 🧰 **Reusable Skills** | 25 | Transcript Processing, Task Extraction, Task Quality Review, Jira Task Formatting, Task Analysis, Architecture Design, Codebase Analysis, Code Review, Implementation Gap Analysis, E2E Testing, Technical Context Discovery, Frontend Implementation, UI Verification, SQL & Database Engineering, CI/CD Implementation, Kubernetes Implementation, Terraform Modules, Observability Implementation, Secrets Management, Cloud Cost Optimization, Multi-Cloud Architecture Design, Creating Agents, Creating Skills, Creating Prompts, Creating Instructions |
 | 🔌 **MCP Integrations** | 11 | Atlassian, Figma Dev Mode, Context7, Playwright, Sequential Thinking, PDF Reader, AWS API, AWS Documentation, GCP Gcloud, GCP Observability, GCP Storage |
@@ -50,7 +50,7 @@ Most teams use AI for code completion. **Copilot Collections turns AI into an en
 | Workshop notes sitting in notebooks | `/tsh-analyze-materials` — epics and stories in Jira | ~15 min |
 | New developer struggling with context | `/tsh-research PROJ-123` — structured research doc | ~3 min |
 | No implementation plan | `/tsh-plan PROJ-123` — phased architecture plan | ~5 min |
-| UI doesn't match Figma | `/tsh-implement-ui` — automated verification loop | ~20 min |
+| UI doesn't match Figma | `/tsh-implement` — automated Figma verification loop via internal UI prompt | ~20 min |
 | Inconsistent code reviews | `/tsh-review PROJ-123` — structured multi-dimensional review | ~5 min |
 | Flaky or missing E2E tests | `/tsh-implement` — Engineering Manager delegates to E2E Engineer | ~10 min |
 | Technical debt piling up | `/tsh-review-codebase` — full quality analysis with action plan | ~15 min |

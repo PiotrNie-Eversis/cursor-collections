@@ -6,7 +6,7 @@ title: /tsh-implement-ui-common-task
 # /tsh-implement-ui-common-task
 
 :::info
-Not invoked directly by users. To trigger UI implementation, use [`/tsh-implement-ui`](../public/implement-ui) — the [Engineering Manager](../../agents/engineering-manager) will automatically delegate to the [Software Engineer](../../agents/software-engineer).
+Not invoked directly by users. To trigger UI implementation, use [`/tsh-implement`](../public/implement) — the [Engineering Manager](../../agents/engineering-manager) will automatically delegate to the [Software Engineer](../../agents/software-engineer) via the internal [`/tsh-implement-ui`](./implement-ui) prompt.
 :::
 
 **Agent:** Software Engineer
@@ -17,10 +17,10 @@ Extends the standard implementation workflow with UI-specific behaviors — Figm
 ## How It's Triggered
 
 ```text
-/tsh-implement-ui <JIRA_ID or task description>
+/tsh-implement <JIRA_ID or task description>
 ```
 
-The Engineering Manager identifies UI tasks in the plan and delegates them to the Software Engineer with Figma design context.
+The Engineering Manager identifies UI tasks in the plan and delegates them to the Software Engineer via the internal `/tsh-implement-ui` prompt, which passes Figma design context.
 
 ## What It Does
 

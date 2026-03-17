@@ -5,7 +5,7 @@ title: Prompts Overview
 
 # Prompts Overview
 
-Copilot Collections includes **15 public prompts** — slash commands that trigger specific workflow actions across the full product lifecycle. Prompts are stored in `.github/prompts/` and become available as `/command` shortcuts in VS Code chat.
+Copilot Collections includes **14 public prompts** — slash commands that trigger specific workflow actions across the full product lifecycle. Prompts are stored in `.github/prompts/` and become available as `/command` shortcuts in VS Code chat.
 
 ## How Prompts Work
 
@@ -35,7 +35,6 @@ These are the user-facing commands available in VS Code chat.
 | [/tsh-research](./public/research) | Context Engineer | Gather context and requirements for a task |
 | [/tsh-plan](./public/plan) | Architect | Create a structured implementation plan |
 | [/tsh-implement](./public/implement) | Engineering Manager | Orchestrate implementation by delegating to specialized agents |
-| [/tsh-implement-ui](./public/implement-ui) | Engineering Manager | Orchestrate UI implementation with iterative Figma verification |
 
 ### ✅ Quality Commands
 
@@ -69,7 +68,7 @@ When you run [`/tsh-implement`](./public/implement), the Engineering Manager aut
 | Task Type | Delegated To |
 |---|---|
 | Backend / general code | Software Engineer |
-| Frontend with Figma | Software Engineer |
+| Frontend with Figma | Software Engineer (via [internal UI prompt](./internal/implement-ui)) |
 | E2E tests | E2E Engineer |
 | Kubernetes, Terraform, CI/CD, observability | DevOps Engineer |
 | UI verification | UI Reviewer |

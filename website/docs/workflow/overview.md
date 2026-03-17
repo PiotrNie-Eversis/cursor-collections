@@ -74,5 +74,5 @@ The full lifecycle has specialized variants for different task types:
 
 - **[Workshop Analysis Flow](./workshop-flow)** — Convert discovery workshop materials into Jira-ready epics and stories using `/tsh-analyze-materials`.
 - **[Standard Flow](./standard-flow)** — Backend/fullstack tasks using `/tsh-research` → `/tsh-plan` → `/tsh-implement` → `/tsh-review`.
-- **[Frontend Flow](./frontend-flow)** — UI tasks with Figma verification using `/tsh-implement-ui` and `/tsh-review-ui`.
+- **[Frontend Flow](./frontend-flow)** — UI tasks with Figma verification using `/tsh-implement` (which internally uses `/tsh-implement-ui`) and `/tsh-review-ui`.
 - **[E2E Testing Flow](./e2e-flow)** — End-to-end test creation delegated by the Engineering Manager to the E2E Engineer via `/tsh-implement`.

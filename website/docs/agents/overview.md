@@ -40,7 +40,6 @@ Each agent has:
 ┌─────────────────────────┐
 │   Engineering Manager    │  ← Orchestrates implementation
 │   /tsh-implement         │
-│   /tsh-implement-ui      │
 └──────┬──────────────────┘
        │ Delegates to specialized agents
        ├──────────────────┬──────────────────┬──────────────────┐
