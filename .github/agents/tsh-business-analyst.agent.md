@@ -2,13 +2,9 @@
 description: "Agent specializing in converting discovery workshop materials (transcripts, designs, codebase context) into Jira-ready epics and user stories."
 tools: ['atlassian/*', 'figma-mcp-server/*', 'pdf-reader/*', 'sequential-thinking/*', 'read', 'edit', 'search', 'todo', 'agent', 'vscode/askQuestions']
 handoffs: 
-  - label: Deep-dive Research per Task
-    agent: tsh-context-engineer
-    prompt: /tsh-research Research the task for deeper business context
-    send: false
-  - label: Prepare Implementation Plan
-    agent: tsh-architect
-    prompt: /tsh-plan Create implementation plan for the current task
+  - label: Start Implementation
+    agent: tsh-engineering-manager
+    prompt: /tsh-implement Start implementation for the current task
     send: false
 ---
 

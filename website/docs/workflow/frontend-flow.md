@@ -10,21 +10,19 @@ For UI-heavy tasks with Figma designs, use the specialized frontend workflow. Th
 ## Command Sequence
 
 ```text
-1️⃣ /tsh-research     <JIRA_ID or task description>
+1️⃣ /tsh-implement <JIRA_ID or task description>
+   ↳ 🔍 Engineering Manager delegates to Context Engineer for research
    ↳ 📖 Review research doc – verify Figma links, requirements
-   ↳ ✅ Iterate until context is complete and accurate
-
-2️⃣ /tsh-plan         <JIRA_ID or task description>
+   ↳ ✅ Confirm to proceed to planning
+   ↳ 🧱 Engineering Manager delegates to Architect for planning
    ↳ 📖 Review plan – check component breakdown, design references
    ↳ ✅ Confirm phases align with Figma structure
-
-3️⃣ /tsh-implement <JIRA_ID or task description>
-   ↳ 📖 Engineering Manager delegates UI tasks to Software Engineer
+   ↳ 💻 Engineering Manager delegates UI tasks to Software Engineer
    ↳ 📖 Review code changes and UI Verification Summary
    ↳ ✅ Manually verify critical UI elements in browser
    ↳ 🔄 Engineering Manager calls /tsh-review-ui in a loop until PASS or escalation
 
-4️⃣ /tsh-review       <JIRA_ID or task description>
+2️⃣ /tsh-review       <JIRA_ID or task description>
    ↳ 📖 Review findings – code quality, a11y, performance
    ↳ ✅ Address all blockers before merging
 ```

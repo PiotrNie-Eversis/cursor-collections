@@ -23,32 +23,20 @@ Each agent has:
 │  Business Analyst     │
 │  /tsh-analyze-materials│
 └──────┬───────────────┘
-       │ Deep-dive Research / Prepare Plan
-       ▼
-┌──────────────────┐
-│ Context Engineer  │
-│  /tsh-research    │
-└──────┬───────────┘
-       │ Prepare Implementation Plan
-       ▼
-┌──────────────────┐
-│    Architect      │
-│    /tsh-plan      │
-└──────┬───────────┘
        │ Start Implementation
        ▼
 ┌─────────────────────────┐
-│   Engineering Manager    │  ← Orchestrates implementation
+│   Engineering Manager    │  ← Orchestrates the full cycle
 │   /tsh-implement         │
 └──────┬──────────────────┘
        │ Delegates to specialized agents
-       ├──────────────────┬──────────────────┬──────────────────┐
-       ▼                  ▼                  ▼                  ▼
-┌──────────────┐  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐
-│  Software    │  │  DevOps      │  │  E2E         │  │  UI Reviewer  │
-│  Engineer    │  │  Engineer    │  │  Engineer    │  │  /tsh-review- │
-│  (app code)  │  │  (infra)     │  │  (tests)     │  │  ui           │
-└──────────────┘  └──────────────┘  └──────────────┘  └──────────────┘
+       ├──────────────────┬──────────────────┬──────────────────┬──────────────────┬──────────────────┐
+       ▼                  ▼                  ▼                  ▼                  ▼                  ▼
+┌──────────────┐  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐
+│  Context     │  │  Architect   │  │  Software    │  │  DevOps      │  │  E2E         │  │  UI Reviewer  │
+│  Engineer    │  │  (plan)      │  │  Engineer    │  │  Engineer    │  │  Engineer    │  │  /tsh-review- │
+│  (research)  │  │              │  │  (app code)  │  │  (infra)     │  │  (tests)     │  │  ui           │
+└──────────────┘  └──────────────┘  └──────────────┘  └──────────────┘  └──────────────┘  └──────────────┘
        │
        ▼
 ┌──────────────┐

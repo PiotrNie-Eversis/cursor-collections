@@ -48,36 +48,32 @@ export default function SdlcDiagram(): React.JSX.Element {
           </div>
           <div className={styles.card}>
             <div className={styles.cardCmd}>
-              <strong className={styles.cardCmdStrong}>/tsh-research</strong>
-            </div>
-            <div className={styles.cardDesc}>
-              Gather all technical context — Jira, GitHub, Figma — in a single
-              session
-            </div>
-          </div>
-          <div className={styles.innerConn} />
-          <div className={styles.card}>
-            <div className={styles.cardCmd}>
-              <strong className={styles.cardCmdStrong}>/tsh-plan</strong>
-            </div>
-            <div className={styles.cardDesc}>
-              Design architecture, define steps, surface edge cases before
-              writing a line of code
-            </div>
-          </div>
-          <div className={styles.innerConn} />
-          <div className={styles.card}>
-            <div className={styles.cardCmd}>
               <strong className={styles.cardCmdStrong}>/tsh-implement</strong>
               <span style={{fontSize: '0.7rem', opacity: 0.7, marginLeft: '0.5rem'}}>Engineering Manager</span>
             </div>
             <div className={styles.cardDesc}>
-              Orchestrates work — delegates backend, frontend, infra, and tests
-              to specialized agents
+              Orchestrates the full cycle — research, planning, and
+              implementation via specialized agents
             </div>
           </div>
           <div className={styles.parallelLabel}>↓ delegates to</div>
           <div className={styles.grid3}>
+            <div className={styles.card}>
+              <div className={styles.cardCmd}>
+                <strong className={styles.cardCmdStrong}>Context Engineer</strong>
+              </div>
+              <div className={styles.cardDesc}>
+                Research &amp; context gathering
+              </div>
+            </div>
+            <div className={styles.card}>
+              <div className={styles.cardCmd}>
+                <strong className={styles.cardCmdStrong}>Architect</strong>
+              </div>
+              <div className={styles.cardDesc}>
+                Architecture &amp; implementation plan
+              </div>
+            </div>
             <div className={styles.card}>
               <div className={styles.cardCmd}>
                 <strong className={styles.cardCmdStrong}>Software Engineer</strong>

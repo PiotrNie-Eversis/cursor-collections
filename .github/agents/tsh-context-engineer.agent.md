@@ -2,9 +2,9 @@
 description: "Agent specializing in building context for development tasks by gathering requirements, analyzing processes, and creating comprehensive task context."
 tools: ['atlassian/*', 'figma-mcp-server/*', 'pdf-reader/*', 'sequential-thinking/*', 'read', 'edit', 'search', 'todo', 'agent', 'vscode/runCommand', 'vscode/askQuestions']
 handoffs: 
-  - label: Prepare Implementation Plan
-    agent: tsh-architect
-    prompt: /tsh-plan Create implementation plan for the current task
+  - label: Start Implementation
+    agent: tsh-engineering-manager
+    prompt: /tsh-implement Start implementation for the current task
     send: false
 ---
 
