@@ -57,7 +57,7 @@ All delegation happens automatically when you run [`/tsh-implement`](../prompts/
 ## Key Behaviors
 
 - **Delegates every task** — Never writes code itself; all implementation is routed to specialized agents.
-- **Routes based on task type** — Application code → Software Engineer, E2E tests → E2E Engineer, infrastructure → DevOps Engineer.
+- **Routes based on task type** — Application code → Software Engineer, E2E tests → E2E Engineer, infrastructure → DevOps Engineer, LLM prompts → Prompt Engineer.
 - **Packages context automatically** — Each delegation includes structured context from the implementation plan.
 - **Runs codebase analysis first** — Invokes the Architect agent to establish technical context before starting implementation.
 - **Auto-triggers Code Reviewer** — Automatically runs the Code Reviewer at the end of implementation if no review phase is defined in the plan.

@@ -131,7 +131,7 @@ You have access to the `tsh-prompt-engineer` agent.
   - A task requires security auditing of existing LLM prompts for injection vulnerabilities.
   - Prompt engineering work is a distinct sub-task within a larger feature implementation — delegate the prompt work to `tsh-prompt-engineer` separately from the application code work delegated to `tsh-software-engineer`.
 - **IMPORTANT**:
-  - Always run subagent with [tsh-engineer-prompt.prompt.md](../prompts/tsh-engineer-prompt.prompt.md) prompt to ensure that prompt engineering follows the structured workflow and output format for reproducibility.
+  - Always run subagent with [tsh-engineer-prompt.prompt.md](../internal-prompts/tsh-engineer-prompt.prompt.md) prompt to ensure that prompt engineering follows the structured workflow and output format for reproducibility.
   - When a feature involves both application code and LLM prompts, delegate them as separate tasks: application code to `tsh-software-engineer`, prompt design to `tsh-prompt-engineer`.
 - **SHOULD NOT delegate to**:
   - Implementing application code - delegate those to `tsh-software-engineer`.

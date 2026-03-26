@@ -81,8 +81,6 @@ Think step by step:
 1. First, identify the key variables
 2. Then, analyze the relationships between them
 3. Finally, state your conclusion
-
-Important: Show your reasoning before giving the final answer.
 ```
 
 Use chain-of-thought when: multi-step math, logical reasoning, code analysis, complex classification with justification. Skip it for: simple extraction, translation, formatting.
