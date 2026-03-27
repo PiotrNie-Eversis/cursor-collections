@@ -22,6 +22,7 @@ agents:
     "tsh-code-reviewer",
     "tsh-ui-reviewer",
     "tsh-context-engineer",
+    "tsh-prompt-engineer",
   ]
 ---
 
@@ -122,6 +123,18 @@ You have access to the `tsh-ui-reviewer` agent.
 - **SHOULD NOT delegate to**:
   - Non-visual tasks (data fetching, state management, routing, backend logic) that have no visible UI output.
   - Tasks where no Figma design reference exists and the user has not provided one.
+
+You have access to the `tsh-prompt-engineer` agent.
+
+- **MUST delegate to when**:
+  - The implementation plan includes tasks that involve designing, optimizing, auditing, or creating LLM application prompts (system prompts, RAG templates, tool-calling instructions, classification/extraction prompts).
+  - A task requires security auditing of existing LLM prompts for injection vulnerabilities.
+  - Prompt engineering work is a distinct sub-task within a larger feature implementation — delegate the prompt work to `tsh-prompt-engineer` separately from the application code work delegated to `tsh-software-engineer`.
+- **IMPORTANT**:
+  - Always run subagent with [tsh-engineer-prompt.prompt.md](../internal-prompts/tsh-engineer-prompt.prompt.md) prompt to ensure that prompt engineering follows the structured workflow and output format for reproducibility.
+  - When a feature involves both application code and LLM prompts, delegate them as separate tasks: application code to `tsh-software-engineer`, prompt design to `tsh-prompt-engineer`.
+- **SHOULD NOT delegate to**:
+  - Implementing application code - delegate those to `tsh-software-engineer`.
 
 ## Tool Usage Guidelines
 

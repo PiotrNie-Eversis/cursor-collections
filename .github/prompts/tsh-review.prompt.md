@@ -15,6 +15,7 @@ Before starting, load and follow these skills:
 - `tsh-implementation-gap-analysing` - to compare the implemented solution against the plan and verify completeness
 - `tsh-technical-context-discovering` - to understand project conventions and coding standards to review against
 - `tsh-sql-and-database-understanding` - when reviewing database-related changes: schema design, migration safety, query performance, index coverage, and ORM usage
+- `tsh-engineering-prompts` - when reviewing LLM prompt code: verify prompt structure, injection defenses, delimiter separation, output format specification, anti-patterns, and optimization opportunities
 
 ## Workflow
 
