@@ -5,7 +5,7 @@ title: Use Cases
 
 # Use Cases
 
-Nine scenarios where Copilot Collections changes how work actually gets done.
+Nine scenarios where Cursor Collections changes how work actually gets done.
 
 ---
 
@@ -47,7 +47,7 @@ The Context Engineer agent gathers context from Jira, Confluence, Figma, and the
 
 The information needed to implement any feature lives across four tools at minimum. Developers spend 30–60 minutes per task reconstructing context that already exists — just in different places.
 
-MCP integrations (Atlassian, Figma, Context7, Playwright, PDF Reader) bring every source into a single Copilot chat session. The Context Engineer agent synthesises them into one research document. You start implementing with full context already assembled.
+MCP integrations (Atlassian, Figma, Context7, Playwright, PDF Reader) bring every source into a single Cursor session. The Context Engineer agent synthesises them into one research document. You start implementing with full context already assembled.
 
 **~3 min vs 30–60 min**
 
@@ -69,7 +69,7 @@ The UI Reviewer agent runs an automated verification loop (up to 5 iterations) t
 
 Every team has conventions that exist in someone's head. Senior developers catch violations in review. Juniors don't always know what to look for. The result is review comments that relitigate the same issues across every PR, and inconsistent codebases that get harder to maintain over time.
 
-The Code Reviewer agent enforces tested best practices automatically - the same ones encoded in TSH's production skills (`tsh-technical-context-discovering`, `tsh-code-reviewing`, `tsh-implementing-frontend`). The `/tsh-review-codebase` prompt runs a repository-wide pass detecting dead code, duplications, and anti-patterns.
+The Code Reviewer agent enforces tested best practices automatically - the same ones encoded in TSH's production skills (`tsh-technical-context-discovering`, `tsh-code-reviewing`, `tsh-implementing-frontend`). The `eversis-review-codebase` prompt runs a repository-wide pass detecting dead code, duplications, and anti-patterns.
 
 **~5 min per review**
 
@@ -81,7 +81,7 @@ Security reviews happen at the end of a sprint - when it's expensive to fix what
 
 Security considerations are built into every implementation plan, not reviewed after the fact. The Code Reviewer agent checks for vulnerabilities, exposed secrets, and missing validation on every review pass. The SQL & Database skill enforces least-privilege access, parameterised queries, and proper indexing as defaults.
 
-**Built into every** `/tsh-implement` **plan phase and** `/tsh-review`
+**Built into every** `eversis-implement` **plan phase and** `eversis-review`
 
 ---
 
@@ -118,6 +118,6 @@ The DevOps Engineer agent covers the full infrastructure lifecycle:
 
 Generic AI tools don't know your codebase conventions, your internal tooling, or your team's specific way of working. That gap shows up as suggestions you have to discard, context you have to re-explain every session, and patterns that don't fit.
 
-The Copilot Engineer and Copilot Orchestrator agents help you encode your team's domain knowledge into the framework itself — custom agents, skills, prompts, and instructions that persist across sessions. The `/tsh-create-custom-*` commands guide the process: research the domain, create the artifact, review for consistency with the existing framework.
+Framework customization (rules, **Agent Skills**, and attachable prompts) helps you encode your team's domain knowledge — patterns that persist across sessions. Use the **`eversis-create-custom-*`** prompts and the **creating-*** skills under `.github/skills/`: research the domain, create the artifact, review for consistency with the existing framework.
 
 **~15 min per custom artifact**

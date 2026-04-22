@@ -24,7 +24,7 @@ const useCases: UseCase[] = [
     trackLabel: 'Development',
     title: 'Single-Session Context Gathering',
     problem:
-      'Requirements live in Jira, designs in Figma, documentation in Confluence, code in GitHub. Developers constantly context-switch to gather information. MCP integrations bring all context into a single Copilot chat session.',
+      'Requirements live in Jira, designs in Figma, documentation in Confluence, code in GitHub. Developers constantly context-switch to gather information. MCP integrations bring all context into a single Cursor session.',
     time: '~3 min vs 30–60 min',
   },
   {

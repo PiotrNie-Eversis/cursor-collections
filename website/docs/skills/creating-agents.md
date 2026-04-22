@@ -1,43 +1,34 @@
 ---
 sidebar_position: 16
-title: Creating Agents
+title: Creating role rules
 ---
 
-# Creating Agents
+# Creating role rules (`.mdc`)
 
-**Folder:** `.github/skills/tsh-creating-agents/`
-**Used by:** Copilot Engineer
+**Folder:** `.github/skills/tsh-creating-agents/`  
+**Used by:** Framework maintainers (customization track)
 
-Provides templates, guidelines, and a structured process for building custom agent definitions (`.agent.md`) that describe behavior, personality, responsibilities, and problem-solving approaches.
+Build **Cursor project rules** — **`.cursor/rules/eversis-*.mdc`** — that define **role behavior** (who/when), not full workflows. Optional narrative docs: **`website/docs/agents/`**. This monorepo does **not** use `.github/agents/*.agent.md`.
 
-## Core Design Principles
+## Principles
 
-- **Separation of concerns** — An agent file defines WHO the agent is. It must NOT define HOW specific workflows are executed (that belongs in skills) or WHAT triggers them (that belongs in prompts).
-- **XML syntax** — All structured content inside the agent body uses XML-like tags for reliable parsing across LLM model tiers.
-- **Minimal scope** — Only include context the LLM doesn't already have. Every token competes for context window space.
+- **Separation of concerns** — Rules = stable role and boundaries; **skills** = HOW; **prompts** = runnable workflow under `website/docs/prompts/`.
+- **XML-style sections** — The underlying skill may still use XML-like tags in the **body** for structure; YAML frontmatter is for Cursor (`description`, `globs`, `alwaysApply`).
 
-## Agent File Structure
+## Rule structure (typical)
 
-| Section | Purpose |
-|---|---|
-| **YAML Frontmatter** | `description`, `tools`, `model` (optional), `user-invocable` flag |
-| **Agent Role** | WHO the agent is, responsibilities, boundaries |
-| **Behavior Guidelines** | Decision-making rules, communication style |
-| **Skills Usage** | Which skills to load and when |
-| **Tool Usage** | How to use each configured tool |
-| **Handoffs** | Transitions to other agents with intent and prompt references |
+| Layer | Purpose |
+| --- | --- |
+| **Frontmatter** | `description`, `globs` or `alwaysApply` |
+| **Role** | Responsibilities, tone, when to stop for human review |
+| **Skills** | Which `tsh-*` skills apply by name (references only) |
+| **Tools** | Behavioral guidance for MCP / terminal (not a Copilot tool manifest) |
 
-## Validation Checklist
+## Validation
 
-- YAML frontmatter is syntactically valid
-- All required sections present
-- No workflow steps embedded (skill territory)
-- No coding standards embedded (instructions territory)
-- Tools listed match the agent's stated role
-- Handoff references use correct `tsh-` prefixed names
+- Not duplicating `eversis-agent-core.mdc` or stack rules
+- Globs are minimal and accurate
 
-## Connected Skills
+## See also
 
-- `tsh-creating-skills` — For creating matching skills that complement the agent.
-- `tsh-creating-prompts` — For creating prompts that route to the agent.
-- `tsh-creating-instructions` — For scoped coding conventions the agent should follow.
+- [documentation/cursor-collection.md](https://github.com/TheSoftwareHouse/cursor-collections/blob/main/documentation/cursor-collection.md)

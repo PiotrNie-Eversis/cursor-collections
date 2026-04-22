@@ -10,7 +10,7 @@ For converting discovery workshop materials into structured, Jira-ready epics an
 ## Command Sequence
 
 ```text
-1️⃣ /tsh-analyze-materials <workshop materials>
+1️⃣ /eversis-analyze-materials <workshop materials>
    ↳ 📝 Agent processes transcript — cleans, structures, extracts decisions
    ↳ 📖 Review cleaned transcript for accuracy
    ↳ 🔍 Agent analyzes Figma designs and codebase context
@@ -99,7 +99,7 @@ The quality review step runs 10 domain-agnostic analysis passes against the appr
 To iterate on an existing Jira backlog instead of workshop materials:
 
 ```text
-/tsh-analyze-materials PROJ-123
+/eversis-analyze-materials PROJ-123
 ```
 
 The agent fetches existing issues from Jira, converts them into the local format, then runs quality review and formatting. Changes can be pushed back to Jira individually or in batch.
@@ -109,7 +109,7 @@ The agent fetches existing issues from Jira, converts them into the local format
 After workshop analysis, individual tasks can flow into the standard delivery workflow:
 
 ```text
-/tsh-analyze-materials  →  /tsh-implement PROJ-123  →  /tsh-review
+/eversis-analyze-materials  →  /eversis-implement PROJ-123  →  /eversis-review
 ```
 
 Use the **Deep-dive Research per Task** handoff to transition a specific task to the Context Engineer for detailed requirements gathering, or the **Prepare Implementation Plan** handoff to send it to the Architect.

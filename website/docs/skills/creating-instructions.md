@@ -3,49 +3,37 @@ sidebar_position: 19
 title: Creating Instructions
 ---
 
-# Creating Instructions
+# Creating instructions
 
-**Folder:** `.github/skills/tsh-creating-instructions/`
-**Used by:** Copilot Engineer
+**Folder:** `.github/skills/tsh-creating-instructions/`  
+**Used by:** Framework maintainers (customization track)
 
-Covers repository-level instructions (`copilot-instructions.md`) and granular file-based instructions with `applyTo` glob patterns. Provides templates and a decision framework for instruction vs. skill placement.
+Helps place **declarative rules** for **Cursor**: **[AGENTS.md](https://github.com/TheSoftwareHouse/cursor-collections/blob/main/AGENTS.md)**, **`.cursor/rules/eversis-*.mdc`**, and optional scoped rules. This framework does **not** use GitHub Copilot `copilot-instructions.md`.
 
-## Instruction Types
+## Instruction types (Cursor)
 
-| Aspect | Repository-level | Granular custom |
-|---|---|---|
-| **File** | `.github/copilot-instructions.md` | `*.instructions.md` |
-| **Count per repo** | Exactly one | Multiple |
-| **Frontmatter** | Not required | Recommended (`applyTo`, `name`, `description`) |
-| **Applied when** | Every Copilot interaction | Files matching `applyTo` pattern are in context |
-| **Location** | `.github/copilot-instructions.md` | `.github/instructions/` folder |
-| **Purpose** | Project constitution — architecture, stack, fundamental rules | Scoped conventions — file-type or domain-specific rules |
+| Aspect | Project constitution | Scoped |
+| --- | --- | --- |
+| **Typical files** | `AGENTS.md` + `eversis-project-stack.mdc` | `eversis-*.mdc` with `globs` (or team `RULE.md` patterns) |
+| **Frontmatter** | Rules use YAML: `description`, `globs`, `alwaysApply` | Same |
+| **Applied when** | Always-on or stack-wide | When matching files are in context |
 
-## Decision Framework: Instructions vs. Skills
+## Instructions vs skills
 
-| Content Type | Belongs In |
-|---|---|
-| Always-applied project conventions | Instructions |
-| File-type-specific coding standards | Granular instructions with `applyTo` |
-| Reusable multi-step workflows | Skills |
-| Domain-specific knowledge and templates | Skills |
-| Workflow triggers and task definitions | Prompts |
+| Content | Belongs in… |
+| --- | --- |
+| Stack, commands, non-obvious global rules | `AGENTS.md` / `.mdc` |
+| Step-by-step procedures | `SKILL.md` under `.github/skills/` |
+| Runnable workflow text | `website/docs/prompts/eversis-*.md` |
 
-## Key Guidelines
+## Validation checklist
 
-- Repository-level instructions are the "constitution" — the first file any developer or AI agent should read.
-- Granular instructions use `applyTo` glob patterns to automatically apply when matching files are in context.
-- Instructions must NOT trigger workflows (prompt territory) or define agent behavior (agent territory).
+- No duplicated always-on rules across many `.mdc` files
+- No long procedural content (use skills)
+- Templates: see `.github/skills/tsh-creating-instructions/assets/`
 
-## Validation Checklist
+## Connected skills
 
-- Correct file location (`.github/copilot-instructions.md` or `.github/instructions/`)
-- `applyTo` pattern is valid and scoped appropriately (granular only)
-- No workflow steps (skill territory)
-- No personality or behavioral content (agent territory)
-- Content is concise and focused on conventions/constraints
-
-## Connected Skills
-
-- `tsh-creating-agents` — For understanding how agents consume instructions.
-- `tsh-creating-skills` — For deciding whether content belongs in instruction vs. skill.
+- `tsh-creating-agents` — role rules vs long prose
+- `tsh-creating-skills` — instruction vs skill boundary
+- `tsh-creating-prompts` — prompts reference rules, not duplicate them

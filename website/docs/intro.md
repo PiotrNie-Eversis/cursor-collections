@@ -6,74 +6,71 @@ title: Introduction
 
 # Introduction
 
-**Copilot Collections** is an AI-powered product engineering framework that helps teams build wonderful products — covering the full lifecycle from product ideation through development to quality assurance.
+**Cursor Collections** is a **Cursor-native** product engineering framework — from workshop to Jira, through implementation, to structured review and testing. It uses **rules** (`.cursor/rules/`), **attachable prompts** (`eversis-*.md`), **MCP**, and **Agent Skills** (`.github/skills/`).
 
-Built by [The Software House](https://tsh.io) and validated across 50+ AI-powered projects.
+Built by [The Software House](https://tsh.io); the Eversis Cursor layer (rules, prompts, and this site) is maintained for **Cursor** only.
 
 ## The Problem
 
-According to Gartner, only **10% of software engineers** see meaningful productivity improvement from AI tools. The gap isn't the technology — it's the lack of structure, specialization, and repeatable workflows around it.
+According to Gartner, only **10% of software engineers** see meaningful productivity improvement from AI tools. The gap is often the lack of structure, specialization, and repeatable workflows.
 
-Most teams use AI for code completion. **Copilot Collections turns AI into an end-to-end product engineering partner** — from converting a workshop transcript into a Jira backlog, through architecture design and implementation, to automated code review and E2E testing.
+**Cursor Collections** turns AI into an end-to-end product engineering partner — from converting a workshop transcript into a Jira backlog, through architecture design and implementation, to code review, UI verification, and E2E testing — with **human gates** between phases.
 
 ## What It Provides
 
 | Capability | Count | Description |
 |---|---|---|
-| 🧑‍💻 **Specialized Agents** | 12 | Business Analyst, Context Engineer, Architect, Engineering Manager, Software Engineer, Prompt Engineer, Code Reviewer, UI Reviewer, E2E Engineer, DevOps Engineer, Copilot Engineer, Copilot Orchestrator |
-| 💬 **Public Prompts** | 12 | `/tsh-analyze-materials`, `/tsh-implement`, `/tsh-review`, `/tsh-review-ui`, `/tsh-review-codebase`, `/tsh-create-custom-agent`, `/tsh-create-custom-skill`, `/tsh-create-custom-prompt`, `/tsh-create-custom-instructions`, `/tsh-audit-infrastructure`, `/tsh-analyze-aws-costs`, `/tsh-analyze-gcp-costs` |
-| 🔧 **Automatic Delegation** | via `/tsh-implement` | The Engineering Manager automatically routes tasks to Software Engineer, Prompt Engineer, E2E Engineer, DevOps Engineer, and UI Reviewer based on the implementation plan |
-| 🧰 **Reusable Skills** | 31 | Transcript Processing, Task Extraction, Task Quality Review, Jira Task Formatting, Task Analysis, Architecture Design, Codebase Analysis, Code Review, Frontend Review, Implementation Gap Analysis, E2E Testing, Technical Context Discovery, Prompt Engineering, Frontend Implementation, Implementing Forms, Writing Hooks, Ensuring Accessibility, Optimizing Frontend, UI Verification, SQL & Database Engineering, CI/CD Implementation, Kubernetes Implementation, Terraform Modules, Observability Implementation, Secrets Management, Cloud Cost Optimization, Multi-Cloud Architecture Design, Creating Agents, Creating Skills, Creating Prompts, Creating Instructions |
-| 🔌 **MCP Integrations** | 11 | Atlassian, Figma Dev Mode, Context7, Playwright, Sequential Thinking, PDF Reader, AWS API, AWS Documentation, GCP Gcloud, GCP Observability, GCP Storage |
-| 🧠 **Structured Workflows** | 5 | Standard Flow, UI Flow, E2E Testing Flow, Workshop Analysis Flow, Copilot Customization Flow |
+| 🧑‍💻 **Specialized roles** | 12 | Business Analyst, Context Engineer, Architect, Engineering Manager, Software Engineer, Prompt Engineer, Code Reviewer, UI Reviewer, E2E Engineer, DevOps Engineer, and framework customization (rules, skills, prompts) |
+| 💬 **Public prompts** | 12 | Attach `eversis-*.md` from `website/docs/prompts/public/` (e.g. analyze, implement, review, create-custom-*) |
+| 🔧 **Delegation** | via `eversis-implement` | Engineering Manager pattern: research → plan → implementation with role rules and internal prompts |
+| 🧰 **Reusable skills** | 31 | Topic packages under `.github/skills/tsh-*/` — load as **Cursor Agent Skills** |
+| 🔌 **MCP integrations** | 11 | Atlassian, Figma Dev Mode, Context7, Playwright, Sequential Thinking, PDF Reader, AWS API, AWS Documentation, GCP Gcloud, GCP Observability, GCP Storage |
+| 🧠 **Structured workflows** | 5 | Standard flow, UI flow, E2E flow, workshop analysis, framework customization |
 
 ## Key Benefits
 
 ### For Product Teams
-- **Workshop to Jira in minutes** — Process transcripts, Figma designs, and documents into structured epics and stories with a quality review gate. No more lost workshop outputs.
-- **Systematic backlog quality** — 10-pass quality analysis catches missing entity lifecycles, error states, notification gaps, and undocumented dependencies in both new and existing backlogs.
+- **Workshop to Jira in minutes** — Process transcripts, Figma designs, and documents into structured epics and stories with a quality review gate.
+- **Systematic backlog quality** — Multi-pass analysis catches gaps in lifecycles, error states, and dependencies.
 
 ### For Developers
-- **Instant task context** — Pull requirements from Jira, designs from Figma, and patterns from the codebase into one research document. No more tool-hopping.
-- **Structured implementation plans** — Get phased plans with CREATE/MODIFY/REUSE labels, security considerations, and definitions of done before writing a single line of code.
-- **Pixel-perfect UI delivery** — Automated Figma verification loop catches design mismatches before human review. Design-to-code accuracy reaches 95–99%.
+- **Instant task context** — Pull requirements from Jira, designs from Figma, and patterns from the codebase into one research document.
+- **Structured implementation plans** — Phased plans with clear scope before broad code changes.
+- **Pixel-perfect UI delivery** — Figma verification loop where the workflow calls for it.
 
 ### For Engineering Leads
-- **Consistent quality gates** — Every task goes through the same structured review process regardless of who implements it.
-- **Faster onboarding** — New developers get structured context and clear plans within minutes instead of days.
-- **Measurable impact** — 30% faster delivery, 60–80% reduction in context-gathering time, 70–90% fewer UI defects reaching QA.
+- **Consistent quality gates** — Same structured review process across implementers.
+- **Faster onboarding** — Structured context and plans from day one.
 
-## Quick Wins — Solve Real Problems Today
+## Quick Wins
 
 | Problem | Solution | Time |
 |---|---|---|
-| Workshop notes sitting in notebooks | `/tsh-analyze-materials` — epics and stories in Jira | ~15 min |
-| New developer struggling with context | `/tsh-implement PROJ-123` — Engineering Manager gathers research automatically | ~3 min |
-| No implementation plan | `/tsh-implement PROJ-123` — Engineering Manager creates plan automatically | ~5 min |
-| UI doesn't match Figma | `/tsh-implement` — automated Figma verification loop via internal UI prompt | ~20 min |
-| Inconsistent code reviews | `/tsh-review PROJ-123` — structured multi-dimensional review | ~5 min |
-| Flaky or missing E2E tests | `/tsh-implement` — Engineering Manager delegates to E2E Engineer | ~10 min |
-| Technical debt piling up | `/tsh-review-codebase` — full quality analysis with action plan | ~15 min |
-| Cloud costs out of control | `/tsh-analyze-aws-costs` or `/tsh-analyze-gcp-costs` — cost optimization audit | ~10 min |
-| Infrastructure security gaps | `/tsh-audit-infrastructure` — security and best practices audit | ~15 min |
+| Workshop notes not in Jira | Attach `eversis-analyze-materials.md` | ~15 min |
+| New developer needs context | Attach `eversis-implement.md` with ticket | ~3 min |
+| No implementation plan | Same — research and plan before code | ~5 min |
+| UI vs design | `eversis-implement` + `eversis-review-ui` as needed | varies |
+| Inconsistent reviews | Attach `eversis-review.md` | ~5 min |
+| E2E gaps | Implement flow delegates to E2E patterns | varies |
+| Technical debt | `eversis-review-codebase.md` | ~15 min |
+| Cloud costs | `eversis-analyze-aws-costs` / `eversis-analyze-gcp-costs` | ~10 min |
+| Infra gaps | `eversis-audit-infrastructure.md` | ~15 min |
 
 ## How It Works
 
-Every task follows a structured lifecycle:
-
 > **Ideate → Implement → Review**
 
-1. **Ideate** — Convert workshop materials into Jira-ready epics and stories.
-2. **Implement** — Engineering Manager orchestrates research, planning, and implementation with specialized agents.
-3. **Review** — Verify against acceptance criteria, security, and quality standards.
+1. **Ideate** — Workshop materials → Jira-ready epics and stories.
+2. **Implement** — Research, plan, and code with specialized **rules** and **prompts**.
+3. **Review** — Structured review against criteria, plus optional UI and codebase passes.
 
-Each phase produces a documented artifact that feeds the next, ensuring nothing is lost between steps. Think of it as a **relay race** — every handoff is a reviewed artifact.
+Each phase produces a documented artifact; the next phase waits on **human approval** where the prompts require it.
 
 ## Next Steps
 
-- [Prerequisites](./getting-started/prerequisites) — Check license and VS Code version requirements.
-- [Installation](./getting-started/installation) — Clone and configure VS Code.
-- [MCP Setup](./getting-started/mcp-setup) — Connect Jira, Figma, and other tools.
-- [Workflow Overview](./workflow/overview) — Understand the full delivery lifecycle.
-- [Use Cases](./use-cases) — See real problems the framework solves.
-- [Quick Wins](./getting-started/quick-wins) — Start using the framework in your daily routine.
+- [Prerequisites](./getting-started/prerequisites) — Cursor and tooling.
+- [Installation](./getting-started/installation) — Clone and open in Cursor.
+- [MCP Setup](./getting-started/mcp-setup) — Jira, Figma, and other tools.
+- [Workflow Overview](./workflow/overview) — Full delivery lifecycle.
+- [Use Cases](./use-cases) — Scenarios the framework covers.
+- [Quick Wins](./getting-started/quick-wins) — Daily routines.

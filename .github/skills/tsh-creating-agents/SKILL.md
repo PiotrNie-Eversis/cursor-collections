@@ -1,24 +1,24 @@
 ---
 name: tsh-creating-agents
-description: "Create custom agents (.agent.md) for GitHub Copilot in VS Code. Provides templates, guidelines, and a structured process for building agent definitions that describe behavior, personality, responsibilities, and problem-solving approaches. Use when creating, reviewing, or updating .agent.md files."
+description: "Create Cursor project rules for roles: .cursor/rules/eversis-*.mdc (YAML: description, globs, alwaysApply). Maps legacy agent-identity content into rule bodies; use with skills and attachable website/docs/prompts. Use when creating or reviewing role rules — not .github/agents (removed in Cursor Collections)."
 user-invokable: false
 ---
 
-# Creating Agents
+# Creating agents (Cursor rules)
 
-Creates well-structured custom agents for GitHub Copilot in VS Code. Enforces a consistent pattern across all agents and ensures clear separation between agent definitions, skills, and prompts.
+Creates well-structured **Cursor rules** (`.mdc`) that define **role behavior** for the Eversis / Cursor Collections framework. Enforces the same separation of concerns as before: **rules** = who/when, **skills** = how, **prompts** = runnable workflow text under `website/docs/prompts/`.
+
+> **This repository** no longer ships `.github/agents/*.agent.md`. Use **`.cursor/rules/eversis-*.mdc`** and optional `website/docs/agents/*.md` documentation.
 
 ## Core Design Principles
 
 <principles>
 <separation-of-concerns>
-An agent file (.agent.md) defines WHO the agent is. It must NOT define HOW specific workflows are executed.
+A **role rule** (`.mdc`) defines WHO the model should “be” when the rule applies. It must NOT define HOW a full multi-step workflow runs end-to-end (that lives in **skills** and **prompts**).
 
-- **Agent** = behavior, personality, responsibilities, and problem-solving approach
-- **Skills** = reusable workflows, domain knowledge, step-by-step processes (SKILL.md files)
-- **Prompts** = task triggers, workflow starters, reusable prompt templates (.prompt.md files)
-
-Every agent is designed to be extendable with skills and prompts. The agent itself provides the foundation; skills and prompts layer on top for specific workflows.
+- **Rule / role** = behavior, responsibilities, and boundaries (`.cursor/rules/*.mdc`)
+- **Skills** = reusable workflows (`SKILL.md` under `.github/skills/`)
+- **Prompts** = attachable markdown under `website/docs/prompts/public/` and `internal/`
 </separation-of-concerns>
 
 <xml-syntax>
@@ -28,7 +28,7 @@ Use Markdown only for inline formatting (bold, code blocks, tables, lists) withi
 </xml-syntax>
 
 <minimal-scope>
-An agent should only describe what is necessary for its specific role. Avoid duplicating instructions that belong in skills or project-level instruction files (.instructions.md).
+An agent should only describe what is necessary for its specific role. Avoid duplicating instructions that belong in skills, **AGENTS.md**, or other **`.mdc`** files.
 </minimal-scope>
 </principles>
 
@@ -68,16 +68,9 @@ Write the `<agent-role>` section. This is the core of the agent. It must describ
 
 Follow the pattern from existing agents. Keep the role focused. Do not include workflow-specific steps — those belong in skills.
 
-**Step 3: Determine tools and write tool usage guidelines**
+**Step 3: Tools and execution**
 
-Review available tools and select only those relevant to the agent's role:
-- List each tool in the YAML frontmatter `tools` array
-- For each tool, write a `<tool>` entry in the `<tool-usage>` section describing:
-  - **MUST use when**: Specific conditions requiring tool use
-  - **IMPORTANT**: Configuration notes, prerequisites, or behavioral constraints
-  - **SHOULD NOT use for**: Anti-patterns and out-of-scope usage
-
-Match tool selection to the agent's responsibilities. Read-only agents should not get edit tools. Implementation agents need execution tools.
+In Cursor, tool access is **not** configured in the rule file the same way as legacy Copilot `tools:` arrays. Instead, document **when to use MCP, terminal, or repo search** inside `<tool-usage>` as *behavioral guidance* for the Agent. Be explicit: read-only review roles should avoid destructive commands.
 
 **Step 4: Determine skills and write skills usage guidelines**
 
@@ -87,12 +80,9 @@ Review available skills and select those the agent should load:
 
 Do not duplicate skill content in the agent file. The agent only references skills.
 
-**Step 5: Configure handoffs (if applicable)**
+**Step 5: Handoffs (if applicable)**
 
-If the agent participates in multi-step workflows:
-- Define handoff entries in the YAML frontmatter
-- Each handoff needs: `label`, `agent`, `prompt`, and `send` (typically `false` for user approval)
-- Optionally specify `model` for the target agent
+Describe how this role **passes work** to another (e.g. “after research, stop for approval before plan”). In Cursor, handoffs are **narrative** in the rule and in public prompts — not `handoffs` YAML in `.mdc` (legacy Copilot). Link to the next prompt or rule with file paths.
 
 **Step 6: Add domain standards (if applicable)**
 
@@ -105,39 +95,33 @@ If the agent has specific limitations or anti-patterns to avoid, add a `<constra
 - Scope boundaries (e.g., "don't provide deployment instructions")
 - Delegation rules (e.g., "escalate architectural decisions to the architect")
 
-**Step 8: Assemble the agent file using the template**
+**Step 8: Assemble the rule file using the template**
 
-Use the `./agent.template.md` template to assemble the final `.agent.md` file. Place the file in `.github/agents/` with the naming convention `<agent-name>.agent.md`.
+Use `./agent.template.md` as a **structural** guide: produce **`.cursor/rules/eversis-<role>.mdc`** with YAML frontmatter (`description`, `globs` or `alwaysApply`) and a body that follows the same XML-like sections where helpful. Do **not** write `.github/agents/`.
 
 **Step 9: Validate the agent file**
 
 Verify the agent file against this checklist:
 - [ ] YAML frontmatter is valid and parseable
 - [ ] `description` is present and concise
-- [ ] `tools` array includes only relevant tools
-- [ ] All tools listed in frontmatter have corresponding `<tool>` entries in `<tool-usage>`
+- [ ] `description` / `globs` / `alwaysApply` in `.mdc` frontmatter are correct
+- [ ] Tool usage is documented in `<tool-usage>` (behavioral, not a Copilot tool manifest)
 - [ ] All skills referenced in `<skills-usage>` are existing skills in the project
 - [ ] XML-like tags are properly opened and closed
 - [ ] No workflow-specific instructions are embedded (those belong in skills)
-- [ ] No coding standards are embedded (those belong in .instructions.md)
-- [ ] Agent role is focused and distinct from existing agents
-- [ ] Handoffs (if present) target valid agent names
+- [ ] No coding standards are embedded (those belong in `AGENTS.md` or `eversis-project-stack.mdc`)
+- [ ] Role is focused and distinct from existing rules
+- [ ] Handoffs (if present) name the next **prompt** or **rule** to use
 
-## Agent File Structure Reference
+## Rule file structure (`.mdc`)
 
-### Frontmatter Fields
+### Frontmatter (Cursor)
 
 | Field | Required | Description |
 |---|---|---|
-| `description` | **Yes** | Brief description of the agent, shown as placeholder text in chat input. |
-| `tools` | **Yes** | Array of tool/tool-set names available to the agent. Use `<server>/*` for all MCP server tools. |
-| `handoffs` | No | Array of handoff configurations for multi-step workflows. |
-| `agents` | No | Array of agent names available as subagents. Use `*` for all, `[]` for none. |
-| `name` | No | Override display name (defaults to filename). |
-| `argument-hint` | No | Hint text shown in chat input to guide user interaction. |
-| `model` | No | Preferred AI model (string or prioritized array). |
-| `user-invokable` | No | Boolean, controls visibility in agents dropdown (default: `true`). |
-| `disable-model-invocation` | No | Boolean, prevents auto-invocation as subagent (default: `false`). |
+| `description` | **Yes** | Short description; used for rule pickers and context. |
+| `globs` | No | File patterns when the rule is auto-attached. |
+| `alwaysApply` | No | `true` for always-on core behavior (use sparingly). |
 
 ### Body Sections
 

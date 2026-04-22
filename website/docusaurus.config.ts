@@ -2,8 +2,8 @@ import type { Config } from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
 
 const config: Config = {
-  title: 'Copilot Collections',
-  tagline: 'AI-powered product engineering framework - from ideation to delivery',
+  title: 'Cursor Collections',
+  tagline: 'Cursor-native product engineering framework — ideation, implementation, and review',
   favicon: 'img/favicon.ico',
 
   url: 'https://copilot-collections.tsh.io',
@@ -88,17 +88,17 @@ const config: Config = {
       },
       {
         property: 'og:image:alt',
-        content: 'Copilot Collections social preview with the headline Meet copilot collections and a GitHub mobile mockup.',
+        content: 'Cursor Collections documentation — AI product engineering with Cursor.',
       },
       {
         name: 'twitter:image:alt',
-        content: 'Copilot Collections by The Software House',
+        content: 'Cursor Collections by The Software House',
       },
     ],
     navbar: {
-      title: 'Copilot Collections',
+      title: 'Cursor Collections',
       logo: {
-        alt: 'Copilot Collections',
+        alt: 'Cursor Collections',
         src: 'img/logo-white.svg',
       },
       items: [
@@ -154,7 +154,7 @@ const config: Config = {
           className: 'navbar__link--meta',
         },
         {
-          href: 'https://github.com/TheSoftwareHouse/copilot-collections',
+          href: 'https://github.com/TheSoftwareHouse/cursor-collections',
           html: `
             <span class="navbar__github-content">
               <svg class="navbar__github-icon" viewBox="0 0 24 24" aria-hidden="true">
@@ -173,13 +173,13 @@ const config: Config = {
     },
     footer: {
       style: 'light',
-      copyright: `copilot-collections · Built by <a href="https://tsh.io" target="_blank" rel="noopener noreferrer">The Software House</a> · MIT licence · Free`,
+      copyright: `cursor-collections · Built by <a href="https://tsh.io" target="_blank" rel="noopener noreferrer">The Software House</a> (Eversis Cursor framework) · MIT licence · Free`,
       links: [
         {
           title: ' ',
           items: [
             {
-              href: 'https://github.com/TheSoftwareHouse/copilot-collections',
+              href: 'https://github.com/TheSoftwareHouse/cursor-collections',
               label: 'GitHub',
             },
             { label: 'Docs', to: '/docs/' },

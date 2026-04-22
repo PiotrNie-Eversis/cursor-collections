@@ -5,43 +5,42 @@ title: Workflow Overview
 
 # Workflow Overview
 
-Copilot Collections is an AI product engineering framework that covers the **full product lifecycle** through a structured workflow:
+**Cursor Collections** is an AI product engineering framework that covers the **full product lifecycle** through a structured workflow:
 
 > **Ideate → Implement → Review**
 
-The Implement phase internally handles research and planning automatically. Each phase is executed by a specialized agent and produces documented artifacts. This ensures consistent, high-quality outputs across teams — from workshop materials all the way to production-ready, reviewed code.
+The Implement phase internally handles research and planning when you use the **`eversis-implement`** prompt (attach the Markdown file with `@`). Each phase is driven by **Cursor rules** and **attachable prompts**, and produces documented artifacts. This keeps outputs consistent from workshop materials to production-ready, reviewed code.
 
 :::tip The Relay Race Metaphor
-Think of this workflow as a **relay race**. Each phase produces a deliverable — the "baton" — that is reviewed by the human and then passed to the next phase. Workshop materials feed the backlog, the Engineering Manager orchestrates research, planning, and implementation as a single flow, and the implementation feeds the review. Nothing is lost between steps, and every handoff is a documented artifact.
+Think of this workflow as a **relay race**. Each phase produces a deliverable — the "baton" — that is reviewed by the human and then passed to the next phase. Workshop materials feed the backlog, the Engineering Manager pattern orchestrates research, planning, and implementation, and the implementation feeds the review. Nothing is lost between steps, and every handoff is a documented artifact.
 :::
 
 ## The Phases
 
 ### 1. Ideate
 
-- **Agent:** Business Analyst
-- **Command:** `/tsh-analyze-materials <workshop materials>`
+- **Role:** Business Analyst (rules + prompt)
+- **Prompt:** attach `website/docs/prompts/public/eversis-analyze-materials.md`
 - Processes raw workshop materials (transcripts, Figma designs, documents) into structured epics and stories.
-- Runs 10-pass quality review with three mandatory human review gates.
+- Uses multi-step quality review with mandatory human review gates.
 - **Produces:** Jira-ready epics and stories with acceptance criteria, dependencies, and priorities.
 
 ### 2. Implement
 
-- **Agent:** Engineering Manager (orchestrates specialized agents)
-- **Command:** `/tsh-implement <JIRA_ID or description>`
-- Automatically handles the full development cycle:
-  1. **Research** — Delegates to Context Engineer to gather context from Jira, Figma, and codebase. Asks for user confirmation before proceeding.
-  2. **Plan** — Delegates to Architect to create a structured implementation plan. Asks for user confirmation before proceeding.
-  3. **Implement** — Delegates to Software Engineer, Prompt Engineer, DevOps Engineer, or E2E Engineer based on task type.
-- Tracks progress, runs quality checks after each task, and auto-triggers code review.
-- **Produces:** Research document, implementation plan, and concrete code modifications.
+- **Role:** Engineering Manager orchestration (Context Engineer, Architect, implementers)
+- **Prompt:** attach `website/docs/prompts/public/eversis-implement.md` with a Jira ID or description
+- Typical flow:
+  1. **Research** — Context gathering from Jira, Figma, and codebase. Confirm before planning when the prompt says so.
+  2. **Plan** — Structured implementation plan. Confirm before large edits when the prompt says so.
+  3. **Implement** — Software / Prompt / DevOps / E2E work per plan and internal prompts.
+- **Produces:** Research document, implementation plan, and code changes.
 
 ### 3. Review
 
-- **Agent:** Code Reviewer
-- **Command:** `/tsh-review <JIRA_ID or description>`
-- Performs a structured code review against acceptance criteria, security, reliability, and maintainability.
-- **Produces:** Structured review with clear pass/blockers/suggestions.
+- **Role:** Code Reviewer
+- **Prompt:** attach `website/docs/prompts/public/eversis-review.md`
+- Structured review against acceptance criteria, security, reliability, and maintainability.
+- **Produces:** Review with pass/blockers/suggestions.
 
 ## Workflow Diagram
 
@@ -57,9 +56,7 @@ Each step requires your review and verification. Open the generated documents, g
 
 ## Workflow Variants
 
-The full lifecycle has specialized variants for different task types:
-
-- **[Workshop Analysis Flow](./workshop-flow)** — Convert discovery workshop materials into Jira-ready epics and stories using `/tsh-analyze-materials`.
-- **[Standard Flow](./standard-flow)** — Backend/fullstack tasks using `/tsh-implement` → `/tsh-review` (research and planning happen internally).
-- **[Frontend Flow](./frontend-flow)** — UI tasks with Figma verification using `/tsh-implement` (which internally uses `/tsh-implement-ui`) and `/tsh-review-ui`.
-- **[E2E Testing Flow](./e2e-flow)** — End-to-end test creation delegated by the Engineering Manager to the E2E Engineer via `/tsh-implement`.
+- **[Workshop Analysis Flow](./workshop-flow)** — `eversis-analyze-materials` for Jira-ready epics and stories.
+- **[Standard Flow](./standard-flow)** — `eversis-implement` → `eversis-review` (research and planning as in the public/internal prompts).
+- **[Frontend Flow](./frontend-flow)** — UI tasks with Figma verification using `eversis-implement` (internal UI steps) and `eversis-review-ui`.
+- **[E2E Testing Flow](./e2e-flow)** — E2E work via `eversis-implement` and E2E patterns in rules/skills.

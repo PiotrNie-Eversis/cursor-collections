@@ -9,20 +9,18 @@ const steps = [
     title: 'Clone the repo',
     description: (
       <>
-        <code>git clone [repo] copilot-collections</code> alongside your
+        <code>git clone [repo] cursor-collections</code> alongside your
         existing projects
       </>
     ),
   },
   {
     num: 2,
-    title: 'Configure VS Code',
+    title: 'Open in Cursor',
     description: (
       <>
-        Open User Settings (JSON) → add{' '}
-        <code>chat.promptFilesLocations</code> and{' '}
-        <code>chat.modeFilesLocations</code> pointing to the cloned folder.
-        Done once — works globally.
+        Open the folder in <strong>Cursor</strong>, read <code>AGENTS.md</code> and <code>documentation/cursor-collection.md</code>, and review{' '}
+        <code>.cursor/rules/</code> (start with <code>eversis-agent-core.mdc</code>).
       </>
     ),
   },
@@ -31,19 +29,19 @@ const steps = [
     title: 'Configure MCP servers',
     description: (
       <>
-        Copy <code>.vscode/mcp.json</code> to your User MCP config. Connects
-        Jira, Figma, Playwright, and Context7.
+        Add <code>.vscode/mcp.json</code> to Cursor&apos;s MCP config (user or
+        workspace). Connects Jira, Figma, Playwright, and Context7.
       </>
     ),
   },
   {
     num: 4,
-    title: 'Run your first command',
+    title: 'Run your first prompt',
     description: (
       <>
-        Open Copilot Chat → select an agent → type{' '}
-        <code>/tsh-implement [JIRA_ID]</code>. If agents appear in the dropdown,
-        you're ready.
+        In Chat or Agent, attach{' '}
+        <code>@website/docs/prompts/public/eversis-implement.md</code> and
+        your ticket or task text.
       </>
     ),
   },
@@ -62,14 +60,15 @@ export default function GettingStartedSection(): React.JSX.Element {
             every project.
           </h2>
           <p className={styles.sub}>
-            Clone the repo next to your projects, configure VS Code User
-            Settings once, and start using <code>/tsh-implement</code> in any
-            workspace immediately.
+            Clone the repo, open it in Cursor, register optional Agent Skills
+            for <code>.github/skills/</code>, and attach{' '}
+            <code>eversis-*.md</code> prompts with <code>@</code> in any
+            project you configure.
           </p>
           <div className={styles.gsActions}>
             <Link
               className={styles.btnPrimary}
-              href="https://github.com/TheSoftwareHouse/copilot-collections"
+              href="https://github.com/TheSoftwareHouse/cursor-collections"
               target="_blank"
               rel="noopener noreferrer"
             >

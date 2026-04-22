@@ -5,7 +5,7 @@ title: Skills Overview
 
 # Skills Overview
 
-Copilot Collections includes **31 reusable skills** — knowledge modules that provide specialized domain expertise, structured processes, and quality templates. They encode tested best practices for every phase of the product lifecycle. Skills are stored in `.github/skills/` and loaded automatically by agents when their domain applies to the current task.
+Cursor Collections includes **31 reusable skills** — knowledge modules that provide specialized domain expertise, structured processes, and quality templates. They encode tested best practices for every phase of the product lifecycle. Skills are stored in `.github/skills/` and should be registered as **Cursor Agent Skills**; the agent loads them when descriptions match the task.
 
 ## How Skills Work
 
@@ -66,19 +66,19 @@ When an agent starts a task, it checks all available skills and decides which on
 | [tsh-ui-verifying](./ui-verification)          | Figma vs implementation verification criteria                | UI Reviewer, SE |
 | [tsh-e2e-testing](./e2e-testing)               | Playwright E2E testing patterns and verification             | E2E Engineer    |
 
-### ⚙️ Copilot Customization Skills
+### ⚙️ Framework customization skills
 
-| Skill                                                | Description                                     | Used By          |
-| ---------------------------------------------------- | ----------------------------------------------- | ---------------- |
-| [tsh-creating-agents](./creating-agents)             | Creating custom agents (.agent.md)              | Copilot Engineer |
-| [tsh-creating-skills](./creating-skills)             | Creating custom skills (SKILL.md)               | Copilot Engineer |
-| [tsh-creating-prompts](./creating-prompts)           | Creating custom prompts (.prompt.md)            | Copilot Engineer |
-| [tsh-creating-instructions](./creating-instructions) | Creating custom instructions (.instructions.md) | Copilot Engineer |
+| Skill                                                | Description                                     | Used By                |
+| ---------------------------------------------------- | ----------------------------------------------- | ---------------------- |
+| [tsh-creating-agents](./creating-agents)             | Creating Cursor rules (`.mdc`) and role docs    | Framework maintainer  |
+| [tsh-creating-skills](./creating-skills)             | Creating custom skills (SKILL.md)               | Framework maintainer  |
+| [tsh-creating-prompts](./creating-prompts)           | Creating attachable repo prompts (Markdown)     | Framework maintainer  |
+| [tsh-creating-instructions](./creating-instructions) | Project instructions (AGENTS.md, rules)       | Framework maintainer  |
 
 ## Agent–Skill Matrix
 
-| Skill                                  | BA  | CE  | Architect | SE  | PE  | CR  | UI Reviewer | E2E | DevOps | Copilot Eng. |
-| -------------------------------------- | --- | --- | --------- | --- | --- | --- | ----------- | --- | ------ | ------------ |
+| Skill                                  | BA  | CE  | Architect | SE  | PE  | CR  | UI Reviewer | E2E | DevOps | Customize |
+| -------------------------------------- | --- | --- | --------- | --- | --- | --- | ----------- | --- | ------ | --------- |
 | tsh-architecture-designing             |     |     | ✅        |     |     |     |             |     |        |              |
 | tsh-code-reviewing                     |     |     |           |     | ✅  | ✅  |             |     |        |              |
 | tsh-codebase-analysing                 | ✅  | ✅  | ✅        | ✅  |     |     |             |     | ✅     | ✅           |
@@ -115,7 +115,7 @@ When an agent starts a task, it checks all available skills and decides which on
 
 Skills follow a strict priority hierarchy:
 
-1. **Project instructions** (`*.instructions.md` files) — highest priority.
+1. **Project constitution** — [AGENTS.md](https://github.com/TheSoftwareHouse/cursor-collections/blob/main/AGENTS.md) and **`.cursor/rules/*.mdc`** (highest priority for behavior).
 2. **Existing codebase patterns** — replicate established conventions.
 3. **Skill guidelines** — domain best practices and templates.
 4. **External documentation** — framework docs, OWASP, industry standards.

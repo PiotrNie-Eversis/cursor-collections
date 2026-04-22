@@ -5,30 +5,24 @@ title: Prerequisites
 
 # Prerequisites
 
-Before using Copilot Collections, make sure you meet the following requirements.
+## Cursor
 
-## GitHub Copilot License
+**Use [Cursor](https://cursor.com/)** as the IDE for this framework. Prompts are **Markdown files** you attach with `@`; rules are **`.cursor/rules/*.mdc`**; automation and verification use the **Agent** and **terminal** as described in the rules.
 
-**This configuration requires a GitHub Copilot Pro license (or higher)** to use custom agents and MCP integrations.
+Use a current Cursor release so Chat, Agent, rules, MCP, and Agent Skills behave as documented. Features evolve quickly — if something differs in your build, check Cursor’s own release notes.
 
-GitHub Copilot Pro provides access to:
+## Git
 
-- Custom agents (`.agent.md` files)
-- Custom prompts (`.prompt.md` files)
-- Custom skills (`.github/skills/`)
-- MCP server integrations
-- Subagent orchestration
+You need **Git** to clone this repository and to work with the normal team workflow.
 
-If you only have a free or individual Copilot license, some features — particularly agents and MCP integrations — will not be available.
+## MCP (for full workflow)
 
-## VS Code Version
+Jira, Figma, Playwright, Context7, and other MCP servers are **optional** but required for the full “integrated” experience described in the workflow docs. Configure them in Cursor per [MCP setup](./mcp-setup.md).
 
-**This configuration requires VS Code version 1.109 or later.**
+## Third-party accounts
 
-Features used by Copilot Collections (such as agent skills, prompt file locations, and MCP support) require recent VS Code releases. To check your version:
+Where your prompts call external APIs (Jira, Figma, AWS, GCP, etc.), you need the appropriate **accounts, tokens, and network access** per your organization’s policies.
 
-1. Open VS Code.
-2. Go to **Code → About Visual Studio Code** (macOS) or **Help → About** (Windows/Linux).
-3. Verify the version is **1.109** or higher.
+---
 
-If you need to update, download the latest version from [code.visualstudio.com](https://code.visualstudio.com).
+**Not required:** GitHub Copilot, VS Code global `chat.*Locations` for prompts/agents, or `.github/prompts` / `.github/agents` — this repository is **Cursor-only** and does not ship those paths.

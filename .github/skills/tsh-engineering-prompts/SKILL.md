@@ -1,6 +1,6 @@
 ---
 name: tsh-engineering-prompts
-description: "LLM prompt engineering patterns: structure, optimization, security, templates, evaluation, and anti-patterns. Use when designing, writing, optimizing, or reviewing prompts for LLM applications (system prompts, user prompts, RAG templates, agent instructions, chatbot personas). NOT for Copilot customization — use tsh-creating-prompts for that."
+description: "LLM prompt engineering patterns: structure, optimization, security, templates, evaluation, and anti-patterns. Use when designing, writing, optimizing, or reviewing prompts for LLM applications (system prompts, user prompts, RAG templates, agent instructions, chatbot personas). For this monorepo’s attachable prompt Markdown, use tsh-creating-prompts."
 ---
 
 # Prompt Engineering Patterns
@@ -12,7 +12,7 @@ Technology-agnostic patterns for designing, optimizing, and securing LLM applica
 <scope>
 This skill covers prompts consumed by LLM APIs at runtime — system prompts, user prompt templates, few-shot examples, RAG context injection templates, agent tool-calling instructions, and classification/extraction prompts.
 
-It does NOT cover Copilot customization files (`.prompt.md`, `.agent.md`, `SKILL.md`). Those belong to the `tsh-creating-prompts`, `tsh-creating-agents`, and `tsh-creating-skills` skills.
+It does NOT cover this framework’s packaging files (`website/docs/prompts/eversis-*.md`, `.cursor/rules`, `SKILL.md` authoring). Those belong to the `tsh-creating-prompts`, `tsh-creating-agents`, and `tsh-creating-skills` skills.
 </scope>
 
 <determinism>
@@ -417,6 +417,6 @@ Always test prompts against adversarial and boundary inputs:
 
 ## Connected Skills
 
-- `tsh-creating-prompts` — for Copilot `.prompt.md` files (different domain, complementary)
+- `tsh-creating-prompts` — for `eversis-*.md` prompt files (different domain, complementary)
 - `tsh-code-reviewing` — for reviewing prompt code quality alongside application code
 - `tsh-architecture-designing` — for prompt strategy decisions as part of system architecture

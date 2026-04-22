@@ -1,42 +1,37 @@
 ---
 name: tsh-creating-prompts
-description: "Create custom prompt files (.prompt.md) for GitHub Copilot in VS Code. Provides templates, guidelines, and a structured process for building prompt files that trigger specific workflows routed to the right custom agent and AI model. Use when creating, reviewing, or updating .prompt.md files."
+description: "Create attachable Cursor prompts: website/docs/prompts/public|internal/eversis-*.md (Docusaurus frontmatter + body). Replaces legacy .github/prompts/*.prompt.md. Use when creating or reviewing prompt markdown in this framework."
 user-invokable: false
 ---
 
-# Creating Prompts
+# Creating prompts (Cursor markdown)
 
-Creates well-structured custom prompt files for GitHub Copilot in VS Code. Enforces a consistent pattern across all prompts and ensures clear separation between prompt files, agent definitions, and skills.
+Creates well-structured **attachable prompts** for Cursor Collections: Markdown under **`website/docs/prompts/`** with `eversis-` names. Ensures clear separation between **prompt bodies**, **`.cursor/rules/`** role behavior, and **skills**.
 
 ## Core Design Principles
 
 <principles>
 
 <separation-of-concerns>
-A prompt file (.prompt.md) defines WHAT workflow to execute. It must NOT define WHO the agent is.
+A **prompt file** (`eversis-*.md`) defines WHAT workflow to execute. It must NOT redefine WHO the model is in depth — that belongs in **`.cursor/rules/`**.
 
-- **Prompt** = workflow trigger, workflow steps, tool configuration, expected outcome
-- **Agent** = behavior, personality, responsibilities, and problem-solving approach (.agent.md files)
-- **Skills** = reusable domain knowledge, step-by-step processes, templates (SKILL.md files)
-
-A prompt routes work to an agent and configures the workflow context. The agent's role, personality, and behavioral guidelines are defined exclusively in the agent file. The prompt must never redefine, override, or contradict the agent's identity.
+- **Prompt** = workflow steps, expected artifacts, when to stop for human review
+- **Role rules** = stable behavior in `.cursor/rules/eversis-*.mdc`
+- **Skills** = procedural `SKILL.md` packages under `.github/skills/`
 </separation-of-concerns>
 
 <workflow-focus>
-A prompt file is a **workflow trigger**. It must:
+A **public** prompt in this monorepo is a **Docusaurus doc** and a **User attachable** body. It must:
 
-- Route to a **specific custom agent** via the `agent` frontmatter field
-- Target a **specific AI model** via the `model` frontmatter field
-- Describe the **workflow steps** the agent should follow for this specific task
-- Define the **expected outcome** of the workflow
-- Optionally configure **tools** (MCP servers, built-in tools) available for the workflow
+- Use YAML frontmatter: `title`, `slug`, `sidebar_position`, `prompt_role`, `prompt_description` (see existing `eversis-*.md`)
+- Describe the **workflow steps** and which **rules** the user should attach
+- Point to **internal** `eversis-*.md` files when the workflow composes them
 
 A prompt must NOT:
 
-- Define or alter the agent's personality, tone, or behavioral traits
-- Duplicate instructions that belong in skills
-- Duplicate coding standards or guidelines that belong in `.instructions.md` files
-- Contain generic instructions that are not specific to the workflow
+- Redefine full role behavior (put that in **`.mdc`**)
+- Duplicate skill bodies (link skills by name)
+- Put stack-wide standards here (put those in **AGENTS.md** / `eversis-project-stack.mdc`)
 </workflow-focus>
 
 <xml-syntax>
@@ -76,21 +71,14 @@ Answer these questions before writing anything:
 - Does this prompt extend or depend on another prompt?
 - What makes this workflow distinct from existing prompts?
 
-**Step 2: Choose the target agent and model**
+**Step 2: Choose the target role and rules**
 
-Select the agent and model best suited for the workflow:
-- Review existing agents in `.github/agents/` to find the one whose role aligns with the workflow
-- Choose the agent based on its specialization — the prompt should not need to redefine the agent's capabilities
-- Select the AI model based on the workflow's complexity requirements (e.g., reasoning-heavy tasks may need a more capable model)
-- The `agent` field controls which agent runs the prompt; the `model` field controls which LLM is used
+- Read **`.cursor/rules/`** and [website/docs/agents/](https://github.com/TheSoftwareHouse/cursor-collections/tree/main/website/docs/agents) to pick the **conceptual** role (Business Analyst, Engineering Manager, …).
+- In the prompt body, tell the user which **`eversis-*.mdc`** files to @-attach. Model choice is a **user setting in Cursor**, not frontmatter in these Markdown prompts.
 
 **Step 3: Determine tool requirements**
 
-Decide if the prompt needs tools beyond the agent's defaults:
-- If the workflow requires specific MCP servers (e.g., `figma/*`, `atlassian/*`), list them in the `tools` frontmatter
-- If the workflow only needs the agent's default tools, omit the `tools` field entirely
-- Remember: prompt-level tools take priority over agent-level tools (see VS Code docs on tool list priority)
-- Use the `<server-name>/*` format to include all tools from an MCP server
+Document MCP expectations in the prompt body (e.g. “ensure Atlassian and Figma MCP are enabled”). Do not use a `tools` YAML key in `eversis-*.md` — Cursor does not use Copilot’s prompt `tools` array.
 
 **Step 4: Identify required skills**
 
@@ -120,39 +108,30 @@ Specify the expected deliverables of the workflow:
 
 **Step 7: Assemble the prompt file using the template**
 
-Use the `./prompt.template.md` template to assemble the final `.prompt.md` file. Place the file in `.github/prompts/` with a descriptive kebab-case filename (e.g., `research.prompt.md`, `implement-ui.prompt.md`).
+Use `./prompt.template.md` for section ordering. Write **`website/docs/prompts/public/eversis-<name>.md`** (or **`internal/`** for delegation prompts). Add the page to `website/sidebars.ts` if required.
 
 **Step 8: Validate the prompt file**
 
-Verify the prompt file against this checklist:
-- [ ] YAML frontmatter is valid and parseable
-- [ ] `agent` field references an existing agent in `.github/agents/`
-- [ ] `model` field specifies a valid AI model
-- [ ] `description` field is present and concise
-- [ ] `tools` field (if present) lists only tools needed beyond agent defaults
-- [ ] All skills referenced in `Required Skills` section exist in `.github/skills/`
-- [ ] XML-like tags are properly opened and closed
-- [ ] No agent personality or behavioral instructions are embedded (those belong in .agent.md)
-- [ ] No coding standards or guidelines are embedded (those belong in .instructions.md)
-- [ ] No skill content is duplicated (reference skills, don't copy them)
-- [ ] Workflow steps are clear, sequential, and actionable
-- [ ] The prompt is distinct from existing prompts and does not duplicate their workflows
-- [ ] If the prompt extends another prompt, the dependency is explicitly stated
+- [ ] Frontmatter matches other `eversis-*.md` files
+- [ ] `prompt_role` / `prompt_description` are accurate
+- [ ] All skills referenced exist under `.github/skills/`
+- [ ] No long-term role definition duplicated (belongs in `.mdc`)
+- [ ] No stack-wide policy duplicated (belongs in `AGENTS.md` / stack rule)
+- [ ] Workflow steps are clear; internal prompts linked by path
 
 ## Prompt File Structure Reference
 
-### Frontmatter Fields
+### Frontmatter fields (Docusaurus + framework)
 
 | Field | Required | Description |
 |---|---|---|
-| `agent` | **Yes** | The custom agent used for running the prompt. Must match an agent filename in `.github/agents/` (without the `.agent.md` suffix). If omitted, the current agent in chat is used. |
-| `model` | **Yes** | The AI model used when running the prompt. If omitted, the currently selected model in the model picker is used. |
-| `description` | **Yes** | A short description of what the prompt does. Shown in the `/` menu. |
-| `name` | No | Override display name shown in the `/` menu instead of the filename. |
-| `argument-hint` | No | Hint text shown in the chat input field to guide the user on what to provide (e.g., `[Jira ID or task description]`). |
-| `tools` | No | A list of tool or tool set names available for this prompt. Overrides agent defaults. Use `<server-name>/*` for all MCP server tools. |
+| `title` | **Yes** | Page title in docs |
+| `slug` | **Yes** | URL path under prompts |
+| `sidebar_position` | **Yes** | Sidebar ordering |
+| `prompt_role` | **Yes** | Short role label for catalog |
+| `prompt_description` | **Yes** | One-line description |
 
-\* Technically optional per VS Code, but **required by convention** in this project to ensure every prompt explicitly routes to the correct agent and model.
+Legacy Copilot `agent` / `model` / `tools` keys are **not** used.
 
 ### Body Sections
 

@@ -23,7 +23,7 @@ description: "<What the skill does — core capabilities>. <When to use it — t
 # OPTIONAL FIELDS
 # ============================================================
 # license: Apache-2.0
-# compatibility: "Designed for VS Code GitHub Copilot"
+# compatibility: "Cursor Agent Skills (and compatible hosts)"
 # metadata:
 #   author: your-org
 #   version: "1.0"

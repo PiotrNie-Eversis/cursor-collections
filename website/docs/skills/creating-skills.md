@@ -6,7 +6,7 @@ title: Creating Skills
 # Creating Skills
 
 **Folder:** `.github/skills/tsh-creating-skills/`
-**Used by:** Copilot Engineer
+**Used by:** Framework maintainers (customization track)
 
 Provides naming conventions (gerund form), description guidelines, body structure, progressive disclosure patterns, templates, and validation checklists for creating new skills (`SKILL.md`).
 
@@ -20,7 +20,7 @@ Provides naming conventions (gerund form), description guidelines, body structur
 
 - Skill directories use gerund form: `tsh-<gerund-subject>/` (e.g., `tsh-code-reviewing/`, `tsh-creating-prompts/`)
 - The `name` field in SKILL.md frontmatter must match the directory name
-- The `tsh-` prefix identifies artifacts from The Software House's copilot-collections
+- The `tsh-` prefix identifies topic packages in **Cursor Collections** (this monorepo)
 
 ## Skill Folder Structure
 

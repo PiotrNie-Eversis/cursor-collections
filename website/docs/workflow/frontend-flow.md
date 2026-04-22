@@ -10,7 +10,7 @@ For UI-heavy tasks with Figma designs, use the specialized frontend workflow. Th
 ## Command Sequence
 
 ```text
-1️⃣ /tsh-implement <JIRA_ID or task description>
+1️⃣ /eversis-implement <JIRA_ID or task description>
    ↳ 🔍 Engineering Manager delegates to Context Engineer for research
    ↳ 📖 Review research doc – verify Figma links, requirements
    ↳ ✅ Confirm to proceed to planning
@@ -20,22 +20,22 @@ For UI-heavy tasks with Figma designs, use the specialized frontend workflow. Th
    ↳ 💻 Engineering Manager delegates UI tasks to Software Engineer
    ↳ 📖 Review code changes and UI Verification Summary
    ↳ ✅ Manually verify critical UI elements in browser
-   ↳ 🔄 Engineering Manager calls /tsh-review-ui in a loop until PASS or escalation
+   ↳ 🔄 Engineering Manager calls /eversis-review-ui in a loop until PASS or escalation
 
-2️⃣ /tsh-review       <JIRA_ID or task description>
+2️⃣ /eversis-review       <JIRA_ID or task description>
    ↳ 📖 Review findings – code quality, a11y, performance
    ↳ ✅ Address all blockers before merging
 ```
 
 ## How the Verification Loop Works
 
-1. The Engineering Manager delegates a UI component implementation to the Software Engineer via the internal `/tsh-implement-ui` prompt.
-2. After the Software Engineer completes, the Engineering Manager calls `/tsh-review-ui` to perform **single-pass verification** (read-only).
-3. `/tsh-review-ui` uses **Figma MCP** (EXPECTED) + **Playwright MCP** (ACTUAL) → returns PASS or FAIL with diff table.
-4. If FAIL → the Engineering Manager delegates the fix to the Software Engineer and calls `/tsh-review-ui` again.
+1. The Engineering Manager delegates a UI component implementation to the Software Engineer via the internal `/eversis-implement-ui` prompt.
+2. After the Software Engineer completes, the Engineering Manager calls `/eversis-review-ui` to perform **single-pass verification** (read-only).
+3. `/eversis-review-ui` uses **Figma MCP** (EXPECTED) + **Playwright MCP** (ACTUAL) → returns PASS or FAIL with diff table.
+4. If FAIL → the Engineering Manager delegates the fix to the Software Engineer and calls `/eversis-review-ui` again.
 5. Repeats until PASS or max **5 iterations** (then escalates to the developer).
 
-## What `/tsh-review-ui` Does
+## What `/eversis-review-ui` Does
 
 - Single-pass, **read-only** verification — does not modify code.
 - Uses **Figma MCP** to extract design specifications (spacing, typography, colors, dimensions).
@@ -43,15 +43,15 @@ For UI-heavy tasks with Figma designs, use the specialized frontend workflow. Th
 - Returns a structured report: **PASS/FAIL** + difference table with exact values.
 - Covers: structure (containers, nesting), dimensions (width, height, spacing), visual (typography, colors, radii), and components (variants, tokens, states).
 
-## What `/tsh-implement-ui` Does
+## What `/eversis-implement-ui` Does
 
 :::info Internal Prompt
-`/tsh-implement-ui` is an internal prompt — not invoked directly by users. It is triggered automatically by `/tsh-implement` when the plan contains UI tasks with Figma references.
+`/eversis-implement-ui` is an internal prompt — not invoked directly by users. It is triggered automatically by `/eversis-implement` when the plan contains UI tasks with Figma references.
 :::
 
 - Orchestrated by the **Engineering Manager** agent, which delegates to the Software Engineer and UI Reviewer.
 - Implements UI components following the plan.
-- Runs **iterative verification loop** delegating to the `tsh-ui-reviewer` subagent after each component.
+- Runs **iterative verification loop** with the **UI Reviewer** role after each component.
 - **Fixes mismatches** by delegating fixes back to the Software Engineer based on subagent reports.
 - Escalates after 5 failed iterations with a detailed report.
 - Produces a **UI Verification Summary** before handing off to code review.

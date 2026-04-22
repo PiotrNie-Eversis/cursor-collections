@@ -20,7 +20,7 @@ export default function SdlcDiagram(): React.JSX.Element {
         {/* AI Agent */}
         <div className={styles.agentNode}>
           <div className={styles.agentTitle}>AI Agent</div>
-          <div className={styles.agentSub}>Copilot Collections</div>
+          <div className={styles.agentSub}>Cursor Collections</div>
         </div>
         <div className={`${styles.conn} ${styles.conn36}`} />
 
@@ -31,7 +31,7 @@ export default function SdlcDiagram(): React.JSX.Element {
           </div>
           <div className={styles.card}>
             <div className={styles.cardCmd}>
-              <strong className={styles.cardCmdStrong}>/tsh-analyze-materials</strong>
+              <strong className={styles.cardCmdStrong}>/eversis-analyze-materials</strong>
             </div>
             <div className={styles.cardDesc}>
               Clean transcript → extract tasks → produce Jira-ready stories with
@@ -48,7 +48,7 @@ export default function SdlcDiagram(): React.JSX.Element {
           </div>
           <div className={styles.card}>
             <div className={styles.cardCmd}>
-              <strong className={styles.cardCmdStrong}>/tsh-implement</strong>
+              <strong className={styles.cardCmdStrong}>/eversis-implement</strong>
               <span style={{fontSize: '0.7rem', opacity: 0.7, marginLeft: '0.5rem'}}>Engineering Manager</span>
             </div>
             <div className={styles.cardDesc}>
@@ -126,7 +126,7 @@ export default function SdlcDiagram(): React.JSX.Element {
           <div className={styles.grid2}>
             <div className={styles.card}>
               <div className={styles.cardCmd}>
-                <strong className={styles.cardCmdStrong}>/tsh-review</strong>
+                <strong className={styles.cardCmdStrong}>/eversis-review</strong>
               </div>
               <div className={styles.cardDesc}>
                 PASS / BLOCKER / SUGGESTION — security, perf, coding standards
@@ -134,7 +134,7 @@ export default function SdlcDiagram(): React.JSX.Element {
             </div>
             <div className={styles.card}>
               <div className={styles.cardCmd}>
-                <strong className={styles.cardCmdStrong}>/tsh-review-ui</strong>
+                <strong className={styles.cardCmdStrong}>/eversis-review-ui</strong>
               </div>
               <div className={styles.cardDesc}>
                 Playwright vs Figma · up to 5 auto-iterations

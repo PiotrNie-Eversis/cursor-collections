@@ -1,33 +1,23 @@
 ---
-name: copilot-collections
-description: 'Naming conventions for Copilot customization artifacts in the copilot-collections repository. Ensures all prompts, agents, skills, and hooks use the tsh- prefix.'
+name: cursor-collections
+description: "Naming conventions for Cursor Collections: eversis prompts and rules, tsh- skill directories."
 applyTo: '.github/**'
 ---
 
-# Naming Conventions
+# Naming conventions
 
-## `tsh-` prefix required on all artifact filenames
+## Prefixes in this monorepo
 
-Every Copilot customization artifact in this repository must use the `tsh-` prefix:
+- **`eversis-`** — User-facing and internal **prompts** as Markdown: `website/docs/prompts/public/eversis-*.md` and `website/docs/prompts/internal/eversis-*.md`.
+- **`eversis-`** — **Cursor rules** in `.cursor/rules/eversis-*.mdc`.
+- **`tsh-`** — **Skill directory names** under `.github/skills/tsh-*/` (historical; topic packages). The `name` in `SKILL.md` frontmatter should match the directory name.
 
-- **Prompts:** `tsh-<action>.prompt.md` — e.g., `tsh-implement.prompt.md`, `tsh-review.prompt.md`
-- **Agents:** `tsh-<role>.agent.md` — e.g., `tsh-software-engineer.agent.md`, `tsh-architect.agent.md` (applies to both user-facing and internal worker agents)
-- **Skill directories:** `tsh-<gerund-subject>/` — e.g., `tsh-code-reviewing/`, `tsh-creating-prompts/`
-- **Hooks:** `tsh-<action>.hooks.md` — e.g., `tsh-pre-commit.hooks.md`
+## What we do not add
 
-## Why the prefix exists
+- **No** `.github/prompts/*.prompt.md` or `.github/agents/*.agent.md` in this repository (Cursor-only deliverable).
 
-These artifacts are designed to be installed into other projects (via setting path in VS Code settings or just copying). The `tsh-` prefix identifies them as originating from The Software House's copilot-collections repository and prevents naming collisions with project-specific customizations.
+## Cross-references
 
-## Frontmatter `name` fields must match the prefixed name
+When docs reference skills, use the `tsh-*` folder/skill `name` (e.g. `tsh-creating-skills`).
 
-Skills use a `name` field in SKILL.md frontmatter — it must include the `tsh-` prefix and match the directory name. For example, skill directory `tsh-code-reviewing/` must have `name: tsh-code-reviewing` in its SKILL.md frontmatter.
-
-Prompts and agents do not use a `name` frontmatter field — the filename is their sole identifier.
-
-## Cross-references must use prefixed names
-
-When one artifact references another (e.g., a prompt's `agent:` field), use the prefixed name:
-
-- Correct: `agent: "tsh-architect"`
-- Avoid: `agent: "architect"`
+When docs reference attachable prompts, use repo-relative paths: `website/docs/prompts/public/eversis-implement.md`.

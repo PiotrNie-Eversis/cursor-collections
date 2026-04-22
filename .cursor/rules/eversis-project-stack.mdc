@@ -1,18 +1,18 @@
 ---
-description: Per-repository stack and quality commands — Copilot Collections + Docusaurus docs
+description: Per-repository stack and quality commands — Cursor Collections (Docusaurus docs site)
 alwaysApply: true
 ---
 
 # Project stack — this repository
 
-This repo is **Copilot Collections** (upstream `tsh-*` prompts, agents, skills) with an **Eversis Cursor port** under `prompts/`, `.cursor/rules/`, and `documentation/cursor-collection.md`.
+This repo is **Cursor Collections** (Eversis): **Cursor** rules, attachable prompts under `website/docs/prompts/`, skills in **`.github/skills/`**, and [documentation/cursor-collection.md](documentation/cursor-collection.md).
 
 | Area | This repository |
 | ---- | --------------- |
-| **Product** | Opinionated GitHub Copilot setup + published workflow docs |
-| **Docs site** | Docusaurus 3 under **`website/`** (`copilot-collections-docs`) |
-| **Cursor port** | Root **`prompts/public/`** and **`prompts/internal/`** (`eversis-*.md`) |
-| **Upstream prompts** | **`.github/prompts/`** and **`.github/internal-prompts/`** (source for ports) |
+| **Product** | Cursor-native product engineering framework + published workflow docs |
+| **Docs site** | Docusaurus 3 under **`website/`** (`cursor-collections-docs`) |
+| **Prompts** | **`website/docs/prompts/public/`** and **`internal/`** (`eversis-*.md`) |
+| **Skills** | **`.github/skills/tsh-*/`** (topic packages; use as **Agent Skills**) |
 
 ## Quality commands (this repo)
 

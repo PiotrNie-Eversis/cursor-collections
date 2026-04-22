@@ -7,10 +7,20 @@ title: Changelog
 All notable changes to this project will be documented in this file.
 
 :::note
-The canonical source for this changelog is [CHANGELOG.md](https://github.com/TheSoftwareHouse/copilot-collections/blob/main/CHANGELOG.md) in the repository root. This page is a snapshot — check the repository for the latest entries.
+The canonical source for this changelog is [CHANGELOG.md](https://github.com/TheSoftwareHouse/cursor-collections/blob/main/CHANGELOG.md) in the repository root. This page is a snapshot — check the repository for the latest entries.
 :::
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
+
+## 2026-04-22
+
+### Removed (breaking)
+
+- **`.github/prompts/`**, **`.github/internal-prompts/`**, and **`.github/agents/`** — the repository is **Cursor-only**. Prompts live under **`website/docs/prompts/`**; rules under **`.cursor/rules/`**; see root **CHANGELOG.md** for full notes.
+
+### Changed
+
+- Rebranded to **Cursor Collections**; docs site and skills aligned with Cursor. Package name **`cursor-collections-docs`**.
 
 ## 2026-04-10
 

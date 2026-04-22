@@ -8,7 +8,7 @@ title: Prompt Engineering
 **Folder:** `.github/skills/tsh-engineering-prompts/`  
 **Used by:** Prompt Engineer, Software Engineer, Architect, Code Reviewer
 
-Technology-agnostic patterns for designing, optimizing, and securing LLM application prompts. Covers system prompts, user prompt templates, RAG templates, agent instructions, and classification/extraction prompts. NOT for Copilot customization — use `tsh-creating-prompts` for that.
+Technology-agnostic patterns for designing, optimizing, and securing LLM application prompts. Covers system prompts, user prompt templates, RAG templates, agent instructions, and classification/extraction prompts. For **this framework’s** attachable prompt Markdown, use `tsh-creating-prompts` instead of mixing domains.
 
 ## Prompt Structure Patterns
 
@@ -65,6 +65,6 @@ Reusable templates for common patterns:
 
 ## Connected Skills
 
-- `tsh-creating-prompts` — For Copilot `.prompt.md` files (different domain, complementary).
+- `tsh-creating-prompts` — For `website/docs/prompts/eversis-*.md` (different domain, complementary).
 - `tsh-code-reviewing` — For reviewing prompt code quality alongside application code.
 - `tsh-architecture-designing` — For prompt strategy decisions as part of system architecture.

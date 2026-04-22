@@ -8,7 +8,7 @@ const HeroSection = () => {
       <AnimationCanvas />
       <div className={styles.heroContent}>
         <h1 className={styles.heroTitle}>
-          Copilot
+          Cursor
           <br />
           Collections
         </h1>
@@ -21,7 +21,7 @@ const HeroSection = () => {
         <div className={styles.heroActions}>
           <Link
             className={styles.btnPrimary}
-            href="https://github.com/TheSoftwareHouse/copilot-collections"
+            href="https://github.com/TheSoftwareHouse/cursor-collections"
             target="_blank"
             rel="noopener noreferrer"
           >

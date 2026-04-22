@@ -1,191 +1,49 @@
 ---
 name: tsh-creating-instructions
-description: "Creates custom instruction files (.instructions.md) for GitHub Copilot in VS Code. Covers repository-level instructions (copilot-instructions.md) and granular file-based instructions with applyTo glob patterns. Provides templates and decision framework for instruction vs. skill placement. Use when creating, reviewing, or updating .instructions.md files."
+description: "Create project instructions for Cursor: AGENTS.md, .cursor/rules/*.mdc, optional per-folder RULE.md. No GitHub copilot-instructions.md in this framework."
 user-invokable: false
 ---
 
-# Creating Instructions
+# Creating instructions (Cursor)
 
-Creates well-structured instruction files for GitHub Copilot in VS Code. Covers the repository-level constitution and granular scoped conventions, with clear guidance on what belongs in instructions versus skills.
+Helps place **declarative rules** in the right surface for **Cursor**: **[AGENTS.md](https://github.com/TheSoftwareHouse/cursor-collections/blob/main/AGENTS.md)**, **`.cursor/rules/eversis-*.mdc`**, and optional scoped `RULE.md` files. Use **skills** for procedural how-to, not long policies.
 
-## Core Design Principles
+## Instruction surfaces (this framework)
 
-<principles>
+| Surface | Location | When to use |
+| --- | --- | --- |
+| **AGENTS.md** | Repo root | Short map: where prompts live, which rules to read first |
+| **Project stack / core** | `.cursor/rules/eversis-project-stack.mdc` | Stack, commands, test/lint invocations |
+| **Always-on core** | `.cursor/rules/eversis-agent-core.mdc` | Relay workflow, human gates, quality bar |
+| **Role rules** | `.cursor/rules/eversis-role-*.mdc` or `eversis-engineering-manager.mdc` | When to behave as which role |
+| **Scoped** | `globs` in a `.mdc` or a folder `RULE.md` (if your Cursor build supports it) | Directory- or file-type-specific constraints |
 
-<instruction-types>
-Two types of instruction files exist:
+**Deprecated for this repo:** `.github/copilot-instructions.md` and Copilot `*.instructions.md` — do not add them here.
 
-**Repository-level instructions** (`.github/copilot-instructions.md`): A single file per repository — the "constitution." Defines architecture, directory structure, languages, frameworks, library versions, and fundamental project constraints. Applied to ALL Copilot interactions in the workspace. No frontmatter required. This is the first file any developer or AI agent should read to understand the project.
+## Instructions vs skills (unchanged idea)
 
-**Granular custom instructions** (`*.instructions.md`): Multiple files per repository. Support YAML frontmatter with `applyTo` glob patterns. Applied automatically when matching files are in context, or manually added to chat. Stored in `.github/instructions/` folder. These encode file-type-specific or directory-specific coding conventions.
+| Content | Belongs in… |
+| --- | --- |
+| Project rule (“always use pnpm”, “no console in prod”) | `AGENTS.md` / `.mdc` |
+| Step-by-step workflow (how to run a migration review) | `SKILL.md` under `.github/skills/` |
+| Runnable task text | `website/docs/prompts/public/eversis-*.md` |
 
-| Aspect | Repository-level | Granular custom |
-|---|---|---|
-| File | `.github/copilot-instructions.md` | `*.instructions.md` |
-| Count per repo | Exactly one | Multiple |
-| Frontmatter | Not required | Recommended (`applyTo`, `name`, `description`) |
-| Applied when | Every Copilot interaction | Files matching `applyTo` pattern are in context, or description semantically matches the task |
-| Location | `.github/copilot-instructions.md` | `.github/instructions/` folder |
-| Purpose | Project constitution — architecture, stack, fundamental rules | Scoped conventions — file-type or domain-specific rules |
-</instruction-types>
+## Process
 
-<instructions-vs-skills>
-Instructions define **RULES** — declarative constraints that Copilot must follow whenever they apply. They are project-specific, loaded automatically, and encode decisions for THIS repository.
+1. **Discover** — Read `AGENTS.md` and existing `.cursor/rules/*.mdc`.
+2. **Choose surface** — Constitution-level → `eversis-project-stack.mdc` + `AGENTS.md` pointers. Narrow scope → new `.mdc` with `globs`.
+3. **Write** — Short bullets; point to skills for long procedures.
+4. **Validate** — No duplicate always-on rules; no procedural novel-length content.
 
-Skills define **HOW** — procedural workflows loaded on-demand by agents to perform specific tasks. Skills are generic, reusable across projects, and encode expert knowledge.
+Templates (rename concepts, not paths):
 
-| If the content is... | It belongs in... | Example |
-|---|---|---|
-| A project-specific rule or constraint | Instructions | "Use `date-fns` instead of `moment.js` — moment.js is deprecated" |
-| A step-by-step workflow for performing a task | Skill | "How to perform code review with severity categorization" |
-| A coding convention for specific file types | Instructions (granular) | "React components use functional style with hooks" |
-| A reusable process template across projects | Skill | "How to create a new API endpoint with validation" |
-| An architectural decision for this repository | Instructions (repo-level) | "This is a monorepo with apps/ and packages/ structure" |
-| Domain knowledge needed to execute a task | Skill | "E2E testing patterns with Playwright Page Objects" |
-| Technology stack and version requirements | Instructions (repo-level) | "TypeScript 5.4, React 19, Next.js 15" |
-| A coding standard that linters don't enforce | Instructions (granular) | "Business logic must not import from UI layer" |
+- [`assets/cursor-project-constitution.template.md`](./assets/cursor-project-constitution.template.md) — starting outline for “stack + commands + non-obvious rules”
+- [`assets/scoped-conventions.template.md`](./assets/scoped-conventions.template.md) — scoped rules when using globs
 
-**Mental model**: Instructions are "the law" (always in force). Skills are "expert handbooks" (consulted for specific tasks).
-</instructions-vs-skills>
+## Connected skills
 
-<conciseness>
-Instruction files compete for the context window with conversation history, skills, and the actual task.
-
-- Keep instructions short and self-contained — each instruction should be a single, simple statement.
-- Include the reasoning behind rules (e.g., "Use `date-fns` instead of `moment.js` — moment.js is deprecated and increases bundle size").
-- Show preferred and avoided patterns with concrete code examples — AI responds more effectively to examples than abstract rules.
-- Focus on non-obvious rules — skip conventions that standard linters/formatters already enforce.
-- Whitespace between instructions is ignored — format for legibility.
-</conciseness>
-
-</principles>
-
-## Creation Process
-
-Use the checklist below and track progress:
-
-```
-Creation progress:
-- [ ] Step 1: Determine the instruction type
-- [ ] Step 2: Define the instruction scope
-- [ ] Step 3: Gather content for the instruction file
-- [ ] Step 4: Write the instruction file
-- [ ] Step 5: Validate the instruction file
-```
-
-**Step 1: Determine the instruction type**
-
-Determine from context or ask the user. Use the `vscode/askQuestions` tool to clarify the user's intent if it's ambiguous:
-- Is this a NEW project needing its first `copilot-instructions.md`? → Create repository-level instructions.
-- Are there existing `copilot-instructions.md` and file-specific rules are needed? → Create granular instructions.
-- Unsure? → Check if `.github/copilot-instructions.md` exists. If not, recommend creating it first. The constitution comes before specific laws.
-
-**Step 2: Define the instruction scope**
-
-For **repository-level instructions**, the scope is always the entire project. Research by:
-- Reading `package.json`, `pyproject.toml`, `Cargo.toml`, `go.mod`, or equivalent to identify languages, frameworks, and versions.
-- Analyzing the directory structure to understand architecture (monorepo, feature-based, layered, etc.).
-- Reading existing config files (`.eslintrc`, `tsconfig.json`, `.prettierrc`, etc.) to understand tooling.
-- Checking for existing README or architectural documentation.
-
-For **granular instructions**, determine:
-- Which files they apply to (the `applyTo` glob pattern).
-- What specific conventions exist for that file scope.
-- Whether an existing instruction file already covers this scope (avoid overlapping `applyTo` patterns).
-
-`applyTo` glob pattern reference:
-
-| Pattern | Matches |
-|---|---|
-| `**/*.ts` | All TypeScript files |
-| `**/*.test.ts` | All test files |
-| `src/components/**` | All files under components directory |
-| `**/*.{ts,tsx}` | All TypeScript and TSX files |
-| `src/api/**` | All API-related files |
-| `**` | All files (rarely needed for granular — use repo-level instead) |
-
-**Step 3: Gather content for the instruction file**
-
-For **repository-level instructions** (the constitution), research and document:
-1. **Architecture** — Overall architecture pattern (monorepo, microservices, modular monolith, etc.), directory structure, and responsibility of each top-level directory.
-2. **Technology Stack** — ALL languages, frameworks, and key libraries with specific versions. Critical — Copilot needs exact versions to generate compatible code.
-3. **Coding Conventions** — Conventions NOT enforced by linters/formatters. Architectural rules (e.g., "business logic must not import from UI layer"), project-specific naming conventions, and agreed-upon patterns.
-4. **Error Handling** — The project's error handling strategy.
-5. **Testing Strategy** — Testing approach (unit, integration, E2E), frameworks, and key patterns.
-6. **Development Workflow** — How developers interact with the project. Document task runners (Make, Taskfile, npm scripts, Turbo), containerization (Docker Compose commands), and common developer commands (build, test, lint, migrate, seed). Copilot should use the same scripts and tools a regular developer would — never raw commands when a script exists.
-
-For **granular instructions**, research and document:
-- Specific conventions for the target file scope.
-- Preferred patterns with code examples.
-- Anti-patterns to avoid with code examples.
-- Reasoning behind non-obvious rules.
-
-Use the `./assets/copilot-instructions.template.md` and `./assets/custom-instructions.template.md` templates as starting points.
-
-**Step 4: Write the instruction file**
-
-For **repository-level instructions**:
-- Create the file at `.github/copilot-instructions.md`.
-- No frontmatter required.
-- Use clear Markdown headers to organize sections.
-- Use the `./assets/copilot-instructions.template.md` template.
-
-For **granular instructions**:
-- Create the file in `.github/instructions/` directory.
-- Name the file descriptively: `{scope}.instructions.md` (e.g., `python.instructions.md`, `react-components.instructions.md`, `api-endpoints.instructions.md`).
-- Include YAML frontmatter with `name`, `description`, and `applyTo`.
-- Use the `./assets/custom-instructions.template.md` template.
-
-Frontmatter fields reference:
-
-| Field | Required | Description |
-|---|---|---|
-| `name` | No | Display name shown in UI. Defaults to filename. |
-| `description` | Recommended | Short description shown on hover. Also used for semantic matching — if description matches the current task, instructions may apply even without `applyTo` match. |
-| `applyTo` | Recommended | Glob pattern relative to workspace root. If omitted, instructions are not applied automatically. |
-
-**Step 5: Validate the instruction file**
-
-```
-Validation:
-- [ ] File is in the correct location (`.github/copilot-instructions.md` or `.github/instructions/*.instructions.md`)
-- [ ] Frontmatter (if present) is valid YAML
-- [ ] `applyTo` pattern (if present) matches the intended files — verify with a glob tester
-- [ ] Instructions are short and self-contained — each rule is a single statement
-- [ ] Non-obvious rules include reasoning ("because...")
-- [ ] Preferred/avoided patterns include concrete code examples
-- [ ] No duplication of rules already enforced by linters/formatters
-- [ ] No procedural workflow content (that belongs in skills)
-- [ ] No agent personality or behavior definitions (that belongs in .agent.md)
-- [ ] No prompt/workflow triggers (that belongs in .prompt.md)
-- [ ] Repository-level file covers: architecture, stack with versions, key conventions
-- [ ] Granular files have descriptive, non-overlapping `applyTo` patterns
-```
-
-## Quick Reference
-
-### Instruction File Types
-
-| Type | Location | Purpose | Setting |
-|---|---|---|---|
-| Repository instructions | `.github/copilot-instructions.md` | Project constitution | Always on by default |
-| Custom instructions | `.github/instructions/*.instructions.md` | Scoped conventions | `chat.includeApplyingInstructions` |
-| AGENTS.md | Workspace root | Multi-AI-agent instructions | `chat.useAgentsMdFile` |
-| CLAUDE.md | Workspace root / `.claude/` | Claude Code compatibility | `chat.useClaudeMdFile` |
-| Organization instructions | GitHub org level | Cross-repo shared rules | `github.copilot.chat.organizationInstructions.enabled` |
-
-### Priority Order
-
-Higher takes precedence on conflict:
-
-1. Personal instructions (user-level) — highest
-2. Repository instructions (`.github/copilot-instructions.md` or `AGENTS.md`)
-3. Organization instructions — lowest
-
-## Connected Skills
-
-- `tsh-creating-agents` - to ensure agent files don't embed coding standards that belong in instructions
-- `tsh-creating-skills` - to understand the boundary between procedural knowledge (skills) and declarative rules (instructions)
-- `tsh-creating-prompts` - to ensure prompts reference instructions rather than duplicating conventions
-- `tsh-technical-context-discovering` - the complementary skill that discovers and reads existing instruction files
-- `tsh-codebase-analysing` - to analyze existing instruction files and identify patterns to follow
+- `tsh-creating-agents` — role **rules** (`.mdc`) vs long instructions
+- `tsh-creating-skills` — procedural vs declarative boundary
+- `tsh-creating-prompts` — prompts should reference rules, not restate the constitution
+- `tsh-technical-context-discovering` — where to look first
+- `tsh-codebase-analysing` — mirror existing instruction style

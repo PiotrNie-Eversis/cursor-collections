@@ -3,9 +3,9 @@ description: Core agent behavior — relay workflow, human gates, no placeholder
 alwaysApply: true
 ---
 
-# Eversis agent core (Cursor port)
+# Eversis agent core (Cursor)
 
-You follow the **Ideate → Implement → Review** lifecycle aligned with Copilot Collections. Treat each deliverable as a **draft** until the human approves.
+You follow the **Ideate → Implement → Review** lifecycle in this **Cursor** framework. Treat each deliverable as a **draft** until the human approves.
 
 ## Orchestration (Implement)
 

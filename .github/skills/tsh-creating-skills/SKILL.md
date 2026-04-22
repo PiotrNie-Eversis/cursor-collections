@@ -1,12 +1,12 @@
 ---
 name: tsh-creating-skills
-description: "Create new skills (SKILL.md) for GitHub Copilot. Provides naming conventions (gerund form), description guidelines, body structure, progressive disclosure patterns, templates, and validation checklists. Use when creating, reviewing, or updating SKILL.md files, or when discussing skill design and organization."
+description: "Create new Cursor Agent Skills (SKILL.md) under .github/skills/tsh-*. Provides naming (gerund), description, body structure, progressive disclosure, templates, validation. For Cursor Collections."
 user-invokable: false
 ---
 
-# Creating Skills
+# Creating skills
 
-Creates well-structured, reusable skills for GitHub Copilot. Enforces naming conventions, content structure, and progressive disclosure patterns based on the Agent Skills specification and best practices.
+Creates well-structured **Agent Skills** for **Cursor** (and compatible hosts). Skills live under **`.github/skills/tsh-<gerund>/SKILL.md`** in this monorepo. Enforce naming, structure, and progressive disclosure per the Agent Skills spec.
 
 ## Core Design Principles
 
@@ -15,11 +15,11 @@ Creates well-structured, reusable skills for GitHub Copilot. Enforces naming con
 <what-is-a-skill>
 A skill is a folder containing a `SKILL.md` file with YAML frontmatter and Markdown instructions. Skills provide **procedural knowledge** — step-by-step workflows, domain-specific context, templates, and reference materials that an agent loads on demand to perform specialized tasks.
 
-- **Skills** = reusable workflows, domain knowledge, step-by-step processes, templates (SKILL.md files)
-- **Agents** = behavior, personality, responsibilities, problem-solving approach (.agent.md files)
-- **Prompts** = workflow triggers, task starters, reusable prompt templates (.prompt.md files)
+- **Skills** = reusable workflows (`SKILL.md` under `.github/skills/`)
+- **Role rules** = who/when (`.cursor/rules/eversis-*.mdc`)
+- **Prompts** = attachable `website/docs/prompts/eversis-*.md`
 
-A skill must NOT define who the agent is — that belongs in the agent file. A skill defines HOW to perform a specific task or workflow.
+A skill must NOT define long-lived role identity — that belongs in **rules**. A skill defines HOW to perform a specialized task.
 </what-is-a-skill>
 
 <conciseness>
@@ -187,7 +187,7 @@ The `description` field is the **primary discovery mechanism**. The agent reads 
 ### Good Examples
 
 ```yaml
-description: "Create custom agents (.agent.md) for GitHub Copilot in VS Code. Provides templates, guidelines, and a structured process for building agent definitions. Use when creating, reviewing, or updating .agent.md files."
+description: "Creates Cursor project rules in .cursor/rules/eversis-*.mdc for a defined role. Use when authoring or extending role rules."
 ```
 
 ```yaml

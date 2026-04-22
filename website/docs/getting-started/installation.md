@@ -5,71 +5,39 @@ title: Installation
 
 # Installation
 
-Follow these steps to install and configure Copilot Collections for use across all your VS Code workspaces.
+Use this framework from **[Cursor](https://cursor.com/)** with this repository on disk (clone or submodule).
 
-## 1. Clone the Repository
+## 1. Clone the repository
 
 ```bash
 cd ~/projects
-git clone https://github.com/TheSoftwareHouse/copilot-collections.git copilot-collections
+git clone https://github.com/TheSoftwareHouse/cursor-collections.git cursor-collections
 ```
 
-The important part is that VS Code can see the `.github/prompts`, `.github/agents`, and `.github/skills` folders from this repository.
+You can use any folder name; paths in [AGENTS.md](https://github.com/TheSoftwareHouse/cursor-collections/blob/main/AGENTS.md) and [documentation/cursor-collection.md](https://github.com/TheSoftwareHouse/cursor-collections/blob/main/documentation/cursor-collection.md) are relative to the repo root.
 
-## 2. Configure Global Copilot Locations (User Settings)
+## 2. Open in Cursor
 
-You can configure this once at the **user level** and reuse it across all workspaces.
+1. **File → Open Folder** and select the cloned `cursor-collections` directory (or add it to a multi-root workspace).
+2. Read **`AGENTS.md`** at the repo root and **[documentation/cursor-collection.md](https://github.com/TheSoftwareHouse/cursor-collections/blob/main/documentation/cursor-collection.md)** for the full model.
+3. Review **`.cursor/rules/`** — start with `eversis-agent-core.mdc` and customize `eversis-project-stack.mdc` when you copy rules into another project.
 
-1. Open the **Command Palette**: `CMD` + `Shift` + `P` (macOS) or `Ctrl` + `Shift` + `P` (Windows/Linux).
-2. Select **"Preferences: Open User Settings (JSON)"**.
-3. Add or merge the following configuration:
+## 3. Prompts (attach with `@`)
 
-```jsonc
-{
-  "chat.promptFilesLocations": {
-    "~/projects/copilot-collections/.github/prompts": true
-  },
-  "chat.agentFilesLocations": {
-    "~/projects/copilot-collections/.github/agents": true
-  },
-  "chat.agentSkillsLocations": {
-    "~/projects/copilot-collections/.github/skills": true
-  },
-  "chat.useAgentSkills": true,
-  "github.copilot.chat.searchSubagent.enabled": true,
-  "chat.experimental.useSkillAdherencePrompt": true,
-  "chat.customAgentInSubagent.enabled": true,
-  "github.copilot.chat.agentCustomizationSkill.enabled": true
-}
-```
+Public prompts live under **`website/docs/prompts/public/`** as **`eversis-*.md`**. In Chat or Agent, attach e.g.:
 
-:::tip
-Adjust the path (`~/projects/copilot-collections/...`) if your folder layout differs. Once set, these locations are available in **all VS Code workspaces**.
-:::
+`@website/docs/prompts/public/eversis-implement.md`
 
-## 3. Enable Copilot Experimental Features (UI)
+See the [Prompts overview](../prompts/overview.md) for the full list. Internal prompts are under **`website/docs/prompts/internal/`** and are referenced from the public orchestration prompts.
 
-If you prefer the UI instead of editing JSON directly:
+## 4. Agent Skills (optional)
 
-1. Open **Settings** (`CMD` + `,` on macOS or `Ctrl` + `,` on Windows/Linux).
-2. Search for **"promptFilesLocations"** and add an entry pointing to `~/projects/copilot-collections/.github/prompts`.
-3. Search for **"agentFilesLocations"** and add an entry pointing to `~/projects/copilot-collections/.github/agents`.
-4. Search for **"agentSkillsLocations"** and add an entry pointing to `~/projects/copilot-collections/.github/skills`.
-5. Search for **"chat.useAgentSkills"** and enable it — allows Copilot to use Skills.
-6. Search for **"chat.customAgentInSubagent.enabled"** and enable it — allows custom agents in subagents.
-7. Search for **"github.copilot.chat.searchSubagent.enabled"** and enable it — enables the search subagent for better codebase analysis.
-8. Search for **"chat.experimental.useSkillAdherencePrompt"** and enable it — forces Copilot to use Skills more often.
-9. Search for **"github.copilot.chat.agentCustomizationSkill.enabled"** and enable it — enables the agent customization skill.
+Procedural skills live under **`.github/skills/tsh-*`**. In **Cursor Settings**, register this folder (or a copy) under **Agent Skills** so the agent can load `SKILL.md` content when descriptions match the task.
 
-## Using in Your Projects
+## 5. MCP
 
-Once the repo is cloned and VS Code User Settings are configured:
+Copy or merge **`.vscode/mcp.json`** from this repo into **Cursor → MCP** (user or workspace configuration). Details: [MCP setup](./mcp-setup.md).
 
-1. Open your project in VS Code.
-2. Open **GitHub Copilot Chat**.
-3. Switch to one of the configured **agents** (Architect, Business Analyst, Software Engineer, Code Reviewer).
-4. Use the workflow prompts:
-   - `/tsh-implement <JIRA_ID or task description>` (handles research, planning, and implementation)
-   - `/tsh-review <JIRA_ID or task description>`
+## Using the framework in another project
 
-All of these will leverage the shared configuration from Copilot Collections while still respecting your project's own code and context.
+Copy **`.cursor/rules/`** templates, add **`AGENTS.md`**, and either vendor **`website/docs/prompts/`** or maintain your own `eversis-*.md` paths. Configure MCP and Agent Skills for the integrations you need. See [documentation/cursor-collection.md](https://github.com/TheSoftwareHouse/cursor-collections/blob/main/documentation/cursor-collection.md) for the generic layout.

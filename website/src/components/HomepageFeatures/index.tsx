@@ -27,7 +27,7 @@ const cards: CardItem[] = [
     icon: <AgentsIcon className={styles.cardIcon} />,
     title: '12 Specialized AI Agents',
     description:
-      'Business Analyst, Architect, Software Engineer, Prompt Engineer, Code Reviewer, UI Reviewer, E2E Engineer, DevOps Engineer, Engineering Manager, Context Engineer, Copilot Engineer, and Copilot Orchestrator — each focused on its phase, working together in a structured sequence.',
+      'Business Analyst, Architect, Software Engineer, Prompt Engineer, Code Reviewer, UI Reviewer, E2E Engineer, DevOps Engineer, Engineering Manager, Context Engineer, and framework customization (rules, skills, prompts) — each focused on its phase, working together in a structured sequence.',
   },
   {
     icon: <WorkflowIcon className={styles.cardIcon} />,

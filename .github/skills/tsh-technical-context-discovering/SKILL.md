@@ -20,21 +20,22 @@ Use the checklist below and track your progress:
 
 ```
 Discovery progress:
-- [ ] Step 1: Check Copilot instruction files
+- [ ] Step 1: Check Cursor project instructions and rules
 - [ ] Step 2: Analyze existing codebase patterns
 - [ ] Step 3: Consult external documentation (if needed)
 - [ ] Step 4: Apply the implementation rule
 ```
 
-**Step 1: Check Copilot Instruction Files**
+**Step 1: Check Cursor project instructions and rules**
 
-**ALWAYS check first** for existing Copilot instructions in the project:
+**ALWAYS check first** for project-level guidance (Cursor):
 
-- Search for `.github/copilot-instructions.md` at the repository root.
-- Search for `*.instructions.md` files in relevant directories (e.g., `src/`, `tests/`, `e2e/`, `backend/`, feature-specific folders).
-- Search for `.copilot/` directory with configuration files.
+- Read **`AGENTS.md`** at the repository root (if present).
+- List **`.cursor/rules/*.mdc`** and read those with `alwaysApply: true` or globs matching the files you will edit.
+- Optionally read **`RULE.md`** in subfolders if your team uses scoped rule files.
+- For this monorepo’s framework, also check **`website/docs/prompts/public/eversis-*.md`** when the task is prompt-driven.
 
-If instructions files exist, they are the **primary source of truth** for:
+If these exist, they are the **primary source of truth** for:
 
 - Coding standards and conventions
 - Architecture patterns and project structure
@@ -47,7 +48,7 @@ If instructions files exist, they are the **primary source of truth** for:
 
 **Step 2: Analyze Existing Codebase Patterns**
 
-If no Copilot instructions are found, or if they don't cover specific aspects, **analyze the existing codebase** to understand and replicate established patterns:
+If no project rules cover a specific area, or you need local conventions, **analyze the existing codebase** to understand and replicate established patterns:
 
 - **Architecture patterns**: Examine folder structure, layering (controllers, services, repositories), and module organization.
 - **Code style**: Analyze existing files for naming conventions, formatting, and idioms used.
@@ -62,7 +63,7 @@ If no Copilot instructions are found, or if they don't cover specific aspects, *
 
 **Step 3: Consult External Documentation**
 
-If neither Copilot instructions nor sufficient existing codebase patterns are available (e.g., new project, greenfield feature, or first implementation of a specific pattern), **use external documentation and industry best practices**:
+If neither project rules nor sufficient existing codebase patterns are available (e.g., new project, greenfield feature, or first implementation of a specific pattern), **use external documentation and industry best practices**:
 
 - **Use `context7` tool** to search for official documentation of the framework/library being used (check project config for exact versions first).
 - Apply **industry-standard best practices** for the technology stack.

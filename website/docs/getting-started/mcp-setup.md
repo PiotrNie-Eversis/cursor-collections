@@ -5,7 +5,7 @@ title: MCP Setup
 
 # MCP Setup
 
-To unlock the full workflow (Jira, Figma, code search, browser automation), you need to configure the MCP (Model Context Protocol) servers. Copilot Collections provides a ready-to-use template in `.vscode/mcp.json`.
+To unlock the full workflow (Jira, Figma, code search, browser automation), configure the MCP (Model Context Protocol) servers. Cursor Collections provides a ready-to-use template in `.vscode/mcp.json` — use it from **Cursor** (MCP settings may use the same JSON shape as VS Code; paste into Cursor’s MCP configuration).
 
 ## Installation Options
 
@@ -69,14 +69,14 @@ Each MCP server enables specific capabilities within the workflow:
 | 🧩 **Atlassian**           | Access Jira issues and Confluence pages for research, planning, implementation, and review | Business Analyst, Architect, Software Engineer, Code Reviewer |
 | 🎨 **Figma MCP**           | Pull design details, components, and variables for design-driven work                      | Software Engineer (UI), UI Reviewer                           |
 | 📚 **Context7**            | Semantic search in external documentation and knowledge bases                              | All agents                                                    |
-| 🧪 **Playwright**          | Run browser interactions and end-to-end style checks from Copilot                          | Software Engineer, E2E Engineer, UI Reviewer                  |
+| 🧪 **Playwright**          | Run browser interactions and end-to-end style checks from the agent                          | Software Engineer, E2E Engineer, UI Reviewer                  |
 | 🧠 **Sequential Thinking** | Advanced reasoning for complex problem analysis, revision, and branching                   | All agents (for complex tasks)                                |
 
 ## Configuring Context7 API Key
 
 To get higher rate limits and access to private repositories, you can provide a Context7 API key. Get your key at [context7.com/dashboard](https://context7.com/dashboard).
 
-Copilot Collections uses VS Code's `inputs` feature to securely prompt for the API key. When you first use the Context7 MCP, VS Code will ask for the key and store it securely.
+Cursor (and compatible hosts) can use the same `inputs` pattern in `mcp.json` to prompt for the API key. When the MCP tool runs, the host may ask for the key and store it per its settings.
 
 To enable this, modify your `mcp.json` configuration (User or Workspace) to use the `--api-key` CLI argument with an input variable:
 

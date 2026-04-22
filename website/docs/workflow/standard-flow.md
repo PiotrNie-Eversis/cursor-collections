@@ -12,7 +12,7 @@ The standard workflow is used for backend and fullstack tasks. The Engineering M
 ### 1. Implement
 
 ```text
-/tsh-implement <JIRA_ID or task description>
+/eversis-implement <JIRA_ID or task description>
 ```
 
 The Engineering Manager automatically handles the full development cycle:
@@ -45,7 +45,7 @@ If a `.research.md` or `.plan.md` file already exists for the task, the Engineer
 ### 2. Review
 
 ```text
-/tsh-review <JIRA_ID or task description>
+/eversis-review <JIRA_ID or task description>
 ```
 
 - **Agent:** Code Reviewer
@@ -56,7 +56,7 @@ If a `.research.md` or `.plan.md` file already exists for the task, the Engineer
 ## Example End-to-End Usage
 
 ```text
-1⃣️ /tsh-implement <JIRA_ID or task description>
+1⃣️ /eversis-implement <JIRA_ID or task description>
    ↳ 🔍 Engineering Manager delegates to Context Engineer for research
    ↳ 📖 Review the generated research document
    ↳ ✅ Confirm to proceed to planning
@@ -67,7 +67,7 @@ If a `.research.md` or `.plan.md` file already exists for the task, the Engineer
    ↳ 📖 Review code changes after each phase
    ↳ ✅ Test functionality, verify against plan
 
-2⃣️ /tsh-review   <JIRA_ID or task description>
+2⃣️ /eversis-review   <JIRA_ID or task description>
    ↳ 📖 Review findings and recommendations
    ↳ ✅ Address blockers before merging
 ```
