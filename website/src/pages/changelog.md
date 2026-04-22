@@ -16,11 +16,13 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ### Removed (breaking)
 
-- **`.github/prompts/`**, **`.github/internal-prompts/`**, and **`.github/agents/`** — the repository is **Cursor-only**. Prompts live under **`website/docs/prompts/`**; rules under **`.cursor/rules/`**; see root **CHANGELOG.md** for full notes.
+- **`.github/prompts/`**, **`.github/internal-prompts/`**, and **`.github/agents/`** — the repository is **Cursor-only**. Prompts live under **`website/docs/prompts/`** (attach with `@`); role behavior is expressed with **`.cursor/rules/eversis-*.mdc`** and **[AGENTS.md](https://github.com/TheSoftwareHouse/cursor-collections/blob/main/AGENTS.md)**. Skills remain under **`.github/skills/`** for use as **Cursor Agent Skills**.
 
 ### Changed
 
-- Rebranded to **Cursor Collections**; docs site and skills aligned with Cursor. Package name **`cursor-collections-docs`**.
+- Rebranded documentation and the Docusaurus site to **Cursor Collections**; installation and prerequisites describe **Cursor** (no GitHub Copilot or VS Code `chat.*Locations` for prompts/agents).
+- Updated **README**, **documentation/cursor-collection.md**, **.cursor/rules** copy, and skills (**creating-*** and **technical-context-discovering**) for Cursor outputs; replaced Copilot instruction templates under **tsh-creating-instructions** with Cursor-oriented templates.
+- Renamed **website** package to **`cursor-collections-docs`**.
 
 ## 2026-04-10
 
@@ -35,6 +37,17 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 ### Changed
 
 - Renamed Figma MCP server key from `figma-mcp-server` to `figma` across all agents, prompts, skills, MCP configuration, and documentation — aligns with Figma's recommended server naming in their official docs
+
+## 2026-03-30
+
+### Added
+
+- Backend development skill `tsh-implementing-backend`
+
+### Changed
+
+- Updated `tsh-implementing-backend` skill reference in `tsh-software-engineer` agent
+- Updated `tsh-implementing-backend` as a conditional skill in `implement` prompt for backend API tasks
 
 ## 2026-03-20
 
@@ -166,6 +179,33 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 - Creating Agents, Creating Skills, Creating Prompts, and Creating Instructions skills marked as internal (agent-only) — hidden from the slash command menu via `user-invokable: false` in SKILL.md frontmatter while remaining accessible to agents
 - New `/create-custom-*` prompts serve as the recommended user-facing entry points for Copilot customization workflows, replacing direct skill invocation
+
+## 2026-03-01
+
+### Changed
+
+- Restructured README around the full product development lifecycle: Product Ideation → Development → Quality
+- Reorganized Agents, Skills, and Prompts sections into lifecycle phase groups (Product Ideation, Development, Quality)
+- Moved Context Engineer from Product Ideation to Development agents
+- Renamed "Backlog" phase to "Product Ideation" across the entire README
+- Updated workflow examples to show `/research` under Development (not Product Ideation)
+- Replaced flat prompt/agent listings with per-phase tables in "Using This Repository" section
+- Updated Summary to reflect full lifecycle framing
+- Renamed agent: `tsh-workshop-analyst` → `tsh-business-analyst`
+- Renamed agent: `tsh-business-analyst` → `tsh-context-engineer` (old Business Analyst became Context Engineer)
+- Renamed prompt: `/workshop-analyze` → `/analyze-materials`
+- Renamed prompt: `/transcript-clean` → `/clean-transcript`
+- Renamed prompt: `/code-quality-check` → `/review-codebase`
+- Renamed prompt: `/e2e` → `/implement-e2e`
+- Renamed skill: `task-extraction` → `task-extracting`
+- Renamed skill: `task-quality-review` → `task-quality-reviewing`
+- Renamed skill: `frontend-implementation` → `implementing-frontend`
+- Renamed skill: `ui-verification` → `ui-verifying`
+- Renamed skill: `architecture-design` → `architecture-designing`
+- Renamed skill: `code-review` → `code-reviewing`
+- Renamed skill: `codebase-analysis` → `codebase-analysing`
+- Renamed skill: `implementation-gap-analysis` → `implementation-gap-analysing`
+- Renamed skill: `task-analysis` → `task-analysing`
 
 ## 2026-02-27
 
