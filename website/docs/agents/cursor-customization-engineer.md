@@ -6,13 +6,13 @@ title: Cursor customization engineer
 # Cursor customization engineer
 
 **Rule pack (canonical):** `.cursor/rules/eversis-role-cursor-customization.mdc` (optional; add when you specialize this role)  
-**Typical prompts:** `@website/docs/prompts/public/eversis-create-custom-agent.md`, `@website/docs/prompts/public/eversis-create-custom-skill.md`, `@website/docs/prompts/public/eversis-create-custom-prompt.md`, `@website/docs/prompts/public/eversis-create-custom-instructions.md`
+**Typical prompts:** `@eversis-create-custom-agent`, `@eversis-create-custom-skill`, `@eversis-create-custom-prompt`, `@eversis-create-custom-instructions`
 
-This role designs, creates, reviews, and improves **Cursor-native packaging**: project rules (`.mdc`), Agent Skills (`SKILL.md`), prompt markdown under `website/docs/prompts/`, and high-level project guidance (`AGENTS.md`, stack rules).
+This role designs, creates, reviews, and improves **Cursor-native packaging**: project rules (`.mdc`), Agent Skills (`SKILL.md`), prompt markdown under **`.cursor/prompts/`**, and high-level project guidance (`AGENTS.md`, stack rules).
 
 ## Responsibilities
 
-- Creating, reviewing, and improving **rules** (`.cursor/rules/*.mdc`), **skills** (`SKILL.md`), **prompts** (`website/docs/prompts/**/eversis-*.md`), and **project instructions** (conventions in rules, `AGENTS.md`, and related docs).
+- Creating, reviewing, and improving **rules** (`.cursor/rules/*.mdc`), **skills** (`SKILL.md`), **prompts** (`.cursor/prompts/**/eversis-*.md`), and **project instructions** (conventions in rules, `AGENTS.md`, and related docs).
 - Applying prompt-engineering practice: clarity, structure, token efficiency, progressive disclosure.
 - Designing context architecture: what information lives in always-on rules vs attach-on-demand prompts vs skills, and with what priority.
 - Enforcing strict separation of concerns between customization types.
@@ -25,7 +25,7 @@ This role designs, creates, reviews, and improves **Cursor-native packaging**: p
 | --- | --- | --- |
 | **Rule** (`.cursor/rules/*.mdc`) | WHO + guardrails | Persona-agnostic behaviors, globs, always-on or scoped standards |
 | **Skill** (`SKILL.md`) | HOW | Repeatable procedures, checklists, domain playbooks |
-| **Prompt** (`website/docs/prompts/**/eversis-*.md`) | WHAT | Workflow entry, steps, attachments users should include |
+| **Prompt** (`.cursor/prompts/**/eversis-*.md`) | WHAT | Workflow entry, steps, attachments users should include |
 | **Project docs / AGENTS.md** | WHERE | Pointers to framework, conventions, and repo layout |
 
 When content lands in the wrong layer, this role identifies the violation and moves or splits it.

@@ -13,14 +13,14 @@ Not invoked directly by users. To trigger E2E test implementation, use the [ever
 :::
 
 **Agent:** E2E Engineer  
-**File:** `website/docs/prompts/internal/eversis-implement-e2e.md`
+**File:** `.cursor/prompts/internal/eversis-implement-e2e.md`
 
 Creates comprehensive end-to-end tests for a feature using Playwright.
 
 ## How It’s Triggered
 
 ```text
-@website/docs/prompts/public/eversis-implement.md
+@eversis-implement
 <JIRA_ID or task description>
 ```
 

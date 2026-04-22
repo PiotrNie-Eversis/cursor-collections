@@ -9,14 +9,14 @@ upstream_agent: "eversis-engineering-manager"
 # eversis-implement
 
 **Agent:** Engineering Manager  
-**File:** `website/docs/prompts/public/eversis-implement.md`
+**File:** `.cursor/prompts/public/eversis-implement.md`
 
 Orchestrates the implementation of a feature by delegating tasks from the plan to specialized agents.
 
 ## Usage
 
 ```text
-@website/docs/prompts/public/eversis-implement.md
+@eversis-implement
 <JIRA_ID or task description — if applicable>
 ```
 

@@ -6,7 +6,7 @@ title: Software Engineer
 # Software Engineer Agent
 
 **Rule pack (canonical):** `.cursor/rules/eversis-role-software-engineer.mdc`  
-**Delegated prompts:** `website/docs/prompts/internal/eversis-implement-common-task.md`, `website/docs/prompts/internal/eversis-implement-ui-common-task.md`, and related paths composed from **`@website/docs/prompts/public/eversis-implement.md`**
+**Delegated prompts:** `.cursor/prompts/internal/eversis-implement-common-task.md`, `.cursor/prompts/internal/eversis-implement-ui-common-task.md`, and related paths composed from **`@eversis-implement`**
 
 The Software Engineer agent implements software solutions based on provided requirements and technical designs. It executes against implementation plans created by the Architect.
 
@@ -57,5 +57,5 @@ The Software Engineer agent implements software solutions based on provided requ
 
 After completing implementation, the Software Engineer can hand off to:
 
-- **Code Reviewer** — **`@website/docs/prompts/public/eversis-review.md`** (review implementation against the plan)
-- **E2E Engineer** — when the plan delegates test work via **`website/docs/prompts/internal/eversis-implement-e2e.md`**
+- **Code Reviewer** — **`@eversis-review`** (review implementation against the plan)
+- **E2E Engineer** — when the plan delegates test work via **`.cursor/prompts/internal/eversis-implement-e2e.md`**

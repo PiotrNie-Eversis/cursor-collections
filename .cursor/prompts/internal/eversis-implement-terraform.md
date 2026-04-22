@@ -13,14 +13,14 @@ Not invoked directly by users. To trigger Terraform implementation, use the [eve
 :::
 
 **Agent:** DevOps Engineer
-**File:** `website/docs/prompts/internal/eversis-implement-terraform.md`
+**File:** `.cursor/prompts/internal/eversis-implement-terraform.md`
 
 Creates Terraform modules and provisions cloud infrastructure safely following established IaC patterns and safety guardrails.
 
 ## How It’s Triggered
 
 ```text
-@website/docs/prompts/public/eversis-implement.md
+@eversis-implement
 <JIRA_ID or task description>
 ```
 
@@ -148,8 +148,8 @@ Skip for: adding resources to existing modules, updating versions, fixing bugs, 
 ## Scope
 
 **Does NOT handle** (redirect to):
-- CI/CD pipelines for Terraform → `@website/docs/prompts/internal/eversis-implement-pipeline.md`
-- Kubernetes workload configuration → `@website/docs/prompts/internal/eversis-deploy-kubernetes.md`
-- Monitoring infrastructure → `@website/docs/prompts/internal/eversis-implement-observability.md`
+- CI/CD pipelines for Terraform → `@eversis-implement-pipeline`
+- Kubernetes workload configuration → `@eversis-deploy-kubernetes`
+- Monitoring infrastructure → `@eversis-implement-observability`
 
 <!-- Eversis port; upstream: eversis-implement-terraform -->

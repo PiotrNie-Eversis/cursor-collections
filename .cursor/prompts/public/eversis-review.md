@@ -9,14 +9,14 @@ upstream_agent: "eversis-code-reviewer"
 # eversis-review
 
 **Agent:** Code Reviewer  
-**File:** `website/docs/prompts/public/eversis-review.md`
+**File:** `.cursor/prompts/public/eversis-review.md`
 
 Performs a structured code review against the implementation plan and feature context.
 
 ## Usage
 
 ```text
-@website/docs/prompts/public/eversis-review.md
+@eversis-review
 <JIRA_ID or task description — if applicable>
 ```
 

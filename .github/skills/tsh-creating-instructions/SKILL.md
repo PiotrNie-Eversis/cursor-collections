@@ -26,7 +26,7 @@ Helps place **declarative rules** in the right surface for **Cursor**: **[AGENTS
 | ------------------------------------------------------ | ------------------------------------------ |
 | Project rule (“always use pnpm”, “no console in prod”) | `AGENTS.md` / `.mdc`                       |
 | Step-by-step workflow (how to run a migration review)  | `SKILL.md` under `.github/skills/`         |
-| Runnable task text                                     | `website/docs/prompts/public/eversis-*.md` |
+| Runnable task text                                     | `.cursor/prompts/public/eversis-*.md` |
 
 ## Process
 

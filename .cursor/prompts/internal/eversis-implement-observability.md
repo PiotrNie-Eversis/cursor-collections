@@ -13,14 +13,14 @@ Not invoked directly by users. To trigger observability implementation, use the 
 :::
 
 **Agent:** DevOps Engineer
-**File:** `website/docs/prompts/internal/eversis-implement-observability.md`
+**File:** `.cursor/prompts/internal/eversis-implement-observability.md`
 
 Implements comprehensive observability solutions covering metrics, logs, traces, and alerting.
 
 ## How It’s Triggered
 
 ```text
-@website/docs/prompts/public/eversis-implement.md
+@eversis-implement
 <JIRA_ID or task description>
 ```
 
@@ -143,7 +143,7 @@ Skip for: adding alerts, creating dashboards, configuring log retention, adding 
 
 **Does NOT handle** (redirect to):
 - Application code instrumentation → coordinate with software engineer
-- Infrastructure provisioning → `@website/docs/prompts/internal/eversis-implement-terraform.md`
-- CI/CD pipelines → `@website/docs/prompts/internal/eversis-implement-pipeline.md`
+- Infrastructure provisioning → `@eversis-implement-terraform`
+- CI/CD pipelines → `@eversis-implement-pipeline`
 
 <!-- Eversis port; upstream: eversis-implement-observability -->

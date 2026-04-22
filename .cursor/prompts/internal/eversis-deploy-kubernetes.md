@@ -13,14 +13,14 @@ Not invoked directly by users. To trigger Kubernetes deployments, use the [evers
 :::
 
 **Agent:** DevOps Engineer
-**File:** `website/docs/prompts/internal/eversis-deploy-kubernetes.md`
+**File:** `.cursor/prompts/internal/eversis-deploy-kubernetes.md`
 
 Creates Kubernetes deployments, Helm charts, and configures workload resources following production-ready patterns.
 
 ## How It’s Triggered
 
 ```text
-@website/docs/prompts/public/eversis-implement.md
+@eversis-implement
 <JIRA_ID or task description>
 ```
 
@@ -143,8 +143,8 @@ Skip for: HPA/PDB configuration, probes, resource limits, manifest fixes.
 ## Scope
 
 **Does NOT handle** (redirect to):
-- Cluster provisioning → `@website/docs/prompts/internal/eversis-implement-terraform.md`
-- CI/CD pipeline for deployment → `@website/docs/prompts/internal/eversis-implement-pipeline.md`
-- Monitoring and alerting → `@website/docs/prompts/internal/eversis-implement-observability.md`
+- Cluster provisioning → `@eversis-implement-terraform`
+- CI/CD pipeline for deployment → `@eversis-implement-pipeline`
+- Monitoring and alerting → `@eversis-implement-observability`
 
 <!-- Eversis port; upstream: eversis-deploy-kubernetes -->

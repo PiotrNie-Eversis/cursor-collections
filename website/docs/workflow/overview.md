@@ -20,7 +20,7 @@ Think of this workflow as a **relay race**. Each phase produces a deliverable â€
 ### 1. Ideate
 
 - **Role:** Business Analyst (rules + prompt)
-- **Prompt:** attach `website/docs/prompts/public/eversis-analyze-materials.md`
+- **Prompt:** attach `.cursor/prompts/public/eversis-analyze-materials.md`
 - Processes raw workshop materials (transcripts, Figma designs, documents) into structured epics and stories.
 - Uses multi-step quality review with mandatory human review gates.
 - **Produces:** Jira-ready epics and stories with acceptance criteria, dependencies, and priorities.
@@ -28,7 +28,7 @@ Think of this workflow as a **relay race**. Each phase produces a deliverable â€
 ### 2. Implement
 
 - **Role:** Engineering Manager orchestration (Context Engineer, Architect, implementers)
-- **Prompt:** attach `website/docs/prompts/public/eversis-implement.md` with a Jira ID or description
+- **Prompt:** attach `.cursor/prompts/public/eversis-implement.md` with a Jira ID or description
 - Typical flow:
   1. **Research** â€” Context gathering from Jira, Figma, and codebase. Confirm before planning when the prompt says so.
   2. **Plan** â€” Structured implementation plan. Confirm before large edits when the prompt says so.
@@ -38,7 +38,7 @@ Think of this workflow as a **relay race**. Each phase produces a deliverable â€
 ### 3. Review
 
 - **Role:** Code Reviewer
-- **Prompt:** attach `website/docs/prompts/public/eversis-review.md`
+- **Prompt:** attach `.cursor/prompts/public/eversis-review.md`
 - Structured review against acceptance criteria, security, reliability, and maintainability.
 - **Produces:** Review with pass/blockers/suggestions.
 

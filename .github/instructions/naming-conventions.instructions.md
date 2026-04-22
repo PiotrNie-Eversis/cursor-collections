@@ -8,7 +8,7 @@ applyTo: '.github/**'
 
 ## Prefixes in this monorepo
 
-- **`eversis-`** — User-facing and internal **prompts** as Markdown: `website/docs/prompts/public/eversis-*.md` and `website/docs/prompts/internal/eversis-*.md`.
+- **`eversis-`** — User-facing and internal **prompts** as Markdown: `.cursor/prompts/public/eversis-*.md` and `.cursor/prompts/internal/eversis-*.md`.
 - **`eversis-`** — **Cursor rules** in `.cursor/rules/eversis-*.mdc`.
 - **`tsh-`** — **Skill directory names** under `.github/skills/tsh-*/` (historical; topic packages). The `name` in `SKILL.md` frontmatter should match the directory name.
 
@@ -20,4 +20,4 @@ applyTo: '.github/**'
 
 When docs reference skills, use the `tsh-*` folder/skill `name` (e.g. `tsh-creating-skills`).
 
-When docs reference attachable prompts, use repo-relative paths: `website/docs/prompts/public/eversis-implement.md`.
+When docs reference attachable prompts, use repo-relative paths: `.cursor/prompts/public/eversis-implement.md`.

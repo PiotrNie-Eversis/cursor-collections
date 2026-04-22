@@ -1,12 +1,12 @@
 ---
 name: tsh-creating-agents
-description: "Create Cursor project rules for roles: .cursor/rules/eversis-*.mdc (YAML: description, globs, alwaysApply). Maps legacy agent-identity content into rule bodies; use with skills and attachable website/docs/prompts. Use when creating or reviewing role rules — not .github/agents (removed in Cursor Collections)."
+description: "Create Cursor project rules for roles: .cursor/rules/eversis-*.mdc (YAML: description, globs, alwaysApply). Maps legacy agent-identity content into rule bodies; use with skills and attachable .cursor/prompts. Use when creating or reviewing role rules — not .github/agents (removed in Cursor Collections)."
 user-invokable: false
 ---
 
 # Creating agents (Cursor rules)
 
-Creates well-structured **Cursor rules** (`.mdc`) that define **role behavior** for the Eversis / Cursor Collections framework. Enforces the same separation of concerns as before: **rules** = who/when, **skills** = how, **prompts** = runnable workflow text under `website/docs/prompts/`.
+Creates well-structured **Cursor rules** (`.mdc`) that define **role behavior** for the Eversis / Cursor Collections framework. Enforces the same separation of concerns as before: **rules** = who/when, **skills** = how, **prompts** = runnable workflow text under **`.cursor/prompts/`**.
 
 > **This repository** no longer ships `.github/agents/*.agent.md`. Use **`.cursor/rules/eversis-*.mdc`** and optional `website/docs/agents/*.md` documentation.
 
@@ -18,7 +18,7 @@ A **role rule** (`.mdc`) defines WHO the model should “be” when the rule app
 
 - **Rule / role** = behavior, responsibilities, and boundaries (`.cursor/rules/*.mdc`)
 - **Skills** = reusable workflows (`SKILL.md` under `.github/skills/`)
-- **Prompts** = attachable markdown under `website/docs/prompts/public/` and `internal/`
+- **Prompts** = attachable markdown under `.cursor/prompts/public/` and `internal/`
 </separation-of-concerns>
 
 <xml-syntax>

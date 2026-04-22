@@ -17,7 +17,7 @@ A skill is a folder containing a `SKILL.md` file with YAML frontmatter and Markd
 
 - **Skills** = reusable workflows (`SKILL.md` under `.github/skills/`)
 - **Role rules** = who/when (`.cursor/rules/eversis-*.mdc`)
-- **Prompts** = attachable `website/docs/prompts/eversis-*.md`
+- **Prompts** = attachable `.cursor/prompts/**/eversis-*.md`
 
 A skill must NOT define long-lived role identity — that belongs in **rules**. A skill defines HOW to perform a specialized task.
 </what-is-a-skill>

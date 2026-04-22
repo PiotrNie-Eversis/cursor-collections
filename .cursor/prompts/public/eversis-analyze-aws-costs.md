@@ -9,14 +9,14 @@ upstream_agent: "eversis-devops-engineer"
 # eversis-analyze-aws-costs
 
 **Agent:** DevOps Engineer
-**File:** `website/docs/prompts/public/eversis-analyze-aws-costs.md`
+**File:** `.cursor/prompts/public/eversis-analyze-aws-costs.md`
 
 Performs a comprehensive AWS cost optimization and tagging compliance audit using a hybrid approach — analyzes IaC code first, then validates against live AWS infrastructure via API.
 
 ## Usage
 
 ```text
-@website/docs/prompts/public/eversis-analyze-aws-costs.md
+@eversis-analyze-aws-costs
 <AWS Account/Profile, Region, or 'all'> <focus: specific service or 'everything'>
 ```
 

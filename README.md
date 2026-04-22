@@ -13,10 +13,10 @@ Structured **roles**, **prompts** (`eversis-*.md`), **project rules** (`.cursor/
 
 | Phase                       | Focus                                        | Entry (Cursor)                                                                                                |
 | --------------------------- | -------------------------------------------- | ------------------------------------------------------------------------------------------------------------- |
-| **Ideate**                  | Requirements and planning                    | Attach `@website/docs/prompts/public/eversis-analyze-materials.md`                                            |
-| **Implement**               | Architecture and delivery                    | Attach `@website/docs/prompts/public/eversis-implement.md`                                                    |
-| **Review**                  | Code and UI quality                          | Attach `@website/docs/prompts/public/eversis-review.md`, `eversis-review-ui.md`, `eversis-review-codebase.md` |
-| **Framework customization** | Rules, skills, prompts, project instructions | Attach `eversis-create-custom-*.md` under `website/docs/prompts/public/`                                      |
+| **Ideate**                  | Requirements and planning                    | Attach `@eversis-analyze-materials`                                            |
+| **Implement**               | Architecture and delivery                    | Attach `@eversis-implement`                                                    |
+| **Review**                  | Code and UI quality                          | Attach `@eversis-review`, `@eversis-review-ui`, `@eversis-review-codebase` |
+| **Framework customization** | Rules, skills, prompts, project instructions | Attach `eversis-create-custom-*.md` under `.cursor/prompts/public/` |
 
 **Skills** live in [`.github/skills/`](.github/skills/) as `tsh-*` topic folders with `SKILL.md` (procedural how-to). Wire them as **Cursor Agent Skills** (user or project skills path) so agents can load them by description.
 
@@ -29,7 +29,7 @@ Structured **roles**, **prompts** (`eversis-*.md`), **project rules** (`.cursor/
 1. **Open this repository in [Cursor](https://cursor.com/).**
 2. Read [**AGENTS.md**](AGENTS.md) and [documentation/cursor-collection.md](documentation/cursor-collection.md).
 3. Use [**project rules**](.cursor/rules/): start with `eversis-agent-core.mdc` and edit `eversis-project-stack.mdc` for your stack.
-4. In **Chat** or **Agent**, attach a prompt, e.g. `@website/docs/prompts/public/eversis-implement.md`, plus your ticket or task text.
+4. In **Chat** or **Agent**, attach a prompt, e.g. `@eversis-implement`, plus your ticket or task text.
 5. **MCP:** copy or merge [`.vscode/mcp.json`](.vscode/mcp.json) into Cursor’s MCP configuration (user or workspace) so Jira, Figma, Playwright, and other tools are available.
 6. **Optional:** add this repo’s skill trees to your **Cursor Agent Skills** location so `tsh-*` skills resolve when relevant.
 
@@ -39,20 +39,20 @@ Structured **roles**, **prompts** (`eversis-*.md`), **project rules** (`.cursor/
 
 ## Public prompts (attach with `@`)
 
-All bodies live under **`website/docs/prompts/public/`**. Full catalog: [website/docs/prompts/overview.md](website/docs/prompts/overview.md).
+All bodies live under **`.cursor/prompts/public/`**. Full catalog: [website/docs/prompts/overview.md](website/docs/prompts/overview.md).
 
 | Workflow                                       | File to attach                                                             |
 | ---------------------------------------------- | -------------------------------------------------------------------------- |
-| Workshop → Jira                                | `website/docs/prompts/public/eversis-analyze-materials.md`                 |
-| Implement                                      | `website/docs/prompts/public/eversis-implement.md`                         |
-| Code review                                    | `website/docs/prompts/public/eversis-review.md`                            |
-| UI vs Figma                                    | `website/docs/prompts/public/eversis-review-ui.md`                         |
-| Codebase health                                | `website/docs/prompts/public/eversis-review-codebase.md`                   |
-| Infra audit                                    | `website/docs/prompts/public/eversis-audit-infrastructure.md`              |
+| Workshop → Jira                                | `.cursor/prompts/public/eversis-analyze-materials.md`                 |
+| Implement                                      | `.cursor/prompts/public/eversis-implement.md`                         |
+| Code review                                    | `.cursor/prompts/public/eversis-review.md`                            |
+| UI vs Figma                                    | `.cursor/prompts/public/eversis-review-ui.md`                         |
+| Codebase health                                | `.cursor/prompts/public/eversis-review-codebase.md`                   |
+| Infra audit                                    | `.cursor/prompts/public/eversis-audit-infrastructure.md`              |
 | AWS / GCP cost                                 | `eversis-analyze-aws-costs.md`, `eversis-analyze-gcp-costs.md`             |
 | Create rules / skills / prompts / instructions | `eversis-create-custom-agent.md` … `eversis-create-custom-instructions.md` |
 
-Internal (delegation) prompts used by `eversis-implement` and similar live under **`website/docs/prompts/internal/`** — attach when a public prompt points you to them.
+Internal (delegation) prompts used by `eversis-implement` and similar live under **`.cursor/prompts/internal/`** — attach when a public prompt points you to them.
 
 ---
 
@@ -68,15 +68,15 @@ Core roles: Business Analyst, Context Engineer, Architect, Engineering Manager, 
 
 ```text
 IDEATE
-  @website/docs/prompts/public/eversis-analyze-materials.md
+  @eversis-analyze-materials
   (workshop materials → cleaned transcript → Jira-ready stories; human gates)
 
 IMPLEMENT
-  @website/docs/prompts/public/eversis-implement.md
+  @eversis-implement
   (research → plan → code; human gates after research and plan)
 
 REVIEW
-  @website/docs/prompts/public/eversis-review.md
+  @eversis-review
 ```
 
 For UI work, the implement flow can loop with `eversis-review-ui` until pass or escalation (see the implement and review-ui prompts).
@@ -94,7 +94,7 @@ For UI work, the implement flow can loop with `eversis-review-ui` until pass or 
 
 ## Framework customization
 
-To extend rules, skills, prompts, or project instructions, attach the matching **`eversis-create-custom-*`** prompt and follow the steps. Execution is **in Cursor**: use `.cursor/rules/*.mdc`, [AGENTS.md](AGENTS.md), `website/docs/prompts/`, and the **creating-\*** skills under `.github/skills/` (no separate VS Code agent files in this repo).
+To extend rules, skills, prompts, or project instructions, attach the matching **`eversis-create-custom-*`** prompt and follow the steps. Execution is **in Cursor**: use `.cursor/rules/*.mdc`, [AGENTS.md](AGENTS.md), `.cursor/prompts/`, and the **creating-\*** skills under `.github/skills/` (no separate VS Code agent files in this repo).
 
 ---
 
@@ -107,7 +107,7 @@ A ready template is in [`.vscode/mcp.json`](.vscode/mcp.json) (Atlassian, Figma,
 ## Using this framework in another repository
 
 1. Copy or vendor **`.cursor/rules/`** templates; customize `eversis-project-stack.mdc`.
-2. Copy or link **`website/docs/prompts/`** (or maintain your own `eversis-*.md` under a path you prefer).
+2. Copy or link **`.cursor/prompts/`** (or maintain your own `eversis-*.md` under a path you prefer).
 3. Add **`AGENTS.md`** and optional **`docs/specs/`**, **`docs/context/`** per [documentation/cursor-collection.md](documentation/cursor-collection.md).
 4. Configure **MCP** and **Agent Skills** for the skill packs you need.
 

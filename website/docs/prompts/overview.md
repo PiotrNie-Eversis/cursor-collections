@@ -5,7 +5,9 @@ title: Prompts Overview
 
 # Prompts Overview
 
-This framework includes **12 public prompts** — Markdown workflow definitions for **Cursor** (Chat or Agent). They live under `website/docs/prompts/public/` as `eversis-*.md` files. **Attach** the file with `@` (for example `@website/docs/prompts/public/eversis-implement.md`). The first column below lists each **prompt by file stem** (links go to the catalog page); it is not a native `/` chat command.
+This framework includes **12 public prompts** — Markdown workflow definitions for **Cursor** (Chat or Agent). **Canonical sources** live under `.cursor/prompts/public/` as `eversis-*.md` files. **Attach** with `@` (for example `@eversis-implement` or `@.cursor/prompts/public/eversis-implement.md`). The first column below lists each **prompt by file stem** (links go to the catalog page); it is not a native `/` chat command.
+
+**Documentation site:** From the repository’s **`website/`** directory, `npm run start` and `npm run build` run **`sync-prompts`** first, copying these files into `website/docs/prompts/` for Docusaurus. The generated `eversis-*.md` copies there are gitignored.
 
 ## How Prompts Work
 
@@ -60,7 +62,7 @@ These are the user-facing prompts. Doc paths use stable URLs (`slug`); files on 
 
 ## Delegation via Implement
 
-When you run **[eversis-implement](./public/implement)** (attach the file), the workflow describes how the **Engineering Manager** pattern delegates research, planning, and implementation. You do not need to open every internal prompt by hand — follow the public `eversis-implement.md` body; it references **`website/docs/prompts/internal/`** when needed.
+When you run **[eversis-implement](./public/implement)** (attach the file), the workflow describes how the **Engineering Manager** pattern delegates research, planning, and implementation. You do not need to open every internal prompt by hand — follow the public `eversis-implement.md` body; it references **`.cursor/prompts/internal/`** when needed.
 
 | Phase | Delegated to (conceptual) |
 | --- | --- |

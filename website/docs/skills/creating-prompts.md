@@ -8,7 +8,7 @@ title: Creating prompts
 **Folder:** `.github/skills/tsh-creating-prompts/`  
 **Used by:** Framework maintainers (customization track)
 
-Create **attachable Markdown prompts** — **`website/docs/prompts/public/eversis-*.md`** and **`internal/eversis-*.md`** — with Docusaurus frontmatter. Not `.github/prompts/*.prompt.md` (removed).
+Create **attachable Markdown prompts** — **`.cursor/prompts/public/eversis-*.md`** and **`internal/eversis-*.md`** — with Docusaurus frontmatter. Not `.github/prompts/*.prompt.md` (removed).
 
 ## Principles
 

@@ -9,7 +9,7 @@ upstream_agent: "eversis-ui-reviewer"
 # eversis-review-ui
 
 **Agent:** UI Reviewer  
-**File:** `website/docs/prompts/public/eversis-review-ui.md`
+**File:** `.cursor/prompts/public/eversis-review-ui.md`
 
 Performs a single-pass, read-only verification comparing the implemented UI against the Figma design.
 
@@ -18,7 +18,7 @@ Performs a single-pass, read-only verification comparing the implemented UI agai
 Called automatically by the [eversis-implement](./implement) workflow (via the internal UI prompt) in a verification loop. Can also be invoked manually (attach the prompt below with `@`):
 
 ```text
-@website/docs/prompts/public/eversis-review-ui.md
+@eversis-review-ui
 <component or page description>
 ```
 

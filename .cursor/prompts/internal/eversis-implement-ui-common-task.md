@@ -13,14 +13,14 @@ Not invoked directly by users. To trigger UI implementation, use the [eversis-im
 :::
 
 **Agent:** Software Engineer
-**File:** `website/docs/prompts/internal/eversis-implement-ui-common-task.md`
+**File:** `.cursor/prompts/internal/eversis-implement-ui-common-task.md`
 
 Extends the standard implementation workflow with UI-specific behaviors — Figma design references, frontend component patterns, and accessibility compliance.
 
 ## How It's Triggered
 
 ```text
-@website/docs/prompts/public/eversis-implement.md
+@eversis-implement
 <JIRA_ID or task description>
 ```
 

@@ -16,7 +16,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ### Removed (breaking)
 
-- **`.github/prompts/`**, **`.github/internal-prompts/`**, and **`.github/agents/`** — the repository is **Cursor-only**. Prompts live under **`website/docs/prompts/`** (attach with `@`); role behavior is expressed with **`.cursor/rules/eversis-*.mdc`** and **[AGENTS.md](https://github.com/PiotrNie-Eversis/cursor-collections/blob/main/AGENTS.md)**. Skills remain under **`.github/skills/`** for use as **Cursor Agent Skills**.
+- **`.github/prompts/`**, **`.github/internal-prompts/`**, and **`.github/agents/`** — the repository is **Cursor-only**. Prompts live under **`.cursor/prompts/`** (attach with `@`); copies for this documentation site are generated under `website/docs/prompts/` via **`sync-prompts`**. Role behavior is expressed with **`.cursor/rules/eversis-*.mdc`** and **[AGENTS.md](https://github.com/PiotrNie-Eversis/cursor-collections/blob/main/AGENTS.md)**. Skills remain under **`.github/skills/`** for use as **Cursor Agent Skills**.
 
 ### Changed
 

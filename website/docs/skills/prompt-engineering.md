@@ -65,6 +65,6 @@ Reusable templates for common patterns:
 
 ## Connected Skills
 
-- `tsh-creating-prompts` — For `website/docs/prompts/eversis-*.md` (different domain, complementary).
+- `tsh-creating-prompts` — For `.cursor/prompts/**/eversis-*.md` (different domain, complementary).
 - `tsh-code-reviewing` — For reviewing prompt code quality alongside application code.
 - `tsh-architecture-designing` — For prompt strategy decisions as part of system architecture.

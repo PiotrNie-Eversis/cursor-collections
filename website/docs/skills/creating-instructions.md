@@ -24,7 +24,7 @@ Helps place **declarative rules** for **Cursor**: **[AGENTS.md](https://github.c
 | ----------------------------------------- | ----------------------------------- |
 | Stack, commands, non-obvious global rules | `AGENTS.md` / `.mdc`                |
 | Step-by-step procedures                   | `SKILL.md` under `.github/skills/`  |
-| Runnable workflow text                    | `website/docs/prompts/eversis-*.md` |
+| Runnable workflow text                    | `.cursor/prompts/**/eversis-*.md` |
 
 ## Validation checklist
 

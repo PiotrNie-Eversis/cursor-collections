@@ -9,14 +9,14 @@ upstream_agent: "eversis-business-analyst"
 # eversis-analyze-materials
 
 **Agent:** Business Analyst  
-**File:** `website/docs/prompts/public/eversis-analyze-materials.md`
+**File:** `.cursor/prompts/public/eversis-analyze-materials.md`
 
 Processes discovery workshop materials and converts them into structured, Jira-ready epics and user stories. Can also import an existing Jira backlog for local iteration.
 
 ## Usage
 
 ```text
-@website/docs/prompts/public/eversis-analyze-materials.md
+@eversis-analyze-materials
 <workshop materials or Jira project key>
 ```
 

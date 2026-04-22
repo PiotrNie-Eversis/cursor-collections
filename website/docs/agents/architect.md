@@ -6,7 +6,7 @@ title: Architect
 # Architect Agent
 
 **Rule pack (canonical):** `.cursor/rules/eversis-role-architect.mdc`  
-**Delegated prompt:** `website/docs/prompts/internal/eversis-plan.md` (via `@website/docs/prompts/public/eversis-implement.md`)
+**Delegated prompt:** `.cursor/prompts/internal/eversis-plan.md` (via `@eversis-implement`)
 
 The Architect designs technical solutions and implementation plans from approved research, turning requirements into phased, executable work.
 
@@ -56,4 +56,4 @@ The Architect designs technical solutions and implementation plans from approved
 
 ## Handoffs
 
-After human approval of the plan, implementation runs through **`@website/docs/prompts/public/eversis-implement.md`** and the [Engineering Manager](./engineering-manager), including UI flows via **`website/docs/prompts/internal/eversis-implement-ui.md`** when Figma is in scope.
+After human approval of the plan, implementation runs through **`@eversis-implement`** and the [Engineering Manager](./engineering-manager), including UI flows via **`.cursor/prompts/internal/eversis-implement-ui.md`** when Figma is in scope.

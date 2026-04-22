@@ -7,7 +7,7 @@ export default function SdlcDiagram(): React.JSX.Element {
     <div
       className={styles.wrapper}
       role="img"
-      aria-label="SDLC workflow: attach the eversis Markdown prompts in Cursor with @ to the paths under website/docs/prompts/public — eversis-analyze-materials, eversis-implement, eversis-review, eversis-review-ui — not as slash chat commands"
+      aria-label="SDLC workflow: attach the eversis Markdown prompts in Cursor with @ (e.g. @eversis-implement or under .cursor/prompts/public) — eversis-analyze-materials, eversis-implement, eversis-review, eversis-review-ui — not as slash chat commands"
     >
       <div className={styles.diagram}>
         {/* Human Intent */}
@@ -33,7 +33,7 @@ export default function SdlcDiagram(): React.JSX.Element {
             <div className={styles.cardCmd}>
               <div className={styles.cardPromptName}>eversis-analyze-materials</div>
               <div className={styles.cardAttachPath}>
-                @website/docs/prompts/public/eversis-analyze-materials.md
+                @eversis-analyze-materials
               </div>
             </div>
             <div className={styles.cardDesc}>
@@ -65,7 +65,7 @@ export default function SdlcDiagram(): React.JSX.Element {
                 </span>
               </div>
               <div className={styles.cardAttachPath}>
-                @website/docs/prompts/public/eversis-implement.md
+                @eversis-implement
               </div>
             </div>
             <div className={styles.cardDesc}>
@@ -145,7 +145,7 @@ export default function SdlcDiagram(): React.JSX.Element {
               <div className={styles.cardCmd}>
                 <div className={styles.cardPromptName}>eversis-review</div>
                 <div className={styles.cardAttachPath}>
-                  @website/docs/prompts/public/eversis-review.md
+                  @eversis-review
                 </div>
               </div>
               <div className={styles.cardDesc}>
@@ -156,7 +156,7 @@ export default function SdlcDiagram(): React.JSX.Element {
               <div className={styles.cardCmd}>
                 <div className={styles.cardPromptName}>eversis-review-ui</div>
                 <div className={styles.cardAttachPath}>
-                  @website/docs/prompts/public/eversis-review-ui.md
+                  @eversis-review-ui
                 </div>
               </div>
               <div className={styles.cardDesc}>

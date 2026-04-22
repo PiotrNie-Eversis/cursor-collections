@@ -13,14 +13,14 @@ Not invoked directly by users. The UI implementation workflow is triggered via t
 :::
 
 **Agent:** Engineering Manager  
-**File:** `website/docs/prompts/internal/eversis-implement-ui.md`
+**File:** `.cursor/prompts/internal/eversis-implement-ui.md`
 
 Orchestrates the implementation of UI features with iterative Figma verification, delegating to specialized agents.
 
 ## How It's Triggered
 
 ```text
-@website/docs/prompts/public/eversis-implement.md
+@eversis-implement
 <JIRA_ID or task description>
 ```
 

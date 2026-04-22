@@ -5,13 +5,13 @@ alwaysApply: true
 
 # Project stack — this repository
 
-This repo is **Cursor Collections** (Eversis): **Cursor** rules, attachable prompts under `website/docs/prompts/`, skills in **`.github/skills/`**, and [documentation/cursor-collection.md](documentation/cursor-collection.md).
+This repo is **Cursor Collections** (Eversis): **Cursor** rules, attachable prompts under **`.cursor/prompts/`** (synced into `website/docs/prompts/` for the docs site), skills in **`.github/skills/`**, and [documentation/cursor-collection.md](documentation/cursor-collection.md).
 
 | Area | This repository |
 | ---- | --------------- |
 | **Product** | Cursor-native product engineering framework + published workflow docs |
 | **Docs site** | Docusaurus 3 under **`website/`** (`cursor-collections-docs`) |
-| **Prompts** | **`website/docs/prompts/public/`** and **`internal/`** (`eversis-*.md`) |
+| **Prompts** | **`.cursor/prompts/public/`** and **`internal/`** (`eversis-*.md`; `npm start` / `npm run build` in `website/` runs **`sync-prompts`** into gitignored paths under `website/docs/prompts/`) |
 | **Skills** | **`.github/skills/tsh-*/`** (topic packages; use as **Agent Skills**) |
 
 ## Quality commands (this repo)

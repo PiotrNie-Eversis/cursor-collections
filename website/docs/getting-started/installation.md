@@ -24,11 +24,11 @@ You can use any folder name; paths in [AGENTS.md](https://github.com/PiotrNie-Ev
 
 ## 3. Prompts (attach with `@`)
 
-Public prompts live under **`website/docs/prompts/public/`** as **`eversis-*.md`**. In Chat or Agent, attach e.g.:
+Public prompts live under **`.cursor/prompts/public/`** as **`eversis-*.md`**. In Chat or Agent, attach e.g.:
 
-`@website/docs/prompts/public/eversis-implement.md`
+`@eversis-implement`
 
-See the [Prompts overview](../prompts/overview.md) for the full list. Internal prompts are under **`website/docs/prompts/internal/`** and are referenced from the public orchestration prompts.
+See the [Prompts overview](../prompts/overview.md) for the full list. Internal prompts are under **`.cursor/prompts/internal/`** and are referenced from the public orchestration prompts.
 
 ## 4. Agent Skills (optional)
 
@@ -40,4 +40,4 @@ Copy or merge **`.vscode/mcp.json`** from this repo into **Cursor → MCP** (use
 
 ## Using the framework in another project
 
-Copy **`.cursor/rules/`** templates, add **`AGENTS.md`**, and either vendor **`website/docs/prompts/`** or maintain your own `eversis-*.md` paths. Configure MCP and Agent Skills for the integrations you need. See [documentation/cursor-collection.md](https://github.com/PiotrNie-Eversis/cursor-collections/blob/main/documentation/cursor-collection.md) for the generic layout.
+Copy **`.cursor/rules/`** templates, add **`AGENTS.md`**, and either vendor **`.cursor/prompts/`** (recommended) or maintain your own `eversis-*.md` paths. If you use this repo’s Docusaurus site, run **`npm run sync-prompts`** from `website/` (or rely on `prestart` / `prebuild`) so prompt pages exist under `website/docs/prompts/` before building. Configure MCP and Agent Skills for the integrations you need. See [documentation/cursor-collection.md](https://github.com/PiotrNie-Eversis/cursor-collections/blob/main/documentation/cursor-collection.md) for the generic layout.

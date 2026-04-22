@@ -13,14 +13,14 @@ Not invoked directly by users. To trigger implementation, use the [eversis-imple
 :::
 
 **Agent:** Software Engineer
-**File:** `website/docs/prompts/internal/eversis-implement-common-task.md`
+**File:** `.cursor/prompts/internal/eversis-implement-common-task.md`
 
 The standard delegation prompt for general implementation tasks — backend logic, APIs, database changes, and non-UI frontend work.
 
 ## How It's Triggered
 
 ```text
-@website/docs/prompts/public/eversis-implement.md
+@eversis-implement
 <JIRA_ID or task description>
 ```
 

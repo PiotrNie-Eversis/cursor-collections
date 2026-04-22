@@ -42,7 +42,7 @@ const steps = [
     description: (
       <>
         In Chat or Agent, attach{" "}
-        <code>@website/docs/prompts/public/eversis-implement.md</code> and your
+        <code>@eversis-implement</code> and your
         ticket or task text.
       </>
     ),

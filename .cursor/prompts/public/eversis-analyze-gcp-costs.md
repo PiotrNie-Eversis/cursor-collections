@@ -9,14 +9,14 @@ upstream_agent: "eversis-devops-engineer"
 # eversis-analyze-gcp-costs
 
 **Agent:** DevOps Engineer
-**File:** `website/docs/prompts/public/eversis-analyze-gcp-costs.md`
+**File:** `.cursor/prompts/public/eversis-analyze-gcp-costs.md`
 
 Performs a comprehensive GCP cost optimization and labeling compliance audit using a hybrid approach — analyzes IaC code first, then validates against live GCP infrastructure via API.
 
 ## Usage
 
 ```text
-@website/docs/prompts/public/eversis-analyze-gcp-costs.md
+@eversis-analyze-gcp-costs
 <GCP Project ID, Region, or 'all'> <focus: specific service or 'everything'>
 ```
 

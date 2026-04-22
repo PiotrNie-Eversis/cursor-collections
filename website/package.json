@@ -3,7 +3,10 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
+    "sync-prompts": "node ../scripts/sync-prompts.mjs",
+    "prestart": "npm run sync-prompts",
     "start": "docusaurus start",
+    "prebuild": "npm run sync-prompts",
     "build": "docusaurus build",
     "serve": "docusaurus serve",
     "clear": "docusaurus clear"
@@ -36,5 +39,8 @@
   },
   "engines": {
     "node": ">=18.0"
+  },
+  "overrides": {
+    "webpack": "5.93.0"
   }
 }

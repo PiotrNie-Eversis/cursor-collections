@@ -8,14 +8,14 @@ prompt_description: "Create a new Agent Skill: SKILL.md under .github/skills/ wi
 # eversis-create-custom-skill
 
 **Role:** [Cursor customization orchestrator](../../agents/cursor-customization-orchestrator)  
-**File:** `website/docs/prompts/public/eversis-create-custom-skill.md`
+**File:** `.cursor/prompts/public/eversis-create-custom-skill.md`
 
 Creates a new **Cursor Agent Skill**: a directory under **`.github/skills/<name>/`** with **`SKILL.md`** and optional `references/`, `assets/`, `examples/`. Register the skills root in **Cursor → Agent Skills** so the agent can load it.
 
 ## Usage
 
 ```text
-@website/docs/prompts/public/eversis-create-custom-skill.md
+@eversis-create-custom-skill
 <skill requirements or description>
 ```
 

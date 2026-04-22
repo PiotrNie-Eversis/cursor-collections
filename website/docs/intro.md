@@ -21,7 +21,7 @@ According to Gartner, only **10% of software engineers** see meaningful producti
 | Capability | Count | Description |
 |---|---|---|
 | 🧑‍💻 **Specialized roles** | 12 | Business Analyst, Context Engineer, Architect, Engineering Manager, Software Engineer, Prompt Engineer, Code Reviewer, UI Reviewer, E2E Engineer, DevOps Engineer, and framework customization (rules, skills, prompts) |
-| 💬 **Public prompts** | 12 | Attach `eversis-*.md` from `website/docs/prompts/public/` (e.g. analyze, implement, review, create-custom-*) |
+| 💬 **Public prompts** | 12 | Attach `eversis-*.md` from `.cursor/prompts/public/` (e.g. analyze, implement, review, create-custom-*) |
 | 🔧 **Delegation** | via `eversis-implement` | Engineering Manager pattern: research → plan → implementation with role rules and internal prompts |
 | 🧰 **Reusable skills** | 31 | Topic packages under `.github/skills/tsh-*/` — load as **Cursor Agent Skills** |
 | 🔌 **MCP integrations** | 11 | Atlassian, Figma Dev Mode, Context7, Playwright, Sequential Thinking, PDF Reader, AWS API, AWS Documentation, GCP Gcloud, GCP Observability, GCP Storage |

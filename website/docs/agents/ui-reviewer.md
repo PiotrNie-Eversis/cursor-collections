@@ -6,9 +6,9 @@ title: UI Reviewer
 # UI Reviewer Agent
 
 **Rule pack (canonical):** `.cursor/rules/eversis-role-ui-reviewer.mdc`  
-**Primary prompt:** `@website/docs/prompts/public/eversis-review-ui.md`
+**Primary prompt:** `@eversis-review-ui`
 
-The UI Reviewer performs **read-only** verification comparing implemented UI against **Figma** designs and reports differences. It can be run **directly** by a user (attach **`@website/docs/prompts/public/eversis-review-ui.md`**) or **during the UI implementation loop** with the [Software Engineer](./software-engineer). It does **not** fix product code.
+The UI Reviewer performs **read-only** verification comparing implemented UI against **Figma** designs and reports differences. It can be run **directly** by a user (attach **`@eversis-review-ui`**) or **during the UI implementation loop** with the [Software Engineer](./software-engineer). It does **not** fix product code.
 
 ## Responsibilities
 
@@ -35,7 +35,7 @@ The UI Reviewer performs **read-only** verification comparing implemented UI aga
 4. Produce a **PASS/FAIL** report with a difference table showing exact values.
 
 :::info Read-only
-The UI Reviewer never modifies code. It only reports differences so the [Software Engineer](./software-engineer) (via **`@website/docs/prompts/public/eversis-implement.md`** and UI internal prompts) can fix them. When called in a loop, each pass is independent.
+The UI Reviewer never modifies code. It only reports differences so the [Software Engineer](./software-engineer) (via **`@eversis-implement`** and UI internal prompts) can fix them. When called in a loop, each pass is independent.
 :::
 
 ## Tool Access
@@ -58,6 +58,6 @@ The UI Reviewer never modifies code. It only reports differences so the [Softwar
 
 After verification, the UI Reviewer can hand off to:
 
-- **Software Engineer** — **`@website/docs/prompts/public/eversis-implement.md`** (start UI implementation according to the plan).
-- **Software Engineer** — **`@website/docs/prompts/public/eversis-implement.md`** (implement UI fixes based on the verification report).
-- **Code Reviewer** — **`@website/docs/prompts/public/eversis-review.md`** (proceed to code review if PASS).
+- **Software Engineer** — **`@eversis-implement`** (start UI implementation according to the plan).
+- **Software Engineer** — **`@eversis-implement`** (implement UI fixes based on the verification report).
+- **Code Reviewer** — **`@eversis-review`** (proceed to code review if PASS).

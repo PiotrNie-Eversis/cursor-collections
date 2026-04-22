@@ -2,7 +2,7 @@
 
 This guide is the **authoritative** reference for using **Cursor** (rules, Agent mode, indexed docs, MCP, and terminal-backed verification) to run a structured **Ideate → Implement → Review** workflow. It is written so you can **reuse the same patterns in many repositories**; only the per-project stack file and optional wiki sync need customization.
 
-**Naming:** In this monorepo, user-facing and internal prompts use the **`eversis-`** prefix and live under **`website/docs/prompts/`**. Topic skill packages under **`.github/skills/tsh-*/`** keep the historical `tsh-` folder prefix; load them as **Cursor Agent Skills** from that path or a copy.
+**Naming:** In this monorepo, user-facing and internal prompts use the **`eversis-`** prefix and live under **`.cursor/prompts/`** (`public/` and `internal/`). Topic skill packages under **`.github/skills/tsh-*/`** keep the historical `tsh-` folder prefix; load them as **Cursor Agent Skills** from that path or a copy.
 
 **Background:** The workflow originated in [The Software House’s product engineering work](https://tsh.io) and an earlier [Copilot-oriented documentation set](https://copilot-collections.tsh.io/). **This repository is Cursor-only**; there is no second prompt tree under `.github/prompts/`.
 
@@ -10,7 +10,7 @@ This guide is the **authoritative** reference for using **Cursor** (rules, Agent
 
 ## Part A — Workflow (Ideate → Implement → Review)
 
-| Phase | Primary role (conceptual) | Cursor: attach this prompt (see `website/docs/prompts/public/`) | Legacy slash name (not used in Cursor) |
+| Phase | Primary role (conceptual) | Cursor: attach this prompt (see `.cursor/prompts/public/`) | Legacy slash name (not used in Cursor) |
 | --- | --- | --- | --- |
 | **Ideate** | Business Analyst | `eversis-analyze-materials.md` | `tsh-analyze-materials` |
 | **Implement** | Engineering Manager (orchestrates research → plan → code) | `eversis-implement.md` | `tsh-implement` |
@@ -46,8 +46,8 @@ flowchart LR
 
 ### How to run a prompt in Cursor
 
-1. **User-facing** prompt bodies live under **`website/docs/prompts/public/`** (e.g. `eversis-implement.md`). **Internal** (delegation) prompts live under **`website/docs/prompts/internal/`** (e.g. research, plan, implement-ui).
-2. In **Chat** or **Agent**, attach the file with `@` from the repo root, e.g. `@website/docs/prompts/public/eversis-implement.md`.
+1. **User-facing** prompt bodies live under **`.cursor/prompts/public/`** (e.g. `eversis-implement.md`). **Internal** (delegation) prompts live under **`.cursor/prompts/internal/`** (e.g. research, plan, implement-ui).
+2. In **Chat** or **Agent**, attach the file with `@` from the repo root, e.g. `@eversis-implement`.
 3. Attach context: ticket text, `@docs/specs/...`, `@docs/context/...`, and indexed **Docs** for your stack.
 4. Send a one-line instruction, e.g. “Execute this prompt for PROJ-123.”
 
@@ -57,19 +57,19 @@ Docusaurus may show a slash-style label (e.g. `/eversis-implement`); in the IDE,
 
 | Legacy name | Cursor prompt file in this repo |
 | --- | --- |
-| `tsh-analyze-materials` | `website/docs/prompts/public/eversis-analyze-materials.md` |
-| `tsh-implement` | `website/docs/prompts/public/eversis-implement.md` |
-| `tsh-review` | `website/docs/prompts/public/eversis-review.md` |
-| `tsh-review-ui` | `website/docs/prompts/public/eversis-review-ui.md` |
-| `tsh-review-codebase` | `website/docs/prompts/public/eversis-review-codebase.md` |
-| `tsh-audit-infrastructure` | `website/docs/prompts/public/eversis-audit-infrastructure.md` |
-| `tsh-analyze-aws-costs` | `website/docs/prompts/public/eversis-analyze-aws-costs.md` |
-| `tsh-analyze-gcp-costs` | `website/docs/prompts/public/eversis-analyze-gcp-costs.md` |
-| `tsh-create-custom-*` | `website/docs/prompts/public/eversis-create-custom-*.md` |
+| `tsh-analyze-materials` | `.cursor/prompts/public/eversis-analyze-materials.md` |
+| `tsh-implement` | `.cursor/prompts/public/eversis-implement.md` |
+| `tsh-review` | `.cursor/prompts/public/eversis-review.md` |
+| `tsh-review-ui` | `.cursor/prompts/public/eversis-review-ui.md` |
+| `tsh-review-codebase` | `.cursor/prompts/public/eversis-review-codebase.md` |
+| `tsh-audit-infrastructure` | `.cursor/prompts/public/eversis-audit-infrastructure.md` |
+| `tsh-analyze-aws-costs` | `.cursor/prompts/public/eversis-analyze-aws-costs.md` |
+| `tsh-analyze-gcp-costs` | `.cursor/prompts/public/eversis-analyze-gcp-costs.md` |
+| `tsh-create-custom-*` | `.cursor/prompts/public/eversis-create-custom-*.md` |
 
 **Deprecated flows** (no separate public file; behavior folded into ideate): old `tsh-clean-transcript` / `tsh-create-jira-tasks` style steps — use **`eversis-analyze-materials`** for the full ideate flow (see [CHANGELOG.md](../CHANGELOG.md)).
 
-**Internal prompts** (e.g. `eversis-implement-ui`, `eversis-deploy-kubernetes`) are referenced **from** public prompts such as `eversis-implement.md` and live only under **`website/docs/prompts/internal/`** (this repo has **no** `.github/internal-prompts/` mirror).
+**Internal prompts** (e.g. `eversis-implement-ui`, `eversis-deploy-kubernetes`) are referenced **from** public prompts such as `eversis-implement.md` and live only under **`.cursor/prompts/internal/`** (this repo has **no** `.github/internal-prompts/` mirror).
 
 ### Roles (concept → Cursor rules)
 
@@ -94,7 +94,7 @@ Use the same MCP servers (Atlassian, Figma, Playwright, Context7, etc.) in **Cur
 
 ## Workflow variants (playbooks)
 
-Use the same variants as the [README](../README.md); only **which prompts you attach** and **artifact paths** change. Below, **“label”** means the Docusaurus slug / filename stem — always attach the actual **`website/docs/prompts/public/eversis-*.md` file**.
+Use the same variants as the [README](../README.md); only **which prompts you attach** and **artifact paths** change. Below, **“label”** means the Docusaurus slug / filename stem — always attach the actual **`.cursor/prompts/public/eversis-*.md` file**.
 
 ### Standard flow (backend / full-stack)
 
@@ -129,20 +129,23 @@ Use a layout optimized for **RAG + Agent** in Cursor:
 ├── AGENTS.md                      # Optional: pointers to this doc and rule layout
 ├── .cursorignore                  # Exclude secrets from indexing (like .gitignore)
 ├── .cursor/
-│   └── rules/
-│       ├── eversis-agent-core.mdc           # Always-on behaviors + relay workflow
-│       ├── eversis-testing-and-terminal.mdc # Lint / test discipline
-│       ├── eversis-accessibility.mdc        # UI-facing globs (optional)
-│       ├── eversis-project-stack.mdc        # EDIT PER PROJECT: stack + conventions
-│       ├── eversis-engineering-manager.mdc  # Optional: attach for eversis-implement
-│       └── eversis-code-reviewer.mdc        # Optional: attach for eversis-review
+│   ├── rules/
+│   │   ├── eversis-agent-core.mdc           # Always-on behaviors + relay workflow
+│   │   ├── eversis-testing-and-terminal.mdc # Lint / test discipline
+│   │   ├── eversis-accessibility.mdc        # UI-facing globs (optional)
+│   │   ├── eversis-project-stack.mdc        # EDIT PER PROJECT: stack + conventions
+│   │   ├── eversis-engineering-manager.mdc  # Optional: attach for eversis-implement
+│   │   └── eversis-code-reviewer.mdc        # Optional: attach for eversis-review
+│   └── prompts/                   # Canonical eversis-*.md (attach in Cursor with @)
+│       ├── public/                # User-facing prompts
+│       └── internal/              # Delegation / orchestration prompts
 ├── documentation/
 │   └── cursor-collection.md       # This framework (can be symlinked or copied)
-├── website/                       # Optional: only if you ship a docs site
+├── website/                       # Optional: Docusaurus site; sync prompts here before build
 │   └── docs/
 │       └── prompts/
-│           ├── public/            # eversis-*.md user-facing (catalog + attachable bodies)
-│           └── internal/          # composed / EM-delegated
+│           ├── public/            # generated copy of eversis-*.md (gitignored in this repo)
+│           └── internal/
 ├── docs/
 │   ├── specs/                     # *.spec.md — spec-driven requirements
 │   └── context/                   # Internal knowledge (wiki sync, architecture dumps)
@@ -151,7 +154,7 @@ Use a layout optimized for **RAG + Agent** in Cursor:
 └── .gitlab-ci.yml                 # Or .github/workflows/ — optional scheduled sync
 ```
 
-**This monorepo:** The **canonical** prompt library is [website/docs/prompts/](../website/docs/prompts/) — `public/` and `internal/` **`eversis-*.md`** files are both the **Docusaurus** catalog (if you build the site) and the **attachable** prompt bodies (`@website/docs/prompts/...` in Chat or Agent). Skills live in [`.github/skills/`](../.github/skills/).
+**This monorepo:** The **canonical** prompt library is **`.cursor/prompts/`** (`public/` and `internal/` **`eversis-*.md`**). Attach in Chat or Agent with **`@eversis-*`** or **`@.cursor/prompts/...`**. If you build the **Docusaurus** site, run **`sync-prompts`** before `docusaurus build` (this repo wires it in `website`’s `prestart` / `prebuild`) so copies land under `website/docs/prompts/` for the catalog; those copies are **gitignored** here. Skills live in [`.github/skills/`](../.github/skills/). Human-readable catalog: [website/docs/prompts/overview.md](../website/docs/prompts/overview.md) (after a local docs build, or read the sources under `.cursor/prompts/` on GitHub).
 
 **Rules format:** Prefer **`.cursor/rules/*.mdc`** with YAML frontmatter (`description`, `globs`, `alwaysApply`) instead of a single giant `.cursorrules` file. Keep each rule **short and single-purpose**; see the bundled examples under [`.cursor/rules/`](../.cursor/rules/).
 
@@ -162,7 +165,7 @@ Use a layout optimized for **RAG + Agent** in Cursor:
 ## Part C — Per-project bootstrap checklist
 
 - [ ] Copy `.cursor/rules/` templates; **edit `eversis-project-stack.mdc`** for this repo’s stack and quality commands.
-- [ ] Ensure **`eversis-*.md`** prompts exist under `website/docs/prompts/public/` (and `internal/` as needed) — in **this** repository they are already present; in a **new** repo, start from the files you need (analyze / implement / review) and adapt.
+- [ ] Ensure **`eversis-*.md`** prompts exist under `.cursor/prompts/public/` (and `internal/` as needed) — in **this** repository they are already present; in a **new** repo, start from the files you need (analyze / implement / review) and adapt.
 - [ ] Add `docs/specs/` and `docs/context/`; seed context with architecture or run wiki sync.
 - [ ] Configure **MCP** for the workflow variants you use (Jira, Figma, Playwright, …).
 - [ ] Add **`.cursorignore`**: `.env*`, keys, certificates, large secrets, vendor dumps you do not want indexed.
@@ -276,7 +279,7 @@ The following is **one** filled-in profile (Earth observation / GIS web). Other 
 ## Spec-driven development (under **Implement**)
 
 1. Author `docs/specs/<feature>.spec.md` with acceptance criteria and links to context.
-2. In Agent, attach `@<feature>.spec.md`, relevant `@docs/context/`, and `@website/docs/prompts/public/eversis-implement.md`.
+2. In Agent, attach `@<feature>.spec.md`, relevant `@docs/context/`, and `@eversis-implement`.
 3. Ask for implementation **per** `.cursor/rules` and project stack.
 4. After code changes, run the repo’s **documented** quality commands; fix failures before handoff.
 5. Run **eversis-review** (attach `eversis-review.md` with the same spec and diff context).

@@ -9,14 +9,14 @@ upstream_agent: "eversis-architect"
 # eversis-review-codebase
 
 **Agent:** Architect  
-**File:** `website/docs/prompts/public/eversis-review-codebase.md`
+**File:** `.cursor/prompts/public/eversis-review-codebase.md`
 
 Performs a comprehensive code quality analysis covering dead code, duplications, and improvement opportunities.
 
 ## Usage
 
 ```text
-@website/docs/prompts/public/eversis-review-codebase.md
+@eversis-review-codebase
 (no arguments — optional focus in chat)
 ```
 

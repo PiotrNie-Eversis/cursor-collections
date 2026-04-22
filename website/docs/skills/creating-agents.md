@@ -12,7 +12,7 @@ Build **Cursor project rules** — **`.cursor/rules/eversis-*.mdc`** — that de
 
 ## Principles
 
-- **Separation of concerns** — Rules = stable role and boundaries; **skills** = HOW; **prompts** = runnable workflow under `website/docs/prompts/`.
+- **Separation of concerns** — Rules = stable role and boundaries; **skills** = HOW; **prompts** = runnable workflow under **`.cursor/prompts/`**.
 - **XML-style sections** — The underlying skill may still use XML-like tags in the **body** for structure; YAML frontmatter is for Cursor (`description`, `globs`, `alwaysApply`).
 
 ## Rule structure (typical)

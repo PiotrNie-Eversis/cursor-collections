@@ -8,5 +8,9 @@ website/build/
 website/.docusaurus/
 website/.cache-loader/
 website/node_modules/
+
+# Generated from .cursor/prompts/ (run npm run sync-prompts or website start/build)
+website/docs/prompts/public/eversis-*.md
+website/docs/prompts/internal/eversis-*.md
 .vercel
 .env*.local

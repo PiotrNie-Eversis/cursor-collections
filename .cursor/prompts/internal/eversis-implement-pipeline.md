@@ -13,14 +13,14 @@ Not invoked directly by users. To trigger CI/CD pipeline implementation, use the
 :::
 
 **Agent:** DevOps Engineer
-**File:** `website/docs/prompts/internal/eversis-implement-pipeline.md`
+**File:** `.cursor/prompts/internal/eversis-implement-pipeline.md`
 
 Creates or modifies CI/CD pipelines with proper deployment stages, environment protection, and secure authentication.
 
 ## How It’s Triggered
 
 ```text
-@website/docs/prompts/public/eversis-implement.md
+@eversis-implement
 <JIRA_ID or task description>
 ```
 
@@ -138,8 +138,8 @@ Skip for: adding test stages, fixing pipeline bugs, updating versions, adding ca
 ## Scope
 
 **Does NOT handle** (redirect to):
-- Infrastructure provisioning → `@website/docs/prompts/internal/eversis-implement-terraform.md`
-- Kubernetes deployment configuration → `@website/docs/prompts/internal/eversis-deploy-kubernetes.md`
-- Monitoring and alerting → `@website/docs/prompts/internal/eversis-implement-observability.md`
+- Infrastructure provisioning → `@eversis-implement-terraform`
+- Kubernetes deployment configuration → `@eversis-deploy-kubernetes`
+- Monitoring and alerting → `@eversis-implement-observability`
 
 <!-- Eversis port; upstream: eversis-implement-pipeline -->

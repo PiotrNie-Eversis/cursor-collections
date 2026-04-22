@@ -9,14 +9,14 @@ prompt_description: "Create new Cursor role packaging — typically .cursor/rule
 # eversis-create-custom-agent
 
 **Role:** [Cursor customization orchestrator](../../agents/cursor-customization-orchestrator) (workflow pattern)  
-**File:** `website/docs/prompts/public/eversis-create-custom-agent.md`
+**File:** `.cursor/prompts/public/eversis-create-custom-agent.md`
 
 Creates **Cursor-native role behavior**: prefer **`.cursor/rules/eversis-*.mdc`** (YAML frontmatter, scoped globs) plus optional **documentation** under `website/docs/agents/` in this monorepo. This repository does **not** ship GitHub Copilot `*.agent.md` files.
 
 ## Usage
 
 ```text
-@website/docs/prompts/public/eversis-create-custom-agent.md
+@eversis-create-custom-agent
 <role requirements or description>
 ```
 

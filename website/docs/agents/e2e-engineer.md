@@ -6,7 +6,7 @@ title: E2E Engineer
 # E2E Engineer Agent
 
 **Rule pack (canonical):** `.cursor/rules/eversis-role-e2e-engineer.mdc`  
-**Delegated prompt:** `website/docs/prompts/internal/eversis-implement-e2e.md` (via **`@website/docs/prompts/public/eversis-implement.md`**)
+**Delegated prompt:** `.cursor/prompts/internal/eversis-implement-e2e.md` (via **`@eversis-implement`**)
 
 The E2E Engineer creates, maintains, and debugs end-to-end tests using **Playwright**. It produces reliable, maintainable, and meaningful test suites with accessibility-first locators, stable flows, and CI-ready runs.
 
@@ -60,4 +60,4 @@ The E2E Engineer creates, maintains, and debugs end-to-end tests using **Playwri
 
 After discovering critical bugs, the E2E Engineer can hand off to:
 
-- **Software Engineer** — **`@website/docs/prompts/public/eversis-implement.md`** (fix the bug discovered during E2E testing).
+- **Software Engineer** — **`@eversis-implement`** (fix the bug discovered during E2E testing).

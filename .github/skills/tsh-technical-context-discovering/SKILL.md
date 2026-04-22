@@ -33,7 +33,7 @@ Discovery progress:
 - Read **`AGENTS.md`** at the repository root (if present).
 - List **`.cursor/rules/*.mdc`** and read those with `alwaysApply: true` or globs matching the files you will edit.
 - Optionally read **`RULE.md`** in subfolders if your team uses scoped rule files.
-- For this monorepo’s framework, also check **`website/docs/prompts/public/eversis-*.md`** when the task is prompt-driven.
+- For this monorepo’s framework, also check **`.cursor/prompts/public/eversis-*.md`** when the task is prompt-driven.
 
 If these exist, they are the **primary source of truth** for:
 

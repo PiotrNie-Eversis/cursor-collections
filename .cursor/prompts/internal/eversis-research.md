@@ -13,14 +13,14 @@ Not invoked directly by users. To trigger research, use the [eversis-implement](
 :::
 
 **Agent:** Context Engineer  
-**File:** `website/docs/prompts/internal/eversis-research.md`
+**File:** `.cursor/prompts/internal/eversis-research.md`
 
 Prepares a comprehensive context document for a task from a context engineering perspective.
 
 ## How It's Triggered
 
 ```text
-@website/docs/prompts/public/eversis-implement.md
+@eversis-implement
 <JIRA_ID or task description>
 ```
 

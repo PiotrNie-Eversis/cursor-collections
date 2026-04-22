@@ -27,7 +27,7 @@ export default function WorkflowShowcase(): React.JSX.Element {
         Every step requires your review. The framework provides structure —
         judgment stays with your team. In Cursor, attach each <code>.md</code>{' '}
         prompt using <code>@</code> in chat or Agent (for example{' '}
-        <code>@website/docs/prompts/public/eversis-implement.md</code>); they are
+        <code>@eversis-implement</code>); they are
         not built-in <code>/</code> slash commands.
       </p>
     </section>

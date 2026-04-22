@@ -13,14 +13,14 @@ Not invoked directly by users. To trigger prompt engineering, use the [eversis-i
 :::
 
 **Agent:** Prompt Engineer  
-**File:** `website/docs/prompts/internal/eversis-engineer-prompt.md`
+**File:** `.cursor/prompts/internal/eversis-engineer-prompt.md`
 
 Designs, optimizes, audits, or reviews LLM application prompts for quality, security, and consistency.
 
 ## How It's Triggered
 
 ```text
-@website/docs/prompts/public/eversis-implement.md
+@eversis-implement
 <JIRA_ID or task description>
 ```
 

@@ -13,14 +13,14 @@ Not invoked directly by users. To trigger implementation planning, use the [ever
 :::
 
 **Agent:** Architect  
-**File:** `website/docs/prompts/internal/eversis-plan.md`
+**File:** `.cursor/prompts/internal/eversis-plan.md`
 
 Creates a detailed, phased implementation plan from the research context.
 
 ## How It's Triggered
 
 ```text
-@website/docs/prompts/public/eversis-implement.md
+@eversis-implement
 <JIRA_ID or task description>
 ```
 

@@ -12,7 +12,7 @@ Technology-agnostic patterns for designing, optimizing, and securing LLM applica
 <scope>
 This skill covers prompts consumed by LLM APIs at runtime — system prompts, user prompt templates, few-shot examples, RAG context injection templates, agent tool-calling instructions, and classification/extraction prompts.
 
-It does NOT cover this framework’s packaging files (`website/docs/prompts/eversis-*.md`, `.cursor/rules`, `SKILL.md` authoring). Those belong to the `tsh-creating-prompts`, `tsh-creating-agents`, and `tsh-creating-skills` skills.
+It does NOT cover this framework’s packaging files (`.cursor/prompts/**/eversis-*.md`, `.cursor/rules`, `SKILL.md` authoring). Those belong to the `tsh-creating-prompts`, `tsh-creating-agents`, and `tsh-creating-skills` skills.
 </scope>
 
 <determinism>
