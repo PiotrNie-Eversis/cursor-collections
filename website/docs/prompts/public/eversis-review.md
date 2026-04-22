@@ -6,7 +6,7 @@ prompt_role: "Code reviewer"
 prompt_description: "Check the implementation against the plan and feature context."
 upstream_agent: "eversis-code-reviewer"
 ---
-# /eversis-review
+# eversis-review
 
 **Agent:** Code Reviewer  
 **File:** `website/docs/prompts/public/eversis-review.md`

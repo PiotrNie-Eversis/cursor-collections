@@ -6,10 +6,10 @@ prompt_role: "Prompt engineer"
 prompt_description: "Design, optimize, audit, or review LLM application prompts for quality, security, and consistency."
 upstream_agent: "eversis-prompt-engineer"
 ---
-# /eversis-engineer-prompt
+# eversis-engineer-prompt
 
 :::info
-Not invoked directly by users. To trigger prompt engineering, use [`/eversis-implement`](../public/implement) — the [Engineering Manager](../../agents/engineering-manager) will automatically delegate to the [Prompt Engineer](../../agents/prompt-engineer).
+Not invoked directly by users. To trigger prompt engineering, use the [eversis-implement](../public/implement) public prompt — the [Engineering Manager](../../agents/engineering-manager) will automatically delegate to the [Prompt Engineer](../../agents/prompt-engineer).
 :::
 
 **Agent:** Prompt Engineer  

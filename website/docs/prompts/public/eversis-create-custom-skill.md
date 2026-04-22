@@ -5,7 +5,7 @@ slug: create-custom-skill
 prompt_role: "Cursor customization orchestrator"
 prompt_description: "Create a new Agent Skill: SKILL.md under .github/skills/ with gerund-style folder name. Follows tsh-creating-skills."
 ---
-# /eversis-create-custom-skill
+# eversis-create-custom-skill
 
 **Role:** [Cursor customization orchestrator](../../agents/cursor-customization-orchestrator)  
 **File:** `website/docs/prompts/public/eversis-create-custom-skill.md`

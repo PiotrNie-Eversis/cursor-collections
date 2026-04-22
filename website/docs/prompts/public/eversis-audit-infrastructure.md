@@ -6,7 +6,7 @@ prompt_role: "DevOps engineer"
 prompt_description: "Audit infrastructure for security gaps, cost waste, and best practices violations."
 upstream_agent: "eversis-devops-engineer"
 ---
-# /eversis-audit-infrastructure
+# eversis-audit-infrastructure
 
 **Agent:** DevOps Engineer
 **File:** `website/docs/prompts/public/eversis-audit-infrastructure.md`

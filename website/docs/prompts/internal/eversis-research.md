@@ -6,10 +6,10 @@ prompt_role: "Context engineer"
 prompt_description: "Prepare a context for a specific task or feature from a context engineering perspective."
 upstream_agent: "eversis-context-engineer"
 ---
-# /eversis-research
+# eversis-research
 
 :::info
-Not invoked directly by users. To trigger research, use [`/eversis-implement`](../public/implement) — the [Engineering Manager](../../agents/engineering-manager) will automatically delegate to the [Context Engineer](../../agents/context-engineer) when research is needed.
+Not invoked directly by users. To trigger research, use the [eversis-implement](../public/implement) public prompt — the [Engineering Manager](../../agents/engineering-manager) will automatically delegate to the [Context Engineer](../../agents/context-engineer) when research is needed.
 :::
 
 **Agent:** Context Engineer  

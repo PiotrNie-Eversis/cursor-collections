@@ -6,10 +6,10 @@ prompt_role: "Architect"
 prompt_description: "Prepare detailed implementation plan for given feature."
 upstream_agent: "eversis-architect"
 ---
-# /eversis-plan
+# eversis-plan
 
 :::info
-Not invoked directly by users. To trigger implementation planning, use [`/eversis-implement`](../public/implement) — the [Engineering Manager](../../agents/engineering-manager) will automatically delegate to the [Architect](../../agents/architect) when a plan is needed.
+Not invoked directly by users. To trigger implementation planning, use the [eversis-implement](../public/implement) public prompt — the [Engineering Manager](../../agents/engineering-manager) will automatically delegate to the [Architect](../../agents/architect) when a plan is needed.
 :::
 
 **Agent:** Architect  

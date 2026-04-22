@@ -6,7 +6,7 @@ prompt_role: "Architect"
 prompt_description: "Perform a comprehensive code quality analysis: dead code, duplications, and improvement opportunities."
 upstream_agent: "eversis-architect"
 ---
-# /eversis-review-codebase
+# eversis-review-codebase
 
 **Agent:** Architect  
 **File:** `website/docs/prompts/public/eversis-review-codebase.md`

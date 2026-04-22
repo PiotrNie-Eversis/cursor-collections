@@ -6,7 +6,7 @@ prompt_role: "DevOps engineer"
 prompt_description: "Perform a comprehensive AWS cost optimization and tagging compliance audit — checks IaC code first, then validates everything against live infrastructure via API."
 upstream_agent: "eversis-devops-engineer"
 ---
-# /eversis-analyze-aws-costs
+# eversis-analyze-aws-costs
 
 **Agent:** DevOps Engineer
 **File:** `website/docs/prompts/public/eversis-analyze-aws-costs.md`

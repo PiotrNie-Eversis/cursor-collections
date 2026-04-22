@@ -7,7 +7,7 @@ export default function SdlcDiagram(): React.JSX.Element {
     <div
       className={styles.wrapper}
       role="img"
-      aria-label="SDLC workflow diagram showing the flow from Human Intent through Product Ideation, Development, and Quality phases to delivery"
+      aria-label="SDLC workflow: attach the eversis Markdown prompts in Cursor with @ to the paths under website/docs/prompts/public — eversis-analyze-materials, eversis-implement, eversis-review, eversis-review-ui — not as slash chat commands"
     >
       <div className={styles.diagram}>
         {/* Human Intent */}
@@ -31,7 +31,10 @@ export default function SdlcDiagram(): React.JSX.Element {
           </div>
           <div className={styles.card}>
             <div className={styles.cardCmd}>
-              <strong className={styles.cardCmdStrong}>/eversis-analyze-materials</strong>
+              <div className={styles.cardPromptName}>eversis-analyze-materials</div>
+              <div className={styles.cardAttachPath}>
+                @website/docs/prompts/public/eversis-analyze-materials.md
+              </div>
             </div>
             <div className={styles.cardDesc}>
               Clean transcript → extract tasks → produce Jira-ready stories with
@@ -48,8 +51,22 @@ export default function SdlcDiagram(): React.JSX.Element {
           </div>
           <div className={styles.card}>
             <div className={styles.cardCmd}>
-              <strong className={styles.cardCmdStrong}>/eversis-implement</strong>
-              <span style={{fontSize: '0.7rem', opacity: 0.7, marginLeft: '0.5rem'}}>Engineering Manager</span>
+              <div className={styles.cardPromptName}>
+                eversis-implement
+                <span
+                  style={{
+                    fontSize: '0.7rem',
+                    opacity: 0.75,
+                    marginLeft: '0.5rem',
+                    fontWeight: 500,
+                  }}
+                >
+                  Engineering Manager
+                </span>
+              </div>
+              <div className={styles.cardAttachPath}>
+                @website/docs/prompts/public/eversis-implement.md
+              </div>
             </div>
             <div className={styles.cardDesc}>
               Orchestrates the full cycle — research, planning, and
@@ -126,7 +143,10 @@ export default function SdlcDiagram(): React.JSX.Element {
           <div className={styles.grid2}>
             <div className={styles.card}>
               <div className={styles.cardCmd}>
-                <strong className={styles.cardCmdStrong}>/eversis-review</strong>
+                <div className={styles.cardPromptName}>eversis-review</div>
+                <div className={styles.cardAttachPath}>
+                  @website/docs/prompts/public/eversis-review.md
+                </div>
               </div>
               <div className={styles.cardDesc}>
                 PASS / BLOCKER / SUGGESTION — security, perf, coding standards
@@ -134,7 +154,10 @@ export default function SdlcDiagram(): React.JSX.Element {
             </div>
             <div className={styles.card}>
               <div className={styles.cardCmd}>
-                <strong className={styles.cardCmdStrong}>/eversis-review-ui</strong>
+                <div className={styles.cardPromptName}>eversis-review-ui</div>
+                <div className={styles.cardAttachPath}>
+                  @website/docs/prompts/public/eversis-review-ui.md
+                </div>
               </div>
               <div className={styles.cardDesc}>
                 Playwright vs Figma · up to 5 auto-iterations

@@ -6,10 +6,10 @@ prompt_role: "DevOps engineer"
 prompt_description: "Create Kubernetes deployments, Helm charts, and configure workload resources."
 upstream_agent: "eversis-devops-engineer"
 ---
-# /eversis-deploy-kubernetes
+# eversis-deploy-kubernetes
 
 :::info
-Not invoked directly by users. To trigger Kubernetes deployments, use [`/eversis-implement`](../public/implement) — the [Engineering Manager](../../agents/engineering-manager) will automatically delegate to the [DevOps Engineer](../../agents/devops-engineer).
+Not invoked directly by users. To trigger Kubernetes deployments, use the [eversis-implement](../public/implement) public prompt — the [Engineering Manager](../../agents/engineering-manager) will automatically delegate to the [DevOps Engineer](../../agents/devops-engineer).
 :::
 
 **Agent:** DevOps Engineer

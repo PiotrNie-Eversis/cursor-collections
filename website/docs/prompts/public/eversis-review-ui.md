@@ -6,7 +6,7 @@ prompt_role: "UI reviewer"
 prompt_description: "Single-pass UI verification: compare implementation against Figma and report differences."
 upstream_agent: "eversis-ui-reviewer"
 ---
-# /eversis-review-ui
+# eversis-review-ui
 
 **Agent:** UI Reviewer  
 **File:** `website/docs/prompts/public/eversis-review-ui.md`
@@ -15,7 +15,7 @@ Performs a single-pass, read-only verification comparing the implemented UI agai
 
 ## Usage
 
-Called automatically by `/eversis-implement` (via the internal UI prompt) in a verification loop. Can also be invoked manually:
+Called automatically by the [eversis-implement](./implement) workflow (via the internal UI prompt) in a verification loop. Can also be invoked manually (attach the prompt below with `@`):
 
 ```text
 @website/docs/prompts/public/eversis-review-ui.md

@@ -6,10 +6,10 @@ prompt_role: "DevOps engineer"
 prompt_description: "Implement observability solutions including metrics, logs, traces, and alerting."
 upstream_agent: "eversis-devops-engineer"
 ---
-# /eversis-implement-observability
+# eversis-implement-observability
 
 :::info
-Not invoked directly by users. To trigger observability implementation, use [`/eversis-implement`](../public/implement) — the [Engineering Manager](../../agents/engineering-manager) will automatically delegate to the [DevOps Engineer](../../agents/devops-engineer).
+Not invoked directly by users. To trigger observability implementation, use the [eversis-implement](../public/implement) public prompt — the [Engineering Manager](../../agents/engineering-manager) will automatically delegate to the [DevOps Engineer](../../agents/devops-engineer).
 :::
 
 **Agent:** DevOps Engineer

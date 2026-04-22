@@ -5,7 +5,7 @@ title: Prompts Overview
 
 # Prompts Overview
 
-This framework includes **12 public prompts** — Markdown workflow definitions for **Cursor** (Chat or Agent). They live under `website/docs/prompts/public/` as `eversis-*.md` files. **Attach** the file with `@` (for example `@website/docs/prompts/public/eversis-implement.md`); the `/eversis-*` labels in the table below match the docs site slugs, not a separate runtime.
+This framework includes **12 public prompts** — Markdown workflow definitions for **Cursor** (Chat or Agent). They live under `website/docs/prompts/public/` as `eversis-*.md` files. **Attach** the file with `@` (for example `@website/docs/prompts/public/eversis-implement.md`). The first column below lists each **prompt by file stem** (links go to the catalog page); it is not a native `/` chat command.
 
 ## How Prompts Work
 
@@ -23,40 +23,40 @@ These are the user-facing prompts. Doc paths use stable URLs (`slug`); files on 
 
 ### Product Ideation
 
-| Catalog label | Description |
+| Prompt | Description |
 | --- | --- |
-| [/eversis-analyze-materials](./public/analyze-materials) | Process workshop materials into Jira-ready epics and stories |
+| [eversis-analyze-materials](./public/analyze-materials) | Process workshop materials into Jira-ready epics and stories |
 
 ### Development
 
-| Catalog label | Description |
+| Prompt | Description |
 | --- | --- |
-| [/eversis-implement](./public/implement) | Orchestrate research → plan → implementation |
+| [eversis-implement](./public/implement) | Orchestrate research → plan → implementation |
 
 ### Quality
 
-| Catalog label | Description |
+| Prompt | Description |
 | --- | --- |
-| [/eversis-review](./public/review) | Review implementation against plan and standards |
-| [/eversis-review-ui](./public/review-ui) | Single-pass Figma vs implementation comparison |
-| [/eversis-review-codebase](./public/review-codebase) | Comprehensive code quality analysis |
+| [eversis-review](./public/review) | Review implementation against plan and standards |
+| [eversis-review-ui](./public/review-ui) | Single-pass Figma vs implementation comparison |
+| [eversis-review-codebase](./public/review-codebase) | Comprehensive code quality analysis |
 
 ### Framework customization
 
-| Catalog label | Description |
+| Prompt | Description |
 | --- | --- |
-| [/eversis-create-custom-agent](./public/create-custom-agent) | New Cursor rules / role documentation |
-| [/eversis-create-custom-skill](./public/create-custom-skill) | New Agent Skill (SKILL.md) |
-| [/eversis-create-custom-prompt](./public/create-custom-prompt) | New attachable prompt Markdown |
-| [/eversis-create-custom-instructions](./public/create-custom-instructions) | AGENTS.md and project instruction layout |
+| [eversis-create-custom-agent](./public/create-custom-agent) | New Cursor rules / role documentation |
+| [eversis-create-custom-skill](./public/create-custom-skill) | New Agent Skill (SKILL.md) |
+| [eversis-create-custom-prompt](./public/create-custom-prompt) | New attachable prompt Markdown |
+| [eversis-create-custom-instructions](./public/create-custom-instructions) | AGENTS.md and project instruction layout |
 
 ### Infrastructure and cost
 
-| Catalog label | Description |
+| Prompt | Description |
 | --- | --- |
-| [/eversis-audit-infrastructure](./public/audit-infrastructure) | Infra security and best-practices audit |
-| [/eversis-analyze-aws-costs](./public/analyze-aws-costs) | AWS cost and tagging compliance |
-| [/eversis-analyze-gcp-costs](./public/analyze-gcp-costs) | GCP cost and labeling compliance |
+| [eversis-audit-infrastructure](./public/audit-infrastructure) | Infra security and best-practices audit |
+| [eversis-analyze-aws-costs](./public/analyze-aws-costs) | AWS cost and tagging compliance |
+| [eversis-analyze-gcp-costs](./public/analyze-gcp-costs) | GCP cost and labeling compliance |
 
 ## Delegation via Implement
 

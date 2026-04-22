@@ -6,7 +6,7 @@ prompt_role: "Engineering Manager"
 prompt_description: "Implement feature according to the plan."
 upstream_agent: "eversis-engineering-manager"
 ---
-# /eversis-implement
+# eversis-implement
 
 **Agent:** Engineering Manager  
 **File:** `website/docs/prompts/public/eversis-implement.md`

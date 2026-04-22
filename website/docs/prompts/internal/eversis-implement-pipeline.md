@@ -6,10 +6,10 @@ prompt_role: "DevOps engineer"
 prompt_description: "Create or modify CI/CD pipelines with deployment stages and environment protection."
 upstream_agent: "eversis-devops-engineer"
 ---
-# /eversis-implement-pipeline
+# eversis-implement-pipeline
 
 :::info
-Not invoked directly by users. To trigger CI/CD pipeline implementation, use [`/eversis-implement`](../public/implement) — the [Engineering Manager](../../agents/engineering-manager) will automatically delegate to the [DevOps Engineer](../../agents/devops-engineer).
+Not invoked directly by users. To trigger CI/CD pipeline implementation, use the [eversis-implement](../public/implement) public prompt — the [Engineering Manager](../../agents/engineering-manager) will automatically delegate to the [DevOps Engineer](../../agents/devops-engineer).
 :::
 
 **Agent:** DevOps Engineer

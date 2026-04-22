@@ -6,10 +6,10 @@ prompt_role: "E2E engineer"
 prompt_description: "Create, maintain, and execute E2E tests for given feature or user story."
 upstream_agent: "eversis-e2e-engineer"
 ---
-# /eversis-implement-e2e
+# eversis-implement-e2e
 
 :::info
-Not invoked directly by users. To trigger E2E test implementation, use [`/eversis-implement`](../public/implement) — the [Engineering Manager](../../agents/engineering-manager) will automatically delegate to the [E2E Engineer](../../agents/e2e-engineer).
+Not invoked directly by users. To trigger E2E test implementation, use the [eversis-implement](../public/implement) public prompt — the [Engineering Manager](../../agents/engineering-manager) will automatically delegate to the [E2E Engineer](../../agents/e2e-engineer).
 :::
 
 **Agent:** E2E Engineer  

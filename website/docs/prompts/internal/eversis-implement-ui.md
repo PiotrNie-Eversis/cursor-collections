@@ -6,10 +6,10 @@ prompt_role: "Engineering Manager"
 prompt_description: "Implement UI feature according to the plan, orchestrating iterative Figma verification until pixel-perfect."
 upstream_agent: "eversis-engineering-manager"
 ---
-# /eversis-implement-ui
+# eversis-implement-ui
 
 :::info
-Not invoked directly by users. The UI implementation workflow is triggered via [`/eversis-implement`](../public/implement) — the [Engineering Manager](../../agents/engineering-manager) uses this internal prompt to orchestrate UI tasks with Figma verification.
+Not invoked directly by users. The UI implementation workflow is triggered via the [eversis-implement](../public/implement) public prompt — the [Engineering Manager](../../agents/engineering-manager) uses this internal prompt to orchestrate UI tasks with Figma verification.
 :::
 
 **Agent:** Engineering Manager  
@@ -30,7 +30,7 @@ When the implementation plan contains UI tasks with Figma references, the Engine
 
 ## What It Does
 
-Everything from [`/eversis-implement`](../public/implement), plus:
+Everything from the [eversis-implement](../public/implement) public prompt, plus:
 
 1. **Extracts Figma URLs** from the research and plan files.
 2. **Confirms dev server URL** with the user before the first verification.
@@ -81,7 +81,7 @@ Stops the loop and prepares an escalation report with:
 
 ## Output
 
-Everything from `/eversis-implement`, plus:
+Everything from `eversis-implement` (the public prompt), plus:
 
 - UI Verification Summary listing verified components, iterations per component, design gaps, and deviations with rationale.
 

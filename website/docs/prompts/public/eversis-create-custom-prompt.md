@@ -5,7 +5,7 @@ slug: create-custom-prompt
 prompt_role: "Cursor customization orchestrator"
 prompt_description: "Create a new attachable prompt as website/docs/prompts/public|internal/eversis-*.md with Docusaurus frontmatter. Analyzes existing prompts for patterns and validates using tsh-creating-prompts."
 ---
-# /eversis-create-custom-prompt
+# eversis-create-custom-prompt
 
 **Role:** [Cursor customization orchestrator](../../agents/cursor-customization-orchestrator)  
 **File:** `website/docs/prompts/public/eversis-create-custom-prompt.md`

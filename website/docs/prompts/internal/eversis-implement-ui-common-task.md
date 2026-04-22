@@ -6,10 +6,10 @@ prompt_role: "Software engineer"
 prompt_description: "Implement UI feature according to the plan with frontend-specific setup and design reference handling."
 upstream_agent: "eversis-software-engineer"
 ---
-# /eversis-implement-ui-common-task
+# eversis-implement-ui-common-task
 
 :::info
-Not invoked directly by users. To trigger UI implementation, use [`/eversis-implement`](../public/implement) — the [Engineering Manager](../../agents/engineering-manager) will automatically delegate to the [Software Engineer](../../agents/software-engineer) via the internal [`eversis-implement-ui`](./implement-ui) prompt.
+Not invoked directly by users. To trigger UI implementation, use the [eversis-implement](../public/implement) public prompt — the [Engineering Manager](../../agents/engineering-manager) will automatically delegate to the [Software Engineer](../../agents/software-engineer) via the internal [`eversis-implement-ui`](./implement-ui) prompt.
 :::
 
 **Agent:** Software Engineer
@@ -26,7 +26,7 @@ Extends the standard implementation workflow with UI-specific behaviors — Figm
 
 In **Cursor**, attach the **Implement** prompt (`eversis-implement`) from the path above; the Engineering Manager delegates to this internal prompt when the workflow requires it.
 
-The Engineering Manager identifies UI tasks in the plan and delegates them to the Software Engineer via the internal `/eversis-implement-ui` prompt, which passes Figma design context.
+The Engineering Manager identifies UI tasks in the plan and delegates them to the Software Engineer via the internal `eversis-implement-ui` prompt, which passes Figma design context.
 
 ## What It Does
 
@@ -44,7 +44,7 @@ The Engineering Manager identifies UI tasks in the plan and delegates them to th
 
 ### 3. Verification
 
-- After implementation, the Engineering Manager triggers [`/eversis-review-ui`](../public/review-ui) via the UI Reviewer for automated Figma comparison.
+- After implementation, the Engineering Manager triggers the [eversis-review-ui](../public/review-ui) public prompt via the UI Reviewer for automated Figma comparison.
 - Mismatches are fixed and re-verified in a loop (up to 5 iterations).
 
 ## Skills Loaded

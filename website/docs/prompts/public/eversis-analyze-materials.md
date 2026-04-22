@@ -6,7 +6,7 @@ prompt_role: "Business analyst"
 prompt_description: "Process discovery workshop materials and create Jira-ready epics and user stories, or iterate on an existing Jira backlog."
 upstream_agent: "eversis-business-analyst"
 ---
-# /eversis-analyze-materials
+# eversis-analyze-materials
 
 **Agent:** Business Analyst  
 **File:** `website/docs/prompts/public/eversis-analyze-materials.md`

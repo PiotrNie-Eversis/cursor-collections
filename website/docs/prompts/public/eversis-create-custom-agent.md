@@ -6,7 +6,7 @@ prompt_role: "Cursor customization orchestrator"
 prompt_description: "Create new Cursor role packaging — typically .cursor/rules/eversis-*.mdc and optional agent docs. Researches existing rules, designs the role, and validates against the tsh-creating-agents skill."
 ---
 
-# /eversis-create-custom-agent
+# eversis-create-custom-agent
 
 **Role:** [Cursor customization orchestrator](../../agents/cursor-customization-orchestrator) (workflow pattern)  
 **File:** `website/docs/prompts/public/eversis-create-custom-agent.md`

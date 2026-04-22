@@ -6,7 +6,7 @@ prompt_role: "DevOps engineer"
 prompt_description: "Perform a comprehensive GCP cost optimization and labeling compliance audit — checks IaC code first, then validates everything against live infrastructure via API."
 upstream_agent: "eversis-devops-engineer"
 ---
-# /eversis-analyze-gcp-costs
+# eversis-analyze-gcp-costs
 
 **Agent:** DevOps Engineer
 **File:** `website/docs/prompts/public/eversis-analyze-gcp-costs.md`

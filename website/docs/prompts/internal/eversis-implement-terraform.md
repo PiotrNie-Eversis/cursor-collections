@@ -6,10 +6,10 @@ prompt_role: "DevOps engineer"
 prompt_description: "Create Terraform modules and provision cloud infrastructure safely."
 upstream_agent: "eversis-devops-engineer"
 ---
-# /eversis-implement-terraform
+# eversis-implement-terraform
 
 :::info
-Not invoked directly by users. To trigger Terraform implementation, use [`/eversis-implement`](../public/implement) — the [Engineering Manager](../../agents/engineering-manager) will automatically delegate to the [DevOps Engineer](../../agents/devops-engineer).
+Not invoked directly by users. To trigger Terraform implementation, use the [eversis-implement](../public/implement) public prompt — the [Engineering Manager](../../agents/engineering-manager) will automatically delegate to the [DevOps Engineer](../../agents/devops-engineer).
 :::
 
 **Agent:** DevOps Engineer

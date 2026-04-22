@@ -6,10 +6,10 @@ prompt_role: "Software engineer"
 prompt_description: "Implement common feature according to the plan."
 upstream_agent: "eversis-software-engineer"
 ---
-# /eversis-implement-common-task
+# eversis-implement-common-task
 
 :::info
-Not invoked directly by users. To trigger implementation, use [`/eversis-implement`](../public/implement) — the [Engineering Manager](../../agents/engineering-manager) will automatically delegate to the [Software Engineer](../../agents/software-engineer).
+Not invoked directly by users. To trigger implementation, use the [eversis-implement](../public/implement) public prompt — the [Engineering Manager](../../agents/engineering-manager) will automatically delegate to the [Software Engineer](../../agents/software-engineer).
 :::
 
 **Agent:** Software Engineer

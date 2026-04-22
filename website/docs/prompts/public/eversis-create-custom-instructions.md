@@ -6,7 +6,7 @@ prompt_role: "Cursor customization orchestrator"
 prompt_description: "Create or extend project instructions for Cursor: AGENTS.md, .cursor/rules, optional RULE.md. Follows tsh-creating-instructions."
 ---
 
-# /eversis-create-custom-instructions
+# eversis-create-custom-instructions
 
 **Role:** [Cursor customization orchestrator](../../agents/cursor-customization-orchestrator)  
 **File:** `website/docs/prompts/public/eversis-create-custom-instructions.md`
