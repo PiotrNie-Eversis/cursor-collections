@@ -48,8 +48,8 @@ flowchart LR
 
 Copilot **slash commands** do not exist in Cursor. Instead:
 
-1. Add user-facing prompt bodies under **`prompts/public/`** as Markdown files (same layout as Copilot Collections docs: `public` vs `internal`), e.g. `prompts/public/eversis-implement.md`.
-2. In **Chat** or **Agent**, attach the prompt with `@prompts/public/eversis-implement.md` (full path from repo root).
+1. User-facing prompt bodies live under **`website/docs/prompts/public/`** as Markdown files (same layout as Copilot Collections docs: `public` vs `internal`), e.g. `website/docs/prompts/public/eversis-implement.md`. Internal (orchestration-only) prompts live under **`website/docs/prompts/internal/`**.
+2. In **Chat** or **Agent**, attach the prompt with `@website/docs/prompts/public/eversis-implement.md` (full path from repo root).
 3. Attach context: ticket text, `@docs/specs/...`, `@docs/context/...`, and indexed **Docs** for your stack.
 4. Send a one-line instruction, e.g. “Execute this prompt for PROJ-123.”
 
@@ -61,24 +61,24 @@ Port the *content* of the upstream `.github/prompts/*.prompt.md` files into thes
 
 ### Prompts (public / user-facing)
 
-| Upstream (`/tsh-…`) | Cursor prompt file (suggested) |
-| ------------------- | ------------------------------ |
-| `/tsh-analyze-materials` | `prompts/public/eversis-analyze-materials.md` |
-| `/tsh-implement` | `prompts/public/eversis-implement.md` |
-| `/tsh-review` | `prompts/public/eversis-review.md` |
-| `/tsh-review-ui` | `prompts/public/eversis-review-ui.md` |
-| `/tsh-review-codebase` | `prompts/public/eversis-review-codebase.md` |
-| `/tsh-audit-infrastructure` | `prompts/public/eversis-audit-infrastructure.md` |
-| `/tsh-analyze-aws-costs` | `prompts/public/eversis-analyze-aws-costs.md` |
-| `/tsh-analyze-gcp-costs` | `prompts/public/eversis-analyze-gcp-costs.md` |
-| `/tsh-create-custom-agent` | `prompts/public/eversis-create-custom-agent.md` |
-| `/tsh-create-custom-skill` | `prompts/public/eversis-create-custom-skill.md` |
-| `/tsh-create-custom-prompt` | `prompts/public/eversis-create-custom-prompt.md` |
-| `/tsh-create-custom-instructions` | `prompts/public/eversis-create-custom-instructions.md` |
+| Upstream (`/tsh-…`) | Cursor prompt file (in this repo) |
+| ------------------- | --------------------------------- |
+| `/tsh-analyze-materials` | `website/docs/prompts/public/eversis-analyze-materials.md` |
+| `/tsh-implement` | `website/docs/prompts/public/eversis-implement.md` |
+| `/tsh-review` | `website/docs/prompts/public/eversis-review.md` |
+| `/tsh-review-ui` | `website/docs/prompts/public/eversis-review-ui.md` |
+| `/tsh-review-codebase` | `website/docs/prompts/public/eversis-review-codebase.md` |
+| `/tsh-audit-infrastructure` | `website/docs/prompts/public/eversis-audit-infrastructure.md` |
+| `/tsh-analyze-aws-costs` | `website/docs/prompts/public/eversis-analyze-aws-costs.md` |
+| `/tsh-analyze-gcp-costs` | `website/docs/prompts/public/eversis-analyze-gcp-costs.md` |
+| `/tsh-create-custom-agent` | `website/docs/prompts/public/eversis-create-custom-agent.md` |
+| `/tsh-create-custom-skill` | `website/docs/prompts/public/eversis-create-custom-skill.md` |
+| `/tsh-create-custom-prompt` | `website/docs/prompts/public/eversis-create-custom-prompt.md` |
+| `/tsh-create-custom-instructions` | `website/docs/prompts/public/eversis-create-custom-instructions.md` |
 
 **Deprecated upstream (no separate Cursor file):** `/tsh-clean-transcript` and `/tsh-create-jira-tasks` were removed from Copilot Collections; their behavior is covered by `/tsh-analyze-materials` (see [CHANGELOG.md](../CHANGELOG.md)). Use `eversis-analyze-materials` for the full ideate flow.
 
-Internal prompts (e.g. `tsh-implement-ui`, `tsh-deploy-kubernetes`) stay referenced **from** `prompts/public/eversis-implement.md` the same way they are composed upstream; store them under **`prompts/internal/`** (mirrors `.github/internal-prompts/`).
+Internal prompts (e.g. `tsh-implement-ui`, `tsh-deploy-kubernetes`) stay referenced **from** `website/docs/prompts/public/eversis-implement.md` the same way they are composed upstream; store them under **`website/docs/prompts/internal/`** (mirrors `.github/internal-prompts/`).
 
 ### Agents (Copilot `.agent.md` → Cursor)
 
@@ -154,9 +154,11 @@ Replace Copilot-only locations (e.g. `.github/copilot-instructions.md`) with a l
 │       └── eversis-code-reviewer.mdc        # Optional: attach for eversis-review
 ├── documentation/
 │   └── cursor-collection.md       # This framework (can be symlinked or copied)
-├── prompts/
-│   ├── public/                    # eversis-*.md user-facing (port from .github/prompts/)
-│   └── internal/                  # composed / EM-delegated (port from .github/internal-prompts/)
+├── website/
+│   └── docs/
+│       └── prompts/
+│           ├── public/            # eversis-*.md user-facing (catalog + attachable bodies)
+│           └── internal/          # composed / EM-delegated
 ├── docs/
 │   ├── specs/                     # *.spec.md — spec-driven requirements
 │   └── context/                   # Internal knowledge (wiki sync, architecture dumps)
@@ -165,7 +167,7 @@ Replace Copilot-only locations (e.g. `.github/copilot-instructions.md`) with a l
 └── .gitlab-ci.yml                 # Or .github/workflows/ — optional scheduled sync
 ```
 
-**This repository:** The **root** `prompts/public/` and `prompts/internal/` tree is the **Cursor** copy (Eversis-prefixed). [website/docs/prompts/](../website/docs/prompts/) remains the **Docusaurus** documentation site for upstream Copilot slash commands (`/tsh-…`); it may lag the root port.
+**This repository:** The **canonical** Cursor prompt library is [website/docs/prompts/](../website/docs/prompts/) — `public/` and `internal/` **`eversis-*.md`** files are both the **Docusaurus** catalog and the **attachable** prompt bodies (use `@website/docs/prompts/...` in Chat or Agent).
 
 **Rules format:** Prefer **`.cursor/rules/*.mdc`** with YAML frontmatter (`description`, `globs`, `alwaysApply`) instead of a single giant `.cursorrules` file. Keep each rule **short and single-purpose**; see the bundled examples under [`.cursor/rules/`](../.cursor/rules/).
 
@@ -176,7 +178,7 @@ Replace Copilot-only locations (e.g. `.github/copilot-instructions.md`) with a l
 ## Part C — Per-project bootstrap checklist
 
 - [ ] Copy `.cursor/rules/` templates; **edit `eversis-project-stack.mdc`** for this repo’s stack and quality commands.
-- [ ] Create **`prompts/public/`** (and **`prompts/internal/`** as needed) and port critical `tsh-*` prompts to `eversis-*.md` (start with analyze / implement / review).
+- [ ] Create **`website/docs/prompts/public/`** (and **`website/docs/prompts/internal/`** as needed) and port critical `tsh-*` prompts to `eversis-*.md` (start with analyze / implement / review).
 - [ ] Add `docs/specs/` and `docs/context/`; seed context with architecture or run wiki sync.
 - [ ] Configure **MCP** for the workflow variants you use (Jira, Figma, Playwright, …).
 - [ ] Add **`.cursorignore`**: `.env*`, keys, certificates, large secrets, vendor dumps you do not want indexed.
@@ -289,7 +291,7 @@ The following is **one** filled-in profile (Earth observation / GIS web). Other 
 ## Spec-driven development (under **Implement**)
 
 1. Author `docs/specs/<feature>.spec.md` with acceptance criteria and links to context.
-2. In Agent, attach `@<feature>.spec.md`, relevant `@docs/context/`, and `prompts/public/eversis-implement.md`.
+2. In Agent, attach `@<feature>.spec.md`, relevant `@docs/context/`, and `@website/docs/prompts/public/eversis-implement.md`.
 3. Ask for implementation **per** `.cursor/rules` and project stack.
 4. After code changes, run the repo’s **documented** quality commands; fix failures before handoff.
 5. Run **`/eversis-review`** (attach the same spec and diff context).

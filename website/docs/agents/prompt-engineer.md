@@ -6,7 +6,7 @@ title: Prompt Engineer
 # Prompt Engineer Agent
 
 **Rule pack (canonical):** `.cursor/rules/eversis-role-prompt-engineer.mdc`  
-**Delegated prompt:** `prompts/internal/eversis-engineer-prompt.md` (via **`@prompts/public/eversis-implement.md`**)
+**Delegated prompt:** `website/docs/prompts/internal/eversis-engineer-prompt.md` (via **`@website/docs/prompts/public/eversis-implement.md`**)
 
 This role designs, optimizes, and secures **application LLM prompts** — system prompts, user templates, RAG injection patterns, tool-calling instructions, and classification/extraction prompts consumed by your product at runtime.
 
@@ -46,4 +46,4 @@ It does **not** own Cursor packaging artifacts (`.mdc` rules, repo prompt librar
 ## Delegation
 
 - **Orchestrated:** Engineering Manager routes LLM prompt tasks during **`eversis-implement`**.
-- **Focused:** Attach **`@prompts/internal/eversis-engineer-prompt.md`** when the task is prompt-only work inside an implement cycle.
+- **Focused:** Attach **`@website/docs/prompts/internal/eversis-engineer-prompt.md`** when the task is prompt-only work inside an implement cycle.

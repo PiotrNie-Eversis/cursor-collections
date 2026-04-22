@@ -6,7 +6,7 @@ title: Business Analyst
 # Business Analyst Agent
 
 **Rule pack (canonical):** `.cursor/rules/eversis-role-business-analyst.mdc`  
-**Primary prompt:** `@prompts/public/eversis-analyze-materials.md`
+**Primary prompt:** `@website/docs/prompts/public/eversis-analyze-materials.md`
 
 The Business Analyst role converts discovery workshop materials (transcripts, Figma, codebase context) into structured, Jira-ready epics and user stories. It can also import and iterate on existing Jira backlogs.
 
@@ -67,4 +67,4 @@ The Business Analyst enforces a strict review process — no data is pushed to J
 
 ## Handoffs
 
-After workshop analysis, continue with [Engineering Manager](./engineering-manager) by attaching **`@prompts/public/eversis-implement.md`** (research and planning run before broad code changes per `eversis-agent-core.mdc`).
+After workshop analysis, continue with [Engineering Manager](./engineering-manager) by attaching **`@website/docs/prompts/public/eversis-implement.md`** (research and planning run before broad code changes per `eversis-agent-core.mdc`).

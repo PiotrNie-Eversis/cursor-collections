@@ -6,7 +6,7 @@ title: Engineering Manager
 # Engineering Manager Agent
 
 **Rule pack (canonical):** `.cursor/rules/eversis-role-engineering-manager.mdc`  
-**In this repository:** attach **`.cursor/rules/eversis-engineering-manager.mdc`** when running **`@prompts/public/eversis-implement.md`**.
+**In this repository:** attach **`.cursor/rules/eversis-engineering-manager.mdc`** when running **`@website/docs/prompts/public/eversis-implement.md`**.
 
 The Engineering Manager orchestrates the **Implement** phase: it does not replace implementers — it follows the approved plan, delegates work by task type, and enforces human gates from **`eversis-agent-core.mdc`** (approve research, then plan, then code).
 
@@ -25,7 +25,7 @@ Implementation plan
     SE   E2E  DevOps Arch  CR   UIR   PE
 ```
 
-The Engineering Manager is bound to the public prompt **`@prompts/public/eversis-implement.md`**. When you run it, it parses the implementation plan, identifies individual tasks, and routes each one to the appropriate specialized role. For UI tasks with Figma references, it uses the internal prompt **`prompts/internal/eversis-implement-ui.md`** to orchestrate the verification loop (including **`@prompts/public/eversis-review-ui.md`** when visual checks are required).
+The Engineering Manager is bound to the public prompt **`@website/docs/prompts/public/eversis-implement.md`**. When you run it, it parses the implementation plan, identifies individual tasks, and routes each one to the appropriate specialized role. For UI tasks with Figma references, it uses the internal prompt **`website/docs/prompts/internal/eversis-implement-ui.md`** to orchestrate the verification loop (including **`@website/docs/prompts/public/eversis-review-ui.md`** when visual checks are required).
 
 ## Agent Delegation
 
@@ -41,7 +41,7 @@ The Engineering Manager is bound to the public prompt **`@prompts/public/eversis
 
 ## How to Use
 
-Attach **`@prompts/public/eversis-implement.md`**, optionally **`@.cursor/rules/eversis-engineering-manager.mdc`**, plus ticket text and `@docs/specs/` / `@docs/context/` as needed. The model follows internal prompts such as **`prompts/internal/eversis-research.md`**, **`prompts/internal/eversis-plan.md`**, and task-specific **`eversis-implement-*.md`** files.
+Attach **`@website/docs/prompts/public/eversis-implement.md`**, optionally **`@.cursor/rules/eversis-engineering-manager.mdc`**, plus ticket text and `@docs/specs/` / `@docs/context/` as needed. The model follows internal prompts such as **`website/docs/prompts/internal/eversis-research.md`**, **`website/docs/prompts/internal/eversis-plan.md`**, and task-specific **`eversis-implement-*.md`** files.
 
 See also the [Implement workflow](../prompts/public/implement) documentation page.
 
@@ -70,5 +70,5 @@ See also the [Implement workflow](../prompts/public/implement) documentation pag
 ## Handoffs
 
 - **From** [Architect](./architect) — execution against the signed-off plan.
-- **To** [Code Reviewer](./code-reviewer) — **`@prompts/public/eversis-review.md`** with **`eversis-code-reviewer.mdc`** when appropriate.
-- **To** [UI Reviewer](./ui-reviewer) — **`@prompts/public/eversis-review-ui.md`** for visual verification.
+- **To** [Code Reviewer](./code-reviewer) — **`@website/docs/prompts/public/eversis-review.md`** with **`eversis-code-reviewer.mdc`** when appropriate.
+- **To** [UI Reviewer](./ui-reviewer) — **`@website/docs/prompts/public/eversis-review-ui.md`** for visual verification.

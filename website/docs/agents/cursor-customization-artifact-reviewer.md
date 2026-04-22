@@ -7,7 +7,7 @@ title: Customization Artifact Reviewer (internal)
 
 **Type:** Internal worker — not a user-facing entry point.
 
-Review specialist that evaluates **Cursor customization** artifacts — `.cursor/rules/*.mdc`, `prompts/**/eversis-*.md`, `SKILL.md`, and related project instructions (`AGENTS.md`, stack rules) — against best practices, workspace consistency, and structural correctness. Returns structured review findings categorized by severity. **Read-only:** does not modify files.
+Review specialist that evaluates **Cursor customization** artifacts — `.cursor/rules/*.mdc`, `website/docs/prompts/**/eversis-*.md`, `SKILL.md`, and related project instructions (`AGENTS.md`, stack rules) — against best practices, workspace consistency, and structural correctness. Returns structured review findings categorized by severity. **Read-only:** does not modify files.
 
 ## Responsibilities
 

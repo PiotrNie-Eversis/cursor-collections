@@ -5,7 +5,7 @@ title: Cursor customization orchestrator
 
 # Cursor customization orchestrator *(experimental)*
 
-**Packaging:** Composed workflow using **`@prompts/public/eversis-create-custom-agent.md`** and related **`eversis-create-custom-*.md`** prompts, with explicit human checkpoints between phases.
+**Packaging:** Composed workflow using **`@website/docs/prompts/public/eversis-create-custom-agent.md`** and related **`eversis-create-custom-*.md`** prompts, with explicit human checkpoints between phases.
 
 The orchestrator pattern coordinates **large Cursor customization** efforts. It **decomposes** work into focused subtasks, **delegates** to workers (fresh context per step), and **synthesizes** results—so complex work does not collapse into one long, drifting Agent thread.
 
@@ -24,7 +24,7 @@ For smaller or medium tasks, the [Cursor customization engineer](./cursor-custom
 
 Each phase uses a focused instruction (prompt + optional rule attachment). Typical workers:
 
-1. **Customization researcher** — Analyzes existing `.cursor/rules`, `prompts/`, skills, and related docs; reads references; extracts patterns. **Read-only** (summaries, not bulk paste of sources).
+1. **Customization researcher** — Analyzes existing `.cursor/rules`, `website/docs/prompts/`, skills, and related docs; reads references; extracts patterns. **Read-only** (summaries, not bulk paste of sources).
 2. **Customization artifact creator** — Creates or updates files from **fully specified** requirements in the delegation prompt.
 3. **Customization artifact reviewer** — Validates quality, consistency, and best practices; **read-only** review output.
 

@@ -6,7 +6,7 @@ title: DevOps Engineer
 # DevOps Engineer Agent
 
 **Rule pack (canonical):** `.cursor/rules/eversis-role-devops-engineer.mdc`  
-**Delegated prompts:** `prompts/internal/eversis-implement-pipeline.md`, `prompts/internal/eversis-implement-terraform.md`, `prompts/internal/eversis-implement-observability.md`, `prompts/internal/eversis-deploy-kubernetes.md` (composed from **`@prompts/public/eversis-implement.md`**)
+**Delegated prompts:** `website/docs/prompts/internal/eversis-implement-pipeline.md`, `website/docs/prompts/internal/eversis-implement-terraform.md`, `website/docs/prompts/internal/eversis-implement-observability.md`, `website/docs/prompts/internal/eversis-deploy-kubernetes.md` (composed from **`@website/docs/prompts/public/eversis-implement.md`**)
 
 The DevOps Engineer role maps to a senior DevOps engineer and consultant: DevOps culture, “Golden Path” templates, cloud infrastructure, CI/CD pipelines, observability, and cost optimization — expressed as IaC and automation in Cursor.
 
@@ -68,4 +68,4 @@ Before implementing, discover context in this order:
 
 After completing infrastructure work, hand off to:
 
-- **Code Reviewer** — **`@prompts/public/eversis-review.md`** (review IaC and pipeline changes).
+- **Code Reviewer** — **`@website/docs/prompts/public/eversis-review.md`** (review IaC and pipeline changes).

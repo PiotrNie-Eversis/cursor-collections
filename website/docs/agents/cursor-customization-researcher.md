@@ -7,7 +7,7 @@ title: Customization Researcher Agent (internal)
 
 **Type:** Internal worker — not a user-facing entry point.
 
-Research specialist that gathers, analyzes, and summarizes information from codebases and documentation for **Cursor packaging** work — `.cursor/rules`, `prompts/` (including `eversis-*.md` files), Agent Skills (`SKILL.md`), and related project docs. Returns structured research summaries. **Read-only:** does not create or modify files.
+Research specialist that gathers, analyzes, and summarizes information from codebases and documentation for **Cursor packaging** work — `.cursor/rules`, `website/docs/prompts/` (including `eversis-*.md` files), Agent Skills (`SKILL.md`), and related project docs. Returns structured research summaries. **Read-only:** does not create or modify files.
 
 ## Responsibilities
 

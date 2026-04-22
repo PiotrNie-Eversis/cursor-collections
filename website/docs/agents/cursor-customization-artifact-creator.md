@@ -7,7 +7,7 @@ title: Customization Artifact Creator (internal)
 
 **Type:** Internal worker — not a user-facing entry point.
 
-Creation specialist that builds and modifies **Cursor customization** artifacts — `.cursor/rules/*.mdc`, `prompts/**/eversis-*.md`, `SKILL.md`, and related project guidance (`AGENTS.md`, stack rules) — based on detailed specifications from the orchestrator. Executes creation tasks only; does not perform open-ended research or final sign-off review.
+Creation specialist that builds and modifies **Cursor customization** artifacts — `.cursor/rules/*.mdc`, `website/docs/prompts/**/eversis-*.md`, `SKILL.md`, and related project guidance (`AGENTS.md`, stack rules) — based on detailed specifications from the orchestrator. Executes creation tasks only; does not perform open-ended research or final sign-off review.
 
 ## Responsibilities
 

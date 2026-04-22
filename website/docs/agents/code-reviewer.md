@@ -6,7 +6,7 @@ title: Code Reviewer
 # Code Reviewer Agent
 
 **Rule pack (canonical):** `.cursor/rules/eversis-role-code-reviewer.mdc`  
-**In this repository:** attach **`.cursor/rules/eversis-code-reviewer.mdc`** when running **`@prompts/public/eversis-review.md`**.
+**In this repository:** attach **`.cursor/rules/eversis-code-reviewer.mdc`** when running **`@website/docs/prompts/public/eversis-review.md`**.
 
 The Code Reviewer agent performs structured code reviews against the implementation plan, requirements, and project standards.
 
@@ -61,4 +61,4 @@ A structured review containing:
 
 After review, the Code Reviewer can hand off to:
 
-- **Software Engineer** / **Engineering Manager** — **`@prompts/public/eversis-implement.md`** (implement changes requested after code review). See [Software Engineer](./software-engineer) and [Engineering Manager](./engineering-manager).
+- **Software Engineer** / **Engineering Manager** — **`@website/docs/prompts/public/eversis-implement.md`** (implement changes requested after code review). See [Software Engineer](./software-engineer) and [Engineering Manager](./engineering-manager).
