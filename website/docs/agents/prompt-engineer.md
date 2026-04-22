@@ -5,46 +5,45 @@ title: Prompt Engineer
 
 # Prompt Engineer Agent
 
-**File:** `.github/agents/tsh-prompt-engineer.agent.md`
+**Rule pack (canonical):** `.cursor/rules/eversis-role-prompt-engineer.mdc`  
+**Delegated prompt:** `prompts/internal/eversis-engineer-prompt.md` (via **`@prompts/public/eversis-implement.md`**)
 
-The Prompt Engineer agent designs, writes, optimizes, and secures LLM application prompts — system prompts, user prompt templates, RAG context injection templates, agent tool-calling instructions, and classification/extraction prompts.
+This role designs, optimizes, and secures **application LLM prompts** — system prompts, user templates, RAG injection patterns, tool-calling instructions, and classification/extraction prompts consumed by your product at runtime.
 
-This agent handles **LLM application prompts** (prompts consumed by LLM APIs at runtime). It does NOT handle Copilot customization files (`.prompt.md`, `.agent.md`, `SKILL.md`) — that is `tsh-copilot-engineer`.
+It does **not** own Cursor packaging artifacts (`.mdc` rules, repo prompt library, `SKILL.md` authoring for the IDE). That belongs to the [Cursor customization engineer](./cursor-customization-engineer).
 
 ## Responsibilities
 
-- Designing prompt structure with clear role separation, delimiters, and output format specification.
-- Optimizing existing prompts for clarity, token efficiency, output quality, and consistency.
-- Creating new prompts from business requirements with appropriate constraints and examples.
-- Securing prompts against injection attacks with layered defenses (delimiter separation, input sanitization, output validation).
-- Evaluating prompts through A/B testing, metric-based comparison, and edge case testing.
+- Prompt structure: roles, delimiters, output contracts.
+- Optimization for clarity, token use, quality, and consistency.
+- New prompts from requirements with explicit constraints and examples.
+- Injection defenses and validation patterns.
+- Evaluation: comparisons, metrics, and edge cases.
 
-## Key Behaviors
+## Behaviors
 
-- **Prompt-focused** — Handles only the prompt engineering aspects, returns to the software engineer for integration.
-- **Security-first** — Every prompt includes injection defense as a non-negotiable default.
-- **Technology-agnostic** — Patterns apply to any LLM provider (OpenAI, Anthropic, etc.).
-- **Strictly follows the plan** — Does not deviate unless explicitly instructed.
+- **Prompt-first** — Hands integration work back to software engineering when appropriate.
+- **Security-first** — Treat prompt injection as a default threat.
+- **Provider-agnostic patterns** — Portable across major LLM APIs.
+- **Plan-driven** — Matches the approved implementation plan.
 
-## Tool Access
+## Tools (typical)
 
-| Tool | Usage |
-|---|---|
-| **Context7** | Search LLM provider API docs, framework-specific prompt template syntax |
-| **Sequential Thinking** | Design complex prompt chains, analyze injection vectors, evaluate trade-offs |
-| **File Read/Edit/Search** | Read and modify workspace files containing prompts |
-| **Ask Questions** | Clarify ambiguous prompt requirements, domain-specific terminology |
-| **Todo** | Track prompt engineering progress |
+| Tool                     | Usage                                |
+| ------------------------ | ------------------------------------ |
+| **Context7**             | Provider and framework documentation |
+| **Sequential Thinking**  | Multi-step prompts, threat modeling  |
+| **Cursor Agent**         | Read and edit prompt sources         |
+| **Ask Questions / chat** | Clarify domain terminology           |
+| **Todo**                 | Track prompt-delivery steps          |
 
-## Skills Loaded
+## Skills (Eversis naming)
 
-- `tsh-engineering-prompts` — Primary skill: prompt structure, optimization, security, templates, evaluation, anti-patterns.
-- `tsh-technical-context-discovering` — Project conventions and existing prompt patterns.
-- `tsh-code-reviewing` — When reviewing prompt code quality as part of broader review.
+- `eversis-engineering-prompts`
+- `eversis-technical-context-discovering`
+- `eversis-code-reviewing` (when reviewing prompt-related code)
 
-## Delegation Model
+## Delegation
 
-The Prompt Engineer is invoked in two ways:
-
-- **Direct:** User invokes `@tsh-prompt-engineer` for standalone prompt tasks.
-- **Orchestrated:** The Engineering Manager delegates LLM prompt tasks directly to the Prompt Engineer during feature implementation. After completing prompt work, control returns to the manager for the next task in the plan.
+- **Orchestrated:** Engineering Manager routes LLM prompt tasks during **`eversis-implement`**.
+- **Focused:** Attach **`@prompts/internal/eversis-engineer-prompt.md`** when the task is prompt-only work inside an implement cycle.

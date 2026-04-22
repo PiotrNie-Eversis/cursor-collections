@@ -5,7 +5,8 @@ title: Code Reviewer
 
 # Code Reviewer Agent
 
-**File:** `.github/agents/tsh-code-reviewer.agent.md`
+**Rule pack (canonical):** `.cursor/rules/eversis-role-code-reviewer.mdc`  
+**In this repository:** attach **`.cursor/rules/eversis-code-reviewer.mdc`** when running **`@prompts/public/eversis-review.md`**.
 
 The Code Reviewer agent performs structured code reviews against the implementation plan, requirements, and project standards.
 
@@ -20,11 +21,11 @@ The Code Reviewer agent performs structured code reviews against the implementat
 
 ## Review Process
 
-1. Reads coding guidelines from `copilot-instructions.md` and related `*.instructions.md` files.
-2. Understands project coding standards and best practices.
-3. Loads relevant skills for the review domain.
-4. Runs all necessary checks and tests.
-5. Produces a structured review with findings categorized by severity.
+1. Read coding guidelines from **`.cursor/rules/`** (especially `eversis-project-stack.mdc`), **`AGENTS.md`**, and `docs/context/` / `docs/specs/` when present.
+2. Understand project coding standards and best practices.
+3. Load relevant **Eversis** skills for the review domain.
+4. Run all necessary checks and tests (tests, lint, typecheck as appropriate; see `eversis-testing-and-terminal.mdc`).
+5. Produce a structured review with findings categorized by severity (**PASS / BLOCKER / SUGGESTION** or equivalent).
 
 ## What It Produces
 
@@ -37,29 +38,27 @@ A structured review containing:
 
 ## Tool Access
 
-| Tool                      | Usage                                                                              |
-| ------------------------- | ---------------------------------------------------------------------------------- |
-| **Atlassian**             | Verify requirements and context from Jira or Confluence                            |
-| **Context7**              | Verify framework API usage, check for known vulnerabilities                        |
-| **Figma**                 | Verify frontend implementation matches visual designs                              |
-| **Sequential Thinking**   | Analyze complex security vulnerabilities, performance bottlenecks, race conditions |
-| **Terminal**              | Run tests, linters, and build commands for verification                            |
-| **File Read/Edit/Search** | Read, modify, and search workspace files                                           |
-| **VS Code Commands**      | Execute VS Code commands and preview in browser                                    |
-| **Sub-agents**            | Delegate subtasks to specialized agents                                            |
-| **Todo**                  | Track review progress with structured checklists                                   |
+| Tool | Usage |
+| --- | --- |
+| **Atlassian** | Verify requirements and context from Jira or Confluence |
+| **Context7** | Verify framework API usage, check for known vulnerabilities |
+| **Figma** | Verify frontend implementation matches visual designs |
+| **Sequential Thinking** | Analyze complex security vulnerabilities, performance bottlenecks, race conditions |
+| **Terminal** | Run tests, linters, and build commands for verification |
+| **Cursor Agent** | Read, modify, and search workspace files; navigate the diff |
+| **Todo** | Track review progress with structured checklists |
 
 ## Skills Loaded
 
-- `tsh-code-reviewing` — Structured review process covering correctness, quality, security, testing, and scalability.
-- `tsh-reviewing-frontend` — Frontend-specific review: component quality, hooks correctness, rendering, accessibility and performance spot-checks.
-- `tsh-implementation-gap-analysing` — Compare implementation against the plan and verify completeness.
-- `tsh-technical-context-discovering` — Understand project conventions and patterns.
-- `tsh-sql-and-database-understanding` — Review database-related code for SQL quality, indexes, migrations, and ORM usage.
-- `tsh-engineering-prompts` — Review LLM prompt code: injection defenses, delimiter separation, output format specification, prompt file and LLM client usage patterns.
+- `eversis-code-reviewing` — Structured review process covering correctness, quality, security, testing, and scalability.
+- `eversis-reviewing-frontend` — Frontend-specific review: component quality, hooks correctness, rendering, accessibility and performance spot-checks.
+- `eversis-implementation-gap-analysing` — Compare implementation against the plan and verify completeness.
+- `eversis-technical-context-discovering` — Understand project conventions and patterns.
+- `eversis-sql-and-database-understanding` — Review database-related code for SQL quality, indexes, migrations, and ORM usage.
+- `eversis-engineering-prompts` — Review LLM prompt code: injection defenses, delimiter separation, output format specification, prompt file and LLM client usage patterns.
 
 ## Handoffs
 
 After review, the Code Reviewer can hand off to:
 
-- **Software Engineer** → `/tsh-implement` (implement changes requested after code review)
+- **Software Engineer** / **Engineering Manager** — **`@prompts/public/eversis-implement.md`** (implement changes requested after code review). See [Software Engineer](./software-engineer) and [Engineering Manager](./engineering-manager).

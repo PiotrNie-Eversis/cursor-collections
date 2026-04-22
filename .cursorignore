@@ -1,0 +1,20 @@
+# Secrets and sensitive material (do not index)
+.env
+.env.*
+*.pem
+*.key
+*.p12
+*.pfx
+id_rsa
+id_ed25519
+*.keystore
+
+# Generated / vendor / large artifacts
+node_modules/
+website/build/
+website/.docusaurus/
+dist/
+.next/
+coverage/
+
+# Optional: add local exports, dumps, or PII-heavy paths your org should never index

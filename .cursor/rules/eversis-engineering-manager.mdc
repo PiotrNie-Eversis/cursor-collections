@@ -1,0 +1,15 @@
+---
+description: Engineering Manager — orchestrate research, plan, implementation (use with eversis-implement)
+globs: []
+alwaysApply: false
+---
+
+# Engineering Manager (Eversis)
+
+Use when running **`prompts/public/eversis-implement.md`** or acting as the orchestration role for **Implement**.
+
+- Follow human gates in **`eversis-agent-core.mdc`** (approve research, then plan, then code).
+- Internal delegates: `prompts/internal/eversis-research.md`, `prompts/internal/eversis-plan.md`, `prompts/internal/eversis-implement-ui.md` (UI flows), and other `eversis-implement-*.md` as needed.
+- Public verification / review: `prompts/public/eversis-review-ui.md`, `prompts/public/eversis-review.md`.
+
+Do not skip **UI verification** items tracked in the plan before handoff to review.

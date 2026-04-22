@@ -5,9 +5,10 @@ title: Business Analyst
 
 # Business Analyst Agent
 
-**File:** `.github/agents/tsh-business-analyst.agent.md`
+**Rule pack (canonical):** `.cursor/rules/eversis-role-business-analyst.mdc`  
+**Primary prompt:** `@prompts/public/eversis-analyze-materials.md`
 
-The Business Analyst agent specializes in converting discovery workshop materials (transcripts, Figma designs, codebase context) into structured, Jira-ready epics and user stories. It can also import and iterate on existing Jira backlogs.
+The Business Analyst role converts discovery workshop materials (transcripts, Figma, codebase context) into structured, Jira-ready epics and user stories. It can also import and iterate on existing Jira backlogs.
 
 ## Responsibilities
 
@@ -19,16 +20,16 @@ The Business Analyst agent specializes in converting discovery workshop material
 - Managing a three-gate review process before pushing to Jira.
 - Importing existing Jira backlogs for local iteration and improvement.
 
-## What It Produces
+## What it produces
 
-A set of markdown files placed in `specifications/<workshop-name>/`:
+Markdown artifacts under `specifications/<workshop-name>/`:
 
-- **`cleaned-transcript.md`** — Cleaned and structured transcript with discussion topics, key decisions, action items, and open questions.
-- **`extracted-tasks.md`** — Extracted epics and user stories with acceptance criteria and dependencies.
-- **`quality-review.md`** — Quality review report with all suggestions and dispositions.
-- **`jira-tasks.md`** — Final Jira-ready tasks formatted per the benchmark template.
+- **`cleaned-transcript.md`** — Structured transcript with topics, decisions, action items, and open questions.
+- **`extracted-tasks.md`** — Epics and user stories with acceptance criteria and dependencies.
+- **`quality-review.md`** — Quality review with suggestions and dispositions.
+- **`jira-tasks.md`** — Jira-ready tasks per the benchmark template.
 
-## What It Does NOT Do
+## What it does NOT do
 
 - Does not produce technical specifications or architecture decisions (use the [Architect](./architect) for that).
 - Does not produce detailed requirement research or gap analysis (use the [Context Engineer](./context-engineer) for that).
@@ -53,20 +54,17 @@ The Business Analyst enforces a strict review process — no data is pushed to J
 | **Figma** | Analyze workshop designs, wireframes, and FigJam boards for functional requirements |
 | **PDF Reader** | Read and extract content from PDF workshop materials |
 | **Sequential Thinking** | Analyze complex discussions, resolve conflicts between materials, plan task structure |
-| **File Read/Edit/Search** | Read, modify, and search workspace files |
-| **Sub-agents** | Delegate subtasks to specialized agents |
+| **Cursor Agent** | Read, search, and edit workspace files |
 | **Todo** | Track task progress with structured checklists |
 
 ## Skills Loaded
 
-- `tsh-transcript-processing` — Clean raw transcripts, structure by topics, extract decisions and action items.
-- `tsh-task-extracting` — Identify epics and user stories from all processed materials.
-- `tsh-task-quality-reviewing` — Run analysis passes to find gaps, edge cases, and improvements.
-- `tsh-jira-task-formatting` — Format tasks for Jira, manage review gates, handle import mode.
-- `tsh-codebase-analysing` — Understand existing system context when relevant to task scope.
+- `eversis-transcript-processing` - Clean raw transcripts, structure by topics, extract decisions and action items.
+- `eversis-task-extracting` - Identify epics and user stories from all processed materials.
+- `eversis-task-quality-reviewing` - Run analysis passes to find gaps, edge cases, and improvements.
+- `eversis-jira-task-formatting` — Format tasks for Jira, manage review gates, handle import mode.
+- `eversis-codebase-analysing` — Understand existing system context when relevant to task scope.
 
 ## Handoffs
 
-After completing workshop analysis, the Business Analyst can hand off to:
-
-- **Engineering Manager** → `/tsh-implement` (the Engineering Manager will automatically delegate to Context Engineer for research and Architect for planning)
+After workshop analysis, continue with [Engineering Manager](./engineering-manager) by attaching **`@prompts/public/eversis-implement.md`** (research and planning run before broad code changes per `eversis-agent-core.mdc`).

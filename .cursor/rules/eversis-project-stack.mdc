@@ -1,0 +1,31 @@
+---
+description: Per-repository stack and quality commands — Copilot Collections + Docusaurus docs
+alwaysApply: true
+---
+
+# Project stack — this repository
+
+This repo is **Copilot Collections** (upstream `tsh-*` prompts, agents, skills) with an **Eversis Cursor port** under `prompts/`, `.cursor/rules/`, and `documentation/cursor-collection.md`.
+
+| Area | This repository |
+| ---- | --------------- |
+| **Product** | Opinionated GitHub Copilot setup + published workflow docs |
+| **Docs site** | Docusaurus 3 under **`website/`** (`copilot-collections-docs`) |
+| **Cursor port** | Root **`prompts/public/`** and **`prompts/internal/`** (`eversis-*.md`) |
+| **Upstream prompts** | **`.github/prompts/`** and **`.github/internal-prompts/`** (source for ports) |
+
+## Quality commands (this repo)
+
+Run from **`website/`** (see [website/package.json](website/package.json)):
+
+- **Dev server:** `npm start` (Docusaurus)
+- **Production build:** `npm run build` — use this as the primary quality gate for doc changes
+- **Serve build locally:** `npm run serve`
+
+There is no root `lint` / `test` script; the site is mostly Markdown and React theme.
+
+## Conventions
+
+- Feature specs for *downstream* or experimental work: **`docs/specs/*.spec.md`**
+- Internal notes: **`docs/context/*.md`**
+- **Template** for other projects: see **“Reference: Eversis stack example”** in [documentation/cursor-collection.md](../../documentation/cursor-collection.md)

@@ -5,91 +5,99 @@ title: Agents Overview
 
 # Agents Overview
 
-Copilot Collections provides **12 specialized agents** (plus 3 internal sub-agents) that together form an AI product engineering team covering the full delivery lifecycle — from product ideation through development, infrastructure, and quality assurance. Agents are stored in `.github/agents/` as `.agent.md` files. VS Code loads these automatically when the corresponding mode is selected.
+**Twelve specialized roles** plus **three internal workers** mirror a full product-engineering team across the **full delivery lifecycle** — from product ideation through development, infrastructure, and quality assurance.
 
-## How Agents Work
+In **Cursor**, those roles are expressed as **rules** (`.cursor/rules/eversis-*.mdc`), **prompts** (`prompts/public/eversis-*.md` and `prompts/internal/eversis-*.md`), and **Agent Skills** (`SKILL.md`, named `eversis-<concern>`). Attach prompts with **`@`** from the repository root in Chat or Agent mode.
 
-Each agent has:
+The canonical packaging and mappings live in **`documentation/cursor-collection.md`**. Entry points for this repository are **`AGENTS.md`** (root) and the always-on rule **`.cursor/rules/eversis-agent-core.mdc`**.
 
-- **A defined role** — What the agent specializes in and what it should/shouldn't do.
-- **Tool access** — Which MCP integrations and VS Code tools it can use.
-- **Skill bindings** — Which skills it loads for domain-specific knowledge.
-- **Handoffs** — Buttons to seamlessly transition between workflow phases.
+**Starter rule packs in this repo:** `eversis-agent-core.mdc` (always apply), `eversis-engineering-manager.mdc` (attach with **`@prompts/public/eversis-implement.md`**), and `eversis-code-reviewer.mdc` (attach with **`@prompts/public/eversis-review.md`**). Other roles use the **canonical** filenames in the table below (`eversis-role-<role>.mdc`); add those files when you split behavior out of the core packs.
+
+## How roles work
+
+Each role defines:
+
+- **Purpose** — What it optimizes for and what it refuses to do.
+- **Packaging** — Which rule file and prompts implement it in Cursor.
+- **Tools** — MCP servers, terminal, and Cursor Agent capabilities you enable in **Cursor Settings → MCP**.
+- **Skills** — Reusable procedures loaded from Agent Skills (`eversis-*` naming).
+- **Handoffs** — Which prompt or approval gate comes next (human gates after research and plan per **`eversis-agent-core.mdc`**), not ad-hoc mode switches.
 
 ## Agent Handoff Diagram
 
+```text
+┌────────────────────────┐
+│   Business Analyst     │
+│ @prompts/public/       │
+│ eversis-analyze-       │
+│ materials.md           │
+└───────────┬────────────┘
+            │ Start implementation
+            ▼
+┌────────────────────────┐
+│ Engineering Manager    │
+│ @prompts/public/       │
+│ eversis-implement.md   │
+│ + eversis-engineering- │
+│   manager.mdc          │
+└───────────┬────────────┘
+            │ Delegates (internal prompts + roles)
+            ├──────────┬──────────┬──────────┬──────────┬──────────┬──────────┬──────────┐
+            ▼          ▼          ▼          ▼          ▼          ▼          ▼          ▼
+     Context    Architect   Software   DevOps      E2E      Prompt     UI
+     Engineer   (plan)      Engineer   Engineer   Engineer  Engineer   Reviewer
+            │                                                       │
+            ▼                                                       │
+     Code Reviewer ◄─────────────────────────────────────────────────┘
+     @prompts/public/eversis-review.md
+     + eversis-code-reviewer.mdc
 ```
-┌──────────────────────┐
-│  Business Analyst     │
-│  /tsh-analyze-materials│
-└──────┬───────────────┘
-       │ Start Implementation
-       ▼
-┌─────────────────────────┐
-│   Engineering Manager    │  ← Orchestrates the full cycle
-│   /tsh-implement         │
-└──────┬──────────────────┘
-       │ Delegates to specialized agents
-       ├──────────────────┬──────────────────┬──────────────────┬──────────────────┬──────────────────┬──────────────────┐
-       ▼                  ▼                  ▼                  ▼                  ▼                  ▼                  ▼
-┌──────────────┐  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐
-│  Context     │  │  Architect   │  │  Software    │  │  DevOps      │  │  E2E         │  │  Prompt      │  │  UI Reviewer  │
-│  Engineer    │  │  (plan)      │  │  Engineer    │  │  Engineer    │  │  Engineer    │  │  Engineer    │  │  /tsh-review- │
-│  (research)  │  │              │  │  (app code)  │  │  (infra)     │  │  (tests)     │  │  (prompts)   │  │  ui           │
-└──────────────┘  └──────────────┘  └──────────────┘  └──────────────┘  └──────────────┘  └──────────────┘  └──────────────┘
-       │
-       ▼
-┌──────────────┐
-│ Code Reviewer │
-│ /tsh-review   │
-└──────────────┘
-```
 
-## Agent Summary
+## Role summary
 
-### 📋 Product Ideation Agents
+### 📋 Product ideation
 
-| Agent | File | Role | Key Tools |
-|---|---|---|---|
-| [Business Analyst](./business-analyst) | `tsh-business-analyst.agent.md` | Converts workshop materials into Jira-ready epics and stories | Atlassian, Figma, PDF Reader, Sequential Thinking |
+| Role | Eversis packaging (rules / prompts) | Role summary | Typical MCP / tools |
+| --- | --- | --- | --- |
+| [Business Analyst](./business-analyst) | `eversis-role-business-analyst.mdc` · `@prompts/public/eversis-analyze-materials.md` | Converts workshop materials into Jira-ready epics and stories | Atlassian, Figma, PDF Reader, Sequential Thinking |
 
-### 🛠 Development Agents
+### 🛠 Development
 
-| Agent | File | Role | Key Tools |
-|---|---|---|---|
-| [Context Engineer](./context-engineer) | `tsh-context-engineer.agent.md` | Gathers requirements, builds context, identifies gaps | Atlassian, Figma, PDF Reader, Sequential Thinking |
-| [Architect](./architect) | `tsh-architect.agent.md` | Designs solutions, creates implementation plans | Atlassian, Context7, Figma, PDF Reader, Sequential Thinking |
-| [Engineering Manager](./engineering-manager) | `tsh-engineering-manager.agent.md` | Orchestrates implementation by delegating to specialized agents | Atlassian, Sequential Thinking |
-| [Software Engineer](./software-engineer) | `tsh-software-engineer.agent.md` | Implements code against the plan | Context7, Figma, Playwright, Sequential Thinking |
-| [Prompt Engineer](./prompt-engineer) | `tsh-prompt-engineer.agent.md` | Designs, optimizes, and secures LLM application prompts | Context7, Sequential Thinking |
+| Role | Eversis packaging (rules / prompts) | Role summary | Typical MCP / tools |
+| --- | --- | --- | --- |
+| [Context Engineer](./context-engineer) | `eversis-role-context-engineer.mdc` · `prompts/internal/eversis-research.md` (via implement) | Gathers requirements, builds context, identifies gaps | Atlassian, Figma, PDF Reader, Sequential Thinking |
+| [Architect](./architect) | `eversis-role-architect.mdc` · `prompts/internal/eversis-plan.md` (via implement) | Designs solutions, creates implementation plans | Atlassian, Context7, Figma, PDF Reader, Sequential Thinking |
+| [Engineering Manager](./engineering-manager) | `eversis-role-engineering-manager.mdc` · **`eversis-engineering-manager.mdc`** in this repo · `@prompts/public/eversis-implement.md` | Orchestrates implementation by delegating to specialized roles | Atlassian, Sequential Thinking |
+| [Software Engineer](./software-engineer) | `eversis-role-software-engineer.mdc` · internal implement prompts | Implements code against the plan | Context7, Figma, Playwright, Sequential Thinking |
+| [Prompt Engineer](./prompt-engineer) | `eversis-role-prompt-engineer.mdc` · `prompts/internal/eversis-engineer-prompt.md` | Designs, optimizes, and secures LLM application prompts (runtime prompts, not Cursor packaging) | Context7, Sequential Thinking |
 
-### 🏗 Infrastructure & DevOps Agents
+### 🏗 Infrastructure and DevOps
 
-| Agent | File | Role | Key Tools |
-|---|---|---|---|
-| [DevOps Engineer](./devops-engineer) | `tsh-devops-engineer.agent.md` | Infrastructure automation, CI/CD, cloud governance, cost optimization | Context7, Sequential Thinking, AWS API, AWS Docs, GCP Gcloud, GCP Observability, GCP Storage |
+| Role | Eversis packaging (rules / prompts) | Role summary | Typical MCP / tools |
+| --- | --- | --- | --- |
+| [DevOps Engineer](./devops-engineer) | `eversis-role-devops-engineer.mdc` · internal implement prompts | Infrastructure automation, CI/CD, cloud governance, cost optimization | Context7, Sequential Thinking, AWS API, AWS Docs, GCP Gcloud, GCP Observability, GCP Storage |
 
-### ✅ Quality Agents
+### ✅ Quality
 
-| Agent | File | Role | Key Tools |
-|---|---|---|---|
-| [Code Reviewer](./code-reviewer) | `tsh-code-reviewer.agent.md` | Reviews code quality, security, correctness | Atlassian, Context7, Figma, Sequential Thinking |
-| [UI Reviewer](./ui-reviewer) | `tsh-ui-reviewer.agent.md` | Verifies UI matches Figma design | Figma, Playwright, Context7 |
-| [E2E Engineer](./e2e-engineer) | `tsh-e2e-engineer.agent.md` | Creates and maintains Playwright E2E tests | Playwright, Context7, Figma, Sequential Thinking |
+| Role | Eversis packaging (rules / prompts) | Role summary | Typical MCP / tools |
+| --- | --- | --- | --- |
+| [Code Reviewer](./code-reviewer) | `eversis-role-code-reviewer.mdc` · **`eversis-code-reviewer.mdc`** in this repo · `@prompts/public/eversis-review.md` | Reviews code quality, security, correctness (structured PASS / BLOCKER / SUGGESTION) | Atlassian, Context7, Figma, Sequential Thinking |
+| [UI Reviewer](./ui-reviewer) | `eversis-role-ui-reviewer.mdc` · `@prompts/public/eversis-review-ui.md` | Verifies UI matches Figma design (read-only verification) | Figma, Playwright, Context7 |
+| [E2E Engineer](./e2e-engineer) | `eversis-role-e2e-engineer.mdc` · `prompts/internal/eversis-implement-e2e.md` | Creates and maintains Playwright E2E tests | Playwright, Context7, Figma, Sequential Thinking |
 
-### ⚙️ Copilot Customization Agents
+### ⚙️ Cursor customization (delegated prompts)
 
-| Agent | File | Role | Key Tools |
-|---|---|---|---|
-| [Copilot Engineer](./copilot-engineer) | `tsh-copilot-engineer.agent.md` | Designs, creates, reviews Copilot customization artifacts | Context7, Sequential Thinking |
-| [Copilot Orchestrator](./copilot-orchestrator) | `tsh-copilot-orchestrator.agent.md` | Coordinates complex multi-step Copilot customization tasks | Sequential Thinking |
+| Role | Eversis packaging (rules / prompts) | Role summary | Typical MCP / tools |
+| --- | --- | --- | --- |
+| [Cursor customization engineer](./cursor-customization-engineer) | `eversis-role-cursor-customization.mdc` · public `eversis-create-custom-*.md` prompts | Designs, creates, reviews, and improves Cursor packaging — rules, skills, prompts, project instructions | Context7, Sequential Thinking |
+| [Cursor customization orchestrator](./cursor-customization-orchestrator) | Composed workflow · `@prompts/public/eversis-create-custom-agent.md` (and related) | Coordinates complex, multi-step Cursor customization (research → create → review) | Sequential Thinking |
 
-### 🔧 Internal Sub-Agents
+### 🔧 Internal workers (not user-invocable)
 
-These agents are not invoked directly by users. They are delegated to by the Copilot Orchestrator.
+These workers are not used as standalone **`@`** prompts. They are delegated from the [Cursor customization orchestrator](./cursor-customization-orchestrator) flow (isolated context per step).
 
-| Agent | File | Role |
-|---|---|---|
-| [Copilot Researcher](./copilot-researcher) | `tsh-copilot-researcher.agent.md` | Analyzes codebases and documentation, extracts patterns |
-| [Copilot Artifact Creator](./copilot-artifact-creator) | `tsh-copilot-artifact-creator.agent.md` | Creates and modifies Copilot customization artifacts |
-| [Copilot Artifact Reviewer](./copilot-artifact-reviewer) | `tsh-copilot-artifact-reviewer.agent.md` | Validates quality and consistency of artifacts |
+| Worker | Page | Role |
+| --- | --- | --- |
+| Customization researcher | [cursor-customization-researcher](./cursor-customization-researcher) | Analyzes codebases and documentation, extracts patterns (read-only summaries) |
+| Customization artifact creator | [cursor-customization-artifact-creator](./cursor-customization-artifact-creator) | Creates and modifies Cursor packaging files per specification |
+| Customization artifact reviewer | [cursor-customization-artifact-reviewer](./cursor-customization-artifact-reviewer) | Validates quality and consistency of artifacts (read-only findings) |

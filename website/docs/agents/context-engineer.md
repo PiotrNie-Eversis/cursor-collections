@@ -5,9 +5,10 @@ title: Context Engineer
 
 # Context Engineer Agent
 
-**File:** `.github/agents/tsh-context-engineer.agent.md`
+**Rule pack (canonical):** `.cursor/rules/eversis-role-context-engineer.mdc`  
+**Delegated prompt:** `prompts/internal/eversis-research.md` (via `@prompts/public/eversis-implement.md` and Engineering Manager orchestration)
 
-The Context Engineer agent specializes in gathering requirements, analyzing processes, and building detailed context for development tasks.
+The Context Engineer gathers requirements, analyzes processes, and produces a research artifact before planning and implementation.
 
 ## Responsibilities
 
@@ -31,30 +32,25 @@ A `.research.md` document containing:
 
 ## What It Does NOT Do
 
-- Does not provide implementation details or technical specifications.
-- Does not create implementation plans, deployment plans, or test plans.
-- These are provided by the Architect in the next phase.
+- Implementation detail or full technical specifications.
+- Implementation plans, deployment plans, or test plans (Architect phase).
 
 ## Tool Access
 
 | Tool | Usage |
-|---|---|
+| --- | --- |
 | **Atlassian** | Gather requirements from Jira and Confluence, search for related issues |
 | **Figma** | Review designs, understand functional intent, identify missing states |
 | **PDF Reader** | Read and extract content from PDF requirement documents |
 | **Sequential Thinking** | Analyze complex business rules, identify edge cases, map dependencies |
-| **File Read/Edit/Search** | Read, modify, and search workspace files |
-| **VS Code Commands** | Execute VS Code commands and run tasks |
-| **Sub-agents** | Delegate subtasks to specialized agents |
+| **Cursor Agent** | Read code and docs, search the workspace for usages and related files, edit research output (e.g. `.research.md`) |
 | **Todo** | Track research progress with structured checklists |
 
 ## Skills Loaded
 
-- `tsh-task-analysing` — Analyze task descriptions, perform gap analysis, expand context, gather information from multiple sources.
-- `tsh-codebase-analysing` — Analyze existing codebase to identify components and patterns related to the task.
+- `eversis-task-analysing` — Analyze task descriptions, perform gap analysis, expand context, gather information from multiple sources.
+- `eversis-codebase-analysing` — Analyze existing codebase to identify components and patterns related to the task.
 
 ## Handoffs
 
-After completing research, the Context Engineer hands back to the Engineering Manager, which delegates to:
-
-- **Architect** → implementation planning (via internal `/tsh-plan` prompt)
+Returns to Engineering Manager orchestration; next step is planning via **`prompts/internal/eversis-plan.md`** and the [Architect](./architect), with **human approval** after research per `eversis-agent-core.mdc`.

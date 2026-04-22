@@ -5,9 +5,10 @@ title: UI Reviewer
 
 # UI Reviewer Agent
 
-**File:** `.github/agents/tsh-ui-reviewer.agent.md`
+**Rule pack (canonical):** `.cursor/rules/eversis-role-ui-reviewer.mdc`  
+**Primary prompt:** `@prompts/public/eversis-review-ui.md`
 
-The UI Reviewer agent performs read-only verification comparing implemented UI against Figma designs and reports differences. It is called either directly by a user or as a subagent by the Software Engineer during the UI implementation loop. It does **not** fix code.
+The UI Reviewer performs **read-only** verification comparing implemented UI against **Figma** designs and reports differences. It can be run **directly** by a user (attach **`@prompts/public/eversis-review-ui.md`**) or **during the UI implementation loop** with the [Software Engineer](./software-engineer). It does **not** fix product code.
 
 ## Responsibilities
 
@@ -17,48 +18,46 @@ The UI Reviewer agent performs read-only verification comparing implemented UI a
 - Producing a structured report with differences found following the verification order.
 - Reporting tool failures transparently with LOW confidence when data is incomplete.
 
-## What It Verifies
+## Verification areas
 
-| Category       | Checks                                          |
-| -------------- | ----------------------------------------------- |
-| **Structure**  | Containers, nesting, grouping                   |
-| **Dimensions** | Width, height, spacing, gaps                    |
-| **Visual**     | Typography, colors, radii, shadows, backgrounds |
-| **Components** | Correct variants, tokens, states                |
+| Category | Checks |
+| --- | --- |
+| **Structure** | Containers, nesting, grouping |
+| **Dimensions** | Width, height, spacing, gaps |
+| **Visual** | Typography, colors, radii, shadows, backgrounds |
+| **Components** | Correct variants, tokens, states |
 
-## How It Works
+## Workflow
 
-1. Extracts design specifications from Figma (fileKey + nodeId from URL).
-2. Captures current implementation state via Playwright accessibility tree.
-3. Compares expected vs actual values.
-4. Produces a **PASS/FAIL** report with a difference table showing exact values.
+1. Extract design specifications from Figma (`fileKey` + `nodeId` from URL).
+2. Capture current implementation state via Playwright (accessibility tree and screenshots).
+3. Compare expected vs actual values.
+4. Produce a **PASS/FAIL** report with a difference table showing exact values.
 
-:::info Read-Only
-The UI Reviewer never modifies code. It only reports differences so the Software Engineer (via `/tsh-implement`) can fix them. When called in a loop, each call is an independent verification pass.
+:::info Read-only
+The UI Reviewer never modifies code. It only reports differences so the [Software Engineer](./software-engineer) (via **`@prompts/public/eversis-implement.md`** and UI internal prompts) can fix them. When called in a loop, each pass is independent.
 :::
 
 ## Tool Access
 
-| Tool                      | Usage                                                                |
-| ------------------------- | -------------------------------------------------------------------- |
-| **Context7**              | Look up design system documentation and UI library guidelines        |
-| **Figma**                 | Get EXPECTED design state — spacing, typography, colors, dimensions  |
-| **Playwright**            | Get ACTUAL implementation state — accessibility tree and screenshots |
-| **Sequential Thinking**   | Analyze complex layout discrepancies, evaluate tolerance decisions   |
-| **Terminal**              | Run commands to verify application state                             |
-| **File Read/Edit/Search** | Read, modify, and search workspace files                             |
-| **VS Code Commands**      | Execute VS Code commands and preview in browser                      |
-| **Sub-agents**            | Delegate subtasks to specialized agents                              |
-| **Todo**                  | Track verification progress with structured checklists               |
+| Tool | Usage |
+| --- | --- |
+| **Context7** | Look up design system documentation and UI library guidelines |
+| **Figma** | Get EXPECTED design state — spacing, typography, colors, dimensions |
+| **Playwright** | Get ACTUAL implementation state — accessibility tree and screenshots |
+| **Sequential Thinking** | Analyze complex layout discrepancies, evaluate tolerance decisions |
+| **Terminal** | Run commands to verify application state |
+| **Cursor Agent** | Read supporting code paths when required |
+| **Todo** | Track verification progress with structured checklists |
 
 ## Skills Loaded
 
-- `tsh-ui-verifying` — Verification criteria, structure checklist, severity definitions, and tolerances.
+- `eversis-ui-verifying` — Verification criteria, structure checklist, severity definitions, and tolerances.
 
 ## Handoffs
 
 After verification, the UI Reviewer can hand off to:
 
-- **Software Engineer** → `/tsh-implement` (start UI implementation according to the plan)
-- **Software Engineer** → `/tsh-implement` (implement UI fixes based on the verification report)
-- **Code Reviewer** → `/tsh-review` (proceed to code review if PASS)
+- **Software Engineer** — **`@prompts/public/eversis-implement.md`** (start UI implementation according to the plan).
+- **Software Engineer** — **`@prompts/public/eversis-implement.md`** (implement UI fixes based on the verification report).
+- **Code Reviewer** — **`@prompts/public/eversis-review.md`** (proceed to code review if PASS).

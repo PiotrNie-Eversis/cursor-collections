@@ -5,9 +5,10 @@ title: DevOps Engineer
 
 # DevOps Engineer Agent
 
-**File:** `.github/agents/tsh-devops-engineer.agent.md`
+**Rule pack (canonical):** `.cursor/rules/eversis-role-devops-engineer.mdc`  
+**Delegated prompts:** `prompts/internal/eversis-implement-pipeline.md`, `prompts/internal/eversis-implement-terraform.md`, `prompts/internal/eversis-implement-observability.md`, `prompts/internal/eversis-deploy-kubernetes.md` (composed from **`@prompts/public/eversis-implement.md`**)
 
-The DevOps Engineer agent is a Senior DevOps Engineer and Consultant that propagates DevOps culture, builds "Golden Path" templates, and manages cloud infrastructure, CI/CD pipelines, observability, and cost optimization.
+The DevOps Engineer role maps to a senior DevOps engineer and consultant: DevOps culture, “Golden Path” templates, cloud infrastructure, CI/CD pipelines, observability, and cost optimization — expressed as IaC and automation in Cursor.
 
 ## Responsibilities
 
@@ -21,50 +22,50 @@ The DevOps Engineer agent is a Senior DevOps Engineer and Consultant that propag
 ## Key Behaviors
 
 - **Non-interactive** — Makes reasonable decisions autonomously and documents assumptions.
-- **Delegates architecture decisions** — Spawns `tsh-architect` as a sub-agent for infrastructure design, multi-region topology, or new feature architecture.
+- **Delegates architecture decisions** — Engages the [Architect](./architect) for infrastructure design, multi-region topology, or new feature architecture.
 - **Safety-first** — Prefers `--dry-run`, `plan`, or `validate` before destructive operations. Never runs `apply`, `delete`, or `destroy` without explicit user authorization.
 - **IaC-only** — Never makes manual cloud console changes or ad-hoc CLI mutations outside of code.
 - **Cost-aware** — Every infrastructure proposal includes cost impact. Flags proposals exceeding 10% spend increase.
 
 ## Tool Access
 
-| Tool                      | Usage                                                                        |
-| ------------------------- | ---------------------------------------------------------------------------- |
-| **Context7**              | Search cloud provider documentation, Terraform registry, Kubernetes API docs |
-| **Sequential Thinking**   | Analyze complex infrastructure decisions, debug deployment issues            |
-| **AWS API**               | Query live AWS infrastructure, validate resources, check configurations      |
-| **AWS Documentation**     | Reference AWS service documentation and best practices                       |
-| **GCP Gcloud**            | Google Cloud operations and resource management                              |
-| **GCP Observability**     | Google Cloud monitoring and observability integration                        |
-| **GCP Storage**           | Google Cloud Storage resource management                                     |
-| **Terminal**              | Run Terraform, kubectl, Helm, and other CLI tools                            |
-| **File Read/Edit/Search** | Read, modify, and search workspace files                                     |
-| **Sub-agents**            | Delegate to `tsh-architect` for architectural decisions                      |
+| Tool | Usage |
+| --- | --- |
+| **Context7** | Search cloud provider documentation, Terraform registry, Kubernetes API docs |
+| **Sequential Thinking** | Analyze complex infrastructure decisions, debug deployment issues |
+| **AWS API** | Query live AWS infrastructure, validate resources, check configurations |
+| **AWS Documentation** | Reference AWS service documentation and best practices |
+| **GCP Gcloud** | Google Cloud operations and resource management |
+| **GCP Observability** | Google Cloud monitoring and observability integration |
+| **GCP Storage** | Google Cloud Storage resource management |
+| **Terminal** | Run Terraform, kubectl, Helm, and other CLI tools |
+| **Cursor Agent** | Read, modify, and search workspace files |
+| **Todo** | Track multi-step infrastructure tasks |
 
 ## Skills Loaded
 
-- `tsh-technical-context-discovering` — Project conventions and infrastructure patterns.
-- `tsh-codebase-analysing` — Understand existing Terraform, Helm, K8s manifests, and infrastructure codebase.
-- `tsh-implementing-ci-cd` — CI/CD pipeline design patterns and deployment strategies.
-- `tsh-implementing-kubernetes` — Kubernetes deployment patterns, Helm charts, cluster management.
-- `tsh-implementing-terraform-modules` — Reusable Terraform modules for AWS, Azure, and GCP.
-- `tsh-implementing-observability` — Observability patterns for logging, monitoring, alerting, tracing.
-- `tsh-managing-secrets` — Secrets management for cloud and Kubernetes environments.
-- `tsh-optimizing-cloud-cost` — Cloud cost optimization through rightsizing and tagging.
-- `tsh-designing-multi-cloud-architecture` — Multi-cloud architecture design across providers.
+- `eversis-technical-context-discovering` — Project conventions and infrastructure patterns.
+- `eversis-codebase-analysing` — Understand existing Terraform, Helm, K8s manifests, and infrastructure codebase.
+- `eversis-implementing-ci-cd` — CI/CD pipeline design patterns and deployment strategies.
+- `eversis-implementing-kubernetes` — Kubernetes deployment patterns, Helm charts, cluster management.
+- `eversis-implementing-terraform-modules` — Reusable Terraform modules for AWS, Azure, and GCP.
+- `eversis-implementing-observability` — Observability patterns for logging, monitoring, alerting, tracing.
+- `eversis-managing-secrets` — Secrets management for cloud and Kubernetes environments.
+- `eversis-optimizing-cloud-cost` — Cloud cost optimization through rightsizing and tagging.
+- `eversis-designing-multi-cloud-architecture` — Multi-cloud architecture design across providers.
 
 ## Context Discovery
 
-Before implementing, the agent discovers context in this order:
+Before implementing, discover context in this order:
 
 1. **Project instructions** — `.devops/instructions.md`, `infrastructure/README.md`, `*.instructions.md`.
 2. **CI/CD platform** — GitHub Actions, Bitbucket Pipelines, GitLab CI, Jenkins.
 3. **IaC patterns** — Terraform, Terragrunt, Kubernetes, Helm, Kustomize, CloudFormation, CDK.
 4. **Policy & secrets** — `.rego`, `.sops.yaml`, `sealed-secrets/`, `vault-config/`.
-5. **Greenfield** — If no patterns exist, gathers requirements and delegates to Architect.
+5. **Greenfield** — If no patterns exist, gather requirements and align with the [Architect](./architect).
 
 ## Handoffs
 
-After completing infrastructure work, the DevOps Engineer can hand off to:
+After completing infrastructure work, hand off to:
 
-- **Code Reviewer** → `/tsh-review` (review IaC and pipeline changes)
+- **Code Reviewer** — **`@prompts/public/eversis-review.md`** (review IaC and pipeline changes).
