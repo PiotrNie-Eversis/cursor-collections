@@ -8,23 +8,23 @@ title: Creating Instructions
 **Folder:** `.github/skills/tsh-creating-instructions/`  
 **Used by:** Framework maintainers (customization track)
 
-Helps place **declarative rules** for **Cursor**: **[AGENTS.md](https://github.com/TheSoftwareHouse/cursor-collections/blob/main/AGENTS.md)**, **`.cursor/rules/eversis-*.mdc`**, and optional scoped rules. This framework does **not** use GitHub Copilot `copilot-instructions.md`.
+Helps place **declarative rules** for **Cursor**: **[AGENTS.md](https://github.com/PiotrNie-Eversis/cursor-collections/blob/main/AGENTS.md)**, **`.cursor/rules/eversis-*.mdc`**, and optional scoped rules. This framework does **not** use GitHub Copilot `copilot-instructions.md`.
 
 ## Instruction types (Cursor)
 
-| Aspect | Project constitution | Scoped |
-| --- | --- | --- |
-| **Typical files** | `AGENTS.md` + `eversis-project-stack.mdc` | `eversis-*.mdc` with `globs` (or team `RULE.md` patterns) |
-| **Frontmatter** | Rules use YAML: `description`, `globs`, `alwaysApply` | Same |
-| **Applied when** | Always-on or stack-wide | When matching files are in context |
+| Aspect            | Project constitution                                  | Scoped                                                    |
+| ----------------- | ----------------------------------------------------- | --------------------------------------------------------- |
+| **Typical files** | `AGENTS.md` + `eversis-project-stack.mdc`             | `eversis-*.mdc` with `globs` (or team `RULE.md` patterns) |
+| **Frontmatter**   | Rules use YAML: `description`, `globs`, `alwaysApply` | Same                                                      |
+| **Applied when**  | Always-on or stack-wide                               | When matching files are in context                        |
 
 ## Instructions vs skills
 
-| Content | Belongs in… |
-| --- | --- |
-| Stack, commands, non-obvious global rules | `AGENTS.md` / `.mdc` |
-| Step-by-step procedures | `SKILL.md` under `.github/skills/` |
-| Runnable workflow text | `website/docs/prompts/eversis-*.md` |
+| Content                                   | Belongs in…                         |
+| ----------------------------------------- | ----------------------------------- |
+| Stack, commands, non-obvious global rules | `AGENTS.md` / `.mdc`                |
+| Step-by-step procedures                   | `SKILL.md` under `.github/skills/`  |
+| Runnable workflow text                    | `website/docs/prompts/eversis-*.md` |
 
 ## Validation checklist
 

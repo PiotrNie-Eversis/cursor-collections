@@ -1,6 +1,6 @@
 import Link from "@docusaurus/Link";
 import AnimationCanvas from "@site/src/components/HeroSection/AnimationCanvas";
-import styles from './index.module.css';
+import styles from "./index.module.css";
 
 const HeroSection = () => {
   return (
@@ -21,7 +21,7 @@ const HeroSection = () => {
         <div className={styles.heroActions}>
           <Link
             className={styles.btnPrimary}
-            href="https://github.com/TheSoftwareHouse/cursor-collections"
+            href="https://github.com/PiotrNie-Eversis/cursor-collections"
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -37,7 +37,7 @@ const HeroSection = () => {
         </p>
       </div>
     </div>
-  )
-}
+  );
+};
 
 export default HeroSection;

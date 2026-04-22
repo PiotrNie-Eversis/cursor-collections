@@ -8,13 +8,14 @@ title: For CTOs
 Cursor Collections is an AI product engineering framework used daily by **300+ engineers** at The Software House across **50+ commercial projects** — delivering a **30% average lead time reduction**.
 
 :::brand TL;DR:
+
 - Only 10% of teams see real gains from AI coding tools - the gap is structural, not technological
 - Cursor Collections restructures your delivery workflow around AI, rather than adding AI on top of it
 - 300+ engineers at TSH use it daily across 50+ commercial projects with great result: average lead time down 30%
 - Covers the full lifecycle: discovery workshop → structured backlog → implementation → code review
 - Runs in **Cursor** (rules, prompts, MCP, Agent Skills) — team licensing per your Cursor plan
 - Open source, MIT licence
-:::
+  :::
 
 ## The AI productivity gap is real and structural
 
@@ -45,7 +46,7 @@ The framework covers three delivery phases:
 These aren't benchmark numbers. They come from 300+ engineers using the framework daily across 50+ commercial projects at The Software House.
 
 | What changes                      | Measured impact   |
-|-----------------------------------|-------------------|
+| --------------------------------- | ----------------- |
 | Average lead time                 | **30% reduction** |
 | Context gathering time            | 60–80% faster     |
 | Planning time                     | 50–70% faster     |
@@ -98,7 +99,7 @@ Cursor Collections is MIT-licensed and free.
 
 - Read the full documentation - understand the full framework before committing to anything
 - See it applied to real use cases - nine scenarios across the full delivery lifecycle
-- [Get the repo](https://github.com/TheSoftwareHouse/cursor-collections) - install it in an afternoon, run it against a real ticket, see what changes
+- [Get the repo](https://github.com/PiotrNie-Eversis/cursor-collections) - install it in an afternoon, run it against a real ticket, see what changes
 
 :::brand
 If you want to talk through fit for your team's specific context, reach out to us at [hello@tsh.io](mailto:hello@tsh.io). I'd love to hear from you.

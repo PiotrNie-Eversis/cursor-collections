@@ -11,15 +11,15 @@ Use this framework from **[Cursor](https://cursor.com/)** with this repository o
 
 ```bash
 cd ~/projects
-git clone https://github.com/TheSoftwareHouse/cursor-collections.git cursor-collections
+git clone https://github.com/PiotrNie-Eversis/cursor-collections.git cursor-collections
 ```
 
-You can use any folder name; paths in [AGENTS.md](https://github.com/TheSoftwareHouse/cursor-collections/blob/main/AGENTS.md) and [documentation/cursor-collection.md](https://github.com/TheSoftwareHouse/cursor-collections/blob/main/documentation/cursor-collection.md) are relative to the repo root.
+You can use any folder name; paths in [AGENTS.md](https://github.com/PiotrNie-Eversis/cursor-collections/blob/main/AGENTS.md) and [documentation/cursor-collection.md](https://github.com/PiotrNie-Eversis/cursor-collections/blob/main/documentation/cursor-collection.md) are relative to the repo root.
 
 ## 2. Open in Cursor
 
 1. **File → Open Folder** and select the cloned `cursor-collections` directory (or add it to a multi-root workspace).
-2. Read **`AGENTS.md`** at the repo root and **[documentation/cursor-collection.md](https://github.com/TheSoftwareHouse/cursor-collections/blob/main/documentation/cursor-collection.md)** for the full model.
+2. Read **`AGENTS.md`** at the repo root and **[documentation/cursor-collection.md](https://github.com/PiotrNie-Eversis/cursor-collections/blob/main/documentation/cursor-collection.md)** for the full model.
 3. Review **`.cursor/rules/`** — start with `eversis-agent-core.mdc` and customize `eversis-project-stack.mdc` when you copy rules into another project.
 
 ## 3. Prompts (attach with `@`)
@@ -40,4 +40,4 @@ Copy or merge **`.vscode/mcp.json`** from this repo into **Cursor → MCP** (use
 
 ## Using the framework in another project
 
-Copy **`.cursor/rules/`** templates, add **`AGENTS.md`**, and either vendor **`website/docs/prompts/`** or maintain your own `eversis-*.md` paths. Configure MCP and Agent Skills for the integrations you need. See [documentation/cursor-collection.md](https://github.com/TheSoftwareHouse/cursor-collections/blob/main/documentation/cursor-collection.md) for the generic layout.
+Copy **`.cursor/rules/`** templates, add **`AGENTS.md`**, and either vendor **`website/docs/prompts/`** or maintain your own `eversis-*.md` paths. Configure MCP and Agent Skills for the integrations you need. See [documentation/cursor-collection.md](https://github.com/PiotrNie-Eversis/cursor-collections/blob/main/documentation/cursor-collection.md) for the generic layout.

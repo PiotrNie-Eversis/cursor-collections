@@ -1,36 +1,37 @@
-import type { Config } from '@docusaurus/types';
-import type * as Preset from '@docusaurus/preset-classic';
+import type { Config } from "@docusaurus/types";
+import type * as Preset from "@docusaurus/preset-classic";
 
 const config: Config = {
-  title: 'Cursor Collections',
-  tagline: 'Cursor-native product engineering framework — ideation, implementation, and review',
-  favicon: 'img/favicon.ico',
+  title: "Cursor Collections",
+  tagline:
+    "Cursor-native product engineering framework — ideation, implementation, and review",
+  favicon: "img/favicon.ico",
 
-  url: 'https://copilot-collections.tsh.io',
-  baseUrl: '/',
+  url: "https://copilot-collections.tsh.io",
+  baseUrl: "/",
 
-  onBrokenLinks: 'throw',
+  onBrokenLinks: "throw",
 
   i18n: {
-    defaultLocale: 'en',
-    locales: ['en'],
+    defaultLocale: "en",
+    locales: ["en"],
   },
 
   presets: [
     [
-      'classic',
+      "classic",
       {
         docs: {
-          sidebarPath: './sidebars.ts',
-          routeBasePath: 'docs',
+          sidebarPath: "./sidebars.ts",
+          routeBasePath: "docs",
           admonitions: {
-            keywords: ['note', 'tip', 'info', 'warning', 'danger', 'brand'],
+            keywords: ["note", "tip", "info", "warning", "danger", "brand"],
           },
         },
         blog: false,
         pages: {},
         theme: {
-          customCss: './src/css/custom.css',
+          customCss: "./src/css/custom.css",
         },
       } satisfies Preset.Options,
     ],
@@ -38,7 +39,7 @@ const config: Config = {
 
   themes: [
     [
-      '@easyops-cn/docusaurus-search-local',
+      "@easyops-cn/docusaurus-search-local",
       {
         hashed: true,
         indexBlog: false,
@@ -48,113 +49,114 @@ const config: Config = {
 
   headTags: [
     {
-      tagName: 'link',
+      tagName: "link",
       attributes: {
-        rel: 'preconnect',
-        href: 'https://fonts.googleapis.com',
+        rel: "preconnect",
+        href: "https://fonts.googleapis.com",
       },
     },
     {
-      tagName: 'link',
+      tagName: "link",
       attributes: {
-        rel: 'preconnect',
-        href: 'https://fonts.gstatic.com',
-        crossorigin: 'anonymous',
+        rel: "preconnect",
+        href: "https://fonts.gstatic.com",
+        crossorigin: "anonymous",
       },
     },
     {
-      tagName: 'link',
+      tagName: "link",
       attributes: {
-        rel: 'stylesheet',
-        href: 'https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap',
+        rel: "stylesheet",
+        href: "https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap",
       },
     },
   ],
 
   themeConfig: {
-    image: 'img/opengraph.png',
+    image: "img/opengraph.png",
     metadata: [
       {
-        property: 'og:type',
-        content: 'website',
+        property: "og:type",
+        content: "website",
       },
       {
-        property: 'og:image:width',
-        content: '1200',
+        property: "og:image:width",
+        content: "1200",
       },
       {
-        property: 'og:image:height',
-        content: '630',
+        property: "og:image:height",
+        content: "630",
       },
       {
-        property: 'og:image:alt',
-        content: 'Cursor Collections documentation — AI product engineering with Cursor.',
+        property: "og:image:alt",
+        content:
+          "Cursor Collections documentation — AI product engineering with Cursor.",
       },
       {
-        name: 'twitter:image:alt',
-        content: 'Cursor Collections by The Software House',
+        name: "twitter:image:alt",
+        content: "Cursor Collections by The Software House",
       },
     ],
     navbar: {
-      title: 'Cursor Collections',
+      title: "Cursor Collections",
       logo: {
-        alt: 'Cursor Collections',
-        src: 'img/logo-white.svg',
+        alt: "Cursor Collections",
+        src: "img/logo-white.svg",
       },
       items: [
         {
-          type: 'docSidebar',
-          sidebarId: 'tutorialSidebar',
-          position: 'left',
-          label: 'Docs',
+          type: "docSidebar",
+          sidebarId: "tutorialSidebar",
+          position: "left",
+          label: "Docs",
         },
         {
-          to: '/docs/workflow/overview',
-          label: 'Workflow',
-          position: 'left',
+          to: "/docs/workflow/overview",
+          label: "Workflow",
+          position: "left",
         },
         {
-          type: 'dropdown',
-          label: 'Components',
-          position: 'left',
+          type: "dropdown",
+          label: "Components",
+          position: "left",
           items: [
             {
-              to: '/docs/agents/overview',
-              label: 'Agents',
+              to: "/docs/agents/overview",
+              label: "Agents",
             },
             {
-              to: '/docs/prompts/overview',
-              label: 'Prompts',
+              to: "/docs/prompts/overview",
+              label: "Prompts",
             },
             {
-              to: '/docs/skills/overview',
-              label: 'Skills',
+              to: "/docs/skills/overview",
+              label: "Skills",
             },
             {
-              to: '/docs/integrations/overview',
-              label: 'Integrations',
+              to: "/docs/integrations/overview",
+              label: "Integrations",
             },
           ],
         },
         {
-          to: '/docs/use-cases',
-          label: 'Use Cases',
-          position: 'left',
+          to: "/docs/use-cases",
+          label: "Use Cases",
+          position: "left",
         },
         {
-          to: '/docs/for-ctos',
-          label: 'For CTOs',
-          position: 'left',
-          className: 'navbar__link--cto',
+          to: "/docs/for-ctos",
+          label: "For CTOs",
+          position: "left",
+          className: "navbar__link--cto",
         },
         {
-          to: '/changelog',
-          label: 'Changelog',
-          position: 'right',
-          className: 'navbar__link--meta',
+          to: "/changelog",
+          label: "Changelog",
+          position: "right",
+          className: "navbar__link--meta",
         },
         {
-          href: 'https://github.com/TheSoftwareHouse/cursor-collections',
+          href: "https://github.com/PiotrNie-Eversis/cursor-collections",
           html: `
             <span class="navbar__github-content">
               <svg class="navbar__github-icon" viewBox="0 0 24 24" aria-hidden="true">
@@ -166,34 +168,34 @@ const config: Config = {
               </svg>
             </span>
           `,
-          position: 'right',
-          className: 'navbar__link--github',
+          position: "right",
+          className: "navbar__link--github",
         },
       ],
     },
     footer: {
-      style: 'light',
+      style: "light",
       copyright: `cursor-collections · Built by <a href="https://tsh.io" target="_blank" rel="noopener noreferrer">The Software House</a> (Eversis Cursor framework) · MIT licence · Free`,
       links: [
         {
-          title: ' ',
+          title: " ",
           items: [
             {
-              href: 'https://github.com/TheSoftwareHouse/cursor-collections',
-              label: 'GitHub',
+              href: "https://github.com/PiotrNie-Eversis/cursor-collections",
+              label: "GitHub",
             },
-            { label: 'Docs', to: '/docs/' },
-            { label: 'Methodology', to: '/docs/workflow/overview' },
+            { label: "Docs", to: "/docs/" },
+            { label: "Methodology", to: "/docs/workflow/overview" },
             {
-              label: 'tsh.io',
-              href: 'https://tsh.io',
+              label: "tsh.io",
+              href: "https://tsh.io",
             },
           ],
         },
       ],
     },
     colorMode: {
-      defaultMode: 'dark',
+      defaultMode: "dark",
       disableSwitch: true,
       respectPrefersColorScheme: false,
     },

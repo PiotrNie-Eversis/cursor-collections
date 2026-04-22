@@ -5,6 +5,7 @@ slug: create-custom-agent
 prompt_role: "Cursor customization orchestrator"
 prompt_description: "Create new Cursor role packaging — typically .cursor/rules/eversis-*.mdc and optional agent docs. Researches existing rules, designs the role, and validates against the tsh-creating-agents skill."
 ---
+
 # /eversis-create-custom-agent
 
 **Role:** [Cursor customization orchestrator](../../agents/cursor-customization-orchestrator) (workflow pattern)  
@@ -23,7 +24,7 @@ In **Cursor**, attach the file above (or open it and reference it with `@`) plus
 
 ## What it does
 
-1. **Research** — Review existing **`.cursor/rules/*.mdc`** and [AGENTS.md](https://github.com/TheSoftwareHouse/cursor-collections/blob/main/AGENTS.md) for patterns; optionally read `website/docs/agents/`.
+1. **Research** — Review existing **`.cursor/rules/*.mdc`** and [AGENTS.md](https://github.com/PiotrNie-Eversis/cursor-collections/blob/main/AGENTS.md) for patterns; optionally read `website/docs/agents/`.
 2. **Clarify** — Scope, responsibilities, which prompts attach this rule, and globs (`alwaysApply` vs `globs`).
 3. **Design** — File name, description, section outline, and how the role composes with `eversis-agent-core.mdc`.
 4. **Create** — Write the `.mdc` (and short agent doc if needed) following **`tsh-creating-agents`** (skill path: `.github/skills/tsh-creating-agents/SKILL.md`).

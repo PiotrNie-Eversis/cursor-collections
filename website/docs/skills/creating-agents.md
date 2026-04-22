@@ -17,12 +17,12 @@ Build **Cursor project rules** — **`.cursor/rules/eversis-*.mdc`** — that de
 
 ## Rule structure (typical)
 
-| Layer | Purpose |
-| --- | --- |
-| **Frontmatter** | `description`, `globs` or `alwaysApply` |
-| **Role** | Responsibilities, tone, when to stop for human review |
-| **Skills** | Which `tsh-*` skills apply by name (references only) |
-| **Tools** | Behavioral guidance for MCP / terminal (not a Copilot tool manifest) |
+| Layer           | Purpose                                                              |
+| --------------- | -------------------------------------------------------------------- |
+| **Frontmatter** | `description`, `globs` or `alwaysApply`                              |
+| **Role**        | Responsibilities, tone, when to stop for human review                |
+| **Skills**      | Which `tsh-*` skills apply by name (references only)                 |
+| **Tools**       | Behavioral guidance for MCP / terminal (not a Copilot tool manifest) |
 
 ## Validation
 
@@ -31,4 +31,4 @@ Build **Cursor project rules** — **`.cursor/rules/eversis-*.mdc`** — that de
 
 ## See also
 
-- [documentation/cursor-collection.md](https://github.com/TheSoftwareHouse/cursor-collections/blob/main/documentation/cursor-collection.md)
+- [documentation/cursor-collection.md](https://github.com/PiotrNie-Eversis/cursor-collections/blob/main/documentation/cursor-collection.md)

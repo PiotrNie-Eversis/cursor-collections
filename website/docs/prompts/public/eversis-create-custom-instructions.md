@@ -5,12 +5,13 @@ slug: create-custom-instructions
 prompt_role: "Cursor customization orchestrator"
 prompt_description: "Create or extend project instructions for Cursor: AGENTS.md, .cursor/rules, optional RULE.md. Follows tsh-creating-instructions."
 ---
+
 # /eversis-create-custom-instructions
 
 **Role:** [Cursor customization orchestrator](../../agents/cursor-customization-orchestrator)  
 **File:** `website/docs/prompts/public/eversis-create-custom-instructions.md`
 
-Helps the user encode **project-wide instructions** for **Cursor**: primarily **[AGENTS.md](https://github.com/TheSoftwareHouse/cursor-collections/blob/main/AGENTS.md)** and **`.cursor/rules/*.mdc`**. Optional: scoped **`RULE.md`** in subfolders (Cursor-supported patterns). **Do not** target GitHub Copilot `copilot-instructions.md` — this repository is Cursor-only.
+Helps the user encode **project-wide instructions** for **Cursor**: primarily **[AGENTS.md](https://github.com/PiotrNie-Eversis/cursor-collections/blob/main/AGENTS.md)** and **`.cursor/rules/*.mdc`**. Optional: scoped **`RULE.md`** in subfolders (Cursor-supported patterns). **Do not** target GitHub Copilot `copilot-instructions.md` — this repository is Cursor-only.
 
 ## Usage
 

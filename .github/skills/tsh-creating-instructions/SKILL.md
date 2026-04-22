@@ -6,27 +6,27 @@ user-invokable: false
 
 # Creating instructions (Cursor)
 
-Helps place **declarative rules** in the right surface for **Cursor**: **[AGENTS.md](https://github.com/TheSoftwareHouse/cursor-collections/blob/main/AGENTS.md)**, **`.cursor/rules/eversis-*.mdc`**, and optional scoped `RULE.md` files. Use **skills** for procedural how-to, not long policies.
+Helps place **declarative rules** in the right surface for **Cursor**: **[AGENTS.md](https://github.com/PiotrNie-Eversis/cursor-collections/blob/main/AGENTS.md)**, **`.cursor/rules/eversis-*.mdc`**, and optional scoped `RULE.md` files. Use **skills** for procedural how-to, not long policies.
 
 ## Instruction surfaces (this framework)
 
-| Surface | Location | When to use |
-| --- | --- | --- |
-| **AGENTS.md** | Repo root | Short map: where prompts live, which rules to read first |
-| **Project stack / core** | `.cursor/rules/eversis-project-stack.mdc` | Stack, commands, test/lint invocations |
-| **Always-on core** | `.cursor/rules/eversis-agent-core.mdc` | Relay workflow, human gates, quality bar |
-| **Role rules** | `.cursor/rules/eversis-role-*.mdc` or `eversis-engineering-manager.mdc` | When to behave as which role |
-| **Scoped** | `globs` in a `.mdc` or a folder `RULE.md` (if your Cursor build supports it) | Directory- or file-type-specific constraints |
+| Surface                  | Location                                                                     | When to use                                              |
+| ------------------------ | ---------------------------------------------------------------------------- | -------------------------------------------------------- |
+| **AGENTS.md**            | Repo root                                                                    | Short map: where prompts live, which rules to read first |
+| **Project stack / core** | `.cursor/rules/eversis-project-stack.mdc`                                    | Stack, commands, test/lint invocations                   |
+| **Always-on core**       | `.cursor/rules/eversis-agent-core.mdc`                                       | Relay workflow, human gates, quality bar                 |
+| **Role rules**           | `.cursor/rules/eversis-role-*.mdc` or `eversis-engineering-manager.mdc`      | When to behave as which role                             |
+| **Scoped**               | `globs` in a `.mdc` or a folder `RULE.md` (if your Cursor build supports it) | Directory- or file-type-specific constraints             |
 
 **Deprecated for this repo:** `.github/copilot-instructions.md` and Copilot `*.instructions.md` — do not add them here.
 
 ## Instructions vs skills (unchanged idea)
 
-| Content | Belongs in… |
-| --- | --- |
-| Project rule (“always use pnpm”, “no console in prod”) | `AGENTS.md` / `.mdc` |
-| Step-by-step workflow (how to run a migration review) | `SKILL.md` under `.github/skills/` |
-| Runnable task text | `website/docs/prompts/public/eversis-*.md` |
+| Content                                                | Belongs in…                                |
+| ------------------------------------------------------ | ------------------------------------------ |
+| Project rule (“always use pnpm”, “no console in prod”) | `AGENTS.md` / `.mdc`                       |
+| Step-by-step workflow (how to run a migration review)  | `SKILL.md` under `.github/skills/`         |
+| Runnable task text                                     | `website/docs/prompts/public/eversis-*.md` |
 
 ## Process
 

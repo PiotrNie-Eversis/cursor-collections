@@ -18,7 +18,7 @@ A **prompt file** (`eversis-*.md`) defines WHAT workflow to execute. It must NOT
 - **Prompt** = workflow steps, expected artifacts, when to stop for human review
 - **Role rules** = stable behavior in `.cursor/rules/eversis-*.mdc`
 - **Skills** = procedural `SKILL.md` packages under `.github/skills/`
-</separation-of-concerns>
+  </separation-of-concerns>
 
 <workflow-focus>
 A **public** prompt in this monorepo is a **Docusaurus doc** and a **User attachable** body. It must:
@@ -32,7 +32,7 @@ A prompt must NOT:
 - Redefine full role behavior (put that in **`.mdc`**)
 - Duplicate skill bodies (link skills by name)
 - Put stack-wide standards here (put those in **AGENTS.md** / `eversis-project-stack.mdc`)
-</workflow-focus>
+  </workflow-focus>
 
 <xml-syntax>
 All structured content inside the prompt body MUST use XML-like tags for explicit structure. This ensures reliable parsing across all LLM model tiers.
@@ -65,6 +65,7 @@ Creation progress:
 **Step 1: Define the prompt's purpose**
 
 Answer these questions before writing anything:
+
 - What specific workflow does this prompt trigger? (e.g., research a task, implement a feature, run e2e tests)
 - What is the expected outcome? (e.g., a research document, implemented code, test suite)
 - What inputs does the workflow require? (e.g., Jira ID, plan file, feature description)
@@ -73,7 +74,7 @@ Answer these questions before writing anything:
 
 **Step 2: Choose the target role and rules**
 
-- Read **`.cursor/rules/`** and [website/docs/agents/](https://github.com/TheSoftwareHouse/cursor-collections/tree/main/website/docs/agents) to pick the **conceptual** role (Business Analyst, Engineering Manager, …).
+- Read **`.cursor/rules/`** and [website/docs/agents/](https://github.com/PiotrNie-Eversis/cursor-collections/tree/main/website/docs/agents) to pick the **conceptual** role (Business Analyst, Engineering Manager, …).
 - In the prompt body, tell the user which **`eversis-*.mdc`** files to @-attach. Model choice is a **user setting in Cursor**, not frontmatter in these Markdown prompts.
 
 **Step 3: Determine tool requirements**
@@ -83,6 +84,7 @@ Document MCP expectations in the prompt body (e.g. “ensure Atlassian and Figma
 **Step 4: Identify required skills**
 
 Determine which skills the workflow depends on:
+
 - Review existing skills in `.github/skills/` to find relevant ones
 - Each referenced skill will be loaded by the agent before starting the workflow
 - List skills with a brief explanation of why they are needed for THIS workflow
@@ -91,6 +93,7 @@ Determine which skills the workflow depends on:
 **Step 5: Design the workflow steps**
 
 Outline the workflow as a numbered sequence:
+
 - Each step should be a clear, actionable instruction
 - Steps should reference skills and tools where appropriate
 - Include decision points and branching logic if the workflow is not purely linear
@@ -100,6 +103,7 @@ Outline the workflow as a numbered sequence:
 **Step 6: Define output expectations**
 
 Specify the expected deliverables of the workflow:
+
 - File name conventions and output locations
 - Document structure or template to follow (reference skill templates where applicable)
 - Summary format if the workflow produces a report
@@ -123,28 +127,28 @@ Use `./prompt.template.md` for section ordering. Write **`website/docs/prompts/p
 
 ### Frontmatter fields (Docusaurus + framework)
 
-| Field | Required | Description |
-|---|---|---|
-| `title` | **Yes** | Page title in docs |
-| `slug` | **Yes** | URL path under prompts |
-| `sidebar_position` | **Yes** | Sidebar ordering |
-| `prompt_role` | **Yes** | Short role label for catalog |
-| `prompt_description` | **Yes** | One-line description |
+| Field                | Required | Description                  |
+| -------------------- | -------- | ---------------------------- |
+| `title`              | **Yes**  | Page title in docs           |
+| `slug`               | **Yes**  | URL path under prompts       |
+| `sidebar_position`   | **Yes**  | Sidebar ordering             |
+| `prompt_role`        | **Yes**  | Short role label for catalog |
+| `prompt_description` | **Yes**  | One-line description         |
 
 Legacy Copilot `agent` / `model` / `tools` keys are **not** used.
 
 ### Body Sections
 
-| Section | Required | Purpose |
-|---|---|---|
-| Goal statement | **Yes** | 1-2 paragraphs describing what the prompt accomplishes and the expected outcome. |
-| `<prerequisites>` | No | Dependencies on other prompts or files that must be completed first. |
-| `<input-requirements>` | No | Describes what context or inputs the workflow needs to start. |
-| Required Skills | **Yes** | Skills to load before starting the workflow, with brief rationale for each. |
-| Workflow | **Yes** | Numbered steps defining the workflow sequence. |
-| `<output-specification>` | No | File naming, document structure, summary format, or success criteria. |
-| `<handoff>` | No | Automatic handoff to another agent at the end of the workflow. |
-| `<constraints>` | No | Workflow-specific limitations, anti-patterns, or scope boundaries. |
+| Section                  | Required | Purpose                                                                          |
+| ------------------------ | -------- | -------------------------------------------------------------------------------- |
+| Goal statement           | **Yes**  | 1-2 paragraphs describing what the prompt accomplishes and the expected outcome. |
+| `<prerequisites>`        | No       | Dependencies on other prompts or files that must be completed first.             |
+| `<input-requirements>`   | No       | Describes what context or inputs the workflow needs to start.                    |
+| Required Skills          | **Yes**  | Skills to load before starting the workflow, with brief rationale for each.      |
+| Workflow                 | **Yes**  | Numbered steps defining the workflow sequence.                                   |
+| `<output-specification>` | No       | File naming, document structure, summary format, or success criteria.            |
+| `<handoff>`              | No       | Automatic handoff to another agent at the end of the workflow.                   |
+| `<constraints>`          | No       | Workflow-specific limitations, anti-patterns, or scope boundaries.               |
 
 ## XML Syntax Guidelines
 
@@ -160,17 +164,17 @@ All body content in the prompt file must use XML-like tags for structure. Rules:
 
 Prompt files support variables that are resolved at runtime. Use them to make prompts more flexible:
 
-| Variable | Description |
-|---|---|
-| `${workspaceFolder}` | Absolute path to the workspace root |
-| `${workspaceFolderBasename}` | Name of the workspace folder |
-| `${file}` | Path to the currently open file |
-| `${fileBasename}` | Filename of the currently open file |
-| `${fileDirname}` | Directory of the currently open file |
-| `${fileBasenameNoExtension}` | Filename without extension |
-| `${selection}` / `${selectedText}` | Currently selected text in the editor |
-| `${input:variableName}` | Prompts user for text input at runtime |
-| `${input:variableName:placeholder}` | User input with placeholder hint |
+| Variable                            | Description                            |
+| ----------------------------------- | -------------------------------------- |
+| `${workspaceFolder}`                | Absolute path to the workspace root    |
+| `${workspaceFolderBasename}`        | Name of the workspace folder           |
+| `${file}`                           | Path to the currently open file        |
+| `${fileBasename}`                   | Filename of the currently open file    |
+| `${fileDirname}`                    | Directory of the currently open file   |
+| `${fileBasenameNoExtension}`        | Filename without extension             |
+| `${selection}` / `${selectedText}`  | Currently selected text in the editor  |
+| `${input:variableName}`             | Prompts user for text input at runtime |
+| `${input:variableName:placeholder}` | User input with placeholder hint       |
 
 Variables are useful for prompts that operate on dynamic context (e.g., the current file, user-provided identifiers).
 

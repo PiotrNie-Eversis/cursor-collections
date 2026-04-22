@@ -1,32 +1,34 @@
-import React from 'react';
-import Link from '@docusaurus/Link';
+import React from "react";
+import Link from "@docusaurus/Link";
 
-import styles from './styles.module.css';
+import styles from "./styles.module.css";
 
 const steps = [
   {
     num: 1,
-    title: 'Clone the repo',
+    title: "Clone the repo",
     description: (
       <>
-        <code>git clone [repo] cursor-collections</code> alongside your
-        existing projects
+        <code>git clone [repo] cursor-collections</code> alongside your existing
+        projects
       </>
     ),
   },
   {
     num: 2,
-    title: 'Open in Cursor',
+    title: "Open in Cursor",
     description: (
       <>
-        Open the folder in <strong>Cursor</strong>, read <code>AGENTS.md</code> and <code>documentation/cursor-collection.md</code>, and review{' '}
-        <code>.cursor/rules/</code> (start with <code>eversis-agent-core.mdc</code>).
+        Open the folder in <strong>Cursor</strong>, read <code>AGENTS.md</code>{" "}
+        and <code>documentation/cursor-collection.md</code>, and review{" "}
+        <code>.cursor/rules/</code> (start with{" "}
+        <code>eversis-agent-core.mdc</code>).
       </>
     ),
   },
   {
     num: 3,
-    title: 'Configure MCP servers',
+    title: "Configure MCP servers",
     description: (
       <>
         Add <code>.vscode/mcp.json</code> to Cursor&apos;s MCP config (user or
@@ -36,12 +38,12 @@ const steps = [
   },
   {
     num: 4,
-    title: 'Run your first prompt',
+    title: "Run your first prompt",
     description: (
       <>
-        In Chat or Agent, attach{' '}
-        <code>@website/docs/prompts/public/eversis-implement.md</code> and
-        your ticket or task text.
+        In Chat or Agent, attach{" "}
+        <code>@website/docs/prompts/public/eversis-implement.md</code> and your
+        ticket or task text.
       </>
     ),
   },
@@ -61,14 +63,14 @@ export default function GettingStartedSection(): React.JSX.Element {
           </h2>
           <p className={styles.sub}>
             Clone the repo, open it in Cursor, register optional Agent Skills
-            for <code>.github/skills/</code>, and attach{' '}
-            <code>eversis-*.md</code> prompts with <code>@</code> in any
-            project you configure.
+            for <code>.github/skills/</code>, and attach{" "}
+            <code>eversis-*.md</code> prompts with <code>@</code> in any project
+            you configure.
           </p>
           <div className={styles.gsActions}>
             <Link
               className={styles.btnPrimary}
-              href="https://github.com/TheSoftwareHouse/cursor-collections"
+              href="https://github.com/PiotrNie-Eversis/cursor-collections"
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -83,7 +85,7 @@ export default function GettingStartedSection(): React.JSX.Element {
           {steps.map((step, idx) => (
             <div
               key={step.num}
-              className={`${styles.step} ${idx === 0 ? styles.stepFirst : ''} ${idx === steps.length - 1 ? styles.stepLast : ''}`}
+              className={`${styles.step} ${idx === 0 ? styles.stepFirst : ""} ${idx === steps.length - 1 ? styles.stepLast : ""}`}
             >
               <div className={styles.stepNum}>{step.num}</div>
               <div className={styles.stepContent}>
