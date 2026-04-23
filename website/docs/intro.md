@@ -6,7 +6,7 @@ title: Introduction
 
 # Introduction
 
-**Cursor Collections** is a **Cursor-native** product engineering framework — from workshop to Jira, through implementation, to structured review and testing. It combines **project rules** (`.cursor/rules/*.mdc`), **prompts** under **`.cursor/prompts/public/`** (user-facing) and **`.cursor/prompts/internal/`** (delegation, e.g. from `eversis-implement`), **MCP** servers, and **skill packages** (`.github/skills/eversis-*/` with `SKILL.md`, used through the **`eversis-collections` MCP** server and `eversis_*` tools). In Chat or **Agent**, attach prompt files with **`@`** (e.g. `@eversis-implement` or `@.cursor/prompts/...`).
+**Cursor Collections** is a **Cursor-native** product engineering framework — from workshop to Jira, through implementation, to structured review and testing. It combines **project rules** (`.cursor/rules/*.mdc`), **prompts** under **`.cursor/prompts/public/`** (user-facing) and **`.cursor/prompts/internal/`** (delegation, e.g. from `eversis-implement`), **MCP** servers, and **skill packages** (`.github/skills/eversis-*/` with `SKILL.md`, used through the **`eversis-collections` MCP** server and `eversis_*` tools). In Chat or **Agent**, attach a prompt with **`@`** and the **file stem** (e.g. **`@eversis-implement`**, **`@eversis-review`**). Use a full path only if the file picker does not disambiguate.
 
 **Starter rules in this repo:** `eversis-agent-core.mdc` and `eversis-project-stack.mdc` (edit per project); for Implement and Review, optionally attach `eversis-engineering-manager.mdc` and `eversis-code-reviewer.mdc` with the matching prompts.
 

@@ -5,9 +5,13 @@ title: Prompts Overview
 
 # Prompts Overview
 
-This framework includes **12 public prompts** — Markdown workflow definitions for **Cursor** (Chat or Agent). **Canonical sources** live under `.cursor/prompts/public/` as `eversis-*.md` files. **Attach** with `@` (for example `@eversis-implement` or `@.cursor/prompts/public/eversis-implement.md`). The first column below lists each **prompt by file stem** (links go to the catalog page); it is not a native `/` chat command.
+This framework includes **12 public prompts** — Markdown workflow definitions for **Cursor** (Chat or Agent). **Canonical sources** live under `.cursor/prompts/public/` as `eversis-*.md` files.
 
-**Documentation site:** From the repository’s **`website/`** directory, `npm run start` and `npm run build` run **`sync-prompts`** first, copying these files into `website/docs/prompts/` for Docusaurus. The generated `eversis-*.md` copies there are gitignored.
+**How to attach (preferred):** In Chat or Agent, type **`@`** and the **file stem** (e.g. **`@eversis-implement`**, **`@eversis-review`**) so Cursor picks the file by name. Use a full repo path (e.g. **`.cursor/prompts/public/eversis-implement.md`**) only if the picker does not disambiguate.
+
+The first column below lists each **prompt by file stem** (links go to the catalog page); it is not a native `/` chat command.
+
+**Documentation site:** From the repository’s **`website/`** directory, `npm run start` and `npm run build` run **`sync-prompts`** first, copying these files into `website/docs/prompts/` for Docusaurus. The generated `eversis-*.md` copies there are gitignored and are listed in **`.cursorignore`** so they are not double-indexed next to the sources under **`.cursor/prompts/`.**
 
 ## How Prompts Work
 

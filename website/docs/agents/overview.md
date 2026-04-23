@@ -7,7 +7,7 @@ title: Agents Overview
 
 **Twelve specialized roles** plus **three internal workers** mirror a full product-engineering team across the **full delivery lifecycle** — from product ideation through development, infrastructure, and quality assurance.
 
-In **Cursor**, those roles are expressed as **rules** (`.cursor/rules/eversis-*.mdc`), **prompts** (`.cursor/prompts/public/eversis-*.md` and `.cursor/prompts/internal/eversis-*.md`), and **skill packages** (`SKILL.md` under `.github/skills/`, used via the **`eversis-collections` MCP** and `eversis_skills_*` tools; optional `eversis-` names if you fork). Attach prompts with **`@`** from the repository root in Chat or Agent mode.
+In **Cursor**, those roles are expressed as **rules** (`.cursor/rules/eversis-*.mdc`), **prompts** (bodies in **`.cursor/prompts/public/`** and **`.cursor/prompts/internal/`** as `eversis-*.md`), and **skill packages** (`SKILL.md` under `.github/skills/`, used via the **`eversis-collections` MCP** and `eversis_skills_*` tools; optional `eversis-` names if you fork). **Attach** prompts in Chat or Agent by typing **`@`** and the **file stem** (e.g. **`@eversis-implement`**, **`@eversis-research`**). Use a full path under **`.cursor/prompts/...`** only if the file picker does not disambiguate.
 
 The canonical packaging and mappings are documented in the [Framework reference](../framework) (same as **`documentation/cursor-collection.md`** in the repository). Entry points for this repository are **`AGENTS.md`** (root) and the always-on rule **`.cursor/rules/eversis-agent-core.mdc`**.
 
@@ -28,17 +28,15 @@ Each role defines:
 ```text
 ┌────────────────────────┐
 │   Business Analyst     │
-│ @.cursor/prompts/public/       │
-│ eversis-analyze-       │
-│ materials.md           │
+│ @eversis-analyze-      │
+│   materials            │
 └───────────┬────────────┘
             │ Start implementation
             ▼
 ┌────────────────────────┐
 │ Engineering Manager    │
-│ @.cursor/prompts/public/       │
-│ eversis-implement.md   │
-│ + eversis-engineering- │
+│ @eversis-implement     │
+│ + @eversis-engineering-│
 │   manager.mdc          │
 └───────────┬────────────┘
             │ Delegates (internal prompts + roles)
@@ -65,11 +63,11 @@ Each role defines:
 
 | Role                                         | Eversis packaging (rules / prompts)                                                                                | Role summary                                                                                    | Typical MCP / tools                                         |
 | -------------------------------------------- | ------------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------- |
-| [Context Engineer](./context-engineer)       | `eversis-role-context-engineer.mdc` · `.cursor/prompts/internal/eversis-research.md` (via implement)               | Gathers requirements, builds context, identifies gaps                                           | Atlassian, Figma, PDF Reader, Sequential Thinking           |
-| [Architect](./architect)                     | `eversis-role-architect.mdc` · `.cursor/prompts/internal/eversis-plan.md` (via implement)                          | Designs solutions, creates implementation plans                                                 | Atlassian, Context7, Figma, PDF Reader, Sequential Thinking |
+| [Context Engineer](./context-engineer)       | `eversis-role-context-engineer.mdc` · `@eversis-research` (via `@eversis-implement`)               | Gathers requirements, builds context, identifies gaps                                           | Atlassian, Figma, PDF Reader, Sequential Thinking           |
+| [Architect](./architect)                     | `eversis-role-architect.mdc` · `@eversis-plan` (via `@eversis-implement`)                          | Designs solutions, creates implementation plans                                                 | Atlassian, Context7, Figma, PDF Reader, Sequential Thinking |
 | [Engineering Manager](./engineering-manager) | `eversis-role-engineering-manager.mdc` · **`eversis-engineering-manager.mdc`** in this repo · `@eversis-implement` | Orchestrates implementation by delegating to specialized roles                                  | Atlassian, Sequential Thinking                              |
 | [Software Engineer](./software-engineer)     | `eversis-role-software-engineer.mdc` · internal implement prompts                                                  | Implements code against the plan                                                                | Context7, Figma, Playwright, Sequential Thinking            |
-| [Prompt Engineer](./prompt-engineer)         | `eversis-role-prompt-engineer.mdc` · `.cursor/prompts/internal/eversis-engineer-prompt.md`                         | Designs, optimizes, and secures LLM application prompts (runtime prompts, not Cursor packaging) | Context7, Sequential Thinking                               |
+| [Prompt Engineer](./prompt-engineer)         | `eversis-role-prompt-engineer.mdc` · `@eversis-engineer-prompt` (via `@eversis-implement`)                         | Designs, optimizes, and secures LLM application prompts (runtime prompts, not Cursor packaging) | Context7, Sequential Thinking                               |
 
 ### 🏗 Infrastructure and DevOps
 
@@ -83,7 +81,7 @@ Each role defines:
 | -------------------------------- | --------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------ | ------------------------------------------------ |
 | [Code Reviewer](./code-reviewer) | `eversis-role-code-reviewer.mdc` · **`eversis-code-reviewer.mdc`** in this repo · `@eversis-review` | Reviews code quality, security, correctness (structured PASS / BLOCKER / SUGGESTION) | Atlassian, Context7, Figma, Sequential Thinking  |
 | [UI Reviewer](./ui-reviewer)     | `eversis-role-ui-reviewer.mdc` · `@eversis-review-ui`                                               | Verifies UI matches Figma design (read-only verification)                            | Figma, Playwright, Context7                      |
-| [E2E Engineer](./e2e-engineer)   | `eversis-role-e2e-engineer.mdc` · `.cursor/prompts/internal/eversis-implement-e2e.md`               | Creates and maintains Playwright E2E tests                                           | Playwright, Context7, Figma, Sequential Thinking |
+| [E2E Engineer](./e2e-engineer)   | `eversis-role-e2e-engineer.mdc` · `@eversis-implement-e2e` (via `@eversis-implement`)               | Creates and maintains Playwright E2E tests                                           | Playwright, Context7, Figma, Sequential Thinking |
 
 ### ⚙️ Cursor customization (delegated prompts)
 

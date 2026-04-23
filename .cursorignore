@@ -18,3 +18,6 @@ dist/
 coverage/
 
 # Optional: add local exports, dumps, or PII-heavy paths your org should never index
+
+# Synced prompt copies (duplicate .cursor/prompts bodies for Docusaurus; prefer @eversis-* on sources under .cursor/prompts/)
+website/docs/prompts/

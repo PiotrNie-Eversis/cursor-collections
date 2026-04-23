@@ -10,12 +10,12 @@ This guide is the **authoritative** reference for using **Cursor** (rules, Agent
 
 ## Part A — Workflow (Ideate → Implement → Review)
 
-| Phase           | Primary role (conceptual)                                 | Cursor: attach this prompt (see `.cursor/prompts/public/`) | Legacy slash name (not used in Cursor) |
-| --------------- | --------------------------------------------------------- | ---------------------------------------------------------- | -------------------------------------- |
-| **Ideate**      | Business Analyst                                          | `eversis-analyze-materials.md`                             | `tsh-analyze-materials`                |
-| **Implement**   | Engineering Manager (orchestrates research → plan → code) | `eversis-implement.md`                                     | `tsh-implement`                        |
-| **Review**      | Code Reviewer                                             | `eversis-review.md`                                        | `tsh-review`                           |
-| **Review (UI)** | UI Reviewer                                               | `eversis-review-ui.md`                                     | `tsh-review-ui`                        |
+| Phase           | Primary role (conceptual)                                 | Cursor: attach (type **`@`** + stem, e.g. **`@eversis-implement`**) | Legacy slash name (not used in Cursor) |
+| --------------- | --------------------------------------------------------- | -------------------------------------------------------------------- | -------------------------------------- |
+| **Ideate**      | Business Analyst                                          | `eversis-analyze-materials`                                         | `tsh-analyze-materials`                |
+| **Implement**   | Engineering Manager (orchestrates research → plan → code) | `eversis-implement`                                                | `tsh-implement`                        |
+| **Review**      | Code Reviewer                                             | `eversis-review`                                                    | `tsh-review`                           |
+| **Review (UI)** | UI Reviewer                                               | `eversis-review-ui`                                                | `tsh-review-ui`                        |
 
 **Relay race:** Each phase produces a **named artifact** (transcript cleanup, Jira-ready stories, research doc, implementation plan, diffs, review with PASS / BLOCKER / SUGGESTION). The next phase must not start until a human has **reviewed and approved** the previous artifact. AI output is always a draft until you say otherwise.
 
@@ -47,9 +47,10 @@ flowchart LR
 ### How to run a prompt in Cursor
 
 1. **User-facing** prompt bodies live under **`.cursor/prompts/public/`** (e.g. `eversis-implement.md`). **Internal** (delegation) prompts live under **`.cursor/prompts/internal/`** (e.g. research, plan, implement-ui).
-2. In **Chat** or **Agent**, attach the file with `@` from the repo root, e.g. `@eversis-implement`.
-3. Attach context: ticket text, `@docs/specs/...`, `@docs/context/...`, and indexed **Docs** for your stack.
-4. Send a one-line instruction, e.g. “Execute this prompt for PROJ-123.”
+2. In **Chat** or **Agent**, **prefer** attaching with **`@`** and the **file stem** (e.g. **`@eversis-implement`**, **`@eversis-research`**) so Cursor resolves the file by name. Use a full path under **`.cursor/prompts/...`** only if the file picker does not disambiguate.
+3. Add **`website/docs/prompts/`** to **`.cursorignore`** if you use **sync-prompts** (this repo does), so generated copies for Docusaurus are not indexed as duplicate prompts.
+4. Attach context: ticket text, `@docs/specs/...`, `@docs/context/...`, and indexed **Docs** for your stack.
+5. Send a one-line instruction, e.g. “Execute this prompt for PROJ-123.”
 
 Docusaurus may show a slash-style label (e.g. `/eversis-implement`); in the IDE, **`@` attachment is the real invocation** — not a separate slash-command runtime.
 
@@ -96,7 +97,7 @@ Use the same MCP servers (Atlassian, Figma, Playwright, Context7, etc.) in **Cur
 
 ## Workflow variants (playbooks)
 
-Use the same variants as the [README](../README.md); only **which prompts you attach** and **artifact paths** change. Below, **“label”** means the Docusaurus slug / filename stem — always attach the actual **`.cursor/prompts/public/eversis-*.md` file**.
+Use the same variants as the [README](../README.md); only **which prompts you attach** and **artifact paths** change. Below, **“label”** means the Docusaurus slug / filename stem. **Attach** with **`@`** and that stem (e.g. **`@eversis-implement`**) to the file under **`.cursor/prompts/public/`** (use a full path only if the picker does not disambiguate).
 
 ### Standard flow (backend / full-stack)
 
@@ -157,7 +158,7 @@ Use a layout optimized for **RAG + Agent** in Cursor:
 └── .gitlab-ci.yml                 # Or .github/workflows/ — optional scheduled sync
 ```
 
-**This monorepo:** The **canonical** prompt library is **`.cursor/prompts/`** (`public/` and `internal/` **`eversis-*.md`**). Attach in Chat or Agent with **`@eversis-*`** or **`@.cursor/prompts/...`**. If you build the **Docusaurus** site, run **`sync-prompts`** before `docusaurus build` (this repo wires it in `website`’s `prestart` / `prebuild`) so copies land under `website/docs/prompts/` for the catalog; those copies are **gitignored** here. Skills live in [`.github/skills/`](../.github/skills/). Human-readable catalog: [website/docs/prompts/overview.md](../website/docs/prompts/overview.md) (after a local docs build, or read the sources under `.cursor/prompts/` on GitHub).
+**This monorepo:** The **canonical** prompt library is **`.cursor/prompts/`** (`public/` and `internal/` **`eversis-*.md`**). **Attach** in Chat or Agent with **`@`** and the file stem (e.g. **`@eversis-implement`**) in preference to long paths. If you build the **Docusaurus** site, run **`sync-prompts`** before `docusaurus build` (this repo wires it in `website`’s `prestart` / `prebuild`) so copies land under `website/docs/prompts/` for the catalog; those copies are **gitignored** and listed in **`.cursorignore`** so they are not double-indexed. Skills live in [`.github/skills/`](../.github/skills/). Human-readable catalog: [website/docs/prompts/overview.md](../website/docs/prompts/overview.md) (after a local docs build, or read the sources under `.cursor/prompts/` on GitHub).
 
 **Rules format:** Prefer **`.cursor/rules/*.mdc`** with YAML frontmatter (`description`, `globs`, `alwaysApply`) instead of a single giant `.cursorrules` file. Keep each rule **short and single-purpose**; see the bundled examples under [`.cursor/rules/`](../.cursor/rules/).
 
@@ -171,7 +172,7 @@ Use a layout optimized for **RAG + Agent** in Cursor:
 - [ ] Ensure **`eversis-*.md`** prompts exist under `.cursor/prompts/public/` (and `internal/` as needed) — in **this** repository they are already present; in a **new** repo, start from the files you need (analyze / implement / review) and adapt.
 - [ ] Add `docs/specs/` and `docs/context/`; seed context with architecture or run wiki sync.
 - [ ] Configure **MCP** for the workflow variants you use (Jira, Figma, Playwright, …).
-- [ ] Add **`.cursorignore`**: `.env*`, keys, certificates, large secrets, vendor dumps you do not want indexed.
+- [ ] Add **`.cursorignore`**: `.env*`, keys, certificates, large secrets, vendor dumps you do not want indexed; include **`website/docs/prompts/`** if you **sync** prompt copies for Docusaurus (avoids duplicate **`@`** matches).
 - [ ] Document **lint / test / typecheck** commands for this repo in `eversis-project-stack.mdc` (or `CONTRIBUTING.md`).
 - [ ] Enable **Privacy mode** org-wide if required by policy (Cursor Settings → General → Privacy).
 - [ ] Build **`mcp/eversis-collections-mcp/`** and enable **`eversis-collections`** in **MCP** so Agent can use **`eversis_*`** tools against `.github/skills/`.

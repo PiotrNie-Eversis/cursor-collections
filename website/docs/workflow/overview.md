@@ -9,7 +9,7 @@ title: Workflow Overview
 
 > **Ideate → Implement → Review**
 
-The Implement phase internally handles research and planning when you use the **`eversis-implement`** prompt (attach the Markdown file with `@`). Each phase is driven by **Cursor rules** and **attachable prompts**, and produces documented artifacts. This keeps outputs consistent from workshop materials to production-ready, reviewed code.
+The Implement phase internally handles research and planning when you use the **`eversis-implement`** prompt (attach with **`@eversis-implement`** in Chat or Agent). Each phase is driven by **Cursor rules** and **attachable prompts**, and produces documented artifacts. This keeps outputs consistent from workshop materials to production-ready, reviewed code.
 
 :::tip The Relay Race Metaphor
 Think of this workflow as a **relay race**. Each phase produces a deliverable — the "baton" — that is reviewed by the human and then passed to the next phase. Workshop materials feed the backlog, the Engineering Manager pattern orchestrates research, planning, and implementation, and the implementation feeds the review. Nothing is lost between steps, and every handoff is a documented artifact.
@@ -20,7 +20,7 @@ Think of this workflow as a **relay race**. Each phase produces a deliverable �
 ### 1. Ideate
 
 - **Role:** Business Analyst (rules + prompt)
-- **Prompt:** attach `.cursor/prompts/public/eversis-analyze-materials.md`
+- **Prompt:** **`@eversis-analyze-materials`** (file under **`.cursor/prompts/public/`**)
 - Processes raw workshop materials (transcripts, Figma designs, documents) into structured epics and stories.
 - Uses multi-step quality review with mandatory human review gates.
 - **Produces:** Jira-ready epics and stories with acceptance criteria, dependencies, and priorities.
@@ -28,7 +28,7 @@ Think of this workflow as a **relay race**. Each phase produces a deliverable �
 ### 2. Implement
 
 - **Role:** Engineering Manager orchestration (Context Engineer, Architect, implementers)
-- **Prompt:** attach `.cursor/prompts/public/eversis-implement.md` with a Jira ID or description
+- **Prompt:** **`@eversis-implement`** with a Jira ID or description (file under **`.cursor/prompts/public/`**)
 - Typical flow:
   1. **Research** — Context gathering from Jira, Figma, and codebase. Confirm before planning when the prompt says so.
   2. **Plan** — Structured implementation plan. Confirm before large edits when the prompt says so.
@@ -38,7 +38,7 @@ Think of this workflow as a **relay race**. Each phase produces a deliverable �
 ### 3. Review
 
 - **Role:** Code Reviewer
-- **Prompt:** attach `.cursor/prompts/public/eversis-review.md`
+- **Prompt:** **`@eversis-review`** (file under **`.cursor/prompts/public/`**)
 - Structured review against acceptance criteria, security, reliability, and maintainability.
 - **Produces:** Review with pass/blockers/suggestions.
 
