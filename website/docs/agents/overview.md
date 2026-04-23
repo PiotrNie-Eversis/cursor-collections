@@ -7,7 +7,7 @@ title: Agents Overview
 
 **Twelve specialized roles** plus **three internal workers** mirror a full product-engineering team across the **full delivery lifecycle** — from product ideation through development, infrastructure, and quality assurance.
 
-In **Cursor**, those roles are expressed as **rules** (`.cursor/rules/eversis-*.mdc`), **prompts** (bodies in **`.cursor/prompts/public/`** and **`.cursor/prompts/internal/`** as `eversis-*.md`), and **skill packages** (`SKILL.md` under `.github/skills/`, used via the **`eversis-collections` MCP** and `eversis_skills_*` tools; optional `eversis-` names if you fork). **Attach** prompts in Chat or Agent by typing **`@`** and the **file stem** (e.g. **`@eversis-implement`**, **`@eversis-research`**). Use a full path under **`.cursor/prompts/...`** only if the file picker does not disambiguate.
+In **Cursor**, those roles are expressed as **rules** (`.cursor/rules/eversis-*.mdc`), **prompts** (bodies in **`.cursor/prompts/public/`** and **`.cursor/prompts/internal/`** as `eversis-*.md`), and **skill packages** (`SKILL.md` under `.github/skills/`, used via the **`eversis-collections` MCP** and `eversis_skills_*` tools plus **`eversis_skill_run_script`** where allowlisted; optional `eversis-` names if you fork). **Attach** prompts in Chat or Agent by typing **`@`** and the **file stem** (e.g. **`@eversis-implement`**, **`@eversis-research`**). Use a full path under **`.cursor/prompts/...`** only if the file picker does not disambiguate.
 
 The canonical packaging and mappings are documented in the [Framework reference](../framework) (same as **`documentation/cursor-collection.md`** in the repository). Entry points for this repository are **`AGENTS.md`** (root) and the always-on rule **`.cursor/rules/eversis-agent-core.mdc`**.
 
@@ -20,7 +20,7 @@ Each role defines:
 - **Purpose** — What it optimizes for and what it refuses to do.
 - **Packaging** — Which rule file and prompts implement it in Cursor.
 - **Tools** — MCP servers, terminal, and Cursor Agent capabilities you enable in **Cursor Settings → MCP**.
-- **Skills** — Reusable procedures in **`.github/skills/`**; load content through **`eversis-collections` MCP** (`eversis_skills_get`, etc.). (`eversis-*` naming when you add your own copies.)
+- **Skills** — Reusable procedures in **`.github/skills/`**; load content through **`eversis-collections` MCP** (`eversis_skills_get`, **`eversis_skill_run_script`** for allowlisted automation, etc.). (`eversis-*` naming when you add your own copies.)
 - **Handoffs** — Which prompt or approval gate comes next (human gates after research and plan per **`eversis-agent-core.mdc`**), not ad-hoc mode switches.
 
 ## Agent Handoff Diagram

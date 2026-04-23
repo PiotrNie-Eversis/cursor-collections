@@ -40,7 +40,7 @@ Instead, build the local package at **`mcp/eversis-collections-mcp/`** from the 
 cd mcp/eversis-collections-mcp && npm install && npm run build
 ```
 
-Then enable MCP in **Cursor** (see below). The **`eversis-collections`** server exposes **`eversis_*` tools** (e.g. **`eversis_skills_list`**, **`eversis_skills_get`**, **`eversis_skills_validate`**) so Agent can work with the skill tree deterministically.
+Then enable MCP in **Cursor** (see below). The **`eversis-collections`** server exposes **`eversis_*` tools** (e.g. **`eversis_skills_list`**, **`eversis_skills_get`**, **`eversis_skills_validate`**, **`eversis_skill_run_script`**) so Agent can work with the skill tree deterministically.
 
 ## 5. MCP (third-party + local)
 

@@ -4,6 +4,7 @@ import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
 import * as z from "zod";
 import { listAllowedScripts, runAllowlistedScript } from "./repoScripts.js";
+import { listAllowedSkillScripts, runAllowlistedSkillScript, skillScriptKeysForZod } from "./skillScripts.js";
 import { getSkillFile, listSkills } from "./skills.js";
 import { validateAllSkills } from "./validate.js";
 
@@ -97,6 +98,33 @@ export async function runMcpServer(): Promise<void> {
     },
     async ({ script }) => {
       const r = await runAllowlistedScript(startDir, script);
+      return textResult(
+        JSON.stringify(
+          {
+            exitCode: r.exitCode,
+            stdout: r.stdout,
+            stderr: r.stderr,
+          },
+          null,
+          2
+        )
+      );
+    }
+  );
+
+  server.registerTool(
+    "eversis_skill_run_script",
+    {
+      description:
+        "Run an allowlisted script under .github/skills/<eversis-*>/scripts/ (e.g. deterministic stats for a skill). Keys are defined in the MCP package allowlist, not auto-discovered from disk.",
+      inputSchema: {
+        script: z
+          .enum(skillScriptKeysForZod())
+          .describe(`One of: ${listAllowedSkillScripts().join(", ")}`),
+      },
+    },
+    async ({ script }) => {
+      const r = await runAllowlistedSkillScript(startDir, script);
       return textResult(
         JSON.stringify(
           {

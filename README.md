@@ -18,7 +18,7 @@ Structured **roles**, **prompts** (`eversis-*.md`), **project rules** (`.cursor/
 | **Review**                  | Code and UI quality                          | Attach `@eversis-review`, `@eversis-review-ui`, `@eversis-review-codebase` |
 | **Framework customization** | Rules, skills, prompts, project instructions | Attach `eversis-create-custom-*.md` under `.cursor/prompts/public/` |
 
-**Skills** live in [`.github/skills/`](.github/skills/) as `eversis-*` topic folders with `SKILL.md` (procedural how-to). **Use them in Agent** via the **`eversis-collections` MCP** server ([`mcp/eversis-collections-mcp/`](mcp/eversis-collections-mcp/): `npm install && npm run build` once, then enable it through [`.cursor/mcp.json`](.cursor/mcp.json)). **`eversis_*` tools** list, read, and validate the tree; this replaces registering the folder as **Cursor Agent Skills**.
+**Skills** live in [`.github/skills/`](.github/skills/) as `eversis-*` topic folders with `SKILL.md` (procedural how-to). **Use them in Agent** via the **`eversis-collections` MCP** server ([`mcp/eversis-collections-mcp/`](mcp/eversis-collections-mcp/): `npm install && npm run build` once, then enable it through [`.cursor/mcp.json`](.cursor/mcp.json)). **`eversis_*` tools** list, read, and validate the tree, and **`eversis_skill_run_script`** runs allowlisted per-skill scripts; this replaces registering the folder as **Cursor Agent Skills**.
 
 **Docs site:** build and preview from [`website/`](website/) (Docusaurus). **Authoritative how-to for using this framework in any repo:** [documentation/cursor-collection.md](documentation/cursor-collection.md).
 
@@ -31,7 +31,7 @@ Structured **roles**, **prompts** (`eversis-*.md`), **project rules** (`.cursor/
 3. Use [**project rules**](.cursor/rules/): start with `eversis-agent-core.mdc` and edit `eversis-project-stack.mdc` for your stack.
 4. In **Chat** or **Agent**, attach a prompt, e.g. `@eversis-implement`, plus your ticket or task text.
 5. **MCP:** this repo includes [`.cursor/mcp.json`](.cursor/mcp.json). When you open the folder, **Cursor** detects it and can prompt you to **enable the listed servers in one step**. Build the local package **[`mcp/eversis-collections-mcp/`](mcp/eversis-collections-mcp/)** (`npm install && npm run build`) so the **`eversis-collections`** server starts — it powers **skills** in Agent via `eversis_*` tools. Optionally merge the same definitions into your **user** MCP config (Cursor → MCP) for third-party servers in every project.
-6. **Skills:** with **`eversis-collections`** enabled, the agent can call tools such as **`eversis_skills_list`** / **`eversis_skills_get`** against [`.github/skills/`](.github/skills/) (no separate Agent Skills registration).
+6. **Skills:** with **`eversis-collections`** enabled, the agent can call tools such as **`eversis_skills_list`** / **`eversis_skills_get`** / **`eversis_skill_run_script`** (allowlisted per-skill scripts) against [`.github/skills/`](.github/skills/) (no separate Agent Skills registration).
 
 > **Legacy names:** the historic slash-command names `/tsh-*` referred to an older VS Code + GitHub Copilot layout. This repository is **Cursor-only**; use **`eversis-*` markdown prompts** and `@` attachment, not Copilot chat slash commands.
 
@@ -121,7 +121,7 @@ Notable changes are recorded in [CHANGELOG.md](CHANGELOG.md). This project is **
 
 - **Cursor-only** — prompts are Markdown; invoke by **`@` attachment**; rules live in **`.cursor/rules/`**.
 - **Full lifecycle** — ideation, implementation, review, and optional infra/cost prompts.
-- **Skills** in **`.github/skills/`** — procedural depth for agents via the **`eversis-collections` MCP** server (`eversis_skills_*` tools); build [`mcp/eversis-collections-mcp/`](mcp/eversis-collections-mcp/) first.
+- **Skills** in **`.github/skills/`** — procedural depth for agents via the **`eversis-collections` MCP** server (`eversis_skills_*` and **`eversis_skill_run_script`** where allowlisted); build [`mcp/eversis-collections-mcp/`](mcp/eversis-collections-mcp/) first.
 - **MCP** — bring Jira, Figma, browser automation, docs, and the local **eversis-collections** server into the same session.
 
 ---
