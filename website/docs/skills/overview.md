@@ -5,7 +5,7 @@ title: Skills Overview
 
 # Skills Overview
 
-Cursor Collections includes **31 reusable skills** — knowledge modules that provide specialized domain expertise, structured processes, and quality templates. They encode tested best practices for every phase of the product lifecycle. Skills are stored in `.github/skills/` and should be registered as **Cursor Agent Skills**; the agent loads them when descriptions match the task.
+Cursor Collections includes **32 reusable skills** — knowledge modules that provide specialized domain expertise, structured processes, and quality templates. They encode tested best practices for every phase of the product lifecycle. Skills are stored in `.github/skills/`. In Agent, use them through the **`eversis-collections` MCP** server (**`eversis_skills_list`**, **`eversis_skills_get`**, and related tools) after building [`mcp/eversis-collections-mcp/`](https://github.com/PiotrNie-Eversis/cursor-collections/tree/main/mcp/eversis-collections-mcp); do not register the folder separately as Cursor **Agent Skills** for this framework.
 
 ## How Skills Work
 
@@ -15,7 +15,7 @@ Each skill folder contains a `SKILL.md` file with:
 - **Templates** — Example output formats (e.g., `plan.example.md`, `research.example.md`).
 - **Connected skills** — References to other skills that complement or support this one.
 
-When an agent starts a task, it checks all available skills and decides which ones to load. Multiple skills can be combined for tasks spanning different domains.
+When an agent needs specialized procedures, it can pull **`SKILL.md` content** via **MCP** (e.g. `eversis_skills_get`) or follow rules and prompts. Multiple skills can be combined for tasks spanning different domains.
 
 ## Available Skills
 

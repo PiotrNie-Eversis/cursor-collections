@@ -1,0 +1,34 @@
+name: eversis_skills_validate
+
+on:
+  push:
+    branches: [main, master]
+    paths:
+      - ".github/skills/**"
+      - "mcp/eversis-collections-mcp/**"
+      - ".github/workflows/eversis-skills-validate.yml"
+  pull_request:
+    paths:
+      - ".github/skills/**"
+      - "mcp/eversis-collections-mcp/**"
+      - ".github/workflows/eversis-skills-validate.yml"
+
+jobs:
+  eversis-skills-validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+          cache-dependency-path: mcp/eversis-collections-mcp/package-lock.json
+      - name: Install and build MCP package
+        working-directory: mcp/eversis-collections-mcp
+        run: |
+          npm ci
+          npm run build
+      - name: eversis_skills_validate
+        working-directory: mcp/eversis-collections-mcp
+        # Omit --strict until oversized SKILL.md bodies are split (see creating-skills line budget).
+        run: node dist/cli.js validate

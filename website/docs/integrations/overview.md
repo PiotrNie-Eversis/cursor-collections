@@ -5,7 +5,19 @@ title: Integrations Overview
 
 # Integrations Overview
 
-Cursor Collections integrates with **11 external services** via the **Model Context Protocol (MCP)**. These integrations bring Jira, Figma, documentation, browser automation, structured reasoning, document reading, and cloud provider APIs directly into your **Cursor** session — enabling the end-to-end product engineering workflow.
+Cursor Collections integrates with **11 external services** via the **Model Context Protocol (MCP)**, plus **one local repository server** that is not a third-party SaaS.
+
+## Local server: `eversis-collections`
+
+| Server | Type | Purpose |
+| --- | --- | --- |
+| **eversis-collections** | stdio | List, read, and validate **`.github/skills/tsh-*`** packages; run allowlisted scripts (`sync-prompts`, `sync-framework-doc`). Build from [`mcp/eversis-collections-mcp/`](https://github.com/PiotrNie-Eversis/cursor-collections/tree/main/mcp/eversis-collections-mcp) (`npm install && npm run build`). Not on npm. |
+
+This is configured in **`.cursor/mcp.json`** alongside the integrations below.
+
+## External services (11)
+
+These integrations bring Jira, Figma, documentation, browser automation, structured reasoning, document reading, and cloud provider APIs directly into your **Cursor** session — enabling the end-to-end product engineering workflow.
 
 ## What is MCP?
 

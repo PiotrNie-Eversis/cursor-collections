@@ -37,14 +37,27 @@ The **full, current** list of server IDs, commands, and endpoints lives in the r
 {
   "mcpServers": {
     "playwright": { "command": "npx", "args": ["@playwright/mcp@latest"], "type": "stdio" },
-    "atlassian": { "url": "https://mcp.atlassian.com/v1/mcp", "type": "http" }
+    "atlassian": { "url": "https://mcp.atlassian.com/v1/mcp", "type": "http" },
+    "eversis-collections": {
+      "command": "node",
+      "args": ["mcp/eversis-collections-mcp/dist/index.js"],
+      "type": "stdio"
+    }
   }
 }
 ```
 
-For every server, see [Integrations overview](../integrations/overview.md) and the committed **`.cursor/mcp.json`**.
+Build **`eversis-collections`** once so `dist/index.js` exists. For every server, see [Integrations overview](../integrations/overview.md) and the committed **`.cursor/mcp.json`**.
 
 ## MCP Server Reference
+
+### Local: `eversis-collections` (this repository)
+
+| MCP Server            | Type  | Purpose                                                                 | Build |
+| --------------------- | ----- | ----------------------------------------------------------------------- | ----- |
+| **eversis-collections** | stdio | List/read/validate **`tsh-*` skills** under `.github/skills/`, run allowlisted root scripts (`sync-prompts`, `sync-framework-doc`) | From repo: `cd mcp/eversis-collections-mcp && npm install && npm run build`. Cursor `args` use `mcp/eversis-collections-mcp/dist/index.js` relative to the repo root. **Not** published to npm. |
+
+### Third-party (external services)
 
 Each MCP server enables specific capabilities within the workflow:
 

@@ -65,8 +65,9 @@ export default function GettingStartedSection(): React.JSX.Element {
             every project.
           </h2>
           <p className={styles.sub}>
-            Clone the repo, open it in Cursor, register optional Agent Skills
-            for <code>.github/skills/</code>, and attach{" "}
+            Clone the repo, open it in Cursor, build{" "}
+            <code>mcp/eversis-collections-mcp</code> and enable the{" "}
+            <code>eversis-collections</code> MCP server, then attach{" "}
             <code>eversis-*.md</code> prompts with <code>@</code> in any project
             you configure.
           </p>

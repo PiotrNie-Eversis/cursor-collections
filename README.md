@@ -18,7 +18,7 @@ Structured **roles**, **prompts** (`eversis-*.md`), **project rules** (`.cursor/
 | **Review**                  | Code and UI quality                          | Attach `@eversis-review`, `@eversis-review-ui`, `@eversis-review-codebase` |
 | **Framework customization** | Rules, skills, prompts, project instructions | Attach `eversis-create-custom-*.md` under `.cursor/prompts/public/` |
 
-**Skills** live in [`.github/skills/`](.github/skills/) as `tsh-*` topic folders with `SKILL.md` (procedural how-to). Wire them as **Cursor Agent Skills** (user or project skills path) so agents can load them by description.
+**Skills** live in [`.github/skills/`](.github/skills/) as `tsh-*` topic folders with `SKILL.md` (procedural how-to). **Use them in Agent** via the **`eversis-collections` MCP** server ([`mcp/eversis-collections-mcp/`](mcp/eversis-collections-mcp/): `npm install && npm run build` once, then enable it through [`.cursor/mcp.json`](.cursor/mcp.json)). **`eversis_*` tools** list, read, and validate the tree; this replaces registering the folder as **Cursor Agent Skills**.
 
 **Docs site:** build and preview from [`website/`](website/) (Docusaurus). **Authoritative how-to for using this framework in any repo:** [documentation/cursor-collection.md](documentation/cursor-collection.md).
 
@@ -30,8 +30,8 @@ Structured **roles**, **prompts** (`eversis-*.md`), **project rules** (`.cursor/
 2. Read [**AGENTS.md**](AGENTS.md) and [documentation/cursor-collection.md](documentation/cursor-collection.md).
 3. Use [**project rules**](.cursor/rules/): start with `eversis-agent-core.mdc` and edit `eversis-project-stack.mdc` for your stack.
 4. In **Chat** or **Agent**, attach a prompt, e.g. `@eversis-implement`, plus your ticket or task text.
-5. **MCP:** this repo includes [`.cursor/mcp.json`](.cursor/mcp.json). When you open the folder, **Cursor** detects it and can prompt you to **enable the listed servers in one step**. Optionally merge the same definitions into your **user** MCP config (Cursor → MCP) if you want Jira, Figma, Playwright, and the rest in every project.
-6. **Optional:** add this repo’s skill trees to your **Cursor Agent Skills** location so `tsh-*` skills resolve when relevant.
+5. **MCP:** this repo includes [`.cursor/mcp.json`](.cursor/mcp.json). When you open the folder, **Cursor** detects it and can prompt you to **enable the listed servers in one step**. Build the local package **[`mcp/eversis-collections-mcp/`](mcp/eversis-collections-mcp/)** (`npm install && npm run build`) so the **`eversis-collections`** server starts — it powers **skills** in Agent via `eversis_*` tools. Optionally merge the same definitions into your **user** MCP config (Cursor → MCP) for third-party servers in every project.
+6. **Skills:** with **`eversis-collections`** enabled, the agent can call tools such as **`eversis_skills_list`** / **`eversis_skills_get`** against [`.github/skills/`](.github/skills/) (no separate Agent Skills registration).
 
 > **Legacy names:** the historic slash-command names `/tsh-*` referred to an older VS Code + GitHub Copilot layout. This repository is **Cursor-only**; use **`eversis-*` markdown prompts** and `@` attachment, not Copilot chat slash commands.
 
@@ -86,7 +86,7 @@ For UI work, the implement flow can loop with `eversis-review-ui` until pass or 
 ## Skills
 
 - **Location:** [`.github/skills/`](.github/skills/) — topic folders with `SKILL.md` and optional `references/`, `assets/`, `examples/`.
-- **Use:** Register the folder root with **Cursor → Agent Skills** (global or project) so the agent can load skills that match the task. Authoring guide: [website/docs/skills/overview.md](website/docs/skills/overview.md) and the `tsh-creating-skills` skill.
+- **Use:** Build and enable [**`mcp/eversis-collections-mcp/`**](mcp/eversis-collections-mcp/) (local MCP; not on npm) and turn on **`eversis-collections`** in [`.cursor/mcp.json`](.cursor/mcp.json). Authoring guide: [website/docs/skills/overview.md](website/docs/skills/overview.md) and the `tsh-creating-skills` skill.
 
 **Why `tsh-` folder names?** Historical prefix for topic packages; skills remain compatible with the framework docs. You can add your own skills alongside them.
 
@@ -100,7 +100,7 @@ To extend rules, skills, prompts, or project instructions, attach the matching *
 
 ## MCP servers
 
-The workspace file [`.cursor/mcp.json`](.cursor/mcp.json) lists Atlassian, Figma, Context7, Playwright, cloud MCPs, and more. After you enable it when prompted (or in **Cursor Settings → MCP**), set any API keys or `inputs` per provider docs. More detail: [website/docs/getting-started/mcp-setup.md](website/docs/getting-started/mcp-setup.md).
+The workspace file [`.cursor/mcp.json`](.cursor/mcp.json) lists Atlassian, Figma, Context7, Playwright, cloud MCPs, the local **`eversis-collections`** server (build [`mcp/eversis-collections-mcp/`](mcp/eversis-collections-mcp/) first), and more. After you enable it when prompted (or in **Cursor Settings → MCP**), set any API keys or `inputs` per provider docs. More detail: [website/docs/getting-started/mcp-setup.md](website/docs/getting-started/mcp-setup.md).
 
 ---
 
@@ -109,7 +109,7 @@ The workspace file [`.cursor/mcp.json`](.cursor/mcp.json) lists Atlassian, Figma
 1. Copy or vendor **`.cursor/rules/`** templates; customize `eversis-project-stack.mdc`.
 2. Copy or link **`.cursor/prompts/`** (or maintain your own `eversis-*.md` under a path you prefer).
 3. Add **`AGENTS.md`** and optional **`docs/specs/`**, **`docs/context/`** per [documentation/cursor-collection.md](documentation/cursor-collection.md).
-4. Add **`.cursor/mcp.json`** (or merge its `mcpServers` into your user MCP config) and **Agent Skills** for the skill packs you need.
+4. Add **`.cursor/mcp.json`** (or merge its `mcpServers` into your user MCP config). If you vendor **`.github/skills/`**, build and enable **`eversis-collections`** (see [`mcp/eversis-collections-mcp/`](mcp/eversis-collections-mcp/)) so **`eversis_*` skill tools** are available in Agent.
 
 ---
 
@@ -123,8 +123,8 @@ Notable changes are recorded in [CHANGELOG.md](CHANGELOG.md). This project is **
 
 - **Cursor-only** — prompts are Markdown; invoke by **`@` attachment**; rules live in **`.cursor/rules/`**.
 - **Full lifecycle** — ideation, implementation, review, and optional infra/cost prompts.
-- **Skills** in **`.github/skills/`** — procedural depth for agents when wired as Agent Skills.
-- **MCP** — bring Jira, Figma, browser automation, and docs into the same session.
+- **Skills** in **`.github/skills/`** — procedural depth for agents via the **`eversis-collections` MCP** server (`eversis_skills_*` tools); build [`mcp/eversis-collections-mcp/`](mcp/eversis-collections-mcp/) first.
+- **MCP** — bring Jira, Figma, browser automation, docs, and the local **eversis-collections** server into the same session.
 
 ---
 

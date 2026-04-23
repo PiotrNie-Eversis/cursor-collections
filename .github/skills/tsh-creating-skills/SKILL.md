@@ -6,7 +6,11 @@ user-invokable: false
 
 # Creating skills
 
-Creates well-structured **Agent Skills** for **Cursor** (and compatible hosts). Skills live under **`.github/skills/tsh-<gerund>/SKILL.md`** in this monorepo. Enforce naming, structure, and progressive disclosure per the Agent Skills spec.
+Creates well-structured **skill packages** (`SKILL.md`) for **Cursor** (and compatible hosts). Skills live under **`.github/skills/tsh-<gerund>/SKILL.md`** in this monorepo. Enforce naming, structure, and progressive disclosure per the same conventions as the broader Agent Skills ecosystem.
+
+**Consumption in this framework:** the canonical way to **list, read, and validate** these packages in Cursor Agent is the **`eversis-collections` MCP** server under **`mcp/eversis-collections-mcp/`** (build with `npm install && npm run build`, then enable it via `.cursor/mcp.json`). Use **`eversis_skills_*` tools** — do not register the `.github/skills/` folder under Cursor’s **Agent Skills** settings; that path is not part of the supported workflow here.
+
+When a skill needs **deterministic automation** (e.g. validation, code generation), add a script under that skill’s `scripts/` and register a **narrow** tool in `eversis-collections-mcp` so the agent invokes execution instead of re-deriving steps from text. Run **`eversis_skills_validate`** in CI (see repository workflow **`eversis_skills_validate`**) or `npm run validate` in the MCP package.
 
 ## Core Design Principles
 

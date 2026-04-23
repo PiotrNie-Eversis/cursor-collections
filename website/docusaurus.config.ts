@@ -5,7 +5,6 @@ const config: Config = {
   title: "Cursor Collections",
   tagline:
     "Cursor-native product engineering framework — ideation, implementation, and review",
-  favicon: "img/favicon.ico",
 
   url: "https://cursor-collections-1ztm.vercel.app",
   baseUrl: "/",

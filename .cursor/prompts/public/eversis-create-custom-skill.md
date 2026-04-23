@@ -10,7 +10,7 @@ prompt_description: "Create a new Agent Skill: SKILL.md under .github/skills/ wi
 **Role:** [Cursor customization orchestrator](../../agents/cursor-customization-orchestrator)  
 **File:** `.cursor/prompts/public/eversis-create-custom-skill.md`
 
-Creates a new **Cursor Agent Skill**: a directory under **`.github/skills/<name>/`** with **`SKILL.md`** and optional `references/`, `assets/`, `examples/`. Register the skills root in **Cursor → Agent Skills** so the agent can load it.
+Creates a new **skill package** (`SKILL.md`): a directory under **`.github/skills/<name>/`** with optional `references/`, `assets/`, `examples/`. In this framework, the agent **reads** skills through the **`eversis-collections` MCP** server (`eversis_skills_*` tools) after you build [`mcp/eversis-collections-mcp/`](https://github.com/PiotrNie-Eversis/cursor-collections/tree/main/mcp/eversis-collections-mcp) — do not rely on a separate **Agent Skills** path in Cursor settings.
 
 ## Usage
 
@@ -43,6 +43,6 @@ A new **`.github/skills/<gerund-name>/`** tree.
 1. Load `.github/skills/tsh-creating-skills/SKILL.md` and follow it end-to-end.
 2. New skill folders use **gerund** names (e.g. `reviewing-invoices`) matching the skill’s `name` in frontmatter.
 3. Ensure the **description** field is specific so Cursor matches the skill when appropriate.
-4. Do not reference VS Code Copilot — skills are consumed by **Cursor** via Agent Skills.
+4. Do not reference VS Code Copilot — skills are consumed in **Cursor** via the **`eversis-collections` MCP** and `eversis_skills_*` tools.
 
 <!-- Cursor Collections -->

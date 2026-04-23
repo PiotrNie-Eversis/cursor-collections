@@ -54,6 +54,11 @@
       "command": "npx",
       "args": ["@sylphx/pdf-reader-mcp"],
       "type": "stdio"
+    },
+    "eversis-collections": {
+      "command": "node",
+      "args": ["mcp/eversis-collections-mcp/dist/index.js"],
+      "type": "stdio"
     }
   },
   "inputs": []
