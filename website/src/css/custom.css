@@ -1,6 +1,6 @@
 /**
  * Custom CSS variables for Copilot Collections documentation site.
- * TSH purple accent (#6D28D9) — dark-mode-first palette.
+ * Brand purple accent (#6D28D9) — dark-mode-first palette.
  */
 
 :root {
@@ -551,7 +551,7 @@ kbd[class*='searchHint_'] {
   --ifm-background-color: #111116;
 }
 
-/* ── Custom admonition: "brand" — TSH purple accent ── */
+/* ── Custom admonition: "brand" (purple accent) ── */
 .alert--brand {
   --ifm-alert-background-color: rgba(109, 40, 217, 0.1);
   --ifm-alert-background-color-highlight: rgba(109, 40, 217, 0.2);

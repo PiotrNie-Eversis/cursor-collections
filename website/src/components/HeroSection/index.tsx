@@ -32,8 +32,7 @@ const HeroSection = () => {
           </Link>
         </div>
         <p className={styles.heroProof}>
-          Built by The Software House · Used daily by 300+ engineers · 50+
-          commercial projects
+          Open source (MIT) · Cursor-native rules, prompts, and workflows
         </p>
       </div>
     </div>

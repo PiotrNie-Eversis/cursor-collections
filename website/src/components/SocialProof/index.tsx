@@ -6,7 +6,7 @@ import styles from "./styles.module.css";
 const stats = [
   {
     num: "01",
-    text: "Average lead time reduction: 30% — measured across 50+ commercial projects.",
+    text: "Example outcome teams report: faster lead time on structured AI-assisted delivery (varies by team and context).",
   },
   {
     num: "02",
@@ -20,9 +20,9 @@ export default function SocialProof(): React.JSX.Element {
       <div className={styles.validatedInner}>
         <div className={styles.validatedHeader}>
           <h2>
-            <span className={styles.keepTogether}>30% faster delivery</span>
+            <span className={styles.keepTogether}>Faster, more consistent</span>
             <br />
-            on average
+            delivery
           </h2>
           <Link className={styles.readMore} to="/docs/">
             Read the methodology →

@@ -69,7 +69,7 @@ The UI Reviewer agent runs an automated verification loop (up to 5 iterations) t
 
 Every team has conventions that exist in someone's head. Senior developers catch violations in review. Juniors don't always know what to look for. The result is review comments that relitigate the same issues across every PR, and inconsistent codebases that get harder to maintain over time.
 
-The Code Reviewer agent enforces tested best practices automatically - the same ones encoded in TSH's production skills (`tsh-technical-context-discovering`, `tsh-code-reviewing`, `tsh-implementing-frontend`). The `eversis-review-codebase` prompt runs a repository-wide pass detecting dead code, duplications, and anti-patterns.
+The Code Reviewer agent enforces tested best practices automatically - the same ones encoded in the framework's production skills (`tsh-technical-context-discovering`, `tsh-code-reviewing`, `tsh-implementing-frontend`). The `eversis-review-codebase` prompt runs a repository-wide pass detecting dead code, duplications, and anti-patterns.
 
 **~5 min per review**
 

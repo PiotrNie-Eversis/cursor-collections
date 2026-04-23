@@ -8,7 +8,7 @@ title: Introduction
 
 **Cursor Collections** is a **Cursor-native** product engineering framework — from workshop to Jira, through implementation, to structured review and testing. It uses **rules** (`.cursor/rules/`), **attachable prompts** (`eversis-*.md`), **MCP**, and **Agent Skills** (`.github/skills/`).
 
-Built by [The Software House](https://tsh.io); the Eversis Cursor layer (rules, prompts, and this site) is maintained for **Cursor** only.
+The Eversis Cursor layer (rules, prompts, and this site) is maintained for **Cursor** only.
 
 ## The Problem
 

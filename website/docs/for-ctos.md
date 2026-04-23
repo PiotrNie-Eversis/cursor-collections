@@ -5,17 +5,17 @@ title: For CTOs
 
 # For CTOs
 
-Cursor Collections is an AI product engineering framework used daily by **300+ engineers** at The Software House across **50+ commercial projects** — delivering a **30% average lead time reduction**.
+**Cursor Collections** is an AI product engineering framework for **Cursor** — structured workflows from ideation through implementation, review, and quality gates.
 
 :::brand TL;DR:
 
 - Only 10% of teams see real gains from AI coding tools - the gap is structural, not technological
 - Cursor Collections restructures your delivery workflow around AI, rather than adding AI on top of it
-- 300+ engineers at TSH use it daily across 50+ commercial projects with great result: average lead time down 30%
+- Teams use it to compress context gathering, planning, and review while keeping human judgment in the loop
 - Covers the full lifecycle: discovery workshop → structured backlog → implementation → code review
 - Runs in **Cursor** (rules, prompts, MCP, Agent Skills) — team licensing per your Cursor plan
 - Open source, MIT licence
-  :::
+:::
 
 ## The AI productivity gap is real and structural
 
@@ -41,21 +41,21 @@ The framework covers three delivery phases:
 
 ---
 
-## The numbers, from production use
+## The numbers: illustrative impact categories
 
-These aren't benchmark numbers. They come from 300+ engineers using the framework daily across 50+ commercial projects at The Software House.
+The table below describes **the kinds of improvements teams aim for** with structured, AI-assisted delivery. Actual results depend on your domain, team size, and baseline — treat figures as **illustrative**, not a guarantee or a single named benchmark.
 
-| What changes                      | Measured impact   |
-| --------------------------------- | ----------------- |
-| Average lead time                 | **30% reduction** |
-| Context gathering time            | 60–80% faster     |
-| Planning time                     | 50–70% faster     |
-| UI defects reaching QA            | 70–90% reduction  |
-| Design-to-code accuracy           | 95–99%            |
-| E2E test flakiness                | 50–80% reduction  |
-| Onboarding time for new engineers | 40–60% reduction  |
+| What changes                      | Example direction (varies by team) |
+| --------------------------------- | ---------------------------------- |
+| Average lead time                 | Meaningful reduction when workflow is adopted |
+| Context gathering time            | Often 60–80% faster in guided flows            |
+| Planning time                     | Often 50–70% faster with structured plans     |
+| UI defects reaching QA            | Large reduction when Figma + verification used |
+| Design-to-code accuracy           | High when specs and review gates are used     |
+| E2E test flakiness                | Often reduced with generated, aligned tests     |
+| Onboarding time for new engineers | Often faster with shared rules and skills      |
 
-The lead time figure is the headline, but the onboarding number often surprises CTOs most. A structured framework means new engineers aren't learning your way of working from scratch the framework is the way of working.
+The lead time row is the headline, but the onboarding row often surprises CTOs most. A shared framework can shrink “how we work here” to something engineers can follow from day one.
 
 ---
 
@@ -73,7 +73,7 @@ The structured nature of the framework makes it approachable at any level.
 
 The framework is open source and layers on your existing **Cursor** workflow. **There's no separate framework runtime to procure beyond your editor and MCP tools.**
 
-A typical rollout at TSH runs in three phases:
+A typical rollout runs in three phases:
 
 - **Install and orient** (day 1) — engineers install the framework, read the workflow overview, run their first agent interaction on a real ticket.
 - **First sprint** (week 1–2) — one team runs the full Product Ideation → Development → Quality loop on a real project. Friction points surface and get resolved.
@@ -83,13 +83,11 @@ The framework is designed to be self-explanatory for engineers who already use *
 
 ---
 
-## Why TSH built this in the open
+## Why this is open source
 
-The Software House is a 300-person product engineering firm. We built this framework to solve our own problem - how to get consistent, high-quality AI-assisted delivery across a large, distributed team working on complex commercial projects.
+The problem Cursor Collections addresses is **structural**: teams need repeatable workflows, not one-off magic prompts. The framework is MIT-licensed so you can read it, fork it, and adapt it to your context without a separate vendor relationship.
 
-We open-sourced it because the problem is structural and universal. Every engineering team using AI tools is navigating the same gap between individual capability and team-level consistency. We've done the work to close that gap. Sharing the framework costs us nothing and helps the industry get there faster.
-
-The 30% lead time figure comes from our own delivery data. We have skin in the game.
+If you get value, the usual trade is to improve the project (issues, docs, or code) and help the next team adopt it faster.
 
 ---
 
@@ -102,5 +100,5 @@ Cursor Collections is MIT-licensed and free.
 - [Get the repo](https://github.com/PiotrNie-Eversis/cursor-collections) - install it in an afternoon, run it against a real ticket, see what changes
 
 :::brand
-If you want to talk through fit for your team's specific context, reach out to us at [hello@tsh.io](mailto:hello@tsh.io). I'd love to hear from you.
+Questions, bugs, and ideas: use [GitHub Issues](https://github.com/PiotrNie-Eversis/cursor-collections/issues) on the repository.
 :::

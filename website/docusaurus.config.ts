@@ -7,7 +7,7 @@ const config: Config = {
     "Cursor-native product engineering framework — ideation, implementation, and review",
   favicon: "img/favicon.ico",
 
-  url: "https://copilot-collections.tsh.io",
+  url: "https://cursor-collections-1ztm.vercel.app",
   baseUrl: "/",
 
   onBrokenLinks: "throw",
@@ -94,7 +94,8 @@ const config: Config = {
       },
       {
         name: "twitter:image:alt",
-        content: "Cursor Collections by The Software House",
+        content:
+          "Cursor Collections documentation — AI product engineering with Cursor.",
       },
     ],
     navbar: {
@@ -175,7 +176,7 @@ const config: Config = {
     },
     footer: {
       style: "light",
-      copyright: `cursor-collections · Built by <a href="https://tsh.io" target="_blank" rel="noopener noreferrer">The Software House</a> (Eversis Cursor framework) · MIT licence · Free`,
+      copyright: `cursor-collections · Eversis Cursor framework · MIT licence · Free`,
       links: [
         {
           title: " ",
@@ -186,10 +187,6 @@ const config: Config = {
             },
             { label: "Docs", to: "/docs/" },
             { label: "Methodology", to: "/docs/workflow/overview" },
-            {
-              label: "tsh.io",
-              href: "https://tsh.io",
-            },
           ],
         },
       ],
