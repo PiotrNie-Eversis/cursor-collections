@@ -28,11 +28,12 @@ const steps = [
   },
   {
     num: 3,
-    title: "Configure MCP servers",
+    title: "Enable MCP servers",
     description: (
       <>
-        Add <code>.vscode/mcp.json</code> to Cursor&apos;s MCP config (user or
-        workspace). Connects Jira, Figma, Playwright, and Context7.
+        The repo includes <code>.cursor/mcp.json</code>. When Cursor detects
+        it, enable the suggested servers (Jira, Figma, Playwright, Context7,
+        and more) from the UI.
       </>
     ),
   },

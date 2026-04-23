@@ -5,60 +5,44 @@ title: MCP Setup
 
 # MCP Setup
 
-To unlock the full workflow (Jira, Figma, code search, browser automation), configure the MCP (Model Context Protocol) servers. Cursor Collections provides a ready-to-use template in `.vscode/mcp.json` — use it from **Cursor** (MCP settings may use the same JSON shape as VS Code; paste into Cursor’s MCP configuration).
+To unlock the full workflow (Jira, Figma, code search, browser automation, cloud APIs), configure the **Model Context Protocol (MCP)** servers. This repository’s **source of truth** is **`.cursor/mcp.json`**: it defines every server (HTTP and stdio) under the **`mcpServers`** key, per [Cursor’s MCP documentation](https://cursor.com/docs/mcp).
 
-## Installation Options
+## This repository (recommended)
 
-### Option 1: User Profile (Recommended)
+1. **Clone** the repo and **open the folder in Cursor** (`File` → `Open Folder`).
+2. **Cursor** detects **`.cursor/mcp.json`**. When prompted, **enable the workspace MCP configuration** (or use **Settings → Features → Model Context Protocol** to turn servers on or off).
+3. Complete **OAuth** or **API keys** where a provider requires them (Atlassian, Figma, etc.).
 
-This enables the MCP tools globally across all your projects.
+You do not need to copy JSON by hand for this project unless you want the same set of servers in your **global** profile (see below).
 
-1. Open the **Command Palette**: `CMD` + `Shift` + `P` (macOS) or `Ctrl` + `Shift` + `P` (Windows/Linux).
-2. Type and select **"MCP: Open User Configuration"**.
-3. This will open your global `mcp.json` file.
-4. Copy the contents of `.vscode/mcp.json` from this repository and paste them into your user configuration file.
+## User profile (optional)
 
-### Option 2: Workspace Configuration
+Use this to enable the same MCP tools in **all** of your projects.
 
-Use this if you want to enable these tools only for a specific project.
+1. **Command Palette**: `Cmd` + `Shift` + `P` (macOS) or `Ctrl` + `Shift` + `P` (Windows/Linux).
+2. Run **"MCP: Open User Configuration"** to open `~/.cursor/mcp.json`.
+3. **Merge** the `mcpServers` object (and any `inputs`) from this repo’s **`.cursor/mcp.json`** into that file, then restart Cursor if needed.
 
-1. Copy the `.vscode/mcp.json` file from this repository.
-2. Paste it into the `.vscode` folder of your target project (e.g., `my-project/.vscode/mcp.json`).
+## Another project (vendor the template)
 
-## MCP Configuration
+1. Copy **`.cursor/mcp.json`** from this repository.
+2. Place it at **`<your-project>/.cursor/mcp.json`**, or merge only the `mcpServers` entries you need.
+3. Open the project in Cursor and **enable** the workspace MCP when prompted.
 
-Here is the full `mcp.json` configuration with all 5 servers:
+## Canonical configuration
+
+The **full, current** list of server IDs, commands, and endpoints lives in the repo file **`.cursor/mcp.json`**. A minimal shape (Cursor format) is:
 
 ```json
 {
-  "servers": {
-    "playwright": {
-      "command": "npx",
-      "args": ["@playwright/mcp@latest"],
-      "type": "stdio"
-    },
-    "context7": {
-      "type": "stdio",
-      "command": "npx",
-      "args": ["-y", "@upstash/context7-mcp@latest"]
-    },
-    "sequential-thinking": {
-      "command": "npx",
-      "args": ["-y", "@modelcontextprotocol/server-sequential-thinking"],
-      "type": "stdio"
-    },
-    "figma": {
-      "url": "https://mcp.figma.com/mcp",
-      "type": "http"
-    },
-    "atlassian": {
-      "url": "https://mcp.atlassian.com/v1/mcp",
-      "type": "http"
-    }
-  },
-  "inputs": []
+  "mcpServers": {
+    "playwright": { "command": "npx", "args": ["@playwright/mcp@latest"], "type": "stdio" },
+    "atlassian": { "url": "https://mcp.atlassian.com/v1/mcp", "type": "http" }
+  }
 }
 ```
+
+For every server, see [Integrations overview](../integrations/overview.md) and the committed **`.cursor/mcp.json`**.
 
 ## MCP Server Reference
 
@@ -72,6 +56,8 @@ Each MCP server enables specific capabilities within the workflow:
 | 🧪 **Playwright**          | Run browser interactions and end-to-end style checks from the agent                          | Software Engineer, E2E Engineer, UI Reviewer                  |
 | 🧠 **Sequential Thinking** | Advanced reasoning for complex problem analysis, revision, and branching                   | All agents (for complex tasks)                                |
 
+The template also includes **PDF Reader**, **AWS** (API + documentation), and **Google Cloud** MCP servers. See [Integrations overview](../integrations/overview.md) for IDs and details.
+
 ## Configuring Context7 API Key
 
 To get higher rate limits and access to private repositories, you can provide a Context7 API key. Get your key at [context7.com/dashboard](https://context7.com/dashboard).
@@ -82,7 +68,7 @@ To enable this, modify your `mcp.json` configuration (User or Workspace) to use 
 
 ```json
 {
-  "servers": {
+  "mcpServers": {
     "context7": {
       "type": "stdio",
       "command": "npx",
@@ -106,7 +92,7 @@ To enable this, modify your `mcp.json` configuration (User or Workspace) to use 
 ```
 
 :::note
-Server IDs in `mcp.json` are lowercase (e.g., `context7`, `figma`). If you copied an older template with different names, update your configuration to match the current template.
+Server IDs in `mcp.json` are lowercase (e.g., `context7`, `figma`). If you copied an older template with different names, update your configuration to match the current **`.cursor/mcp.json`**.
 :::
 
 ## Authentication Requirements

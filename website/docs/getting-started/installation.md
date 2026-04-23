@@ -36,8 +36,8 @@ Procedural skills live under **`.github/skills/tsh-*`**. In **Cursor Settings**,
 
 ## 5. MCP
 
-Copy or merge **`.vscode/mcp.json`** from this repo into **Cursor → MCP** (user or workspace configuration). Details: [MCP setup](./mcp-setup.md).
+This repository ships **`.cursor/mcp.json`**. When you open the folder in **Cursor**, the editor detects it and you can **enable the listed MCP servers** from the prompt or **Cursor → MCP**. To use the same stack in every project, optionally merge that file into your **user** MCP configuration. Details: [MCP setup](./mcp-setup.md).
 
 ## Using the framework in another project
 
-Copy **`.cursor/rules/`** templates, add **`AGENTS.md`**, and either vendor **`.cursor/prompts/`** (recommended) or maintain your own `eversis-*.md` paths. If you use this repo’s Docusaurus site, run **`npm run sync-prompts`** from `website/` (or rely on `prestart` / `prebuild`) so prompt pages exist under `website/docs/prompts/` before building. Configure MCP and Agent Skills for the integrations you need. See [documentation/cursor-collection.md](https://github.com/PiotrNie-Eversis/cursor-collections/blob/main/documentation/cursor-collection.md) for the generic layout.
+Copy **`.cursor/rules/`** templates, add **`AGENTS.md`**, and either vendor **`.cursor/prompts/`** (recommended) or maintain your own `eversis-*.md` paths. If you use this repo’s Docusaurus site, run **`npm run sync-prompts`** from `website/` (or rely on `prestart` / `prebuild`) so prompt pages exist under `website/docs/prompts/` before building. Add **`.cursor/mcp.json`** (or your own MCP list) and Agent Skills for the integrations you need. See [documentation/cursor-collection.md](https://github.com/PiotrNie-Eversis/cursor-collections/blob/main/documentation/cursor-collection.md) for the generic layout.

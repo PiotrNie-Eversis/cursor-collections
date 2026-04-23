@@ -88,7 +88,7 @@ You do not need every role as a separate file on day one: start with **`eversis-
 
 ### MCP
 
-Use the same MCP servers (Atlassian, Figma, Playwright, Context7, etc.) in **Cursor Settings → MCP**. See [MCP template](../.vscode/mcp.json).
+Use the same MCP servers (Atlassian, Figma, Playwright, Context7, etc.) in **Cursor Settings → MCP**, or open this repo and enable the workspace file [`.cursor/mcp.json`](../.cursor/mcp.json) when prompted.
 
 ---
 

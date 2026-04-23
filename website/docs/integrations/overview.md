@@ -29,11 +29,11 @@ The Model Context Protocol allows **Cursor** (and compatible hosts) to call exte
 
 ## Configuration
 
-All servers are configured in `.vscode/mcp.json`:
+All servers are configured in **`.cursor/mcp.json`** at the repository root (Cursor [project MCP configuration](https://cursor.com/docs/mcp)):
 
 ```json
 {
-  "servers": {
+  "mcpServers": {
     "playwright": {
       "command": "npx",
       "args": ["@playwright/mcp@latest"],

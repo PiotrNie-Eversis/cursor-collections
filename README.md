@@ -30,7 +30,7 @@ Structured **roles**, **prompts** (`eversis-*.md`), **project rules** (`.cursor/
 2. Read [**AGENTS.md**](AGENTS.md) and [documentation/cursor-collection.md](documentation/cursor-collection.md).
 3. Use [**project rules**](.cursor/rules/): start with `eversis-agent-core.mdc` and edit `eversis-project-stack.mdc` for your stack.
 4. In **Chat** or **Agent**, attach a prompt, e.g. `@eversis-implement`, plus your ticket or task text.
-5. **MCP:** copy or merge [`.vscode/mcp.json`](.vscode/mcp.json) into Cursor’s MCP configuration (user or workspace) so Jira, Figma, Playwright, and other tools are available.
+5. **MCP:** this repo includes [`.cursor/mcp.json`](.cursor/mcp.json). When you open the folder, **Cursor** detects it and can prompt you to **enable the listed servers in one step**. Optionally merge the same definitions into your **user** MCP config (Cursor → MCP) if you want Jira, Figma, Playwright, and the rest in every project.
 6. **Optional:** add this repo’s skill trees to your **Cursor Agent Skills** location so `tsh-*` skills resolve when relevant.
 
 > **Legacy names:** the historic slash-command names `/tsh-*` referred to an older VS Code + GitHub Copilot layout. This repository is **Cursor-only**; use **`eversis-*` markdown prompts** and `@` attachment, not Copilot chat slash commands.
@@ -100,7 +100,7 @@ To extend rules, skills, prompts, or project instructions, attach the matching *
 
 ## MCP servers
 
-A ready template is in [`.vscode/mcp.json`](.vscode/mcp.json) (Atlassian, Figma, Context7, Playwright, etc.). Open **Cursor Settings → MCP**, add the same server definitions, and set any API keys or inputs per provider docs. More detail: [website/docs/getting-started/mcp-setup.md](website/docs/getting-started/mcp-setup.md).
+The workspace file [`.cursor/mcp.json`](.cursor/mcp.json) lists Atlassian, Figma, Context7, Playwright, cloud MCPs, and more. After you enable it when prompted (or in **Cursor Settings → MCP**), set any API keys or `inputs` per provider docs. More detail: [website/docs/getting-started/mcp-setup.md](website/docs/getting-started/mcp-setup.md).
 
 ---
 
@@ -109,7 +109,7 @@ A ready template is in [`.vscode/mcp.json`](.vscode/mcp.json) (Atlassian, Figma,
 1. Copy or vendor **`.cursor/rules/`** templates; customize `eversis-project-stack.mdc`.
 2. Copy or link **`.cursor/prompts/`** (or maintain your own `eversis-*.md` under a path you prefer).
 3. Add **`AGENTS.md`** and optional **`docs/specs/`**, **`docs/context/`** per [documentation/cursor-collection.md](documentation/cursor-collection.md).
-4. Configure **MCP** and **Agent Skills** for the skill packs you need.
+4. Add **`.cursor/mcp.json`** (or merge its `mcpServers` into your user MCP config) and **Agent Skills** for the skill packs you need.
 
 ---
 
