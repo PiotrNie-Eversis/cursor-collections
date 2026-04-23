@@ -20,8 +20,10 @@ const steps = [
     description: (
       <>
         Open the folder in <strong>Cursor</strong>, read <code>AGENTS.md</code>{" "}
-        and <code>documentation/cursor-collection.md</code>, and review{" "}
-        <code>.cursor/rules/</code> (start with{" "}
+        and the{" "}
+        <Link to="/docs/framework">Framework reference</Link> in this
+        site (or <code>documentation/cursor-collection.md</code> in the repo), and
+        review <code>.cursor/rules/</code> (start with{" "}
         <code>eversis-agent-core.mdc</code>).
       </>
     ),

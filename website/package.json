@@ -4,9 +4,11 @@
   "private": true,
   "scripts": {
     "sync-prompts": "node ../scripts/sync-prompts.mjs",
-    "prestart": "npm run sync-prompts",
+    "sync-framework-doc": "node ../scripts/sync-framework-doc.mjs",
+    "sync-docs-assets": "npm run sync-prompts && npm run sync-framework-doc",
+    "prestart": "npm run sync-docs-assets",
     "start": "docusaurus start",
-    "prebuild": "npm run sync-prompts",
+    "prebuild": "npm run sync-docs-assets",
     "build": "docusaurus build",
     "serve": "docusaurus serve",
     "clear": "docusaurus clear"
@@ -14,6 +16,7 @@
   "dependencies": {
     "@docusaurus/core": "^3.7.0",
     "@docusaurus/preset-classic": "^3.7.0",
+    "@docusaurus/theme-mermaid": "3.9.2",
     "@easyops-cn/docusaurus-search-local": "^0.46.1",
     "clsx": "^2.1.0",
     "react": "^18.3.1",

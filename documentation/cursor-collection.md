@@ -10,12 +10,12 @@ This guide is the **authoritative** reference for using **Cursor** (rules, Agent
 
 ## Part A — Workflow (Ideate → Implement → Review)
 
-| Phase | Primary role (conceptual) | Cursor: attach this prompt (see `.cursor/prompts/public/`) | Legacy slash name (not used in Cursor) |
-| --- | --- | --- | --- |
-| **Ideate** | Business Analyst | `eversis-analyze-materials.md` | `tsh-analyze-materials` |
-| **Implement** | Engineering Manager (orchestrates research → plan → code) | `eversis-implement.md` | `tsh-implement` |
-| **Review** | Code Reviewer | `eversis-review.md` | `tsh-review` |
-| **Review (UI)** | UI Reviewer | `eversis-review-ui.md` | `tsh-review-ui` |
+| Phase           | Primary role (conceptual)                                 | Cursor: attach this prompt (see `.cursor/prompts/public/`) | Legacy slash name (not used in Cursor) |
+| --------------- | --------------------------------------------------------- | ---------------------------------------------------------- | -------------------------------------- |
+| **Ideate**      | Business Analyst                                          | `eversis-analyze-materials.md`                             | `tsh-analyze-materials`                |
+| **Implement**   | Engineering Manager (orchestrates research → plan → code) | `eversis-implement.md`                                     | `tsh-implement`                        |
+| **Review**      | Code Reviewer                                             | `eversis-review.md`                                        | `tsh-review`                           |
+| **Review (UI)** | UI Reviewer                                               | `eversis-review-ui.md`                                     | `tsh-review-ui`                        |
 
 **Relay race:** Each phase produces a **named artifact** (transcript cleanup, Jira-ready stories, research doc, implementation plan, diffs, review with PASS / BLOCKER / SUGGESTION). The next phase must not start until a human has **reviewed and approved** the previous artifact. AI output is always a draft until you say otherwise.
 
@@ -55,17 +55,17 @@ Docusaurus may show a slash-style label (e.g. `/eversis-implement`); in the IDE,
 
 ### Artifact mapping (catalog filenames)
 
-| Legacy name | Cursor prompt file in this repo |
-| --- | --- |
-| `tsh-analyze-materials` | `.cursor/prompts/public/eversis-analyze-materials.md` |
-| `tsh-implement` | `.cursor/prompts/public/eversis-implement.md` |
-| `tsh-review` | `.cursor/prompts/public/eversis-review.md` |
-| `tsh-review-ui` | `.cursor/prompts/public/eversis-review-ui.md` |
-| `tsh-review-codebase` | `.cursor/prompts/public/eversis-review-codebase.md` |
+| Legacy name                | Cursor prompt file in this repo                          |
+| -------------------------- | -------------------------------------------------------- |
+| `tsh-analyze-materials`    | `.cursor/prompts/public/eversis-analyze-materials.md`    |
+| `tsh-implement`            | `.cursor/prompts/public/eversis-implement.md`            |
+| `tsh-review`               | `.cursor/prompts/public/eversis-review.md`               |
+| `tsh-review-ui`            | `.cursor/prompts/public/eversis-review-ui.md`            |
+| `tsh-review-codebase`      | `.cursor/prompts/public/eversis-review-codebase.md`      |
 | `tsh-audit-infrastructure` | `.cursor/prompts/public/eversis-audit-infrastructure.md` |
-| `tsh-analyze-aws-costs` | `.cursor/prompts/public/eversis-analyze-aws-costs.md` |
-| `tsh-analyze-gcp-costs` | `.cursor/prompts/public/eversis-analyze-gcp-costs.md` |
-| `tsh-create-custom-*` | `.cursor/prompts/public/eversis-create-custom-*.md` |
+| `tsh-analyze-aws-costs`    | `.cursor/prompts/public/eversis-analyze-aws-costs.md`    |
+| `tsh-analyze-gcp-costs`    | `.cursor/prompts/public/eversis-analyze-gcp-costs.md`    |
+| `tsh-create-custom-*`      | `.cursor/prompts/public/eversis-create-custom-*.md`      |
 
 **Deprecated flows** (no separate public file; behavior folded into ideate): old `tsh-clean-transcript` / `tsh-create-jira-tasks` style steps — use **`eversis-analyze-materials`** for the full ideate flow (see [CHANGELOG.md](../CHANGELOG.md)).
 
@@ -73,12 +73,12 @@ Docusaurus may show a slash-style label (e.g. `/eversis-implement`); in the IDE,
 
 ### Roles (concept → Cursor rules)
 
-| Conceptual role | How it appears in Cursor |
-| --- | --- |
+| Conceptual role                                  | How it appears in Cursor                                                                                             |
+| ------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------- |
 | Business Analyst, Context Engineer, Architect, … | [`.cursor/rules/eversis-*.mdc`](../.cursor/rules/) and optional [website/docs/agents/](../website/docs/agents/) docs |
-| Engineering Manager (orchestration) | `eversis-engineering-manager.mdc` + `eversis-implement` prompt |
-| Code Reviewer | `eversis-code-reviewer.mdc` + `eversis-review` prompt |
-| Framework customization | Rules + [AGENTS.md](../AGENTS.md) + `eversis-create-custom-*.md` prompts + `tsh-creating-*` skills |
+| Engineering Manager (orchestration)              | `eversis-engineering-manager.mdc` + `eversis-implement` prompt                                                       |
+| Code Reviewer                                    | `eversis-code-reviewer.mdc` + `eversis-review` prompt                                                                |
+| Framework customization                          | Rules + [AGENTS.md](../AGENTS.md) + `eversis-create-custom-*.md` prompts + `tsh-creating-*` skills                   |
 
 You do not need every role as a separate file on day one: start with **`eversis-agent-core.mdc`**, **`eversis-engineering-manager.mdc`** (orchestration), and **`eversis-code-reviewer.mdc`**, then split as prompts grow.
 
@@ -189,36 +189,49 @@ Use a layout optimized for **RAG + Agent** in Cursor:
 Dependencies in CI: `npm install axios turndown` (or commit a minimal `package.json` in `scripts/`).
 
 ```javascript
-const axios = require('axios');
-const TurndownService = require('turndown');
-const fs = require('fs');
-const path = require('path');
+const axios = require("axios");
+const TurndownService = require("turndown");
+const fs = require("fs");
+const path = require("path");
 
 const CONFLUENCE_DOMAIN = process.env.CONFLUENCE_DOMAIN;
 const EMAIL = process.env.CONFLUENCE_EMAIL;
 const API_TOKEN = process.env.CONFLUENCE_API_TOKEN;
 
 const PAGES_TO_SYNC = [
-  { id: '12345678', filename: 'frontend-architecture.md' },
-  { id: '87654321', filename: 'gis-data-standards.md' },
+  { id: "12345678", filename: "frontend-architecture.md" },
+  { id: "87654321", filename: "gis-data-standards.md" },
 ];
 
-const turndownService = new TurndownService({ headingStyle: 'atx', codeBlockStyle: 'fenced' });
+const turndownService = new TurndownService({
+  headingStyle: "atx",
+  codeBlockStyle: "fenced",
+});
 
 async function syncPages() {
-  const authHeader = Buffer.from(`${EMAIL}:${API_TOKEN}`).toString('base64');
+  const authHeader = Buffer.from(`${EMAIL}:${API_TOKEN}`).toString("base64");
 
   for (const page of PAGES_TO_SYNC) {
     try {
       const response = await axios.get(
         `https://${CONFLUENCE_DOMAIN}/wiki/rest/api/content/${page.id}?expand=body.export_view`,
-        { headers: { Authorization: `Basic ${authHeader}`, Accept: 'application/json' } },
+        {
+          headers: {
+            Authorization: `Basic ${authHeader}`,
+            Accept: "application/json",
+          },
+        },
       );
 
-      const markdownContent = turndownService.turndown(response.data.body.export_view.value);
+      const markdownContent = turndownService.turndown(
+        response.data.body.export_view.value,
+      );
       const finalContent = `---\ntitle: ${response.data.title}\nsource: Confluence\n---\n\n${markdownContent}`;
 
-      fs.writeFileSync(path.join(__dirname, '../docs/context', page.filename), finalContent);
+      fs.writeFileSync(
+        path.join(__dirname, "../docs/context", page.filename),
+        finalContent,
+      );
     } catch (error) {
       console.error(`Error fetching page ${page.id}:`, error.message);
     }

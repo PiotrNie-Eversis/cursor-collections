@@ -31,4 +31,4 @@ Build **Cursor project rules** — **`.cursor/rules/eversis-*.mdc`** — that de
 
 ## See also
 
-- [documentation/cursor-collection.md](https://github.com/PiotrNie-Eversis/cursor-collections/blob/main/documentation/cursor-collection.md)
+- [Framework reference](../framework) — packaging and mappings (source: `documentation/cursor-collection.md` on [GitHub](https://github.com/PiotrNie-Eversis/cursor-collections/blob/main/documentation/cursor-collection.md))

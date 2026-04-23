@@ -12,6 +12,10 @@ const config: Config = {
 
   onBrokenLinks: "throw",
 
+  markdown: {
+    mermaid: true,
+  },
+
   i18n: {
     defaultLocale: "en",
     locales: ["en"],
@@ -38,6 +42,7 @@ const config: Config = {
   ],
 
   themes: [
+    "@docusaurus/theme-mermaid",
     [
       "@easyops-cn/docusaurus-search-local",
       {
@@ -100,16 +105,17 @@ const config: Config = {
     ],
     navbar: {
       title: "Cursor Collections",
-      logo: {
-        alt: "Cursor Collections",
-        src: "img/logo-white.svg",
-      },
       items: [
         {
           type: "docSidebar",
           sidebarId: "tutorialSidebar",
           position: "left",
           label: "Docs",
+        },
+        {
+          to: "/docs/framework",
+          label: "Framework",
+          position: "left",
         },
         {
           to: "/docs/workflow/overview",

@@ -14,12 +14,12 @@ cd ~/projects
 git clone https://github.com/PiotrNie-Eversis/cursor-collections.git cursor-collections
 ```
 
-You can use any folder name; paths in [AGENTS.md](https://github.com/PiotrNie-Eversis/cursor-collections/blob/main/AGENTS.md) and [documentation/cursor-collection.md](https://github.com/PiotrNie-Eversis/cursor-collections/blob/main/documentation/cursor-collection.md) are relative to the repo root.
+You can use any folder name; paths in [AGENTS.md](https://github.com/PiotrNie-Eversis/cursor-collections/blob/main/AGENTS.md) and the source file `documentation/cursor-collection.md` (also published on this site as [Framework reference](../framework)) are relative to the repo root.
 
 ## 2. Open in Cursor
 
 1. **File → Open Folder** and select the cloned `cursor-collections` directory (or add it to a multi-root workspace).
-2. Read **`AGENTS.md`** at the repo root and **[documentation/cursor-collection.md](https://github.com/PiotrNie-Eversis/cursor-collections/blob/main/documentation/cursor-collection.md)** for the full model.
+2. Read **`AGENTS.md`** at the repo root and the [Framework reference](../framework) on this site (or **`documentation/cursor-collection.md`** in the repository) for the full model.
 3. Review **`.cursor/rules/`** — start with `eversis-agent-core.mdc` and customize `eversis-project-stack.mdc` when you copy rules into another project.
 
 ## 3. Prompts (attach with `@`)
@@ -40,4 +40,4 @@ This repository ships **`.cursor/mcp.json`**. When you open the folder in **Curs
 
 ## Using the framework in another project
 
-Copy **`.cursor/rules/`** templates, add **`AGENTS.md`**, and either vendor **`.cursor/prompts/`** (recommended) or maintain your own `eversis-*.md` paths. If you use this repo’s Docusaurus site, run **`npm run sync-prompts`** from `website/` (or rely on `prestart` / `prebuild`) so prompt pages exist under `website/docs/prompts/` before building. Add **`.cursor/mcp.json`** (or your own MCP list) and Agent Skills for the integrations you need. See [documentation/cursor-collection.md](https://github.com/PiotrNie-Eversis/cursor-collections/blob/main/documentation/cursor-collection.md) for the generic layout.
+Copy **`.cursor/rules/`** templates, add **`AGENTS.md`**, and either vendor **`.cursor/prompts/`** (recommended) or maintain your own `eversis-*.md` paths. If you use this repo’s Docusaurus site, run **`npm run sync-docs-assets`** from `website/` (or rely on `prestart` / `prebuild`) so prompt pages and the framework doc exist under `website/docs/` before building. Add **`.cursor/mcp.json`** (or your own MCP list) and Agent Skills for the integrations you need. See [Framework reference](../framework) (same content as `documentation/cursor-collection.md` in the repo) for the generic layout.
