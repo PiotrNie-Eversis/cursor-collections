@@ -5,7 +5,7 @@ title: Code Review
 
 # Code Review
 
-**Folder:** `.github/skills/tsh-code-reviewing/`  
+**Folder:** `.github/skills/eversis-code-reviewing/`  
 **Used by:** Code Reviewer
 
 Provides a structured 9-step code review process covering correctness, quality, security, testing, and scalability.
@@ -35,6 +35,6 @@ Provides a structured 9-step code review process covering correctness, quality, 
 
 ## Connected Skills
 
-- `tsh-implementation-gap-analysing` — Compare implementation against the plan.
-- `tsh-technical-context-discovering` — Review against project conventions.
-- `tsh-sql-and-database-understanding` — Review database-related code quality.
+- `eversis-implementation-gap-analysing` — Compare implementation against the plan.
+- `eversis-technical-context-discovering` — Review against project conventions.
+- `eversis-sql-and-database-understanding` — Review database-related code quality.

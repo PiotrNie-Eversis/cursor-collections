@@ -5,7 +5,7 @@ title: Task Quality Review
 
 # Task Quality Review
 
-**Folder:** `.github/skills/tsh-task-quality-reviewing/`  
+**Folder:** `.github/skills/eversis-task-quality-reviewing/`  
 **Used by:** Business Analyst
 
 Performs a systematic quality analysis on an approved task list (epics and user stories) to identify gaps, missing edge cases, and improvement opportunities. Runs 10 domain-agnostic analysis passes and produces structured suggestions the user can individually accept or reject.
@@ -78,5 +78,5 @@ Apply accepted suggestions to `extracted-tasks.md` and save the quality review r
 
 ## Connected Skills
 
-- `tsh-task-extracting` — Provides the extracted tasks used as primary input.
-- `tsh-jira-task-formatting` — Consumes the updated task list after quality review.
+- `eversis-task-extracting` — Provides the extracted tasks used as primary input.
+- `eversis-jira-task-formatting` — Consumes the updated task list after quality review.

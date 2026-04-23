@@ -5,7 +5,7 @@ title: CI/CD Implementation
 
 # CI/CD Implementation
 
-**Folder:** `.github/skills/tsh-implementing-ci-cd/`
+**Folder:** `.github/skills/eversis-implementing-ci-cd/`
 **Used by:** DevOps Engineer
 
 Provides CI/CD pipeline design patterns and deployment strategies for GitHub Actions, GitLab CI, Bitbucket Pipelines, and other platforms.
@@ -34,5 +34,5 @@ Provides CI/CD pipeline design patterns and deployment strategies for GitHub Act
 
 ## Connected Skills
 
-- `tsh-managing-secrets` — Secure credential storage and rotation for CI/CD.
-- `tsh-technical-context-discovering` — Discover existing pipeline patterns.
+- `eversis-managing-secrets` — Secure credential storage and rotation for CI/CD.
+- `eversis-technical-context-discovering` — Discover existing pipeline patterns.

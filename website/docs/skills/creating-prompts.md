@@ -5,7 +5,7 @@ title: Creating prompts
 
 # Creating prompts
 
-**Folder:** `.github/skills/tsh-creating-prompts/`  
+**Folder:** `.github/skills/eversis-creating-prompts/`  
 **Used by:** Framework maintainers (customization track)
 
 Create **attachable Markdown prompts** — **`.cursor/prompts/public/eversis-*.md`** and **`internal/eversis-*.md`** — with Docusaurus frontmatter. Not `.github/prompts/*.prompt.md` (removed).
@@ -14,7 +14,7 @@ Create **attachable Markdown prompts** — **`.cursor/prompts/public/eversis-*.m
 
 - **Prompt** = workflow steps, artifacts, human gates, `@` paths for rules to attach
 - **Rules** = `.cursor/rules/eversis-*.mdc` for stable behavior
-- **Skills** = `.github/skills/tsh-*/SKILL.md` for procedures
+- **Skills** = `.github/skills/eversis-*/SKILL.md` for procedures
 
 ## Frontmatter (this site)
 

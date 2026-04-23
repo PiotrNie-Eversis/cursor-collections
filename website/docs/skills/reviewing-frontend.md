@@ -5,7 +5,7 @@ title: Frontend Review
 
 # Frontend Review
 
-**Folder:** `.github/skills/tsh-reviewing-frontend/`  
+**Folder:** `.github/skills/eversis-reviewing-frontend/`  
 **Used by:** Code Reviewer
 
 Provides frontend-specific code review criteria covering component anti-patterns, hooks quality, rendering correctness, accessibility and performance spot-checks, and module organization issues.
@@ -33,7 +33,7 @@ Provides frontend-specific code review criteria covering component anti-patterns
 
 ## Connected Skills
 
-- `tsh-code-reviewing` — General code review process (this skill extends it for frontend).
-- `tsh-implementing-frontend` — The patterns this skill reviews against.
-- `tsh-ensuring-accessibility` — Detailed a11y criteria for deeper checks.
-- `tsh-optimizing-frontend` — Performance criteria for deeper checks.
+- `eversis-code-reviewing` — General code review process (this skill extends it for frontend).
+- `eversis-implementing-frontend` — The patterns this skill reviews against.
+- `eversis-ensuring-accessibility` — Detailed a11y criteria for deeper checks.
+- `eversis-optimizing-frontend` — Performance criteria for deeper checks.

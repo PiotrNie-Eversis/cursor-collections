@@ -5,7 +5,7 @@ title: Implementation Gap Analysis
 
 # Implementation Gap Analysis
 
-**Folder:** `.github/skills/tsh-implementation-gap-analysing/`  
+**Folder:** `.github/skills/eversis-implementation-gap-analysing/`  
 **Used by:** Architect, Code Reviewer, Software Engineer
 
 Provides a 4-step process for comparing the current system state to the expected implementation, ensuring no duplicate work.
@@ -50,5 +50,5 @@ Generate a structured report (`implementation-gap-analysis.example.md` template)
 
 Cross-referenced by:
 
-- `tsh-architecture-designing` — To focus plans on necessary changes.
-- `tsh-code-reviewing` — To verify implementation completeness.
+- `eversis-architecture-designing` — To focus plans on necessary changes.
+- `eversis-code-reviewing` — To verify implementation completeness.

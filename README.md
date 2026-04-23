@@ -18,7 +18,7 @@ Structured **roles**, **prompts** (`eversis-*.md`), **project rules** (`.cursor/
 | **Review**                  | Code and UI quality                          | Attach `@eversis-review`, `@eversis-review-ui`, `@eversis-review-codebase` |
 | **Framework customization** | Rules, skills, prompts, project instructions | Attach `eversis-create-custom-*.md` under `.cursor/prompts/public/` |
 
-**Skills** live in [`.github/skills/`](.github/skills/) as `tsh-*` topic folders with `SKILL.md` (procedural how-to). **Use them in Agent** via the **`eversis-collections` MCP** server ([`mcp/eversis-collections-mcp/`](mcp/eversis-collections-mcp/): `npm install && npm run build` once, then enable it through [`.cursor/mcp.json`](.cursor/mcp.json)). **`eversis_*` tools** list, read, and validate the tree; this replaces registering the folder as **Cursor Agent Skills**.
+**Skills** live in [`.github/skills/`](.github/skills/) as `eversis-*` topic folders with `SKILL.md` (procedural how-to). **Use them in Agent** via the **`eversis-collections` MCP** server ([`mcp/eversis-collections-mcp/`](mcp/eversis-collections-mcp/): `npm install && npm run build` once, then enable it through [`.cursor/mcp.json`](.cursor/mcp.json)). **`eversis_*` tools** list, read, and validate the tree; this replaces registering the folder as **Cursor Agent Skills**.
 
 **Docs site:** build and preview from [`website/`](website/) (Docusaurus). **Authoritative how-to for using this framework in any repo:** [documentation/cursor-collection.md](documentation/cursor-collection.md).
 
@@ -86,9 +86,7 @@ For UI work, the implement flow can loop with `eversis-review-ui` until pass or 
 ## Skills
 
 - **Location:** [`.github/skills/`](.github/skills/) — topic folders with `SKILL.md` and optional `references/`, `assets/`, `examples/`.
-- **Use:** Build and enable [**`mcp/eversis-collections-mcp/`**](mcp/eversis-collections-mcp/) (local MCP; not on npm) and turn on **`eversis-collections`** in [`.cursor/mcp.json`](.cursor/mcp.json). Authoring guide: [website/docs/skills/overview.md](website/docs/skills/overview.md) and the `tsh-creating-skills` skill.
-
-**Why `tsh-` folder names?** Historical prefix for topic packages; skills remain compatible with the framework docs. You can add your own skills alongside them.
+- **Use:** Build and enable [**`mcp/eversis-collections-mcp/`**](mcp/eversis-collections-mcp/) (local MCP; not on npm) and turn on **`eversis-collections`** in [`.cursor/mcp.json`](.cursor/mcp.json). Authoring guide: [website/docs/skills/overview.md](website/docs/skills/overview.md) and the `eversis-creating-skills` skill.
 
 ---
 

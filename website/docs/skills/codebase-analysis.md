@@ -5,7 +5,7 @@ title: Codebase Analysis
 
 # Codebase Analysis
 
-**Folder:** `.github/skills/tsh-codebase-analysing/`  
+**Folder:** `.github/skills/eversis-codebase-analysing/`  
 **Used by:** Architect, Business Analyst, Software Engineer
 
 Provides a comprehensive 12-step process for analyzing an entire codebase, with support for monorepos.

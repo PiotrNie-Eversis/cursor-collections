@@ -5,7 +5,7 @@ title: Frontend Optimization
 
 # Frontend Optimization
 
-**Folder:** `.github/skills/tsh-optimizing-frontend/`  
+**Folder:** `.github/skills/eversis-optimizing-frontend/`  
 **Used by:** Software Engineer
 
 Provides frontend rendering optimization strategies, code splitting patterns, memoization guidelines, bundle size control, asset optimization, and memory management practices.
@@ -34,6 +34,6 @@ Provides frontend rendering optimization strategies, code splitting patterns, me
 
 ## Connected Skills
 
-- `tsh-implementing-frontend` — Component patterns and design system usage.
-- `tsh-writing-hooks` — Hook lifecycle and cleanup patterns.
-- `tsh-reviewing-frontend` — Performance spot-checks during code review.
+- `eversis-implementing-frontend` — Component patterns and design system usage.
+- `eversis-writing-hooks` — Hook lifecycle and cleanup patterns.
+- `eversis-reviewing-frontend` — Performance spot-checks during code review.

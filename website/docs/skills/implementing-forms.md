@@ -5,7 +5,7 @@ title: Implementing Forms
 
 # Implementing Forms
 
-**Folder:** `.github/skills/tsh-implementing-forms/`  
+**Folder:** `.github/skills/eversis-implementing-forms/`  
 **Used by:** Software Engineer
 
 Provides form architecture patterns including schema-based validation, field composition, error handling, multi-step form flows, and accessible form patterns.
@@ -29,6 +29,6 @@ Provides form architecture patterns including schema-based validation, field com
 
 ## Connected Skills
 
-- `tsh-implementing-frontend` — Component composition patterns.
-- `tsh-ensuring-accessibility` — WCAG-compliant form patterns.
-- `tsh-writing-hooks` — Custom hooks for form state management.
+- `eversis-implementing-frontend` — Component composition patterns.
+- `eversis-ensuring-accessibility` — WCAG-compliant form patterns.
+- `eversis-writing-hooks` — Custom hooks for form state management.

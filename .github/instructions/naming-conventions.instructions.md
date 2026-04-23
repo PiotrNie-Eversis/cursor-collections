@@ -1,6 +1,6 @@
 ---
 name: cursor-collections
-description: "Naming conventions for Cursor Collections: eversis prompts and rules, tsh- skill directories."
+description: "Naming conventions for Cursor Collections: eversis prompts, rules, and skill directories."
 applyTo: '.github/**'
 ---
 
@@ -10,7 +10,7 @@ applyTo: '.github/**'
 
 - **`eversis-`** — User-facing and internal **prompts** as Markdown: `.cursor/prompts/public/eversis-*.md` and `.cursor/prompts/internal/eversis-*.md`.
 - **`eversis-`** — **Cursor rules** in `.cursor/rules/eversis-*.mdc`.
-- **`tsh-`** — **Skill directory names** under `.github/skills/tsh-*/` (historical; topic packages). The `name` in `SKILL.md` frontmatter should match the directory name.
+- **`eversis-`** — **Skill directory names** under `.github/skills/eversis-*/` (gerund topic packages). The `name` in `SKILL.md` frontmatter should match the directory name.
 
 ## What we do not add
 
@@ -18,6 +18,6 @@ applyTo: '.github/**'
 
 ## Cross-references
 
-When docs reference skills, use the `tsh-*` folder/skill `name` (e.g. `tsh-creating-skills`).
+When docs reference skills, use the `eversis-*` folder / skill `name` (e.g. `eversis-creating-skills`).
 
 When docs reference attachable prompts, use repo-relative paths: `.cursor/prompts/public/eversis-implement.md`.

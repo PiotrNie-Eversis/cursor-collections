@@ -11,7 +11,7 @@ Cursor Collections integrates with **11 external services** via the **Model Cont
 
 | Server | Type | Purpose |
 | --- | --- | --- |
-| **eversis-collections** | stdio | List, read, and validate **`.github/skills/tsh-*`** packages; run allowlisted scripts (`sync-prompts`, `sync-framework-doc`). Build from [`mcp/eversis-collections-mcp/`](https://github.com/PiotrNie-Eversis/cursor-collections/tree/main/mcp/eversis-collections-mcp) (`npm install && npm run build`). Not on npm. |
+| **eversis-collections** | stdio | List, read, and validate **`.github/skills/eversis-*`** packages; run allowlisted scripts (`sync-prompts`, `sync-framework-doc`). Build from [`mcp/eversis-collections-mcp/`](https://github.com/PiotrNie-Eversis/cursor-collections/tree/main/mcp/eversis-collections-mcp) (`npm install && npm run build`). Not on npm. |
 
 This is configured in **`.cursor/mcp.json`** alongside the integrations below.
 

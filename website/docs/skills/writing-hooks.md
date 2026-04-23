@@ -5,7 +5,7 @@ title: Writing Hooks
 
 # Writing Hooks
 
-**Folder:** `.github/skills/tsh-writing-hooks/`  
+**Folder:** `.github/skills/eversis-writing-hooks/`  
 **Used by:** Software Engineer
 
 Provides patterns for writing composable, testable custom hooks (React hooks, Vue composables) with stable APIs, proper effect lifecycle management, and clear responsibility boundaries.
@@ -39,6 +39,6 @@ Provides patterns for writing composable, testable custom hooks (React hooks, Vu
 
 ## Connected Skills
 
-- `tsh-implementing-frontend` — Component patterns that consume hooks.
-- `tsh-optimizing-frontend` — Memoization and rendering optimization in hooks.
-- `tsh-reviewing-frontend` — Hook quality review criteria.
+- `eversis-implementing-frontend` — Component patterns that consume hooks.
+- `eversis-optimizing-frontend` — Memoization and rendering optimization in hooks.
+- `eversis-reviewing-frontend` — Hook quality review criteria.

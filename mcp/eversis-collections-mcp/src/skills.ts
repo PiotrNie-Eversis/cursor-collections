@@ -3,7 +3,7 @@ import path from "node:path";
 import { parseSkillFrontmatter } from "./frontmatter.js";
 import { assertUnderRoot, findRepoRoot } from "./resolveRoot.js";
 
-const TSH_PREFIX = "tsh-";
+const SKILL_ID_PREFIX = "eversis-";
 
 export type SkillSummary = {
   id: string;
@@ -18,7 +18,7 @@ function listSkillDirNames(skillsDir: string): string[] {
     .readdirSync(skillsDir, { withFileTypes: true })
     .filter(
       (d) =>
-        d.isDirectory() && d.name.startsWith(TSH_PREFIX) && !d.name.startsWith(".")
+        d.isDirectory() && d.name.startsWith(SKILL_ID_PREFIX) && !d.name.startsWith(".")
     )
     .map((d) => d.name)
     .sort();
@@ -60,7 +60,7 @@ export function getSkillFile(
   relativeFile: string,
   lineRange?: { startLine?: number; endLine?: number }
 ): { content: string; path: string } {
-  if (!skillId.startsWith(TSH_PREFIX) || skillId.includes("..")) {
+  if (!skillId.startsWith(SKILL_ID_PREFIX) || skillId.includes("..")) {
     throw new Error("Invalid skill id");
   }
   const repoRoot = findRepoRoot(startDir);

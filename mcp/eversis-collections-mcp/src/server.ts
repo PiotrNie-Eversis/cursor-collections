@@ -26,7 +26,7 @@ export async function runMcpServer(): Promise<void> {
     "eversis_skills_list",
     {
       description:
-        "List all tsh-* skill packages under .github/skills/ with name and description from SKILL.md frontmatter.",
+        "List all eversis-* skill packages under .github/skills/ with name and description from SKILL.md frontmatter.",
     },
     async () => {
       const skills = listSkills(startDir);
@@ -38,9 +38,9 @@ export async function runMcpServer(): Promise<void> {
     "eversis_skills_get",
     {
       description:
-        "Read SKILL.md or another file under a tsh-* skill directory (references/, assets/). Optional 1-based line range.",
+        "Read SKILL.md or another file under an eversis-* skill directory (references/, assets/). Optional 1-based line range.",
       inputSchema: {
-        skillId: z.string().describe("Skill folder name, e.g. tsh-creating-skills"),
+        skillId: z.string().describe("Skill folder name, e.g. eversis-creating-skills"),
         relativePath: z
           .string()
           .optional()
@@ -68,7 +68,7 @@ export async function runMcpServer(): Promise<void> {
     "eversis_skills_validate",
     {
       description:
-        "Validate all tsh-* skills (frontmatter, directory name match, SKILL.md present). Returns errors and warnings JSON.",
+        "Validate all eversis-* skills (frontmatter, directory name match, SKILL.md present). Returns errors and warnings JSON.",
       inputSchema: {
         treatWarningsAsErrors: z
           .boolean()

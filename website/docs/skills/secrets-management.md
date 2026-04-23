@@ -5,7 +5,7 @@ title: Secrets Management
 
 # Secrets Management
 
-**Folder:** `.github/skills/tsh-managing-secrets/`
+**Folder:** `.github/skills/eversis-managing-secrets/`
 **Used by:** DevOps Engineer
 
 Provides patterns for secure credential storage, rotation, and CI/CD authentication across cloud and Kubernetes environments.
@@ -39,6 +39,6 @@ Provides patterns for secure credential storage, rotation, and CI/CD authenticat
 
 ## Connected Skills
 
-- `tsh-implementing-ci-cd` — Secrets in CI/CD pipelines.
-- `tsh-implementing-kubernetes` — Secrets in Kubernetes workloads.
-- `tsh-implementing-terraform-modules` — Secrets in Terraform configurations.
+- `eversis-implementing-ci-cd` — Secrets in CI/CD pipelines.
+- `eversis-implementing-kubernetes` — Secrets in Kubernetes workloads.
+- `eversis-implementing-terraform-modules` — Secrets in Terraform configurations.

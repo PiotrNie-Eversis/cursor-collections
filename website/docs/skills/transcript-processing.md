@@ -5,7 +5,7 @@ title: Transcript Processing
 
 # Transcript Processing
 
-**Folder:** `.github/skills/tsh-transcript-processing/`  
+**Folder:** `.github/skills/eversis-transcript-processing/`  
 **Used by:** Business Analyst
 
 Cleans raw workshop or meeting transcripts from small talk, filler words, and off-topic tangents. Extracts and structures business-relevant content into a standardized format.
@@ -62,4 +62,4 @@ Generate the cleaned transcript following the `cleaned-transcript.example.md` te
 
 ## Connected Skills
 
-- `tsh-task-extracting` — Uses the cleaned transcript as primary input for identifying epics and stories.
+- `eversis-task-extracting` — Uses the cleaned transcript as primary input for identifying epics and stories.

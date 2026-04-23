@@ -4,7 +4,7 @@ import { parseSkillFrontmatter } from "./frontmatter.js";
 import { findRepoRoot } from "./resolveRoot.js";
 
 const MAX_BODY_LINES_RECOMMENDED = 500;
-const TSH_PREFIX = "tsh-";
+const SKILL_ID_PREFIX = "eversis-";
 
 export type ValidationIssue = {
   level: "error" | "warning";
@@ -24,7 +24,7 @@ function listSkillDirs(skillsDir: string): string[] {
     .readdirSync(skillsDir, { withFileTypes: true })
     .filter(
       (d) =>
-        d.isDirectory() && d.name.startsWith(TSH_PREFIX) && !d.name.startsWith(".")
+        d.isDirectory() && d.name.startsWith(SKILL_ID_PREFIX) && !d.name.startsWith(".")
     )
     .map((d) => d.name)
     .sort();
@@ -81,7 +81,7 @@ function validateOneSkill(
 }
 
 /**
- * Full validation of all `tsh-*` skill packages under `.github/skills/`.
+ * Full validation of all `eversis-*` skill packages under `.github/skills/`.
  * When `treatWarningsAsErrors` is true, warnings fail the run (e.g. CI strict mode).
  */
 export function validateAllSkills(

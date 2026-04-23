@@ -5,7 +5,7 @@ title: Observability Implementation
 
 # Observability Implementation
 
-**Folder:** `.github/skills/tsh-implementing-observability/`
+**Folder:** `.github/skills/eversis-implementing-observability/`
 **Used by:** DevOps Engineer
 
 Provides patterns for logging, monitoring, alerting, and distributed tracing across services.
@@ -41,5 +41,5 @@ Provides patterns for logging, monitoring, alerting, and distributed tracing acr
 
 ## Connected Skills
 
-- `tsh-implementing-kubernetes` — Monitoring Kubernetes workloads.
-- `tsh-technical-context-discovering` — Discover existing monitoring patterns.
+- `eversis-implementing-kubernetes` — Monitoring Kubernetes workloads.
+- `eversis-technical-context-discovering` — Discover existing monitoring patterns.

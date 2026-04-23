@@ -2,7 +2,7 @@
 
 This guide is the **authoritative** reference for using **Cursor** (rules, Agent mode, indexed docs, MCP, and terminal-backed verification) to run a structured **Ideate → Implement → Review** workflow. It is written so you can **reuse the same patterns in many repositories**; only the per-project stack file and optional wiki sync need customization.
 
-**Naming:** In this monorepo, user-facing and internal prompts use the **`eversis-`** prefix and live under **`.cursor/prompts/`** (`public/` and `internal/`). Topic skill packages under **`.github/skills/tsh-*/`** keep the historical `tsh-` folder prefix. Procedural text lives in **`SKILL.md`** in Git; use the **`eversis-collections` MCP** server ([`mcp/eversis-collections-mcp/`](../mcp/eversis-collections-mcp/)) to **list, read, and validate** those skills in Agent via **`eversis_*` tools** — do not rely on registering the folder under Cursor’s **Agent Skills** UI (that path is not used for this framework).
+**Naming:** In this monorepo, user-facing and internal **prompts** and **Cursor rules** use the **`eversis-`** prefix (see **`.cursor/prompts/`** and **`.cursor/rules/`**). **Skill packages** use the same **`eversis-`** prefix on topic directories under **`.github/skills/eversis-*/`**. Procedural text lives in **`SKILL.md`** in Git; use the **`eversis-collections` MCP** server ([`mcp/eversis-collections-mcp/`](../mcp/eversis-collections-mcp/)) to **list, read, and validate** those skills in Agent via **`eversis_*` tools** — do not rely on registering the folder under Cursor’s **Agent Skills** UI (that path is not used for this framework).
 
 **Background:** The workflow originated in [The Software House’s product engineering work](https://tsh.io) and an earlier [Copilot-oriented documentation set](https://copilot-collections.tsh.io/). **This repository is Cursor-only**; there is no second prompt tree under `.github/prompts/`.
 
@@ -78,13 +78,13 @@ Docusaurus may show a slash-style label (e.g. `/eversis-implement`); in the IDE,
 | Business Analyst, Context Engineer, Architect, … | [`.cursor/rules/eversis-*.mdc`](../.cursor/rules/) and optional [website/docs/agents/](../website/docs/agents/) docs |
 | Engineering Manager (orchestration)              | `eversis-engineering-manager.mdc` + `eversis-implement` prompt                                                       |
 | Code Reviewer                                    | `eversis-code-reviewer.mdc` + `eversis-review` prompt                                                                |
-| Framework customization                          | Rules + [AGENTS.md](../AGENTS.md) + `eversis-create-custom-*.md` prompts + `tsh-creating-*` skills                   |
+| Framework customization                          | Rules + [AGENTS.md](../AGENTS.md) + `eversis-create-custom-*.md` prompts + `eversis-creating-*` skills                   |
 
 You do not need every role as a separate file on day one: start with **`eversis-agent-core.mdc`**, **`eversis-engineering-manager.mdc`** (orchestration), and **`eversis-code-reviewer.mdc`**, then split as prompts grow.
 
 ### Skills (`.github/skills/` on disk) + `eversis-collections` MCP
 
-**Skills** are procedural packages (`SKILL.md` in topic folders under `.github/skills/tsh-*/`). **Authoring** is always in this repository (or a fork) as Markdown. **In Cursor,** enable the workspace [`.cursor/mcp.json`](../.cursor/mcp.json) and build [`mcp/eversis-collections-mcp`](../mcp/eversis-collections-mcp/) (`npm install && npm run build` in that directory). The server exposes tools such as **`eversis_skills_list`**, **`eversis_skills_get`**, and **`eversis_skills_validate`**, plus allowlisted repo scripts. That is the supported way to work with the skill tree in Agent — not a separate **Agent Skills** path in Cursor settings.
+**Skills** are procedural packages (`SKILL.md` in topic folders under `.github/skills/eversis-*/`). **Authoring** is always in this repository (or a fork) as Markdown. **In Cursor,** enable the workspace [`.cursor/mcp.json`](../.cursor/mcp.json) and build [`mcp/eversis-collections-mcp`](../mcp/eversis-collections-mcp/) (`npm install && npm run build` in that directory). The server exposes tools such as **`eversis_skills_list`**, **`eversis_skills_get`**, and **`eversis_skills_validate`**, plus allowlisted repo scripts. That is the supported way to work with the skill tree in Agent — not a separate **Agent Skills** path in Cursor settings.
 
 You may still namespace a **forked** copy of `SKILL.md` trees as `eversis-<topic>` in your own repo if you document your own MCP or consumption story.
 

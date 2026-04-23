@@ -10,4 +10,4 @@ Use when running **`prompts/public/eversis-review.md`**.
 
 - Apply **`eversis-testing-and-terminal.mdc`** for commands and evidence.
 - Check against **`docs/specs/*.spec.md`**, the implementation plan, and `docs/context/` as referenced in the task.
-- Output structured **PASS** / **BLOCKER** / **SUGGESTION** findings; upstream methodology lives in `.github/skills/tsh-code-reviewing/` (read `SKILL.md` when a full checklist is needed).
+- Output structured **PASS** / **BLOCKER** / **SUGGESTION** findings; upstream methodology lives in `.github/skills/eversis-code-reviewing/` (read `SKILL.md` when a full checklist is needed).

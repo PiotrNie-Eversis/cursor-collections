@@ -6,11 +6,11 @@ title: Introduction
 
 # Introduction
 
-**Cursor Collections** is a **Cursor-native** product engineering framework — from workshop to Jira, through implementation, to structured review and testing. It combines **project rules** (`.cursor/rules/*.mdc`), **prompts** under **`.cursor/prompts/public/`** (user-facing) and **`.cursor/prompts/internal/`** (delegation, e.g. from `eversis-implement`), **MCP** servers, and **skill packages** (`.github/skills/tsh-*/` with `SKILL.md`, used through the **`eversis-collections` MCP** server and `eversis_*` tools). In Chat or **Agent**, attach prompt files with **`@`** (e.g. `@eversis-implement` or `@.cursor/prompts/...`).
+**Cursor Collections** is a **Cursor-native** product engineering framework — from workshop to Jira, through implementation, to structured review and testing. It combines **project rules** (`.cursor/rules/*.mdc`), **prompts** under **`.cursor/prompts/public/`** (user-facing) and **`.cursor/prompts/internal/`** (delegation, e.g. from `eversis-implement`), **MCP** servers, and **skill packages** (`.github/skills/eversis-*/` with `SKILL.md`, used through the **`eversis-collections` MCP** server and `eversis_*` tools). In Chat or **Agent**, attach prompt files with **`@`** (e.g. `@eversis-implement` or `@.cursor/prompts/...`).
 
 **Starter rules in this repo:** `eversis-agent-core.mdc` and `eversis-project-stack.mdc` (edit per project); for Implement and Review, optionally attach `eversis-engineering-manager.mdc` and `eversis-code-reviewer.mdc` with the matching prompts.
 
-The Eversis Cursor layer (rules, prompts, and this site) is maintained for **Cursor** only. Historic **`tsh-*` / slash-style labels** referred to an older layout; in Cursor use **`eversis-*.md`** prompts and `@` attachment, not separate slash-command runtimes.
+The Eversis Cursor layer (rules, prompts, and this site) is maintained for **Cursor** only. Historic **slash-style labels** (e.g. `/tsh-implement` in older Copilot-oriented docs) referred to an older layout; in Cursor use **`eversis-*.md`** prompts and `@` attachment, not separate slash-command runtimes.
 
 ## Canonical reference
 
@@ -32,7 +32,7 @@ According to Gartner, only **10% of software engineers** see meaningful producti
 | 🧑‍💻 **Specialized roles** | 12 | Expressed as **rules, prompts, and skills** (see [Agents overview](./agents/overview)) — e.g. Business Analyst, Context Engineer, Architect, Engineering Manager, Software Engineer, Prompt Engineer, Code Reviewer, UI Reviewer, E2E Engineer, DevOps Engineer, and framework customization |
 | 💬 **Public prompts** | 12 | Attach **`@eversis-*.md`** from `.cursor/prompts/public/` (e.g. analyze, implement, review, create-custom-*); [Prompts overview](./prompts/overview) |
 | 🔧 **Delegation** | via `eversis-implement` | Engineering Manager pattern: research → plan → implementation with role rules and **internal** prompts under `.cursor/prompts/internal/` |
-| 🧰 **Reusable skills** | 32 | Topic packages under `.github/skills/tsh-*/` — `SKILL.md` on disk; in Agent, use **`eversis-collections` MCP** (`eversis_skills_*` tools), not a separate Agent Skills path |
+| 🧰 **Reusable skills** | 32 | Topic packages under `.github/skills/eversis-*/` — `SKILL.md` on disk; in Agent, use **`eversis-collections` MCP** (`eversis_skills_*` tools), not a separate Agent Skills path |
 | 🔌 **MCP (third-party)** | 11 | Atlassian, Figma Dev Mode, Context7, Playwright, Sequential Thinking, PDF Reader, AWS API, AWS Documentation, GCP Gcloud, GCP Observability, GCP Storage — enable in **Cursor → MCP**; this repo includes [`.cursor/mcp.json`](https://github.com/PiotrNie-Eversis/cursor-collections/blob/main/.cursor/mcp.json) for one-step workspace enable |
 | 🏠 **MCP (local)** | 1 | **`eversis-collections`** — list/read/validate skills and allowlisted repo scripts; build [`mcp/eversis-collections-mcp/`](https://github.com/PiotrNie-Eversis/cursor-collections/tree/main/mcp/eversis-collections-mcp) first (`npm install && npm run build`); not published to npm |
 | 🧠 **Structured workflows** | 5 | Standard flow, UI flow, E2E flow, workshop analysis, framework customization |

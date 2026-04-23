@@ -2,7 +2,7 @@
   "name": "eversis-collections-mcp",
   "version": "1.0.0",
   "private": true,
-  "description": "Local MCP server for cursor-collections: list, read, and validate tsh-* skills; run allowlisted repo scripts. Not published to npm — build from the repository.",
+  "description": "Local MCP server for cursor-collections: list, read, and validate eversis-* skills; run allowlisted repo scripts. Not published to npm — build from the repository.",
   "type": "module",
   "main": "dist/index.js",
   "bin": {

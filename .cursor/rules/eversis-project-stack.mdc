@@ -12,7 +12,7 @@ This repo is **Cursor Collections** (Eversis): **Cursor** rules, attachable prom
 | **Product** | Cursor-native product engineering framework + published workflow docs |
 | **Docs site** | Docusaurus 3 under **`website/`** (`cursor-collections-docs`) |
 | **Prompts** | **`.cursor/prompts/public/`** and **`internal/`** (`eversis-*.md`; `npm start` / `npm run build` in `website/` runs **`sync-prompts`** into gitignored paths under `website/docs/prompts/`) |
-| **Skills** | **`.github/skills/tsh-*/`** (topic packages; use as **Agent Skills**) |
+| **Skills** | **`.github/skills/eversis-*/`** (topic packages; list/read/validate via **`eversis-collections` MCP**, not a separate **Agent Skills** path) |
 
 ## Quality commands (this repo)
 

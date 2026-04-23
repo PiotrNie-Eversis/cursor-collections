@@ -5,7 +5,7 @@ title: Task Extraction
 
 # Task Extraction
 
-**Folder:** `.github/skills/tsh-task-extracting/`  
+**Folder:** `.github/skills/eversis-task-extracting/`  
 **Used by:** Business Analyst
 
 Identifies and structures epics and user stories from workshop materials (cleaned transcripts, Figma designs, codebase analysis, and other documents). Produces a business-oriented task breakdown with dependencies, assumptions, and open questions.
@@ -30,7 +30,7 @@ Identifies and structures epics and user stories from workshop materials (cleane
 Review all available workshop materials:
 - Cleaned transcript (`cleaned-transcript.md`)
 - Figma/FigJam designs
-- Existing codebase (via `tsh-codebase-analysing`)
+- Existing codebase (via `eversis-codebase-analysing`)
 - Other reference documents (Confluence, emails, etc.)
 
 ### Step 2: Identify Epics
@@ -83,5 +83,5 @@ Save the extracted tasks to `specifications/<workshop-name>/extracted-tasks.md`.
 
 ## Connected Skills
 
-- `tsh-transcript-processing` — Provides the cleaned transcript used as primary input.
-- `tsh-codebase-analysing` — For understanding existing system context when analyzing scope.
+- `eversis-transcript-processing` — Provides the cleaned transcript used as primary input.
+- `eversis-codebase-analysing` — For understanding existing system context when analyzing scope.

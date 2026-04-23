@@ -5,7 +5,7 @@ title: Frontend Implementation
 
 # Frontend Implementation
 
-**Folder:** `.github/skills/tsh-implementing-frontend/`  
+**Folder:** `.github/skills/eversis-implementing-frontend/`  
 **Used by:** Software Engineer
 
 Provides comprehensive frontend guidelines covering component design, design system usage, accessibility, and performance.
@@ -59,8 +59,8 @@ A 5-step token mapping process:
 
 ## Connected Skills
 
-- `tsh-ui-verifying` — Verification criteria and tolerances.
-- `tsh-technical-context-discovering` — Project conventions.
+- `eversis-ui-verifying` — Verification criteria and tolerances.
+- `eversis-technical-context-discovering` — Project conventions.
 
 :::warning Never Guess — Always Ask
 If a design specification is unclear, a token is missing, or behavior is ambiguous, stop and ask. Do not guess or make assumptions about design intent.

@@ -5,7 +5,7 @@ title: UI Verification
 
 # UI Verification
 
-**Folder:** `.github/skills/tsh-ui-verifying/`  
+**Folder:** `.github/skills/eversis-ui-verifying/`  
 **Used by:** UI Reviewer, Software Engineer
 
 Provides detailed criteria for comparing UI implementations against Figma designs, with severity definitions, tolerance rules, and structured report formats.

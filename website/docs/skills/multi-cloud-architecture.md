@@ -5,7 +5,7 @@ title: Multi-Cloud Architecture
 
 # Multi-Cloud Architecture Design
 
-**Folder:** `.github/skills/tsh-designing-multi-cloud-architecture/`
+**Folder:** `.github/skills/eversis-designing-multi-cloud-architecture/`
 **Used by:** DevOps Engineer, Architect
 
 Provides a decision framework for designing multi-cloud architectures across AWS, Azure, and GCP — selecting and integrating best-of-breed services while avoiding vendor lock-in.
@@ -38,6 +38,6 @@ Provides a decision framework for designing multi-cloud architectures across AWS
 
 ## Connected Skills
 
-- `tsh-optimizing-cloud-cost` — Cross-provider cost comparison.
-- `tsh-implementing-terraform-modules` — Multi-provider Terraform modules.
-- `tsh-implementing-kubernetes` — Portable workload orchestration.
+- `eversis-optimizing-cloud-cost` — Cross-provider cost comparison.
+- `eversis-implementing-terraform-modules` — Multi-provider Terraform modules.
+- `eversis-implementing-kubernetes` — Portable workload orchestration.

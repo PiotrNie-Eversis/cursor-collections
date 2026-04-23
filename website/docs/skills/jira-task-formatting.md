@@ -5,7 +5,7 @@ title: Jira Task Formatting
 
 # Jira Task Formatting
 
-**Folder:** `.github/skills/tsh-jira-task-formatting/`  
+**Folder:** `.github/skills/eversis-jira-task-formatting/`  
 **Used by:** Business Analyst
 
 Transforms extracted epics and user stories into Jira-ready format following a benchmark template. Handles field mapping, Jira markdown compatibility, two-gate user review, and Jira issue creation via Atlassian tools. Also supports importing existing Jira issues for local iteration.
@@ -99,5 +99,5 @@ Tasks with a protected status (**Done**, **Cancelled**, or **PO APPROVE**) canno
 
 ## Connected Skills
 
-- `tsh-task-extracting` — Provides the extracted tasks used as input for formatting.
-- `tsh-task-quality-reviewing` — Refines the task list before formatting.
+- `eversis-task-extracting` — Provides the extracted tasks used as input for formatting.
+- `eversis-task-quality-reviewing` — Refines the task list before formatting.

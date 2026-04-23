@@ -5,7 +5,7 @@ title: Technical Context Discovery
 
 # Technical Context Discovery
 
-**Folder:** `.github/skills/tsh-technical-context-discovering/`  
+**Folder:** `.github/skills/eversis-technical-context-discovering/`  
 **Used by:** Architect, Code Reviewer, Software Engineer, E2E Engineer, framework customization, Context Engineer
 
 Provides a systematic process for understanding project context before any code changes. Enforces a strict priority hierarchy to ensure consistency.
@@ -63,6 +63,6 @@ Use Context7 tool for framework-specific documentation. Reference OWASP, SOLID, 
 
 ## Connected Skills
 
-- `tsh-architecture-designing` — Design solutions following discovered conventions.
-- `tsh-codebase-analysing` — Deep analysis of existing patterns.
-- `tsh-sql-and-database-understanding` — Database-specific context discovery.
+- `eversis-architecture-designing` — Design solutions following discovered conventions.
+- `eversis-codebase-analysing` — Deep analysis of existing patterns.
+- `eversis-sql-and-database-understanding` — Database-specific context discovery.

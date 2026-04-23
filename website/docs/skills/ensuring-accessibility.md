@@ -5,7 +5,7 @@ title: Ensuring Accessibility
 
 # Ensuring Accessibility
 
-**Folder:** `.github/skills/tsh-ensuring-accessibility/`  
+**Folder:** `.github/skills/eversis-ensuring-accessibility/`  
 **Used by:** Software Engineer
 
 Provides WCAG 2.1 AA compliance guidelines covering semantic HTML, ARIA patterns, keyboard navigation, focus management, screen reader support, and color contrast requirements.
@@ -30,6 +30,6 @@ Provides WCAG 2.1 AA compliance guidelines covering semantic HTML, ARIA patterns
 
 ## Connected Skills
 
-- `tsh-implementing-frontend` — Component patterns and design system usage.
-- `tsh-implementing-forms` — Accessible form patterns and validation.
-- `tsh-reviewing-frontend` — Accessibility spot-checks during code review.
+- `eversis-implementing-frontend` — Component patterns and design system usage.
+- `eversis-implementing-forms` — Accessible form patterns and validation.
+- `eversis-reviewing-frontend` — Accessibility spot-checks during code review.

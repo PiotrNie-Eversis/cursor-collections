@@ -3,7 +3,7 @@ sidebar_position: 13
 title: "Create custom agent"
 slug: create-custom-agent
 prompt_role: "Cursor customization orchestrator"
-prompt_description: "Create new Cursor role packaging — typically .cursor/rules/eversis-*.mdc and optional agent docs. Researches existing rules, designs the role, and validates against the tsh-creating-agents skill."
+prompt_description: "Create new Cursor role packaging — typically .cursor/rules/eversis-*.mdc and optional agent docs. Researches existing rules, designs the role, and validates against the eversis-creating-agents skill."
 ---
 
 # eversis-create-custom-agent
@@ -27,14 +27,14 @@ In **Cursor**, attach the file above (or open it and reference it with `@`) plus
 1. **Research** — Review existing **`.cursor/rules/*.mdc`** and [AGENTS.md](https://github.com/PiotrNie-Eversis/cursor-collections/blob/main/AGENTS.md) for patterns; optionally read `website/docs/agents/`.
 2. **Clarify** — Scope, responsibilities, which prompts attach this rule, and globs (`alwaysApply` vs `globs`).
 3. **Design** — File name, description, section outline, and how the role composes with `eversis-agent-core.mdc`.
-4. **Create** — Write the `.mdc` (and short agent doc if needed) following **`tsh-creating-agents`** (skill path: `.github/skills/tsh-creating-agents/SKILL.md`).
+4. **Create** — Write the `.mdc` (and short agent doc if needed) following **`eversis-creating-agents`** (skill path: `.github/skills/eversis-creating-agents/SKILL.md`).
 5. **Review** — Check consistency, length, and overlap with other rules.
 
 ## Skills loaded
 
-- `tsh-creating-agents` (as **eversis-creating-agents** when copied to user skills) — structure and checklists
-- `tsh-technical-context-discovering` — project conventions
-- `tsh-codebase-analysing` — pattern discovery
+- `eversis-creating-agents` (as **eversis-creating-agents** when copied to user skills) — structure and checklists
+- `eversis-technical-context-discovering` — project conventions
+- `eversis-codebase-analysing` — pattern discovery
 
 ## Output
 
@@ -48,7 +48,7 @@ For large efforts, follow the phased **research → create → review** pattern 
 
 You are helping the user add a **new role** to their Cursor setup (this repo: under `.cursor/rules/`).
 
-1. Load **`tsh-creating-agents`** from `.github/skills/tsh-creating-agents/SKILL.md` and follow its workflow.
+1. Load **`eversis-creating-agents`** from `.github/skills/eversis-creating-agents/SKILL.md` and follow its workflow.
 2. Read existing rules in **`.cursor/rules/`** to match tone, frontmatter, and section order.
 3. Propose a **single-purpose** `.mdc` file; avoid duplicating `eversis-agent-core.mdc`.
 4. After authoring, self-review: globs correct, `description` accurate, no conflicting always-on rules.

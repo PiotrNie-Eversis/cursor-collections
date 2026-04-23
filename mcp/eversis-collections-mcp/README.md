@@ -1,6 +1,6 @@
 # eversis-collections-mcp
 
-Local **Model Context Protocol** server for the [cursor-collections](https://github.com/PiotrNie-Eversis/cursor-collections) repository. It exposes **`eversis_*` tools** to list, read, and validate the `tsh-*` skill packages under `.github/skills/`, and to run a small set of allowlisted root scripts (e.g. `scripts/sync-prompts.mjs`).
+Local **Model Context Protocol** server for the [cursor-collections](https://github.com/PiotrNie-Eversis/cursor-collections) repository. It exposes **`eversis_*` tools** to list, read, and validate the `eversis-*` skill packages under `.github/skills/`, and to run a small set of allowlisted root scripts (e.g. `scripts/sync-prompts.mjs`).
 
 ## Not published to npm
 
@@ -28,7 +28,7 @@ node dist/cli.js validate
 
 | Tool | Purpose |
 | --- | --- |
-| `eversis_skills_list` | List all `tsh-*` skills with `name` / `description` from `SKILL.md` frontmatter |
+| `eversis_skills_list` | List all `eversis-*` skills with `name` / `description` from `SKILL.md` frontmatter |
 | `eversis_skills_get` | Read `SKILL.md` or a file under `references/` or `assets/` (optional line range) |
 | `eversis_skills_validate` | Validate every skill (frontmatter, name vs directory, optional length warnings) |
 | `eversis_repo_run_script` | Run `sync-prompts` or `sync-framework-doc` under the repo root |

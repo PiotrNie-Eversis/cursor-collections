@@ -5,7 +5,7 @@ title: Task Analysis
 
 # Task Analysis
 
-**Folder:** `.github/skills/tsh-task-analysing/`  
+**Folder:** `.github/skills/eversis-task-analysing/`  
 **Used by:** Context Engineer, E2E Engineer
 
 Provides a structured process for gathering and expanding task context from multiple sources.
@@ -55,5 +55,5 @@ Generate a structured document (`research.example.md` template) containing all g
 
 ## Connected Skills
 
-- `tsh-codebase-analysing` — For understanding the existing codebase in context.
-- `tsh-implementation-gap-analysing` — For identifying what exists vs what needs to be built.
+- `eversis-codebase-analysing` — For understanding the existing codebase in context.
+- `eversis-implementation-gap-analysing` — For identifying what exists vs what needs to be built.

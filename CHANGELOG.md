@@ -4,16 +4,22 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## 2026-04-23
+
+### Changed (breaking for deep links and MCP `skillId` values)
+
+- Renamed all **`.github/skills/tsh-*`** topic directories to **`.github/skills/eversis-*/`**. Every **`SKILL.md`** `name:` field, internal cross-references, and the **`eversis-collections` MCP** (`eversis_skills_list` / `eversis_skills_get` / `eversis_skills_validate`) now use the **`eversis-`** prefix only. **GitHub permalinks** to paths under the old `tsh-*` folder names will 404 after this change; update bookmarks by replacing the directory prefix: **`tsh-<topic>` → `eversis-<topic>`** (same topic slug, e.g. `tsh-creating-skills` → `eversis-creating-skills`).
+
 ## 2026-04-22
 
 ### Removed (breaking)
 
-- **`.github/prompts/`**, **`.github/internal-prompts/`**, and **`.github/agents/`** — the repository is **Cursor-only**. Prompts live under **`.cursor/prompts/`** (attach with `@`); copies for the Docusaurus site are generated under `website/docs/prompts/` via **`sync-prompts`**. Role behavior is expressed with **`.cursor/rules/eversis-*.mdc`** and **[AGENTS.md](AGENTS.md)**. Skills remain under **`.github/skills/`** for use as **Cursor Agent Skills**.
+- **`.github/prompts/`**, **`.github/internal-prompts/`**, and **`.github/agents/`** — the repository is **Cursor-only**. Prompts live under **`.cursor/prompts/`** (attach with `@`); copies for the Docusaurus site are generated under `website/docs/prompts/` via **`sync-prompts`**. Role behavior is expressed with **`.cursor/rules/eversis-*.mdc`** and **[AGENTS.md](AGENTS.md)**. Skills remain under **`.github/skills/eversis-*/`**; consume them in Agent via the **`eversis-collections` MCP** (not a separate **Agent Skills** UI path).
 
 ### Changed
 
 - Rebranded documentation and the Docusaurus site to **Cursor Collections**; installation and prerequisites describe **Cursor** (no GitHub Copilot or VS Code `chat.*Locations` for prompts/agents).
-- Updated **README**, **documentation/cursor-collection.md**, **.cursor/rules** copy, and skills (**creating-*** and **technical-context-discovering**) for Cursor outputs; replaced Copilot instruction templates under **tsh-creating-instructions** with Cursor-oriented templates.
+- Updated **README**, **documentation/cursor-collection.md**, **.cursor/rules** copy, and skills (**creating-*** and **technical-context-discovering**) for Cursor outputs; replaced Copilot instruction templates under **eversis-creating-instructions** with Cursor-oriented templates.
 - Renamed **website** package to **`cursor-collections-docs`**.
 
 ## 2026-04-10
@@ -34,12 +40,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ### Added
 
-- Backend development skill `tsh-implementing-backend`
+- Backend development skill `eversis-implementing-backend`
 
 ### Changed
 
-- Updated `tsh-implementing-backend` skill reference in `tsh-software-engineer` agent
-- Updated `tsh-implementing-backend` as a conditional skill in `implement` prompt for backend API tasks
+- Updated `eversis-implementing-backend` skill reference in `tsh-software-engineer` agent
+- Updated `eversis-implementing-backend` as a conditional skill in `implement` prompt for backend API tasks
 
 ## 2026-03-20
 
@@ -69,7 +75,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 - `/tsh-implement` prompt — Rewritten to route through the Engineering Manager agent instead of Software Engineer; now delegates tasks to specialized agents based on plan task types (`[CREATE]`, `[MODIFY]`, `[REUSE]`)
 - Architect agent (`tsh-architect`) — Handoff now routes to Engineering Manager instead of Software Engineer; removed "Start UI Implementation" handoff button (consolidated into single "Start Implementation"); reformatted tools list YAML; updated plan template to include `[REUSE]` UI verification tasks delegated to `tsh-ui-reviewer`
-- Architecture Designing skill (`tsh-architecture-designing`) — Updated plan phases to run only fast tests/checks per phase (unit, integration, linters, build); added code review phase requirement using `tsh-code-reviewer` with `tsh-review.prompt.md`; added `[REUSE]` UI verification task pattern for Figma-based features
+- Architecture Designing skill (`eversis-architecture-designing`) — Updated plan phases to run only fast tests/checks per phase (unit, integration, linters, build); added code review phase requirement using `tsh-code-reviewer` with `tsh-review.prompt.md`; added `[REUSE]` UI verification task pattern for Figma-based features
 - UI Reviewer agent (`tsh-ui-reviewer`) — Removed "Start UI Implementation" and "Implement UI Fixes" handoff buttons (Engineering Manager now owns the verify-fix loop); added explicit dev server URL confirmation requirement; added authentication/login screen detection and escalation; added "reading source code is NOT verification" guardrail
 - Code Reviewer agent (`tsh-code-reviewer`) — Added explicit mention of e2e tests alongside unit and integration tests in verification requirements
 - Software Engineer agent (`tsh-software-engineer`) — Removed `atlassian/search` from tool access (Atlassian context now gathered by Engineering Manager)
@@ -92,41 +98,41 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ### Added
 
-- Ensuring Accessibility skill (`tsh-ensuring-accessibility`) — WCAG 2.1 AA compliance, semantic HTML, ARIA patterns, keyboard navigation, focus management, screen reader support, and color contrast requirements
-- Implementing Forms skill (`tsh-implementing-forms`) — Form architecture, schema-based validation, field composition, error handling, multi-step form flows, and accessible form patterns
-- Frontend Optimization skill (`tsh-optimizing-frontend`) — Rendering optimization, code splitting, memoization strategies, bundle size control, asset optimization, and memory management with React-specific reference patterns
-- Frontend Review skill (`tsh-reviewing-frontend`) — Frontend-specific code review criteria: component anti-patterns, hooks quality, rendering correctness, accessibility and performance spot-checks, module organization with React-specific reference checklist
-- Writing Hooks skill (`tsh-writing-hooks`) — Custom hook and composable patterns: naming, composition, stable return shapes, lifecycle cleanup, and testing strategies with React-specific reference patterns
+- Ensuring Accessibility skill (`eversis-ensuring-accessibility`) — WCAG 2.1 AA compliance, semantic HTML, ARIA patterns, keyboard navigation, focus management, screen reader support, and color contrast requirements
+- Implementing Forms skill (`eversis-implementing-forms`) — Form architecture, schema-based validation, field composition, error handling, multi-step form flows, and accessible form patterns
+- Frontend Optimization skill (`eversis-optimizing-frontend`) — Rendering optimization, code splitting, memoization strategies, bundle size control, asset optimization, and memory management with React-specific reference patterns
+- Frontend Review skill (`eversis-reviewing-frontend`) — Frontend-specific code review criteria: component anti-patterns, hooks quality, rendering correctness, accessibility and performance spot-checks, module organization with React-specific reference checklist
+- Writing Hooks skill (`eversis-writing-hooks`) — Custom hook and composable patterns: naming, composition, stable return shapes, lifecycle cleanup, and testing strategies with React-specific reference patterns
 - React-specific reference files (`references/react-patterns.md`) for implementing-frontend, optimizing-frontend, reviewing-frontend, and writing-hooks skills
 - Documentation pages for all 5 new skills on the website
 
 ### Changed
 
-- Software Engineer agent (`tsh-software-engineer`) — Added 4 new frontend skills to skills list (`tsh-implementing-forms`, `tsh-writing-hooks`, `tsh-ensuring-accessibility`, `tsh-optimizing-frontend`); added `tsh-ui-reviewer` as subagent for verification delegation; reformatted tools list
-- Code Reviewer agent (`tsh-code-reviewer`) — Added `tsh-reviewing-frontend` skill for frontend-specific review criteria
+- Software Engineer agent (`tsh-software-engineer`) — Added 4 new frontend skills to skills list (`eversis-implementing-forms`, `eversis-writing-hooks`, `eversis-ensuring-accessibility`, `eversis-optimizing-frontend`); added `tsh-ui-reviewer` as subagent for verification delegation; reformatted tools list
+- Code Reviewer agent (`tsh-code-reviewer`) — Added `eversis-reviewing-frontend` skill for frontend-specific review criteria
 - UI Reviewer agent (`tsh-ui-reviewer`) — Rewritten to emphasize subagent usage pattern, mandatory tool-based verification (never mental comparison), transparent error reporting with LOW confidence; reformatted tools list
-- Frontend Implementation skill (`tsh-implementing-frontend`) — Refactored to focus on component patterns and composition, moved accessibility to dedicated `tsh-ensuring-accessibility` skill; added React-specific reference file
-- UI Verification skill (`tsh-ui-verifying`) — Rewritten with 5-step verification process, verification order (stop on first CRITICAL failure), and improved report format
-- `/tsh-implement-ui` prompt — Rewritten to use `tsh-ui-reviewer` as subagent (not `/tsh-review-ui` prompt call); added `tsh-ensuring-accessibility` skill; clarified that SE must never verify UI itself
-- `/tsh-review-ui` prompt — Simplified to delegate entirely to `tsh-ui-verifying` skill workflow; fixed "all differences" wording to align with skill's stop-on-critical-failure rule
+- Frontend Implementation skill (`eversis-implementing-frontend`) — Refactored to focus on component patterns and composition, moved accessibility to dedicated `eversis-ensuring-accessibility` skill; added React-specific reference file
+- UI Verification skill (`eversis-ui-verifying`) — Rewritten with 5-step verification process, verification order (stop on first CRITICAL failure), and improved report format
+- `/tsh-implement-ui` prompt — Rewritten to use `tsh-ui-reviewer` as subagent (not `/tsh-review-ui` prompt call); added `eversis-ensuring-accessibility` skill; clarified that SE must never verify UI itself
+- `/tsh-review-ui` prompt — Simplified to delegate entirely to `eversis-ui-verifying` skill workflow; fixed "all differences" wording to align with skill's stop-on-critical-failure rule
 - Updated website documentation for Software Engineer, Code Reviewer, UI Reviewer agents and `/tsh-implement-ui`, `/tsh-review-ui` prompts
 - Updated skills overview: skill count 25 → 30, added new skills to Development and Quality tables, updated agent–skill matrix
 - Fixed Architect agent docs — added 7 missing skills (multi-cloud, cloud cost, CI/CD, Terraform, secrets, Kubernetes, observability)
-- Fixed DevOps Engineer agent docs — added missing `tsh-codebase-analysing` skill
-- Fixed Frontend Flow workflow docs — added `tsh-ensuring-accessibility` to required skills, updated subagent terminology
+- Fixed DevOps Engineer agent docs — added missing `eversis-codebase-analysing` skill
+- Fixed Frontend Flow workflow docs — added `eversis-ensuring-accessibility` to required skills, updated subagent terminology
 
 ## 2026-03-06
 
 ### Added
 
 - DevOps Engineer agent (`tsh-devops-engineer`) — Senior DevOps Engineer and Consultant persona specializing in Golden Paths, automation, and Cloud governance; mandatory architect sub-agent delegation for all design decisions; multi-cloud guardrails with FinOps alerts (>10% cost increase triggers alert); three-option output strategy (Golden Path, Cost-Optimized, Velocity); mandatory skill-loading chains for 8 task types; tools include AWS API MCP, AWS Docs MCP, GCP gcloud/observability/storage MCPs, Context7, Sequential Thinking
-- Multi-Cloud Architecture skill (`tsh-designing-multi-cloud-architecture`) for selecting and integrating services across AWS, Azure, and GCP with service comparison and multi-cloud pattern references
-- CI/CD Implementation skill (`tsh-implementing-ci-cd`) for pipeline design patterns and deployment strategies
-- Kubernetes Implementation skill (`tsh-implementing-kubernetes`) for deployment patterns, Helm charts, and cluster management
-- Observability Implementation skill (`tsh-implementing-observability`) for logging, monitoring, alerting, and distributed tracing patterns
-- Terraform Modules skill (`tsh-implementing-terraform-modules`) for reusable Terraform modules across AWS, Azure, and GCP with per-cloud module references
-- Secrets Management skill (`tsh-managing-secrets`) for secrets management patterns in cloud and Kubernetes environments
-- Cloud Cost Optimization skill (`tsh-optimizing-cloud-cost`) for rightsizing, tagging strategies, and spending analysis with tagging standards reference
+- Multi-Cloud Architecture skill (`eversis-designing-multi-cloud-architecture`) for selecting and integrating services across AWS, Azure, and GCP with service comparison and multi-cloud pattern references
+- CI/CD Implementation skill (`eversis-implementing-ci-cd`) for pipeline design patterns and deployment strategies
+- Kubernetes Implementation skill (`eversis-implementing-kubernetes`) for deployment patterns, Helm charts, and cluster management
+- Observability Implementation skill (`eversis-implementing-observability`) for logging, monitoring, alerting, and distributed tracing patterns
+- Terraform Modules skill (`eversis-implementing-terraform-modules`) for reusable Terraform modules across AWS, Azure, and GCP with per-cloud module references
+- Secrets Management skill (`eversis-managing-secrets`) for secrets management patterns in cloud and Kubernetes environments
+- Cloud Cost Optimization skill (`eversis-optimizing-cloud-cost`) for rightsizing, tagging strategies, and spending analysis with tagging standards reference
 - AWS cost analysis prompt (`/tsh-analyze-aws-costs`) for cost optimization and tagging compliance audit with hybrid IaC + live API approach
 - GCP cost analysis prompt (`/tsh-analyze-gcp-costs`) for cost optimization and labeling compliance audit with hybrid IaC + live API approach
 - Infrastructure audit prompt (`/tsh-audit-infrastructure`) for multi-scope audit (AWS/Azure/GCP/K8s/CI-CD) covering security, cost, and best practices
@@ -148,7 +154,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 ### Changed
 
 - Added `tsh-` prefix to all Copilot customization artifacts to prevent naming collisions when used alongside project-specific customizations
-- Renamed all 18 skill directories to include `tsh-` prefix (e.g., `code-reviewing` → `tsh-code-reviewing`, `creating-agents` → `tsh-creating-agents`)
+- Renamed all 18 skill directories to include `tsh-` prefix (e.g., `code-reviewing` → `eversis-code-reviewing`, `creating-agents` → `eversis-creating-agents`)
 - Renamed all 15 prompt files to include `tsh-` prefix (e.g., `/create-custom-agent` → `/tsh-create-custom-agent`, `/implement` → `/tsh-implement`)
 - Renamed worker agents to include `tsh-` prefix: `copilot-researcher` → `tsh-copilot-researcher`, `copilot-artifact-creator` → `tsh-copilot-artifact-creator`, `copilot-artifact-reviewer` → `tsh-copilot-artifact-reviewer`
 - Updated all cross-references between artifacts to use prefixed names

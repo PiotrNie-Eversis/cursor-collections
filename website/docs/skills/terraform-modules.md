@@ -5,7 +5,7 @@ title: Terraform Modules
 
 # Terraform Modules
 
-**Folder:** `.github/skills/tsh-implementing-terraform-modules/`
+**Folder:** `.github/skills/eversis-implementing-terraform-modules/`
 **Used by:** DevOps Engineer
 
 Provides patterns for building reusable Terraform modules for AWS, Azure, and GCP infrastructure following IaC best practices.
@@ -46,5 +46,5 @@ modules/
 
 ## Connected Skills
 
-- `tsh-optimizing-cloud-cost` — Cost estimation and optimization.
-- `tsh-managing-secrets` — Secure credential management in Terraform.
+- `eversis-optimizing-cloud-cost` — Cost estimation and optimization.
+- `eversis-managing-secrets` — Secure credential management in Terraform.

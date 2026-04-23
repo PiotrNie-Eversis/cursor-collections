@@ -5,7 +5,7 @@ title: Cloud Cost Optimization
 
 # Cloud Cost Optimization
 
-**Folder:** `.github/skills/tsh-optimizing-cloud-cost/`
+**Folder:** `.github/skills/eversis-optimizing-cloud-cost/`
 **Used by:** DevOps Engineer
 
 Provides strategies for cloud cost optimization through resource rightsizing, tagging compliance, reserved instances, and spending analysis.
@@ -39,5 +39,5 @@ Provides strategies for cloud cost optimization through resource rightsizing, ta
 
 ## Connected Skills
 
-- `tsh-implementing-terraform-modules` — Cost-aware infrastructure provisioning.
-- `tsh-designing-multi-cloud-architecture` — Cross-provider cost comparison.
+- `eversis-implementing-terraform-modules` — Cost-aware infrastructure provisioning.
+- `eversis-designing-multi-cloud-architecture` — Cross-provider cost comparison.

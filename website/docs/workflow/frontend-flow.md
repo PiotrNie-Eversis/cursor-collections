@@ -60,10 +60,10 @@ For UI-heavy tasks with Figma designs, use the specialized frontend workflow. Th
 
 The frontend flow loads these specialized skills:
 
-- **tsh-implementing-frontend** — Component patterns, design system usage, composition, and performance guidelines.
-- **tsh-ui-verifying** — Verification criteria, tolerances, severity definitions, and what constitutes PASS/FAIL.
-- **tsh-ensuring-accessibility** — WCAG 2.1 AA compliance, semantic HTML, ARIA, keyboard navigation.
-- **tsh-technical-context-discovering** — Project conventions and coding standards.
+- **eversis-implementing-frontend** — Component patterns, design system usage, composition, and performance guidelines.
+- **eversis-ui-verifying** — Verification criteria, tolerances, severity definitions, and what constitutes PASS/FAIL.
+- **eversis-ensuring-accessibility** — WCAG 2.1 AA compliance, semantic HTML, ARIA, keyboard navigation.
+- **eversis-technical-context-discovering** — Project conventions and coding standards.
 
 :::warning Important
 The automated Figma verification loop helps catch visual mismatches, but it does not replace manual review. Always visually inspect the implemented UI in the browser, test interactions, and verify responsive behavior yourself.

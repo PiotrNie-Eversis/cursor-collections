@@ -5,7 +5,7 @@ title: Kubernetes Implementation
 
 # Kubernetes Implementation
 
-**Folder:** `.github/skills/tsh-implementing-kubernetes/`
+**Folder:** `.github/skills/eversis-implementing-kubernetes/`
 **Used by:** DevOps Engineer
 
 Provides Kubernetes deployment patterns, Helm chart conventions, and cluster management best practices.
@@ -42,5 +42,5 @@ Provides Kubernetes deployment patterns, Helm chart conventions, and cluster man
 
 ## Connected Skills
 
-- `tsh-managing-secrets` — Secrets management for Kubernetes.
-- `tsh-implementing-observability` — Monitoring and alerting for workloads.
+- `eversis-managing-secrets` — Secrets management for Kubernetes.
+- `eversis-implementing-observability` — Monitoring and alerting for workloads.

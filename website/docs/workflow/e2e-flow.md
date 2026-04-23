@@ -10,7 +10,7 @@ For features that need end-to-end test coverage, use the E2E testing workflow. T
 ## Command Sequence
 
 ```text
-1️⃣ /eversis-implement <JIRA_ID or task description>
+1️⃣ @eversis-implement <JIRA_ID or task description>
    ↳ 🔍 Engineering Manager delegates to Context Engineer for research
    ↳ 📖 Review research doc – understand feature scope and user journeys
    ↳ ✅ Identify critical paths that need E2E coverage
@@ -24,7 +24,7 @@ For features that need end-to-end test coverage, use the E2E testing workflow. T
 ```
 
 :::tip
-E2E test implementation is handled by the Engineering Manager as part of the standard `/eversis-implement` workflow. When the plan contains E2E test tasks, the Engineering Manager automatically delegates them to the E2E Engineer agent using the internal `tsh-implement-e2e` prompt.
+E2E test implementation is handled by the Engineering Manager as part of the standard **`eversis-implement`** workflow. When the plan contains E2E test tasks, the Engineering Manager automatically delegates them to the E2E Engineer agent using the internal **`.cursor/prompts/internal/eversis-implement-e2e.md`** prompt.
 :::
 
 ## What the E2E Engineer Does

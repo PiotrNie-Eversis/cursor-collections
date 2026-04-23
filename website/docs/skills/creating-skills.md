@@ -5,7 +5,7 @@ title: Creating Skills
 
 # Creating Skills
 
-**Folder:** `.github/skills/tsh-creating-skills/`
+**Folder:** `.github/skills/eversis-creating-skills/`
 **Used by:** Framework maintainers (customization track)
 
 Provides naming conventions (gerund form), description guidelines, body structure, progressive disclosure patterns, templates, and validation checklists for creating new skills (`SKILL.md`).
@@ -18,14 +18,14 @@ Provides naming conventions (gerund form), description guidelines, body structur
 
 ## Naming Conventions
 
-- Skill directories use gerund form: `tsh-<gerund-subject>/` (e.g., `tsh-code-reviewing/`, `tsh-creating-prompts/`)
+- Skill directories use gerund form: `eversis-<gerund-subject>/` (e.g., `eversis-code-reviewing/`, `eversis-creating-prompts/`)
 - The `name` field in SKILL.md frontmatter must match the directory name
-- The `tsh-` prefix identifies topic packages in **Cursor Collections** (this monorepo)
+- The `eversis-` prefix identifies topic packages in **Cursor Collections** (this monorepo)
 
 ## Skill Folder Structure
 
 ```
-tsh-<gerund-subject>/
+eversis-<gerund-subject>/
 ├── SKILL.md            # Main skill file (required)
 ├── <name>.example.md   # Example output (optional)
 └── <name>.template.md  # Output template (optional)
@@ -33,7 +33,7 @@ tsh-<gerund-subject>/
 
 ## Validation Checklist
 
-- Directory name uses gerund form with `tsh-` prefix
+- Directory name uses gerund form with `eversis-` prefix
 - `name` field in frontmatter matches directory name
 - Description is concise (1–2 sentences)
 - Body stays under 5000 tokens
@@ -42,5 +42,5 @@ tsh-<gerund-subject>/
 
 ## Connected Skills
 
-- `tsh-creating-agents` — For creating agents that load this skill.
-- `tsh-creating-prompts` — For creating prompts that trigger workflows using this skill.
+- `eversis-creating-agents` — For creating agents that load this skill.
+- `eversis-creating-prompts` — For creating prompts that trigger workflows using this skill.
