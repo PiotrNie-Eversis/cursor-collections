@@ -10,7 +10,7 @@ import { fileURLToPath } from "node:url";
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const skillRoot = path.join(__dirname, "..");
 const skillMd = path.join(skillRoot, "SKILL.md");
-const relPath = path.join(".github", "skills", "eversis-creating-skills", "SKILL.md");
+const relPath = path.join(".cursor", "skills", "eversis-creating-skills", "SKILL.md");
 
 if (!fs.existsSync(skillMd)) {
   console.error(JSON.stringify({ error: "SKILL.md not found", path: relPath }));

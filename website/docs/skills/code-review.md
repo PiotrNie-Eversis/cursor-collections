@@ -5,7 +5,7 @@ title: Code Review
 
 # Code Review
 
-**Folder:** `.github/skills/eversis-code-reviewing/`  
+**Folder:** `.cursor/skills/eversis-code-reviewing/`  
 **Used by:** Code Reviewer
 
 Provides a structured 9-step code review process covering correctness, quality, security, testing, and scalability.

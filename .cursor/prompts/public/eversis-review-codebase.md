@@ -111,7 +111,7 @@ Before starting, load and follow these skills:
 For each layer/app, run a **separate** Agent (or sub-task) in parallel with focused instructions:
 - The specific layer/app path and tech stack to analyze
 - What to search for (dead code, duplications, improvement areas)
-- The skills to load (`eversis-codebase-analysing`, `eversis-code-reviewing` from `.github/skills/`)
+- The skills to load (`eversis-codebase-analysing`, `eversis-code-reviewing` from `.cursor/skills/`)
 - Return structured findings in the format matching the report template
 
 For each layer/app, the parallel pass should:

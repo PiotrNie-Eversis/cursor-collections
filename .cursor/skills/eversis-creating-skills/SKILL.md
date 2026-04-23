@@ -1,14 +1,14 @@
 ---
 name: eversis-creating-skills
-description: "Create new Cursor Agent Skills (SKILL.md) under .github/skills/eversis-*. Provides naming (gerund), description, body structure, progressive disclosure, templates, validation. For Cursor Collections."
+description: "Create new Cursor Agent Skills (SKILL.md) under .cursor/skills/eversis-*. Provides naming (gerund), description, body structure, progressive disclosure, templates, validation. For Cursor Collections."
 user-invokable: false
 ---
 
 # Creating skills
 
-Creates well-structured **skill packages** (`SKILL.md`) for **Cursor** (and compatible hosts). Skills live under **`.github/skills/eversis-<gerund>/SKILL.md`** in this monorepo. Enforce naming, structure, and progressive disclosure per the same conventions as the broader Agent Skills ecosystem.
+Creates well-structured **skill packages** (`SKILL.md`) for **Cursor** (and compatible hosts). Skills live under **`.cursor/skills/eversis-<gerund>/SKILL.md`** in this monorepo. Enforce naming, structure, and progressive disclosure per the same conventions as the broader Agent Skills ecosystem.
 
-**Consumption in this framework:** the canonical way to **list, read, and validate** these packages in Cursor Agent is the **`eversis-collections` MCP** server under **`mcp/eversis-collections-mcp/`** (build with `npm install && npm run build`, then enable it via `.cursor/mcp.json`). Use **`eversis_skills_*` tools** — do not register the `.github/skills/` folder under Cursor’s **Agent Skills** settings; that path is not part of the supported workflow here.
+**Consumption in this framework:** the canonical way to **list, read, and validate** these packages in Cursor Agent is the **`eversis-collections` MCP** server under **`mcp/eversis-collections-mcp/`** (build with `npm install && npm run build`, then enable it via `.cursor/mcp.json`). Use **`eversis_skills_*` tools** — do not register the `.cursor/skills/` folder under Cursor’s **Agent Skills** settings; that path is not part of the supported workflow here.
 
 When a skill needs **deterministic automation** (e.g. validation, code generation), add a script under that skill’s `scripts/` and register a **narrow** allowlist entry in [`mcp/eversis-collections-mcp/`](https://github.com/PiotrNie-Eversis/cursor-collections/tree/main/mcp/eversis-collections-mcp) (exposed as **`eversis_skill_run_script`**) so the agent invokes execution instead of re-deriving steps from text. This skill’s example is script key **`eversis-creating-skills-skill-md-stats`** (JSON line counts and frontmatter flag for this folder’s `SKILL.md`). Run **`eversis_skills_validate`** in CI (see repository workflow **`eversis_skills_validate`**) or `npm run validate` in the MCP package.
 
@@ -19,7 +19,7 @@ When a skill needs **deterministic automation** (e.g. validation, code generatio
 <what-is-a-skill>
 A skill is a folder containing a `SKILL.md` file with YAML frontmatter and Markdown instructions. Skills provide **procedural knowledge** — step-by-step workflows, domain-specific context, templates, and reference materials that an agent loads on demand to perform specialized tasks.
 
-- **Skills** = reusable workflows (`SKILL.md` under `.github/skills/`)
+- **Skills** = reusable workflows (`SKILL.md` under `.cursor/skills/`)
 - **Role rules** = who/when (`.cursor/rules/eversis-*.mdc`)
 - **Prompts** = attachable `.cursor/prompts/**/eversis-*.md`
 

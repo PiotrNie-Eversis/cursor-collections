@@ -5,7 +5,7 @@ title: Observability Implementation
 
 # Observability Implementation
 
-**Folder:** `.github/skills/eversis-implementing-observability/`
+**Folder:** `.cursor/skills/eversis-implementing-observability/`
 **Used by:** DevOps Engineer
 
 Provides patterns for logging, monitoring, alerting, and distributed tracing across services.

@@ -40,7 +40,7 @@ const replacements = [
   ["[AGENTS.md](../AGENTS.md)", `[AGENTS.md](${GITHUB_BLOB}/AGENTS.md)`],
   ["[README](../README.md)", `[README](${GITHUB_BLOB}/README.md)`],
   ["](../.cursor/mcp.json)", `](${GITHUB_BLOB}/.cursor/mcp.json)`],
-  ["](../.github/skills/)", `](${GITHUB_TREE}/.github/skills)`],
+  ["](../.cursor/skills/)", `](${GITHUB_TREE}/.cursor/skills)`],
   ["](../mcp/eversis-collections-mcp/)", `](${GITHUB_TREE}/mcp/eversis-collections-mcp)`],
   ["](../.cursor/rules/)", `](${GITHUB_TREE}/.cursor/rules)`],
 ];

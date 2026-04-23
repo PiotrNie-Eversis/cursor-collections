@@ -5,7 +5,7 @@ title: Creating Instructions
 
 # Creating instructions
 
-**Folder:** `.github/skills/eversis-creating-instructions/`  
+**Folder:** `.cursor/skills/eversis-creating-instructions/`  
 **Used by:** Framework maintainers (customization track)
 
 Helps place **declarative rules** for **Cursor**: **[AGENTS.md](https://github.com/PiotrNie-Eversis/cursor-collections/blob/main/AGENTS.md)**, **`.cursor/rules/eversis-*.mdc`**, and optional scoped rules. This framework does **not** use GitHub Copilot `copilot-instructions.md`.
@@ -23,14 +23,14 @@ Helps place **declarative rules** for **Cursor**: **[AGENTS.md](https://github.c
 | Content                                   | Belongs in…                         |
 | ----------------------------------------- | ----------------------------------- |
 | Stack, commands, non-obvious global rules | `AGENTS.md` / `.mdc`                |
-| Step-by-step procedures                   | `SKILL.md` under `.github/skills/`  |
+| Step-by-step procedures                   | `SKILL.md` under `.cursor/skills/`  |
 | Runnable workflow text                    | `.cursor/prompts/**/eversis-*.md` |
 
 ## Validation checklist
 
 - No duplicated always-on rules across many `.mdc` files
 - No long procedural content (use skills)
-- Templates: see `.github/skills/eversis-creating-instructions/assets/`
+- Templates: see `.cursor/skills/eversis-creating-instructions/assets/`
 
 ## Connected skills
 

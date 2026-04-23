@@ -26,7 +26,7 @@ function listSkillDirNames(skillsDir: string): string[] {
 
 export function listSkills(startDir: string): SkillSummary[] {
   const repoRoot = findRepoRoot(startDir);
-  const skillsDir = path.join(repoRoot, ".github", "skills");
+  const skillsDir = path.join(repoRoot, ".cursor", "skills");
   const out: SkillSummary[] = [];
   for (const id of listSkillDirNames(skillsDir)) {
     const skillMd = path.join(skillsDir, id, "SKILL.md");
@@ -68,7 +68,7 @@ export function getSkillFile(
   if (safeRel.includes("..")) {
     throw new Error("Invalid relative path");
   }
-  const full = path.join(repoRoot, ".github", "skills", skillId, safeRel);
+  const full = path.join(repoRoot, ".cursor", "skills", skillId, safeRel);
   assertUnderRoot(repoRoot, full);
   if (!fs.existsSync(full) || !fs.statSync(full).isFile()) {
     throw new Error(`File not found: ${safeRel}`);
@@ -83,6 +83,6 @@ export function getSkillFile(
   }
   return {
     content,
-    path: path.join(".github", "skills", skillId, safeRel),
+    path: path.join(".cursor", "skills", skillId, safeRel),
   };
 }

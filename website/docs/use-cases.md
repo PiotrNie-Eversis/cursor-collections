@@ -118,6 +118,6 @@ The DevOps Engineer agent covers the full infrastructure lifecycle:
 
 Generic AI tools don't know your codebase conventions, your internal tooling, or your team's specific way of working. That gap shows up as suggestions you have to discard, context you have to re-explain every session, and patterns that don't fit.
 
-Framework customization (rules, **Agent Skills**, and attachable prompts) helps you encode your team's domain knowledge — patterns that persist across sessions. Use the **`eversis-create-custom-*`** prompts and the **creating-*** skills under `.github/skills/`: research the domain, create the artifact, review for consistency with the existing framework.
+Framework customization (rules, **Agent Skills**, and attachable prompts) helps you encode your team's domain knowledge — patterns that persist across sessions. Use the **`eversis-create-custom-*`** prompts and the **creating-*** skills under `.cursor/skills/`: research the domain, create the artifact, review for consistency with the existing framework.
 
 **~15 min per custom artifact**

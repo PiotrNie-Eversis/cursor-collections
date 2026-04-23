@@ -17,7 +17,7 @@ Creates well-structured **Cursor rules** (`.mdc`) that define **role behavior** 
 A **role rule** (`.mdc`) defines WHO the model should “be” when the rule applies. It must NOT define HOW a full multi-step workflow runs end-to-end (that lives in **skills** and **prompts**).
 
 - **Rule / role** = behavior, responsibilities, and boundaries (`.cursor/rules/*.mdc`)
-- **Skills** = reusable workflows (`SKILL.md` under `.github/skills/`)
+- **Skills** = reusable workflows (`SKILL.md` under `.cursor/skills/`)
 - **Prompts** = attachable markdown under `.cursor/prompts/public/` and `internal/`
 </separation-of-concerns>
 

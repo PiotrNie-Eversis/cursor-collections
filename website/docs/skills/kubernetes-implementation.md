@@ -5,7 +5,7 @@ title: Kubernetes Implementation
 
 # Kubernetes Implementation
 
-**Folder:** `.github/skills/eversis-implementing-kubernetes/`
+**Folder:** `.cursor/skills/eversis-implementing-kubernetes/`
 **Used by:** DevOps Engineer
 
 Provides Kubernetes deployment patterns, Helm chart conventions, and cluster management best practices.

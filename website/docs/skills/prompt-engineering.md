@@ -5,7 +5,7 @@ title: Prompt Engineering
 
 # Prompt Engineering
 
-**Folder:** `.github/skills/eversis-engineering-prompts/`  
+**Folder:** `.cursor/skills/eversis-engineering-prompts/`  
 **Used by:** Prompt Engineer, Software Engineer, Architect, Code Reviewer
 
 Technology-agnostic patterns for designing, optimizing, and securing LLM application prompts. Covers system prompts, user prompt templates, RAG templates, agent instructions, and classification/extraction prompts. For **this framework’s** attachable prompt Markdown, use `eversis-creating-prompts` instead of mixing domains.

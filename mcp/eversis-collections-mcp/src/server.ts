@@ -27,7 +27,7 @@ export async function runMcpServer(): Promise<void> {
     "eversis_skills_list",
     {
       description:
-        "List all eversis-* skill packages under .github/skills/ with name and description from SKILL.md frontmatter.",
+        "List all eversis-* skill packages under .cursor/skills/ with name and description from SKILL.md frontmatter.",
     },
     async () => {
       const skills = listSkills(startDir);
@@ -116,7 +116,7 @@ export async function runMcpServer(): Promise<void> {
     "eversis_skill_run_script",
     {
       description:
-        "Run an allowlisted script under .github/skills/<eversis-*>/scripts/ (e.g. deterministic stats for a skill). Keys are defined in the MCP package allowlist, not auto-discovered from disk.",
+        "Run an allowlisted script under .cursor/skills/<eversis-*>/scripts/ (e.g. deterministic stats for a skill). Keys are defined in the MCP package allowlist, not auto-discovered from disk.",
       inputSchema: {
         script: z
           .enum(skillScriptKeysForZod())

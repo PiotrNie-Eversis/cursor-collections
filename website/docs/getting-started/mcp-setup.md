@@ -45,7 +45,7 @@ Build **`eversis-collections`** once so `dist/index.js` exists (see the table be
 
 | MCP Server            | Type  | Purpose                                                                 | Build |
 | --------------------- | ----- | ----------------------------------------------------------------------- | ----- |
-| **eversis-collections** | stdio | List/read/validate **`eversis-*` skills** under `.github/skills/`, run allowlisted root scripts (`sync-prompts`, `sync-framework-doc`) and **`eversis_skill_run_script`** for allowlisted scripts under skill `scripts/` | From repo: `cd mcp/eversis-collections-mcp && npm install && npm run build`. Cursor `args` use `mcp/eversis-collections-mcp/dist/index.js` relative to the repo root. **Not** published to npm. |
+| **eversis-collections** | stdio | List/read/validate **`eversis-*` skills** under `.cursor/skills/`, run allowlisted root scripts (`sync-prompts`, `sync-framework-doc`) and **`eversis_skill_run_script`** for allowlisted scripts under skill `scripts/` | From repo: `cd mcp/eversis-collections-mcp && npm install && npm run build`. Cursor `args` use `mcp/eversis-collections-mcp/dist/index.js` relative to the repo root. **Not** published to npm. |
 
 ### Third-party (external services)
 

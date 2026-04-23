@@ -17,7 +17,7 @@ A **prompt file** (`eversis-*.md`) defines WHAT workflow to execute. It must NOT
 
 - **Prompt** = workflow steps, expected artifacts, when to stop for human review
 - **Role rules** = stable behavior in `.cursor/rules/eversis-*.mdc`
-- **Skills** = procedural `SKILL.md` packages under `.github/skills/`
+- **Skills** = procedural `SKILL.md` packages under `.cursor/skills/`
   </separation-of-concerns>
 
 <workflow-focus>
@@ -85,7 +85,7 @@ Document MCP expectations in the prompt body (e.g. “ensure Atlassian and Figma
 
 Determine which skills the workflow depends on:
 
-- Review existing skills in `.github/skills/` to find relevant ones
+- Review existing skills in `.cursor/skills/` to find relevant ones
 - Each referenced skill will be loaded by the agent before starting the workflow
 - List skills with a brief explanation of why they are needed for THIS workflow
 - Do not reference skills that are not directly used in the workflow steps
@@ -118,7 +118,7 @@ Use `./prompt.template.md` for section ordering. Write **`.cursor/prompts/public
 
 - [ ] Frontmatter matches other `eversis-*.md` files
 - [ ] `prompt_role` / `prompt_description` are accurate
-- [ ] All skills referenced exist under `.github/skills/`
+- [ ] All skills referenced exist under `.cursor/skills/`
 - [ ] No long-term role definition duplicated (belongs in `.mdc`)
 - [ ] No stack-wide policy duplicated (belongs in `AGENTS.md` / stack rule)
 - [ ] Workflow steps are clear; internal prompts linked by path

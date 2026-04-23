@@ -10,7 +10,7 @@ applyTo: '.github/**'
 
 - **`eversis-`** — User-facing and internal **prompts** as Markdown: `.cursor/prompts/public/eversis-*.md` and `.cursor/prompts/internal/eversis-*.md`.
 - **`eversis-`** — **Cursor rules** in `.cursor/rules/eversis-*.mdc`.
-- **`eversis-`** — **Skill directory names** under `.github/skills/eversis-*/` (gerund topic packages). The `name` in `SKILL.md` frontmatter should match the directory name.
+- **`eversis-`** — **Skill directory names** under `.cursor/skills/eversis-*/` (gerund topic packages). The `name` in `SKILL.md` frontmatter should match the directory name.
 
 ## What we do not add
 

@@ -5,7 +5,7 @@ title: Terraform Modules
 
 # Terraform Modules
 
-**Folder:** `.github/skills/eversis-implementing-terraform-modules/`
+**Folder:** `.cursor/skills/eversis-implementing-terraform-modules/`
 **Used by:** DevOps Engineer
 
 Provides patterns for building reusable Terraform modules for AWS, Azure, and GCP infrastructure following IaC best practices.

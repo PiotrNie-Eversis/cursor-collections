@@ -5,7 +5,7 @@ title: Ensuring Accessibility
 
 # Ensuring Accessibility
 
-**Folder:** `.github/skills/eversis-ensuring-accessibility/`  
+**Folder:** `.cursor/skills/eversis-ensuring-accessibility/`  
 **Used by:** Software Engineer
 
 Provides WCAG 2.1 AA compliance guidelines covering semantic HTML, ARIA patterns, keyboard navigation, focus management, screen reader support, and color contrast requirements.

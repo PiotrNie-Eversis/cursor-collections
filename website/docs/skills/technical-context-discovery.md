@@ -5,7 +5,7 @@ title: Technical Context Discovery
 
 # Technical Context Discovery
 
-**Folder:** `.github/skills/eversis-technical-context-discovering/`  
+**Folder:** `.cursor/skills/eversis-technical-context-discovering/`  
 **Used by:** Architect, Code Reviewer, Software Engineer, E2E Engineer, framework customization, Context Engineer
 
 Provides a systematic process for understanding project context before any code changes. Enforces a strict priority hierarchy to ensure consistency.

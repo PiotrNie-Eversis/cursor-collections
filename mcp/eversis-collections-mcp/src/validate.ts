@@ -35,7 +35,7 @@ function validateOneSkill(
   dirName: string
 ): ValidationIssue[] {
   const issues: ValidationIssue[] = [];
-  const relBase = path.join(".github", "skills", dirName);
+  const relBase = path.join(".cursor", "skills", dirName);
   const skillPath = path.join(skillsDir, dirName);
   const skillMd = path.join(skillPath, "SKILL.md");
   if (!fs.existsSync(skillMd)) {
@@ -81,7 +81,7 @@ function validateOneSkill(
 }
 
 /**
- * Full validation of all `eversis-*` skill packages under `.github/skills/`.
+ * Full validation of all `eversis-*` skill packages under `.cursor/skills/`.
  * When `treatWarningsAsErrors` is true, warnings fail the run (e.g. CI strict mode).
  */
 export function validateAllSkills(
@@ -90,7 +90,7 @@ export function validateAllSkills(
 ): ValidateResult {
   const treatWarningsAsErrors = options?.treatWarningsAsErrors ?? false;
   const repoRoot = findRepoRoot(startDir);
-  const skillsDir = path.join(repoRoot, ".github", "skills");
+  const skillsDir = path.join(repoRoot, ".cursor", "skills");
   const dirs = listSkillDirs(skillsDir);
   const issues: ValidationIssue[] = [];
   for (const dir of dirs) {

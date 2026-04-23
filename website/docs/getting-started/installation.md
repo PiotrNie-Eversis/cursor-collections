@@ -32,7 +32,7 @@ See the [Prompts overview](../prompts/overview.md) for the full list. Internal p
 
 ## 4. Skills + local MCP (`eversis-collections`)
 
-Procedural skills live under **`.github/skills/eversis-*/`** as **`SKILL.md`** (and optional `references/` / `assets/`). **Do not** register that path under Cursor **Agent Skills** for this framework.
+Procedural skills live under **`.cursor/skills/eversis-*/`** as **`SKILL.md`** (and optional `references/` / `assets/`). **Do not** register that path under Cursor **Agent Skills** for this framework.
 
 Instead, build the local package at **`mcp/eversis-collections-mcp/`** from the repo root:
 

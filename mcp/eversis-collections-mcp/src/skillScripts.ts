@@ -10,7 +10,7 @@ import { findRepoRoot } from "./resolveRoot.js";
  */
 const ALLOWED = {
   "eversis-creating-skills-skill-md-stats":
-    ".github/skills/eversis-creating-skills/scripts/skill-md-stats.mjs",
+    ".cursor/skills/eversis-creating-skills/scripts/skill-md-stats.mjs",
 } as const;
 
 export type SkillScriptKey = keyof typeof ALLOWED;

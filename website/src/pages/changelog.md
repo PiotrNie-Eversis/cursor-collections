@@ -12,11 +12,21 @@ The canonical source for this changelog is [CHANGELOG.md](https://github.com/Pio
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## 2026-04-23
+
+### Changed (breaking for repository layout and permalinks)
+
+- Moved all **`eversis-*` skill packages** from **`.github/skills/`** to **`.cursor/skills/`** so rules, prompts, and skills for Cursor live under **`.cursor/`**. The **`eversis-collections` MCP** finds the repo by walking to **`.cursor/skills`**. If you set **`EVERSIS_COLLECTIONS_ROOT`**, it must point to a checkout that contains **`.cursor/skills`**. **GitHub** URLs that used **`/tree/.../.github/skills/...`** are invalid; use **`/tree/.../.cursor/skills/...`**.
+
+### Changed (breaking for deep links and MCP `skillId` values)
+
+- Renamed all **`.github/skills/tsh-*`** topic directories to **`.github/skills/eversis-*/`**. (Skill packages were under **`.github/skills/`** at the time; they have since been moved to **`.cursor/skills/`** — see above.)
+
 ## 2026-04-22
 
 ### Removed (breaking)
 
-- **`.github/prompts/`**, **`.github/internal-prompts/`**, and **`.github/agents/`** — the repository is **Cursor-only**. Prompts live under **`.cursor/prompts/`** (attach with `@`); copies for this documentation site are generated under `website/docs/prompts/` via **`sync-prompts`**. Role behavior is expressed with **`.cursor/rules/eversis-*.mdc`** and **[AGENTS.md](https://github.com/PiotrNie-Eversis/cursor-collections/blob/main/AGENTS.md)**. Skills remain under **`.github/skills/`** for use as **Cursor Agent Skills**.
+- **`.github/prompts/`**, **`.github/internal-prompts/`**, and **`.github/agents/`** — the repository is **Cursor-only**. Prompts live under **`.cursor/prompts/`** (attach with `@`); copies for this documentation site are generated under `website/docs/prompts/` via **`sync-prompts`**. Role behavior is expressed with **`.cursor/rules/eversis-*.mdc`** and **[AGENTS.md](https://github.com/PiotrNie-Eversis/cursor-collections/blob/main/AGENTS.md)**. As of **2026-04-23**, skills live under **`.cursor/skills/eversis-*/`**; consume them in Agent through the **`eversis-collections` MCP** (not a separate **Agent Skills** UI path).
 
 ### Changed
 

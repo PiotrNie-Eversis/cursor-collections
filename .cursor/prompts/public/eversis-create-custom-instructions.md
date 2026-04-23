@@ -42,7 +42,7 @@ Updated **`AGENTS.md`** and/or **`.cursor/rules/eversis-*.mdc`** (and optional `
 
 ## Executable prompt (attach in Cursor)
 
-1. Open `.github/skills/eversis-creating-instructions/SKILL.md` and follow its decision framework (what belongs in rules vs long-form AGENTS).
+1. Open `.cursor/skills/eversis-creating-instructions/SKILL.md` and follow its decision framework (what belongs in rules vs long-form AGENTS).
 2. Prefer **one** always-on core rule plus stack-specific `eversis-project-stack.mdc` — avoid ten overlapping always-apply files.
 3. Instructions must be **actionable** for the model (clear imperatives, paths to tests, “never do X” where needed).
 4. Never instruct the user to add `.github/prompts` or Copilot — those are not part of this framework.

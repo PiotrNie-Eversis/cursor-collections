@@ -5,14 +5,14 @@ alwaysApply: true
 
 # Project stack — this repository
 
-This repo is **Cursor Collections** (Eversis): **Cursor** rules, attachable prompts under **`.cursor/prompts/`** (synced into `website/docs/prompts/` for the docs site), skills in **`.github/skills/`**, and [documentation/cursor-collection.md](documentation/cursor-collection.md).
+This repo is **Cursor Collections** (Eversis): **Cursor** rules, attachable prompts under **`.cursor/prompts/`** (synced into `website/docs/prompts/` for the docs site), skills in **`.cursor/skills/`**, and [documentation/cursor-collection.md](documentation/cursor-collection.md).
 
 | Area | This repository |
 | ---- | --------------- |
 | **Product** | Cursor-native product engineering framework + published workflow docs |
 | **Docs site** | Docusaurus 3 under **`website/`** (`cursor-collections-docs`) |
 | **Prompts** | **`.cursor/prompts/public/`** and **`internal/`** (`eversis-*.md`); attach with **`@eversis-*`**; **`sync-prompts`** copies to gitignored `website/docs/prompts/` (also in **`.cursorignore`** to avoid double **`@`** indexing) |
-| **Skills** | **`.github/skills/eversis-*/`** (topic packages; list/read/validate via **`eversis-collections` MCP**, not a separate **Agent Skills** path) |
+| **Skills** | **`.cursor/skills/eversis-*/`** (topic packages; list/read/validate via **`eversis-collections` MCP**, not a separate **Agent Skills** path) |
 
 ## Quality commands (this repo)
 

@@ -5,7 +5,7 @@ title: Creating role rules
 
 # Creating role rules (`.mdc`)
 
-**Folder:** `.github/skills/eversis-creating-agents/`  
+**Folder:** `.cursor/skills/eversis-creating-agents/`  
 **Used by:** Framework maintainers (customization track)
 
 Build **Cursor project rules** — **`.cursor/rules/eversis-*.mdc`** — that define **role behavior** (who/when), not full workflows. Optional narrative docs: **`website/docs/agents/`**. This monorepo does **not** use `.github/agents/*.agent.md`.

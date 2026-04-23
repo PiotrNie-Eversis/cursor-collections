@@ -5,7 +5,7 @@ title: CI/CD Implementation
 
 # CI/CD Implementation
 
-**Folder:** `.github/skills/eversis-implementing-ci-cd/`
+**Folder:** `.cursor/skills/eversis-implementing-ci-cd/`
 **Used by:** DevOps Engineer
 
 Provides CI/CD pipeline design patterns and deployment strategies for GitHub Actions, GitLab CI, Bitbucket Pipelines, and other platforms.

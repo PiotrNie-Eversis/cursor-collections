@@ -41,7 +41,7 @@ tools: ['<tool-1>', '<tool-2>', '<mcp-server>/*']
 <!-- ============================================================ -->
 <!-- REQUIRED SECTION: Agent Role and Responsibilities              -->
 <!-- Define WHO the agent is, not HOW specific workflows run.      -->
-<!-- Workflows belong in skills (.github/skills/) and prompts.      -->
+<!-- Workflows belong in skills (.cursor/skills/) and prompts.      -->
 <!-- ============================================================ -->
 
 <agent-role>

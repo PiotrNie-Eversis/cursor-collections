@@ -5,7 +5,7 @@ title: Architecture Design
 
 # Architecture Design
 
-**Folder:** `.github/skills/eversis-architecture-designing/`  
+**Folder:** `.cursor/skills/eversis-architecture-designing/`  
 **Used by:** Architect
 
 Provides a structured 5-step process for designing solution architecture and creating detailed implementation plans.

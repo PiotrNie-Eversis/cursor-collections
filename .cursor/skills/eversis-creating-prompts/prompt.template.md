@@ -80,7 +80,7 @@ If any input is missing: STOP and ask user to provide it.
 <!-- ============================================================ -->
 <!-- REQUIRED: Required Skills                                     -->
 <!-- List skills that the agent must load before starting.         -->
-<!-- Reference existing skills from .github/skills/ only.          -->
+<!-- Reference existing skills from .cursor/skills/ only.          -->
 <!-- Include a brief rationale for each skill.                     -->
 <!-- ============================================================ -->
 

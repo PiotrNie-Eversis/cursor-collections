@@ -5,7 +5,7 @@ title: Frontend Implementation
 
 # Frontend Implementation
 
-**Folder:** `.github/skills/eversis-implementing-frontend/`  
+**Folder:** `.cursor/skills/eversis-implementing-frontend/`  
 **Used by:** Software Engineer
 
 Provides comprehensive frontend guidelines covering component design, design system usage, accessibility, and performance.
