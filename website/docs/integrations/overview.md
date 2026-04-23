@@ -83,7 +83,8 @@ All servers are configured in **`.cursor/mcp.json`** at the repository root (Cur
       "args": ["awslabs.aws-documentation-mcp-server@latest"],
       "env": {
         "FASTMCP_LOG_LEVEL": "ERROR",
-        "AWS_DOCUMENTATION_PARTITION": "aws"
+        "AWS_DOCUMENTATION_PARTITION": "aws",
+        "MCP_USER_AGENT": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36"
       }
     },
     "gcp-gcloud": {
@@ -97,8 +98,14 @@ All servers are configured in **`.cursor/mcp.json`** at the repository root (Cur
     "gcp-storage": {
       "command": "npx",
       "args": ["-y", "@google-cloud/storage-mcp"]
+    },
+    "eversis-collections": {
+      "command": "node",
+      "args": ["mcp/eversis-collections-mcp/dist/index.js"],
+      "type": "stdio"
     }
-  }
+  },
+  "inputs": []
 }
 ```
 

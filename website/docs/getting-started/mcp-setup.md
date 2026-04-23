@@ -31,23 +31,13 @@ Use this to enable the same MCP tools in **all** of your projects.
 
 ## Canonical configuration
 
-The **full, current** list of server IDs, commands, and endpoints lives in the repo file **`.cursor/mcp.json`**. A minimal shape (Cursor format) is:
+:::tip Do not hand-copy sample JSON
+For this repository, **do not paste** ad-hoc `mcp.json` snippets from blog posts or older templates. The **authoritative** workspace list is the committed **[`.cursor/mcp.json`](https://github.com/PiotrNie-Eversis/cursor-collections/blob/main/.cursor/mcp.json)** at the repo root (the same path exists after you clone). It includes agentic tools such as **Sequential Thinking** (npm package **`@modelcontextprotocol/server-sequential-thinking`**), Context7, Playwright, PDF Reader, AWS and Google Cloud MCPs, and **`eversis-collections`**.
 
-```json
-{
-  "mcpServers": {
-    "playwright": { "command": "npx", "args": ["@playwright/mcp@latest"], "type": "stdio" },
-    "atlassian": { "url": "https://mcp.atlassian.com/v1/mcp", "type": "http" },
-    "eversis-collections": {
-      "command": "node",
-      "args": ["mcp/eversis-collections-mcp/dist/index.js"],
-      "type": "stdio"
-    }
-  }
-}
-```
+For the **annotated server list** and a **secondary** full JSON example that mirrors the repo, see [Integrations overview — Configuration](../integrations/overview.md#configuration).
+:::
 
-Build **`eversis-collections`** once so `dist/index.js` exists. For every server, see [Integrations overview](../integrations/overview.md) and the committed **`.cursor/mcp.json`**.
+Build **`eversis-collections`** once so `dist/index.js` exists (see the table below). For details on each server, see [Integrations overview](../integrations/overview.md) and the committed **`.cursor/mcp.json`**.
 
 ## MCP Server Reference
 
