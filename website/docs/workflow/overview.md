@@ -35,6 +35,10 @@ Think of this workflow as a **relay race**. Each phase produces a deliverable �
   3. **Implement** — Software / Prompt / DevOps / E2E work per plan and internal prompts.
 - **Produces:** Research document, implementation plan, and code changes.
 
+#### Status: Fine
+
+When all planned agent work is finished, the Engineering Manager declares **Fine** (task complete from the agent’s perspective). **Optional:** you can manually generate a QA-facing Jira comment with the **[QA Comment](../skills/qa-comment)** skill (`eversis-qa-comment`). The agent may **suggest** doing this but must **not** invoke that skill automatically.
+
 ### 3. Review
 
 - **Role:** Code Reviewer

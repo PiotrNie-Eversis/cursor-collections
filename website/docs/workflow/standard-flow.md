@@ -42,6 +42,10 @@ The Engineering Manager automatically handles the full development cycle:
 If a `.research.md` or `.plan.md` file already exists for the task, the Engineering Manager skips that phase and proceeds directly to the next step.
 :::
 
+:::tip Optional QA handoff after Fine
+When the Engineering Manager declares **Fine** (implementation complete from the agent’s perspective), you can **manually** prepare an English summary for QA and Jira with the **[QA Comment](../skills/qa-comment)** skill (`eversis-qa-comment`). The agent may suggest this but does not invoke it automatically. See [Workflow Overview](./overview) for how **Fine** fits the lifecycle.
+:::
+
 ### 2. Review
 
 ```text

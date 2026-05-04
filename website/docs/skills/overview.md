@@ -5,7 +5,7 @@ title: Skills Overview
 
 # Skills Overview
 
-Cursor Collections includes **32 reusable skills** — knowledge modules that provide specialized domain expertise, structured processes, and quality templates. They encode tested best practices for every phase of the product lifecycle. Skills are stored in `.cursor/skills/`. In Agent, use them through the **`eversis-collections` MCP** server (**`eversis_skills_list`**, **`eversis_skills_get`**, **`eversis_skill_run_script`** for allowlisted per-skill scripts, and related tools) after building [`mcp/eversis-collections-mcp/`](https://github.com/PiotrNie-Eversis/cursor-collections/tree/main/mcp/eversis-collections-mcp); do not register the folder separately as Cursor **Agent Skills** for this framework.
+Cursor Collections includes **33 reusable skills** — knowledge modules that provide specialized domain expertise, structured processes, and quality templates. They encode tested best practices for every phase of the product lifecycle. Skills are stored in `.cursor/skills/`. In Agent, use them through the **`eversis-collections` MCP** server (**`eversis_skills_list`**, **`eversis_skills_get`**, **`eversis_skill_run_script`** for allowlisted per-skill scripts, and related tools) after building [`mcp/eversis-collections-mcp/`](https://github.com/PiotrNie-Eversis/cursor-collections/tree/main/mcp/eversis-collections-mcp); do not register the folder separately as Cursor **Agent Skills** for this framework.
 
 ## How Skills Work
 
@@ -65,6 +65,7 @@ When an agent needs specialized procedures, it can pull **`SKILL.md` content** v
 | [eversis-reviewing-frontend](./reviewing-frontend) | Frontend-specific review: components, hooks, rendering, a11y | Code Reviewer   |
 | [eversis-ui-verifying](./ui-verification)          | Figma vs implementation verification criteria                | UI Reviewer, SE |
 | [eversis-e2e-testing](./e2e-testing)               | Playwright E2E testing patterns and verification             | E2E Engineer    |
+| [eversis-qa-comment](./qa-comment)                 | English QA/Jira summary after Fine; manual trigger only      | Anyone (post-implement) |
 
 ### ⚙️ Framework customization skills
 
@@ -101,6 +102,7 @@ When an agent needs specialized procedures, it can pull **`SKILL.md` content** v
 | eversis-managing-secrets                   |     |     | ✅        |     |     |     |             |     | ✅     |           |
 | eversis-optimizing-cloud-cost              |     |     | ✅        |     |     |     |             |     | ✅     |           |
 | eversis-optimizing-frontend                |     |     |           | ✅  |     |     |             |     |        |           |
+| eversis-qa-comment                         |     |     |           | ✅  |     | ✅  |             | ✅  |        |           |
 | eversis-reviewing-frontend                 |     |     |           |     |     | ✅  |             |     |        |           |
 | eversis-sql-and-database-understanding     |     |     | ✅        | ✅  |     | ✅  |             |     |        |           |
 | eversis-task-analysing                     |     | ✅  |           |     |     |     |             | ✅  |        |           |

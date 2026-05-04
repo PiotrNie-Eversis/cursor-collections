@@ -27,6 +27,10 @@ For UI-heavy tasks with Figma designs, use the specialized frontend workflow. Th
    ↳ ✅ Address all blockers before merging
 ```
 
+:::tip Optional QA handoff after Fine
+When the Engineering Manager declares **Fine**, you can **manually** generate an English Jira-facing QA summary with the **[QA Comment](../skills/qa-comment)** skill (`eversis-qa-comment`). The agent may suggest it; it is never run automatically. More context: [Workflow Overview](./overview).
+:::
+
 ## How the Verification Loop Works
 
 1. The Engineering Manager delegates a UI component implementation to the Software Engineer via the internal `/eversis-implement-ui` prompt.

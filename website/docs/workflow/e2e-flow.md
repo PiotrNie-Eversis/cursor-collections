@@ -27,6 +27,10 @@ For features that need end-to-end test coverage, use the E2E testing workflow. T
 E2E test implementation is handled by the Engineering Manager as part of the standard **`eversis-implement`** workflow. When the plan contains E2E test tasks, the Engineering Manager automatically delegates them to the E2E Engineer agent using the internal **`.cursor/prompts/internal/eversis-implement-e2e.md`** prompt.
 :::
 
+:::tip Optional QA handoff after Fine
+After implementation (including E2E tasks) reaches **Fine**, you can **manually** add a structured English comment for QA and Jira using **[QA Comment](../skills/qa-comment)** (`eversis-qa-comment`). The agent may suggest it; it does not run on its own. See [Workflow Overview](./overview).
+:::
+
 ## What the E2E Engineer Does
 
 When delegated to by the Engineering Manager, the E2E Engineer:

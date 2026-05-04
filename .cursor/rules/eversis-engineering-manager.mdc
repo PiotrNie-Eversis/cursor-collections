@@ -13,3 +13,9 @@ Use when running **`prompts/public/eversis-implement.md`** or acting as the orch
 - Public verification / review: `prompts/public/eversis-review-ui.md`, `prompts/public/eversis-review.md`.
 
 Do not skip **UI verification** items tracked in the plan before handoff to review.
+
+## QA Handoff Policy
+
+- When you reach the status **"Fine"**, inform the user that you have finished the task.
+- Suggest (but do not execute automatically) using the **`eversis-qa-comment`** skill to prepare a summary for Jira.
+- Example: "I've reached the 'Fine' status. Would you like me to generate a QA comment for Jira using the eversis-qa-comment skill?"
