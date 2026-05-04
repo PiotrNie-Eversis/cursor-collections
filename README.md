@@ -18,6 +18,8 @@ Structured **roles**, **prompts** (`eversis-*.md`), **project rules** (`.cursor/
 | **Review**                  | Code and UI quality                          | Attach `@eversis-review`, `@eversis-review-ui`, `@eversis-review-codebase` |
 | **Framework customization** | Rules, skills, prompts, project instructions | Attach `eversis-create-custom-*.md` under `.cursor/prompts/public/` |
 
+**Optional QA handoff (after Implement):** When orchestration reaches **Fine** (agent-side implementation complete), you can **manually** run the **`eversis-qa-comment`** skill via **`eversis-collections`** MCP (`eversis_skills_get`) to draft an English summary for QA and Jira. The Engineering Manager rule suggests this when appropriate and **does not** invoke the skill automatically. Docs: [website/docs/skills/qa-comment.md](website/docs/skills/qa-comment.md); rule: [`.cursor/rules/eversis-engineering-manager.mdc`](.cursor/rules/eversis-engineering-manager.mdc).
+
 **Skills** live in [`.cursor/skills/`](.cursor/skills/) as `eversis-*` topic folders with `SKILL.md` (procedural how-to). **Use them in Agent** via the **`eversis-collections` MCP** server ([`mcp/eversis-collections-mcp/`](mcp/eversis-collections-mcp/): `npm install && npm run build` once, then enable it through [`.cursor/mcp.json`](.cursor/mcp.json)). **`eversis_*` tools** list, read, and validate the tree, and **`eversis_skill_run_script`** runs allowlisted per-skill scripts; this replaces registering the folder as **Cursor Agent Skills**.
 
 **Docs site:** build and preview from [`website/`](website/) (Docusaurus). **Authoritative how-to for using this framework in any repo:** [documentation/cursor-collection.md](documentation/cursor-collection.md).
@@ -74,6 +76,7 @@ IDEATE
 IMPLEMENT
   @eversis-implement
   (research → plan → code; human gates after research and plan)
+  Optional after Fine: eversis-qa-comment (manual English QA / Jira summary — MCP skill, not auto-run)
 
 REVIEW
   @eversis-review
@@ -87,6 +90,7 @@ For UI work, the implement flow can loop with `eversis-review-ui` until pass or 
 
 - **Location:** [`.cursor/skills/`](.cursor/skills/) — topic folders with `SKILL.md` and optional `references/`, `assets/`, `examples/`.
 - **Use:** Build and enable [**`mcp/eversis-collections-mcp/`**](mcp/eversis-collections-mcp/) (local MCP; not on npm) and turn on **`eversis-collections`** in [`.cursor/mcp.json`](.cursor/mcp.json). Authoring guide: [website/docs/skills/overview.md](website/docs/skills/overview.md) and the `eversis-creating-skills` skill.
+- **`eversis-qa-comment`** — After **Fine**, produce a structured **English** QA/Jira comment (functional “Main Changes” + verification checklist; no file/line callouts in that section). Manual trigger only; few-shot: `.cursor/skills/eversis-qa-comment/qa-comment.example.md`. Site: [website/docs/skills/qa-comment.md](website/docs/skills/qa-comment.md). Workflow context: [website/docs/workflow/overview.md](website/docs/workflow/overview.md) (Standard / Frontend / E2E flow pages include the same optional step).
 
 ---
 
@@ -121,7 +125,7 @@ Notable changes are recorded in [CHANGELOG.md](CHANGELOG.md). This project is **
 
 - **Cursor-only** — prompts are Markdown; invoke by **`@` attachment**; rules live in **`.cursor/rules/`**.
 - **Full lifecycle** — ideation, implementation, review, and optional infra/cost prompts.
-- **Skills** in **`.cursor/skills/`** — procedural depth for agents via the **`eversis-collections` MCP** server (`eversis_skills_*` and **`eversis_skill_run_script`** where allowlisted); build [`mcp/eversis-collections-mcp/`](mcp/eversis-collections-mcp/) first.
+- **Skills** in **`.cursor/skills/`** — procedural depth for agents via the **`eversis-collections` MCP** server (`eversis_skills_*` and **`eversis_skill_run_script`** where allowlisted); build [`mcp/eversis-collections-mcp/`](mcp/eversis-collections-mcp/) first. Includes optional **`eversis-qa-comment`** (manual, after **Fine**) for QA/Jira handoff.
 - **MCP** — bring Jira, Figma, browser automation, docs, and the local **eversis-collections** server into the same session.
 
 ---

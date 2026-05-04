@@ -12,6 +12,20 @@ The canonical source for this changelog is [CHANGELOG.md](https://github.com/Pio
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## 2026-05-04
+
+### Added
+
+- Skill **`eversis-qa-comment`** under [`.cursor/skills/eversis-qa-comment/`](https://github.com/PiotrNie-Eversis/cursor-collections/tree/main/.cursor/skills/eversis-qa-comment) — manual, English **QA / Jira** comment after orchestration reaches **Fine**; few-shot template **`qa-comment.example.md`**; consumed via **`eversis-collections` MCP** (`eversis_skills_get`). Agents **suggest** use when appropriate and **do not** run the skill automatically.
+- Documentation: **[QA Comment](https://github.com/PiotrNie-Eversis/cursor-collections/blob/main/website/docs/skills/qa-comment.md)** skill page (usage, rules, example output, link to canonical few-shot in repo).
+
+### Changed
+
+- [ **`eversis-engineering-manager.mdc`**](https://github.com/PiotrNie-Eversis/cursor-collections/blob/main/.cursor/rules/eversis-engineering-manager.mdc) — **QA Handoff Policy** (Fine → suggest `eversis-qa-comment`, never auto-invoke).
+- **Workflow docs** — [Overview](https://github.com/PiotrNie-Eversis/cursor-collections/blob/main/website/docs/workflow/overview.md) (**Status: Fine** + optional QA comment); [Standard](https://github.com/PiotrNie-Eversis/cursor-collections/blob/main/website/docs/workflow/standard-flow.md), [Frontend](https://github.com/PiotrNie-Eversis/cursor-collections/blob/main/website/docs/workflow/frontend-flow.md), and [E2E](https://github.com/PiotrNie-Eversis/cursor-collections/blob/main/website/docs/workflow/e2e-flow.md) flows — aligned tips for optional QA handoff.
+- **[Skills overview](https://github.com/PiotrNie-Eversis/cursor-collections/blob/main/website/docs/skills/overview.md)** — `eversis-qa-comment` in Quality table and agent–skill matrix; total skills **33**.
+- **[README](https://github.com/PiotrNie-Eversis/cursor-collections/blob/main/README.md)** — optional QA handoff after Implement / Fine, standard-flow example line, Skills and Summary mentions.
+
 ## 2026-04-23
 
 ### Changed (breaking for repository layout and permalinks)

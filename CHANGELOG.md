@@ -4,6 +4,21 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## 2026-05-04
+
+### Added
+
+- Skill **`eversis-qa-comment`** (`.cursor/skills/eversis-qa-comment/`) — manual English QA/Jira summary after orchestration reaches **Fine**; few-shot **`qa-comment.example.md`**; load via **`eversis-collections` MCP** (`eversis_skills_get`). Agents may **suggest** use and **must not** invoke automatically.
+- Docs site: **`website/docs/skills/qa-comment.md`** — usage, agent rules, example output, link to canonical few-shot in repo.
+
+### Changed
+
+- **`eversis-engineering-manager.mdc`** — **QA Handoff Policy**: at **Fine**, suggest `eversis-qa-comment` for Jira; do not run it automatically.
+- **`website/docs/workflow/overview.md`** — **Status: Fine** subsection (optional **`eversis-qa-comment`** / **`website/docs/skills/qa-comment.md`**).
+- **`website/docs/workflow/standard-flow.md`**, **`frontend-flow.md`**, **`e2e-flow.md`** — tips for optional QA handoff after **Fine**.
+- **`website/docs/skills/overview.md`** — `eversis-qa-comment` in Quality table and agent–skill matrix; skill count **33**.
+- **`README.md`** — optional QA handoff, standard-flow snippet, **`eversis-qa-comment`** under Skills and Summary.
+
 ## 2026-04-23
 
 ### Changed (breaking for repository layout and permalinks)
