@@ -24,6 +24,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - **`documentation/cursor-collection.md`** — rules format section now documents the three `.mdc` activation modes: `alwaysApply: true`, `globs: [...]` YAML list, and `globs: []` / `alwaysApply: false` (role rules attached on demand with `@`).
 - [**`.cursor/skills/eversis-creating-agents/SKILL.md`**](https://github.com/PiotrNie-Eversis/cursor-collections/blob/main/.cursor/skills/eversis-creating-agents/SKILL.md) — frontmatter table extended with the three-mode reference and a note that `globs` must be a YAML list with `**/` prefixed patterns.
 - **`README.md`** — step 3 of "Getting started" mentions the three `.mdc` rule modes with a link to the framework doc; "Using this framework in another repository" step 3 mentions `docs/plans/`.
+- [**`.cursor/rules/eversis-code-reviewer.mdc`**](https://github.com/PiotrNie-Eversis/cursor-collections/blob/main/.cursor/rules/eversis-code-reviewer.mdc) — added `## STRICT FORBIDDEN` section with three hard limits (file scope, documentation comments, new package-manager dependencies); violations classify as **BLOCKER** in the PASS / BLOCKER / SUGGESTION output.
+- [**`.cursor/rules/eversis-agent-core.mdc`**](https://github.com/PiotrNie-Eversis/cursor-collections/blob/main/.cursor/rules/eversis-agent-core.mdc) — added `## Hard limits (implement)` mirroring the same three prohibitions so they apply during implementation (`alwaysApply: true`), not only at review.
+- [**`.cursor/skills/eversis-code-reviewing/SKILL.md`**](https://github.com/PiotrNie-Eversis/cursor-collections/tree/main/.cursor/skills/eversis-code-reviewing) — Step 3 extended with mandatory verification of the three `STRICT FORBIDDEN` constraints (scope, documentation comments, dependencies).
+- **`README.md`** — Roles and documentation section notes the `STRICT FORBIDDEN` limits and their cross-rule enforcement.
 
 ## 2026-05-04
 

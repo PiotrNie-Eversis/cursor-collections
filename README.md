@@ -64,6 +64,8 @@ Conceptual **agents** (who does the work) are described in the docs site, e.g. [
 
 Core roles: Business Analyst, Context Engineer, Architect, Engineering Manager, Software Engineer, Prompt Engineer, DevOps Engineer, Code Reviewer, UI Reviewer, E2E Engineer, and **framework customization** (Cursor rules, skills, prompts, AGENTS.md).
 
+The **Code Reviewer** role uses [`.cursor/rules/eversis-code-reviewer.mdc`](.cursor/rules/eversis-code-reviewer.mdc), which includes a **`STRICT FORBIDDEN`** section — three hard limits (file scope, documentation comments, new dependencies) classified as **BLOCKER** in the PASS / BLOCKER / SUGGESTION output. The same limits are mirrored in `eversis-agent-core.mdc` so they apply during implementation, not only at review.
+
 ---
 
 ## Example: standard flow

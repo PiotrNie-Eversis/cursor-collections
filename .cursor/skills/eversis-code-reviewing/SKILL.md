@@ -45,6 +45,12 @@ Based on implementation plan and task description, compare it to actually implem
 
 Focus not only on files that were actually changed or added, but also those that claim to be already implemented.
 
+Also verify the three **STRICT FORBIDDEN** constraints (see `eversis-code-reviewer.mdc`); flag each violation as a **BLOCKER**:
+
+- **Scope** — confirm that every modified file is covered by the task or plan. Flag any file changed outside the agreed scope as a BLOCKER.
+- **Documentation comments** — check that no JSDoc, module-level, or other documentation comments were removed or silently shortened without a task-level justification.
+- **Dependencies** — check that no new package-manager entries (e.g. `package.json` additions) appeared without a recorded agreement from the Engineering Manager / tech lead.
+
 **Step 4: Verify that solution has implemented all necessary tests**
 
 Make sure that all critical paths of the solutions are fully tested by combination of different tests - e2e, unit, integration.

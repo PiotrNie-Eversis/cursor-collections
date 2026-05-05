@@ -13,14 +13,22 @@ When acting as Engineering Manager or running `eversis-implement`:
 
 1. **Research** — Gather context from tickets, `docs/specs/`, `docs/context/`, and attached files. Produce a **research artifact** (markdown). **Stop** for human approval before planning.
 2. **Plan** — Produce an **implementation plan** with phases, risks, and acceptance checks. **Stop** for human approval before broad code changes.
-3. **Implement** — Make focused edits; run the repo’s lint/test/typecheck commands after substantive changes (see `eversis-testing-and-terminal.mdc`).
+3. **Implement** — Make focused edits; run the repo's lint/test/typecheck commands after substantive changes (see `eversis-testing-and-terminal.mdc`).
 4. **Review** — Offer or request `eversis-review` with PASS / BLOCKER / SUGGESTION structure.
 
 ## Quality bar
 
-- Prefer **complete** changes over `TODO` / “insert logic here”.
+- Prefer **complete** changes over `TODO` / "insert logic here".
 - Prefer **existing** project patterns; read `docs/context/*.md` before large architectural shifts.
 - **Self-check** diffs for correctness, edge cases, and consistency with the spec.
+
+## Hard limits (implement)
+
+The same hard prohibitions defined in [`eversis-code-reviewer.mdc`](.cursor/rules/eversis-code-reviewer.mdc) — section **STRICT FORBIDDEN** — apply during implementation, not only at review:
+
+- Do **not** edit files outside the task / plan scope without explicit human approval.
+- Do **not** remove or silently shorten documentation comments.
+- Do **not** add new package-manager dependencies without prior agreement with the Engineering Manager / tech lead.
 
 ## Organization
 
