@@ -28,6 +28,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - [**`.cursor/rules/eversis-agent-core.mdc`**](https://github.com/PiotrNie-Eversis/cursor-collections/blob/main/.cursor/rules/eversis-agent-core.mdc) — added `## Hard limits (implement)` mirroring the same three prohibitions so they apply during implementation (`alwaysApply: true`), not only at review.
 - [**`.cursor/skills/eversis-code-reviewing/SKILL.md`**](https://github.com/PiotrNie-Eversis/cursor-collections/tree/main/.cursor/skills/eversis-code-reviewing) — Step 3 extended with mandatory verification of the three `STRICT FORBIDDEN` constraints (scope, documentation comments, dependencies).
 - **`README.md`** — Roles and documentation section notes the `STRICT FORBIDDEN` limits and their cross-rule enforcement.
+- [**`.cursor/rules/eversis-agent-core.mdc`**](https://github.com/PiotrNie-Eversis/cursor-collections/blob/main/.cursor/rules/eversis-agent-core.mdc) — added `## Skills discovery` section: before broad implementation the agent checks `.cursor/skills/` for a domain-matching package; prefers `eversis-collections` MCP tools (`eversis_skills_list` / `eversis_skills_get`) when available, otherwise reads `SKILL.md` directly; reinforces that the folder must not be registered as Cursor Agent Skills.
+- [**`README.md`**](https://github.com/PiotrNie-Eversis/cursor-collections/blob/main/README.md) — Skills section extended with a Discovery bullet explaining the `eversis-agent-core.mdc` skills-check behavior.
 
 ## 2026-05-04
 

@@ -92,6 +92,7 @@ For UI work, the implement flow can loop with `eversis-review-ui` until pass or 
 
 - **Location:** [`.cursor/skills/`](.cursor/skills/) — topic folders with `SKILL.md` and optional `references/`, `assets/`, `examples/`.
 - **Use:** Build and enable [**`mcp/eversis-collections-mcp/`**](mcp/eversis-collections-mcp/) (local MCP; not on npm) and turn on **`eversis-collections`** in [`.cursor/mcp.json`](.cursor/mcp.json). Authoring guide: [website/docs/skills/overview.md](website/docs/skills/overview.md) and the `eversis-creating-skills` skill.
+- **Discovery:** `eversis-agent-core.mdc` (`alwaysApply`) instructs the agent to check `.cursor/skills/` for a matching domain package before broad implementation — preferring `eversis-collections` MCP tools (`eversis_skills_list` / `eversis_skills_get`) when available, otherwise reading `SKILL.md` directly.
 - **`eversis-qa-comment`** — After **Fine**, produce a structured **English** QA/Jira comment (functional “Main Changes” + verification checklist; no file/line callouts in that section). Manual trigger only; few-shot: `.cursor/skills/eversis-qa-comment/qa-comment.example.md`. Site: [website/docs/skills/qa-comment.md](website/docs/skills/qa-comment.md). Workflow context: [website/docs/workflow/overview.md](website/docs/workflow/overview.md) (Standard / Frontend / E2E flow pages include the same optional step).
 
 ---
