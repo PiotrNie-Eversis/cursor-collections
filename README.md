@@ -30,7 +30,7 @@ Structured **roles**, **prompts** (`eversis-*.md`), **project rules** (`.cursor/
 
 1. **Open this repository in [Cursor](https://cursor.com/).**
 2. Read [**AGENTS.md**](AGENTS.md) and [documentation/cursor-collection.md](documentation/cursor-collection.md).
-3. Use [**project rules**](.cursor/rules/): start with `eversis-agent-core.mdc` and edit `eversis-project-stack.mdc` for your stack.
+3. Use [**project rules**](.cursor/rules/): start with `eversis-agent-core.mdc` and edit `eversis-project-stack.mdc` for your stack. Rules use three modes — `alwaysApply: true` (always on), `globs: [...]` YAML list (auto-attached to matching files), or empty `globs` + `alwaysApply: false` (attached on demand with `@`). See [documentation/cursor-collection.md](documentation/cursor-collection.md) for details.
 4. In **Chat** or **Agent**, attach a prompt, e.g. `@eversis-implement`, plus your ticket or task text.
 5. **MCP:** this repo includes [`.cursor/mcp.json`](.cursor/mcp.json). When you open the folder, **Cursor** detects it and can prompt you to **enable the listed servers in one step**. Build the local package **[`mcp/eversis-collections-mcp/`](mcp/eversis-collections-mcp/)** (`npm install && npm run build`) so the **`eversis-collections`** server starts — it powers **skills** in Agent via `eversis_*` tools. Optionally merge the same definitions into your **user** MCP config (Cursor → MCP) for third-party servers in every project.
 6. **Skills:** with **`eversis-collections`** enabled, the agent can call tools such as **`eversis_skills_list`** / **`eversis_skills_get`** / **`eversis_skill_run_script`** (allowlisted per-skill scripts) against [`.cursor/skills/`](.cursor/skills/) (no separate Agent Skills registration).
@@ -110,7 +110,7 @@ The workspace file [`.cursor/mcp.json`](.cursor/mcp.json) lists Atlassian, Figma
 
 1. Copy or vendor **`.cursor/rules/`** templates; customize `eversis-project-stack.mdc`.
 2. Copy or link **`.cursor/prompts/`** (or maintain your own `eversis-*.md` under a path you prefer).
-3. Add **`AGENTS.md`** and optional **`docs/specs/`**, **`docs/context/`** per [documentation/cursor-collection.md](documentation/cursor-collection.md).
+3. Add **`AGENTS.md`** and optional **`docs/specs/`**, **`docs/context/`**, **`docs/plans/`** per [documentation/cursor-collection.md](documentation/cursor-collection.md).
 4. Add **`.cursor/mcp.json`** (or merge its `mcpServers` into your user MCP config). If you vendor **`.cursor/skills/`**, build and enable **`eversis-collections`** (see [`mcp/eversis-collections-mcp/`](mcp/eversis-collections-mcp/)) so **`eversis_*` skill tools** are available in Agent.
 
 ---

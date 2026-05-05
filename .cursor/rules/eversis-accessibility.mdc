@@ -1,6 +1,11 @@
 ---
 description: Accessibility expectations for UI code
-globs: "**/*.tsx,**/*.jsx,**/*.vue,**/*.html,**/*.svelte"
+globs:
+  - "**/*.tsx"
+  - "**/*.jsx"
+  - "**/*.vue"
+  - "**/*.html"
+  - "**/*.svelte"
 alwaysApply: false
 ---
 

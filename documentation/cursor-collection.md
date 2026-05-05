@@ -160,7 +160,13 @@ Use a layout optimized for **RAG + Agent** in Cursor:
 
 **This monorepo:** The **canonical** prompt library is **`.cursor/prompts/`** (`public/` and `internal/` **`eversis-*.md`**). **Attach** in Chat or Agent with **`@`** and the file stem (e.g. **`@eversis-implement`**) in preference to long paths. If you build the **Docusaurus** site, run **`sync-prompts`** before `docusaurus build` (this repo wires it in `website`’s `prestart` / `prebuild`) so copies land under `website/docs/prompts/` for the catalog; those copies are **gitignored** and listed in **`.cursorignore`** so they are not double-indexed. Skills live in [`.cursor/skills/`](../.cursor/skills/). Human-readable catalog: [website/docs/prompts/overview.md](../website/docs/prompts/overview.md) (after a local docs build, or read the sources under `.cursor/prompts/` on GitHub).
 
-**Rules format:** Prefer **`.cursor/rules/*.mdc`** with YAML frontmatter (`description`, `globs`, `alwaysApply`) instead of a single giant `.cursorrules` file. Keep each rule **short and single-purpose**; see the bundled examples under [`.cursor/rules/`](../.cursor/rules/).
+**Rules format:** Prefer **`.cursor/rules/*.mdc`** with YAML frontmatter (`description`, `globs`, `alwaysApply`) instead of a single giant `.cursorrules` file. Keep each rule **short and single-purpose**; see the bundled examples under [`.cursor/rules/`](../.cursor/rules/). Three activation modes:
+
+| Mode | When to use | Example |
+|------|-------------|---------|
+| `alwaysApply: true` | Core behaviors that must be present in every session — keep minimal (framework rules, project stack). | `eversis-agent-core.mdc`, `eversis-project-stack.mdc` |
+| `globs: [...]` (YAML list) | Scoped standards that apply whenever matching files are open — use for technology or layer-specific rules. `**/*.tsx` includes all TSX recursively. | `eversis-accessibility.mdc` |
+| `globs: []`, `alwaysApply: false` | Role rules attached on demand with `@` in a prompt or Chat — keeps them out of unrelated sessions. | `eversis-engineering-manager.mdc`, `eversis-code-reviewer.mdc` |
 
 **Indexed documentation:** Add official framework docs via Cursor’s **Docs** feature (add URLs once per workspace). In prompts, reference them with `@` **when the UI supports it** for your Cursor version. Prefer stable paths and repo-local `docs/context` for internal truth.
 

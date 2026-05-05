@@ -4,6 +4,19 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## 2026-05-05
+
+### Added
+
+- **`docs/plans/`** directory with [`docs/plans/README.md`](docs/plans/README.md) and [`docs/plans/cursor-rules-globs.md`](docs/plans/cursor-rules-globs.md) — canonical in-repo plan for `.mdc` frontmatter `globs` normalization.
+
+### Changed
+
+- **`.cursor/rules/eversis-accessibility.mdc`** — `globs` field converted from a comma-separated string to a **YAML list** (`- "**/*.tsx"` etc.) to match the canonical template in `scoped-conventions.template.md` and be unambiguous across Cursor versions.
+- **`documentation/cursor-collection.md`** — rules format section now documents the three `.mdc` activation modes: `alwaysApply: true`, `globs: [...]` YAML list, and `globs: []` / `alwaysApply: false` (role rules attached on demand with `@`).
+- **`.cursor/skills/eversis-creating-agents/SKILL.md`** — frontmatter table extended with the same three-mode reference and a note that `globs` must be a YAML list with `**/` prefixed patterns.
+- **`README.md`** — step 3 of "Getting started" now mentions the three `.mdc` rule modes with a link to the framework doc; "Using this framework in another repository" step 3 mentions `docs/plans/`.
+
 ## 2026-05-04
 
 ### Added

@@ -120,8 +120,16 @@ Verify the agent file against this checklist:
 | Field | Required | Description |
 |---|---|---|
 | `description` | **Yes** | Short description; used for rule pickers and context. |
-| `globs` | No | File patterns when the rule is auto-attached. |
+| `globs` | No | File patterns when the rule is auto-attached. Use a **YAML list** (one pattern per line, e.g. `- "**/*.tsx"`). |
 | `alwaysApply` | No | `true` for always-on core behavior (use sparingly). |
+
+**Three activation modes — choose one per rule:**
+
+| Mode | When | Example rules |
+|------|------|---------------|
+| `alwaysApply: true` | Core behaviors present in every session. Keep minimal. | `eversis-agent-core.mdc`, `eversis-project-stack.mdc` |
+| `globs: [...]` (YAML list) | Technology or layer-specific standards; activates when matching files are open. Prefix with `**/` for recursive matching. | `eversis-accessibility.mdc` |
+| `globs: []`, `alwaysApply: false` | Role rules attached on demand with `@` in a prompt or Chat. | `eversis-engineering-manager.mdc`, `eversis-code-reviewer.mdc` |
 
 ### Body Sections
 
