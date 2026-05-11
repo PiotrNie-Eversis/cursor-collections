@@ -65,7 +65,7 @@ When an agent needs specialized procedures, it can pull **`SKILL.md` content** v
 | [eversis-reviewing-frontend](./reviewing-frontend) | Frontend-specific review: components, hooks, rendering, a11y | Code Reviewer   |
 | [eversis-ui-verifying](./ui-verification)          | Figma vs implementation verification criteria                | UI Reviewer, SE |
 | [eversis-e2e-testing](./e2e-testing)               | Playwright E2E testing patterns and verification             | E2E Engineer    |
-| [eversis-qa-comment](./qa-comment)                 | English QA/Jira summary after Fine; manual trigger only      | Anyone (post-implement) |
+| [eversis-qa-comment](./qa-comment)                 | Mandatory QA comment draft after Fine; human approves before Jira post | Anyone (post-implement) |
 
 ### ⚙️ Framework customization skills
 

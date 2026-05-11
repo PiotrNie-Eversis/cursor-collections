@@ -44,6 +44,17 @@ flowchart LR
   C --> V
 ```
 
+### QA handoff after Fine
+
+When the Engineering Manager declares **Fine** (all implementation and code review done), it **always** produces a **QA comment draft in the same response** by following the **`eversis-qa-comment`** skill (`.cursor/skills/eversis-qa-comment/`). This is not optional.
+
+**Human gate:** The draft is labeled `Draft QA comment — review before posting to Jira`. You review, edit, or rewrite it, then choose how to publish:
+
+- **Copy-paste** the approved text into the Jira issue comment field, or
+- **Ask the agent** to post via the **Atlassian MCP**: "Post this to PROJ-123 on example.atlassian.net." The agent then calls `addCommentToJiraIssue` with the approved body. It will never post without your explicit instruction, and never in the same turn as the draft.
+
+Full usage guide, readability expectations, and example output: [website/docs/skills/qa-comment.md](https://github.com/PiotrNie-Eversis/cursor-collections/blob/main/website/docs/skills/qa-comment.md).
+
 ### How to run a prompt in Cursor
 
 1. **User-facing** prompt bodies live under **`.cursor/prompts/public/`** (e.g. `eversis-implement.md`). **Internal** (delegation) prompts live under **`.cursor/prompts/internal/`** (e.g. research, plan, implement-ui).

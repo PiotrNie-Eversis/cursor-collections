@@ -4,6 +4,22 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## 2026-05-11
+
+### Changed
+
+- **`eversis-qa-comment`** ([`.cursor/skills/eversis-qa-comment/SKILL.md`](.cursor/skills/eversis-qa-comment/SKILL.md)) — **mandatory** QA comment draft on **Fine** (no longer optional); two-phase human gate: draft in Fine turn, Atlassian MCP `addCommentToJiraIssue` only after explicit approval; expanded readability rules (Before / After framing, jargon gloss, outcome-first ordering). **Breaking:** adopting teams should expect a QA draft artifact on every Fine — it is no longer a suggested option.
+- **`qa-comment.example.md`** — added "avoid vs prefer" contrast section using an OAuth callback scenario to illustrate human-readable bullet writing.
+- **`.cursor/rules/eversis-engineering-manager.mdc`** — QA Handoff Policy: Fine always produces the draft in the same turn; Atlassian MCP `addCommentToJiraIssue` requires explicit human approval.
+- **`.cursor/rules/eversis-agent-core.mdc`** — added step 5 to Orchestration: QA draft is a required Fine output; Jira publication requires human approval (manual or MCP).
+- **`.cursor/prompts/public/eversis-implement.md`** — added workflow step 10 (Fine + mandatory QA draft + MCP publishing gate) and updated "What It Does" list.
+- **`website/docs/workflow/overview.md`** — **Status: Fine** updated to mandatory QA draft + human gate.
+- **`website/docs/workflow/standard-flow.md`**, **`frontend-flow.md`**, **`e2e-flow.md`** — optional tip replaced with mandatory QA draft note.
+- **`website/docs/skills/qa-comment.md`** — rewritten: user story (draft → verify → publish), readability expectations, Atlassian MCP publishing instructions.
+- **`website/docs/skills/overview.md`** — `eversis-qa-comment` table row updated to **mandatory draft after Fine**.
+- **`documentation/cursor-collection.md`** — QA handoff subsection added under Part A Workflow (Fine → draft → human gate → paste or MCP).
+- **`README.md`** — QA section updated to mandatory draft; Atlassian MCP posting described; Skills and Summary sections aligned.
+
 ## 2026-05-05
 
 ### Added

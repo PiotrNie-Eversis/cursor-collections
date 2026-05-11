@@ -27,8 +27,8 @@ For features that need end-to-end test coverage, use the E2E testing workflow. T
 E2E test implementation is handled by the Engineering Manager as part of the standard **`eversis-implement`** workflow. When the plan contains E2E test tasks, the Engineering Manager automatically delegates them to the E2E Engineer agent using the internal **`.cursor/prompts/internal/eversis-implement-e2e.md`** prompt.
 :::
 
-:::tip Optional QA handoff after Fine
-After implementation (including E2E tasks) reaches **Fine**, you can **manually** add a structured English comment for QA and Jira using **[QA Comment](../skills/qa-comment)** (`eversis-qa-comment`). The agent may suggest it; it does not run on its own. See [Workflow Overview](./overview).
+:::note Mandatory QA comment draft after Fine
+After implementation (including E2E tasks) reaches **Fine**, the agent **always produces a QA comment draft in the same response** following the **[QA Comment](../skills/qa-comment)** skill (`eversis-qa-comment`). Review the draft, edit if needed, then paste it into Jira or ask the agent to post it via Atlassian MCP. See [Workflow Overview](./overview).
 :::
 
 ## What the E2E Engineer Does

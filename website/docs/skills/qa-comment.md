@@ -7,15 +7,45 @@ title: QA Comment
 
 **Folder:** `.cursor/skills/eversis-qa-comment/`
 
-This skill bridges communication between developers and Quality Assurance. It generates a clear, English-language summary of changes.
+This skill bridges communication between developers and Quality Assurance. It generates a clear, English-language summary of changes written specifically for people who will **test the feature**, not read the code.
 
-## Usage
+## How it fits the workflow
 
-This skill is not automated. Once you reach the **"Fine"** status in your workflow, you can manually trigger it by asking:
+When the Engineering Manager declares **Fine** (implementation complete), the agent **must** produce the QA comment draft **in the same response** — it is not optional. The draft is labeled clearly so you know it has not yet been posted.
 
-> Generate a QA comment for this task.
+The user story looks like this:
 
-Load **`eversis-qa-comment`** via the **`eversis-collections` MCP** (`eversis_skills_get`) or follow the skill folder instructions in Cursor.
+1. **Agent declares Fine** → outputs a labeled draft QA comment.
+2. **You review** the draft, edit it if needed, or replace it with your own text.
+3. **You publish** — either copy-paste into Jira, or tell the agent to post it via Atlassian MCP.
+
+## Readability expectations
+
+The **Main Changes** section is written for QA engineers and non-developers. It describes what the user sees and experiences, not what the code does. Technical depth (selectors, API endpoints, error codes) is reserved for the **Automation & Technical Notes** section.
+
+Good bullet: "After a failed sign-in, the user is now redirected to the login page and returned to their original destination afterwards."
+
+Not useful: "Authorization error responses from the provider are handled explicitly and are no longer treated the same as a normal post-logout redirect without a code."
+
+## Publishing to Jira
+
+### Option A — Copy-paste
+
+Copy the approved text from the draft and paste it into the Jira issue's **Add comment** field.
+
+### Option B — Post via Atlassian MCP
+
+If you have the Atlassian MCP configured in your workspace, you can ask the agent to post after you have approved the text:
+
+> Post the comment above to DHI-396 on eversis.atlassian.net.
+
+The agent then calls `addCommentToJiraIssue` with:
+- `issueIdOrKey` — the ticket key you specify (e.g. `DHI-396`)
+- `commentBody` — the **approved** text, verbatim
+- `cloudId` — resolved from `getAccessibleAtlassianResources` or derived from the site URL you provide (the agent will not invent this)
+- `contentFormat: "markdown"` when supported
+
+The agent never posts in the **same turn** as declaring Fine, and never posts without your explicit instruction.
 
 ## Why English?
 
@@ -23,13 +53,15 @@ To keep international tools such as Jira consistent and to ensure all stakeholde
 
 ## Rules for the Agent
 
-- No direct code references (files, functions) in the summary.
-- Focus on functional impact.
-- Provide technical details for automation testers (selectors, API info).
+- Write Main Changes for a non-developer: describe behavior, not implementation.
+- No file paths, function names, or line numbers in Main Changes.
+- Use Before / After or Given / When / Then framing for behavior changes.
+- If a technical term is unavoidable, add a plain-language gloss in parentheses.
+- Keep technical depth in Automation & Technical Notes only.
 
 ## Example output
 
-Below is an illustrative comment for a hypothetical MFA-in-settings task. An actual run should match this shape: **Main Changes** (functional, no file paths) plus a **Verification List** (manual steps and automation notes).
+Below is an illustrative comment for a hypothetical MFA-in-settings task. An actual run should match this shape: **Main Changes** (behavioral, no file paths) plus a **Verification List** (manual steps and automation notes).
 
 ### 📝 QA Summary
 
@@ -56,4 +88,4 @@ Below is an illustrative comment for a hypothetical MFA-in-settings task. An act
 - **API**: New endpoint `POST /api/v1/auth/mfa/verify` handles code validation.
 - **Error Handling**: Invalid codes return a `422 Unprocessable Entity` with a `code_expired` or `code_invalid` reason.
 
-The canonical few-shot template in the repository is [`qa-comment.example.md`](https://github.com/PiotrNie-Eversis/cursor-collections/blob/main/.cursor/skills/eversis-qa-comment/qa-comment.example.md) under `.cursor/skills/eversis-qa-comment/` (keeps this page aligned with the skill package).
+The canonical few-shot template (including a readability contrast example for auth flows) is [`qa-comment.example.md`](https://github.com/PiotrNie-Eversis/cursor-collections/blob/main/.cursor/skills/eversis-qa-comment/qa-comment.example.md) under `.cursor/skills/eversis-qa-comment/`.

@@ -12,6 +12,22 @@ The canonical source for this changelog is [CHANGELOG.md](https://github.com/Pio
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## 2026-05-11
+
+### Changed
+
+- **`eversis-qa-comment`** skill ([`.cursor/skills/eversis-qa-comment/SKILL.md`](https://github.com/PiotrNie-Eversis/cursor-collections/blob/main/.cursor/skills/eversis-qa-comment/SKILL.md)) — **mandatory** QA comment draft on **Fine** (no longer optional); two-phase human gate: draft in Fine turn, Atlassian MCP `addCommentToJiraIssue` only after explicit approval; expanded readability rules (Before / After framing, jargon gloss, outcome-first ordering). Breaking: adopting teams should expect a QA draft artifact on every Fine.
+- **`qa-comment.example.md`** — added "avoid vs prefer" contrast section using an OAuth callback scenario to illustrate human-readable bullet writing.
+- [**`eversis-engineering-manager.mdc`**](https://github.com/PiotrNie-Eversis/cursor-collections/blob/main/.cursor/rules/eversis-engineering-manager.mdc) — QA Handoff Policy: Fine always produces the draft in the same turn; Atlassian MCP call requires explicit human approval.
+- [**`eversis-agent-core.mdc`**](https://github.com/PiotrNie-Eversis/cursor-collections/blob/main/.cursor/rules/eversis-agent-core.mdc) — added step 5 to Orchestration: QA draft is a required Fine output; Jira publication requires human approval.
+- [**`eversis-implement.md`**](https://github.com/PiotrNie-Eversis/cursor-collections/blob/main/.cursor/prompts/public/eversis-implement.md) — added workflow step 10 (Fine + QA draft) and updated "What It Does" list.
+- **Workflow docs** — [Overview](https://github.com/PiotrNie-Eversis/cursor-collections/blob/main/website/docs/workflow/overview.md) **Status: Fine** updated; [Standard](https://github.com/PiotrNie-Eversis/cursor-collections/blob/main/website/docs/workflow/standard-flow.md), [Frontend](https://github.com/PiotrNie-Eversis/cursor-collections/blob/main/website/docs/workflow/frontend-flow.md), and [E2E](https://github.com/PiotrNie-Eversis/cursor-collections/blob/main/website/docs/workflow/e2e-flow.md) — optional tip replaced with mandatory QA draft note.
+- [**`website/docs/skills/qa-comment.md`**](https://github.com/PiotrNie-Eversis/cursor-collections/blob/main/website/docs/skills/qa-comment.md) — rewritten: user story, readability expectations, Atlassian MCP publishing instructions.
+- **`website/docs/skills/overview.md`** — `eversis-qa-comment` table row updated to **mandatory draft after Fine**.
+- **`README.md`** — QA section updated to mandatory draft after Fine; Atlassian MCP posting described.
+- **`CHANGELOG.md`** — this entry also in root changelog.
+- [**`documentation/cursor-collection.md`**](https://github.com/PiotrNie-Eversis/cursor-collections/blob/main/documentation/cursor-collection.md) — QA handoff subsection added under Part A Workflow.
+
 ## 2026-05-05
 
 ### Added

@@ -27,8 +27,8 @@ For UI-heavy tasks with Figma designs, use the specialized frontend workflow. Th
    ↳ ✅ Address all blockers before merging
 ```
 
-:::tip Optional QA handoff after Fine
-When the Engineering Manager declares **Fine**, you can **manually** generate an English Jira-facing QA summary with the **[QA Comment](../skills/qa-comment)** skill (`eversis-qa-comment`). The agent may suggest it; it is never run automatically. More context: [Workflow Overview](./overview).
+:::note Mandatory QA comment draft after Fine
+When the Engineering Manager declares **Fine**, it **always produces a QA comment draft in the same response** following the **[QA Comment](../skills/qa-comment)** skill (`eversis-qa-comment`). Review the draft, edit if needed, then paste it into Jira or ask the agent to post it via Atlassian MCP. More context: [Workflow Overview](./overview).
 :::
 
 ## How the Verification Loop Works

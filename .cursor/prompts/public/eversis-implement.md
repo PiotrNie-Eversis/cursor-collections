@@ -34,6 +34,7 @@ In **Cursor**, attach the file above (or open it and reference it with `@`) plus
 6. Asks for confirmation before deviating from the plan.
 7. Documents all changes in the plan's Changelog section.
 8. **Automatically runs Code Reviewer** at the end if no review phase is defined.
+9. **Produces a mandatory QA comment draft** on declaring **Fine** — follows `eversis-qa-comment` for structure and readability rules; human approves before any Jira post.
 
 ## How Delegation Works
 
@@ -102,7 +103,9 @@ Your goal is to implement the feature according to the provided implementation p
 
 9. **Delegate code review** — Run code review with [`eversis-review.md`](./review) attached. Include E2E test execution as part of the review. The reviewer runs all quality gates (unit, integration, E2E tests, linting, build).
 
-10. **Before making any changes** to the original solution during implementation, ask for confirmation. Document changes in the plan file's Changelog section with timestamps.
+10. **Declare Fine and produce the QA comment draft** — When declaring **Fine**, produce the QA comment draft **in the same response** following the **`eversis-qa-comment`** skill (load via `eversis-collections` MCP / `eversis_skills_get`, or read `.cursor/skills/eversis-qa-comment/SKILL.md` directly). Label it: `**Draft QA comment — review before posting to Jira**`. Do **not** post to Jira in this turn. Only call `addCommentToJiraIssue` (Atlassian MCP) after the human **explicitly** approves the text and provides the issue key.
+
+11. **Before making any changes** to the original solution during implementation, ask for confirmation. Document changes in the plan file's Changelog section with timestamps.
 
 Ensure to write clean, efficient, and maintainable code following best practices and coding standards for the project.
 

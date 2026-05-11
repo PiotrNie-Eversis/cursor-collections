@@ -18,7 +18,7 @@ Structured **roles**, **prompts** (`eversis-*.md`), **project rules** (`.cursor/
 | **Review**                  | Code and UI quality                          | Attach `@eversis-review`, `@eversis-review-ui`, `@eversis-review-codebase` |
 | **Framework customization** | Rules, skills, prompts, project instructions | Attach `eversis-create-custom-*.md` under `.cursor/prompts/public/` |
 
-**Optional QA handoff (after Implement):** When orchestration reaches **Fine** (agent-side implementation complete), you can **manually** run the **`eversis-qa-comment`** skill via **`eversis-collections`** MCP (`eversis_skills_get`) to draft an English summary for QA and Jira. The Engineering Manager rule suggests this when appropriate and **does not** invoke the skill automatically. Docs: [website/docs/skills/qa-comment.md](website/docs/skills/qa-comment.md); rule: [`.cursor/rules/eversis-engineering-manager.mdc`](.cursor/rules/eversis-engineering-manager.mdc).
+**Mandatory QA comment draft (after Implement):** When orchestration reaches **Fine** (agent-side implementation complete), the Engineering Manager **always** produces a labeled QA comment draft in the same response, following the **`eversis-qa-comment`** skill. You review and approve the draft before publication — paste it into Jira, or instruct the agent to post via the **Atlassian MCP** (`addCommentToJiraIssue`). The agent never posts automatically. Docs: [website/docs/skills/qa-comment.md](website/docs/skills/qa-comment.md); rule: [`.cursor/rules/eversis-engineering-manager.mdc`](.cursor/rules/eversis-engineering-manager.mdc).
 
 **Skills** live in [`.cursor/skills/`](.cursor/skills/) as `eversis-*` topic folders with `SKILL.md` (procedural how-to). **Use them in Agent** via the **`eversis-collections` MCP** server ([`mcp/eversis-collections-mcp/`](mcp/eversis-collections-mcp/): `npm install && npm run build` once, then enable it through [`.cursor/mcp.json`](.cursor/mcp.json)). **`eversis_*` tools** list, read, and validate the tree, and **`eversis_skill_run_script`** runs allowlisted per-skill scripts; this replaces registering the folder as **Cursor Agent Skills**.
 
@@ -78,7 +78,7 @@ IDEATE
 IMPLEMENT
   @eversis-implement
   (research → plan → code; human gates after research and plan)
-  Optional after Fine: eversis-qa-comment (manual English QA / Jira summary — MCP skill, not auto-run)
+  After Fine: eversis-qa-comment draft (mandatory — produced in Fine turn; human approves; optionally post via Atlassian MCP)
 
 REVIEW
   @eversis-review
@@ -93,7 +93,7 @@ For UI work, the implement flow can loop with `eversis-review-ui` until pass or 
 - **Location:** [`.cursor/skills/`](.cursor/skills/) — topic folders with `SKILL.md` and optional `references/`, `assets/`, `examples/`.
 - **Use:** Build and enable [**`mcp/eversis-collections-mcp/`**](mcp/eversis-collections-mcp/) (local MCP; not on npm) and turn on **`eversis-collections`** in [`.cursor/mcp.json`](.cursor/mcp.json). Authoring guide: [website/docs/skills/overview.md](website/docs/skills/overview.md) and the `eversis-creating-skills` skill.
 - **Discovery:** `eversis-agent-core.mdc` (`alwaysApply`) instructs the agent to check `.cursor/skills/` for a matching domain package before broad implementation — preferring `eversis-collections` MCP tools (`eversis_skills_list` / `eversis_skills_get`) when available, otherwise reading `SKILL.md` directly.
-- **`eversis-qa-comment`** — After **Fine**, produce a structured **English** QA/Jira comment (functional “Main Changes” + verification checklist; no file/line callouts in that section). Manual trigger only; few-shot: `.cursor/skills/eversis-qa-comment/qa-comment.example.md`. Site: [website/docs/skills/qa-comment.md](website/docs/skills/qa-comment.md). Workflow context: [website/docs/workflow/overview.md](website/docs/workflow/overview.md) (Standard / Frontend / E2E flow pages include the same optional step).
+- **`eversis-qa-comment`** — **Mandatory** after **Fine**: the agent always produces a labeled English QA comment draft (functional “Main Changes” + verification checklist; no file/line callouts). You approve the draft and publish it — by pasting into Jira or explicitly asking the agent to call **Atlassian MCP** `addCommentToJiraIssue`. Few-shot + readability contrast: `.cursor/skills/eversis-qa-comment/qa-comment.example.md`. Docs: [website/docs/skills/qa-comment.md](website/docs/skills/qa-comment.md).
 
 ---
 
@@ -128,7 +128,7 @@ Notable changes are recorded in [CHANGELOG.md](CHANGELOG.md). This project is **
 
 - **Cursor-only** — prompts are Markdown; invoke by **`@` attachment**; rules live in **`.cursor/rules/`**.
 - **Full lifecycle** — ideation, implementation, review, and optional infra/cost prompts.
-- **Skills** in **`.cursor/skills/`** — procedural depth for agents via the **`eversis-collections` MCP** server (`eversis_skills_*` and **`eversis_skill_run_script`** where allowlisted); build [`mcp/eversis-collections-mcp/`](mcp/eversis-collections-mcp/) first. Includes optional **`eversis-qa-comment`** (manual, after **Fine**) for QA/Jira handoff.
+- **Skills** in **`.cursor/skills/`** — procedural depth for agents via the **`eversis-collections` MCP** server (`eversis_skills_*` and **`eversis_skill_run_script`** where allowlisted); build [`mcp/eversis-collections-mcp/`](mcp/eversis-collections-mcp/) first. Includes **`eversis-qa-comment`** — mandatory QA comment draft on **Fine**, with optional Atlassian MCP posting after human approval.
 - **MCP** — bring Jira, Figma, browser automation, docs, and the local **eversis-collections** server into the same session.
 
 ---

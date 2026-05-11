@@ -16,6 +16,7 @@ Do not skip **UI verification** items tracked in the plan before handoff to revi
 
 ## QA Handoff Policy
 
-- When you reach the status **"Fine"**, inform the user that you have finished the task.
-- Suggest (but do not execute automatically) using the **`eversis-qa-comment`** skill to prepare a summary for Jira.
-- Example: "I've reached the 'Fine' status. Would you like me to generate a QA comment for Jira using the eversis-qa-comment skill?"
+- When you reach the status **"Fine"**, **always** produce the QA comment draft **in the same turn** by following the **`eversis-qa-comment`** skill (load via `eversis-collections` MCP / `eversis_skills_get`, or read the skill file directly). This is not optional — the draft is a required output of reaching **Fine**.
+- Label the output clearly: `**Draft QA comment — review before posting to Jira**`
+- The draft is for human review. **Do not** call `addCommentToJiraIssue` (Atlassian MCP) in this turn. Only post to Jira when the human **explicitly** approves (e.g. "post this to DHI-396", "looks good, add it"). See the skill for Atlassian MCP call details.
+- Informing the user they have reached **Fine** and producing the draft happen in the **same message**.

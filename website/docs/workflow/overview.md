@@ -37,7 +37,7 @@ Think of this workflow as a **relay race**. Each phase produces a deliverable �
 
 #### Status: Fine
 
-When all planned agent work is finished, the Engineering Manager declares **Fine** (task complete from the agent’s perspective). **Optional:** you can manually generate a QA-facing Jira comment with the **[QA Comment](../skills/qa-comment)** skill (`eversis-qa-comment`). The agent may **suggest** doing this but must **not** invoke that skill automatically.
+When all planned agent work is finished, the Engineering Manager declares **Fine** (task complete from the agent’s perspective) and **produces the QA comment draft in the same response** following the **[QA Comment](../skills/qa-comment)** skill (`eversis-qa-comment`). The draft is labeled for review — you edit or approve it, then paste into Jira or instruct the agent to post via Atlassian MCP. Publication never happens automatically.
 
 ### 3. Review
 
