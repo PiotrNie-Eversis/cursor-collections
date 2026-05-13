@@ -63,11 +63,12 @@ When the Engineering Manager declares **Fine** (all implementation and code revi
 
 1. **User-facing** prompt bodies live under **`.cursor/prompts/public/`** (e.g. `eversis-implement.md`). **Internal** (delegation) prompts live under **`.cursor/prompts/internal/`** (e.g. research, plan, implement-ui).
 2. In **Chat** or **Agent**, **prefer** attaching with **`@`** and the **file stem** (e.g. **`@eversis-implement`**, **`@eversis-research`**) so Cursor resolves the file by name. Use a full path under **`.cursor/prompts/...`** only if the file picker does not disambiguate.
-3. Add **`website/docs/prompts/`** to **`.cursorignore`** if you use **sync-prompts** (this repo does), so generated copies for Docusaurus are not indexed as duplicate prompts.
-4. Attach context: ticket text, `@docs/specs/...`, `@docs/context/...`, and indexed **Docs** for your stack.
-5. Send a one-line instruction, e.g. “Execute this prompt for PROJ-123.”
+3. **Alternatively**, use a **Cursor `/` project command**: type `/` in Chat or Agent and select from the dropdown. This repo ships thin delegates under **`.cursor/commands/`** for the four primary SDLC prompts (`eversis-implement`, `eversis-review`, `eversis-analyze-materials`, `eversis-review-ui`). Each file reads and executes the canonical public prompt automatically.
+4. Add **`website/docs/prompts/`** to **`.cursorignore`** if you use **sync-prompts** (this repo does), so generated copies for Docusaurus are not indexed as duplicate prompts.
+5. Attach context: ticket text, `@docs/specs/...`, `@docs/context/...`, and indexed **Docs** for your stack.
+6. Send a one-line instruction, e.g. “Execute this prompt for PROJ-123.”
 
-Docusaurus may show a slash-style label (e.g. `/eversis-implement`); in the IDE, **`@` attachment is the real invocation** — not a separate slash-command runtime.
+**Slash naming clarification:** Docusaurus may display a slug-style label (e.g. `/eversis-implement`) next to prompts — that is a URL slug, not a runtime command. The **legacy `/tsh-*` names** (e.g. `/tsh-implement`) from older Copilot-oriented docs are also not used in Cursor. The only native Cursor `/` invocation is via **`.cursor/commands/*.md`** files described in step 3 above.
 
 ### Artifact mapping (catalog filenames)
 

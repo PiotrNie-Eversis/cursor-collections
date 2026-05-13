@@ -15,12 +15,14 @@ Performs a single-pass, read-only verification comparing the implemented UI agai
 
 ## Usage
 
-Called automatically by the [eversis-implement](./implement) workflow (via the internal UI prompt) in a verification loop. Can also be invoked manually (attach the prompt below with `@`):
+Called automatically by the [eversis-implement](./implement) workflow (via the internal UI prompt) in a verification loop. Can also be invoked manually:
 
 ```text
 @eversis-review-ui
 <component or page description>
 ```
+
+Or use the `/eversis-review-ui` project command (type `/` in Chat or Agent — requires `.cursor/commands/` from this repo).
 
 In **Cursor**, attach the file above (or open it and reference it with `@`) plus your ticket text and context.
 

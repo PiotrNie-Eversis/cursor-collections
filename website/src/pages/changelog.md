@@ -12,6 +12,21 @@ The canonical source for this changelog is [CHANGELOG.md](https://github.com/Pio
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## 2026-05-13
+
+### Added
+
+- **`.cursor/commands/`** — New directory with four thin Cursor `/` project command files (`eversis-implement.md`, `eversis-review.md`, `eversis-analyze-materials.md`, `eversis-review-ui.md`). Each delegates to the canonical `.cursor/prompts/public/*.md` without duplicating workflow bodies. Type `/` in Cursor Chat or Agent to invoke from the dropdown.
+
+### Changed
+
+- [**`eversis-implement.md`**](https://github.com/PiotrNie-Eversis/cursor-collections/blob/main/.cursor/prompts/public/eversis-implement.md), [**`eversis-review.md`**](https://github.com/PiotrNie-Eversis/cursor-collections/blob/main/.cursor/prompts/public/eversis-review.md), [**`eversis-analyze-materials.md`**](https://github.com/PiotrNie-Eversis/cursor-collections/blob/main/.cursor/prompts/public/eversis-analyze-materials.md), [**`eversis-review-ui.md`**](https://github.com/PiotrNie-Eversis/cursor-collections/blob/main/.cursor/prompts/public/eversis-review-ui.md) — Usage section updated to document both `@` attachment and the new `/eversis-*` project command as equivalent invocations.
+- [**`documentation/cursor-collection.md`**](https://github.com/PiotrNie-Eversis/cursor-collections/blob/main/documentation/cursor-collection.md) — "How to run a prompt" section: added step 3 for `/` project commands; slash naming clarification distinguishing legacy `/tsh-*` names from the Cursor-native `.cursor/commands/` mechanism.
+- **`website/docs/intro.md`** — Intro updated: `@` attachment and `/eversis-*` project commands are the two valid Cursor invocations; legacy `/tsh-*` names are Copilot-era only.
+- **`website/docs/prompts/overview.md`** — "How to invoke" block with comparison table of `/` commands and `@` equivalents; legacy `/tsh-*` deprecation note.
+- **`README.md`** — Phase table, quick start step 4, and prompts section updated with both `@` and `/` invocations.
+- [**`eversis-creating-prompts/SKILL.md`**](https://github.com/PiotrNie-Eversis/cursor-collections/blob/main/.cursor/skills/eversis-creating-prompts/SKILL.md) — Step 7 extended with guidance on thin `.cursor/commands/` siblings; Step 8 checklist item added.
+
 ## 2026-05-11
 
 ### Changed

@@ -6,7 +6,19 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ## 2026-05-13
 
+### Added
+
+- **`.cursor/commands/`** — New directory with four thin Cursor `/` project command files (`eversis-implement.md`, `eversis-review.md`, `eversis-analyze-materials.md`, `eversis-review-ui.md`). Each file delegates to the canonical `.cursor/prompts/public/*.md` without duplicating workflow bodies. Type `/` in Cursor Chat or Agent to invoke from the dropdown.
+
 ### Changed
+
+- **`.cursor/prompts/public/eversis-implement.md`**, **`eversis-review.md`**, **`eversis-analyze-materials.md`**, **`eversis-review-ui.md`** — Usage section updated to document both `@` attachment and the new `/eversis-*` project command as equivalent invocations.
+- **`documentation/cursor-collection.md`** — "How to run a prompt" section: added step 3 for `/` project commands; renamed step numbering accordingly; added "Slash naming clarification" note distinguishing Docusaurus URL slugs and legacy `/tsh-*` names from the Cursor-native `.cursor/commands/` mechanism.
+- **`website/docs/intro.md`** — Intro paragraph updated: legacy `/tsh-*` names are Copilot-era only; `@` attachment and `/eversis-*` project commands are the two valid Cursor invocations.
+- **`website/docs/prompts/overview.md`** — "How to invoke" block replaced with a comparison table of `/` project commands and `@` equivalents for the four SDLC entry prompts; legacy `/tsh-*` deprecation note added.
+- **`website/src/components/SdlcDiagram/index.tsx`** — `aria-label` updated to reflect `@` or `/eversis-*` project commands; removes the prior "not as slash chat commands" qualifier and clarifies legacy `/tsh-*` names are excluded.
+- **`README.md`** — Phase table updated with both `@` and `/` invocations; quick start step 4 updated; "Public prompts" heading updated; legacy names note updated.
+- **`.cursor/skills/eversis-creating-prompts/SKILL.md`** — Step 7 extended with guidance on creating a thin `.cursor/commands/` sibling for primary user-facing public prompts; Step 8 checklist updated with validation item.
 
 - **`documentation/cursor-collection.md`** — Clarified SSOT (Single Source of Truth) policy: agents must use `.cursor/skills/` and MCP tools (`eversis_skills_*`), while `website/docs/` is explicitly marked as non-normative human-facing documentation only. Added a table comparing agent vs. human sources.
 - **`README.md`** — Updated QA comment references to point to `SKILL.md` as the primary normative procedure, appending website links as an optional overview.

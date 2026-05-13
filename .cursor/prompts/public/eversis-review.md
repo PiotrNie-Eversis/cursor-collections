@@ -20,6 +20,8 @@ Performs a structured code review against the implementation plan and feature co
 <JIRA_ID or task description — if applicable>
 ```
 
+Or use the `/eversis-review` project command (type `/` in Chat or Agent — requires `.cursor/commands/` from this repo).
+
 In **Cursor**, attach the file above (or open it and reference it with `@`) plus your ticket text and context.
 
 ## What It Does

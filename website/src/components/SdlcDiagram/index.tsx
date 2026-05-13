@@ -7,7 +7,7 @@ export default function SdlcDiagram(): React.JSX.Element {
     <div
       className={styles.wrapper}
       role="img"
-      aria-label="SDLC workflow: attach the eversis Markdown prompts in Cursor with @ (e.g. @eversis-implement or under .cursor/prompts/public) — eversis-analyze-materials, eversis-implement, eversis-review, eversis-review-ui — not as slash chat commands"
+      aria-label="SDLC workflow: invoke eversis prompts with @ (e.g. @eversis-implement) or / project commands (e.g. /eversis-implement, defined in .cursor/commands/) — eversis-analyze-materials, eversis-implement, eversis-review, eversis-review-ui — legacy /tsh-* names are not used in Cursor"
     >
       <div className={styles.diagram}>
         {/* Human Intent */}

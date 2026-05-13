@@ -13,10 +13,12 @@ Structured **roles**, **prompts** (`eversis-*.md`), **project rules** (`.cursor/
 
 | Phase                       | Focus                                        | Entry (Cursor)                                                                                                |
 | --------------------------- | -------------------------------------------- | ------------------------------------------------------------------------------------------------------------- |
-| **Ideate**                  | Requirements and planning                    | Attach `@eversis-analyze-materials`                                            |
-| **Implement**               | Architecture and delivery                    | Attach `@eversis-implement`                                                    |
-| **Review**                  | Code and UI quality                          | Attach `@eversis-review`, `@eversis-review-ui`, `@eversis-review-codebase` |
+| **Ideate**                  | Requirements and planning                    | `@eversis-analyze-materials` or `/eversis-analyze-materials`           |
+| **Implement**               | Architecture and delivery                    | `@eversis-implement` or `/eversis-implement`                           |
+| **Review**                  | Code and UI quality                          | `@eversis-review` or `/eversis-review`; `@eversis-review-ui` or `/eversis-review-ui`; `@eversis-review-codebase` |
 | **Framework customization** | Rules, skills, prompts, project instructions | Attach `eversis-create-custom-*.md` under `.cursor/prompts/public/` |
+
+`/` project commands are defined in **`.cursor/commands/`** and appear in the Cursor `/` dropdown — each delegates to the canonical `.cursor/prompts/public/` file. Legacy `/tsh-*` names are not used.
 
 **Mandatory QA comment draft (after Implement):** When orchestration reaches **Fine** (agent-side implementation complete), the Engineering Manager **always** produces a labeled QA comment draft in the same response, following the **`eversis-qa-comment`** skill. You review and approve the draft before publication — paste it into Jira, or instruct the agent to post via the **Atlassian MCP** (`addCommentToJiraIssue`). The agent never posts automatically. Docs: [`.cursor/skills/eversis-qa-comment/SKILL.md`](.cursor/skills/eversis-qa-comment/SKILL.md) (overview on docs site: [website/docs/skills/qa-comment.md](website/docs/skills/qa-comment.md)); rule: [`.cursor/rules/eversis-engineering-manager.mdc`](.cursor/rules/eversis-engineering-manager.mdc).
 
@@ -31,17 +33,17 @@ Structured **roles**, **prompts** (`eversis-*.md`), **project rules** (`.cursor/
 1. **Open this repository in [Cursor](https://cursor.com/).**
 2. Read [**AGENTS.md**](AGENTS.md) and [documentation/cursor-collection.md](documentation/cursor-collection.md).
 3. Use [**project rules**](.cursor/rules/): start with `eversis-agent-core.mdc` and edit `eversis-project-stack.mdc` for your stack. Rules use three modes — `alwaysApply: true` (always on), `globs: [...]` YAML list (auto-attached to matching files), or empty `globs` + `alwaysApply: false` (attached on demand with `@`). See [documentation/cursor-collection.md](documentation/cursor-collection.md) for details.
-4. In **Chat** or **Agent**, attach a prompt, e.g. `@eversis-implement`, plus your ticket or task text.
+4. In **Chat** or **Agent**, attach a prompt (e.g. `@eversis-implement`) or use a `/` project command (e.g. `/eversis-implement`) — both invoke the same workflow. Paste your ticket or task text after invoking.
 5. **MCP:** this repo includes [`.cursor/mcp.json`](.cursor/mcp.json). When you open the folder, **Cursor** detects it and can prompt you to **enable the listed servers in one step**. Build the local package **[`mcp/eversis-collections-mcp/`](mcp/eversis-collections-mcp/)** (`npm install && npm run build`) so the **`eversis-collections`** server starts — it powers **skills** in Agent via `eversis_*` tools. Optionally merge the same definitions into your **user** MCP config (Cursor → MCP) for third-party servers in every project.
 6. **Skills:** with **`eversis-collections`** enabled, the agent can call tools such as **`eversis_skills_list`** / **`eversis_skills_get`** / **`eversis_skill_run_script`** (allowlisted per-skill scripts) against [`.cursor/skills/`](.cursor/skills/) (no separate Agent Skills registration).
 
-> **Legacy names:** the historic slash-command names `/tsh-*` referred to an older VS Code + GitHub Copilot layout. This repository is **Cursor-only**; use **`eversis-*` markdown prompts** and `@` attachment, not Copilot chat slash commands.
+> **Legacy names:** the historic slash-command names `/tsh-*` referred to an older VS Code + GitHub Copilot layout. This repository is **Cursor-only**; use **`eversis-*` markdown prompts** via `@` attachment or the `/eversis-*` Cursor project commands in `.cursor/commands/` — not the old Copilot chat slash-command runtime.
 
 ---
 
-## Public prompts (attach with `@`)
+## Public prompts (`@` or `/`)
 
-All bodies live under **`.cursor/prompts/public/`**. Full catalog: [website/docs/prompts/overview.md](website/docs/prompts/overview.md).
+All bodies live under **`.cursor/prompts/public/`**. The four primary SDLC prompts also have `/` project command shortcuts in **`.cursor/commands/`**. Full catalog: [website/docs/prompts/overview.md](website/docs/prompts/overview.md).
 
 | Workflow                                       | File to attach                                                             |
 | ---------------------------------------------- | -------------------------------------------------------------------------- |

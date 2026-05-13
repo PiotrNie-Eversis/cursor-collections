@@ -20,6 +20,8 @@ Processes discovery workshop materials and converts them into structured, Jira-r
 <workshop materials or Jira project key>
 ```
 
+Or use the `/eversis-analyze-materials` project command (type `/` in Chat or Agent — requires `.cursor/commands/` from this repo).
+
 In **Cursor**, attach the file above (or open it and reference it with `@`) plus your ticket text and context.
 
 ## What It Does

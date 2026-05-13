@@ -10,7 +10,7 @@ title: Introduction
 
 **Starter rules in this repo:** `eversis-agent-core.mdc` and `eversis-project-stack.mdc` (edit per project); for Implement and Review, optionally attach `eversis-engineering-manager.mdc` and `eversis-code-reviewer.mdc` with the matching prompts.
 
-The Eversis Cursor layer (rules, prompts, and this site) is maintained for **Cursor** only. Historic **slash-style labels** (e.g. `/tsh-implement` in older Copilot-oriented docs) referred to an older layout; in Cursor use **`eversis-*.md`** prompts and `@` attachment, not separate slash-command runtimes.
+The Eversis Cursor layer (rules, prompts, and this site) is maintained for **Cursor** only. Historic **slash-style labels** (e.g. `/tsh-implement` in older Copilot-oriented docs) referred to an older Copilot layout and are not used here. In Cursor, use **`eversis-*.md`** prompts with `@` attachment, or the **`/eversis-*` project commands** defined under `.cursor/commands/` (type `/` in Chat or Agent) — there is no legacy slash-command runtime.
 
 ## Canonical reference
 

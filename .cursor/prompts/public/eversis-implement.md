@@ -20,6 +20,8 @@ Orchestrates the implementation of a feature by delegating tasks from the plan t
 <JIRA_ID or task description — if applicable>
 ```
 
+Or use the `/eversis-implement` project command (type `/` in Chat or Agent — requires `.cursor/commands/` from this repo).
+
 In **Cursor**, attach the file above (or open it and reference it with `@`) plus your ticket text and context.
 
 ## What It Does

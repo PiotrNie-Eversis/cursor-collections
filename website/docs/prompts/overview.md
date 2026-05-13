@@ -7,9 +7,21 @@ title: Prompts Overview
 
 This framework includes **12 public prompts** — Markdown workflow definitions for **Cursor** (Chat or Agent). **Canonical sources** live under `.cursor/prompts/public/` as `eversis-*.md` files.
 
-**How to attach (preferred):** In Chat or Agent, type **`@`** and the **file stem** (e.g. **`@eversis-implement`**, **`@eversis-review`**) so Cursor picks the file by name. Use a full repo path (e.g. **`.cursor/prompts/public/eversis-implement.md`**) only if the picker does not disambiguate.
+**How to invoke:** Two equivalent options in Chat or Agent:
 
-The first column below lists each **prompt by file stem** (links go to the catalog page); it is not a native `/` chat command.
+- **`@` attachment (preferred):** Type **`@`** and the **file stem** (e.g. **`@eversis-implement`**, **`@eversis-review`**). Cursor resolves the file by name; use a full repo path only if the picker does not disambiguate.
+- **`/` project command:** Type **`/`** and select from the dropdown. This repo ships thin `.cursor/commands/eversis-*.md` delegates for the four primary SDLC prompts — they read and execute the canonical prompt file automatically.
+
+| `/` project command | Equivalent `@` attachment | Workflow |
+| --- | --- | --- |
+| `/eversis-analyze-materials` | `@eversis-analyze-materials` | Ideate — workshop → Jira stories |
+| `/eversis-implement` | `@eversis-implement` | Implement — research → plan → code |
+| `/eversis-review` | `@eversis-review` | Review — code quality against plan |
+| `/eversis-review-ui` | `@eversis-review-ui` | Review — Figma vs implementation |
+
+> **Legacy `/tsh-*` names** (e.g. `/tsh-implement`) were a Copilot-era convention and are **not used in Cursor**. Use `@` attachment or the `/eversis-*` project commands above.
+
+The first column in the tables below lists each **prompt by file stem** (links go to the catalog page).
 
 **Documentation site:** From the repository’s **`website/`** directory, `npm run start` and `npm run build` run **`sync-prompts`** first, copying these files into `website/docs/prompts/` for Docusaurus. The generated `eversis-*.md` copies there are gitignored and are listed in **`.cursorignore`** so they are not double-indexed next to the sources under **`.cursor/prompts/`.**
 
