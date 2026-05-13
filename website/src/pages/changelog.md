@@ -14,13 +14,16 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ## 2026-05-13
 
+### Removed
+
+- **Legacy standalone docs MCP packages** — Deleted `mcp/eversis-docs-mcp/` (Python) and `mcp/eversis-docs-mcp-node/` (Node). Business Manager Docs `.docx` tools ship only via [`mcp/eversis-collections-mcp/`](https://github.com/PiotrNie-Eversis/cursor-collections/tree/main/mcp/eversis-collections-mcp) and **`eversis-collections`** in **`.cursor/mcp.json`**.
+
 ### Added
 
 - **`.cursor/commands/`** — New directory with four thin Cursor `/` project command files (`eversis-implement.md`, `eversis-review.md`, `eversis-analyze-materials.md`, `eversis-review-ui.md`). Each delegates to the canonical `.cursor/prompts/public/*.md` without duplicating workflow bodies. Type `/` in Cursor Chat or Agent to invoke from the dropdown.
 - **Business Manager Docs (Word)** — Public prompts **`eversis-ba-docs-planner`** / **`eversis-ba-docs-writer`** ([**`eversis-ba-docs-planner.md`**](https://github.com/PiotrNie-Eversis/cursor-collections/blob/main/.cursor/prompts/public/eversis-ba-docs-planner.md), [**`eversis-ba-docs-writer.md`**](https://github.com/PiotrNie-Eversis/cursor-collections/blob/main/.cursor/prompts/public/eversis-ba-docs-writer.md)) with attach-on-demand rules [**`eversis-ba-docs-planner.mdc`**](https://github.com/PiotrNie-Eversis/cursor-collections/blob/main/.cursor/rules/eversis-ba-docs-planner.mdc) / [**`eversis-ba-docs-writer.mdc`**](https://github.com/PiotrNie-Eversis/cursor-collections/blob/main/.cursor/rules/eversis-ba-docs-writer.mdc). Uses the same **`eversis-collections`** MCP `.docx` tools (no separate docs server in Cursor config).
 - **`eversis-collections` MCP — `.docx` chapter tools** — `generate_summary_map`, `read_chapter`, `update_chapter`, `upload_to_sharepoint` (stub); implementation under [`mcp/eversis-collections-mcp/src/docx/`](https://github.com/PiotrNie-Eversis/cursor-collections/tree/main/mcp/eversis-collections-mcp/src/docx); tests in [`chapters.test.ts`](https://github.com/PiotrNie-Eversis/cursor-collections/blob/main/mcp/eversis-collections-mcp/tests/chapters.test.ts).
 - **`docs/specs/business-docs-workflow/`** — [`business-docs-workflow.spec.md`](https://github.com/PiotrNie-Eversis/cursor-collections/blob/main/docs/specs/business-docs-workflow/business-docs-workflow.spec.md) and [`business-docs-workflow.implementation-plan.md`](https://github.com/PiotrNie-Eversis/cursor-collections/blob/main/docs/specs/business-docs-workflow/business-docs-workflow.implementation-plan.md).
-- **Reference docs MCP packages** — [`mcp/eversis-docs-mcp/`](https://github.com/PiotrNie-Eversis/cursor-collections/tree/main/mcp/eversis-docs-mcp) (Python) and [`mcp/eversis-docs-mcp-node/`](https://github.com/PiotrNie-Eversis/cursor-collections/tree/main/mcp/eversis-docs-mcp-node) (Node) for optional standalone use; **`.cursor/mcp.json`** uses **`eversis-collections`** only for skills and Word chapter tools.
 - [**`website/docs/workflow/business-manager-docs.md`**](https://github.com/PiotrNie-Eversis/cursor-collections/blob/main/website/docs/workflow/business-manager-docs.md) — docs site workflow page.
 
 ### Changed
@@ -36,7 +39,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - **`website/docs/skills/overview.md`** — Notice blockquote: skills catalog is human browsing only; agents use MCP or `SKILL.md`.
 - **`website/docs/workflow/overview.md`** — "Status: Fine" link points to `eversis-qa-comment` `SKILL.md`.
 - **`.cursor/commands/`** — Added `eversis-ba-docs-planner.md` and `eversis-ba-docs-writer.md`; six thin `/` commands total.
-- [**`AGENTS.md`**](https://github.com/PiotrNie-Eversis/cursor-collections/blob/main/AGENTS.md) — `.docx` chapter tools on **`eversis-collections`** and BA docs prompts; legacy docs MCP paths reference-only.
+- [**`AGENTS.md`**](https://github.com/PiotrNie-Eversis/cursor-collections/blob/main/AGENTS.md) — `.docx` chapter tools on **`eversis-collections`** and BA docs prompts (single MCP for skills + Word tooling).
 - [**`mcp/eversis-collections-mcp/README.md`**](https://github.com/PiotrNie-Eversis/cursor-collections/blob/main/mcp/eversis-collections-mcp/README.md) — Tool table and dependencies for `.docx` chapter tools (`JSZip`, `@xmldom/xmldom`).
 - [**`docs/specs/README.md`**](https://github.com/PiotrNie-Eversis/cursor-collections/blob/main/docs/specs/README.md) — Index entry for business-docs-workflow spec folder.
 - **`website/docs/getting-started/mcp-setup.md`**, **`website/docs/integrations/overview.md`**, **`website/docusaurus.config.ts`**, **`website/package.json`** / **`website/README.md`** — Docs site navigation and MCP copy aligned with unified **`eversis-collections`** Word tools where applicable.

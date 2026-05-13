@@ -6,13 +6,16 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ## 2026-05-13
 
+### Removed
+
+- **Legacy standalone docs MCP packages** — Deleted `mcp/eversis-docs-mcp/` (Python) and `mcp/eversis-docs-mcp-node/` (Node). Business Manager Docs `.docx` tools ship only via **`mcp/eversis-collections-mcp/`** and **`eversis-collections`** in `.cursor/mcp.json`.
+
 ### Added
 
 - **`.cursor/commands/`** — New directory with four thin Cursor `/` project command files (`eversis-implement.md`, `eversis-review.md`, `eversis-analyze-materials.md`, `eversis-review-ui.md`). Each file delegates to the canonical `.cursor/prompts/public/*.md` without duplicating workflow bodies. Type `/` in Cursor Chat or Agent to invoke from the dropdown.
 - **Business Manager Docs (Word)** — Public prompts **`eversis-ba-docs-planner`** / **`eversis-ba-docs-writer`** (`.cursor/prompts/public/`) with attach-on-demand rules **`eversis-ba-docs-planner.mdc`** / **`eversis-ba-docs-writer.mdc`**. Uses the same **`eversis-collections`** MCP `.docx` tools as the planner/writer workflows (no separate docs server in Cursor config).
 - **`eversis-collections` MCP — `.docx` chapter tools** — `generate_summary_map`, `read_chapter`, `update_chapter`, `upload_to_sharepoint` (stub); implementation under `mcp/eversis-collections-mcp/src/docx/` with unit tests in `mcp/eversis-collections-mcp/tests/chapters.test.ts`.
 - **`docs/specs/business-docs-workflow/`** — `business-docs-workflow.spec.md` and `business-docs-workflow.implementation-plan.md` for the BA Word documentation workflow.
-- **Reference docs MCP packages** — `mcp/eversis-docs-mcp/` (Python) and `mcp/eversis-docs-mcp-node/` (Node) retained for optional standalone use; this repo’s **`.cursor/mcp.json`** uses **`eversis-collections`** only for skills and Word chapter tools.
 - **`website/docs/workflow/business-manager-docs.md`** — docs site page describing the Business Manager Docs workflow and prerequisites.
 
 ### Changed
@@ -30,7 +33,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - **`website/docs/skills/overview.md`** — Added a notice blockquote clarifying that the skills catalog on the website is for human browsing only, and agents should rely on MCP or `SKILL.md` files.
 - **`website/docs/workflow/overview.md`** — Updated "Status: Fine" link to point directly to `eversis-qa-comment` `SKILL.md` for procedural exactness.
 - **`.cursor/commands/`** — Added `eversis-ba-docs-planner.md` and `eversis-ba-docs-writer.md`; six thin `/` commands total, each delegating to `.cursor/prompts/public/*.md`.
-- **`AGENTS.md`** — Documents `.docx` chapter tools on **`eversis-collections`** and the BA docs prompts; legacy `eversis-docs-mcp` paths noted as reference-only.
+- **`AGENTS.md`** — Documents `.docx` chapter tools on **`eversis-collections`** and the BA docs prompts (single MCP process for skills + Word tooling).
 - **`documentation/cursor-collection.md`** — Business Manager Docs / Word tooling cross-links.
 - **`mcp/eversis-collections-mcp/README.md`** — Tool table and dependencies updated for `.docx` chapter tools (`JSZip`, `@xmldom/xmldom`).
 - **`docs/specs/README.md`** — Index entry for the business-docs-workflow spec folder.

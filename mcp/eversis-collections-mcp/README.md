@@ -3,7 +3,7 @@
 Local **Model Context Protocol** server for the [cursor-collections](https://github.com/PiotrNie-Eversis/cursor-collections) repository. It exposes:
 
 - **`eversis_*` tools** — list, read, and validate `eversis-*` skill packages under `.cursor/skills/`, run allowlisted root scripts (`sync-prompts`, `sync-framework-doc`), and allowlisted per-skill scripts (`eversis_skill_run_script`).
-- **`.docx` chapter tools** (Business Manager Docs) — same names as the legacy standalone docs MCPs: `generate_summary_map`, `read_chapter`, `update_chapter`, `upload_to_sharepoint` (stub). Implementation: `src/docx/` (JSZip + `@xmldom/xmldom`).
+- **`.docx` chapter tools** (Business Manager Docs) — `generate_summary_map`, `read_chapter`, `update_chapter`, `upload_to_sharepoint` (stub). Implementation: `src/docx/` (JSZip + `@xmldom/xmldom`).
 
 Use **only** the **`eversis-collections`** MCP entry in `.cursor/mcp.json` for skills and Word tools together.
 
@@ -55,6 +55,3 @@ node dist/cli.js validate
 
 - **`EVERSIS_COLLECTIONS_ROOT`** — absolute path to a checkout that contains `.cursor/skills` (optional; auto-detected by walking up from this package).
 
-## Legacy standalone docs servers
-
-[`mcp/eversis-docs-mcp/`](../eversis-docs-mcp/) (Python) and [`mcp/eversis-docs-mcp-node/`](../eversis-docs-mcp-node/) remain as optional reference or for workflows that want a separate process; **Cursor config in this repo uses only `eversis-collections`.**

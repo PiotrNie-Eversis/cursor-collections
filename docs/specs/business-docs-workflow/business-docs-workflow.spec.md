@@ -15,7 +15,7 @@ Zgodnie z zasadami frameworka Cursor Collections, proces unika trzymania całoś
 - **Zadania (Jira):** Służy do pobierania surowego kontekstu biznesowego (Epiki, Taski, komentarze z Release'u) z Jiry.
 - **Reguły biznesowe (Confluence):** Służy do dynamicznego pobierania aktualnych zasad aktualizacji dokumentacji dla danego projektu (np. "DAWIS Documentation Definitions & Updating Rules").
 
-- **Eversis Docs MCP Server** (Narzędzie w Pythonie): Serwer odpowiadający za bezpieczną interakcję z plikami `.docx` bez niszczenia ich stylów (użycie biblioteki `python-docx` zamiast konwersji Pandociem).
+- **Narzędzia `.docx` na serwerze MCP `eversis-collections`** (`mcp/eversis-collections-mcp/`, Node: JSZip + `@xmldom/xmldom` na `word/document.xml`): Bezpieczna interakcja z plikami `.docx` przy zachowaniu stylów (bez pełnego round-tripu przez Pandoc).
 - `generate_summary_map(docx_path)` -> Tworzy plik nawigacyjny `summary.md`.
 - `read_chapter(docx_path, chapter_id)` -> Pobiera treść konkretnego rozdziału.
 - `update_chapter(docx_path, chapter_id, new_content)` -> Nadpisuje treść.

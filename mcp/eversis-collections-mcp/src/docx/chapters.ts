@@ -1,6 +1,6 @@
 /**
  * Section model for .docx (OOXML). Body-level w:p in word/document.xml only.
- * Aligned with mcp/eversis-docs-mcp/chapters.py (python-docx) and docs-mcp-node.
+ * Matches the Business Manager Docs playbook tool contract (`chapter_id`, headings).
  */
 
 import type { Document as XmlDocument, Element as XmlElement } from "@xmldom/xmldom";

@@ -32,10 +32,6 @@ Normative requirements and milestones are recorded in the repo spec: **`docs/spe
 | **`summary.md`** | Navigation map for the physical `.docx` (structure / chapter identifiers for agents). |
 | **`docs-update-plan.md`** | Planner output: which chapters change, what to change, and flags such as `[WYMAGA_AKTUALIZACJI_GRAFIKI]` where diagrams need a human pass. |
 
-:::note Legacy reference servers
-Standalone **`mcp/eversis-docs-mcp/`** (Python) and **`mcp/eversis-docs-mcp-node/`** remain **reference** implementations. The playbook prompts expect the **`.docx`** tools on **`eversis-collections`** unless your team configures otherwise.
-:::
-
 ## Prompts vs Role Rules
 
 Following Cursor Collections conventions:

@@ -115,7 +115,7 @@ You may still namespace a **forked** copy of `SKILL.md` trees as `eversis-<topic
 
 ### MCP
 
-Use the same MCP servers (Atlassian, Figma, Playwright, Context7, etc.) in **Cursor Settings → MCP**, or open this repo and enable the workspace file [`.cursor/mcp.json`](../.cursor/mcp.json) when prompted. This repo lists **`eversis-collections`** (stdio) — build it from **`mcp/eversis-collections-mcp/`** (`npm install && npm run build`) before first use; it is **not** published to npm. That one server exposes **skills** (`eversis_skills_*`, script runners) and **`.docx`** tools for the Business Manager Docs playbook. Optional standalone servers under **`mcp/eversis-docs-mcp/`** (Python) and **`mcp/eversis-docs-mcp-node/`** (Node) are reference or alternate runtimes only — this workspace’s `mcp.json` uses **`eversis-collections`** alone.
+Use the same MCP servers (Atlassian, Figma, Playwright, Context7, etc.) in **Cursor Settings → MCP**, or open this repo and enable the workspace file [`.cursor/mcp.json`](../.cursor/mcp.json) when prompted. This repo lists **`eversis-collections`** (stdio) — build it from **`mcp/eversis-collections-mcp/`** (`npm install && npm run build`) before first use; it is **not** published to npm. That server exposes **skills** (`eversis_skills_*`, script runners) and **`.docx`** tools for the Business Manager Docs playbook.
 
 ---
 
