@@ -1,0 +1,13 @@
+[project]
+name = "eversis-docs-mcp"
+version = "0.1.0"
+description = "MCP server for .docx via python-docx (Eversis Business Manager Docs)"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+  "mcp>=1.6.0",
+  "python-docx>=1.1.2",
+]
+
+[dependency-groups]
+dev = ["pytest>=8.0.0"]

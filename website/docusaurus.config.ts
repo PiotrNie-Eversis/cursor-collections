@@ -1,5 +1,7 @@
-import type { Config } from "@docusaurus/types";
+import type { Config, Plugin, ConfigureWebpackUtils } from "@docusaurus/types";
 import type * as Preset from "@docusaurus/preset-classic";
+import type { Configuration, WebpackError } from "webpack";
+import type { ConfigureWebpackResult } from "@docusaurus/types/src/plugin";
 
 const config: Config = {
   title: "Cursor Collections",
@@ -38,6 +40,27 @@ const config: Config = {
         },
       } satisfies Preset.Options,
     ],
+  ],
+
+  plugins: [
+    function webpackWarningFilter(): Plugin {
+      return {
+        name: "webpack-warning-filter",
+        configureWebpack(
+          _config: Configuration,
+          _isServer: boolean,
+          _configureWebpackUtils: ConfigureWebpackUtils,
+          _content: unknown,
+        ): ConfigureWebpackResult {
+          return {
+            ignoreWarnings: [
+              (w: WebpackError) =>
+                w.message?.includes("Critical dependency: require function is used") === true,
+            ],
+          };
+        },
+      };
+    },
   ],
 
   themes: [

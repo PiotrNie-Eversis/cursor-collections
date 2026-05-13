@@ -7,6 +7,7 @@ import { listAllowedScripts, runAllowlistedScript } from "./repoScripts.js";
 import { listAllowedSkillScripts, runAllowlistedSkillScript, skillScriptKeysForZod } from "./skillScripts.js";
 import { getSkillFile, listSkills } from "./skills.js";
 import { validateAllSkills } from "./validate.js";
+import { registerDocxTools } from "./docx/tools.js";
 
 function textResult(text: string) {
   return { content: [{ type: "text" as const, text }] };
@@ -138,6 +139,8 @@ export async function runMcpServer(): Promise<void> {
       );
     }
   );
+
+  registerDocxTools(server);
 
   const transport = new StdioServerTransport();
   await server.connect(transport);

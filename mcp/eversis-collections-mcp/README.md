@@ -1,6 +1,11 @@
 # eversis-collections-mcp
 
-Local **Model Context Protocol** server for the [cursor-collections](https://github.com/PiotrNie-Eversis/cursor-collections) repository. It exposes **`eversis_*` tools** to list, read, and validate the `eversis-*` skill packages under `.cursor/skills/`, to run a small set of allowlisted root scripts (e.g. `scripts/sync-prompts.mjs`), and to run **allowlisted per-skill scripts** under `.cursor/skills/eversis-*/scripts/` (see `eversis_skill_run_script`) — not auto-discovered; each entry is code-reviewed in the MCP package.
+Local **Model Context Protocol** server for the [cursor-collections](https://github.com/PiotrNie-Eversis/cursor-collections) repository. It exposes:
+
+- **`eversis_*` tools** — list, read, and validate `eversis-*` skill packages under `.cursor/skills/`, run allowlisted root scripts (`sync-prompts`, `sync-framework-doc`), and allowlisted per-skill scripts (`eversis_skill_run_script`).
+- **`.docx` chapter tools** (Business Manager Docs) — same names as the legacy standalone docs MCPs: `generate_summary_map`, `read_chapter`, `update_chapter`, `upload_to_sharepoint` (stub). Implementation: `src/docx/` (JSZip + `@xmldom/xmldom`).
+
+Use **only** the **`eversis-collections`** MCP entry in `.cursor/mcp.json` for skills and Word tools together.
 
 ## Not published to npm
 
@@ -13,6 +18,12 @@ npm run build
 ```
 
 Then enable the **`eversis-collections`** entry in the repo’s `.cursor/mcp.json` (already present) and restart Cursor.
+
+## Tests
+
+```bash
+npm test
+```
 
 ## CLI: validate skills (CI)
 
@@ -33,9 +44,17 @@ node dist/cli.js validate
 | `eversis_skills_validate` | Validate every skill (frontmatter, name vs directory, optional length warnings) |
 | `eversis_repo_run_script` | Run `sync-prompts` or `sync-framework-doc` under the repo root |
 | `eversis_skill_run_script` | Run an allowlisted script under `.cursor/skills/eversis-*/scripts/` (e.g. `eversis-creating-skills-skill-md-stats`) |
+| `generate_summary_map` | Writes `*.summary.md` with `chapter_id` (`sec-0` …) mapped to headings |
+| `read_chapter` | Returns body text for a `chapter_id` in a `.docx` |
+| `update_chapter` | Replaces section body and saves the `.docx` (optional graphics placeholder) |
+| `upload_to_sharepoint` | **Stub** — validate path only |
 
 **Security:** `eversis_skill_run_script` and `eversis_repo_run_script` only run paths on a fixed allowlist in this package. New scripts require a PR that adds the file and the key in `src/skillScripts.ts` or `src/repoScripts.ts`. Tools that call external APIs (e.g. cloud cost APIs) are not bundled here by default; add them only with explicit env/credential requirements and review.
 
 ## Environment
 
 - **`EVERSIS_COLLECTIONS_ROOT`** — absolute path to a checkout that contains `.cursor/skills` (optional; auto-detected by walking up from this package).
+
+## Legacy standalone docs servers
+
+[`mcp/eversis-docs-mcp/`](../eversis-docs-mcp/) (Python) and [`mcp/eversis-docs-mcp-node/`](../eversis-docs-mcp-node/) remain as optional reference or for workflows that want a separate process; **Cursor config in this repo uses only `eversis-collections`.**

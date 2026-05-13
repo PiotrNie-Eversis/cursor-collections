@@ -101,7 +101,7 @@ You do not need every role as a separate file on day one: start with **`eversis-
 
 ### Skills (`.cursor/skills/` on disk) + `eversis-collections` MCP
 
-**Skills** are procedural packages (`SKILL.md` in topic folders under `.cursor/skills/eversis-*/`). **Authoring** is always in this repository (or a fork) as Markdown. **In Cursor,** enable the workspace [`.cursor/mcp.json`](../.cursor/mcp.json) and build [`mcp/eversis-collections-mcp`](../mcp/eversis-collections-mcp/) (`npm install && npm run build` in that directory). The server exposes tools such as **`eversis_skills_list`**, **`eversis_skills_get`**, and **`eversis_skills_validate`**, plus allowlisted repo scripts and **`eversis_skill_run_script`** for allowlisted per-skill scripts. That is the supported way to work with the skill tree in Agent — not a separate **Agent Skills** path in Cursor settings.
+**Skills** are procedural packages (`SKILL.md` in topic folders under `.cursor/skills/eversis-*/`). **Authoring** is always in this repository (or a fork) as Markdown. **In Cursor,** enable the workspace [`.cursor/mcp.json`](../.cursor/mcp.json) and build [`mcp/eversis-collections-mcp`](../mcp/eversis-collections-mcp/) (`npm install && npm run build` in that directory). The server exposes tools such as **`eversis_skills_list`**, **`eversis_skills_get`**, and **`eversis_skills_validate`**, plus allowlisted repo scripts and **`eversis_skill_run_script`** for allowlisted per-skill scripts, and **`.docx` chapter tools** (`generate_summary_map`, `read_chapter`, `update_chapter`, `upload_to_sharepoint` stub) for the Business Manager Docs playbook. That is the supported way to work with the skill tree in Agent — not a separate **Agent Skills** path in Cursor settings.
 
 **Agent sources vs published docs (`website/`)**
 
@@ -115,7 +115,7 @@ You may still namespace a **forked** copy of `SKILL.md` trees as `eversis-<topic
 
 ### MCP
 
-Use the same MCP servers (Atlassian, Figma, Playwright, Context7, etc.) in **Cursor Settings → MCP**, or open this repo and enable the workspace file [`.cursor/mcp.json`](../.cursor/mcp.json) when prompted. This repo also lists **`eversis-collections`** (stdio) — the local server above. Build it from **`mcp/eversis-collections-mcp/`** before first use; it is **not** published to npm.
+Use the same MCP servers (Atlassian, Figma, Playwright, Context7, etc.) in **Cursor Settings → MCP**, or open this repo and enable the workspace file [`.cursor/mcp.json`](../.cursor/mcp.json) when prompted. This repo lists **`eversis-collections`** (stdio) — build it from **`mcp/eversis-collections-mcp/`** (`npm install && npm run build`) before first use; it is **not** published to npm. That one server exposes **skills** (`eversis_skills_*`, script runners) and **`.docx`** tools for the Business Manager Docs playbook. Optional standalone servers under **`mcp/eversis-docs-mcp/`** (Python) and **`mcp/eversis-docs-mcp-node/`** (Node) are reference or alternate runtimes only — this workspace’s `mcp.json` uses **`eversis-collections`** alone.
 
 ---
 
@@ -144,6 +144,15 @@ Use the same variants as the [README](../README.md); only **which prompts you at
 
 - **Prompts:** `eversis-analyze-materials` only; respect **multi-gate** review between transcript cleanup, extracted tasks, and Jira formatting.
 - **MCP:** PDF Reader, Figma, Atlassian as needed.
+
+### Business / regulatory documentation (.docx) — Business Manager Docs
+
+- **What this is:** A **relay** for **business analysts / technical writers** updating large Word documents after a Jira release — **not** product software delivery. **Planner** builds `docs-update-plan.md` from Confluence rules + Jira release scope + `summary.md`; **Writer** applies edits via **`.docx` tools on `eversis-collections` MCP** (OOXML via JSZip + `@xmldom/xmldom`). Human reviews the plan before Writer runs and reviews `.docx` output (especially diagrams).
+- **Not** **`eversis-implement`:** `eversis-implement` orchestrates the **Engineering Manager** flow (research → implementation plan → code: Software / DevOps / E2E). This playbook does **not** replace that. Use **`eversis-implement`** for shipping application code; use **`eversis-ba-docs-planner`** / **`eversis-ba-docs-writer`** for regulated or project `.docx` maintenance.
+- **Prompts:** `eversis-ba-docs-planner` → (human gate on `docs-update-plan.md`) → `eversis-ba-docs-writer`. Optionally **`@`** attach `.cursor/rules/eversis-ba-docs-planner.mdc` / `eversis-ba-docs-writer.mdc` for role boundaries (see spec [business-docs-workflow.spec.md](https://github.com/PiotrNie-Eversis/cursor-collections/blob/main/docs/specs/business-docs-workflow/business-docs-workflow.spec.md) §3.0).
+- **MCP:** **Atlassian** (Jira + Confluence); **`eversis-collections`** (skills + `.docx` chapter tools — build `mcp/eversis-collections-mcp/` per README).
+- **Attachments:** `@docs/specs/business-docs-workflow/` or paths to `summary.md` / target `.docx`; release id and Confluence page title for documentation rules.
+- **No frontend UI verification:** Unlike the Figma flow, this playbook does **not** require a dev server URL or `eversis-review-ui`.
 
 ---
 

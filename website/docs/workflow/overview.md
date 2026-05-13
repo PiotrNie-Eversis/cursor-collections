@@ -64,3 +64,4 @@ Each step requires your review and verification. Open the generated documents, g
 - **[Standard Flow](./standard-flow)** — `eversis-implement` → `eversis-review` (research and planning as in the public/internal prompts).
 - **[Frontend Flow](./frontend-flow)** — UI tasks with Figma verification using `eversis-implement` (internal UI steps) and `eversis-review-ui`.
 - **[E2E Testing Flow](./e2e-flow)** — E2E work via `eversis-implement` and E2E patterns in rules/skills.
+- **[Business Manager Docs](./business-manager-docs)** — `@eversis-ba-docs-planner` builds `docs-update-plan.md` from Confluence rules + Jira scope; `@eversis-ba-docs-writer` applies edits to `.docx` via **`eversis-collections`** MCP (`.docx` tools). Human gates separate planning from writing. See also the [framework reference](../framework) for how this repo packages rules and prompts.
