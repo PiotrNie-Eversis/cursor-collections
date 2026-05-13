@@ -19,6 +19,8 @@ When an agent needs specialized procedures, it can pull **`SKILL.md` content** v
 
 ## Available Skills
 
+> **Note:** The skill links below are for human browsing and overview only. Agents must use the `eversis-collections` MCP tools or read the `.cursor/skills/*/SKILL.md` files directly for normative procedures.
+
 ### 📋 Product Ideation Skills
 
 | Skill                                                | Description                                            | Used By                        |

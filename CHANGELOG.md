@@ -4,9 +4,16 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
-## 2026-05-11
+## 2026-05-13
 
 ### Changed
+
+- **`documentation/cursor-collection.md`** — Clarified SSOT (Single Source of Truth) policy: agents must use `.cursor/skills/` and MCP tools (`eversis_skills_*`), while `website/docs/` is explicitly marked as non-normative human-facing documentation only. Added a table comparing agent vs. human sources.
+- **`README.md`** — Updated QA comment references to point to `SKILL.md` as the primary normative procedure, appending website links as an optional overview.
+- **`website/docs/skills/overview.md`** — Added a notice blockquote clarifying that the skills catalog on the website is for human browsing only, and agents should rely on MCP or `SKILL.md` files.
+- **`website/docs/workflow/overview.md`** — Updated "Status: Fine" link to point directly to `eversis-qa-comment` `SKILL.md` for procedural exactness.
+
+## 2026-05-11
 
 - **`eversis-qa-comment`** ([`.cursor/skills/eversis-qa-comment/SKILL.md`](.cursor/skills/eversis-qa-comment/SKILL.md)) — **mandatory** QA comment draft on **Fine** (no longer optional); two-phase human gate: draft in Fine turn, Atlassian MCP `addCommentToJiraIssue` only after explicit approval; expanded readability rules (Before / After framing, jargon gloss, outcome-first ordering). **Breaking:** adopting teams should expect a QA draft artifact on every Fine — it is no longer a suggested option.
 - **`qa-comment.example.md`** — added "avoid vs prefer" contrast section using an OAuth callback scenario to illustrate human-readable bullet writing.

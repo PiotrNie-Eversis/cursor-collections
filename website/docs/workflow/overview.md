@@ -37,7 +37,7 @@ Think of this workflow as a **relay race**. Each phase produces a deliverable �
 
 #### Status: Fine
 
-When all planned agent work is finished, the Engineering Manager declares **Fine** (task complete from the agent’s perspective) and **produces the QA comment draft in the same response** following the **[QA Comment](../skills/qa-comment)** skill (`eversis-qa-comment`). The draft is labeled for review — you edit or approve it, then paste into Jira or instruct the agent to post via Atlassian MCP. Publication never happens automatically.
+When all planned agent work is finished, the Engineering Manager declares **Fine** (task complete from the agent’s perspective) and **produces the QA comment draft in the same response** following the **[`eversis-qa-comment` SKILL.md](https://github.com/PiotrNie-Eversis/cursor-collections/blob/main/.cursor/skills/eversis-qa-comment/SKILL.md)** procedure (overview: [QA Comment](../skills/qa-comment)). The draft is labeled for review — you edit or approve it, then paste into Jira or instruct the agent to post via Atlassian MCP. Publication never happens automatically.
 
 ### 3. Review
 

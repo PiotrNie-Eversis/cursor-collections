@@ -53,7 +53,11 @@ When the Engineering Manager declares **Fine** (all implementation and code revi
 - **Copy-paste** the approved text into the Jira issue comment field, or
 - **Ask the agent** to post via the **Atlassian MCP**: "Post this to PROJ-123 on example.atlassian.net." The agent then calls `addCommentToJiraIssue` with the approved body. It will never post without your explicit instruction, and never in the same turn as the draft.
 
-Full usage guide, readability expectations, and example output: [website/docs/skills/qa-comment.md](https://github.com/PiotrNie-Eversis/cursor-collections/blob/main/website/docs/skills/qa-comment.md).
+- **Normative procedure:** [`.cursor/skills/eversis-qa-comment/SKILL.md`](https://github.com/PiotrNie-Eversis/cursor-collections/blob/main/.cursor/skills/eversis-qa-comment/SKILL.md) (or `eversis_skills_get` / `@` that path in a consumer repo).
+- **Few-shot example:** [`qa-comment.example.md`](https://github.com/PiotrNie-Eversis/cursor-collections/blob/main/.cursor/skills/eversis-qa-comment/qa-comment.example.md) in the same folder.
+- **Optional (non-normative) overview:** [website/docs/skills/qa-comment.md](https://github.com/PiotrNie-Eversis/cursor-collections/blob/main/website/docs/skills/qa-comment.md) — docs-site narrative / onboarding, not full usage.
+
+**Do not** rely on `@website/docs/skills/qa-comment.md` in Agent when you need the exact output contract — attach **`SKILL.md`** or use MCP.
 
 ### How to run a prompt in Cursor
 
@@ -97,6 +101,14 @@ You do not need every role as a separate file on day one: start with **`eversis-
 ### Skills (`.cursor/skills/` on disk) + `eversis-collections` MCP
 
 **Skills** are procedural packages (`SKILL.md` in topic folders under `.cursor/skills/eversis-*/`). **Authoring** is always in this repository (or a fork) as Markdown. **In Cursor,** enable the workspace [`.cursor/mcp.json`](../.cursor/mcp.json) and build [`mcp/eversis-collections-mcp`](../mcp/eversis-collections-mcp/) (`npm install && npm run build` in that directory). The server exposes tools such as **`eversis_skills_list`**, **`eversis_skills_get`**, and **`eversis_skills_validate`**, plus allowlisted repo scripts and **`eversis_skill_run_script`** for allowlisted per-skill scripts. That is the supported way to work with the skill tree in Agent — not a separate **Agent Skills** path in Cursor settings.
+
+**Agent sources vs published docs (`website/`)**
+
+| Layer                 | Path / mechanism                                                      | Role                                                                                               |
+| --------------------- | --------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
+| **Normative**         | `.cursor/skills/eversis-*/SKILL.md` + `eversis_skills_*`              | Procedure agents and MCP must follow.                                                              |
+| **Human / site only** | `website/docs/skills/*.md` (entire `website/docs/**`)                 | Published docs for people — **not** agent SSOT; may drift; never treat as full procedure in Agent. |
+| **Prompts contrast**  | `sync-prompts` → gitignored `website/docs/prompts/` + `.cursorignore` | Prevents double **`@`**; skills **have no equivalent** today unless you add it.                    |
 
 You may still namespace a **forked** copy of `SKILL.md` trees as `eversis-<topic>` in your own repo if you document your own MCP or consumption story.
 
