@@ -9,6 +9,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 ### Added
 
 - **`.cursor/commands/`** — New directory with four thin Cursor `/` project command files (`eversis-implement.md`, `eversis-review.md`, `eversis-analyze-materials.md`, `eversis-review-ui.md`). Each file delegates to the canonical `.cursor/prompts/public/*.md` without duplicating workflow bodies. Type `/` in Cursor Chat or Agent to invoke from the dropdown.
+- **Business Manager Docs (Word)** — Public prompts **`eversis-ba-docs-planner`** / **`eversis-ba-docs-writer`** (`.cursor/prompts/public/`) with attach-on-demand rules **`eversis-ba-docs-planner.mdc`** / **`eversis-ba-docs-writer.mdc`**. Uses the same **`eversis-collections`** MCP `.docx` tools as the planner/writer workflows (no separate docs server in Cursor config).
+- **`eversis-collections` MCP — `.docx` chapter tools** — `generate_summary_map`, `read_chapter`, `update_chapter`, `upload_to_sharepoint` (stub); implementation under `mcp/eversis-collections-mcp/src/docx/` with unit tests in `mcp/eversis-collections-mcp/tests/chapters.test.ts`.
+- **`docs/specs/business-docs-workflow/`** — `business-docs-workflow.spec.md` and `business-docs-workflow.implementation-plan.md` for the BA Word documentation workflow.
+- **Reference docs MCP packages** — `mcp/eversis-docs-mcp/` (Python) and `mcp/eversis-docs-mcp-node/` (Node) retained for optional standalone use; this repo’s **`.cursor/mcp.json`** uses **`eversis-collections`** only for skills and Word chapter tools.
+- **`website/docs/workflow/business-manager-docs.md`** — docs site page describing the Business Manager Docs workflow and prerequisites.
 
 ### Changed
 
@@ -17,13 +22,19 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - **`website/docs/intro.md`** — Intro paragraph updated: legacy `/tsh-*` names are Copilot-era only; `@` attachment and `/eversis-*` project commands are the two valid Cursor invocations.
 - **`website/docs/prompts/overview.md`** — "How to invoke" block replaced with a comparison table of `/` project commands and `@` equivalents for the four SDLC entry prompts; legacy `/tsh-*` deprecation note added.
 - **`website/src/components/SdlcDiagram/index.tsx`** — `aria-label` updated to reflect `@` or `/eversis-*` project commands; removes the prior "not as slash chat commands" qualifier and clarifies legacy `/tsh-*` names are excluded.
-- **`README.md`** — Phase table updated with both `@` and `/` invocations; quick start step 4 updated; "Public prompts" heading updated; legacy names note updated.
+- **`README.md`** — Phase table updated with both `@` and `/` invocations (including **Business Manager Docs** row), quick start step 4 updated, **MCP** step 5 documents `.docx` chapter tools, public prompts table lists **`eversis-ba-docs-*`**, **MCP servers** and **Summary** sections updated for Word tools on **`eversis-collections`**; "Public prompts" heading updated; legacy names note updated.
 - **`.cursor/skills/eversis-creating-prompts/SKILL.md`** — Step 7 extended with guidance on creating a thin `.cursor/commands/` sibling for primary user-facing public prompts; Step 8 checklist updated with validation item.
 
 - **`documentation/cursor-collection.md`** — Clarified SSOT (Single Source of Truth) policy: agents must use `.cursor/skills/` and MCP tools (`eversis_skills_*`), while `website/docs/` is explicitly marked as non-normative human-facing documentation only. Added a table comparing agent vs. human sources.
 - **`README.md`** — Updated QA comment references to point to `SKILL.md` as the primary normative procedure, appending website links as an optional overview.
 - **`website/docs/skills/overview.md`** — Added a notice blockquote clarifying that the skills catalog on the website is for human browsing only, and agents should rely on MCP or `SKILL.md` files.
 - **`website/docs/workflow/overview.md`** — Updated "Status: Fine" link to point directly to `eversis-qa-comment` `SKILL.md` for procedural exactness.
+- **`.cursor/commands/`** — Added `eversis-ba-docs-planner.md` and `eversis-ba-docs-writer.md`; six thin `/` commands total, each delegating to `.cursor/prompts/public/*.md`.
+- **`AGENTS.md`** — Documents `.docx` chapter tools on **`eversis-collections`** and the BA docs prompts; legacy `eversis-docs-mcp` paths noted as reference-only.
+- **`documentation/cursor-collection.md`** — Business Manager Docs / Word tooling cross-links.
+- **`mcp/eversis-collections-mcp/README.md`** — Tool table and dependencies updated for `.docx` chapter tools (`JSZip`, `@xmldom/xmldom`).
+- **`docs/specs/README.md`** — Index entry for the business-docs-workflow spec folder.
+- **`website/docs/getting-started/mcp-setup.md`**, **`website/docs/integrations/overview.md`**, **`website/docusaurus.config.ts`**, **`website/package.json`** / **`website/README.md`** — Docs site navigation and MCP copy aligned with unified **`eversis-collections`** Word tools where applicable.
 
 ## 2026-05-11
 
