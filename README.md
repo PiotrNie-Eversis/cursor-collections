@@ -19,7 +19,7 @@ Structured **roles**, **prompts** (`eversis-*.md`), **project rules** (`.cursor/
 | **Business Manager Docs**   | Release documentation (Word `.docx`)         | `@eversis-ba-docs-planner` or `/eversis-ba-docs-planner`; `@eversis-ba-docs-writer` or `/eversis-ba-docs-writer` — workflow: [website/docs/workflow/business-manager-docs.md](website/docs/workflow/business-manager-docs.md) |
 | **Framework customization** | Rules, skills, prompts, project instructions | Attach `eversis-create-custom-*.md` under `.cursor/prompts/public/` |
 
-`/` project commands are defined in **`.cursor/commands/`** and appear in the Cursor `/` dropdown — each delegates to the canonical `.cursor/prompts/public/` file. Legacy `/tsh-*` names are not used.
+`/` project commands are defined in **`.cursor/commands/`** and appear in the Cursor `/` dropdown — each instructs the agent to **load** the canonical `.cursor/prompts/public/` file (via **`@`** or read) before executing it; workflow bodies are not duplicated in the command stub. Legacy `/tsh-*` names are not used.
 
 **Mandatory QA comment draft (after Implement):** When orchestration reaches **Fine** (agent-side implementation complete), the Engineering Manager **always** produces a labeled QA comment draft in the same response, following the **`eversis-qa-comment`** skill. You review and approve the draft before publication — paste it into Jira, or instruct the agent to post via the **Atlassian MCP** (`addCommentToJiraIssue`). The agent never posts automatically. Docs: [`.cursor/skills/eversis-qa-comment/SKILL.md`](.cursor/skills/eversis-qa-comment/SKILL.md) (overview on docs site: [website/docs/skills/qa-comment.md](website/docs/skills/qa-comment.md)); rule: [`.cursor/rules/eversis-engineering-manager.mdc`](.cursor/rules/eversis-engineering-manager.mdc).
 
@@ -44,7 +44,7 @@ Structured **roles**, **prompts** (`eversis-*.md`), **project rules** (`.cursor/
 
 ## Public prompts (`@` or `/`)
 
-All bodies live under **`.cursor/prompts/public/`**. The primary SDLC prompts and **Business Manager Docs** prompts have matching `/` shortcuts in **`.cursor/commands/`** (six thin command files total). Full catalog: [website/docs/prompts/overview.md](website/docs/prompts/overview.md).
+All bodies live under **`.cursor/prompts/public/`**. The primary SDLC prompts and **Business Manager Docs** prompts have matching `/` shortcuts in **`.cursor/commands/`** (six command stubs total — mandatory canonical prompt load + role hints). Full catalog: [website/docs/prompts/overview.md](website/docs/prompts/overview.md).
 
 | Workflow                                       | File to attach                                                             |
 | ---------------------------------------------- | -------------------------------------------------------------------------- |

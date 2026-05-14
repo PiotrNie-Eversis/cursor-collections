@@ -4,6 +4,17 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## 2026-05-14
+
+### Changed
+
+- **`.cursor/commands/`** — Expanded all six `/eversis-*` command stubs so agents **must load** the matching `.cursor/prompts/public/*.md` (via **`@`** or file read) before acting; **`eversis-implement`** restates research/plan file artifacts for consumer repos and the **Fine → QA draft same-response** contract with links to **`SKILL.md`** (not `website/docs/skills/qa-comment.md` alone).
+- **`.cursor/rules/eversis-project-stack.mdc`** — Fixed workflow links to repo-relative paths (`website/docs/workflow/overview.md`, `documentation/cursor-collection.md`); clarified **`website/docs/skills/qa-comment.md`** as non-normative; added note for downstream repos mirroring the Fine contract.
+- **`documentation/cursor-collection.md`** — “How to run a prompt”: `/` commands described as load-the-canonical-prompt delegates (Implement includes Fine + QA reminder).
+- **`AGENTS.md`** — Fine → QA comment contract summarized with pointers to **`SKILL.md`**, workflow overview, and command/stack reinforcement.
+- **`.cursor/skills/eversis-creating-prompts/SKILL.md`** — Command sibling guidance updated: delegates mandate loading the canonical public prompt; references **`eversis-implement`** contract pattern.
+- **`README.md`** — `/` commands described as stubs that mandate loading canonical prompts (no duplicated workflow bodies).
+
 ## 2026-05-13
 
 ### Removed

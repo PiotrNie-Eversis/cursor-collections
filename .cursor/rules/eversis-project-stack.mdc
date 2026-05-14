@@ -29,3 +29,16 @@ There is no root `lint` / `test` script; the site is mostly Markdown and React t
 - Feature specs for *downstream* or experimental work: **`docs/specs/*.spec.md`**
 - Internal notes: **`docs/context/*.md`**
 - **Template** for other projects: see **“Reference: Eversis stack example”** in [documentation/cursor-collection.md](../../documentation/cursor-collection.md)
+
+## Status: Fine — QA comment (mandatory contract)
+
+Aligned with [workflow overview — Status: Fine](website/docs/workflow/overview.md):
+
+1. When **all** planned agent work for the Implement thread is finished, declare **`Fine`** (explicit word / status).
+2. **In the same assistant response** as **`Fine`**, produce the **QA comment draft** by following **`.cursor/skills/eversis-qa-comment/SKILL.md`** exactly (read that file if needed, or load via **`eversis-collections` MCP** `eversis_skills_get` for `eversis-qa-comment`). Do **not** treat [`website/docs/skills/qa-comment.md`](website/docs/skills/qa-comment.md) as the procedural source of truth — it is onboarding / narrative only; normative procedure is **`SKILL.md`** + MCP ([documentation/cursor-collection.md](documentation/cursor-collection.md) § QA handoff after Fine).
+3. Label the draft: **`Draft QA comment — review before posting to Jira`** (per [`eversis-engineering-manager.mdc`](.cursor/rules/eversis-engineering-manager.mdc)).
+4. **Never** post to Jira in that turn; publication only after **explicit** human approval (paste or Atlassian MCP).
+
+Skipping the QA draft when declaring **Fine** is a **workflow breach** — if you cannot comply (context limit, blocked tools), say so and stop **without** declaring **Fine**.
+
+**Consumer repos:** downstream projects should mirror this contract in **their** `eversis-project-stack.mdc` (always-on) or equivalent AGENTS guidance when they vendor this framework via submodule / copy.
