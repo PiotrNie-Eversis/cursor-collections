@@ -34,6 +34,10 @@ const replacements = [
     "[Agents](./agents/overview)",
   ],
   [
+    "../website/docs/workflow/overview.md",
+    "./workflow/overview.md",
+  ],
+  [
     "[CHANGELOG.md](../CHANGELOG.md)",
     `[CHANGELOG.md](${GITHUB_BLOB}/CHANGELOG.md)`,
   ],
