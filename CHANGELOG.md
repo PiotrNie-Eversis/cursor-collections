@@ -4,6 +4,22 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## 2026-05-18
+
+### Added
+
+- **Markdown link validation** — [`scripts/validate-cursor-markdown-links.mjs`](scripts/validate-cursor-markdown-links.mjs) with `--context=source`, `--context=synced`, and `--context=agents`; wired into `website` **`validate-cursor-links`** (runs in **`prebuild`** / **`prestart`** after `sync-prompts` — broken links fail `npm run build`).
+- **Prompt link rewrite on sync** — [`scripts/lib/prompt-link-rewrite.mjs`](scripts/lib/prompt-link-rewrite.mjs) (`rewritePromptLinksForDocusaurus`, `buildPromptSlugMaps`, generated `prompt-slug-map.generated.json`); unit tests in [`scripts/lib/prompt-link-rewrite.test.mjs`](scripts/lib/prompt-link-rewrite.test.mjs).
+- **`docs/specs/cursor-md-link-refs/`** — research, implementation plan, and follow-up specs for prompt link fixes and agent-page links ([`cursor-md-link-refs-agents.*`](docs/specs/cursor-md-link-refs/)); dual-context skill follow-up in [`cursor-md-link-refs-creating-prompts-dual-context.*`](docs/specs/cursor-md-link-refs/).
+
+### Changed
+
+- **`.cursor/prompts/`** — Canonical source links use repo-resolvable paths (`eversis-*.md`, `../../../website/docs/agents/*.md`); synced copies under `website/docs/prompts/` use Docusaurus slugs and `../../agents/` (rewritten by `sync-prompts`, not hand-edited).
+- **`.cursor/rules/`**, **`.cursor/commands/`**, **skills** — Fixed broken relative links (e.g. `AGENTS.md`, `documentation/`, `website/` from rules/commands; multi-cloud skill cross-refs to renamed `eversis-*` packages).
+- **`documentation/cursor-collection.md`** — New § **Link conventions in `.cursor/`** (source vs synced, validator modes, consumer-repo note).
+- **`.cursor/skills/eversis-creating-prompts/SKILL.md`** — **Dual-context markdown links** section; Step 7/8 extended with canonical `href` rules and validator commands; [`prompt.template.md`](.cursor/skills/eversis-creating-prompts/prompt.template.md) prerequisites example aligned with source paths.
+- **`README.md`** — Docs build quality gate and prompt-author link conventions called out.
+
 ## 2026-05-14
 
 ### Changed

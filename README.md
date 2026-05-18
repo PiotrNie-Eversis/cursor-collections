@@ -25,7 +25,7 @@ Structured **roles**, **prompts** (`eversis-*.md`), **project rules** (`.cursor/
 
 **Skills** live in [`.cursor/skills/`](.cursor/skills/) as `eversis-*` topic folders with `SKILL.md` (procedural how-to). **Use them in Agent** via the **`eversis-collections` MCP** server ([`mcp/eversis-collections-mcp/`](mcp/eversis-collections-mcp/): `npm install && npm run build` once, then enable it through [`.cursor/mcp.json`](.cursor/mcp.json)). **`eversis_*` tools** list, read, and validate the tree, and **`eversis_skill_run_script`** runs allowlisted per-skill scripts; the same server exposes **Word `.docx` chapter tools** (`generate_summary_map`, `read_chapter`, `update_chapter`, `upload_to_sharepoint` stub) used by **Business Manager Docs** prompts — see [AGENTS.md](AGENTS.md). This replaces registering the folder as **Cursor Agent Skills**.
 
-**Docs site:** build and preview from [`website/`](website/) (Docusaurus). **Authoritative how-to for using this framework in any repo:** [documentation/cursor-collection.md](documentation/cursor-collection.md).
+**Docs site:** build and preview from [`website/`](website/) (Docusaurus). **`npm run build`** / **`npm start`** in `website/` run **`sync-prompts`** then **`validate-cursor-links`** — broken markdown links under `.cursor/` or in the synced prompt copy fail the build. **Authoritative how-to for using this framework in any repo:** [documentation/cursor-collection.md](documentation/cursor-collection.md) (including § **Link conventions in `.cursor/`** for prompt authors).
 
 ---
 
@@ -96,7 +96,7 @@ For UI work, the implement flow can loop with `eversis-review-ui` until pass or 
 ## Skills
 
 - **Location:** [`.cursor/skills/`](.cursor/skills/) — topic folders with `SKILL.md` and optional `references/`, `assets/`, `examples/`.
-- **Use:** Build and enable [**`mcp/eversis-collections-mcp/`**](mcp/eversis-collections-mcp/) (local MCP; not on npm) and turn on **`eversis-collections`** in [`.cursor/mcp.json`](.cursor/mcp.json). Authoring guide: [website/docs/skills/overview.md](website/docs/skills/overview.md) and the `eversis-creating-skills` skill.
+- **Use:** Build and enable [**`mcp/eversis-collections-mcp/`**](mcp/eversis-collections-mcp/) (local MCP; not on npm) and turn on **`eversis-collections`** in [`.cursor/mcp.json`](.cursor/mcp.json). Authoring guide: [website/docs/skills/overview.md](website/docs/skills/overview.md) and the `eversis-creating-skills` skill. **Creating prompts** in this monorepo: follow **`eversis-creating-prompts`** — **Dual-context markdown links** (source paths in `.cursor/prompts/` vs slug paths after `sync-prompts`; do not edit the gitignored `website/docs/prompts/` copy by hand).
 - **Discovery:** `eversis-agent-core.mdc` (`alwaysApply`) instructs the agent to check `.cursor/skills/` for a matching domain package before broad implementation — preferring `eversis-collections` MCP tools (`eversis_skills_list` / `eversis_skills_get`) when available, otherwise reading `SKILL.md` directly.
 - **`eversis-qa-comment`** — **Mandatory** after **Fine**: the agent always produces a labeled English QA comment draft (functional “Main Changes” + verification checklist; no file/line callouts). You approve the draft and publish it — by pasting into Jira or explicitly asking the agent to call **Atlassian MCP** `addCommentToJiraIssue`. Few-shot + readability contrast: `.cursor/skills/eversis-qa-comment/qa-comment.example.md`. Docs: [`.cursor/skills/eversis-qa-comment/SKILL.md`](.cursor/skills/eversis-qa-comment/SKILL.md) (overview on docs site: [website/docs/skills/qa-comment.md](website/docs/skills/qa-comment.md)).
 
@@ -125,7 +125,15 @@ The workspace file [`.cursor/mcp.json`](.cursor/mcp.json) lists Atlassian, Figma
 
 ## Contributing and changes
 
-Notable changes are recorded in [CHANGELOG.md](CHANGELOG.md). This project is **MIT licensed** (see repository license file).
+Notable changes are recorded in [CHANGELOG.md](CHANGELOG.md). When you add or edit prompts, rules, or skills with markdown links, run from the repo root:
+
+```bash
+node scripts/validate-cursor-markdown-links.mjs --context=source
+```
+
+After changing prompts in this monorepo, also verify the synced tree: `cd website && npm run validate-cursor-links` (or `npm run build`). See [documentation/cursor-collection.md](documentation/cursor-collection.md) § Link conventions in `.cursor/`.
+
+This project is **MIT licensed** (see repository license file).
 
 ---
 
