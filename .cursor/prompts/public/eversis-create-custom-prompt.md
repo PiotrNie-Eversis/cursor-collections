@@ -7,7 +7,7 @@ prompt_description: "Create a new attachable prompt as .cursor/prompts/public|in
 ---
 # eversis-create-custom-prompt
 
-**Role:** [Cursor customization orchestrator](../../agents/cursor-customization-orchestrator)  
+**Role:** [Cursor customization orchestrator](../../../website/docs/agents/cursor-customization-orchestrator.md)  
 **File:** `.cursor/prompts/public/eversis-create-custom-prompt.md`
 
 Creates a **new Markdown prompt** in **`.cursor/prompts/public/`** (or **`internal/`** if orchestration-only). Prompts in this framework are **attachable files**, not Copilot `*.prompt.md` or slash-command shims.

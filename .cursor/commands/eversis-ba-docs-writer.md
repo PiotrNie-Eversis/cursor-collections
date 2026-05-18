@@ -9,7 +9,7 @@ You are running the **BA documentation writer** workflow (Word `.docx` updates v
 1. If **`@eversis-ba-docs-writer`** (or `.cursor/prompts/public/eversis-ba-docs-writer.md`) is **already attached** with its full workflow section, you may skip re-reading.
 2. Otherwise **read the entire file** `.cursor/prompts/public/eversis-ba-docs-writer.md` using your file-reading capability.
 
-Ensure **`docs-update-plan.md`** (or equivalent) was **human-approved** before executing destructive / broad edits — see the public prompt and [`website/docs/workflow/business-manager-docs.md`](website/docs/workflow/business-manager-docs.md).
+Ensure **`docs-update-plan.md`** (or equivalent) was **human-approved** before executing destructive / broad edits — see the public prompt and [`website/docs/workflow/business-manager-docs.md`](../../website/docs/workflow/business-manager-docs.md).
 
 Build and enable **`eversis-collections` MCP** so **`generate_summary_map`**, **`read_chapter`**, **`update_chapter`**, etc. are available.
 

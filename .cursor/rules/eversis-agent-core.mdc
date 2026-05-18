@@ -23,7 +23,7 @@ Before broad implementation (after plan approval), check whether a skill package
 
 1. **Prefer** the **`eversis-collections` MCP** tools (`eversis_skills_list` / `eversis_skills_get`) to list and read skills when the server is running.
 2. **Otherwise** read the matching `SKILL.md` directly (Read tool or `@` attachment) for domain-specific work — e.g. SQL, accessibility, E2E, Terraform, CI/CD.
-3. Skill packages live under **`.cursor/skills/eversis-<topic>/`**. Do **not** register this folder as Cursor **Agent Skills** (see [AGENTS.md](AGENTS.md)).
+3. Skill packages live under **`.cursor/skills/eversis-<topic>/`**. Do **not** register this folder as Cursor **Agent Skills** (see [AGENTS.md](../../AGENTS.md)).
 
 ## Quality bar
 
@@ -33,7 +33,7 @@ Before broad implementation (after plan approval), check whether a skill package
 
 ## Hard limits (implement)
 
-The same hard prohibitions defined in [`eversis-code-reviewer.mdc`](.cursor/rules/eversis-code-reviewer.mdc) — section **STRICT FORBIDDEN** — apply during implementation, not only at review:
+The same hard prohibitions defined in [`eversis-code-reviewer.mdc`](eversis-code-reviewer.mdc) — section **STRICT FORBIDDEN** — apply during implementation, not only at review:
 
 - Do **not** edit files outside the task / plan scope without explicit human approval.
 - Do **not** remove or silently shorten documentation comments.

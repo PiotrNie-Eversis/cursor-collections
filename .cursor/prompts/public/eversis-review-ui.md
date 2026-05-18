@@ -15,7 +15,7 @@ Performs a single-pass, read-only verification comparing the implemented UI agai
 
 ## Usage
 
-Called automatically by the [eversis-implement](./implement) workflow (via the internal UI prompt) in a verification loop. Can also be invoked manually:
+Called automatically by the [eversis-implement](./eversis-implement.md) workflow (via the internal UI prompt) in a verification loop. Can also be invoked manually:
 
 ```text
 @eversis-review-ui
@@ -82,7 +82,7 @@ In **Cursor**, attach the file above (or open it and reference it with `@`) plus
 
 Perform a single verification pass comparing the current implementation against the Figma design. Report all differences found — do not fix code.
 
-This prompt can be used standalone (attach in Agent) or as part of the flow invoked from [`eversis-implement.md`](./implement).
+This prompt can be used standalone (attach in Agent) or as part of the flow invoked from [`eversis-implement.md`](./eversis-implement.md).
 
 ## Required Skills
 

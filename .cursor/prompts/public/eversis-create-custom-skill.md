@@ -7,7 +7,7 @@ prompt_description: "Create a new Agent Skill: SKILL.md under .cursor/skills/ wi
 ---
 # eversis-create-custom-skill
 
-**Role:** [Cursor customization orchestrator](../../agents/cursor-customization-orchestrator)  
+**Role:** [Cursor customization orchestrator](../../../website/docs/agents/cursor-customization-orchestrator.md)  
 **File:** `.cursor/prompts/public/eversis-create-custom-skill.md`
 
 Creates a new **skill package** (`SKILL.md`): a directory under **`.cursor/skills/<name>/`** with optional `references/`, `assets/`, `examples/`. In this framework, the agent **reads** skills through the **`eversis-collections` MCP** server (`eversis_skills_*` tools) after you build [`mcp/eversis-collections-mcp/`](https://github.com/PiotrNie-Eversis/cursor-collections/tree/main/mcp/eversis-collections-mcp) — do not rely on a separate **Agent Skills** path in Cursor settings.

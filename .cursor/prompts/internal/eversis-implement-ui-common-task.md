@@ -9,7 +9,7 @@ upstream_agent: "eversis-software-engineer"
 # eversis-implement-ui-common-task
 
 :::info
-Not invoked directly by users. To trigger UI implementation, use the [eversis-implement](../public/implement) public prompt — the [Engineering Manager](../../agents/engineering-manager) will automatically delegate to the [Software Engineer](../../agents/software-engineer) via the internal [`eversis-implement-ui`](./implement-ui) prompt.
+Not invoked directly by users. To trigger UI implementation, use the [eversis-implement](../public/eversis-implement.md) public prompt — the [Engineering Manager](../../../website/docs/agents/engineering-manager.md) will automatically delegate to the [Software Engineer](../../../website/docs/agents/software-engineer.md) via the internal [`eversis-implement-ui`](./eversis-implement-ui.md) prompt.
 :::
 
 **Agent:** Software Engineer
@@ -44,7 +44,7 @@ The Engineering Manager identifies UI tasks in the plan and delegates them to th
 
 ### 3. Verification
 
-- After implementation, the Engineering Manager triggers the [eversis-review-ui](../public/review-ui) public prompt via the UI Reviewer for automated Figma comparison.
+- After implementation, the Engineering Manager triggers the [eversis-review-ui](../public/eversis-review-ui.md) public prompt via the UI Reviewer for automated Figma comparison.
 - Mismatches are fixed and re-verified in a loop (up to 5 iterations).
 
 ## Skills Loaded
@@ -58,7 +58,7 @@ The Engineering Manager identifies UI tasks in the plan and delegates them to th
 
 ## Executable prompt (attach in Cursor)
 
-> **PREREQUISITE**: This prompt extends [`eversis-implement-common-task.md`](./implement-common-task). You MUST read and follow **all steps** from that base workflow first. This prompt adds UI-specific behaviors on top — it does not remove or replace any base workflow steps.
+> **PREREQUISITE**: This prompt extends [`eversis-implement-common-task.md`](./eversis-implement-common-task.md). You MUST read and follow **all steps** from that base workflow first. This prompt adds UI-specific behaviors on top — it does not remove or replace any base workflow steps.
 
 Implement the UI feature according to the **research context** and **implementation plan**, using Figma designs as the source of truth for visual implementation.
 

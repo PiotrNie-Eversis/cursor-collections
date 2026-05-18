@@ -21,10 +21,10 @@ Per internal prompts **eversis-research** / **eversis-plan**: write **`*.researc
 
 ## Status: Fine — QA comment (same response, non-negotiable)
 
-Per [workflow overview — Status: Fine](website/docs/workflow/overview.md) and step 10 of the loaded **`eversis-implement`** Executable prompt:
+Per [workflow overview — Status: Fine](../../website/docs/workflow/overview.md) and step 10 of the loaded **`eversis-implement`** Executable prompt:
 
 - When you declare **Fine**, the **QA comment draft must appear in that same message** — no “I’ll add QA in the next turn”.
-- Follow **`.cursor/skills/eversis-qa-comment/SKILL.md`** (or MCP **`eversis_skills_get`** / `eversis-qa-comment`). Do **not** use `website/docs/skills/qa-comment.md` as the spec for output shape — it is onboarding / narrative only; see [documentation/cursor-collection.md](documentation/cursor-collection.md) § QA handoff after Fine.
+- Follow **`.cursor/skills/eversis-qa-comment/SKILL.md`** (or MCP **`eversis_skills_get`** / `eversis-qa-comment`). Do **not** use `website/docs/skills/qa-comment.md` as the spec for output shape — it is onboarding / narrative only; see [documentation/cursor-collection.md](../../documentation/cursor-collection.md) § QA handoff after Fine.
 - Use the label **`Draft QA comment — review before posting to Jira`**. Do **not** call Jira / Atlassian comment APIs until the human explicitly approves.
 
 ## Your input (fill below, then send)

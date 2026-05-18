@@ -9,7 +9,7 @@ upstream_agent: "eversis-e2e-engineer"
 # eversis-implement-e2e
 
 :::info
-Not invoked directly by users. To trigger E2E test implementation, use the [eversis-implement](../public/implement) public prompt — the [Engineering Manager](../../agents/engineering-manager) will automatically delegate to the [E2E Engineer](../../agents/e2e-engineer).
+Not invoked directly by users. To trigger E2E test implementation, use the [eversis-implement](../public/eversis-implement.md) public prompt — the [Engineering Manager](../../../website/docs/agents/engineering-manager.md) will automatically delegate to the [E2E Engineer](../../../website/docs/agents/e2e-engineer.md).
 :::
 
 **Agent:** E2E Engineer  
@@ -170,6 +170,6 @@ Update plan (if plan file exists): check acceptance criteria, add files to Chang
 
 ## 5. Code Review (next step)
 
-After completing E2E test implementation, run a review with [`eversis-review.md`](../public/review) attached, scoped to the new tests. Update the plan changelog with review findings.
+After completing E2E test implementation, run a review with [`eversis-review.md`](../public/eversis-review.md) attached, scoped to the new tests. Update the plan changelog with review findings.
 
 <!-- Eversis port; upstream: eversis-implement-e2e -->

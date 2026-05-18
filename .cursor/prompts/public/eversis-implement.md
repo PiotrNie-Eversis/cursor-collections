@@ -89,7 +89,7 @@ Your goal is to implement the feature according to the provided implementation p
 6. **Process each task in plan order.** For each task, based on its type:
    - **`[CREATE]` or `[MODIFY]`** → delegate to the appropriate agent (Software engineer for application code, DevOps engineer for infrastructure, Prompt engineer for LLM prompts). After the agent completes, run quality checks (tsc, lint, build).
 
-   - **`[REUSE]` — UI verification tasks** → These tasks MUST be processed — do NOT skip them. For each, run a focused **Agent** turn with [`eversis-review-ui.md`](./review-ui) attached, passing: the Figma URL (MCP: `figma`), the confirmed dev server URL from step 3 (MCP: `playwright`), and the component/section name. For the full verify-fix loop, follow [`eversis-implement-ui.md`](../internal/implement-ui).
+   - **`[REUSE]` — UI verification tasks** → These tasks MUST be processed — do NOT skip them. For each, run a focused **Agent** turn with [`eversis-review-ui.md`](./eversis-review-ui.md) attached, passing: the Figma URL (MCP: `figma`), the confirmed dev server URL from step 3 (MCP: `playwright`), and the component/section name. For the full verify-fix loop, follow [`eversis-implement-ui.md`](../internal/eversis-implement-ui.md).
 
    - **`[REUSE]` — other tasks** → execute as described in the task definition — the task specifies which agent to delegate to and what context to pass.
 
@@ -103,7 +103,7 @@ Your goal is to implement the feature according to the provided implementation p
 
    If ANY UI verification task was not processed, go back and process it now. Do NOT proceed to code review with unverified UI components. If verification cannot be completed (tool errors, missing Figma links), document it in the plan's Changelog and get explicit user approval before continuing.
 
-9. **Delegate code review** — Run code review with [`eversis-review.md`](./review) attached. Include E2E test execution as part of the review. The reviewer runs all quality gates (unit, integration, E2E tests, linting, build).
+9. **Delegate code review** — Run code review with [`eversis-review.md`](./eversis-review.md) attached. Include E2E test execution as part of the review. The reviewer runs all quality gates (unit, integration, E2E tests, linting, build).
 
 10. **Declare Fine and produce the QA comment draft** — When declaring **Fine**, produce the QA comment draft **in the same response** following the **`eversis-qa-comment`** skill (load via `eversis-collections` MCP / `eversis_skills_get`, or read `.cursor/skills/eversis-qa-comment/SKILL.md` directly). Label it: `**Draft QA comment — review before posting to Jira**`. Do **not** post to Jira in this turn. Only call `addCommentToJiraIssue` (Atlassian MCP) after the human **explicitly** approves the text and provides the issue key.
 

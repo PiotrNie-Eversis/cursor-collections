@@ -55,7 +55,7 @@ Be specific about the workflow purpose. This is NOT the agent's role — it's th
 <prerequisites>
 > **PREREQUISITE**: Before using this prompt, you MUST first <describe dependency>.
 
-- [dependency-prompt.prompt.md](./dependency-prompt.prompt.md) — <why it must run first>
+- [eversis-implement.md](../../prompts/public/eversis-implement.md) — example upstream prompt that must run first
 - `*.research.md` or `*.plan.md` — <what context it provides>
 </prerequisites>
 -->

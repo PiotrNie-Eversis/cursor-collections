@@ -9,7 +9,7 @@ You are running the **BA documentation planner** workflow from **Eversis Cursor 
 1. If **`@eversis-ba-docs-planner`** (or `.cursor/prompts/public/eversis-ba-docs-planner.md`) is **already attached** with its full workflow section, you may skip re-reading.
 2. Otherwise **read the entire file** `.cursor/prompts/public/eversis-ba-docs-planner.md` using your file-reading capability.
 
-Follow that file end-to-end. **Human approval** on the plan before any Writer phase is mandatory — see also [`website/docs/workflow/business-manager-docs.md`](website/docs/workflow/business-manager-docs.md).
+Follow that file end-to-end. **Human approval** on the plan before any Writer phase is mandatory — see also [`website/docs/workflow/business-manager-docs.md`](../../website/docs/workflow/business-manager-docs.md).
 
 ## Role rule (optional)
 

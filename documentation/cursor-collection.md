@@ -172,6 +172,7 @@ Use a layout optimized for **RAG + Agent** in Cursor:
 │   │   ├── eversis-project-stack.mdc        # EDIT PER PROJECT: stack + conventions
 │   │   ├── eversis-engineering-manager.mdc  # Optional: attach for eversis-implement
 │   │   └── eversis-code-reviewer.mdc        # Optional: attach for eversis-review
+│   ├── commands/                  # Thin /eversis-* delegates (load canonical prompts)
 │   └── prompts/                   # Canonical eversis-*.md (attach in Cursor with @)
 │       ├── public/                # User-facing prompts
 │       └── internal/              # Delegation / orchestration prompts
@@ -203,11 +204,23 @@ Use a layout optimized for **RAG + Agent** in Cursor:
 
 **Indexed documentation:** Add official framework docs via Cursor’s **Docs** feature (add URLs once per workspace). In prompts, reference them with `@` **when the UI supports it** for your Cursor version. Prefer stable paths and repo-local `docs/context` for internal truth.
 
+### Link conventions in `.cursor/`
+
+Markdown links in **`.cursor/`** use **repo-root-relative paths** that resolve in the IDE (e.g. `../../../website/docs/agents/engineering-manager.md`, `../public/eversis-implement.md`). When you build the docs site, **`sync-prompts`** copies prompts into `website/docs/prompts/` and **rewrites** link targets for Docusaurus (`../../agents/…`, slug paths like `./implement`).
+
+| Layer | Link style | Validated by |
+| ----- | ---------- | ------------ |
+| **Source** `.cursor/prompts/` | `eversis-*.md`, `website/docs/agents/*.md` | `node scripts/validate-cursor-markdown-links.mjs --context=source` |
+| **Synced** `website/docs/prompts/` | Slugs + `../../agents/` | same script with `--context=synced` (runs in `website` **prebuild** / **prestart** after sync) |
+
+**Consumer repos** without `website/`: use `@` attachment and backtick paths (e.g. `.cursor/skills/eversis-qa-comment/SKILL.md`); fix **rules** and **commands** links with `../../` to repo root. Optional Docusaurus copy is not required for Implement to run.
+
 ---
 
 ## Part C — Per-project bootstrap checklist
 
 - [ ] Copy `.cursor/rules/` templates; **edit `eversis-project-stack.mdc`** for this repo’s stack and quality commands.
+- [ ] Copy **`.cursor/commands/`** if you want native **`/eversis-implement`** (and related) project commands; each command loads the matching file under `.cursor/prompts/public/`.
 - [ ] Ensure **`eversis-*.md`** prompts exist under `.cursor/prompts/public/` (and `internal/` as needed) — in **this** repository they are already present; in a **new** repo, start from the files you need (analyze / implement / review) and adapt.
 - [ ] Add `docs/specs/` and `docs/context/`; seed context with architecture or run wiki sync.
 - [ ] Configure **MCP** for the workflow variants you use (Jira, Figma, Playwright, …).
