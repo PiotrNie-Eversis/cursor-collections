@@ -317,7 +317,7 @@ cd website && npm run build
 ### Inne (później)
 
 - ~~Automatyczne generowanie mapy slug ↔ filename z frontmatter (wspiera walidator synced).~~ — **Done 2026-05-18:** `buildPromptSlugMaps` / `writePromptSlugMapFile` w `scripts/lib/prompt-link-rewrite.mjs`; walidator synced/agents używa `slugToFile`; sync emituje `prompt-slug-map.generated.json`.
-- Skill `eversis-creating-prompts` — rozszerzona sekcja o dual-context links (można jedną linią w Phase 5).
+- ~~Skill `eversis-creating-prompts` — dual-context links~~ — **Done 2026-05-18:** [cursor-md-link-refs-creating-prompts-dual-context.plan.md](./cursor-md-link-refs-creating-prompts-dual-context.plan.md)
 
 ## Szacunek nakładu
 
@@ -345,3 +345,4 @@ cd website && npm run build
 | 2026-05-18 | Decyzje #1–#3 zaakceptowane; walidator = fail build; slugi w sync |
 | 2026-05-18 | Implementacja zakończona — walidator + sync + build OK |
 | 2026-05-18 | Slug map: `buildPromptSlugMaps`, generated JSON przy sync, O(1) lookup w walidatorze |
+| 2026-05-18 | Skill `eversis-creating-prompts` dual-context — see [cursor-md-link-refs-creating-prompts-dual-context.plan.md](./cursor-md-link-refs-creating-prompts-dual-context.plan.md) |

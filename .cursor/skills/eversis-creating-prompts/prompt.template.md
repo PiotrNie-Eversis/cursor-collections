@@ -52,10 +52,13 @@ Be specific about the workflow purpose. This is NOT the agent's role — it's th
 <!-- ============================================================ -->
 
 <!--
+  Link paths: use canonical source form per Dual-context section in eversis-creating-prompts/SKILL.md
+-->
+<!--
 <prerequisites>
 > **PREREQUISITE**: Before using this prompt, you MUST first <describe dependency>.
 
-- [eversis-implement.md](../../prompts/public/eversis-implement.md) — example upstream prompt that must run first
+- [eversis-implement.md](../../../.cursor/prompts/public/eversis-implement.md) — in a real internal prompt use ../public/eversis-implement.md (see SKILL.md Dual-context)
 - `*.research.md` or `*.plan.md` — <what context it provides>
 </prerequisites>
 -->
