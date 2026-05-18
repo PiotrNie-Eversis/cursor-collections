@@ -6,7 +6,7 @@ title: DevOps Engineer
 # DevOps Engineer Agent
 
 **Rule pack (canonical):** `.cursor/rules/eversis-role-devops-engineer.mdc`  
-**Delegated prompts:** `.cursor/prompts/internal/eversis-implement-pipeline.md`, `.cursor/prompts/internal/eversis-implement-terraform.md`, `.cursor/prompts/internal/eversis-implement-observability.md`, `.cursor/prompts/internal/eversis-deploy-kubernetes.md` (composed from **`@eversis-implement`**)
+**Delegated prompts:** [Implement pipeline](../prompts/internal/implement-pipeline), [Implement Terraform](../prompts/internal/implement-terraform), [Implement observability](../prompts/internal/implement-observability), [Deploy Kubernetes](../prompts/internal/deploy-kubernetes) (composed from **`@eversis-implement`** — [Implement](../prompts/public/implement))
 
 The DevOps Engineer role maps to a senior DevOps engineer and consultant: DevOps culture, “Golden Path” templates, cloud infrastructure, CI/CD pipelines, observability, and cost optimization — expressed as IaC and automation in Cursor.
 
@@ -44,15 +44,15 @@ The DevOps Engineer role maps to a senior DevOps engineer and consultant: DevOps
 
 ## Skills Loaded
 
-- `eversis-technical-context-discovering` — Project conventions and infrastructure patterns.
-- `eversis-codebase-analysing` — Understand existing Terraform, Helm, K8s manifests, and infrastructure codebase.
-- `eversis-implementing-ci-cd` — CI/CD pipeline design patterns and deployment strategies.
-- `eversis-implementing-kubernetes` — Kubernetes deployment patterns, Helm charts, cluster management.
-- `eversis-implementing-terraform-modules` — Reusable Terraform modules for AWS, Azure, and GCP.
-- `eversis-implementing-observability` — Observability patterns for logging, monitoring, alerting, tracing.
-- `eversis-managing-secrets` — Secrets management for cloud and Kubernetes environments.
-- `eversis-optimizing-cloud-cost` — Cloud cost optimization through rightsizing and tagging.
-- `eversis-designing-multi-cloud-architecture` — Multi-cloud architecture design across providers.
+- [eversis-technical-context-discovering](../skills/technical-context-discovery) — Project conventions and infrastructure patterns.
+- [eversis-codebase-analysing](../skills/codebase-analysis) — Understand existing Terraform, Helm, K8s manifests, and infrastructure codebase.
+- [eversis-implementing-ci-cd](../skills/ci-cd-implementation) — CI/CD pipeline design patterns and deployment strategies.
+- [eversis-implementing-kubernetes](../skills/kubernetes-implementation) — Kubernetes deployment patterns, Helm charts, cluster management.
+- [eversis-implementing-terraform-modules](../skills/terraform-modules) — Reusable Terraform modules for AWS, Azure, and GCP.
+- [eversis-implementing-observability](../skills/observability-implementation) — Observability patterns for logging, monitoring, alerting, tracing.
+- [eversis-managing-secrets](../skills/secrets-management) — Secrets management for cloud and Kubernetes environments.
+- [eversis-optimizing-cloud-cost](../skills/cloud-cost-optimization) — Cloud cost optimization through rightsizing and tagging.
+- [eversis-designing-multi-cloud-architecture](../skills/multi-cloud-architecture) — Multi-cloud architecture design across providers.
 
 ## Context Discovery
 
@@ -68,4 +68,4 @@ Before implementing, discover context in this order:
 
 After completing infrastructure work, hand off to:
 
-- **Code Reviewer** — **`@eversis-review`** (review IaC and pipeline changes).
+- **Code Reviewer** — **`@eversis-review`** ([Review](../prompts/public/review); review IaC and pipeline changes).

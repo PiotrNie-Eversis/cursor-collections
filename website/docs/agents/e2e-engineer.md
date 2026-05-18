@@ -6,7 +6,7 @@ title: E2E Engineer
 # E2E Engineer Agent
 
 **Rule pack (canonical):** `.cursor/rules/eversis-role-e2e-engineer.mdc`  
-**Delegated prompt:** `.cursor/prompts/internal/eversis-implement-e2e.md` (via **`@eversis-implement`**)
+**Delegated prompt:** [Implement E2E](../prompts/internal/implement-e2e) (via **`@eversis-implement`** — [Implement](../prompts/public/implement))
 
 The E2E Engineer creates, maintains, and debugs end-to-end tests using **Playwright**. It produces reliable, maintainable, and meaningful test suites with accessibility-first locators, stable flows, and CI-ready runs.
 
@@ -52,12 +52,12 @@ The E2E Engineer creates, maintains, and debugs end-to-end tests using **Playwri
 
 ## Skills Loaded
 
-- `eversis-task-analysing` — Determine context sources and gather requirements.
-- `eversis-e2e-testing` — Test structure patterns, Page Object conventions, mocking strategies, verification loop.
-- `eversis-technical-context-discovering` — Project conventions and test patterns.
+- [eversis-task-analysing](../skills/task-analysis) — Determine context sources and gather requirements.
+- [eversis-e2e-testing](../skills/e2e-testing) — Test structure patterns, Page Object conventions, mocking strategies, verification loop.
+- [eversis-technical-context-discovering](../skills/technical-context-discovery) — Project conventions and test patterns.
 
 ## Handoffs
 
 After discovering critical bugs, the E2E Engineer can hand off to:
 
-- **Software Engineer** — **`@eversis-implement`** (fix the bug discovered during E2E testing).
+- **Software Engineer** — **`@eversis-implement`** ([Implement](../prompts/public/implement); fix the bug discovered during E2E testing).

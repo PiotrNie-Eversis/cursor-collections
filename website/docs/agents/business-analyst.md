@@ -6,7 +6,7 @@ title: Business Analyst
 # Business Analyst Agent
 
 **Rule pack (canonical):** `.cursor/rules/eversis-role-business-analyst.mdc`  
-**Primary prompt:** `@eversis-analyze-materials`
+**Primary prompt:** `@eversis-analyze-materials` (docs: [Analyze materials](../prompts/public/analyze-materials))
 
 The Business Analyst role converts discovery workshop materials (transcripts, Figma, codebase context) into structured, Jira-ready epics and user stories. It can also import and iterate on existing Jira backlogs.
 
@@ -59,12 +59,12 @@ The Business Analyst enforces a strict review process — no data is pushed to J
 
 ## Skills Loaded
 
-- `eversis-transcript-processing` - Clean raw transcripts, structure by topics, extract decisions and action items.
-- `eversis-task-extracting` - Identify epics and user stories from all processed materials.
-- `eversis-task-quality-reviewing` - Run analysis passes to find gaps, edge cases, and improvements.
-- `eversis-jira-task-formatting` — Format tasks for Jira, manage review gates, handle import mode.
-- `eversis-codebase-analysing` — Understand existing system context when relevant to task scope.
+- [eversis-transcript-processing](../skills/transcript-processing) — Clean raw transcripts, structure by topics, extract decisions and action items.
+- [eversis-task-extracting](../skills/task-extraction) — Identify epics and user stories from all processed materials.
+- [eversis-task-quality-reviewing](../skills/task-quality-review) — Run analysis passes to find gaps, edge cases, and improvements.
+- [eversis-jira-task-formatting](../skills/jira-task-formatting) — Format tasks for Jira, manage review gates, handle import mode.
+- [eversis-codebase-analysing](../skills/codebase-analysis) — Understand existing system context when relevant to task scope.
 
 ## Handoffs
 
-After workshop analysis, continue with [Engineering Manager](./engineering-manager) by attaching **`@eversis-implement`** (research and planning run before broad code changes per `eversis-agent-core.mdc`).
+After workshop analysis, continue with [Engineering Manager](./engineering-manager) by attaching **`@eversis-implement`** ([Implement](../prompts/public/implement); research and planning run before broad code changes per `eversis-agent-core.mdc`).

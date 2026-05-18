@@ -212,6 +212,7 @@ Markdown links in **`.cursor/`** use **repo-root-relative paths** that resolve i
 | ----- | ---------- | ------------ |
 | **Source** `.cursor/prompts/` | `eversis-*.md`, `website/docs/agents/*.md` | `node scripts/validate-cursor-markdown-links.mjs --context=source` |
 | **Synced** `website/docs/prompts/` | Slugs + `../../agents/` | same script with `--context=synced` (runs in `website` **prebuild** / **prestart** after sync) |
+| **Agents** `website/docs/agents/` | `../prompts/public\|internal/<slug>`, `../skills/<doc-id>`, `./<agent>`, `../framework` | same script with `--context=agents` |
 
 **Consumer repos** without `website/`: use `@` attachment and backtick paths (e.g. `.cursor/skills/eversis-qa-comment/SKILL.md`); fix **rules** and **commands** links with `../../` to repo root. Optional Docusaurus copy is not required for Implement to run.
 

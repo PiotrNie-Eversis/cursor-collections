@@ -5,7 +5,7 @@ title: Cursor customization orchestrator
 
 # Cursor customization orchestrator *(experimental)*
 
-**Packaging:** Composed workflow using **`@eversis-create-custom-agent`** and related **`eversis-create-custom-*.md`** prompts, with explicit human checkpoints between phases.
+**Packaging:** Composed workflow using **`@eversis-create-custom-agent`** ([Create custom agent](../prompts/public/create-custom-agent)) and related create-custom prompts, with explicit human checkpoints between phases.
 
 The orchestrator pattern coordinates **large Cursor customization** efforts. It **decomposes** work into focused subtasks, **delegates** to workers (fresh context per step), and **synthesizes** results—so complex work does not collapse into one long, drifting Agent thread.
 

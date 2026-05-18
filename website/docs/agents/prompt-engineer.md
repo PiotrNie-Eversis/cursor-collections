@@ -6,7 +6,7 @@ title: Prompt Engineer
 # Prompt Engineer Agent
 
 **Rule pack (canonical):** `.cursor/rules/eversis-role-prompt-engineer.mdc`  
-**Delegated prompt:** `.cursor/prompts/internal/eversis-engineer-prompt.md` (via **`@eversis-implement`**)
+**Delegated prompt:** [Engineer prompt](../prompts/internal/engineer-prompt) (via **`@eversis-implement`** — [Implement](../prompts/public/implement))
 
 This role designs, optimizes, and secures **application LLM prompts** — system prompts, user templates, RAG injection patterns, tool-calling instructions, and classification/extraction prompts consumed by your product at runtime.
 
@@ -39,11 +39,11 @@ It does **not** own Cursor packaging artifacts (`.mdc` rules, repo prompt librar
 
 ## Skills (Eversis naming)
 
-- `eversis-engineering-prompts`
-- `eversis-technical-context-discovering`
-- `eversis-code-reviewing` (when reviewing prompt-related code)
+- [eversis-engineering-prompts](../skills/prompt-engineering)
+- [eversis-technical-context-discovering](../skills/technical-context-discovery)
+- [eversis-code-reviewing](../skills/code-review) (when reviewing prompt-related code)
 
 ## Delegation
 
-- **Orchestrated:** Engineering Manager routes LLM prompt tasks during **`eversis-implement`**.
-- **Focused:** Attach **`@eversis-engineer-prompt`** when the task is prompt-only work inside an implement cycle.
+- **Orchestrated:** Engineering Manager routes LLM prompt tasks during **`eversis-implement`** ([Implement](../prompts/public/implement)).
+- **Focused:** Attach **`@eversis-engineer-prompt`** ([Engineer prompt](../prompts/internal/engineer-prompt)) when the task is prompt-only work inside an implement cycle.

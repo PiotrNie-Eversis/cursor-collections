@@ -6,7 +6,7 @@ title: Cursor customization engineer
 # Cursor customization engineer
 
 **Rule pack (canonical):** `.cursor/rules/eversis-role-cursor-customization.mdc` (optional; add when you specialize this role)  
-**Typical prompts:** `@eversis-create-custom-agent`, `@eversis-create-custom-skill`, `@eversis-create-custom-prompt`, `@eversis-create-custom-instructions`
+**Typical prompts:** `@eversis-create-custom-agent` ([Create custom agent](../prompts/public/create-custom-agent)), `@eversis-create-custom-skill` ([Create custom skill](../prompts/public/create-custom-skill)), `@eversis-create-custom-prompt` ([Create custom prompt](../prompts/public/create-custom-prompt)), `@eversis-create-custom-instructions` ([Create custom instructions](../prompts/public/create-custom-instructions))
 
 This role designs, creates, reviews, and improves **Cursor-native packaging**: project rules (`.mdc`), Agent Skills (`SKILL.md`), prompt markdown under **`.cursor/prompts/`**, and high-level project guidance (`AGENTS.md`, stack rules).
 
@@ -49,13 +49,13 @@ When content lands in the wrong layer, this role identifies the violation and mo
 
 ## Skills Loaded
 
-- `eversis-creating-agents` — Methodology for defining roles in Cursor (rules/prompts); templates and validation checklist.
-- `eversis-creating-skills` — Naming conventions, body structure, progressive disclosure patterns.
-- `eversis-creating-prompts` — Prompt authoring workflow, templates, workflow-focused guidelines.
-- `eversis-creating-instructions` — Templates and decision framework for project instructions vs skill placement.
-- `eversis-technical-context-discovering` — Understand existing customization patterns in the project.
-- `eversis-codebase-analysing` — Analyze existing packaging files and identify patterns.
+- [eversis-creating-agents](../skills/creating-agents) — Methodology for defining roles in Cursor (rules/prompts); templates and validation checklist.
+- [eversis-creating-skills](../skills/creating-skills) — Naming conventions, body structure, progressive disclosure patterns.
+- [eversis-creating-prompts](../skills/creating-prompts) — Prompt authoring workflow, templates, workflow-focused guidelines.
+- [eversis-creating-instructions](../skills/creating-instructions) — Templates and decision framework for project instructions vs skill placement.
+- [eversis-technical-context-discovering](../skills/technical-context-discovery) — Understand existing customization patterns in the project.
+- [eversis-codebase-analysing](../skills/codebase-analysis) — Analyze existing packaging files and identify patterns.
 
 ## Related
 
-For multi-phase customization (research → create → review), use the [Cursor customization orchestrator](./cursor-customization-orchestrator) pattern and public **`eversis-create-custom-*`** prompts.
+For multi-phase customization (research → create → review), use the [Cursor customization orchestrator](./cursor-customization-orchestrator) pattern and public [Create custom agent](../prompts/public/create-custom-agent) (and related create-custom prompts).

@@ -6,7 +6,7 @@ title: UI Reviewer
 # UI Reviewer Agent
 
 **Rule pack (canonical):** `.cursor/rules/eversis-role-ui-reviewer.mdc`  
-**Primary prompt:** `@eversis-review-ui`
+**Primary prompt:** `@eversis-review-ui` (docs: [Review UI](../prompts/public/review-ui))
 
 The UI Reviewer performs **read-only** verification comparing implemented UI against **Figma** designs and reports differences. It can be run **directly** by a user (attach **`@eversis-review-ui`**) or **during the UI implementation loop** with the [Software Engineer](./software-engineer). It does **not** fix product code.
 
@@ -35,7 +35,7 @@ The UI Reviewer performs **read-only** verification comparing implemented UI aga
 4. Produce a **PASS/FAIL** report with a difference table showing exact values.
 
 :::info Read-only
-The UI Reviewer never modifies code. It only reports differences so the [Software Engineer](./software-engineer) (via **`@eversis-implement`** and UI internal prompts) can fix them. When called in a loop, each pass is independent.
+The UI Reviewer never modifies code. It only reports differences so the [Software Engineer](./software-engineer) (via **`@eversis-implement`** — [Implement](../prompts/public/implement) — and [Implement UI](../prompts/internal/implement-ui)) can fix them. When called in a loop, each pass is independent.
 :::
 
 ## Tool Access
@@ -52,12 +52,12 @@ The UI Reviewer never modifies code. It only reports differences so the [Softwar
 
 ## Skills Loaded
 
-- `eversis-ui-verifying` — Verification criteria, structure checklist, severity definitions, and tolerances.
+- [eversis-ui-verifying](../skills/ui-verification) — Verification criteria, structure checklist, severity definitions, and tolerances.
 
 ## Handoffs
 
 After verification, the UI Reviewer can hand off to:
 
-- **Software Engineer** — **`@eversis-implement`** (start UI implementation according to the plan).
-- **Software Engineer** — **`@eversis-implement`** (implement UI fixes based on the verification report).
-- **Code Reviewer** — **`@eversis-review`** (proceed to code review if PASS).
+- **Software Engineer** — **`@eversis-implement`** ([Implement](../prompts/public/implement); start UI implementation according to the plan).
+- **Software Engineer** — **`@eversis-implement`** ([Implement](../prompts/public/implement); implement UI fixes based on the verification report).
+- **Code Reviewer** — **`@eversis-review`** ([Review](../prompts/public/review); proceed to code review if PASS).

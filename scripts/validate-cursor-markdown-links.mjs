@@ -4,7 +4,7 @@
  * website/docs/prompts/ (synced, after sync-prompts).
  *
  * Usage:
- *   node scripts/validate-cursor-markdown-links.mjs [--context=source|synced]
+ *   node scripts/validate-cursor-markdown-links.mjs [--context=source|synced|agents]
  */
 import fs from "node:fs";
 import path from "node:path";
@@ -92,6 +92,42 @@ function findPromptBySlug(slugIndex, tier, slug) {
   return null;
 }
 
+function buildAgentsResolver(promptsSyncedRoot, slugIndex) {
+  const agentsDir = path.join(root, "website/docs/agents");
+  const skillsDir = path.join(root, "website/docs/skills");
+  const frameworkDoc = path.join(root, "website/docs/framework-reference.md");
+
+  return function resolveAgents(fromFile, href) {
+    const raw = href.split("#")[0].trim();
+    if (!raw || SKIP_HREF.test(raw) || isGlobOrPlaceholder(raw)) return { ok: true };
+
+    const fromDir = path.dirname(fromFile);
+    let target = path.resolve(fromDir, raw);
+
+    if (raw === "../framework" || raw === "../framework-reference") {
+      target = frameworkDoc;
+    } else if (raw.startsWith("./")) {
+      const agent = raw.slice(2).replace(/\.md$/, "");
+      target = path.join(agentsDir, `${agent}.md`);
+    } else if (raw.startsWith("../prompts/public/")) {
+      const slug = raw.replace("../prompts/public/", "").replace(/\.md$/, "");
+      const file = findPromptBySlug(slugIndex, "public", slug);
+      target = file ? path.join(promptsSyncedRoot, "public", file) : target;
+    } else if (raw.startsWith("../prompts/internal/")) {
+      const slug = raw.replace("../prompts/internal/", "").replace(/\.md$/, "");
+      const file = findPromptBySlug(slugIndex, "internal", slug);
+      target = file ? path.join(promptsSyncedRoot, "internal", file) : target;
+    } else if (raw.startsWith("../skills/")) {
+      const docId = raw.replace("../skills/", "").replace(/\.md$/, "");
+      target = path.join(skillsDir, `${docId}.md`);
+    }
+
+    if (fs.existsSync(target)) return { ok: true, target };
+    if (fs.existsSync(`${target}.md`)) return { ok: true, target: `${target}.md` };
+    return { ok: false, target };
+  };
+}
+
 function resolveSource(fromFile, href) {
   const raw = href.split("#")[0].trim();
   if (!raw || SKIP_HREF.test(raw) || isGlobOrPlaceholder(raw)) return { ok: true };
@@ -146,6 +182,14 @@ if (context === "synced") {
   const syncedRoot = path.join(root, "website/docs/prompts");
   files = collectFiles(syncedRoot, [".md"]);
   resolver = buildSyncedResolver(syncedRoot, slugIndex);
+} else if (context === "agents") {
+  const agentsRoot = path.join(root, "website/docs/agents");
+  const syncedRoot = path.join(root, "website/docs/prompts");
+  files = collectFiles(agentsRoot, [".md"]);
+  resolver = buildAgentsResolver(syncedRoot, slugIndex);
+} else if (context !== "source") {
+  console.error(`Unknown --context=${context} (use source, synced, or agents)`);
+  process.exit(1);
 } else {
   const dirs = [
     path.join(root, ".cursor/commands"),

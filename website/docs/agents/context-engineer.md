@@ -6,7 +6,7 @@ title: Context Engineer
 # Context Engineer Agent
 
 **Rule pack (canonical):** `.cursor/rules/eversis-role-context-engineer.mdc`  
-**Delegated prompt:** `.cursor/prompts/internal/eversis-research.md` (via `@eversis-implement` and Engineering Manager orchestration)
+**Delegated prompt:** [Research](../prompts/internal/research) (via `@eversis-implement` — [Implement](../prompts/public/implement) — and Engineering Manager orchestration)
 
 The Context Engineer gathers requirements, analyzes processes, and produces a research artifact before planning and implementation.
 
@@ -48,9 +48,8 @@ A `.research.md` document containing:
 
 ## Skills Loaded
 
-- `eversis-task-analysing` — Analyze task descriptions, perform gap analysis, expand context, gather information from multiple sources.
-- `eversis-codebase-analysing` — Analyze existing codebase to identify components and patterns related to the task.
+- [eversis-task-analysing](../skills/task-analysis) — Analyze task descriptions, perform gap analysis, expand context, gather information from multiple sources.
 
 ## Handoffs
 
-Returns to Engineering Manager orchestration; next step is planning via **`.cursor/prompts/internal/eversis-plan.md`** and the [Architect](./architect), with **human approval** after research per `eversis-agent-core.mdc`.
+Returns to Engineering Manager orchestration; next step is planning via [Plan](../prompts/internal/plan) and the [Architect](./architect), with **human approval** after research per `eversis-agent-core.mdc`.

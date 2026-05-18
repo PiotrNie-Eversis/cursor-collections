@@ -6,7 +6,7 @@ title: Architect
 # Architect Agent
 
 **Rule pack (canonical):** `.cursor/rules/eversis-role-architect.mdc`  
-**Delegated prompt:** `.cursor/prompts/internal/eversis-plan.md` (via `@eversis-implement`)
+**Delegated prompt:** [Plan](../prompts/internal/plan) (via `@eversis-implement` — [Implement](../prompts/public/implement))
 
 The Architect designs technical solutions and implementation plans from approved research, turning requirements into phased, executable work.
 
@@ -41,19 +41,20 @@ The Architect designs technical solutions and implementation plans from approved
 
 ## Skills (Eversis naming)
 
-- `eversis-architecture-designing` — Solution design, components, data flows, implementation plan creation.
-- `eversis-codebase-analysing` — Analyze current architecture, components, and patterns.
-- `eversis-implementation-gap-analysing` — Focus the plan on necessary changes without duplicating existing work.
-- `eversis-technical-context-discovering` — Establish project conventions and patterns before designing.
-- `eversis-sql-and-database-understanding` — Database schema design, indexing strategies, transaction patterns.
-- `eversis-designing-multi-cloud-architecture` — Cross-provider infrastructure design and service selection across AWS, Azure, and GCP.
-- `eversis-optimizing-cloud-cost` — Cost implications of architectural decisions, pricing model comparison.
-- `eversis-implementing-ci-cd` — CI/CD pipeline design, deployment strategies, delivery workflows.
-- `eversis-implementing-terraform-modules` — IaC structure, Terraform module hierarchy, Terragrunt patterns.
-- `eversis-managing-secrets` — Secrets management, credential rotation, vault integration.
-- `eversis-implementing-kubernetes` — K8s workload configurations, scaling strategies, Helm chart structure.
-- `eversis-implementing-observability` — Monitoring architecture, SLO frameworks, alerting, distributed tracing. — LLM prompt architecture: prompt template strategy, system prompt design, few-shot vs zero-shot decisions.
+- [eversis-architecture-designing](../skills/architecture-design) — Solution design, components, data flows, implementation plan creation.
+- [eversis-codebase-analysing](../skills/codebase-analysis) — Analyze current architecture, components, and patterns.
+- [eversis-implementation-gap-analysing](../skills/implementation-gap-analysis) — Focus the plan on necessary changes without duplicating existing work.
+- [eversis-technical-context-discovering](../skills/technical-context-discovery) — Establish project conventions and patterns before designing.
+- [eversis-sql-and-database-understanding](../skills/sql-and-database) — Database schema design, indexing strategies, transaction patterns.
+- [eversis-designing-multi-cloud-architecture](../skills/multi-cloud-architecture) — Cross-provider infrastructure design and service selection across AWS, Azure, and GCP.
+- [eversis-optimizing-cloud-cost](../skills/cloud-cost-optimization) — Cost implications of architectural decisions, pricing model comparison.
+- [eversis-implementing-ci-cd](../skills/ci-cd-implementation) — CI/CD pipeline design, deployment strategies, delivery workflows.
+- [eversis-implementing-terraform-modules](../skills/terraform-modules) — IaC structure, Terraform module hierarchy, Terragrunt patterns.
+- [eversis-managing-secrets](../skills/secrets-management) — Secrets management, credential rotation, vault integration.
+- [eversis-implementing-kubernetes](../skills/kubernetes-implementation) — K8s workload configurations, scaling strategies, Helm chart structure.
+- [eversis-implementing-observability](../skills/observability-implementation) — Monitoring architecture, SLO frameworks, alerting, distributed tracing.
+- [eversis-engineering-prompts](../skills/prompt-engineering) — LLM prompt architecture: prompt template strategy, system prompt design, few-shot vs zero-shot decisions.
 
 ## Handoffs
 
-After human approval of the plan, implementation runs through **`@eversis-implement`** and the [Engineering Manager](./engineering-manager), including UI flows via **`.cursor/prompts/internal/eversis-implement-ui.md`** when Figma is in scope.
+After human approval of the plan, implementation runs through **`@eversis-implement`** ([Implement](../prompts/public/implement)) and the [Engineering Manager](./engineering-manager), including UI flows via [Implement UI](../prompts/internal/implement-ui) when Figma is in scope.

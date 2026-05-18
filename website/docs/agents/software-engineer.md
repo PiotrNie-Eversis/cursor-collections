@@ -6,7 +6,7 @@ title: Software Engineer
 # Software Engineer Agent
 
 **Rule pack (canonical):** `.cursor/rules/eversis-role-software-engineer.mdc`  
-**Delegated prompts:** `.cursor/prompts/internal/eversis-implement-common-task.md`, `.cursor/prompts/internal/eversis-implement-ui-common-task.md`, and related paths composed from **`@eversis-implement`**
+**Delegated prompts:** [Implement common task](../prompts/internal/implement-common-task), [Implement UI common task](../prompts/internal/implement-ui-common-task), and related paths composed from **`@eversis-implement`** ([Implement](../prompts/public/implement))
 
 The Software Engineer agent implements software solutions based on provided requirements and technical designs. It executes against implementation plans created by the Architect.
 
@@ -41,21 +41,21 @@ The Software Engineer agent implements software solutions based on provided requ
 
 ## Skills Loaded
 
-- `eversis-technical-context-discovering` — Establish project conventions and patterns before implementing.
-- `eversis-implementation-gap-analysing` — Verify what exists vs what needs to be built.
-- `eversis-codebase-analysing` — Understand existing architecture for complex features.
-- `eversis-implementing-frontend` — Component patterns, composition, design tokens, Figma-to-code workflow.
-- `eversis-implementing-forms` — Schema validation, field composition, error handling, multi-step form flows.
-- `eversis-writing-hooks` — Custom hooks: naming, composition, stable returns, effect cleanup, testing.
-- `eversis-ensuring-accessibility` — WCAG 2.1 AA compliance: semantic HTML, ARIA, keyboard navigation, focus management.
-- `eversis-optimizing-frontend` — Code splitting, memoization, bundle size, rendering optimization, memory management.
-- `eversis-ui-verifying` — Tolerances and structure checklist for Figma verification.
-- `eversis-sql-and-database-understanding` — SQL queries, database schemas, migrations, ORM patterns.
-- `eversis-engineering-prompts` — LLM prompt design: structure patterns, optimization, security, templates.
+- [eversis-technical-context-discovering](../skills/technical-context-discovery) — Establish project conventions and patterns before implementing.
+- [eversis-implementation-gap-analysing](../skills/implementation-gap-analysis) — Verify what exists vs what needs to be built.
+- [eversis-codebase-analysing](../skills/codebase-analysis) — Understand existing architecture for complex features.
+- [eversis-implementing-frontend](../skills/frontend-implementation) — Component patterns, composition, design tokens, Figma-to-code workflow.
+- [eversis-implementing-forms](../skills/implementing-forms) — Schema validation, field composition, error handling, multi-step form flows.
+- [eversis-writing-hooks](../skills/writing-hooks) — Custom hooks: naming, composition, stable returns, effect cleanup, testing.
+- [eversis-ensuring-accessibility](../skills/ensuring-accessibility) — WCAG 2.1 AA compliance: semantic HTML, ARIA, keyboard navigation, focus management.
+- [eversis-optimizing-frontend](../skills/optimizing-frontend) — Code splitting, memoization, bundle size, rendering optimization, memory management.
+- [eversis-ui-verifying](../skills/ui-verification) — Tolerances and structure checklist for Figma verification.
+- [eversis-sql-and-database-understanding](../skills/sql-and-database) — SQL queries, database schemas, migrations, ORM patterns.
+- [eversis-engineering-prompts](../skills/prompt-engineering) — LLM prompt design: structure patterns, optimization, security, templates.
 
 ## Handoffs
 
 After completing implementation, the Software Engineer can hand off to:
 
-- **Code Reviewer** — **`@eversis-review`** (review implementation against the plan)
-- **E2E Engineer** — when the plan delegates test work via **`.cursor/prompts/internal/eversis-implement-e2e.md`**
+- **Code Reviewer** — **`@eversis-review`** ([Review](../prompts/public/review); review implementation against the plan)
+- **E2E Engineer** — when the plan delegates test work via [Implement E2E](../prompts/internal/implement-e2e)

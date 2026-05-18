@@ -6,7 +6,7 @@
     "sync-prompts": "node ../scripts/sync-prompts.mjs",
     "sync-framework-doc": "node ../scripts/sync-framework-doc.mjs",
     "sync-docs-assets": "npm run sync-prompts && npm run sync-framework-doc",
-    "validate-cursor-links": "node ../scripts/validate-cursor-markdown-links.mjs --context=source && node ../scripts/validate-cursor-markdown-links.mjs --context=synced",
+    "validate-cursor-links": "node ../scripts/validate-cursor-markdown-links.mjs --context=source && node ../scripts/validate-cursor-markdown-links.mjs --context=synced && node ../scripts/validate-cursor-markdown-links.mjs --context=agents",
     "prestart": "npm run sync-docs-assets && npm run validate-cursor-links",
     "start": "docusaurus start",
     "prebuild": "npm run sync-docs-assets && npm run validate-cursor-links",

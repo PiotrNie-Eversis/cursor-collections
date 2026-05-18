@@ -6,7 +6,7 @@ title: Code Reviewer
 # Code Reviewer Agent
 
 **Rule pack (canonical):** `.cursor/rules/eversis-role-code-reviewer.mdc`  
-**In this repository:** attach **`.cursor/rules/eversis-code-reviewer.mdc`** when running **`@eversis-review`**.
+**In this repository:** attach **`.cursor/rules/eversis-code-reviewer.mdc`** when running **`@eversis-review`** (docs: [Review](../prompts/public/review)).
 
 The Code Reviewer agent performs structured code reviews against the implementation plan, requirements, and project standards.
 
@@ -50,15 +50,15 @@ A structured review containing:
 
 ## Skills Loaded
 
-- `eversis-code-reviewing` — Structured review process covering correctness, quality, security, testing, and scalability.
-- `eversis-reviewing-frontend` — Frontend-specific review: component quality, hooks correctness, rendering, accessibility and performance spot-checks.
-- `eversis-implementation-gap-analysing` — Compare implementation against the plan and verify completeness.
-- `eversis-technical-context-discovering` — Understand project conventions and patterns.
-- `eversis-sql-and-database-understanding` — Review database-related code for SQL quality, indexes, migrations, and ORM usage.
-- `eversis-engineering-prompts` — Review LLM prompt code: injection defenses, delimiter separation, output format specification, prompt file and LLM client usage patterns.
+- [eversis-code-reviewing](../skills/code-review) — Structured review process covering correctness, quality, security, testing, and scalability.
+- [eversis-reviewing-frontend](../skills/reviewing-frontend) — Frontend-specific review: component quality, hooks correctness, rendering, accessibility and performance spot-checks.
+- [eversis-implementation-gap-analysing](../skills/implementation-gap-analysis) — Compare implementation against the plan and verify completeness.
+- [eversis-technical-context-discovering](../skills/technical-context-discovery) — Understand project conventions and patterns.
+- [eversis-sql-and-database-understanding](../skills/sql-and-database) — Review database-related code for SQL quality, indexes, migrations, and ORM usage.
+- [eversis-engineering-prompts](../skills/prompt-engineering) — Review LLM prompt code: injection defenses, delimiter separation, output format specification, prompt file and LLM client usage patterns.
 
 ## Handoffs
 
 After review, the Code Reviewer can hand off to:
 
-- **Software Engineer** / **Engineering Manager** — **`@eversis-implement`** (implement changes requested after code review). See [Software Engineer](./software-engineer) and [Engineering Manager](./engineering-manager).
+- **Software Engineer** / **Engineering Manager** — **`@eversis-implement`** ([Implement](../prompts/public/implement); implement changes requested after code review). See [Software Engineer](./software-engineer) and [Engineering Manager](./engineering-manager).

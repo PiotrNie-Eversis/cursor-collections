@@ -6,7 +6,7 @@ title: Engineering Manager
 # Engineering Manager Agent
 
 **Rule pack (canonical):** `.cursor/rules/eversis-role-engineering-manager.mdc`  
-**In this repository:** attach **`.cursor/rules/eversis-engineering-manager.mdc`** when running **`@eversis-implement`**.
+**In this repository:** attach **`.cursor/rules/eversis-engineering-manager.mdc`** when running **`@eversis-implement`** (docs: [Implement](../prompts/public/implement)).
 
 The Engineering Manager orchestrates the **Implement** phase: it does not replace implementers — it follows the approved plan, delegates work by task type, and enforces human gates from **`eversis-agent-core.mdc`** (approve research, then plan, then code).
 
@@ -25,7 +25,7 @@ Implementation plan
     SE   E2E  DevOps Arch  CR   UIR   PE
 ```
 
-The Engineering Manager is bound to the public prompt **`@eversis-implement`**. When you run it, it parses the implementation plan, identifies individual tasks, and routes each one to the appropriate specialized role. For UI tasks with Figma references, it uses the internal prompt **`.cursor/prompts/internal/eversis-implement-ui.md`** to orchestrate the verification loop (including **`@eversis-review-ui`** when visual checks are required).
+The Engineering Manager is bound to the public prompt **`@eversis-implement`**. When you run it, it parses the implementation plan, identifies individual tasks, and routes each one to the appropriate specialized role. For UI tasks with Figma references, it uses the internal prompt [Implement UI](../prompts/internal/implement-ui) to orchestrate the verification loop (including **`@eversis-review-ui`** — [Review UI](../prompts/public/review-ui) — when visual checks are required).
 
 ## Agent Delegation
 
@@ -34,16 +34,16 @@ The Engineering Manager is bound to the public prompt **`@eversis-implement`**. 
 | **Software Engineer** | Application code, features, bug fixes | Task involves writing or modifying application code |
 | **E2E Engineer** | Playwright E2E | Task requires writing or updating E2E test suites |
 | **DevOps Engineer** | Infrastructure, CI/CD, deployments | Task involves infrastructure changes or pipeline configuration |
-| **Architect** | Codebase analysis, technical context | Before implementation starts, to establish codebase understanding (via `eversis-plan.md`) |
+| **Architect** | Codebase analysis, technical context | Before implementation starts, to establish codebase understanding (via [Plan](../prompts/internal/plan)) |
 | **Code Reviewer** | Code quality, best practices | After implementation completes, or when no review phase is defined |
 | **Prompt Engineer** | LLM application prompts | Task involves designing, optimizing, or securing LLM prompts |
 | **UI Reviewer** | Figma verification, visual correctness | After UI implementation, to verify against design specifications |
 
 ## How to Use
 
-Attach **`@eversis-implement`**, optionally **`@.cursor/rules/eversis-engineering-manager.mdc`**, plus ticket text and `@docs/specs/` / `@docs/context/` as needed. The model follows internal prompts such as **`.cursor/prompts/internal/eversis-research.md`**, **`.cursor/prompts/internal/eversis-plan.md`**, and task-specific **`eversis-implement-*.md`** files.
+Attach **`@eversis-implement`**, optionally **`@.cursor/rules/eversis-engineering-manager.mdc`**, plus ticket text and `@docs/specs/` / `@docs/context/` as needed. In the IDE, internal delegates live under `.cursor/prompts/internal/`; on the docs site see [Research](../prompts/internal/research), [Plan](../prompts/internal/plan), [Implement UI](../prompts/internal/implement-ui), and related implement prompts.
 
-See also the [Implement workflow](../prompts/public/implement) documentation page.
+See also the [Implement](../prompts/public/implement) workflow documentation page. On **Fine**, produce a QA comment draft per [eversis-qa-comment](../skills/qa-comment).
 
 ## Tool Access
 
@@ -70,5 +70,5 @@ See also the [Implement workflow](../prompts/public/implement) documentation pag
 ## Handoffs
 
 - **From** [Architect](./architect) — execution against the signed-off plan.
-- **To** [Code Reviewer](./code-reviewer) — **`@eversis-review`** with **`eversis-code-reviewer.mdc`** when appropriate.
-- **To** [UI Reviewer](./ui-reviewer) — **`@eversis-review-ui`** for visual verification.
+- **To** [Code Reviewer](./code-reviewer) — **`@eversis-review`** ([Review](../prompts/public/review)) with **`eversis-code-reviewer.mdc`** when appropriate.
+- **To** [UI Reviewer](./ui-reviewer) — **`@eversis-review-ui`** ([Review UI](../prompts/public/review-ui)) for visual verification.
