@@ -7,26 +7,129 @@
  */
 import fs from "node:fs";
 import path from "node:path";
+import { fileURLToPath } from "node:url";
 
 /**
- * @param {string} promptsRoot - absolute path to .cursor/prompts
- * @returns {Map<string, string>} keys like "public/eversis-implement.md" → slug "implement"
+ * @param {string} content - prompt markdown with YAML frontmatter
+ * @returns {string | null} slug from frontmatter, or null if absent
  */
-export function buildPromptSlugIndex(promptsRoot) {
-  const index = new Map();
+export function parsePromptFrontmatterSlug(content) {
+  const m = content.match(/^slug:\s*["']?([^"'\n]+)["']?\s*$/m);
+  return m?.[1]?.trim() ?? null;
+}
+
+/**
+ * Scans .cursor/prompts/{public,internal}/eversis-*.md and builds slug ↔ filename maps
+ * from each file's `slug:` frontmatter (fallback: stem after `eversis-` prefix).
+ *
+ * @param {string} promptsRoot - absolute path to .cursor/prompts
+ * @returns {{
+ *   fileToSlug: Map<string, string>,
+ *   slugToFile: Map<string, string>,
+ *   collisions: Array<{ tier: string, slug: string, files: string[] }>,
+ * }}
+ */
+export function buildPromptSlugMaps(promptsRoot) {
+  /** @type {Map<string, string>} */
+  const fileToSlug = new Map();
+  /** @type {Map<string, string>} keys "public/implement" → "eversis-implement.md" */
+  const slugToFile = new Map();
+  /** @type {Array<{ tier: string, slug: string, files: string[] }>} */
+  const collisions = [];
+
   for (const tier of ["public", "internal"]) {
     const dir = path.join(promptsRoot, tier);
     if (!fs.existsSync(dir)) continue;
+
     for (const name of fs.readdirSync(dir)) {
       if (!name.startsWith("eversis-") || !name.endsWith(".md")) continue;
+
       const content = fs.readFileSync(path.join(dir, name), "utf8");
-      const slugMatch = content.match(/^slug:\s*["']?([^"'\n]+)["']?\s*$/m);
       const stem = name.replace(/^eversis-/, "").replace(/\.md$/, "");
-      const slug = slugMatch?.[1]?.trim() || stem;
-      index.set(`${tier}/${name}`, slug);
+      const slug = parsePromptFrontmatterSlug(content) || stem;
+      const fileKey = `${tier}/${name}`;
+      const slugKey = `${tier}/${slug}`;
+
+      fileToSlug.set(fileKey, slug);
+
+      const existing = slugToFile.get(slugKey);
+      if (existing && existing !== name) {
+        collisions.push({ tier, slug, files: [existing, name] });
+      } else {
+        slugToFile.set(slugKey, name);
+      }
     }
   }
-  return index;
+
+  return { fileToSlug, slugToFile, collisions };
+}
+
+/**
+ * @param {string} promptsRoot
+ * @returns {Map<string, string>} keys like "public/eversis-implement.md" → slug "implement"
+ */
+export function buildPromptSlugIndex(promptsRoot) {
+  const { fileToSlug, collisions } = buildPromptSlugMaps(promptsRoot);
+  if (collisions.length > 0) {
+    const details = collisions
+      .map((c) => `${c.tier}/${c.slug}: ${c.files.join(" vs ")}`)
+      .join("; ");
+    throw new Error(`Duplicate prompt slug(s) in frontmatter: ${details}`);
+  }
+  return fileToSlug;
+}
+
+/**
+ * @param {Map<string, string>} slugToFile
+ * @param {"public"|"internal"} tier
+ * @param {string} slug - Docusaurus slug (no .md)
+ * @returns {string | null} eversis-*.md filename in that tier
+ */
+export function resolvePromptFilenameBySlug(slugToFile, tier, slug) {
+  const normalized = slug.replace(/\.md$/, "");
+  return slugToFile.get(`${tier}/${normalized}`) ?? null;
+}
+
+/**
+ * @param {{ fileToSlug: Map<string, string>, slugToFile: Map<string, string> }} maps
+ * @returns {Record<string, { slug: string } | Record<string, string>>}
+ */
+export function promptSlugMapsToJson({ fileToSlug, slugToFile }) {
+  /** @type {Record<string, Record<string, string>>} */
+  const byTier = { public: {}, internal: {} };
+
+  for (const [slugKey, filename] of slugToFile.entries()) {
+    const [tier, slug] = slugKey.split("/");
+    if (tier === "public" || tier === "internal") {
+      byTier[tier][slug] = filename;
+    }
+  }
+
+  const files = {};
+  for (const [fileKey, slug] of fileToSlug.entries()) {
+    files[fileKey] = { slug };
+  }
+
+  return { generatedFrom: ".cursor/prompts frontmatter slug:", files, slugToFile: byTier };
+}
+
+/**
+ * Writes slug ↔ filename JSON next to this module (for debugging / tooling).
+ * @param {string} promptsRoot
+ * @param {string} [outputPath]
+ */
+export function writePromptSlugMapFile(promptsRoot, outputPath) {
+  const maps = buildPromptSlugMaps(promptsRoot);
+  if (maps.collisions.length > 0) {
+    throw new Error(
+      `Cannot write slug map: duplicate slug(s): ${maps.collisions.map((c) => `${c.tier}/${c.slug}`).join(", ")}`,
+    );
+  }
+  const out =
+    outputPath ??
+    path.join(path.dirname(fileURLToPath(import.meta.url)), "prompt-slug-map.generated.json");
+  fs.writeFileSync(out, `${JSON.stringify(promptSlugMapsToJson(maps), null, 2)}\n`, "utf8");
+  return out;
 }
 
 /**

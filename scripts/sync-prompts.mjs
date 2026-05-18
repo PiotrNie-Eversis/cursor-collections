@@ -10,14 +10,25 @@ import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import {
-  buildPromptSlugIndex,
+  buildPromptSlugMaps,
   rewritePromptLinksForDocusaurus,
+  writePromptSlugMapFile,
 } from "./lib/prompt-link-rewrite.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(__dirname, "..");
 const promptsRoot = path.join(root, ".cursor/prompts");
-const slugIndex = buildPromptSlugIndex(promptsRoot);
+const { fileToSlug: slugIndex, collisions } = buildPromptSlugMaps(promptsRoot);
+
+if (collisions.length > 0) {
+  console.error("sync-prompts: duplicate slug(s) in prompt frontmatter:\n");
+  for (const c of collisions) {
+    console.error(`  ${c.tier}/${c.slug}: ${c.files.join(" vs ")}\n`);
+  }
+  process.exit(1);
+}
+
+const slugMapPath = writePromptSlugMapFile(promptsRoot);
 
 const pairs = [
   [path.join(promptsRoot, "public"), path.join(root, "website/docs/prompts/public")],
@@ -44,5 +55,5 @@ for (const [srcDir, destDir] of pairs) {
 }
 
 console.log(
-  `sync-prompts: copied ${fileCount} eversis-*.md to website/docs/prompts/{public,internal}/ (${totalReplacements} link rewrite(s))`,
+  `sync-prompts: copied ${fileCount} eversis-*.md to website/docs/prompts/{public,internal}/ (${totalReplacements} link rewrite(s), ${slugIndex.size} slug(s) from frontmatter → ${path.relative(root, slugMapPath)})`,
 );

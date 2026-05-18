@@ -13,5 +13,6 @@ website/node_modules/
 website/docs/prompts/public/eversis-*.md
 website/docs/prompts/internal/eversis-*.md
 website/docs/framework-reference.md
+scripts/lib/prompt-slug-map.generated.json
 .vercel
 .env*.local

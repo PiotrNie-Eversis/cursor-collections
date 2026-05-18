@@ -3,13 +3,19 @@
  * Validates markdown [text](href) links under .cursor/ (source) or
  * website/docs/prompts/ (synced, after sync-prompts).
  *
+ * Slug links in synced/agents context resolve via frontmatter-derived maps
+ * (see buildPromptSlugMaps in ./lib/prompt-link-rewrite.mjs).
+ *
  * Usage:
  *   node scripts/validate-cursor-markdown-links.mjs [--context=source|synced|agents]
  */
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import { buildPromptSlugIndex } from "./lib/prompt-link-rewrite.mjs";
+import {
+  buildPromptSlugMaps,
+  resolvePromptFilenameBySlug,
+} from "./lib/prompt-link-rewrite.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(__dirname, "..");
@@ -34,12 +40,12 @@ function collectFiles(dir, extensions, out = []) {
   return out;
 }
 
-function parseFrontmatterSlug(content) {
-  const m = content.match(/^slug:\s*["']?([^"'\n]+)["']?\s*$/m);
-  return m?.[1]?.trim();
+function promptTargetPath(promptsRoot, tier, slug, slugToFile) {
+  const file = resolvePromptFilenameBySlug(slugToFile, tier, slug);
+  return file ? path.join(promptsRoot, tier, file) : null;
 }
 
-function buildSyncedResolver(promptsSyncedRoot, slugIndex) {
+function buildSyncedResolver(promptsSyncedRoot, slugToFile) {
   const agentsDir = path.join(root, "website/docs/agents");
 
   return function resolveSynced(fromFile, href) {
@@ -54,25 +60,20 @@ function buildSyncedResolver(promptsSyncedRoot, slugIndex) {
       target = path.join(agentsDir, `${agent}.md`);
     } else if (raw.startsWith("../public/")) {
       const slug = raw.replace("../public/", "").replace(/\.md$/, "");
-      const file = findPromptBySlug(slugIndex, "public", slug);
-      target = file ? path.join(promptsSyncedRoot, "public", file) : target;
+      target = promptTargetPath(promptsSyncedRoot, "public", slug, slugToFile) ?? target;
     } else if (raw.startsWith("../internal/")) {
       const slug = raw.replace("../internal/", "").replace(/\.md$/, "");
-      const file = findPromptBySlug(slugIndex, "internal", slug);
-      target = file ? path.join(promptsSyncedRoot, "internal", file) : target;
+      target = promptTargetPath(promptsSyncedRoot, "internal", slug, slugToFile) ?? target;
     } else if (raw.startsWith("./public/")) {
       const slug = raw.replace("./public/", "").replace(/\.md$/, "");
-      const file = findPromptBySlug(slugIndex, "public", slug);
-      target = file ? path.join(promptsSyncedRoot, "public", file) : target;
+      target = promptTargetPath(promptsSyncedRoot, "public", slug, slugToFile) ?? target;
     } else if (raw.startsWith("./internal/")) {
       const slug = raw.replace("./internal/", "").replace(/\.md$/, "");
-      const file = findPromptBySlug(slugIndex, "internal", slug);
-      target = file ? path.join(promptsSyncedRoot, "internal", file) : target;
+      target = promptTargetPath(promptsSyncedRoot, "internal", slug, slugToFile) ?? target;
     } else if (raw.startsWith("./")) {
       const slug = raw.slice(2).replace(/\.md$/, "");
       const tier = fromFile.includes(`${path.sep}internal${path.sep}`) ? "internal" : "public";
-      const file = findPromptBySlug(slugIndex, tier, slug);
-      target = file ? path.join(fromDir, file) : path.join(fromDir, `${slug}.md`);
+      target = promptTargetPath(promptsSyncedRoot, tier, slug, slugToFile) ?? path.join(fromDir, `${slug}.md`);
     }
 
     if (fs.existsSync(target)) return { ok: true, target };
@@ -81,18 +82,7 @@ function buildSyncedResolver(promptsSyncedRoot, slugIndex) {
   };
 }
 
-function findPromptBySlug(slugIndex, tier, slug) {
-  for (const [key, value] of slugIndex.entries()) {
-    if (key.startsWith(`${tier}/`) && value === slug) {
-      return key.split("/")[1];
-    }
-  }
-  const guess = `eversis-${slug}.md`;
-  if (slugIndex.has(`${tier}/${guess}`)) return guess;
-  return null;
-}
-
-function buildAgentsResolver(promptsSyncedRoot, slugIndex) {
+function buildAgentsResolver(promptsSyncedRoot, slugToFile) {
   const agentsDir = path.join(root, "website/docs/agents");
   const skillsDir = path.join(root, "website/docs/skills");
   const frameworkDoc = path.join(root, "website/docs/framework-reference.md");
@@ -111,12 +101,10 @@ function buildAgentsResolver(promptsSyncedRoot, slugIndex) {
       target = path.join(agentsDir, `${agent}.md`);
     } else if (raw.startsWith("../prompts/public/")) {
       const slug = raw.replace("../prompts/public/", "").replace(/\.md$/, "");
-      const file = findPromptBySlug(slugIndex, "public", slug);
-      target = file ? path.join(promptsSyncedRoot, "public", file) : target;
+      target = promptTargetPath(promptsSyncedRoot, "public", slug, slugToFile) ?? target;
     } else if (raw.startsWith("../prompts/internal/")) {
       const slug = raw.replace("../prompts/internal/", "").replace(/\.md$/, "");
-      const file = findPromptBySlug(slugIndex, "internal", slug);
-      target = file ? path.join(promptsSyncedRoot, "internal", file) : target;
+      target = promptTargetPath(promptsSyncedRoot, "internal", slug, slugToFile) ?? target;
     } else if (raw.startsWith("../skills/")) {
       const docId = raw.replace("../skills/", "").replace(/\.md$/, "");
       target = path.join(skillsDir, `${docId}.md`);
@@ -173,7 +161,15 @@ function validateFiles(files, resolver) {
   return errors;
 }
 
-const slugIndex = buildPromptSlugIndex(path.join(root, ".cursor/prompts"));
+const { slugToFile, collisions } = buildPromptSlugMaps(path.join(root, ".cursor/prompts"));
+
+if (collisions.length > 0) {
+  console.error("validate-cursor-markdown-links: duplicate slug(s) in prompt frontmatter:\n");
+  for (const c of collisions) {
+    console.error(`  ${c.tier}/${c.slug}: ${c.files.join(" vs ")}\n`);
+  }
+  process.exit(1);
+}
 
 let files;
 let resolver;
@@ -181,12 +177,12 @@ let resolver;
 if (context === "synced") {
   const syncedRoot = path.join(root, "website/docs/prompts");
   files = collectFiles(syncedRoot, [".md"]);
-  resolver = buildSyncedResolver(syncedRoot, slugIndex);
+  resolver = buildSyncedResolver(syncedRoot, slugToFile);
 } else if (context === "agents") {
   const agentsRoot = path.join(root, "website/docs/agents");
   const syncedRoot = path.join(root, "website/docs/prompts");
   files = collectFiles(agentsRoot, [".md"]);
-  resolver = buildAgentsResolver(syncedRoot, slugIndex);
+  resolver = buildAgentsResolver(syncedRoot, slugToFile);
 } else if (context !== "source") {
   console.error(`Unknown --context=${context} (use source, synced, or agents)`);
   process.exit(1);
@@ -204,7 +200,9 @@ if (context === "synced") {
 const errors = validateFiles(files, resolver);
 
 if (errors.length === 0) {
-  console.log(`validate-cursor-markdown-links (${context}): OK (${files.length} files)`);
+  console.log(
+    `validate-cursor-markdown-links (${context}): OK (${files.length} files, ${slugToFile.size} slug(s) indexed)`,
+  );
   process.exit(0);
 }
 
