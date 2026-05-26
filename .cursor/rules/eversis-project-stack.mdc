@@ -1,44 +1,86 @@
 ---
-description: Per-repository stack and quality commands — Cursor Collections (Docusaurus docs site)
+description: Per-repository stack and quality commands — EOP (Earth Observation Portal)
 alwaysApply: true
 ---
 
 # Project stack — this repository
 
-This repo is **Cursor Collections** (Eversis): **Cursor** rules, attachable prompts under **`.cursor/prompts/`** (synced into `website/docs/prompts/` for the docs site), skills in **`.cursor/skills/`**, and [documentation/cursor-collection.md](../../documentation/cursor-collection.md).
+**EOP** (Earth Observation Portal) — public content portal for satellite missions and space activities. Multi-module GitLab monorepo; agents usually touch **`portal/`** (Next.js) or **`cms/`** (Liferay OSGi modules).
 
 | Area | This repository |
 | ---- | --------------- |
-| **Product** | Cursor-native product engineering framework + published workflow docs |
-| **Docs site** | Docusaurus 3 under **`website/`** (`cursor-collections-docs`) |
-| **Prompts** | **`.cursor/prompts/public/`** and **`internal/`** (`eversis-*.md`); attach with **`@eversis-*`**; **`sync-prompts`** copies to gitignored `website/docs/prompts/` (also in **`.cursorignore`** to avoid double **`@`** indexing) |
-| **Skills** | **`.cursor/skills/eversis-*/`** (topic packages; list/read/validate via **`eversis-collections` MCP**, not a separate **Agent Skills** path) |
+| **Product** | [eoportal.org](https://eoportal.org/) — CMS-authored content exposed via headless APIs |
+| **Portal** | Next.js 15, React 18, TypeScript, Chakra UI, Pages Router — **`portal/`** |
+| **CMS** | Liferay 7.4.3, Java, Maven multi-module OSGi — **`cms/`** |
+| **E2E** | Cypress 10 — **`e2e/`** (separate package; not wired in root CI trigger by default) |
+| **Infra** | `docker-compose.yml`, Helm **`charts/`**, GitLab CI (`.gitlab-ci.yml` + module pipelines) |
+| **Framework** | [Eversis Cursor Collections](https://github.com/PiotrNie-Eversis/cursor-collections) — rules in **`.cursor/rules/`**, prompts via **`@eversis-*`**, skills via **`eversis-collections` MCP** |
 
-## Quality commands (this repo)
+## Quality commands
 
-Run from **`website/`** (see [website/package.json](../../website/package.json)):
+Run from the **module directory** that changed. There is no root `package.json` / `Makefile`.
 
-- **Dev server:** `npm start` (Docusaurus)
-- **Production build:** `npm run build` — use this as the primary quality gate for doc changes
-- **Serve build locally:** `npm run serve`
+### Portal (`portal/`)
 
-There is no root `lint` / `test` script; the site is mostly Markdown and React theme.
+Primary gate for frontend work (matches `portal/.gitlab-ci.yml`):
+
+```bash
+cd portal
+yarn install --frozen-lockfile   # first run / CI parity
+yarn lint                        # ESLint (Next.js)
+yarn build                       # production build + TypeScript check
+yarn test                        # Jest + React Testing Library (coverage)
+yarn format:check                # Prettier (optional before commit)
+```
+
+Dev server: `yarn dev` → [http://localhost:3000](http://localhost:3000). See `portal/CLAUDE.md` for architecture (OpenAPI client, DDM parser, routing).
+
+Single test file: `npx jest path/to/file.test.tsx` (from `portal/`).
+
+### CMS (`cms/`)
+
+For Liferay module / Java changes (matches `cms/.gitlab-ci.yml`):
+
+```bash
+cd cms
+chmod u+x mvnw
+./mvnw checkstyle:check          # static analysis
+./mvnw clean install             # build all modules
+./mvnw test verify               # unit / integration tests
+./mvnw clean install -Pdocker    # build + deploy JARs to Liferay Docker (/docker/deploy)
+```
+
+Local stack: `docker-compose up -d mariadb cms` (Liferay `:8080`, MariaDB `:3306`). JPDA debug: `:8000`.
+
+### E2E (`e2e/`)
+
+Manual / pre-release; copy `cypress.env.json.template` → `cypress.env.json` first.
+
+```bash
+cd e2e
+yarn install
+yarn cypress                     # interactive
+yarn cypress:run-chrome          # headless Chrome
+yarn cypress:ci                  # Chrome + Firefox (CI-style)
+```
 
 ## Conventions
 
-- Feature specs for *downstream* or experimental work: **`docs/specs/*.spec.md`**
-- Internal notes: **`docs/context/*.md`**
-- **Template** for other projects: see **“Reference: Eversis stack example”** in [documentation/cursor-collection.md](../../documentation/cursor-collection.md)
+- **Default branch:** `develop` (feature branches → MR to `develop`).
+- **Jira:** evolution [DAWISEE](https://eversis.atlassian.net/jira/software/c/projects/DAWISEE/boards/21); maintenance [DAWISMO](https://eversis.atlassian.net/jira/software/c/projects/DAWISMO/issues/?jql=project%20%3D%20%22DAWISMO%22%20and%20labels%20IN%28%27eoportal%27%29).
+- **Specs / plans:** `docs/specs/<issue-kebab>/` — `*.research.md`, `*.plan.md` (see `docs/specs/README.md`).
+- **Internal notes:** `docs/context/*.md` (create when needed).
+- **Generated code:** do not hand-edit `portal/lib/api/services/` (OpenAPI codegen) or ANTLR output under `portal/lib/ddmexpression/`.
+- **Package manager:** Yarn 1.x in `portal/` and `e2e/`; do not add npm/pnpm lockfiles.
+- **Accessibility:** target **WCAG 2.1 AA** for portal UI unless a spec or `docs/context/` states otherwise (`eversis-accessibility.mdc`).
 
 ## Status: Fine — QA comment (mandatory contract)
 
-Aligned with [workflow overview — Status: Fine](../../website/docs/workflow/overview.md):
+When **all** planned agent work for the Implement thread is finished:
 
-1. When **all** planned agent work for the Implement thread is finished, declare **`Fine`** (explicit word / status).
-2. **In the same assistant response** as **`Fine`**, produce the **QA comment draft** by following **`.cursor/skills/eversis-qa-comment/SKILL.md`** exactly (read that file if needed, or load via **`eversis-collections` MCP** `eversis_skills_get` for `eversis-qa-comment`). Do **not** treat [`website/docs/skills/qa-comment.md`](../../website/docs/skills/qa-comment.md) as the procedural source of truth — it is onboarding / narrative only; normative procedure is **`SKILL.md`** + MCP ([documentation/cursor-collection.md](../../documentation/cursor-collection.md) § QA handoff after Fine).
-3. Label the draft: **`Draft QA comment — review before posting to Jira`** (per [`eversis-engineering-manager.mdc`](eversis-engineering-manager.mdc)).
-4. **Never** post to Jira in that turn; publication only after **explicit** human approval (paste or Atlassian MCP).
+1. Declare **`Fine`** (explicit word / status).
+2. **In the same assistant response** as **`Fine`**, produce the **QA comment draft** per **`.cursor/skills/eversis-qa-comment/SKILL.md`** in Cursor Collections (read via MCP `eversis_skills_get` for `eversis-qa-comment` when MCP is enabled).
+3. Label the draft: **`Draft QA comment — review before posting to Jira`**.
+4. **Never** post to Jira in that turn; publication only after **explicit** human approval.
 
 Skipping the QA draft when declaring **Fine** is a **workflow breach** — if you cannot comply (context limit, blocked tools), say so and stop **without** declaring **Fine**.
-
-**Consumer repos:** downstream projects should mirror this contract in **their** `eversis-project-stack.mdc` (always-on) or equivalent AGENTS guidance when they vendor this framework via submodule / copy.

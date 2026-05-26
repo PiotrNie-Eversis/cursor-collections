@@ -1,0 +1,12 @@
+{
+  "mcpServers": {
+    "eversis-collections": {
+      "command": "node",
+      "args": ["/ABSOLUTE/PATH/TO/cursor-collections/mcp/eversis-collections-mcp/dist/index.js"],
+      "type": "stdio",
+      "env": {
+        "CURSOR_COLLECTIONS_HOME": "/ABSOLUTE/PATH/TO/cursor-collections"
+      }
+    }
+  }
+}

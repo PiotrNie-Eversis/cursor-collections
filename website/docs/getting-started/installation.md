@@ -48,4 +48,63 @@ This repository ships **`.cursor/mcp.json`**, including third-party servers and 
 
 ## Using the framework in another project
 
-Copy **`.cursor/rules/`** templates, add **`AGENTS.md`**, and either vendor **`.cursor/prompts/`** (recommended) or maintain your own `eversis-*.md` paths. If you use this repo’s Docusaurus site, run **`npm run sync-docs-assets`** from `website/` (or rely on `prestart` / `prebuild`) so prompt pages and the framework doc exist under `website/docs/` before building. Add **`.cursor/mcp.json`** (or your own MCP list), build **`mcp/eversis-collections-mcp/`** if you use this repo’s skills, and configure any other integrations you need. See [Framework reference](../framework) (same content as `documentation/cursor-collection.md` in the repo) for the generic layout.
+### Quick setup (script)
+
+From the **cursor-collections** checkout, run one command to bootstrap any existing project:
+
+```bash
+# Local mode (framework lives outside the consumer repo — default):
+bash scripts/setup-cursor-local.sh --build-mcp
+
+# Vendor as Git submodule (committed, versioned):
+bash scripts/setup-cursor-local.sh --vendor submodule --build-mcp
+
+# Vendor as file copy (simpler, no submodule overhead):
+bash scripts/setup-cursor-local.sh --vendor copy --build-mcp
+```
+
+The script:
+- Clones `cursor-collections` to `$CURSOR_COLLECTIONS_HOME` if missing (defaults to `~/.local/share/cursor-collections` on Unix).
+- Copies or symlinks `.cursor/rules/`, `.cursor/prompts/`, `.cursor/commands/`, `.cursor/skills/` into the target project.
+- Merges the `eversis-collections` entry into the project's `.cursor/mcp.json`.
+- Adds a `.gitignore` block in local mode (so MCP paths stay out of version control).
+- Scaffolds `AGENTS.md` and `docs/specs/` if absent.
+- Prints a **Next steps** summary (enable MCP in Cursor, customise the stack rule, etc.).
+
+See `scripts/setup-cursor-local.sh --help` for the full flag reference.
+
+#### Environment variables
+
+| Variable | Purpose |
+| -------- | ------- |
+| `CURSOR_COLLECTIONS_HOME` | Canonical path to the `cursor-collections` checkout. Read by both the setup script and the `eversis-collections` MCP server. |
+| `CURSOR_COLLECTIONS_REPO_URL` | Override the Git clone URL (default: upstream GitHub repo). |
+
+Export `CURSOR_COLLECTIONS_HOME` in your shell profile (`~/.zshrc`, `~/.bashrc`) so re-runs and the MCP server resolve the path automatically:
+
+```bash
+export CURSOR_COLLECTIONS_HOME="$HOME/.local/share/cursor-collections"
+```
+
+#### Consumer project installation modes
+
+| Mode | `.cursor/mcp.json` in git | MCP path style | When to use |
+| ---- | ------------------------- | -------------- | ----------- |
+| **local** (default) | No — gitignored | Absolute (`$CURSOR_COLLECTIONS_HOME`) | Personal / per-machine setup; framework shared across projects |
+| **`--vendor submodule`** | Yes | Relative (`vendor/cursor-collections/…`) | Team repos; pinned version; everyone gets the same framework version |
+| **`--vendor copy`** | Yes | Relative (`vendor/cursor-collections/…`) | When Git submodules are not allowed; easy to inspect and diff |
+
+#### Windows
+
+Use **Git Bash** or **WSL** to run the script. Symlinks require Developer Mode or Administrator rights — the script defaults to **`--link-mode copy`** on Windows (MINGW/Cygwin/MSYS) so no special permissions are needed.
+
+```bash
+# Windows Git Bash — explicit copy mode:
+bash scripts/setup-cursor-local.sh --link-mode copy --build-mcp
+```
+
+### Manual bootstrap
+
+You can also set up the framework manually — the script is an addition, not a replacement for the checklist in [Part C of the Framework reference](../framework#part-c--per-project-bootstrap).
+
+Copy **`.cursor/rules/`** templates, add **`AGENTS.md`**, and either vendor **`.cursor/prompts/`** (recommended) or maintain your own `eversis-*.md` paths. Add **`.cursor/mcp.json`** (or your own MCP list), build **`mcp/eversis-collections-mcp/`** if you use this repo's skills, and configure any other integrations you need. See the [Framework reference](../framework) for the full step-by-step checklist.

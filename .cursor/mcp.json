@@ -8,7 +8,9 @@
     },
     "awslabs.aws-documentation-mcp-server": {
       "command": "uvx",
-      "args": ["awslabs.aws-documentation-mcp-server@latest"],
+      "args": [
+        "awslabs.aws-documentation-mcp-server@latest"
+      ],
       "env": {
         "FASTMCP_LOG_LEVEL": "ERROR",
         "AWS_DOCUMENTATION_PARTITION": "aws",
@@ -17,29 +19,46 @@
     },
     "gcp-gcloud": {
       "command": "npx",
-      "args": ["-y", "@google-cloud/gcloud-mcp"]
+      "args": [
+        "-y",
+        "@google-cloud/gcloud-mcp"
+      ]
     },
     "gcp-observability": {
       "command": "npx",
-      "args": ["-y", "@google-cloud/observability-mcp"]
+      "args": [
+        "-y",
+        "@google-cloud/observability-mcp"
+      ]
     },
     "gcp-storage": {
       "command": "npx",
-      "args": ["-y", "@google-cloud/storage-mcp"]
+      "args": [
+        "-y",
+        "@google-cloud/storage-mcp"
+      ]
     },
     "playwright": {
       "command": "npx",
-      "args": ["@playwright/mcp@latest"],
+      "args": [
+        "@playwright/mcp@latest"
+      ],
       "type": "stdio"
     },
     "context7": {
       "type": "stdio",
       "command": "npx",
-      "args": ["-y", "@upstash/context7-mcp@latest"]
+      "args": [
+        "-y",
+        "@upstash/context7-mcp@latest"
+      ]
     },
     "sequential-thinking": {
       "command": "npx",
-      "args": ["-y", "@modelcontextprotocol/server-sequential-thinking"],
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-sequential-thinking"
+      ],
       "type": "stdio"
     },
     "figma": {
@@ -52,14 +71,28 @@
     },
     "pdf-reader": {
       "command": "npx",
-      "args": ["@sylphx/pdf-reader-mcp"],
+      "args": [
+        "@sylphx/pdf-reader-mcp"
+      ],
       "type": "stdio"
     },
     "eversis-collections": {
       "command": "node",
-      "args": ["mcp/eversis-collections-mcp/dist/index.js"],
+      "args": [
+        "mcp/eversis-collections-mcp/dist/index.js"
+      ],
       "type": "stdio"
     }
   },
-  "inputs": []
+  "inputs": [],
+  "eversis-collections": {
+    "command": "node",
+    "args": [
+      "/Users/piotrniemirski/.local/share/cursor-collections/mcp/eversis-collections-mcp/dist/index.js"
+    ],
+    "type": "stdio",
+    "env": {
+      "CURSOR_COLLECTIONS_HOME": "/Users/piotrniemirski/.local/share/cursor-collections"
+    }
+  }
 }

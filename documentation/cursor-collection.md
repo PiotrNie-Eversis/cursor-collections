@@ -218,17 +218,54 @@ Markdown links in **`.cursor/`** use **repo-root-relative paths** that resolve i
 
 ---
 
-## Part C — Per-project bootstrap checklist
+## Part C — Per-project bootstrap
 
-- [ ] Copy `.cursor/rules/` templates; **edit `eversis-project-stack.mdc`** for this repo’s stack and quality commands.
+### Quick setup (script)
+
+Run a single command from the **cursor-collections** checkout to bootstrap any existing project:
+
+```bash
+# Minimal local setup (framework lives outside the consumer repo):
+bash scripts/setup-cursor-local.sh --build-mcp
+
+# Vendor as Git submodule:
+bash scripts/setup-cursor-local.sh --vendor submodule --build-mcp
+
+# Vendor as copy (simpler, no submodule overhead):
+bash scripts/setup-cursor-local.sh --vendor copy --build-mcp
+
+# Point to an existing checkout non-interactively (e.g. CI):
+CURSOR_COLLECTIONS_HOME=~/src/cursor-collections \
+  bash scripts/setup-cursor-local.sh --build-mcp --non-interactive
+```
+
+| Mode | `.cursor/mcp.json` in git? | Framework path |
+| ---- | -------------------------- | -------------- |
+| **local** (default) | ❌ gitignored | `$CURSOR_COLLECTIONS_HOME` (outside repo) |
+| **`--vendor submodule`** | ✅ committed | `vendor/cursor-collections/` (Git submodule) |
+| **`--vendor copy`** | ✅ committed | `vendor/cursor-collections/` (file copy) |
+
+**Environment variable:** export `CURSOR_COLLECTIONS_HOME` in your shell profile to avoid specifying `--collections-home` on every run. The same variable is read by the `eversis-collections` MCP server.
+
+**Windows:** use Git Bash or WSL; `--link-mode copy` is the default on Windows. See `website/docs/getting-started/installation.md` for details.
+
+After running the script, complete the steps marked *(always manual)* in the checklist below.
+
+---
+
+### Manual bootstrap checklist
+
+*(Use this list for partial setups, audits, or when the script cannot be run.)*
+
+- [ ] Copy `.cursor/rules/` templates; **edit `eversis-project-stack.mdc`** for this repo's stack and quality commands.
 - [ ] Copy **`.cursor/commands/`** if you want native **`/eversis-implement`** (and related) project commands; each command loads the matching file under `.cursor/prompts/public/`.
 - [ ] Ensure **`eversis-*.md`** prompts exist under `.cursor/prompts/public/` (and `internal/` as needed) — in **this** repository they are already present; in a **new** repo, start from the files you need (analyze / implement / review) and adapt.
 - [ ] Add `docs/specs/` and `docs/context/`; seed context with architecture or run wiki sync.
 - [ ] Configure **MCP** for the workflow variants you use (Jira, Figma, Playwright, …).
 - [ ] Add **`.cursorignore`**: `.env*`, keys, certificates, large secrets, vendor dumps you do not want indexed; include **`website/docs/prompts/`** if you **sync** prompt copies for Docusaurus (avoids duplicate **`@`** matches).
 - [ ] Document **lint / test / typecheck** commands for this repo in `eversis-project-stack.mdc` (or `CONTRIBUTING.md`).
-- [ ] Enable **Privacy mode** org-wide if required by policy (Cursor Settings → General → Privacy).
-- [ ] Build **`mcp/eversis-collections-mcp/`** and enable **`eversis-collections`** in **MCP** so Agent can use **`eversis_*`** tools against `.cursor/skills/`.
+- [ ] *(always manual)* Enable **Privacy mode** org-wide if required by policy (Cursor Settings → General → Privacy).
+- [ ] *(always manual)* Build **`mcp/eversis-collections-mcp/`** (or use `--build-mcp`) and enable **`eversis-collections`** in Cursor MCP Settings so Agent can use **`eversis_*`** tools against `.cursor/skills/`.
 
 ---
 

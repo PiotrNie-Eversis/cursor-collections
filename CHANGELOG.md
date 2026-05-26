@@ -4,6 +4,21 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## 2026-05-26
+
+### Added
+
+- **`CURSOR_COLLECTIONS_HOME`** — new canonical environment variable for specifying the `cursor-collections` checkout path in `mcp/eversis-collections-mcp`. Takes priority over the legacy `EVERSIS_COLLECTIONS_ROOT` when auto walk-up fails. Both variables are checked in priority order so existing configurations continue to work without changes.
+- **`tests/resolveRoot.test.ts`** — unit tests for `findRepoRoot` covering walk-up, both env variables, priority order, and error messages.
+
+### Changed
+
+- **`mcp/eversis-collections-mcp/src/resolveRoot.ts`** — `findRepoRoot()` now checks `CURSOR_COLLECTIONS_HOME` before `EVERSIS_COLLECTIONS_ROOT`; error message now names `CURSOR_COLLECTIONS_HOME` as the recommended variable. `EVERSIS_COLLECTIONS_ROOT` is **deprecated** — it will be removed in a future release.
+- **`mcp/eversis-collections-mcp/README.md`** — Environment section updated with a table showing `CURSOR_COLLECTIONS_HOME` (canonical) vs `EVERSIS_COLLECTIONS_ROOT` (deprecated legacy) with a migration note.
+- **`mcp/eversis-collections-mcp/package.json`** — `npm test` script updated from `--import tsx` to `--import tsx/esm` (tsx ≥ 4.21 export path change); `resolveRoot.test.ts` added to the test run.
+
+---
+
 ## 2026-05-18
 
 ### Added

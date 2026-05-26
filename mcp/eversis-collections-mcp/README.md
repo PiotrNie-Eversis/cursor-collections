@@ -53,5 +53,10 @@ node dist/cli.js validate
 
 ## Environment
 
-- **`EVERSIS_COLLECTIONS_ROOT`** — absolute path to a checkout that contains `.cursor/skills` (optional; auto-detected by walking up from this package).
+| Variable | Status | Description |
+| -------- | ------ | ----------- |
+| **`CURSOR_COLLECTIONS_HOME`** | **Canonical** | Absolute path to a `cursor-collections` checkout containing `.cursor/skills`. Takes priority when walk-up auto-detection fails. |
+| `EVERSIS_COLLECTIONS_ROOT` | **Deprecated** | Legacy alias for the same purpose. Checked as fallback when `CURSOR_COLLECTIONS_HOME` is not set. Will be removed in a future release — migrate to `CURSOR_COLLECTIONS_HOME`. |
+
+Walk-up auto-detection (climbing parent directories until `.cursor/skills` is found) is attempted first; environment variables are only used when that fails.
 

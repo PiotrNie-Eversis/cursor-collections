@@ -116,6 +116,68 @@ The workspace file [`.cursor/mcp.json`](.cursor/mcp.json) lists Atlassian, Figma
 
 ## Using this framework in another repository
 
+### Quick setup (script)
+
+#### Step 1 — get `cursor-collections` (once per machine)
+
+Clone the framework to a shared location outside your projects. You only do this once:
+
+```bash
+git clone https://github.com/PiotrNie-Eversis/cursor-collections.git \
+  "$HOME/.local/share/cursor-collections"
+```
+
+Then add this line to your shell profile (`~/.zshrc` or `~/.bashrc`) and reload it:
+
+```bash
+export CURSOR_COLLECTIONS_HOME="$HOME/.local/share/cursor-collections"
+```
+
+```bash
+source ~/.zshrc   # or: source ~/.bashrc
+```
+
+#### Step 2 — bootstrap your project (once per project)
+
+Go to your project — new or existing — and run the setup script:
+
+```bash
+# New project:
+mkdir ~/my-project && cd ~/my-project && git init
+
+# Existing project:
+cd ~/my-existing-project
+
+# Run setup:
+bash "$CURSOR_COLLECTIONS_HOME/scripts/setup-cursor-local.sh" --build-mcp
+```
+
+The script will:
+- Copy `.cursor/rules/`, `.cursor/prompts/`, `.cursor/commands/`, `.cursor/skills/` into your project.
+- Generate `.cursor/mcp.json` pointing to the shared framework.
+- Create `AGENTS.md` and `docs/specs/` if they are missing.
+- Add a `.gitignore` block so the generated MCP config stays local (not committed).
+
+After the script finishes, **enable the MCP server in Cursor**: Settings → MCP → enable `eversis-collections` → restart Cursor.
+
+#### Vendor mode (optional — for teams)
+
+If you want the framework committed inside your repo (so the whole team uses the same version):
+
+```bash
+# Vendor as Git submodule (recommended for teams):
+bash "$CURSOR_COLLECTIONS_HOME/scripts/setup-cursor-local.sh" --vendor submodule --build-mcp
+
+# Vendor as file copy (no submodule overhead):
+bash "$CURSOR_COLLECTIONS_HOME/scripts/setup-cursor-local.sh" --vendor copy --build-mcp
+```
+
+In vendor mode the framework lands in `vendor/cursor-collections/` and `.cursor/mcp.json` uses relative paths — safe to commit.
+
+See [`scripts/setup-cursor-local.sh --help`](scripts/setup-cursor-local.sh) and [Installation docs](website/docs/getting-started/installation.md) for Windows instructions and all available flags.
+
+### Manual bootstrap
+
 1. Copy or vendor **`.cursor/rules/`** templates; customize `eversis-project-stack.mdc`.
 2. Copy or link **`.cursor/prompts/`** (or maintain your own `eversis-*.md` under a path you prefer).
 3. Add **`AGENTS.md`** and optional **`docs/specs/`**, **`docs/context/`**, **`docs/plans/`** per [documentation/cursor-collection.md](documentation/cursor-collection.md).
