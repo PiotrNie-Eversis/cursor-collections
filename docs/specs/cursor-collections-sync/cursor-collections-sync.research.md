@@ -1,7 +1,7 @@
 # Research: aktualizacja plików `.cursor` w projekcie konsumenckim (wyrównanie z paczką cursor-collections)
 
-**Data:** 2026-05-27  
-**Faza:** Research (`@eversis-implement`) — **bez implementacji**  
+**Data:** 2026-05-27 (aktualizacja: earth-explorers-3d — wzorzec `sync:collections` wycofany, alignacja wyłącznie przez Part C `cursor-collection.md`)  
+**Faza:** Research (`@eversis-implement`)  
 **Język zadania:** polski; artefakt po polsku, odwołania do ścieżek repo po angielsku (konwencja frameworku).
 
 ---
@@ -10,7 +10,7 @@
 
 Odpowiedzieć na pytanie: **jak utrzymywać i aktualizować** katalog `.cursor/` (oraz powiązane `mcp.json`, MCP build) w **projekcie aplikacyjnym**, żeby pozostał zgodny z upstream **`cursor-collections`**, bez utraty lokalnych dostosowań (np. `eversis-project-stack.mdc`, własne reguły, merge MCP).
 
-Research obejmuje **ten monorepo** (źródło frameworku) oraz **repozytoria konsumenckie** (np. earth-explorers z submodule `third-party/cursor-collections` i skryptem `sync:collections` opisanym w szablonie `eversis-project-stack.mdc`).
+Research obejmuje **ten monorepo** (źródło frameworku) oraz **repozytoria konsumenckie** (np. **earth-explorers-3d**), które utrzymują `.cursor/` zgodnie z [`documentation/cursor-collection.md`](../../../documentation/cursor-collection.md) Part C — **`setup-cursor-local.sh`**, bez osobnego lokalnego skryptu sync.
 
 ---
 
@@ -22,7 +22,7 @@ Research obejmuje **ten monorepo** (źródło frameworku) oraz **repozytoria kon
 | Automatyczne nadpisanie wszystkiego | **Nie** — `eversis-project-stack.mdc` i istniejące katalogi w trybie copy/symlink są chronione domyślnie |
 | Tryb zespołowy (wersja w git) | **Tak** — `--vendor submodule` + `git submodule update` + ponowny setup/`--sync` |
 | Walidacja po aktualizacji promptów | **Opcjonalnie** — `node scripts/validate-cursor-markdown-links.mjs --context=source` w checkout frameworku |
-| Osobny skrypt `sync-cursor-collections.mjs` w consumer | **Wzorzec poza tym repo** — dokumentowany w stack rule dla earth-explorers; **nie ma go w cursor-collections** |
+| Osobny skrypt `sync-cursor-collections.mjs` w consumer | **Nieaktualny / wycofany** — earth-explorers-3d i nowe projekty używają wyłącznie **`setup-cursor-local.sh`** (Part C); skryptu **nie ma** w upstream cursor-collections |
 
 **Rekomendacja:** najpierw ustalić **tryb instalacji** projektu (local symlink / local copy / vendor submodule / vendor copy), potem stosować **jedną procedurę aktualizacji** z tabeli poniżej. Po każdej aktualizacji frameworku: **pull + `--sync` + rebuild MCP + restart Cursor**.
 
@@ -130,16 +130,19 @@ Setup kopiuje m.in. `.cursor/rules`, `prompts`, `commands`, `skills`, `mcp/evers
 
 ---
 
-### 5. Wzorzec consumer: submodule `third-party/cursor-collections` + `npm run sync:collections`
+### 5. Consumer referencyjny: earth-explorers-3d (model kanoniczny)
 
-W **szablonie** [`eversis-project-stack.mdc`](../../../.cursor/rules/eversis-project-stack.mdc) (profil earth-explorers) opisano:
+**Stan (2026-05-27):** **earth-explorers-3d** nie używa już wzorca `third-party/cursor-collections` + `npm run sync:collections` / `sync-cursor-collections.mjs`. Projekt jest w **100% zgodny** z [`documentation/cursor-collection.md`](../../../documentation/cursor-collection.md) Part C — ta sama procedura co §1–§4 powyżej:
 
-- Submodule: `third-party/cursor-collections`
-- `cd scripts && npm run sync:collections` (skrypt `sync-cursor-collections.mjs`, flagi `--check-only`, build MCP)
+- bootstrap i aktualizacja: **`scripts/setup-cursor-local.sh`** (`--sync`, `--build-mcp`, opcjonalnie `--vendor submodule|copy`, `--gitignore-agent-artifacts`);
+- checkout frameworku: **`$CURSOR_COLLECTIONS_HOME`** (lub vendor submodule/copy w repo aplikacji);
+- **materialised** [`eversis-project-stack.mdc`](../../../.cursor/rules/eversis-project-stack.mdc) w consumer opisuje stack aplikacji (visuals-portal itd.) — **nie** jest kopiowany z upstream.
 
-**Stan w tym repozytorium (cursor-collections):** pliku `sync-cursor-collections.mjs` **tu nie ma** — to **narzędzie projektu konsumenckiego**, nie część upstream. Research zakłada, że robi ono to samo co setup: sync `.cursor/*` + opcjonalnie MCP, z ścieżką submodule ustawioną w skrypcie consumer.
+**Upstream cursor-collections:** [`eversis-project-stack.mdc`](../../../.cursor/rules/eversis-project-stack.mdc) opisuje **ten** monorepo (Docusaurus, `website/`, MCP). Szablon profilu aplikacyjnego: sekcja **„Reference: Eversis stack example”** w Part C + seed przy pierwszym setup (tylko gdy plik nie istnieje).
 
-**Dla zespołów z tym wzorcem:** aktualizacja = `git submodule update` w `third-party/cursor-collections` + `npm run sync:collections` (ew. `--check-only` w CI).
+**Nie traktować earth-explorers jako osobnego „§5 wzorca”** — to consumer na **jednej z czterech ścieżek** Part C, bez lokalnego wrapper-skryptu sync.
+
+**Historycznie (nieaktualne):** wcześniejsze wersje earth-explorers mogły vendorować submodule pod `third-party/cursor-collections` i utrzymywać `sync-cursor-collections.mjs` w `scripts/` — wzorzec **poza** upstream, **usunięty** z projektu.
 
 ---
 
@@ -147,7 +150,7 @@ W **szablonie** [`eversis-project-stack.mdc`](../../../.cursor/rules/eversis-pro
 
 ### Przed pull
 
-- [ ] Ustal tryb: local symlink | local copy | vendor submodule | vendor copy | consumer `sync:collections`
+- [ ] Ustal tryb: local symlink | local copy | vendor submodule | vendor copy (Part C — **jedyna** ścieżka; bez `sync:collections`)
 - [ ] Zrób backup / branch jeśli masz **lokalne zmiany** w plikach frameworku pod `.cursor/` (np. forkowane `eversis-*.mdc`) — `--sync` je **nadpisze** w trybie copy
 - [ ] Sprawdź **CHANGELOG** upstream (`CHANGELOG.md`) pod kątem breaking changes (env MCP, nowe commands, usunięte prompty)
 
@@ -155,7 +158,7 @@ W **szablonie** [`eversis-project-stack.mdc`](../../../.cursor/rules/eversis-pro
 
 - [ ] Local: `git pull` w `$CURSOR_COLLECTIONS_HOME`
 - [ ] Vendor: `git submodule update` (+ commit SHA w consumer)
-- [ ] Consumer scripts: zgodnie z README projektu
+- [ ] Vendor / local: zgodnie z Part C [`documentation/cursor-collection.md`](../../../documentation/cursor-collection.md) (setup + `--sync` gdzie wymagane)
 
 ### Zastosuj pliki `.cursor`
 
@@ -197,7 +200,7 @@ W **szablonie** [`eversis-project-stack.mdc`](../../../.cursor/rules/eversis-pro
 | Symlink + edycja pliku przez IDE w consumer | Edycja może trafiać do **HOME frameworku** — preferuj materialised `eversis-project-stack.mdc` only; reszta read-only przez symlink |
 | Stary MCP `dist/` | Zawsze `--build-mcp` po bumpie submodule / pull |
 | `mcp.json` w git (vendor) vs gitignore (local) | Zespół musi wiedzieć, czy commitujecie MCP config |
-| Brak `sync-cursor-collections.mjs` w nowym consumer | Użyj `setup-cursor-local.sh` zamiast kopiować skrypt z earth-explorers bez adaptacji ścieżki submodule |
+| Legacy `sync-cursor-collections.mjs` w starym consumer | **Nie kopiować** — migracja na `setup-cursor-local.sh` (wzór: earth-explorers-3d, 2026-05-27) |
 
 ---
 
@@ -210,6 +213,7 @@ W **szablonie** [`eversis-project-stack.mdc`](../../../.cursor/rules/eversis-pro
 | Skrypt setup (`--sync`, flagi) | [`scripts/setup-cursor-local.sh`](../../../scripts/setup-cursor-local.sh) |
 | Logika link/copy | [`scripts/lib/setup-cursor-local/link-framework.sh`](../../../scripts/lib/setup-cursor-local/link-framework.sh) |
 | Ochrona stack rule | `_handle_stack_rule` w `link-framework.sh` |
+| Stack rule upstream vs consumer | Upstream: [`eversis-project-stack.mdc`](../../../.cursor/rules/eversis-project-stack.mdc) (profil frameworku); consumer: materialised plik per projekt — [`documentation/cursor-collection.md`](../../../documentation/cursor-collection.md) § Reference |
 | Vendor | [`scripts/lib/setup-cursor-local/vendor.sh`](../../../scripts/lib/setup-cursor-local/vendor.sh) |
 | Research setup (historyczny) | [`docs/specs/cursor-local-setup/cursor-local-setup.research.md`](../cursor-local-setup/cursor-local-setup.research.md) |
 | MCP env | [`mcp/eversis-collections-mcp/README.md`](../../../mcp/eversis-collections-mcp/README.md) |
@@ -219,8 +223,8 @@ W **szablonie** [`eversis-project-stack.mdc`](../../../.cursor/rules/eversis-pro
 
 ## Otwarte pytania (do planu / decyzji zespołu)
 
-1. **Czy consumer ma dostać oficjalny `sync-cursor-collections.mjs` w cursor-collections** (obok `setup-cursor-local.sh`), czy wystarczy dokumentacja „używaj setup z `--target`”?
-2. **Czy CI consumer ma `--check-only`** (porównanie wersji submodule vs `.cursor/` copy)?
+1. ~~**Czy consumer ma dostać oficjalny `sync-cursor-collections.mjs`**~~ — **Zamknięte:** wystarczy **`setup-cursor-local.sh`** (Part C); earth-explorers-3d zmigrowany.
+2. **Czy CI consumer ma check-only** (porównanie wersji vendor/submodule vs `.cursor/` copy)?
 3. **Polityka forków:** czy zespół może commitować zmiany w `vendor/cursor-collections`, czy tylko pin SHA upstream?
 
 ---
@@ -229,7 +233,7 @@ W **szablonie** [`eversis-project-stack.mdc`](../../../.cursor/rules/eversis-pro
 
 Po **akceptacji** tego researchu:
 
-- Opcjonalny **plan** (`cursor-collections-sync.plan.md`) — np. ujednolicenie docs PL, skrypt `sync-cursor-collections.mjs` w `scripts/` dla consumerów, CI check-only.
-- **Brak kodu** w tej fazie — użytkownik pytał wyłącznie o Research.
+- Opcjonalny **plan** (`cursor-collections-sync.plan.md`) — np. runbook PL w `docs/context/`, CI check-only dla vendor mode.
+- **Bez** oficjalnego `sync-cursor-collections.mjs` w upstream — SSOT pozostaje Part C.
 
-**Prośba o akceptację:** Czy ten research pokrywa Twój kontekst (który projekt / tryb instalacji)? Po „OK” mogę przygotować plan lub krótką runbook PL w `docs/context/` — według preferencji.
+**Status:** Research zaktualizowany — earth-explorers-3d na modelu kanonicznym; §5 nie opisuje osobnego wzorca sync.

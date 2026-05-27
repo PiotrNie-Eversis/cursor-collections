@@ -1,73 +1,55 @@
 ---
-description: Per-repository stack and quality commands — earth-explorers-3d (3D Visuals)
+description: Per-repository stack and quality commands — Cursor Collections (Docusaurus docs site)
 alwaysApply: true
 ---
 
-# Project stack — earth-explorers-3d
+# Project stack — this repository
 
-**3D Visuals** — interactive 3D Earth observation experiences (React Three Fiber, satellite mission content). **GitLab** monorepo. Agents usually touch **`visuals-portal/`**; related images and Helm charts live beside it at the repo root.
+This repo is **Cursor Collections** (Eversis): **Cursor** rules, attachable prompts under **`.cursor/prompts/`** (synced into `website/docs/prompts/` for the docs site), skills in **`.cursor/skills/`**, and [documentation/cursor-collection.md](../../documentation/cursor-collection.md).
 
 | Area | This repository |
-| ---- | ---------------- |
-| **FE app** | **`visuals-portal/`** — Next.js **13** (Pages Router, `src/pages/`), React 18, TypeScript, Tailwind CSS, React Three Fiber / **drei**, Zustand, SWR, **iron-session** + **openid-client** (OIDC), Matomo (**`@socialgouv/matomo-next`**), **`next-pwa`** |
-| **Reverse proxy image** | **`visuals-nginx/`** — paired with portal deploys (see root **`/.gitlab-ci.yml`** triggers) |
-| **Data scripts** | **`aeolus-data-script/`**, **`earthcare-data-script/`** — small Node tooling (only when editing those folders) |
-| **Repo tooling** | **`scripts/`** — **`npm run sync:collections`** and related helpers for **`third-party/cursor-collections`** |
-| **Deploy** | **Helm** under **`charts/`** — **`visuals-portal`**, **`visuals-nginx`**; environment values under **`charts/environments/`** (e.g. **`dev/`**, **`prod/`**) |
-| **CI** | **GitLab** — root **`/.gitlab-ci.yml`** forwards to **`visuals-portal/.gitlab-ci.yml`** and **`visuals-nginx/.gitlab-ci.yml`** when those paths change |
-| **Cursor framework** | Submodule **`third-party/cursor-collections`** — [`AGENTS.md`](AGENTS.md), rules **`/.cursor/rules/`**, prompts **`@eversis-*`**, **`eversis-collections`** MCP |
+| ---- | --------------- |
+| **Product** | Cursor-native product engineering framework + published workflow docs |
+| **Docs site** | Docusaurus 3 under **`website/`** (`cursor-collections-docs`) |
+| **Prompts** | **`.cursor/prompts/public/`** and **`internal/`** (`eversis-*.md`); attach with **`@eversis-*`**; **`sync-prompts`** copies to gitignored `website/docs/prompts/` (also in **`.cursorignore`** to avoid double **`@`** indexing) |
+| **Skills** | **`.cursor/skills/eversis-*/`** (topic packages; list/read/validate via **`eversis-collections` MCP**, not a separate **Agent Skills** path) |
 
-There is **no** single root **`package.json`** application workspace — run commands from **`visuals-portal/`** for the portal, or **`scripts/`** / **`third-party/`** as documented below.
+## Quality commands (this repo)
 
-## Quality commands — run from `visuals-portal/`
+Run from **`website/`** (see [website/package.json](../../website/package.json)):
 
-Use **yarn** in **`visuals-portal/`**:
+- **Dev server:** `npm start` (Docusaurus)
+- **Production build:** `npm run build` — use this as the primary quality gate for doc changes
+- **Serve build locally:** `npm run serve`
 
-| Check | Command |
-| --- | --- |
-| **Lint** | `yarn lint` |
-| **Lint + format fixes** | `yarn lint:fix` |
-| **Format check** | `yarn format:check` |
-| **Production build** | `yarn build` |
-| **Dev server** | `yarn dev` |
+There is no root `lint` / `test` script; the site is mostly Markdown and React theme.
 
-GitLab (**`visuals-portal/.gitlab-ci.yml`**) runs **`yarn install --frozen-lockfile`**, **`yarn lint`**, and **`yarn build`**. There is **no `yarn test` script** in this package today; rely on **lint** and **build** before hand-off unless a ticket adds automated tests.
-
-**Node:** Root **`README.md`** recommends Node **v21+** for local work; **`visuals-portal`** CI images use **Node 22** (`node:22-alpine`).
-
-### Bun helpers (`visuals-portal/` only)
-
-GeoJSON maintenance scripts (**`yarn transform-geojson`**, **`stream-geojson`**, **`mergeGeoJSON`**) invoke **Bun** per **`visuals-portal/package.json`** — use only when working those pipelines.
-
-### Cursor collections sync (`scripts/`)
-
-First-time / after submodule bumps — see root **`README.md`**. Typical:
+After changes under **`.cursor/`** (rules, prompts, commands, skills), run link validation before merge:
 
 ```bash
-cd scripts
-npm run sync:collections
+node scripts/validate-cursor-markdown-links.mjs --context=source
+# or from website/:
+npm run validate-cursor-links
 ```
 
-Optional flags are documented on **`scripts/sync-cursor-collections.mjs`** (e.g. **`--check-only`**, MCP build/start).
+`prebuild` / `prestart` in `website/` already run **`validate-cursor-links`** — broken markdown links fail **`npm run build`**.
 
 ## Conventions
 
-- **Specs / plans:** **`docs/specs/<issue-kebab>/`** — `*.research.md`, `*.plan.md` (see **`docs/specs/README.md`**).
-- **Internal notes:** **`docs/context/*.md`** (see **`docs/context/README.md`** when present).
-- **Git commits:** JIRA-style first line — see **`AGENTS.md`** and team practice (use branch / ticket id when supplied).
-- **Package manager:** **Yarn 1.x** in **`visuals-portal/`**; do **not** add conflicting lockfiles or new package-manager dependencies without lead agreement (**`eversis-agent-core.mdc`**).
-
-## Integration branches
-
-**`visuals-portal/.gitlab-ci.yml`** runs on **`develop`**, **`azure-develop`**, branch patterns **`/^uat.*/`** and **`/^XJ3D.*/`**, and **`/^release-.*/`** (see **`only:`** in that file). Root **`.gitlab-ci.yml`** also keys **`master`**, **`azure-develop`**, and **`release-*`** for image pipelines. Align MR targets with team workflow.
+- **Specs / plans:** **`docs/specs/<issue-kebab>/`** — `*.research.md`, `*.plan.md`, `*.spec.md` (see **`docs/specs/README.md`**)
+- **Internal notes:** **`docs/context/*.md`**
+- **Git commits:** JIRA-style first line — see **[AGENTS.md](../../AGENTS.md)** and team practice
+- **Template** for other projects: see **“Reference: Eversis stack example”** in [documentation/cursor-collection.md](../../documentation/cursor-collection.md)
 
 ## Status: Fine — QA comment (mandatory contract)
 
-When **all** planned agent work for the Implement thread is finished:
+Aligned with [workflow overview — Status: Fine](../../website/docs/workflow/overview.md):
 
-1. Declare **`Fine`** (explicit word / status).
-2. **In the same assistant response** as **`Fine`**, produce the **QA comment draft** per **`.cursor/skills/eversis-qa-comment/SKILL.md`** in Cursor Collections (read via MCP **`eversis_skills_get`** for **`eversis-qa-comment`** when MCP is enabled).
-3. Label the draft: **`Draft QA comment — review before posting to Jira`**.
-4. **Never** post to Jira in that turn; publication only after **explicit** human approval.
+1. When **all** planned agent work for the Implement thread is finished, declare **`Fine`** (explicit word / status).
+2. **In the same assistant response** as **`Fine`**, produce the **QA comment draft** by following **`.cursor/skills/eversis-qa-comment/SKILL.md`** exactly (read that file if needed, or load via **`eversis-collections` MCP** `eversis_skills_get` for `eversis-qa-comment`). Do **not** treat [`website/docs/skills/qa-comment.md`](../../website/docs/skills/qa-comment.md) as the procedural source of truth — it is onboarding / narrative only; normative procedure is **`SKILL.md`** + MCP ([documentation/cursor-collection.md](../../documentation/cursor-collection.md) § QA handoff after Fine).
+3. Label the draft: **`Draft QA comment — review before posting to Jira`** (per [`eversis-engineering-manager.mdc`](eversis-engineering-manager.mdc)).
+4. **Never** post to Jira in that turn; publication only after **explicit** human approval (paste or Atlassian MCP).
 
 Skipping the QA draft when declaring **Fine** is a **workflow breach** — if you cannot comply (context limit, blocked tools), say so and stop **without** declaring **Fine**.
+
+**Consumer repos:** downstream projects should mirror this contract in **their** `eversis-project-stack.mdc` (always-on) or equivalent AGENTS guidance when they vendor this framework via submodule / copy.

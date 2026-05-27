@@ -45,6 +45,7 @@ const replacements = [
   ["[README](../README.md)", `[README](${GITHUB_BLOB}/README.md)`],
   ["](../.cursor/mcp.json)", `](${GITHUB_BLOB}/.cursor/mcp.json)`],
   ["](../.cursor/skills/)", `](${GITHUB_TREE}/.cursor/skills)`],
+  ["](../mcp/eversis-collections-mcp/README.md)", `](${GITHUB_BLOB}/mcp/eversis-collections-mcp/README.md)`],
   ["](../mcp/eversis-collections-mcp/)", `](${GITHUB_TREE}/mcp/eversis-collections-mcp)`],
   ["](../.cursor/rules/)", `](${GITHUB_TREE}/.cursor/rules)`],
 ];
