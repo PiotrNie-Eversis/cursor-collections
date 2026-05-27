@@ -158,6 +158,14 @@ The script will:
 - Create `AGENTS.md` and `docs/specs/` if they are missing.
 - Add a `.gitignore` block so the generated MCP config stays local (not committed).
 
+Optional — keep agent research/plan folders out of git (solo dev or Jira-only):
+
+```bash
+bash "$CURSOR_COLLECTIONS_HOME/scripts/setup-cursor-local.sh" --build-mcp --gitignore-agent-artifacts
+```
+
+This adds `docs/specs/*/` and `docs/context/*/` to `.gitignore` in **local mode only**. Default setup commits those paths; do not use the flag if your team shares specs/plans in git or syncs wiki exports to `docs/context/`.
+
 After the script finishes, **enable the MCP server in Cursor**: Settings → MCP → enable `eversis-collections` → restart Cursor.
 
 #### Vendor mode (optional — for teams)

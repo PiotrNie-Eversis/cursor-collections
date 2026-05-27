@@ -1,85 +1,72 @@
 ---
-description: Per-repository stack and quality commands — EOP (Earth Observation Portal)
+description: Per-repository stack and quality commands — earth-explorers-3d (3D Visuals)
 alwaysApply: true
 ---
 
-# Project stack — this repository
+# Project stack — earth-explorers-3d
 
-**EOP** (Earth Observation Portal) — public content portal for satellite missions and space activities. Multi-module GitLab monorepo; agents usually touch **`portal/`** (Next.js) or **`cms/`** (Liferay OSGi modules).
+**3D Visuals** — interactive 3D Earth observation experiences (React Three Fiber, satellite mission content). **GitLab** monorepo. Agents usually touch **`visuals-portal/`**; related images and Helm charts live beside it at the repo root.
 
 | Area | This repository |
-| ---- | --------------- |
-| **Product** | [eoportal.org](https://eoportal.org/) — CMS-authored content exposed via headless APIs |
-| **Portal** | Next.js 15, React 18, TypeScript, Chakra UI, Pages Router — **`portal/`** |
-| **CMS** | Liferay 7.4.3, Java, Maven multi-module OSGi — **`cms/`** |
-| **E2E** | Cypress 10 — **`e2e/`** (separate package; not wired in root CI trigger by default) |
-| **Infra** | `docker-compose.yml`, Helm **`charts/`**, GitLab CI (`.gitlab-ci.yml` + module pipelines) |
-| **Framework** | [Eversis Cursor Collections](https://github.com/PiotrNie-Eversis/cursor-collections) — rules in **`.cursor/rules/`**, prompts via **`@eversis-*`**, skills via **`eversis-collections` MCP** |
+| ---- | ---------------- |
+| **FE app** | **`visuals-portal/`** — Next.js **13** (Pages Router, `src/pages/`), React 18, TypeScript, Tailwind CSS, React Three Fiber / **drei**, Zustand, SWR, **iron-session** + **openid-client** (OIDC), Matomo (**`@socialgouv/matomo-next`**), **`next-pwa`** |
+| **Reverse proxy image** | **`visuals-nginx/`** — paired with portal deploys (see root **`/.gitlab-ci.yml`** triggers) |
+| **Data scripts** | **`aeolus-data-script/`**, **`earthcare-data-script/`** — small Node tooling (only when editing those folders) |
+| **Repo tooling** | **`scripts/`** — **`npm run sync:collections`** and related helpers for **`third-party/cursor-collections`** |
+| **Deploy** | **Helm** under **`charts/`** — **`visuals-portal`**, **`visuals-nginx`**; environment values under **`charts/environments/`** (e.g. **`dev/`**, **`prod/`**) |
+| **CI** | **GitLab** — root **`/.gitlab-ci.yml`** forwards to **`visuals-portal/.gitlab-ci.yml`** and **`visuals-nginx/.gitlab-ci.yml`** when those paths change |
+| **Cursor framework** | Submodule **`third-party/cursor-collections`** — [`AGENTS.md`](AGENTS.md), rules **`/.cursor/rules/`**, prompts **`@eversis-*`**, **`eversis-collections`** MCP |
 
-## Quality commands
+There is **no** single root **`package.json`** application workspace — run commands from **`visuals-portal/`** for the portal, or **`scripts/`** / **`third-party/`** as documented below.
 
-Run from the **module directory** that changed. There is no root `package.json` / `Makefile`.
+## Quality commands — run from `visuals-portal/`
 
-### Portal (`portal/`)
+Use **yarn** in **`visuals-portal/`**:
 
-Primary gate for frontend work (matches `portal/.gitlab-ci.yml`):
+| Check | Command |
+| --- | --- |
+| **Lint** | `yarn lint` |
+| **Lint + format fixes** | `yarn lint:fix` |
+| **Format check** | `yarn format:check` |
+| **Production build** | `yarn build` |
+| **Dev server** | `yarn dev` |
 
-```bash
-cd portal
-yarn install --frozen-lockfile   # first run / CI parity
-yarn lint                        # ESLint (Next.js)
-yarn build                       # production build + TypeScript check
-yarn test                        # Jest + React Testing Library (coverage)
-yarn format:check                # Prettier (optional before commit)
-```
+GitLab (**`visuals-portal/.gitlab-ci.yml`**) runs **`yarn install --frozen-lockfile`**, **`yarn lint`**, and **`yarn build`**. There is **no `yarn test` script** in this package today; rely on **lint** and **build** before hand-off unless a ticket adds automated tests.
 
-Dev server: `yarn dev` → [http://localhost:3000](http://localhost:3000). See `portal/CLAUDE.md` for architecture (OpenAPI client, DDM parser, routing).
+**Node:** Root **`README.md`** recommends Node **v21+** for local work; **`visuals-portal`** CI images use **Node 22** (`node:22-alpine`).
 
-Single test file: `npx jest path/to/file.test.tsx` (from `portal/`).
+### Bun helpers (`visuals-portal/` only)
 
-### CMS (`cms/`)
+GeoJSON maintenance scripts (**`yarn transform-geojson`**, **`stream-geojson`**, **`mergeGeoJSON`**) invoke **Bun** per **`visuals-portal/package.json`** — use only when working those pipelines.
 
-For Liferay module / Java changes (matches `cms/.gitlab-ci.yml`):
+### Cursor collections sync (`scripts/`)
 
-```bash
-cd cms
-chmod u+x mvnw
-./mvnw checkstyle:check          # static analysis
-./mvnw clean install             # build all modules
-./mvnw test verify               # unit / integration tests
-./mvnw clean install -Pdocker    # build + deploy JARs to Liferay Docker (/docker/deploy)
-```
-
-Local stack: `docker-compose up -d mariadb cms` (Liferay `:8080`, MariaDB `:3306`). JPDA debug: `:8000`.
-
-### E2E (`e2e/`)
-
-Manual / pre-release; copy `cypress.env.json.template` → `cypress.env.json` first.
+First-time / after submodule bumps — see root **`README.md`**. Typical:
 
 ```bash
-cd e2e
-yarn install
-yarn cypress                     # interactive
-yarn cypress:run-chrome          # headless Chrome
-yarn cypress:ci                  # Chrome + Firefox (CI-style)
+cd scripts
+npm run sync:collections
 ```
+
+Optional flags are documented on **`scripts/sync-cursor-collections.mjs`** (e.g. **`--check-only`**, MCP build/start).
 
 ## Conventions
 
-- **Default branch:** `develop` (feature branches → MR to `develop`).
-- **Jira:** evolution [DAWISEE](https://eversis.atlassian.net/jira/software/c/projects/DAWISEE/boards/21); maintenance [DAWISMO](https://eversis.atlassian.net/jira/software/c/projects/DAWISMO/issues/?jql=project%20%3D%20%22DAWISMO%22%20and%20labels%20IN%28%27eoportal%27%29).
-- **Specs / plans:** `docs/specs/<issue-kebab>/` — `*.research.md`, `*.plan.md` (see `docs/specs/README.md`).
-- **Internal notes:** `docs/context/*.md` (create when needed).
-- **Generated code:** do not hand-edit `portal/lib/api/services/` (OpenAPI codegen) or ANTLR output under `portal/lib/ddmexpression/`.
-- **Package manager:** Yarn 1.x in `portal/` and `e2e/`; do not add npm/pnpm lockfiles.
-- **Accessibility:** target **WCAG 2.1 AA** for portal UI unless a spec or `docs/context/` states otherwise (`eversis-accessibility.mdc`).
+- **Specs / plans:** **`docs/specs/<issue-kebab>/`** — `*.research.md`, `*.plan.md` (see **`docs/specs/README.md`**).
+- **Internal notes:** **`docs/context/*.md`** (see **`docs/context/README.md`** when present).
+- **Git commits:** JIRA-style first line — see **`AGENTS.md`** and team practice (use branch / ticket id when supplied).
+- **Package manager:** **Yarn 1.x** in **`visuals-portal/`**; do **not** add conflicting lockfiles or new package-manager dependencies without lead agreement (**`eversis-agent-core.mdc`**).
+
+## Integration branches
+
+**`visuals-portal/.gitlab-ci.yml`** runs on **`develop`**, **`azure-develop`**, branch patterns **`/^uat.*/`** and **`/^XJ3D.*/`**, and **`/^release-.*/`** (see **`only:`** in that file). Root **`.gitlab-ci.yml`** also keys **`master`**, **`azure-develop`**, and **`release-*`** for image pipelines. Align MR targets with team workflow.
 
 ## Status: Fine — QA comment (mandatory contract)
 
 When **all** planned agent work for the Implement thread is finished:
 
 1. Declare **`Fine`** (explicit word / status).
-2. **In the same assistant response** as **`Fine`**, produce the **QA comment draft** per **`.cursor/skills/eversis-qa-comment/SKILL.md`** in Cursor Collections (read via MCP `eversis_skills_get` for `eversis-qa-comment` when MCP is enabled).
+2. **In the same assistant response** as **`Fine`**, produce the **QA comment draft** per **`.cursor/skills/eversis-qa-comment/SKILL.md`** in Cursor Collections (read via MCP **`eversis_skills_get`** for **`eversis-qa-comment`** when MCP is enabled).
 3. Label the draft: **`Draft QA comment — review before posting to Jira`**.
 4. **Never** post to Jira in that turn; publication only after **explicit** human approval.
 

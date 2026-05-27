@@ -61,6 +61,9 @@ bash scripts/setup-cursor-local.sh --vendor submodule --build-mcp
 
 # Vendor as file copy (simpler, no submodule overhead):
 bash scripts/setup-cursor-local.sh --vendor copy --build-mcp
+
+# Optional: gitignore agent research/plan subfolders (local mode only):
+bash scripts/setup-cursor-local.sh --build-mcp --gitignore-agent-artifacts
 ```
 
 The script:
@@ -70,6 +73,8 @@ The script:
 - Adds a `.gitignore` block in local mode (so MCP paths stay out of version control).
 - Scaffolds `AGENTS.md` and `docs/specs/` if absent.
 - Prints a **Next steps** summary (enable MCP in Cursor, customise the stack rule, etc.).
+
+**`--gitignore-agent-artifacts` (local mode only, default off):** adds `docs/specs/*/` and `docs/context/*/` to `.gitignore` so Implement research/plan folders stay local. Ignored with a warning in vendor mode. Do not use if you commit specs/plans to git or run CI wiki sync into `docs/context/`.
 
 See `scripts/setup-cursor-local.sh --help` for the full flag reference.
 

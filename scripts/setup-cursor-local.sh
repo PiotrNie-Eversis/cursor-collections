@@ -21,6 +21,9 @@
 #   --force                   Allow setup even when COLLECTIONS_HOME exists but
 #                             looks incomplete.
 #   --minimal                 (stub) — not yet implemented.
+#   --gitignore-agent-artifacts
+#                             Local mode only: gitignore docs/specs/*/ and
+#                             docs/context/*/ (agent research/plan output).
 #   --help                    Show this help and exit.
 #
 # Environment variables:
@@ -43,6 +46,9 @@
 #
 #   # Refresh a copy-mode local install:
 #   bash scripts/setup-cursor-local.sh --link-mode copy --sync
+#
+#   # Keep agent research/plan folders out of git (solo / Jira-only):
+#   bash scripts/setup-cursor-local.sh --build-mcp --gitignore-agent-artifacts
 
 set -euo pipefail
 
@@ -62,9 +68,10 @@ ARG_SYNC="false"
 ARG_NON_INTERACTIVE="false"
 ARG_FORCE="false"
 ARG_MINIMAL="false"
+ARG_GITIGNORE_AGENT_ARTIFACTS="false"
 
 export ARG_BUILD_MCP ARG_COLLECTIONS_HOME ARG_TARGET ARG_VENDOR ARG_LINK_MODE \
-       ARG_SYNC ARG_NON_INTERACTIVE ARG_FORCE ARG_MINIMAL
+       ARG_SYNC ARG_NON_INTERACTIVE ARG_FORCE ARG_MINIMAL ARG_GITIGNORE_AGENT_ARTIFACTS
 
 while [[ $# -gt 0 ]]; do
   case "$1" in
@@ -101,6 +108,8 @@ while [[ $# -gt 0 ]]; do
       ARG_FORCE="true"; shift ;;
     --minimal)
       ARG_MINIMAL="true"; shift ;;
+    --gitignore-agent-artifacts)
+      ARG_GITIGNORE_AGENT_ARTIFACTS="true"; shift ;;
     --help|-h)
       # awk: portable on macOS (BSD sed) and Linux (GNU sed).
       awk '/^# setup-cursor-local.sh/,/^[^#]/ { if ($0 ~ /^#/) { sub(/^# ?/, ""); print } }' "$0"

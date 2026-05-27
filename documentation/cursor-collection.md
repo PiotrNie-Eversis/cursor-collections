@@ -237,6 +237,9 @@ bash scripts/setup-cursor-local.sh --vendor copy --build-mcp
 # Point to an existing checkout non-interactively (e.g. CI):
 CURSOR_COLLECTIONS_HOME=~/src/cursor-collections \
   bash scripts/setup-cursor-local.sh --build-mcp --non-interactive
+
+# Keep agent research/plan folders out of git (solo dev / Jira-only workflow):
+bash scripts/setup-cursor-local.sh --build-mcp --gitignore-agent-artifacts
 ```
 
 | Mode | `.cursor/mcp.json` in git? | Framework path |
@@ -244,6 +247,8 @@ CURSOR_COLLECTIONS_HOME=~/src/cursor-collections \
 | **local** (default) | ❌ gitignored | `$CURSOR_COLLECTIONS_HOME` (outside repo) |
 | **`--vendor submodule`** | ✅ committed | `vendor/cursor-collections/` (Git submodule) |
 | **`--vendor copy`** | ✅ committed | `vendor/cursor-collections/` (file copy) |
+
+**Optional flag — `--gitignore-agent-artifacts` (local mode only):** adds `docs/specs/*/` and `docs/context/*/` to the project's `.gitignore` so `@eversis-implement` research/plan folders stay on disk but are not committed. **Default is off** — teams sharing specs/plans in git or using CI wiki sync to `docs/context/` (Part D below) should not use this flag. Re-run without the flag to stop ignoring those paths.
 
 **Environment variable:** export `CURSOR_COLLECTIONS_HOME` in your shell profile to avoid specifying `--collections-home` on every run. The same variable is read by the `eversis-collections` MCP server.
 
@@ -270,6 +275,8 @@ After running the script, complete the steps marked *(always manual)* in the che
 ---
 
 ## Part D — Internal knowledge sync (generic pattern + examples)
+
+**Note:** If you bootstrap with `--gitignore-agent-artifacts` in local mode, subfolders under `docs/context/` are gitignored — scheduled CI sync below must either omit that flag or use `git add -f` / a different target path.
 
 **Pattern (any CI, any wiki):**
 

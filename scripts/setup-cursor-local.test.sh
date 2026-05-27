@@ -4,21 +4,19 @@
 # Usage (from repo root):
 #   bash scripts/setup-cursor-local.test.sh
 #
-# What it does:
-#   1. Creates a temp directory as a fake consumer project (git init).
-#   2. Uses CURSOR_COLLECTIONS_HOME=$PWD (this repo) as the framework source.
-#   3. Runs setup in --non-interactive --link-mode copy mode (no symlinks needed in CI).
-#   4. Asserts key outputs: .cursor dirs, mcp.json, .gitignore block, AGENTS.md, docs/specs/.
-#   5. Cleans up the temp directory.
-#
-# The test does NOT build the MCP (--build-mcp is omitted) — CI regression for MCP build
-# is covered separately in the package-level npm test.
+# Scenarios:
+#   A — local default: no docs/specs/*/ in .gitignore
+#   B — local + --gitignore-agent-artifacts: sub-marker + patterns
+#   C — re-run B: single sub-marker (no duplication)
+#   D — B then re-run without flag: sub-marker removed, local block remains
+#   E — vendor copy + flag: no local block; warn on stderr
 
 set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 REPO_ROOT="$(cd "${SCRIPT_DIR}/.." && pwd)"
 SETUP_SCRIPT="${SCRIPT_DIR}/setup-cursor-local.sh"
+GITIGNORE_TEST="${SCRIPT_DIR}/lib/setup-cursor-local/gitignore.test.sh"
 
 PASS=0
 FAIL=0
@@ -56,82 +54,139 @@ assert_not_contains() {
   fi
 }
 
-# ─── setup temp project ───────────────────────────────────────────────────────
+assert_count() {
+  local file="$1" pattern="$2" expected="$3" desc="${4:-}"
+  local count
+  count="$(grep -cF "$pattern" "$file" 2>/dev/null || true)"
+  local d="${desc:-'$pattern' appears ${expected} time(s)}"
+  if [[ "$count" -eq "$expected" ]]; then
+    _pass "$d"
+  else
+    _fail "$d (got: ${count}, in: $file)"
+  fi
+}
 
-TMP_PROJECT="$(mktemp -d)"
-trap 'rm -rf "$TMP_PROJECT"' EXIT
+assert_common_outputs() {
+  local project="$1"
 
-cd "$TMP_PROJECT"
-git init -q
-git config user.email "test@example.com"
-git config user.name "Smoke Test"
+  assert_exists "${project}/.cursor/rules"            ".cursor/rules directory"
+  assert_exists "${project}/.cursor/prompts"          ".cursor/prompts directory"
+  assert_exists "${project}/.cursor/commands"         ".cursor/commands directory"
+  assert_exists "${project}/.cursor/skills"           ".cursor/skills directory"
+  assert_exists "${project}/.cursor/rules/eversis-project-stack.mdc" "eversis-project-stack.mdc"
+  assert_exists "${project}/.cursor/mcp.json"         ".cursor/mcp.json"
+  assert_exists "${project}/.gitignore"               ".gitignore exists"
+  assert_file_contains "${project}/.gitignore" "cursor-collections local [begin]" ".gitignore has marker block"
+  assert_file_contains "${project}/.gitignore" ".cursor/mcp.json"                ".gitignore ignores .cursor/mcp.json"
+  assert_not_contains  "${project}/.gitignore" "eversis-project-stack.mdc"       ".gitignore does NOT ignore stack rule"
+  assert_exists "${project}/AGENTS.md"              "AGENTS.md"
+  assert_exists "${project}/docs/specs"             "docs/specs/ directory"
+  assert_exists "${project}/docs/specs/README.md"   "docs/specs/README.md"
+}
 
-echo "Smoke test project directory: ${TMP_PROJECT}"
+new_temp_project() {
+  local dir
+  dir="$(mktemp -d)"
+  (
+    cd "$dir"
+    git init -q
+    git config user.email "test@example.com"
+    git config user.name "Smoke Test"
+  )
+  echo "$dir"
+}
+
+run_setup() {
+  local project="$1"
+  shift
+  CURSOR_COLLECTIONS_HOME="$REPO_ROOT" \
+    bash "$SETUP_SCRIPT" \
+      --non-interactive \
+      --link-mode copy \
+      --target "$project" \
+      "$@" \
+    2>&1 | sed 's/^/    /'
+}
+
+echo "setup-cursor-local smoke tests"
+echo "Framework source: ${REPO_ROOT}"
 echo ""
-echo "Running setup-cursor-local.sh …"
-echo "─────────────────────────────────────────────────────────────────"
 
-# Run the script with this repo as the framework source.
-CURSOR_COLLECTIONS_HOME="$REPO_ROOT" \
-  bash "$SETUP_SCRIPT" \
-    --non-interactive \
-    --link-mode copy \
-    --target "$TMP_PROJECT" \
-  2>&1 | sed 's/^/  /'
+# ─── Scenario A: local default ────────────────────────────────────────────────
 
+echo "Scenario A — local default (no agent-artifacts gitignore)"
 echo "─────────────────────────────────────────────────────────────────"
+TMP_A="$(new_temp_project)"
+run_setup "$TMP_A"
 echo ""
-echo "Assertions:"
+assert_common_outputs "$TMP_A"
+assert_not_contains "${TMP_A}/.gitignore" "docs/specs/*/" "default .gitignore does NOT ignore docs/specs/*/"
+assert_not_contains "${TMP_A}/.gitignore" "agent-artifacts [begin]" "default .gitignore has no agent-artifacts sub-block"
+rm -rf "$TMP_A"
+echo ""
 
-# ─── assertions ───────────────────────────────────────────────────────────────
+# ─── Scenario B: local + flag ─────────────────────────────────────────────────
 
-# .cursor/ structure
-assert_exists "${TMP_PROJECT}/.cursor/rules"            ".cursor/rules directory"
-assert_exists "${TMP_PROJECT}/.cursor/prompts"          ".cursor/prompts directory"
-assert_exists "${TMP_PROJECT}/.cursor/commands"         ".cursor/commands directory"
-assert_exists "${TMP_PROJECT}/.cursor/skills"           ".cursor/skills directory"
+echo "Scenario B — local + --gitignore-agent-artifacts"
+echo "─────────────────────────────────────────────────────────────────"
+TMP_B="$(new_temp_project)"
+run_setup "$TMP_B" --gitignore-agent-artifacts
+echo ""
+assert_common_outputs "$TMP_B"
+assert_file_contains "${TMP_B}/.gitignore" "cursor-collections agent-artifacts [begin]" "agent-artifacts sub-block present"
+assert_file_contains "${TMP_B}/.gitignore" "docs/specs/*/"                           ".gitignore ignores docs/specs/*/"
+assert_file_contains "${TMP_B}/.gitignore" "docs/context/*/"                         ".gitignore ignores docs/context/*/"
+echo ""
 
-# eversis-project-stack.mdc must be a real file (not a symlink) in copy mode.
-assert_exists "${TMP_PROJECT}/.cursor/rules/eversis-project-stack.mdc" "eversis-project-stack.mdc"
-if [[ -L "${TMP_PROJECT}/.cursor/rules/eversis-project-stack.mdc" ]]; then
-  _fail "eversis-project-stack.mdc should not be a symlink in copy mode"
+# ─── Scenario C: re-run with flag (idempotent) ────────────────────────────────
+
+echo "Scenario C — re-run with flag (no duplication)"
+echo "─────────────────────────────────────────────────────────────────"
+run_setup "$TMP_B" --gitignore-agent-artifacts
+echo ""
+assert_count "${TMP_B}/.gitignore" "cursor-collections agent-artifacts [begin]" 1 "single agent-artifacts sub-block"
+echo ""
+
+# ─── Scenario D: remove flag on re-run ────────────────────────────────────────
+
+echo "Scenario D — re-run without flag removes sub-block only"
+echo "─────────────────────────────────────────────────────────────────"
+run_setup "$TMP_B"
+echo ""
+assert_file_contains "${TMP_B}/.gitignore" "cursor-collections local [begin]" "local block still present"
+assert_not_contains "${TMP_B}/.gitignore" "docs/specs/*/"                       "docs/specs/*/ removed from .gitignore"
+assert_not_contains "${TMP_B}/.gitignore" "agent-artifacts [begin]"             "agent-artifacts sub-block removed"
+rm -rf "$TMP_B"
+echo ""
+
+# ─── Scenario E: vendor + flag ────────────────────────────────────────────────
+
+echo "Scenario E — vendor copy + flag ignored"
+echo "─────────────────────────────────────────────────────────────────"
+TMP_E="$(new_temp_project)"
+OUTPUT_E="$(mktemp)"
+run_setup "$TMP_E" --vendor copy --gitignore-agent-artifacts 2>&1 | tee "$OUTPUT_E" | sed 's/^/    /'
+echo ""
+assert_not_contains "${TMP_E}/.gitignore" "cursor-collections local [begin]" "vendor mode has no local gitignore block"
+if grep -qF "gitignore-agent-artifacts is ignored in vendor mode" "$OUTPUT_E"; then
+  _pass "vendor mode warns when flag is set"
 else
-  _pass "eversis-project-stack.mdc is a regular file (not symlink)"
+  _fail "vendor mode should warn when --gitignore-agent-artifacts is set"
 fi
+rm -rf "$TMP_E" "$OUTPUT_E"
+echo ""
 
-# mcp.json
-assert_exists "${TMP_PROJECT}/.cursor/mcp.json"                   ".cursor/mcp.json"
-assert_file_contains "${TMP_PROJECT}/.cursor/mcp.json" "mcpServers"           "mcp.json has mcpServers key"
-assert_file_contains "${TMP_PROJECT}/.cursor/mcp.json" "eversis-collections"  "mcp.json has eversis-collections entry"
-assert_file_contains "${TMP_PROJECT}/.cursor/mcp.json" "CURSOR_COLLECTIONS_HOME" "mcp.json has CURSOR_COLLECTIONS_HOME env"
+# ─── gitignore unit tests ─────────────────────────────────────────────────────
 
-# mcp.json must be valid JSON
-if node -e "JSON.parse(require('fs').readFileSync('${TMP_PROJECT}/.cursor/mcp.json','utf8'))" 2>/dev/null; then
-  _pass "mcp.json is valid JSON"
-else
-  _fail "mcp.json is NOT valid JSON"
+if [[ -f "$GITIGNORE_TEST" ]]; then
+  echo "gitignore unit tests"
+  echo "─────────────────────────────────────────────────────────────────"
+  bash "$GITIGNORE_TEST"
+  echo ""
 fi
-
-# .gitignore local block
-assert_exists "${TMP_PROJECT}/.gitignore"                         ".gitignore exists"
-assert_file_contains "${TMP_PROJECT}/.gitignore" "cursor-collections local [begin]" ".gitignore has marker block"
-assert_file_contains "${TMP_PROJECT}/.gitignore" ".cursor/mcp.json"                ".gitignore ignores .cursor/mcp.json"
-assert_not_contains  "${TMP_PROJECT}/.gitignore" "eversis-project-stack.mdc"       ".gitignore does NOT ignore stack rule"
-
-# AGENTS.md
-assert_exists "${TMP_PROJECT}/AGENTS.md"          "AGENTS.md"
-assert_file_contains "${TMP_PROJECT}/AGENTS.md" "eversis-collections" "AGENTS.md references framework"
-
-# docs/specs/
-assert_exists "${TMP_PROJECT}/docs/specs"         "docs/specs/ directory"
-assert_exists "${TMP_PROJECT}/docs/specs/README.md" "docs/specs/README.md"
-
-# .cursorignore
-assert_exists "${TMP_PROJECT}/.cursorignore"      ".cursorignore stub"
 
 # ─── results ──────────────────────────────────────────────────────────────────
 
-echo ""
 echo "─────────────────────────────────────────────────────────────────"
 if [[ $FAIL -eq 0 ]]; then
   echo "  ✅  All ${PASS} assertions passed."

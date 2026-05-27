@@ -32,6 +32,13 @@ print_summary() {
   echo "  3. ${_BOLD}Review AGENTS.md${_RESET} and docs/specs/ in your project root."
   echo ""
 
+  if [[ "$mode" == "local" ]] && [[ "${ARG_GITIGNORE_AGENT_ARTIFACTS:-false}" == "true" ]]; then
+    echo "  ${_YELLOW}Agent artifacts:${_RESET} docs/specs/*/ and docs/context/*/ are gitignored."
+    echo "  Research and plan files will not be shared via git. Re-run without"
+    echo "  --gitignore-agent-artifacts to commit them."
+    echo ""
+  fi
+
   if [[ "$mode" == "local" ]]; then
     echo "  4. ${_BOLD}(Recommended) Export the env variable${_RESET} in your shell profile:"
     echo "       export CURSOR_COLLECTIONS_HOME=\"${COLLECTIONS_HOME}\""

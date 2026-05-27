@@ -4,6 +4,21 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## 2026-05-27
+
+### Added
+
+- **`--gitignore-agent-artifacts`** flag for [`scripts/setup-cursor-local.sh`](scripts/setup-cursor-local.sh) — optional local-mode `.gitignore` entries for `docs/specs/*/` and `docs/context/*/` (agent research/plan output stays on disk but out of git). Default off; ignored in vendor mode with a warning.
+- **`scripts/lib/setup-cursor-local/gitignore.test.sh`** — unit tests for agent-artifacts sub-block merge in `.gitignore`.
+
+### Changed
+
+- **`scripts/lib/setup-cursor-local/gitignore.sh`** — nested `# cursor-collections agent-artifacts` marker; idempotent add/remove on re-run with or without the flag.
+- **`scripts/setup-cursor-local.test.sh`** — scenarios A–E for default, flag on, idempotent re-run, flag off, and vendor + flag.
+- **`documentation/cursor-collection.md`**, **`README.md`**, **`website/docs/getting-started/installation.md`** — document the new flag and trade-offs.
+
+---
+
 ## 2026-05-26
 
 ### Added
