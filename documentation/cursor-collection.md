@@ -250,6 +250,8 @@ bash scripts/setup-cursor-local.sh --build-mcp --gitignore-agent-artifacts
 
 **Optional flag — `--gitignore-agent-artifacts` (local mode only):** adds `docs/specs/*/` and `docs/context/*/` to the project's `.gitignore` so `@eversis-implement` research/plan folders stay on disk but are not committed. **Default is off** — teams sharing specs/plans in git or using CI wiki sync to `docs/context/` (Part D below) should not use this flag. Re-run without the flag to stop ignoring those paths.
 
+**Stack rule (`eversis-project-stack.mdc`):** seeded from `scripts/setup-cursor-local/templates/eversis-project-stack.example.mdc` — **not** from `$CURSOR_COLLECTIONS_HOME`. In **symlink** mode (default on macOS/Linux), framework rules are **per-file symlinks** inside a real `rules/` directory; the stack rule is a **local file** in your project (safe to commit and customise).
+
 **Environment variable:** export `CURSOR_COLLECTIONS_HOME` in your shell profile to avoid specifying `--collections-home` on every run. The same variable is read by the `eversis-collections` MCP server.
 
 **Windows:** use Git Bash or WSL; `--link-mode copy` is the default on Windows. See `website/docs/getting-started/installation.md` for details.

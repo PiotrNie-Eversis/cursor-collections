@@ -66,7 +66,14 @@ setup_vendor_submodule() {
 
 setup_vendor_copy() {
   local vendor_dir="${TARGET_DIR}/${VENDOR_PATH}"
-  local src_dirs=(".cursor/rules" ".cursor/prompts" ".cursor/commands" ".cursor/skills" "mcp/eversis-collections-mcp")
+  local src_dirs=(
+    ".cursor/rules"
+    ".cursor/prompts"
+    ".cursor/commands"
+    ".cursor/skills"
+    "mcp/eversis-collections-mcp"
+    "scripts/setup-cursor-local/templates"
+  )
 
   log_info "Copying framework into ${vendor_dir} …"
   mkdir -p "$vendor_dir"

@@ -16,6 +16,8 @@
 #   --link-mode auto|symlink|copy
 #                             How to expose .cursor/* in the target project.
 #                             auto = symlink on Unix, copy on Windows (default).
+#                             symlink: rules/ uses per-file symlinks; stack rule
+#                             is a local file seeded from template (not HOME).
 #   --sync                    Re-run and refresh files (safe on copy-mode targets).
 #   --non-interactive         Skip all prompts; use defaults.
 #   --force                   Allow setup even when COLLECTIONS_HOME exists but
@@ -71,7 +73,8 @@ ARG_MINIMAL="false"
 ARG_GITIGNORE_AGENT_ARTIFACTS="false"
 
 export ARG_BUILD_MCP ARG_COLLECTIONS_HOME ARG_TARGET ARG_VENDOR ARG_LINK_MODE \
-       ARG_SYNC ARG_NON_INTERACTIVE ARG_FORCE ARG_MINIMAL ARG_GITIGNORE_AGENT_ARTIFACTS
+       ARG_SYNC ARG_NON_INTERACTIVE ARG_FORCE ARG_MINIMAL ARG_GITIGNORE_AGENT_ARTIFACTS \
+       SETUP_SCRIPT_DIR="${SCRIPT_DIR}"
 
 while [[ $# -gt 0 ]]; do
   case "$1" in

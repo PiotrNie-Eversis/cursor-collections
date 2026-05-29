@@ -1,0 +1,48 @@
+---
+description: Per-repository stack and quality commands — CUSTOMISE FOR THIS REPO
+alwaysApply: true
+---
+
+# Project stack — this repository
+
+<!-- TODO: one-line description of this repository / product -->
+
+## Stack
+
+| Area | Path | Role | Stack |
+| ---- | ---- | ---- | ----- |
+| <!-- TODO --> | <!-- TODO --> | <!-- TODO --> | <!-- TODO --> |
+
+## Quality commands
+
+<!-- TODO: document lint, test, typecheck, and build commands for this repo -->
+<!-- Source: package.json scripts, Makefile, nx.json, or CONTRIBUTING.md -->
+
+Run from the **repo root** unless noted.
+
+```bash
+# TODO: npm run lint
+# TODO: npm run test
+# TODO: npm run build
+```
+
+## Conventions
+
+- **Agent entry:** [AGENTS.md](../../AGENTS.md)
+- **Framework docs:** see your `cursor-collections` checkout (`documentation/cursor-collection.md` Part C) or vendor path `vendor/cursor-collections/documentation/cursor-collection.md`
+- **Specs / plans:** `docs/specs/<issue-kebab>/` — `*.research.md`, `*.plan.md`
+
+## Reference
+
+For a **filled-in example** of this file (Earth observation / GIS web), see Part C **Reference** in the upstream `documentation/cursor-collection.md`. Copy ideas manually — do not commit the example profile as-is.
+
+## Status: Fine — QA comment (mandatory contract)
+
+When **all** planned agent work for an **eversis-implement** thread is finished:
+
+1. Declare **`Fine`** explicitly.
+2. **In the same assistant response**, draft the QA comment following the **`eversis-qa-comment`** skill (`eversis_skills_get` via MCP, or read `.cursor/skills/eversis-qa-comment/SKILL.md` when vendored).
+3. Label: **`Draft QA comment — review before posting to Jira`**
+4. **Never** post to Jira in that turn; publication only after explicit human approval.
+
+See upstream framework docs (`website/docs/workflow/overview.md`) for the full workflow contract.

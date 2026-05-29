@@ -10,6 +10,10 @@
 #   C — re-run B: single sub-marker (no duplication)
 #   D — B then re-run without flag: sub-marker removed, local block remains
 #   E — vendor copy + flag: no local block; warn on stderr
+#   F — symlink mode: rules/ real dir, stack from template, inode ≠ HOME
+#   G — legacy rules/ symlink migration preserves content
+#   H — copy mode seeds stack from template (not HOME)
+#   I — symlink re-run idempotent (stack unchanged)
 
 set -euo pipefail
 
@@ -66,6 +70,45 @@ assert_count() {
   fi
 }
 
+assert_not_symlink() {
+  local path="$1" desc="${2:-$1 is not a symlink}"
+  if [[ -L "$path" ]]; then
+    _fail "$desc"
+  else
+    _pass "$desc"
+  fi
+}
+
+assert_symlink() {
+  local path="$1" desc="${2:-$1 is a symlink}"
+  if [[ -L "$path" ]]; then
+    _pass "$desc"
+  else
+    _fail "$desc"
+  fi
+}
+
+_file_inode() {
+  local path="$1"
+  if [[ "$(uname -s)" == "Darwin" ]]; then
+    stat -f '%i' "$path" 2>/dev/null || return 1
+  else
+    stat -c '%i' "$path" 2>/dev/null || return 1
+  fi
+}
+
+assert_inode_diff() {
+  local file_a="$1" file_b="$2" desc="${3:-inodes differ}"
+  local inode_a inode_b
+  inode_a="$(_file_inode "$file_a")" || { _fail "$desc (cannot stat: $file_a)"; return; }
+  inode_b="$(_file_inode "$file_b")" || { _fail "$desc (cannot stat: $file_b)"; return; }
+  if [[ "$inode_a" != "$inode_b" ]]; then
+    _pass "$desc"
+  else
+    _fail "$desc (both inode ${inode_a})"
+  fi
+}
+
 assert_common_outputs() {
   local project="$1"
 
@@ -99,13 +142,34 @@ new_temp_project() {
 run_setup() {
   local project="$1"
   shift
-  CURSOR_COLLECTIONS_HOME="$REPO_ROOT" \
-    bash "$SETUP_SCRIPT" \
-      --non-interactive \
-      --link-mode copy \
-      --target "$project" \
-      "$@" \
-    2>&1 | sed 's/^/    /'
+  local link_mode="copy"
+  local -a args=()
+  while [[ $# -gt 0 ]]; do
+    case "$1" in
+      --link-mode)
+        link_mode="$2"; shift 2 ;;
+      --link-mode=*)
+        link_mode="${1#*=}"; shift ;;
+      *)
+        args+=("$1"); shift ;;
+    esac
+  done
+  if ((${#args[@]} > 0)); then
+    CURSOR_COLLECTIONS_HOME="$REPO_ROOT" \
+      bash "$SETUP_SCRIPT" \
+        --non-interactive \
+        --link-mode "$link_mode" \
+        --target "$project" \
+        "${args[@]}" \
+      2>&1 | sed 's/^/    /'
+  else
+    CURSOR_COLLECTIONS_HOME="$REPO_ROOT" \
+      bash "$SETUP_SCRIPT" \
+        --non-interactive \
+        --link-mode "$link_mode" \
+        --target "$project" \
+      2>&1 | sed 's/^/    /'
+  fi
 }
 
 echo "setup-cursor-local smoke tests"
@@ -174,6 +238,83 @@ else
   _fail "vendor mode should warn when --gitignore-agent-artifacts is set"
 fi
 rm -rf "$TMP_E" "$OUTPUT_E"
+echo ""
+
+# ─── Scenario F: symlink mode stack isolation ─────────────────────────────────
+
+echo "Scenario F — symlink mode (local stack from template)"
+echo "─────────────────────────────────────────────────────────────────"
+TMP_F="$(new_temp_project)"
+run_setup "$TMP_F" --link-mode symlink
+echo ""
+assert_common_outputs "$TMP_F"
+assert_not_symlink "${TMP_F}/.cursor/rules" "rules/ is a real directory (not symlink)"
+assert_symlink "${TMP_F}/.cursor/rules/eversis-agent-core.mdc" "framework rule is per-file symlink"
+assert_file_contains "${TMP_F}/.cursor/rules/eversis-project-stack.mdc" "CUSTOMISE FOR THIS REPO" "stack seeded from template"
+assert_inode_diff \
+  "${TMP_F}/.cursor/rules/eversis-project-stack.mdc" \
+  "${REPO_ROOT}/.cursor/rules/eversis-project-stack.mdc" \
+  "consumer stack inode ≠ HOME stack inode"
+rm -rf "$TMP_F"
+echo ""
+
+# ─── Scenario G: legacy rules/ symlink migration ─────────────────────────────
+
+echo "Scenario G — legacy rules/ symlink migration preserves content"
+echo "─────────────────────────────────────────────────────────────────"
+TMP_G="$(new_temp_project)"
+STACK_HOME="${REPO_ROOT}/.cursor/rules/eversis-project-stack.mdc"
+STACK_BACKUP="$(mktemp)"
+cp "$STACK_HOME" "$STACK_BACKUP"
+MARKER="legacy-migration-marker-$$"
+(
+  mkdir -p "${TMP_G}/.cursor"
+  ln -sfn "${REPO_ROOT}/.cursor/rules" "${TMP_G}/.cursor/rules"
+  printf '%s\n' "$MARKER" > "${TMP_G}/.cursor/rules/eversis-project-stack.mdc"
+)
+run_setup "$TMP_G" --link-mode symlink
+cp "$STACK_BACKUP" "$STACK_HOME"
+rm -f "$STACK_BACKUP"
+echo ""
+assert_not_symlink "${TMP_G}/.cursor/rules" "legacy rules/ migrated to real directory"
+assert_file_contains "${TMP_G}/.cursor/rules/eversis-project-stack.mdc" "$MARKER" "legacy stack content preserved"
+assert_inode_diff \
+  "${TMP_G}/.cursor/rules/eversis-project-stack.mdc" \
+  "$STACK_HOME" \
+  "migrated stack inode ≠ HOME stack inode"
+rm -rf "$TMP_G"
+echo ""
+
+# ─── Scenario H: copy mode template seed ─────────────────────────────────────
+
+echo "Scenario H — copy mode seeds stack from template"
+echo "─────────────────────────────────────────────────────────────────"
+TMP_H="$(new_temp_project)"
+run_setup "$TMP_H" --link-mode copy
+echo ""
+assert_file_contains "${TMP_H}/.cursor/rules/eversis-project-stack.mdc" "CUSTOMISE FOR THIS REPO" "copy mode stack from template"
+assert_inode_diff \
+  "${TMP_H}/.cursor/rules/eversis-project-stack.mdc" \
+  "${REPO_ROOT}/.cursor/rules/eversis-project-stack.mdc" \
+  "copy mode stack inode ≠ HOME stack inode"
+rm -rf "$TMP_H"
+echo ""
+
+# ─── Scenario I: symlink re-run idempotent ─────────────────────────────────────
+
+echo "Scenario I — symlink re-run leaves local stack unchanged"
+echo "─────────────────────────────────────────────────────────────────"
+TMP_I="$(new_temp_project)"
+run_setup "$TMP_I" --link-mode symlink
+CHECKSUM_1="$(cksum "${TMP_I}/.cursor/rules/eversis-project-stack.mdc" | awk '{print $1}')"
+run_setup "$TMP_I" --link-mode symlink
+CHECKSUM_2="$(cksum "${TMP_I}/.cursor/rules/eversis-project-stack.mdc" | awk '{print $1}')"
+if [[ "$CHECKSUM_1" == "$CHECKSUM_2" ]]; then
+  _pass "stack rule unchanged after re-run"
+else
+  _fail "stack rule changed after re-run (checksum ${CHECKSUM_1} → ${CHECKSUM_2})"
+fi
+rm -rf "$TMP_I"
 echo ""
 
 # ─── gitignore unit tests ─────────────────────────────────────────────────────

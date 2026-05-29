@@ -4,6 +4,23 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## 2026-05-29
+
+### Fixed
+
+- **`setup-cursor-local.sh` stack rule leak** — consumer projects no longer share `$CURSOR_COLLECTIONS_HOME/.cursor/rules/eversis-project-stack.mdc`. Symlink mode uses a real `rules/` directory with per-file symlinks; the stack rule is seeded from `scripts/setup-cursor-local/templates/eversis-project-stack.example.mdc`. Legacy installs with a symlinked `rules/` directory are migrated automatically (content preserved).
+
+### Added
+
+- **`scripts/setup-cursor-local/templates/eversis-project-stack.example.mdc`** — structural stub for per-project stack rules (TODO placeholders, no fictional tech stack).
+- **`scripts/setup-cursor-local.test.sh`** — scenarios F–I (symlink isolation, legacy migration, copy seed, re-run idempotency).
+
+### Changed
+
+- **`scripts/lib/setup-cursor-local/link-framework.sh`** — `_link_rules_dir_symlink`, `_seed_or_preserve_stack_rule`; copy mode excludes stack rule from rsync.
+
+---
+
 ## 2026-05-27
 
 ### Added

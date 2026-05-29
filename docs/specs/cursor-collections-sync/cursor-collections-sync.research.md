@@ -59,10 +59,14 @@ Zarządzane przez setup (katalogi kopiowane/linkowane z `.cursor/` upstream):
 ### 1. Local + **symlink** (domyślnie na macOS/Linux)
 
 ```text
-$CURSOR_COLLECTIONS_HOME/.cursor/{rules,prompts,commands,skills}
-        ↑ symlink
-my-app/.cursor/{rules,prompts,commands,skills}
-my-app/.cursor/rules/eversis-project-stack.mdc  → zwykły plik (materialised)
+$CURSOR_COLLECTIONS_HOME/.cursor/{prompts,commands,skills}
+        ↑ symlink (cały katalog)
+my-app/.cursor/{prompts,commands,skills}
+
+$CURSOR_COLLECTIONS_HOME/.cursor/rules/eversis-*.mdc  (oprócz stack)
+        ↑ per-file symlink
+my-app/.cursor/rules/   → prawdziwy katalog (nie symlink)
+my-app/.cursor/rules/eversis-project-stack.mdc  → lokalny plik (seed z szablonu setup)
 ```
 
 **Aktualizacja:**
