@@ -211,8 +211,11 @@ Markdown links in **`.cursor/`** use **repo-root-relative paths** that resolve i
 | Layer | Link style | Validated by |
 | ----- | ---------- | ------------ |
 | **Source** `.cursor/prompts/` | `eversis-*.md`, `website/docs/agents/*.md` | `node scripts/validate-cursor-markdown-links.mjs --context=source` |
+| **Extra paths** (e.g. setup templates) | Same as source (`../../` from file dir) | `--paths=rel/to/file.mdc` (comma-separated, **source only**) |
 | **Synced** `website/docs/prompts/` | Slugs + `../../agents/` | same script with `--context=synced` (runs in `website` **prebuild** / **prestart** after sync) |
 | **Agents** `website/docs/agents/` | `../prompts/public\|internal/<slug>`, `../skills/<doc-id>`, `./<agent>`, `../framework` | same script with `--context=agents` |
+
+**CI (this repo):** GitHub Actions workflow **`eversis_cursor_rules_validate`** runs on PRs that touch **`.cursor/rules/**`** or the consumer stack template — same `--context=source` check plus `--paths=scripts/setup-cursor-local/templates/eversis-project-stack.example.mdc`.
 
 **Consumer repos** without `website/`: use `@` attachment and backtick paths (e.g. `.cursor/skills/eversis-qa-comment/SKILL.md`); fix **rules** and **commands** links with `../../` to repo root. Optional Docusaurus copy is not required for Implement to run.
 

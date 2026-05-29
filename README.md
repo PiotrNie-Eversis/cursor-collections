@@ -199,9 +199,12 @@ Notable changes are recorded in [CHANGELOG.md](CHANGELOG.md). When you add or ed
 
 ```bash
 node scripts/validate-cursor-markdown-links.mjs --context=source
+# optional extra files outside .cursor/ (e.g. setup templates):
+node scripts/validate-cursor-markdown-links.mjs --context=source \
+  --paths=scripts/setup-cursor-local/templates/eversis-project-stack.example.mdc
 ```
 
-After changing prompts in this monorepo, also verify the synced tree: `cd website && npm run validate-cursor-links` (or `npm run build`). See [documentation/cursor-collection.md](documentation/cursor-collection.md) § Link conventions in `.cursor/`.
+After changing prompts in this monorepo, also verify the synced tree: `cd website && npm run validate-cursor-links` (or `npm run build`). PRs that change **`.cursor/rules/**`** are checked by GitHub Actions **`eversis_cursor_rules_validate`**. See [documentation/cursor-collection.md](documentation/cursor-collection.md) § Link conventions in `.cursor/`.
 
 This project is **MIT licensed** (see repository license file).
 

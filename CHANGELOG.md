@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ## 2026-05-29
 
+### Added
+
+- **GitHub Actions `eversis_cursor_rules_validate`** — runs `validate-cursor-markdown-links --context=source` on PRs touching `.cursor/rules/**` or the consumer stack template.
+- **`--paths`** flag on [`scripts/validate-cursor-markdown-links.mjs`](scripts/validate-cursor-markdown-links.mjs) — optional extra `.md`/`.mdc` files or directories for **source** context (union with default `.cursor/*` scan).
+- **`scripts/validate-cursor-markdown-links.test.mjs`** — smoke tests for `--paths`.
+
 ### Fixed
 
 - **`setup-cursor-local.sh` stack rule leak** — consumer projects no longer share `$CURSOR_COLLECTIONS_HOME/.cursor/rules/eversis-project-stack.mdc`. Symlink mode uses a real `rules/` directory with per-file symlinks; the stack rule is seeded from `scripts/setup-cursor-local/templates/eversis-project-stack.example.mdc`. Legacy installs with a symlinked `rules/` directory are migrated automatically (content preserved).

@@ -244,8 +244,8 @@ Przywrócić profil **Cursor Collections** w `$CURSOR_COLLECTIONS_HOME/.cursor/r
 ## Out of scope
 
 - Flaga `--no-materialise-stack`
-- Automatyczne wypełnianie stack rule przez agenta (Architect) przy setup
-- CI guard na upstream stack rule ([stack-rule-restore-framework.plan.md](../cursor-md-link-refs/stack-rule-restore-framework.plan.md) Improvements)
+- ~~Automatyczne wypełnianie stack rule przez agenta (Architect) przy setup~~ — **research 2026-05-29, odrzucone** ([auto-fill research](./setup-stack-rule-leak-auto-fill-stack.research.md)); Tier 0 (stub + ręczna edycja)
+- CI guard na upstream stack rule — **Done** — [setup-stack-rule-leak-ci-guard.plan.md](./setup-stack-rule-leak-ci-guard.plan.md)
 
 ---
 
@@ -277,4 +277,4 @@ node scripts/validate-cursor-markdown-links.mjs --context=source
 | 3.1 — smoke tests F–I | Done |
 | 3.2 — unit tests (optional) | Cancelled |
 | 4.1–4.4 — docs + CHANGELOG | Done |
-| 5.1 — restore HOME stack profile | Pending (osobny PR) |
+| 5.1 — restore HOME stack profile | Done — `git restore` → HEAD `fdedb1c`; validate source + synced + agents OK |

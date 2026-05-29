@@ -172,7 +172,7 @@ cd website && npm run build
 | Item | Opis |
 | ---- | ---- |
 | **Consumer stack template** | `scripts/setup-cursor-local/templates/eversis-project-stack.example.mdc` z profilem earth-explorers (linki `../../AGENTS.md`) — seed przy `--target` zamiast kopiowania framework profile |
-| **CI guard** | Job wymuszający `validate-cursor-links` na MR zmieniających `.cursor/rules/eversis-project-stack.mdc` |
+| **CI guard** | ~~Job wymuszający `validate-cursor-links` na MR zmieniające `.cursor/rules/eversis-project-stack.mdc`~~ → **Done** — [setup-stack-rule-leak-ci-guard.plan.md](../setup-stack-rule-leak/setup-stack-rule-leak-ci-guard.plan.md) (`.cursor/rules/**`, `--paths` dla template) |
 | **Lint rule** | Pre-commit sprawdzający, że upstream stack rule nie zawiera ścieżek typu `visuals-portal/` |
 
 ---

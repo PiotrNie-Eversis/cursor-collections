@@ -8,6 +8,8 @@
  *
  * Usage:
  *   node scripts/validate-cursor-markdown-links.mjs [--context=source|synced|agents]
+ *   node scripts/validate-cursor-markdown-links.mjs --context=source \
+ *     --paths=scripts/setup-cursor-local/templates/eversis-project-stack.example.mdc
  */
 import fs from "node:fs";
 import path from "node:path";
@@ -22,6 +24,12 @@ const root = path.resolve(__dirname, "..");
 
 const contextArg = process.argv.find((a) => a.startsWith("--context="));
 const context = contextArg?.split("=")[1] || "source";
+
+const extraPathSpecs = process.argv
+  .filter((a) => a.startsWith("--paths="))
+  .flatMap((a) => a.slice("--paths=".length).split(","))
+  .map((s) => s.trim())
+  .filter(Boolean);
 
 const LINK_RE = /\[([^\]]*)\]\(([^)]+)\)/g;
 const SKIP_HREF = /^(https?:|mailto:|#)/i;
@@ -38,6 +46,46 @@ function collectFiles(dir, extensions, out = []) {
     else if (extensions.some((ext) => name.name.endsWith(ext))) out.push(full);
   }
   return out;
+}
+
+function collectExtraPaths(specs) {
+  const out = [];
+  for (const spec of specs) {
+    const abs = path.resolve(root, spec);
+    if (!fs.existsSync(abs)) {
+      console.error(`validate-cursor-markdown-links: --paths not found: ${spec}`);
+      process.exit(1);
+    }
+    const stat = fs.statSync(abs);
+    if (stat.isDirectory()) {
+      collectFiles(abs, [".md", ".mdc"], out);
+    } else if ([".md", ".mdc"].some((ext) => abs.endsWith(ext))) {
+      out.push(abs);
+    } else {
+      console.error(
+        `validate-cursor-markdown-links: --paths must be .md/.mdc file or directory: ${spec}`,
+      );
+      process.exit(1);
+    }
+  }
+  return out;
+}
+
+function dedupeFiles(fileList) {
+  const seen = new Set();
+  const unique = [];
+  for (const file of fileList) {
+    let key;
+    try {
+      key = fs.realpathSync(file);
+    } catch {
+      key = path.resolve(file);
+    }
+    if (seen.has(key)) continue;
+    seen.add(key);
+    unique.push(file);
+  }
+  return unique;
 }
 
 function promptTargetPath(promptsRoot, tier, slug, slugToFile) {
@@ -120,7 +168,12 @@ function resolveSource(fromFile, href) {
   const raw = href.split("#")[0].trim();
   if (!raw || SKIP_HREF.test(raw) || isGlobOrPlaceholder(raw)) return { ok: true };
 
-  const fromDir = path.dirname(fromFile);
+  let fromDir = path.dirname(fromFile);
+  // Consumer stack template uses links as if deployed to .cursor/rules/
+  if (fromDir.includes(`${path.sep}setup-cursor-local${path.sep}templates`)) {
+    fromDir = path.join(root, ".cursor/rules");
+  }
+
   let target;
 
   if (raw.startsWith(".cursor/")) {
@@ -193,8 +246,17 @@ if (context === "synced") {
     path.join(root, ".cursor/prompts"),
     path.join(root, ".cursor/skills"),
   ];
-  files = dirs.flatMap((d) => collectFiles(d, [".md", ".mdc"]));
+  files = dedupeFiles([
+    ...dirs.flatMap((d) => collectFiles(d, [".md", ".mdc"])),
+    ...collectExtraPaths(extraPathSpecs),
+  ]);
   resolver = resolveSource;
+}
+
+if (extraPathSpecs.length > 0 && context !== "source") {
+  console.warn(
+    `validate-cursor-markdown-links: --paths ignored (only supported with --context=source)`,
+  );
 }
 
 const errors = validateFiles(files, resolver);

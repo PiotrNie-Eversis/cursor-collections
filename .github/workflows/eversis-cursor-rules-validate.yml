@@ -1,0 +1,29 @@
+name: eversis_cursor_rules_validate
+
+on:
+  push:
+    branches: [main, master]
+    paths:
+      - ".cursor/rules/**"
+      - "scripts/setup-cursor-local/templates/eversis-project-stack.example.mdc"
+      - "scripts/validate-cursor-markdown-links.mjs"
+      - ".github/workflows/eversis-cursor-rules-validate.yml"
+  pull_request:
+    paths:
+      - ".cursor/rules/**"
+      - "scripts/setup-cursor-local/templates/eversis-project-stack.example.mdc"
+      - "scripts/validate-cursor-markdown-links.mjs"
+      - ".github/workflows/eversis-cursor-rules-validate.yml"
+
+jobs:
+  validate-cursor-rules-links:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: validate-cursor-markdown-links (source + consumer stack template)
+        run: |
+          node scripts/validate-cursor-markdown-links.mjs --context=source \
+            --paths=scripts/setup-cursor-local/templates/eversis-project-stack.example.mdc
