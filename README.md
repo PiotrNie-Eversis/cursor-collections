@@ -2,7 +2,7 @@
 
 <p align="center">
   <b>Cursor-native</b> product engineering framework — <b>Ideate → Implement → Review</b> with rules, attachable prompts, MCP, and reusable skills.<br/>
-  Maintained by <a href="https://tsh.io" target="_blank">The Software House</a>; Cursor rules, <code>eversis-*</code> prompts, and this documentation are curated for Cursor by <b>Eversis</b>.
+  Maintained by <a href="https://eversis.com" target="_blank">Eversis</a>; Cursor rules, <code>eversis-*</code> prompts, and this documentation are curated for Cursor by <b>Eversis</b>. Based on <a href="https://github.com/TheSoftwareHouse/copilot-collections" target="_blank">Copilot Collections</a> from The Software House.
 </p>
 
 ---
@@ -11,19 +11,19 @@
 
 Structured **roles**, **prompts** (`eversis-*.md`), **project rules** (`.cursor/rules/*.mdc`), and **skills** (`.cursor/skills/`) for the full product lifecycle:
 
-| Phase                       | Focus                                        | Entry (Cursor)                                                                                                |
-| --------------------------- | -------------------------------------------- | ------------------------------------------------------------------------------------------------------------- |
-| **Ideate**                  | Requirements and planning                    | `@eversis-analyze-materials` or `/eversis-analyze-materials`           |
-| **Implement**               | Architecture and delivery                    | `@eversis-implement` or `/eversis-implement`                           |
-| **Review**                  | Code and UI quality                          | `@eversis-review` or `/eversis-review`; `@eversis-review-ui` or `/eversis-review-ui`; `@eversis-review-codebase` |
+| Phase                       | Focus                                        | Entry (Cursor)                                                                                                                                                                                                                |
+| --------------------------- | -------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Ideate**                  | Requirements and planning                    | `@eversis-analyze-materials` or `/eversis-analyze-materials`                                                                                                                                                                  |
+| **Implement**               | Architecture and delivery                    | `@eversis-implement` or `/eversis-implement`                                                                                                                                                                                  |
+| **Review**                  | Code and UI quality                          | `@eversis-review` or `/eversis-review`; `@eversis-review-ui` or `/eversis-review-ui`; `@eversis-review-codebase`                                                                                                              |
 | **Business Manager Docs**   | Release documentation (Word `.docx`)         | `@eversis-ba-docs-planner` or `/eversis-ba-docs-planner`; `@eversis-ba-docs-writer` or `/eversis-ba-docs-writer` — workflow: [website/docs/workflow/business-manager-docs.md](website/docs/workflow/business-manager-docs.md) |
-| **Framework customization** | Rules, skills, prompts, project instructions | Attach `eversis-create-custom-*.md` under `.cursor/prompts/public/` |
+| **Framework customization** | Rules, skills, prompts, project instructions | Attach `eversis-create-custom-*.md` under `.cursor/prompts/public/`                                                                                                                                                           |
 
 `/` project commands are defined in **`.cursor/commands/`** and appear in the Cursor `/` dropdown — each instructs the agent to **load** the canonical `.cursor/prompts/public/` file (via **`@`** or read) before executing it; workflow bodies are not duplicated in the command stub. Legacy `/tsh-*` names are not used.
 
 **Mandatory QA comment draft (after Implement):** When orchestration reaches **Fine** (agent-side implementation complete), the Engineering Manager **always** produces a labeled QA comment draft in the same response, following the **`eversis-qa-comment`** skill. You review and approve the draft before publication — paste it into Jira, or instruct the agent to post via the **Atlassian MCP** (`addCommentToJiraIssue`). The agent never posts automatically. Docs: [`.cursor/skills/eversis-qa-comment/SKILL.md`](.cursor/skills/eversis-qa-comment/SKILL.md) (overview on docs site: [website/docs/skills/qa-comment.md](website/docs/skills/qa-comment.md)); rule: [`.cursor/rules/eversis-engineering-manager.mdc`](.cursor/rules/eversis-engineering-manager.mdc).
 
-**Skills** live in [`.cursor/skills/`](.cursor/skills/) as `eversis-*` topic folders with `SKILL.md` (procedural how-to). **Use them in Agent** via the **`eversis-collections` MCP** server ([`mcp/eversis-collections-mcp/`](mcp/eversis-collections-mcp/): `npm install && npm run build` once, then enable it through [`.cursor/mcp.json`](.cursor/mcp.json)). **`eversis_*` tools** list, read, and validate the tree, and **`eversis_skill_run_script`** runs allowlisted per-skill scripts; the same server exposes **Word `.docx` chapter tools** (`generate_summary_map`, `read_chapter`, `update_chapter`, `upload_to_sharepoint` stub) used by **Business Manager Docs** prompts — see [AGENTS.md](AGENTS.md). This replaces registering the folder as **Cursor Agent Skills**.
+**Skills** live in [`.cursor/skills/`](.cursor/skills/) as `eversis-*` topic folders with `SKILL.md` (procedural how-to). **Use them in Agent** via the **`eversis-collections` MCP** server ([`mcp/eversis-collections-mcp/`](mcp/eversis-collections-mcp/): `npm install && npm run build` once, then enable it through [`.cursor/mcp.json`](.cursor/mcp.json)). **`eversis_*` tools** list, read, and validate the tree, and **`eversis_skill_run_script`** runs allowlisted per-skill scripts; the same server exposes **Word `.docx` chapter tools** (`generate_summary_map`, `read_chapter`, `update_chapter`, `upload_to_sharepoint` stub) used by **Business Manager Docs** prompts — see [AGENTS.md](AGENTS.md). The `.docx` engine handles UTF-8 BOM stripping and locale-specific Word styles (e.g. Polish `Nagwek*`) automatically, and flags section content type (`hasTables`, `hasImages`) in the summary map. This replaces registering the folder as **Cursor Agent Skills**.
 
 **Docs site:** build and preview from [`website/`](website/) (Docusaurus). **`npm run build`** / **`npm start`** in `website/` run **`sync-prompts`** then **`validate-cursor-links`** — broken markdown links under `.cursor/` or in the synced prompt copy fail the build. **Authoritative how-to for using this framework in any repo:** [documentation/cursor-collection.md](documentation/cursor-collection.md) (including § **Link conventions in `.cursor/`** for prompt authors).
 
@@ -48,15 +48,15 @@ All bodies live under **`.cursor/prompts/public/`**. The primary SDLC prompts an
 
 | Workflow                                       | File to attach                                                             |
 | ---------------------------------------------- | -------------------------------------------------------------------------- |
-| Workshop → Jira                                | `.cursor/prompts/public/eversis-analyze-materials.md`                 |
-| Implement                                      | `.cursor/prompts/public/eversis-implement.md`                         |
-| Code review                                    | `.cursor/prompts/public/eversis-review.md`                            |
-| UI vs Figma                                    | `.cursor/prompts/public/eversis-review-ui.md`                         |
-| Codebase health                                | `.cursor/prompts/public/eversis-review-codebase.md`                   |
-| Infra audit                                    | `.cursor/prompts/public/eversis-audit-infrastructure.md`              |
+| Workshop → Jira                                | `.cursor/prompts/public/eversis-analyze-materials.md`                      |
+| Implement                                      | `.cursor/prompts/public/eversis-implement.md`                              |
+| Code review                                    | `.cursor/prompts/public/eversis-review.md`                                 |
+| UI vs Figma                                    | `.cursor/prompts/public/eversis-review-ui.md`                              |
+| Codebase health                                | `.cursor/prompts/public/eversis-review-codebase.md`                        |
+| Infra audit                                    | `.cursor/prompts/public/eversis-audit-infrastructure.md`                   |
 | AWS / GCP cost                                 | `eversis-analyze-aws-costs.md`, `eversis-analyze-gcp-costs.md`             |
-| BA docs — plan Word chapters                   | `.cursor/prompts/public/eversis-ba-docs-planner.md`                       |
-| BA docs — write / update `.docx`               | `.cursor/prompts/public/eversis-ba-docs-writer.md`                       |
+| BA docs — plan Word chapters                   | `.cursor/prompts/public/eversis-ba-docs-planner.md`                        |
+| BA docs — write / update `.docx`               | `.cursor/prompts/public/eversis-ba-docs-writer.md`                         |
 | Create rules / skills / prompts / instructions | `eversis-create-custom-agent.md` … `eversis-create-custom-instructions.md` |
 
 Internal (delegation) prompts used by `eversis-implement` and similar live under **`.cursor/prompts/internal/`** — attach when a public prompt points you to them.
@@ -153,6 +153,7 @@ bash "$CURSOR_COLLECTIONS_HOME/scripts/setup-cursor-local.sh" --build-mcp
 ```
 
 The script will:
+
 - Copy `.cursor/rules/`, `.cursor/prompts/`, `.cursor/commands/`, `.cursor/skills/` into your project.
 - Generate `.cursor/mcp.json` pointing to the shared framework.
 - Create `AGENTS.md` and `docs/specs/` if they are missing.
@@ -215,9 +216,9 @@ This project is **MIT licensed** (see repository license file).
 - **Cursor-only** — prompts are Markdown; invoke by **`@` attachment**; rules live in **`.cursor/rules/`**.
 - **Full lifecycle** — ideation, implementation, review, and optional infra/cost prompts.
 - **Skills** in **`.cursor/skills/`** — procedural depth for agents via the **`eversis-collections` MCP** server (`eversis_skills_*` and **`eversis_skill_run_script`** where allowlisted); build [`mcp/eversis-collections-mcp/`](mcp/eversis-collections-mcp/) first. Includes **`eversis-qa-comment`** — mandatory QA comment draft on **Fine**, with optional Atlassian MCP posting after human approval.
-- **Business Manager Docs** — **`eversis-ba-docs-planner`** / **`eversis-ba-docs-writer`** with **`eversis-collections`** `.docx` tools on one MCP server ([workflow doc](website/docs/workflow/business-manager-docs.md)).
+- **Business Manager Docs** — **`eversis-ba-docs-planner`** / **`eversis-ba-docs-writer`** with **`eversis-collections`** `.docx` tools on one MCP server ([workflow doc](website/docs/workflow/business-manager-docs.md)). The `.docx` engine supports BOM stripping, locale-aware heading detection, and section content-type classification (`hasTables`, `hasImages`, `tableCount`). ⚠ `update_chapter` is a destructive replace — prefer read-first / append when sections contain tables or images (see MCP README for editing guidance).
 - **MCP** — bring Jira, Figma, browser automation, docs, and the local **eversis-collections** server (skills + Word chapter tools) into the same session.
 
 ---
 
-© 2026 [The Software House](https://tsh.io)
+© 2026 [Eversis](https://eversis.com)

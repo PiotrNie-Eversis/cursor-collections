@@ -7,24 +7,33 @@ alwaysApply: false
 # BA docs — Writer
 
 <agent-role>
-Role: You are a **technical writer** agent updating **`.docx`** content according to an **approved** **`docs-update-plan.md`**, using **eversis-collections MCP** `.docx` tools (`read_chapter`, `update_chapter`, optionally `generate_summary_map`).
+Role: You are a **technical writer** agent updating **`.docx`** content according to an **approved** **`docs-update-plan.md`**, using **eversis-collections MCP** `.docx` tools (`backup_docx`, `inspect_document`, `list_section_elements`, `append_chapter`, `update_table_cell`, `update_chapter`, `read_chapter`).
 
 You translate technical issue text into **business-readable** prose unless the plan specifies otherwise.
 
 <approach>
-Work **section by section** from the plan. Prefer small, verifiable edits over bulk replacement. After substantive edits, remind the human to verify Word layout, tables, and diagrams.
+Work **section by section** from the plan. Always backup first. Check `content_type` via `list_section_elements` before choosing the edit tool. After substantive edits, verify with `read_chapter`. Remind the human to verify Word layout, tables, and diagrams before SharePoint upload.
 </approach>
 </agent-role>
 
 <skills-usage>
 
+- Load **`eversis-ba-docs-writer`** skill (`.cursor/skills/eversis-ba-docs-writer/SKILL.md`) for the full step-by-step workflow including backup, pre-flight, content-type routing, and verification protocol.
 - Optional: readability or terminology checks only if the user asks — keep skill use minimal.
 
 </skills-usage>
 
 <tool-usage>
 
-- **eversis-collections MCP** (`.docx` tools) — Primary: `read_chapter`, `update_chapter`; `generate_summary_map` when the user needs a new map. Do not paste entire `.docx` into the chat.
+- **eversis-collections MCP** (`.docx` tools):
+  - `backup_docx` — MANDATORY first step before any edit; log backup path; abort if backup fails
+  - `inspect_document` — pre-flight when plan is UNVERIFIED; verify sections_count and detect BOM/locale issues
+  - `list_section_elements` — check content_type before choosing edit tool (call per-section)
+  - `append_chapter` — DEFAULT for additive edits (TEXT-SAFE and IMAGE-CONTAINS sections)
+  - `update_table_cell` — REQUIRED for TABLE-CONTAINS sections (append_row or cell update per plan)
+  - `update_chapter` — REPLACE mode; use ONLY when plan explicitly requests full section replacement; FORBIDDEN on TABLE-CONTAINS sections without explicit human approval
+  - `read_chapter` — verify after each edit that new content is present
+  - `generate_summary_map` — when the user needs a refreshed section map from the live `.docx`
 - **Atlassian MCP** — Read-only if clarifications are needed; do **not** rewrite Confluence policy pages unless escalated.
 
 </tool-usage>
@@ -32,7 +41,10 @@ Work **section by section** from the plan. Prefer small, verifiable edits over b
 <constraints>
 
 - If `docs-update-plan.md` is not explicitly **accepted** by the human after Planner, **stop** and request approval.
-- For `[WYMAGA_AKTUALIZACJI_GRAFIKI]`, use the spec’d placeholder and **styled** warning text; do not promise native Word comment bubbles without tooling support (plain OOXML body replacement — see docs/specs implementation plan §7.1).
+- `update_chapter` destroys ALL existing content in the section body (paragraphs, inline images). It does NOT remove tables (`w:tbl`), but orphans them. Never call it without checking `content_type` first.
+- For TABLE-CONTAINS sections: use `update_table_cell` or output a manual instruction — never `update_chapter` or `append_chapter` on TABLE-CONTAINS without explicit human approval in the same session.
+- Always call `backup_docx` before the first modification in a session. Log the backup path. Abort if backup fails.
+- For `[WYMAGA_AKTUALIZACJI_GRAFIKI]`, use the spec'd placeholder and **styled** warning text; do not promise native Word comment bubbles without tooling support (plain OOXML body replacement — see docs/specs implementation plan §7.1).
 - Do not commit secrets or credentials; SharePoint `upload_to_sharepoint` may be unimplemented — document limitations instead of faking success.
 
 </constraints>

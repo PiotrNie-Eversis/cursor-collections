@@ -4,6 +4,28 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## 2026-06-03
+
+### Fixed
+
+- **`eversis-collections` MCP — `.docx` BOM parsing** (`src/docx/docx-io.ts`) — `loadDocx` now strips a leading UTF-8 BOM (`\uFEFF`) before XML parsing. MS Office documents saved with a Polish (or other locale) Windows interface include a BOM before `<?xml>`; the previous code caused `@xmldom/xmldom` to throw a fatal parse error, silently falling back to a single `sec-0` section covering the entire document. Fixed by the new internal `parseXml(xml)` helper.
+
+- **`eversis-collections` MCP — locale-agnostic heading detection** (`src/docx/chapters.ts`) — `isHeadingPara` and `headingLevel` now resolve paragraph style IDs against the canonical English names stored in `word/styles.xml` (`w:name` attribute). Polish Word style IDs (`Nagwek1`–`Nagwek4`), French (`Titre1`–`Titre4`), and other locale variants are now correctly recognised as headings. Previously `buildSections` detected zero headings on non-English documents and returned a single `sec-0` dummy entry covering the full document — every `read_chapter` / `update_chapter` call silently operated on the whole file.
+
+- **`eversis-collections` MCP — `updateSectionBody` / `readSectionText` heading skip on locale styles** (`src/docx/chapters.ts`) — `readSectionText` and `updateSectionBody` now accept an optional `styleMap` parameter and pass it to `isHeadingPara`. Without the map, the heading paragraph at the section start was not skipped on non-English documents, causing its text to appear in the body output or be destroyed on replace.
+
+### Added
+
+- **`eversis-collections` MCP — `buildStyleMap`** (`src/docx/chapters.ts`) — new exported function. Parses a `word/styles.xml` DOM and returns a `Map<styleId, resolvedEnglishName>`. `loadDocx` calls it automatically and stores the result in `LoadedDocx.styleMap`; all tools pass it to `buildSections`, `readSectionText`, and `updateSectionBody`.
+
+- **`eversis-collections` MCP — section content-type flags** (`src/docx/chapters.ts`) — `Section` now exposes three new fields: `hasTables: boolean`, `hasImages: boolean`, `tableCount: number`. `buildSections` populates them when called with the optional `body` element (new second parameter) by walking DOM siblings between section paragraph boundaries. `LoadedDocx` exposes `body` alongside `paragraphs` and `styleMap`. All existing tool calls (`generate_summary_map`, `read_chapter`, `update_chapter`) pass `loaded.body` and `loaded.styleMap`.
+
+- **`eversis-collections` MCP — `listBodyNodes`** (`src/docx/chapters.ts`) — new exported function that enumerates all direct children of `w:body` as typed `BodyNode` records (`type: "paragraph" | "table" | "drawing" | "other"`, `paraIndex: number | null`). Foundation for future tools (`list_section_elements`, `inspect_document`).
+
+- **`eversis-collections` MCP — `buildSections` optional parameters** (`src/docx/chapters.ts`) — signature extended to `buildSections(paragraphEls, body?, styleMap?)`. Both new parameters are optional — existing callers without them continue to work identically (backward-compatible).
+
+---
+
 ## 2026-05-29
 
 ### Added

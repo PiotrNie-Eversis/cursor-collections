@@ -29,8 +29,23 @@ Normative requirements and milestones are recorded in the repo spec: **`docs/spe
 | ----- | ---- |
 | **Atlassian MCP** | Read **Confluence** pages for documentation rules; pull **Jira** issues for the named release or scope. |
 | **`eversis-collections` MCP** | **`.docx` tools**: `generate_summary_map`, `read_chapter`, `update_chapter`, and `upload_to_sharepoint` (see server docs under `mcp/eversis-collections-mcp/`). Enable this server after a local build — see [MCP setup](../getting-started/mcp-setup) and [AGENTS.md](https://github.com/PiotrNie-Eversis/cursor-collections/blob/main/AGENTS.md). |
-| **`summary.md`** | Navigation map for the physical `.docx` (structure / chapter identifiers for agents). |
-| **`docs-update-plan.md`** | Planner output: which chapters change, what to change, and flags such as `[WYMAGA_AKTUALIZACJI_GRAFIKI]` where diagrams need a human pass. |
+| **`summary.md`** | Navigation map for the physical `.docx` (structure / chapter identifiers for agents). Each section entry now includes `hasTables` and `hasImages` flags so the Planner can mark chapters that require special handling. |
+| **`docs-update-plan.md`** | Planner output: which chapters change, what to change, and flags such as `[WYMAGA_AKTUALIZACJI_GRAFIKI]` where diagrams need a human pass. Sections detected as `hasTables: true` should be labelled `TABLE-CONTAINS` to signal the Writer to use read-first / append rather than full replace. |
+
+### Document format compatibility
+
+The `.docx` engine automatically handles two common issues with non-English Word documents:
+
+- **UTF-8 BOM** — MS Office on Windows (any locale) may write a BOM byte before `<?xml>`. The engine strips it before parsing so documents created on Polish, French, or other locale systems work without pre-processing.
+- **Locale heading styles** — Word localises built-in style names (e.g. Polish `Nagwek1`–`Nagwek4`, French `Titre1`–`Titre4`). The engine reads `word/styles.xml` and maps every style ID to its canonical English name, so heading detection works correctly on any-language document.
+
+### Editing safety
+
+`update_chapter` **replaces** all paragraphs in a section — inline images and custom paragraph styles are lost. Follow the principle:
+
+1. Always call `read_chapter` first to capture existing text.
+2. For text-only additions, append new content to the existing text before passing to `update_chapter`.
+3. For sections flagged `hasTables: true` or `hasImages: true` in `summary.md`, defer to a future `append_chapter` / `update_table_cell` tool (tracked in the BA Docs Workflow Evolution plan) or handle manually.
 
 ## Prompts vs Role Rules
 
