@@ -255,6 +255,8 @@ bash scripts/setup-cursor-local.sh --build-mcp --gitignore-agent-artifacts
 
 **Stack rule (`eversis-project-stack.mdc`):** seeded from `scripts/setup-cursor-local/templates/eversis-project-stack.example.mdc` — **not** from `$CURSOR_COLLECTIONS_HOME`. In **symlink** mode (default on macOS/Linux), framework rules are **per-file symlinks** inside a real `rules/` directory; the stack rule is a **local file** in your project (safe to commit and customise).
 
+**Local `.gitignore` — framework rules:** in **local** mode the setup script adds `.cursor/rules/eversis-*.mdc` with an exception for `!.cursor/rules/eversis-project-stack.mdc` so upstream framework rules (including accessibility and Business Manager Docs roles) stay out of git while the stack rule remains commitable. Re-run `setup-cursor-local.sh` in the consumer project after updating `cursor-collections` to refresh this managed block (legacy per-file entries are migrated automatically).
+
 **Environment variable:** export `CURSOR_COLLECTIONS_HOME` in your shell profile to avoid specifying `--collections-home` on every run. The same variable is read by the `eversis-collections` MCP server.
 
 **Windows:** use Git Bash or WSL; `--link-mode copy` is the default on Windows. See `website/docs/getting-started/installation.md` for details.

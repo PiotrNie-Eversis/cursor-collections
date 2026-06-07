@@ -32,12 +32,12 @@ Plik `scripts/lib/setup-cursor-local/gitignore.sh` w trybie local dopisuje blok:
 .cursor/prompts/
 .cursor/commands/
 .cursor/skills/
-.cursor/rules/eversis-agent-core.mdc
-.cursor/rules/eversis-testing-and-terminal.mdc
-.cursor/rules/eversis-engineering-manager.mdc
-.cursor/rules/eversis-code-reviewer.mdc
+.cursor/rules/eversis-*.mdc
+!.cursor/rules/eversis-project-stack.mdc
 # cursor-collections local [end]
 ```
+
+*(Od 2026-06-05 — glob zamiast jawnej listy czterech reguł; patrz [quick-setup-missing-rules.plan.md](../quick-setup-missing-rules/quick-setup-missing-rules.plan.md).)*
 
 **Nie** obejmuje `docs/specs/` ani `docs/context/`.
 

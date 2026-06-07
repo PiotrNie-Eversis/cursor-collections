@@ -8,16 +8,15 @@ readonly _GITIGNORE_ARTIFACTS_START="# cursor-collections agent-artifacts [begin
 readonly _GITIGNORE_ARTIFACTS_END="# cursor-collections agent-artifacts [end]"
 
 # Lines added in local (non-vendor) mode.
+# All framework eversis-*.mdc rules are gitignored; stack rule is the per-project exception.
 _local_gitignore_lines() {
   cat <<'LINES'
 .cursor/mcp.json
 .cursor/prompts/
 .cursor/commands/
 .cursor/skills/
-.cursor/rules/eversis-agent-core.mdc
-.cursor/rules/eversis-testing-and-terminal.mdc
-.cursor/rules/eversis-engineering-manager.mdc
-.cursor/rules/eversis-code-reviewer.mdc
+.cursor/rules/eversis-*.mdc
+!.cursor/rules/eversis-project-stack.mdc
 LINES
 }
 
@@ -112,6 +111,17 @@ _append_local_block() {
   log_ok "Added cursor-collections local entries to ${file}"
 }
 
+_refresh_local_gitignore_block() {
+  # Rebuild the managed local block (core lines + optional artifacts).
+  # Used on re-run to migrate legacy per-file rule entries to the glob pattern.
+  local file="$1"
+  local with_artifacts="${2:-false}"
+
+  _remove_marker_block "$file"
+  _append_local_block "$file" "$with_artifacts"
+  log_ok "Refreshed cursor-collections local gitignore block"
+}
+
 _warn_agent_artifacts_gitignore() {
   log_warn "docs/specs/*/ and docs/context/*/ will be gitignored — research/plan artifacts will not be shared via git or MRs."
   log_warn "CI wiki sync to docs/context/ (see framework Part D) conflicts with this flag unless you change policy."
@@ -137,11 +147,7 @@ manage_gitignore() {
   fi
 
   if _has_marker "$gi"; then
-    if [[ "$want_artifacts" == "true" ]]; then
-      _ensure_artifacts_subblock "$gi"
-    else
-      _remove_artifacts_subblock "$gi"
-    fi
+    _refresh_local_gitignore_block "$gi" "$want_artifacts"
     return 0
   fi
 

@@ -70,9 +70,11 @@ The script:
 - Clones `cursor-collections` to `$CURSOR_COLLECTIONS_HOME` if missing (defaults to `~/.local/share/cursor-collections` on Unix).
 - Copies or symlinks `.cursor/rules/`, `.cursor/prompts/`, `.cursor/commands/`, `.cursor/skills/` into the target project.
 - Merges the `eversis-collections` entry into the project's `.cursor/mcp.json`.
-- Adds a `.gitignore` block in local mode (so MCP paths stay out of version control).
+- Adds a `.gitignore` block in local mode (MCP paths, prompts, skills, and framework rules — `.cursor/rules/eversis-*.mdc` except `eversis-project-stack.mdc`).
 - Scaffolds `AGENTS.md` and `docs/specs/` if absent.
 - Prints a **Next steps** summary (enable MCP in Cursor, customise the stack rule, etc.).
+
+After you pull a newer `cursor-collections` checkout, **re-run** the setup script in each consumer project (local mode) so the managed `.gitignore` block stays current.
 
 **`--gitignore-agent-artifacts` (local mode only, default off):** adds `docs/specs/*/` and `docs/context/*/` to `.gitignore` so Implement research/plan folders stay local. Ignored with a warning in vendor mode. Do not use if you commit specs/plans to git or run CI wiki sync into `docs/context/`.
 

@@ -14,6 +14,8 @@
 #   G — legacy rules/ symlink migration preserves content
 #   H — copy mode seeds stack from template (not HOME)
 #   I — symlink re-run idempotent (stack unchanged)
+#   J — all framework rules gitignored (glob); stack not ignored
+#   K — re-run migrates legacy per-file rule list to glob
 
 set -euo pipefail
 
@@ -106,6 +108,26 @@ assert_inode_diff() {
     _pass "$desc"
   else
     _fail "$desc (both inode ${inode_a})"
+  fi
+}
+
+assert_git_ignores() {
+  local project="$1" relpath="$2" desc="${3:-}"
+  local d="${desc:-$relpath is gitignored}"
+  if (cd "$project" && git check-ignore -q "$relpath" 2>/dev/null); then
+    _pass "$d"
+  else
+    _fail "$d"
+  fi
+}
+
+assert_git_not_ignores() {
+  local project="$1" relpath="$2" desc="${3:-}"
+  local d="${desc:-$relpath is not gitignored}"
+  if (cd "$project" && git check-ignore -q "$relpath" 2>/dev/null); then
+    _fail "$d"
+  else
+    _pass "$d"
   fi
 }
 
@@ -315,6 +337,58 @@ else
   _fail "stack rule changed after re-run (checksum ${CHECKSUM_1} → ${CHECKSUM_2})"
 fi
 rm -rf "$TMP_I"
+echo ""
+
+# ─── Scenario J: framework rules gitignored (glob) ────────────────────────────
+
+echo "Scenario J — framework rules gitignored; stack rule commitable"
+echo "─────────────────────────────────────────────────────────────────"
+TMP_J="$(new_temp_project)"
+run_setup "$TMP_J" --link-mode copy
+echo ""
+assert_file_contains "${TMP_J}/.gitignore" ".cursor/rules/eversis-*.mdc"              "gitignore uses eversis-*.mdc glob"
+assert_file_contains "${TMP_J}/.gitignore" "!.cursor/rules/eversis-project-stack.mdc" "gitignore negates stack rule"
+assert_not_contains  "${TMP_J}/.gitignore" "eversis-agent-core.mdc"                   "legacy per-file agent-core entry absent"
+for rule in "${REPO_ROOT}"/.cursor/rules/eversis-*.mdc; do
+  base="$(basename "$rule")"
+  [[ "$base" == "eversis-project-stack.mdc" ]] && continue
+  assert_git_ignores "$TMP_J" ".cursor/rules/${base}" "framework rule ${base} gitignored"
+done
+assert_git_not_ignores "$TMP_J" ".cursor/rules/eversis-project-stack.mdc" "stack rule not gitignored"
+rm -rf "$TMP_J"
+echo ""
+
+# ─── Scenario K: re-run migrates legacy gitignore block ─────────────────────
+
+echo "Scenario K — re-run migrates legacy per-file rule list to glob"
+echo "─────────────────────────────────────────────────────────────────"
+TMP_K="$(new_temp_project)"
+cat > "${TMP_K}/.gitignore" <<'EOF'
+node_modules/
+
+# cursor-collections local [begin]
+.cursor/mcp.json
+.cursor/prompts/
+.cursor/commands/
+.cursor/skills/
+.cursor/rules/eversis-agent-core.mdc
+.cursor/rules/eversis-testing-and-terminal.mdc
+.cursor/rules/eversis-engineering-manager.mdc
+.cursor/rules/eversis-code-reviewer.mdc
+# cursor-collections agent-artifacts [begin]
+docs/specs/*/
+docs/context/*/
+# cursor-collections agent-artifacts [end]
+# cursor-collections local [end]
+EOF
+run_setup "$TMP_K" --link-mode copy --gitignore-agent-artifacts
+echo ""
+assert_count "${TMP_K}/.gitignore" "cursor-collections local [begin]" 1 "single local marker after migration"
+assert_file_contains "${TMP_K}/.gitignore" ".cursor/rules/eversis-*.mdc"              "migrated block uses glob"
+assert_not_contains  "${TMP_K}/.gitignore" "eversis-agent-core.mdc"                   "legacy agent-core line removed"
+assert_file_contains "${TMP_K}/.gitignore" "cursor-collections agent-artifacts [begin]" "artifacts sub-block preserved"
+assert_git_ignores "$TMP_K" ".cursor/rules/eversis-accessibility.mdc" "accessibility rule gitignored after migration"
+rm -rf "$TMP_K"
 echo ""
 
 # ─── gitignore unit tests ─────────────────────────────────────────────────────

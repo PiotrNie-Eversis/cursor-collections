@@ -4,6 +4,20 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## 2026-06-05
+
+### Fixed
+
+- **`setup-cursor-local.sh` local gitignore — framework rules** — the managed `# cursor-collections local` block now gitignores `.cursor/rules/eversis-*.mdc` with `!.cursor/rules/eversis-project-stack.mdc` instead of a hardcoded list of four SDLC rules. Fixes missing coverage for `eversis-accessibility.mdc` and `eversis-ba-docs-*.mdc`. Re-run setup migrates legacy per-file entries to the glob pattern.
+
+### Changed
+
+- **`scripts/lib/setup-cursor-local/gitignore.sh`** — `_refresh_local_gitignore_block` rebuilds the managed block on re-run (idempotent migration + artifacts toggle).
+- **`scripts/setup-cursor-local.test.sh`** — scenarios J–K (glob gitignore + legacy block migration).
+- **`documentation/cursor-collection.md`**, **`website/docs/getting-started/installation.md`**, **`README.md`** — local gitignore semantics and re-run guidance.
+
+---
+
 ## 2026-06-03
 
 ### Fixed

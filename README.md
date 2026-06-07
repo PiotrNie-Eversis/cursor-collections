@@ -157,7 +157,9 @@ The script will:
 - Copy `.cursor/rules/`, `.cursor/prompts/`, `.cursor/commands/`, `.cursor/skills/` into your project.
 - Generate `.cursor/mcp.json` pointing to the shared framework.
 - Create `AGENTS.md` and `docs/specs/` if they are missing.
-- Add a `.gitignore` block so the generated MCP config stays local (not committed).
+- Add a `.gitignore` block so MCP config, vendored `.cursor/*`, and framework rules (`.cursor/rules/eversis-*.mdc` except `eversis-project-stack.mdc`) stay local (not committed).
+
+Re-run the same command after updating `cursor-collections` to refresh the managed `.gitignore` block in existing projects.
 
 Optional — keep agent research/plan folders out of git (solo dev or Jira-only):
 

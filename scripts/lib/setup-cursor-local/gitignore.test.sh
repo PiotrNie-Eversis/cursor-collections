@@ -73,5 +73,32 @@ else
   _fail "vendor mode removes local block including artifacts"
 fi
 
+# Case 4: refresh migrates legacy per-file rules to glob; keeps artifacts
+cat > "${TARGET_DIR}/.gitignore" <<'EOF'
+node_modules/
+
+# cursor-collections local [begin]
+.cursor/mcp.json
+.cursor/prompts/
+.cursor/rules/eversis-agent-core.mdc
+.cursor/rules/eversis-code-reviewer.mdc
+# cursor-collections agent-artifacts [begin]
+docs/specs/*/
+docs/context/*/
+# cursor-collections agent-artifacts [end]
+# cursor-collections local [end]
+EOF
+VENDOR_MODE=""
+ARG_GITIGNORE_AGENT_ARTIFACTS="true"
+_refresh_local_gitignore_block "${TARGET_DIR}/.gitignore" "true"
+if grep -qF ".cursor/rules/eversis-*.mdc" "${TARGET_DIR}/.gitignore" && \
+   grep -qF "!.cursor/rules/eversis-project-stack.mdc" "${TARGET_DIR}/.gitignore" && \
+   ! grep -qF "eversis-agent-core.mdc" "${TARGET_DIR}/.gitignore" && \
+   grep -qF "cursor-collections agent-artifacts [begin]" "${TARGET_DIR}/.gitignore"; then
+  _pass "refresh migrates legacy rules to glob and keeps artifacts"
+else
+  _fail "refresh migrates legacy rules to glob and keeps artifacts"
+fi
+
 echo ""
 echo "  ✅  All ${PASS} gitignore unit tests passed."
