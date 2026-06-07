@@ -4,6 +4,19 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## 2026-06-07
+
+### Changed
+
+- **`README.md`** — Restructured with progressive disclosure (phase matrix, workflow flowcharts, condensed agent list, MCP and install sections relocated). Centered Cursor logo hero; removed redundant Summary section.
+- **`README.md`** — Agents section expanded to phase-grouped Focus blocks (copilot-collections pattern): 13 roles with emoji anchors; Invoke lines on primary agents only.
+- **`README.md`** — MCP Server Configuration aligned with copilot-collections (User/Workspace options, Official docs, Context7 snippet, usage bullets, Sequential Thinking subsection).
+- **`README.md`** — Supported workflows expanded (phase primers, Implement→Review table, full UI lifecycle, UI verification loop, standalone ideation gates 1/1.5/2, BA Docs example).
+- **`README.md`** — Workflow variants table; named Workshop Analysis, E2E Testing, and Business Manager Docs examples with links to docs-site playbooks.
+- **`README.md`** — Consumer alignment guide under “Using this framework in another repository” (sync after `git pull`, `--sync`, vendor modes, what stays project-owned).
+
+---
+
 ## 2026-06-05
 
 ### Fixed
