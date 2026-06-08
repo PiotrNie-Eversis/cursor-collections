@@ -8,6 +8,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ### Changed
 
+- **`website/`** — Fix docs dark mode contrast: Confluence-inspired dark palette (`#1D2125` / `#B6C2CF`), theme-aware dark docs navbar, scoped light/dark rules under `html.docs-doc-page`.
+- **`website/`** — Docs readability aligned with README: `start-here` curated path, restructured intro, short workflow overview with variant admonitions, agents Focus blocks, MCP executive summary, consumer refresh table; homepage marketing rewrite (Ideate → Implement → Review); Confluence-like light docs chrome (split-theme); navbar **Get started**; `check-readme-site-parity` prebuild gate.
+- **`README.md`** — Related documentation link to `website/docs/getting-started/start-here.md`.
 - **`README.md`** — Restructured with progressive disclosure (phase matrix, workflow flowcharts, condensed agent list, MCP and install sections relocated). Centered Cursor logo hero; removed redundant Summary section.
 - **`README.md`** — Agents section expanded to phase-grouped Focus blocks (copilot-collections pattern): 13 roles with emoji anchors; Invoke lines on primary agents only.
 - **`README.md`** — MCP Server Configuration aligned with copilot-collections (User/Workspace options, Official docs, Context7 snippet, usage bullets, Sequential Thinking subsection).

@@ -11,6 +11,10 @@ title: Prerequisites
 
 Use a current Cursor release so Chat, Agent, rules, MCP, and Agent Skills behave as documented. Features evolve quickly — if something differs in your build, check Cursor’s own release notes.
 
+## Node.js
+
+**Node.js ≥ 18** is required to build the local **`eversis-collections`** MCP package (`mcp/eversis-collections-mcp/`). Run `npm install && npm run build` from that directory before relying on skill tools in Agent.
+
 ## Git
 
 You need **Git** to clone this repository and to work with the normal team workflow.

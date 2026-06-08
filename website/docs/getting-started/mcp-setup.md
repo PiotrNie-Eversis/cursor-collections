@@ -5,6 +5,41 @@ title: MCP Setup
 
 # MCP Setup
 
+## At a glance
+
+To unlock the full workflow, configure **Model Context Protocol (MCP)** servers. Template: [`.cursor/mcp.json`](https://github.com/PiotrNie-Eversis/cursor-collections/blob/main/.cursor/mcp.json).
+
+**Option 1 — User profile (recommended):** Command Palette → **MCP: Open User Configuration** → merge `mcpServers` from this repo (global across projects).
+
+**Option 2 — Workspace:** Open this repo in Cursor and enable workspace MCP when prompted — or copy `.cursor/mcp.json` into your project.
+
+**Build local server `eversis-collections`:**
+
+```bash
+cd mcp/eversis-collections-mcp && npm install && npm run build
+```
+
+Enable **`eversis-collections`** in **Settings → MCP** and restart Cursor. Tool reference: [MCP package README](https://github.com/PiotrNie-Eversis/cursor-collections/blob/main/mcp/eversis-collections-mcp/README.md).
+
+### What each MCP is used for
+
+- **Atlassian** — Jira and Confluence for implement, review, and research.
+- **Figma** — design context for UI implement and `@eversis-review-ui`.
+- **Context7** — up-to-date library and framework documentation.
+- **Playwright** — browser interactions and E2E-style checks.
+- **Sequential Thinking** — structured reasoning for complex analysis ([details](../integrations/sequential-thinking)).
+- **PDF Reader** — workshop PDFs for `@eversis-analyze-materials`.
+- **AWS / GCP MCPs** — cloud APIs and docs for DevOps and cost prompts.
+- **eversis-collections** — `eversis_skills_*` tools and Word `.docx` chapter tools.
+
+### Verify
+
+After restart, open **Agent** and confirm tools appear (e.g. `eversis_skills_list` after building `eversis-collections`).
+
+---
+
+## Detailed setup
+
 To unlock the full workflow (Jira, Figma, code search, browser automation, cloud APIs), configure the **Model Context Protocol (MCP)** servers. This repository’s **source of truth** is **`.cursor/mcp.json`**: it defines every server (HTTP and stdio) under the **`mcpServers`** key, per [Cursor’s MCP documentation](https://cursor.com/docs/mcp).
 
 ## This repository (recommended)

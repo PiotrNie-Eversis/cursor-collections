@@ -9,7 +9,7 @@ Nine scenarios where Cursor Collections changes how work actually gets done.
 
 ---
 
-## Product Ideation
+## Ideate
 
 ### Workshop transcripts → Jira backlog in 15 minutes
 
@@ -31,7 +31,7 @@ The Business Analyst agent's Import Mode fetches existing Jira issues, converts 
 
 ---
 
-## Development
+## Implement
 
 ### New developer, productive from day one
 
@@ -63,7 +63,7 @@ The UI Reviewer agent runs an automated verification loop (up to 5 iterations) t
 
 ---
 
-## Quality
+## Review
 
 ### Code review that enforces standards, not just style
 

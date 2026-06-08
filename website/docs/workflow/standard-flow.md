@@ -12,7 +12,8 @@ The standard workflow is used for backend and fullstack tasks. The Engineering M
 ### 1. Implement
 
 ```text
-/eversis-implement <JIRA_ID or task description>
+@eversis-implement <JIRA_ID or task description>
+# or: /eversis-implement <JIRA_ID or task description>
 ```
 
 The Engineering Manager automatically handles the full development cycle:
@@ -49,7 +50,8 @@ When the Engineering Manager declares **Fine**, it **always produces a QA commen
 ### 2. Review
 
 ```text
-/eversis-review <JIRA_ID or task description>
+@eversis-review <JIRA_ID or task description>
+# or: /eversis-review <JIRA_ID or task description>
 ```
 
 - **Agent:** Code Reviewer

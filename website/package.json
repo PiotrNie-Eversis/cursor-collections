@@ -6,10 +6,11 @@
     "sync-prompts": "node ../scripts/sync-prompts.mjs",
     "sync-framework-doc": "node ../scripts/sync-framework-doc.mjs",
     "sync-docs-assets": "npm run sync-prompts && npm run sync-framework-doc",
+    "check-readme-site-parity": "node ../scripts/check-readme-site-parity.mjs",
     "validate-cursor-links": "node ../scripts/validate-cursor-markdown-links.mjs --context=source && node ../scripts/validate-cursor-markdown-links.mjs --context=synced && node ../scripts/validate-cursor-markdown-links.mjs --context=agents",
-    "prestart": "npm run sync-docs-assets && npm run validate-cursor-links",
+    "prestart": "npm run sync-docs-assets && npm run check-readme-site-parity && npm run validate-cursor-links",
     "start": "docusaurus start",
-    "prebuild": "npm run sync-docs-assets && npm run validate-cursor-links",
+    "prebuild": "npm run sync-docs-assets && npm run check-readme-site-parity && npm run validate-cursor-links",
     "build": "docusaurus build",
     "serve": "docusaurus serve",
     "clear": "docusaurus clear"

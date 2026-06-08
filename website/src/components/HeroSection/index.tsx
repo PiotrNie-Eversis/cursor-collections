@@ -15,24 +15,31 @@ const HeroSection = () => {
       </div>
       <div className={`${styles.heroRight} ${styles.heroContent}`}>
         <p className={styles.heroSub}>
-          Stop switching between Jira, Figma, and your codebase. One framework.
-          Every phase of delivery. AI at every step.
+          An opinionated <strong>Cursor-native</strong> product engineering
+          framework — rules, prompts, MCP, and skills for the full SDLC.
+          <br />
+          <strong>Ideate → Implement → Review</strong> — with human gates at
+          every step.
         </p>
         <div className={styles.heroActions}>
           <Link
             className={styles.btnPrimary}
+            to="/docs/getting-started/start-here"
+          >
+            Get started
+          </Link>
+          <Link
+            className={styles.btnSecondary}
             href="https://github.com/PiotrNie-Eversis/cursor-collections"
             target="_blank"
             rel="noopener noreferrer"
           >
             See on GitHub
           </Link>
-          <Link className={styles.btnSecondary} to="/docs/">
-            Read the docs
-          </Link>
         </div>
         <p className={styles.heroProof}>
-          Open source (MIT) · Cursor-native rules, prompts, and workflows
+          Maintained by Eversis · Based on Copilot Collections · MIT ·
+          Cursor-native
         </p>
       </div>
     </div>

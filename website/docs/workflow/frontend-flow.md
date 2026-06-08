@@ -10,7 +10,7 @@ For UI-heavy tasks with Figma designs, use the specialized frontend workflow. Th
 ## Command Sequence
 
 ```text
-1️⃣ /eversis-implement <JIRA_ID or task description>
+1️⃣ @eversis-implement <JIRA_ID or task description>  (or /eversis-implement)
    ↳ 🔍 Engineering Manager delegates to Context Engineer for research
    ↳ 📖 Review research doc – verify Figma links, requirements
    ↳ ✅ Confirm to proceed to planning
@@ -22,7 +22,7 @@ For UI-heavy tasks with Figma designs, use the specialized frontend workflow. Th
    ↳ ✅ Manually verify critical UI elements in browser
    ↳ 🔄 Engineering Manager calls /eversis-review-ui in a loop until PASS or escalation
 
-2️⃣ /eversis-review       <JIRA_ID or task description>
+2️⃣ @eversis-review <JIRA_ID or task description>  (or /eversis-review)
    ↳ 📖 Review findings – code quality, a11y, performance
    ↳ ✅ Address all blockers before merging
 ```

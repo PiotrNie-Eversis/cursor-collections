@@ -13,7 +13,7 @@ type UseCase = {
 const useCases: UseCase[] = [
   {
     track: 'product',
-    trackLabel: 'Product Ideation',
+    trackLabel: 'Ideate',
     title: 'Workshop Outputs to Jira Backlog',
     problem:
       'Discovery workshops produce valuable transcripts, Figma boards, and shared notes — but converting them into structured, actionable Jira tickets is a manual, error-prone process. Tasks are vague, edge cases are missed, and the backlog doesn\u2019t reflect what was actually discussed.',
@@ -21,7 +21,7 @@ const useCases: UseCase[] = [
   },
   {
     track: 'dev',
-    trackLabel: 'Development',
+    trackLabel: 'Implement',
     title: 'Single-Session Context Gathering',
     problem:
       'Requirements live in Jira, designs in Figma, documentation in Confluence, code in GitHub. Developers constantly context-switch to gather information. MCP integrations bring all context into a single Cursor session.',
@@ -29,7 +29,7 @@ const useCases: UseCase[] = [
   },
   {
     track: 'quality',
-    trackLabel: 'Quality',
+    trackLabel: 'Review',
     title: 'Automated Code Review',
     problem:
       'Multi-dimensional review checking acceptance criteria, security, performance, database patterns, and coding standards. Clear PASS/BLOCKER/SUGGESTION verdicts on every run.',
@@ -37,7 +37,7 @@ const useCases: UseCase[] = [
   },
   {
     track: 'dev',
-    trackLabel: 'Development',
+    trackLabel: 'Implement',
     title: 'Pixel-Perfect UI Delivery',
     problem:
       'Frontend implementations deviate from Figma — wrong spacing, colours, component variants. QA catches these late, causing rework. The automated Figma verification loop runs up to 5 iterations, comparing the running app via Playwright against Figma specs before the code ever reaches human review.',
@@ -45,7 +45,7 @@ const useCases: UseCase[] = [
   },
   {
     track: 'quality',
-    trackLabel: 'Quality',
+    trackLabel: 'Review',
     title: 'Security Built Into Every Plan and Review',
     problem:
       'Security reviews happen at the end of a sprint — if at all. DRY, KISS, and proper error handling are inconsistently applied. Every plan includes security considerations by default. The Code Reviewer agent checks for vulnerabilities, missing input validation, and exposed secrets on every run.',
@@ -53,7 +53,7 @@ const useCases: UseCase[] = [
   },
   {
     track: 'dev',
-    trackLabel: 'Development',
+    trackLabel: 'Implement',
     title: 'Onboarding New Team Members',
     problem:
       'New developers spend days understanding the codebase, conventions, and task requirements before they can contribute. The eversis-implement prompt triggers the Engineering Manager, which automatically delegates to the Context Engineer to gather context from Jira, Confluence, Figma, and the codebase. It then delegates to the Architect to create a step-by-step implementation path — within minutes, not days.',
@@ -61,7 +61,7 @@ const useCases: UseCase[] = [
   },
   {
     track: 'dev',
-    trackLabel: 'Development',
+    trackLabel: 'Implement',
     title: 'Architecture Plan from a Ticket',
     problem:
       'Generates a phased implementation plan with CREATE/MODIFY/REUSE labels, security considerations, and clear definitions of done — directly from a Jira ticket.',
@@ -69,7 +69,7 @@ const useCases: UseCase[] = [
   },
   {
     track: 'quality',
-    trackLabel: 'Quality',
+    trackLabel: 'Review',
     title: 'Reliable E2E Test Suites',
     problem:
       'E2E tests are written inconsistently, use brittle selectors, and break on unrelated changes. Teams stop trusting them and start skipping them. The E2E Engineer agent enforces Page Object patterns, accessibility-first locators, and verifies tests for 3+ consecutive passes before commit.',
@@ -77,7 +77,7 @@ const useCases: UseCase[] = [
   },
   {
     track: 'dev',
-    trackLabel: 'Infrastructure',
+    trackLabel: 'Implement',
     title: 'Cloud Cost Optimization',
     problem:
       'Cloud bills keep growing but nobody knows which resources are wasteful. The DevOps Engineer agent performs hybrid audits — analyzing IaC code and validating against live infrastructure via AWS/GCP APIs to identify savings opportunities.',

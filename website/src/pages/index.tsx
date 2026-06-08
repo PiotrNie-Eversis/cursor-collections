@@ -16,7 +16,7 @@ export default function Home(): React.JSX.Element {
   return (
     <Layout
       title={siteConfig.title}
-      description="AI-powered product engineering framework — specialized agents, structured workflows, and MCP integrations covering the full product lifecycle from ideation to delivery."
+      description="Cursor-native product engineering framework — Ideate → Implement → Review. Rules, prompts, MCP, and skills for the full SDLC."
     >
       <main className={styles.homePage}>
           <HeroSection />

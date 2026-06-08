@@ -620,6 +620,7 @@ MIT licensed (see repository license file).
 | [documentation/cursor-collection.md](documentation/cursor-collection.md) | Authoritative Cursor framework guide — reuse in any repo |
 | [AGENTS.md](AGENTS.md) | Agent instructions for this repository |
 | [mcp/eversis-collections-mcp/README.md](mcp/eversis-collections-mcp/README.md) | MCP server tools and Word editing reference |
+| [website/docs/getting-started/start-here.md](website/docs/getting-started/start-here.md) | Curated docs onboarding checklist |
 | [website/docs/getting-started/installation.md](website/docs/getting-started/installation.md) | Consumer installation (incl. Windows) |
 | [website/docs/getting-started/mcp-setup.md](website/docs/getting-started/mcp-setup.md) | Workspace vs user MCP configuration |
 | [website/docs/workflow/business-manager-docs.md](website/docs/workflow/business-manager-docs.md) | BA Docs planner/writer playbook |

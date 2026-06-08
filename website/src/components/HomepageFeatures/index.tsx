@@ -19,9 +19,9 @@ type CardItem = {
 const cards: CardItem[] = [
   {
     icon: <LifecycleIcon className={styles.cardIcon} />,
-    title: 'End-to-End Product Lifecycle',
+    title: 'Ideate → Implement → Review',
     description:
-      'Covers Product Ideation, Development, and Quality in a single framework. From workshop transcript to production-ready code — every phase has dedicated agents, skills, and workflows.',
+      'Full SDLC in one framework — workshop transcript to production-ready code. Every phase has dedicated rules, prompts, skills, and workflows with human gates.',
   },
   {
     icon: <AgentsIcon className={styles.cardIcon} />,

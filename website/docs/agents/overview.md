@@ -5,7 +5,7 @@ title: Agents Overview
 
 # Agents Overview
 
-**Twelve specialized roles** plus **three internal workers** mirror a full product-engineering team across the **full delivery lifecycle** — from product ideation through development, infrastructure, and quality assurance.
+**Twelve specialized roles** plus **three internal workers** mirror a full product-engineering team across **Ideate → Implement → Review**.
 
 In **Cursor**, those roles are expressed as **rules** (`.cursor/rules/eversis-*.mdc`), **prompts** (bodies in **`.cursor/prompts/public/`** and **`.cursor/prompts/internal/`** as `eversis-*.md`), and **skill packages** (`SKILL.md` under `.cursor/skills/`, used via the **`eversis-collections` MCP** and `eversis_skills_*` tools plus **`eversis_skill_run_script`** where allowlisted; optional `eversis-` names if you fork). **Attach** prompts in Chat or Agent by typing **`@`** and the **file stem** (e.g. **`@eversis-implement`**, **`@eversis-research`**). Use a full path under **`.cursor/prompts/...`** only if the file picker does not disambiguate.
 
@@ -51,7 +51,79 @@ Each role defines:
      + eversis-code-reviewer.mdc
 ```
 
-## Role summary
+## Roles by phase
+
+### 📋 Product ideation
+
+#### Business Analyst
+
+- **Focus:** orchestrating discovery workshop materials into **Jira-ready epics and stories**, or iterating on an existing backlog.
+- Cleans transcripts, extracts tasks, runs quality review, and formats for Jira — with **human gates** before sync.
+- **Invoke:** `@eversis-analyze-materials` or `/eversis-analyze-materials`.
+
+### 🛠 Development
+
+#### Context Engineer
+
+- **Focus:** requirements, context, and domain understanding for a task.
+- Gathers information from Jira, Confluence, codebase, and attachments; produces **`*.research.md`** under `docs/specs/`.
+- Delegated via `@eversis-implement` → internal research prompt.
+
+#### Architect
+
+- **Focus:** solution design and **implementation plans** with phases and acceptance checks.
+- Produces **`*.plan.md`** — human approval required before broad code changes.
+
+#### Engineering Manager
+
+- **Focus:** **orchestrating** the Implement phase — research → plan → code → review handoff.
+- Delegates by task type; enforces human gates and **Fine → QA comment draft**.
+- **Invoke:** `@eversis-implement` or `/eversis-implement` + `eversis-engineering-manager.mdc`.
+
+#### Software Engineer
+
+- **Focus:** implementing the **agreed plan** (backend and frontend).
+- For UI: design system, accessibility, and `@eversis-review-ui` with Figma + Playwright MCP.
+
+#### Prompt Engineer
+
+- **Focus:** designing and optimizing **LLM application prompts** (runtime prompts, not Cursor packaging).
+
+#### DevOps Engineer
+
+- **Focus:** infrastructure, **CI/CD**, observability, and cloud cost governance.
+
+### ✅ Quality
+
+#### Code Reviewer
+
+- **Focus:** structured code review (PASS / BLOCKER / SUGGESTION).
+- **Invoke:** `@eversis-review` or `/eversis-review` + `eversis-code-reviewer.mdc`.
+
+#### UI Reviewer
+
+- **Focus:** **read-only** UI verification — Figma (EXPECTED) vs browser (ACTUAL).
+- **Invoke:** `@eversis-review-ui` or `/eversis-review-ui`.
+
+#### E2E Engineer
+
+- **Focus:** **Playwright** end-to-end tests for critical user journeys.
+
+### ⚙️ Cursor customization
+
+#### Cursor customization engineer
+
+- **Focus:** designing, creating, and reviewing **Cursor packaging** — rules, skills, prompts, `AGENTS.md`.
+- **Invoke:** `@eversis-create-custom-agent` and related `eversis-create-custom-*` prompts.
+
+#### Cursor customization orchestrator
+
+- **Focus:** coordinating **multi-step** customization (research → create → review).
+- See [orchestrator](./cursor-customization-orchestrator).
+
+---
+
+## Reference tables
 
 ### 📋 Product ideation
 

@@ -27,7 +27,7 @@ export default function SdlcDiagram(): React.JSX.Element {
         {/* Ideation Phase */}
         <div className={`${styles.phase} ${styles.phaseIdeation}`}>
           <div className={styles.phaseHeader}>
-            <span className={styles.phaseTag}>Product Ideation</span>
+            <span className={styles.phaseTag}>Ideate</span>
           </div>
           <div className={styles.card}>
             <div className={styles.cardCmd}>
@@ -47,7 +47,7 @@ export default function SdlcDiagram(): React.JSX.Element {
         {/* Development Phase */}
         <div className={`${styles.phase} ${styles.phaseDev}`}>
           <div className={styles.phaseHeader}>
-            <span className={styles.phaseTag}>Development</span>
+            <span className={styles.phaseTag}>Implement</span>
           </div>
           <div className={styles.card}>
             <div className={styles.cardCmd}>
@@ -138,7 +138,7 @@ export default function SdlcDiagram(): React.JSX.Element {
         {/* Quality Phase */}
         <div className={`${styles.phase} ${styles.phaseQuality}`}>
           <div className={styles.phaseHeader}>
-            <span className={styles.phaseTag}>Quality</span>
+            <span className={styles.phaseTag}>Review</span>
           </div>
           <div className={styles.grid2}>
             <div className={styles.card}>

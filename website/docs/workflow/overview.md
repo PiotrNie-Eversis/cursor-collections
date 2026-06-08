@@ -5,63 +5,91 @@ title: Workflow Overview
 
 # Workflow Overview
 
-**Cursor Collections** is an AI product engineering framework that covers the **full product lifecycle** through a structured workflow:
+**Cursor Collections** covers the **full product lifecycle**:
 
 > **Ideate → Implement → Review**
 
-The Implement phase internally handles research and planning when you use the **`eversis-implement`** prompt (attach with **`@eversis-implement`** in Chat or Agent). Each phase is driven by **Cursor rules** and **attachable prompts**, and produces documented artifacts. This keeps outputs consistent from workshop materials to production-ready, reviewed code.
+Attach **`@eversis-implement`** (or `/eversis-implement`) for the Implement phase — research and planning run inside that flow. Each phase produces documented artifacts with **human gates** where the prompts require them.
 
-:::tip The Relay Race Metaphor
-Think of this workflow as a **relay race**. Each phase produces a deliverable — the "baton" — that is reviewed by the human and then passed to the next phase. Workshop materials feed the backlog, the Engineering Manager pattern orchestrates research, planning, and implementation, and the implementation feeds the review. Nothing is lost between steps, and every handoff is a documented artifact.
+:::tip The relay race
+Each phase passes a reviewed deliverable to the next. Workshop materials feed the backlog; the Engineering Manager orchestrates research, planning, and implementation; implementation feeds review.
 :::
 
-## The Phases
+## The phases
 
 ### 1. Ideate
 
-- **Role:** Business Analyst (rules + prompt)
-- **Prompt:** **`@eversis-analyze-materials`** (file under **`.cursor/prompts/public/`**)
-- Processes raw workshop materials (transcripts, Figma designs, documents) into structured epics and stories.
-- Uses multi-step quality review with mandatory human review gates.
-- **Produces:** Jira-ready epics and stories with acceptance criteria, dependencies, and priorities.
+- **Role:** Business Analyst
+- **Prompt:** `@eversis-analyze-materials`
+- Workshop materials → Jira-ready epics and stories with acceptance criteria.
+- **Gates:** Gate 1, Gate 1.5, and Gate 2 before Jira sync — see [Workshop Analysis Flow](./workshop-flow).
 
 ### 2. Implement
 
-- **Role:** Engineering Manager orchestration (Context Engineer, Architect, implementers)
-- **Prompt:** **`@eversis-implement`** with a Jira ID or description (file under **`.cursor/prompts/public/`**)
-- Typical flow:
-  1. **Research** — Context gathering from Jira, Figma, and codebase. Confirm before planning when the prompt says so.
-  2. **Plan** — Structured implementation plan. Confirm before large edits when the prompt says so.
-  3. **Implement** — Software / Prompt / DevOps / E2E work per plan and internal prompts.
-- **Produces:** Research document, implementation plan, and code changes.
-
-#### Status: Fine
-
-When all planned agent work is finished, the Engineering Manager declares **Fine** (task complete from the agent’s perspective) and **produces the QA comment draft in the same response** following the **[`eversis-qa-comment` SKILL.md](https://github.com/PiotrNie-Eversis/cursor-collections/blob/main/.cursor/skills/eversis-qa-comment/SKILL.md)** procedure (overview: [QA Comment](../skills/qa-comment)). The draft is labeled for review — you edit or approve it, then paste into Jira or instruct the agent to post via Atlassian MCP. Publication never happens automatically.
+- **Role:** Engineering Manager (delegates Context Engineer, Architect, implementers)
+- **Prompt:** `@eversis-implement` with a Jira ID or task description
+- **Flow:** Research → plan (human approval) → code → **Fine** + mandatory QA comment draft.
+- **Produces:** `*.research.md`, `*.plan.md`, code changes.
 
 ### 3. Review
 
 - **Role:** Code Reviewer
-- **Prompt:** **`@eversis-review`** (file under **`.cursor/prompts/public/`**)
-- Structured review against acceptance criteria, security, reliability, and maintainability.
-- **Produces:** Review with pass/blockers/suggestions.
+- **Prompt:** `@eversis-review`
+- Structured review — PASS / BLOCKER / SUGGESTION.
 
-## Workflow Diagram
+## Implement → Review
+
+| Step | Attach | What happens |
+| ---- | ------ | ------------ |
+| Implement | `@eversis-implement` or `/eversis-implement` | Engineering Manager: research → plan → implementation; declares Fine + QA draft |
+| Review | `@eversis-review` or `/eversis-review` | Structured code review |
+
+## Workflow diagram
 
 import SdlcDiagram from '@site/src/components/SdlcDiagram';
 
 <SdlcDiagram />
 
-## Human Review at Every Step
+## Human review at every step
 
 :::warning Important
-Each step requires your review and verification. Open the generated documents, go through them carefully, and iterate as many times as needed until the output looks correct. AI assistance does not replace human judgment — treat each output as a draft that needs your approval before proceeding.
+Each step requires your review. Open generated documents, iterate until correct, then approve before proceeding. AI output is always a draft.
 :::
 
-## Workflow Variants
+## Workflow variants
 
-- **[Workshop Analysis Flow](./workshop-flow)** — `eversis-analyze-materials` for Jira-ready epics and stories.
-- **[Standard Flow](./standard-flow)** — `eversis-implement` → `eversis-review` (research and planning as in the public/internal prompts).
-- **[Frontend Flow](./frontend-flow)** — UI tasks with Figma verification using `eversis-implement` (internal UI steps) and `eversis-review-ui`.
-- **[E2E Testing Flow](./e2e-flow)** — E2E work via `eversis-implement` and E2E patterns in rules/skills.
-- **[Business Manager Docs](./business-manager-docs)** — `@eversis-ba-docs-planner` builds `docs-update-plan.md` from Confluence rules + Jira scope; `@eversis-ba-docs-writer` applies edits to `.docx` via **`eversis-collections`** MCP (`.docx` tools). Human gates separate planning from writing. See also the [framework reference](../framework) for how this repo packages rules and prompts.
+| Variant | Entry | Use when |
+| ------- | ----- | -------- |
+| **Standard flow** | `@eversis-implement` → `@eversis-review` | Backend / fullstack delivery |
+| **UI + Figma** | `@eversis-implement` + `@eversis-review-ui` loop | Design-driven UI |
+| **[Workshop analysis](./workshop-flow)** | `@eversis-analyze-materials` | Workshop → Jira only |
+| **[E2E testing](./e2e-flow)** | `@eversis-implement` (E2E tasks in plan) | Playwright coverage |
+| **[Business Manager Docs](./business-manager-docs)** | `@eversis-ba-docs-planner` → writer | Word `.docx` release docs |
+
+:::info Standard flow
+Full step-by-step: [Standard Flow](./standard-flow) — research, plan, implement, review with human gates at each stage.
+:::
+
+:::info Frontend / UI flow
+Figma-driven UI with verification loop: [Frontend Flow](./frontend-flow) — includes the 5-step UI verification loop (`@eversis-review-ui`).
+:::
+
+:::info Workshop analysis
+Ideate-only with Gates 1, 1.5, 2: [Workshop Analysis Flow](./workshop-flow).
+:::
+
+:::info E2E testing
+Playwright work inside Implement: [E2E Testing Flow](./e2e-flow).
+:::
+
+:::info Business Manager Docs
+Word `.docx` via `eversis-collections` MCP: [Business Manager Docs](./business-manager-docs).
+:::
+
+## Workflow playbooks
+
+- [Standard Flow](./standard-flow)
+- [Frontend Flow](./frontend-flow)
+- [Workshop Analysis Flow](./workshop-flow)
+- [E2E Testing Flow](./e2e-flow)
+- [Business Manager Docs](./business-manager-docs)

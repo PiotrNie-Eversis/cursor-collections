@@ -6,7 +6,7 @@ import type { ConfigureWebpackResult } from "@docusaurus/types/src/plugin";
 const config: Config = {
   title: "Cursor Collections",
   tagline:
-    "Cursor-native product engineering framework — ideation, implementation, and review",
+    "Cursor-native product engineering framework — Ideate → Implement → Review",
 
   url: "https://cursor-collections-1ztm.vercel.app",
   baseUrl: "/",
@@ -29,6 +29,7 @@ const config: Config = {
         docs: {
           sidebarPath: "./sidebars.ts",
           routeBasePath: "docs",
+          breadcrumbs: true,
           admonitions: {
             keywords: ["note", "tip", "info", "warning", "danger", "brand"],
           },
@@ -135,6 +136,11 @@ const config: Config = {
           label: "Docs",
         },
         {
+          to: "/docs/getting-started/start-here",
+          label: "Get started",
+          position: "left",
+        },
+        {
           to: "/docs/framework",
           label: "Framework",
           position: "left",
@@ -219,10 +225,14 @@ const config: Config = {
         },
       ],
     },
+    tableOfContents: {
+      minHeadingLevel: 2,
+      maxHeadingLevel: 4,
+    },
     colorMode: {
-      defaultMode: "dark",
-      disableSwitch: true,
-      respectPrefersColorScheme: false,
+      defaultMode: "light",
+      disableSwitch: false,
+      respectPrefersColorScheme: true,
     },
   } satisfies Preset.ThemeConfig,
 };

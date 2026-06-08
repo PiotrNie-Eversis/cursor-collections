@@ -24,11 +24,10 @@ export default function WorkflowShowcase(): React.JSX.Element {
       </div>
 
       <p className={styles.flowCaption}>
-        Every step requires your review. The framework provides structure —
-        judgment stays with your team. In Cursor, attach each <code>.md</code>{' '}
-        prompt using <code>@</code> in chat or Agent (for example{' '}
-        <code>@eversis-implement</code>); they are
-        not built-in <code>/</code> slash commands.
+        Every step requires your review. In Cursor, attach prompts with{' '}
+        <code>@</code> in Chat or Agent (e.g. <code>@eversis-implement</code>)
+        or use <code>/eversis-*</code> project commands from{' '}
+        <code>.cursor/commands/</code> — each loads the canonical prompt file.
       </p>
     </section>
   );

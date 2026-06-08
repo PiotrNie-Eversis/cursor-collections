@@ -6,36 +6,32 @@ import styles from "./styles.module.css";
 const steps = [
   {
     num: 1,
-    title: "Clone the repo",
+    title: "Open in Cursor",
     description: (
       <>
-        <code>git clone [repo] cursor-collections</code> alongside your existing
-        projects
+        Open this repository in <strong>Cursor</strong> (
+        <code>File → Open Folder</code>).
       </>
     ),
   },
   {
     num: 2,
-    title: "Open in Cursor",
+    title: "Read AGENTS.md + framework",
     description: (
       <>
-        Open the folder in <strong>Cursor</strong>, read <code>AGENTS.md</code>{" "}
-        and the{" "}
-        <Link to="/docs/framework">Framework reference</Link> in this
-        site (or <code>documentation/cursor-collection.md</code> in the repo), and
-        review <code>.cursor/rules/</code> (start with{" "}
-        <code>eversis-agent-core.mdc</code>).
+        Read <code>AGENTS.md</code> and the{" "}
+        <Link to="/docs/framework">Framework reference</Link> (or{" "}
+        <code>documentation/cursor-collection.md</code> in the repo).
       </>
     ),
   },
   {
     num: 3,
-    title: "Enable MCP servers",
+    title: "Configure rules",
     description: (
       <>
-        The repo includes <code>.cursor/mcp.json</code>. When Cursor detects
-        it, enable the suggested servers (Jira, Figma, Playwright, Context7,
-        and more) from the UI.
+        Start with <code>eversis-agent-core.mdc</code> and edit{" "}
+        <code>eversis-project-stack.mdc</code> for your stack.
       </>
     ),
   },
@@ -44,9 +40,30 @@ const steps = [
     title: "Run your first prompt",
     description: (
       <>
-        In Chat or Agent, attach{" "}
-        <code>@eversis-implement</code> and your
-        ticket or task text.
+        Attach <code>@eversis-implement</code> or use{" "}
+        <code>/eversis-implement</code> with your ticket or task text.
+      </>
+    ),
+  },
+  {
+    num: 5,
+    title: "Build MCP",
+    description: (
+      <>
+        <code>cd mcp/eversis-collections-mcp && npm install && npm run build</code>
+        — enable <code>eversis-collections</code> from{" "}
+        <code>.cursor/mcp.json</code>.
+      </>
+    ),
+  },
+  {
+    num: 6,
+    title: "Use skills via MCP",
+    description: (
+      <>
+        With MCP enabled, Agent calls <code>eversis_skills_list</code> /{" "}
+        <code>eversis_skills_get</code> — see{" "}
+        <Link to="/docs/skills/overview">Skills overview</Link>.
       </>
     ),
   },
@@ -65,23 +82,25 @@ export default function GettingStartedSection(): React.JSX.Element {
             every project.
           </h2>
           <p className={styles.sub}>
-            Clone the repo, open it in Cursor, build{" "}
-            <code>mcp/eversis-collections-mcp</code> and enable the{" "}
-            <code>eversis-collections</code> MCP server, then attach{" "}
-            <code>eversis-*.md</code> prompts with <code>@</code> in any project
-            you configure.
+            <strong>Ideate → Implement → Review</strong> — clone or bootstrap,
+            build <code>eversis-collections</code>, attach{" "}
+            <code>eversis-*.md</code> prompts with <code>@</code> or{" "}
+            <code>/eversis-*</code> project commands.
           </p>
           <div className={styles.gsActions}>
             <Link
               className={styles.btnPrimary}
+              to="/docs/getting-started/start-here"
+            >
+              Start here
+            </Link>
+            <Link
+              className={styles.btnSecondary}
               href="https://github.com/PiotrNie-Eversis/cursor-collections"
               target="_blank"
               rel="noopener noreferrer"
             >
               Get the repo on GitHub
-            </Link>
-            <Link className={styles.btnSecondary} to="/docs/">
-              Read the docs
             </Link>
           </div>
         </div>

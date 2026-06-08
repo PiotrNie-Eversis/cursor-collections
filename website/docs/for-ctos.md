@@ -33,11 +33,11 @@ This isn't a prompt library. It's a framework that restructures **how work moves
 
 The framework covers three delivery phases:
 
-**Product Ideation**: turning discovery workshops into structured, Jira-ready backlogs. Context gathering that used to take 30–60 minutes takes 3 minutes. Workshop transcripts become fully formed tickets with acceptance criteria, edge cases flagged, and backlog prioritised.
+**Ideate**: turning discovery workshops into structured, Jira-ready backlogs. Context gathering that used to take 30–60 minutes takes 3 minutes. Workshop transcripts become fully formed tickets with acceptance criteria, edge cases flagged, and backlog prioritised.
 
-**Development**: implementation guided by agents that understand your codebase, your Figma designs, and your Jira context simultaneously. The context-switching that fragments developer focus is replaced by a structured research-then-plan-then-implement loop.
+**Implement**: implementation guided by agents that understand your codebase, your Figma designs, and your Jira context simultaneously. The context-switching that fragments developer focus is replaced by a structured research-then-plan-then-implement loop.
 
-**Quality**: automated UI verification against Figma specs, security review built into every implementation plan, and E2E test suites generated from acceptance criteria. Quality gates that currently happen late in the cycle move earlier, where they're cheap to fix.
+**Review**: automated UI verification against Figma specs, security review built into every implementation plan, and E2E test suites generated from acceptance criteria. Quality gates that currently happen late in the cycle move earlier, where they're cheap to fix.
 
 ---
 
@@ -76,7 +76,7 @@ The framework is open source and layers on your existing **Cursor** workflow. **
 A typical rollout runs in three phases:
 
 - **Install and orient** (day 1) — engineers install the framework, read the workflow overview, run their first agent interaction on a real ticket.
-- **First sprint** (week 1–2) — one team runs the full Product Ideation → Development → Quality loop on a real project. Friction points surface and get resolved.
+- **First sprint** (week 1–2) — one team runs the full Ideate → Implement → Review loop on a real project. Friction points surface and get resolved.
 - **Team-wide adoption** (week 3–4) — framework becomes the default way of working. Leads review output quality, calibrate to project standards.
 
 The framework is designed to be self-explanatory for engineers who already use **Cursor** with rules and prompts.

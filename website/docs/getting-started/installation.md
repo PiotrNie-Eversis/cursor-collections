@@ -5,6 +5,10 @@ title: Installation
 
 # Installation
 
+:::info Curated path
+Follow **[Start here](./start-here)** for the full onboarding checklist.
+:::
+
 Use this framework from **[Cursor](https://cursor.com/)** with this repository on disk (clone or submodule).
 
 ## 1. Clone the repository
@@ -75,6 +79,36 @@ The script:
 - Prints a **Next steps** summary (enable MCP in Cursor, customise the stack rule, etc.).
 
 After you pull a newer `cursor-collections` checkout, **re-run** the setup script in each consumer project (local mode) so the managed `.gitignore` block stays current.
+
+### Keeping consumer projects aligned
+
+When **cursor-collections** releases change (new prompts, rules, skills, MCP tools), refresh consumer projects after you `git pull` the framework:
+
+| Install mode | How to align after `git pull` |
+| ------------ | ----------------------------- |
+| **Local + symlink** (default on macOS/Linux) | Update shared checkout, rebuild MCP, re-run setup in each project |
+| **Local + copy** (`--link-mode copy`, Windows default) | Update checkout + re-run with `--sync` |
+| **Vendor submodule** | `git submodule update` in consumer repo + re-run setup |
+| **Vendor copy** | Re-run `setup-cursor-local.sh --vendor copy --build-mcp` |
+
+**Typical local workflow (symlink mode):**
+
+```bash
+cd "$CURSOR_COLLECTIONS_HOME" && git pull
+cd mcp/eversis-collections-mcp && npm install && npm run build
+cd ~/my-existing-project
+bash "$CURSOR_COLLECTIONS_HOME/scripts/setup-cursor-local.sh" --build-mcp
+```
+
+**What updates automatically vs what stays yours**
+
+| Path | Local symlink mode | You customize / commit |
+| ---- | ------------------ | ---------------------- |
+| Framework rules (`eversis-*.mdc` except stack) | Follows `CURSOR_COLLECTIONS_HOME` after `git pull` | Gitignored in consumer repo |
+| Prompts, commands, skills | Symlinked to HOME | Gitignored |
+| **`eversis-project-stack.mdc`** | Seeded once | **Commit in your project** |
+| **`AGENTS.md`**, `docs/specs/`, `docs/context/` | Scaffolded if missing | Your team owns content |
+| **`.cursor/mcp.json`** | Merged on re-run | Gitignored in local mode |
 
 **`--gitignore-agent-artifacts` (local mode only, default off):** adds `docs/specs/*/` and `docs/context/*/` to `.gitignore` so Implement research/plan folders stay local. Ignored with a warning in vendor mode. Do not use if you commit specs/plans to git or run CI wiki sync into `docs/context/`.
 

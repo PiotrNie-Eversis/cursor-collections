@@ -1,4 +1,5 @@
 {
   "label": "Agents",
-  "position": 4
+  "position": 4,
+  "collapsible": true
 }
