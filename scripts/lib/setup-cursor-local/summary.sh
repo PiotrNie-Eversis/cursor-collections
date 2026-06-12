@@ -9,6 +9,9 @@ print_summary() {
   local effective_link="${ARG_LINK_MODE:-auto}"
   [[ "$OS_TYPE" == "windows" ]] && [[ "$effective_link" == "auto" ]] && effective_link="copy (auto-fallback on Windows)"
 
+  local mcp_file="${TARGET_DIR}/.cursor/mcp.json"
+  local configured="${MCP_CONFIGURED_SERVERS:-eversis-collections}"
+
   echo ""
   echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
   echo "${_BOLD}${_GREEN}cursor-collections setup complete${_RESET}"
@@ -24,10 +27,32 @@ print_summary() {
   echo "  1. ${_BOLD}Customise your project stack rule:${_RESET}"
   echo "       ${TARGET_DIR}/.cursor/rules/eversis-project-stack.mdc"
   echo ""
-  echo "  2. ${_BOLD}Enable the MCP server in Cursor:${_RESET}"
+  echo "  2. ${_BOLD}Enable MCP servers in Cursor:${_RESET}"
   echo "       • Open Cursor Settings → MCP"
-  echo "       • Enable 'eversis-collections'"
+  if [[ -f "$mcp_file" ]]; then
+    echo "       • Configured in ${mcp_file}:"
+    local id
+    IFS=',' read -ra _mcp_summary_ids <<< "${configured// /}"
+    for id in "${_mcp_summary_ids[@]}"; do
+      [[ -n "$id" ]] && echo "         - ${id}"
+    done
+  else
+    echo "       • Enable 'eversis-collections'"
+  fi
   echo "       • Restart Cursor"
+  local _oauth_hint=()
+  local _oid
+  for _oid in atlassian figma; do
+    if echo ",${configured}," | grep -qF ",${_oid},"; then
+      _oauth_hint+=("$_oid")
+    fi
+  done
+  if ((${#_oauth_hint[@]} > 0)); then
+    echo "       • Complete OAuth in Cursor for: $(IFS=', '; echo "${_oauth_hint[*]}")"
+  fi
+  if echo "${configured}" | grep -q 'awslabs.aws'; then
+    echo "       • AWS MCP servers require uv / uvx (Python) on your PATH"
+  fi
   echo ""
   echo "  3. ${_BOLD}Review AGENTS.md${_RESET} and docs/specs/ in your project root."
   echo ""

@@ -1,76 +1,59 @@
 #!/usr/bin/env bash
-# lib/setup-cursor-local/mcp-merge.sh — merge eversis-collections entry into .cursor/mcp.json.
-# Sourced after common.sh.
+# lib/setup-cursor-local/mcp-merge.sh — merge selected MCP servers into .cursor/mcp.json.
+# Sourced after common.sh and mcp-prompt.sh.
 
 merge_mcp_json() {
-  # Requires: COLLECTIONS_HOME, TARGET_DIR, VENDOR_MODE (may be "").
+  # Requires: COLLECTIONS_HOME, TARGET_DIR, VENDOR_MODE, MCP_SELECTED_IDS (from resolve_mcp_selection).
   require_cmd node "Install Node.js ≥ 18 from https://nodejs.org"
 
   local cursor_dir="${TARGET_DIR}/.cursor"
   local mcp_file="${cursor_dir}/mcp.json"
   local mcp_pkg_dir="${COLLECTIONS_HOME}/mcp/eversis-collections-mcp"
   local dist_index="${mcp_pkg_dir}/dist/index.js"
+  local template_path="${COLLECTIONS_HOME}/.cursor/mcp.json"
+  # Vendor copy omits mcp.json; fall back to the checkout that hosts setup-cursor-local.sh.
+  if [[ ! -f "$template_path" ]] && [[ -n "${SETUP_SCRIPT_DIR:-}" ]]; then
+    local _fallback_template="${SETUP_SCRIPT_DIR}/../.cursor/mcp.json"
+    if [[ -f "$_fallback_template" ]]; then
+      template_path="$(cd "$(dirname "$_fallback_template")" && pwd)/$(basename "$_fallback_template")"
+      log_info "Using MCP template from setup script checkout: ${template_path}"
+    fi
+  fi
+  local server_list="${LIB_DIR}/mcp-server-list.json"
+  local merge_mjs="${LIB_DIR}/mcp-merge.mjs"
+
+  [[ -f "$template_path" ]] || die "Framework MCP template not found (checked COLLECTIONS_HOME and setup script checkout)."
+  [[ -f "$server_list" ]]    || die "MCP server list not found: ${server_list}"
+  [[ -f "$merge_mjs" ]]       || die "MCP merge script not found: ${merge_mjs}"
 
   mkdir -p "$cursor_dir"
 
-  # Determine path style: absolute (local) vs relative (vendor).
   local use_relative="false"
   if [[ "${VENDOR_MODE:-}" == "submodule" ]] || [[ "${VENDOR_MODE:-}" == "copy" ]]; then
     use_relative="true"
   fi
 
-  # Read existing mcp.json (empty object if absent).
   local existing_json="{}"
   if [[ -f "$mcp_file" ]]; then
     existing_json="$(cat "$mcp_file")"
   fi
 
-  # Merge via Node.js — all values passed through environment to avoid quoting issues.
   local merged
   merged="$(
-    _MCP_TARGET_DIR="$TARGET_DIR" \
-    _MCP_DIST_INDEX="$dist_index" \
-    _MCP_COLLECTIONS_HOME="$COLLECTIONS_HOME" \
-    _MCP_USE_RELATIVE="$use_relative" \
-    _MCP_EXISTING_JSON="$existing_json" \
-    node <<'NODE_EOF'
-const path = require('path');
+    MCP_TARGET_DIR="$TARGET_DIR" \
+    MCP_DIST_INDEX="$dist_index" \
+    MCP_COLLECTIONS_HOME="$COLLECTIONS_HOME" \
+    MCP_USE_RELATIVE="$use_relative" \
+    MCP_EXISTING_JSON="$existing_json" \
+    MCP_SELECTED_IDS="${MCP_SELECTED_IDS:-eversis-collections}" \
+    MCP_TEMPLATE_PATH="$template_path" \
+    MCP_SERVER_LIST_PATH="$server_list" \
+    node "$merge_mjs"
+  )" || die "Failed to build/merge mcp.json."
 
-const targetDir   = process.env._MCP_TARGET_DIR.replace(/\\/g, '/');
-const distIndex   = process.env._MCP_DIST_INDEX.replace(/\\/g, '/');
-const collections = process.env._MCP_COLLECTIONS_HOME.replace(/\\/g, '/');
-const useRelative = process.env._MCP_USE_RELATIVE === 'true';
-const existing    = JSON.parse(process.env._MCP_EXISTING_JSON);
-
-let cmdPath, envBlock;
-if (useRelative) {
-  cmdPath  = path.posix.relative(targetDir, distIndex);
-  envBlock = {};
-} else {
-  cmdPath  = distIndex;
-  envBlock = { CURSOR_COLLECTIONS_HOME: collections };
-}
-
-const entry = {
-  command: 'node',
-  args: [cmdPath],
-  type: 'stdio',
-  ...(Object.keys(envBlock).length ? { env: envBlock } : {}),
-};
-
-// Cursor requires servers nested under "mcpServers".
-// Preserve any top-level keys already in the file (e.g. other config).
-const existingServers = existing.mcpServers || {};
-const mergedServers = Object.assign({}, existingServers, { 'eversis-collections': entry });
-const result = Object.assign({}, existing, { mcpServers: mergedServers });
-process.stdout.write(JSON.stringify(result, null, 2) + '\n');
-NODE_EOF
-  )" || die "Failed to build/merge mcp.json fragment."
-
-  # Validate the result is parseable.
   echo "$merged" | node -e "JSON.parse(require('fs').readFileSync('/dev/stdin','utf8'))" \
     || die "Merged mcp.json is not valid JSON — aborting."
 
   echo "$merged" > "$mcp_file"
-  log_ok "Wrote ${mcp_file}"
+  log_ok "Wrote ${mcp_file} (servers: ${MCP_SELECTED_IDS:-eversis-collections})"
 }

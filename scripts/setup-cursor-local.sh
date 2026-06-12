@@ -26,6 +26,9 @@
 #   --gitignore-agent-artifacts
 #                             Local mode only: gitignore docs/specs/*/ and
 #                             docs/context/*/ (agent research/plan output).
+#   --mcp-servers LIST        Comma-separated MCP server ids to merge into
+#                             .cursor/mcp.json (non-interactive). See
+#                             scripts/lib/setup-cursor-local/mcp-server-list.json.
 #   --help                    Show this help and exit.
 #
 # Environment variables:
@@ -51,6 +54,10 @@
 #
 #   # Keep agent research/plan folders out of git (solo / Jira-only):
 #   bash scripts/setup-cursor-local.sh --build-mcp --gitignore-agent-artifacts
+#
+#   # Non-interactive MCP selection:
+#   bash scripts/setup-cursor-local.sh --build-mcp --non-interactive \
+#     --mcp-servers=context7,eversis-collections,figma
 
 set -euo pipefail
 
@@ -71,10 +78,11 @@ ARG_NON_INTERACTIVE="false"
 ARG_FORCE="false"
 ARG_MINIMAL="false"
 ARG_GITIGNORE_AGENT_ARTIFACTS="false"
+ARG_MCP_SERVERS=""
 
 export ARG_BUILD_MCP ARG_COLLECTIONS_HOME ARG_TARGET ARG_VENDOR ARG_LINK_MODE \
        ARG_SYNC ARG_NON_INTERACTIVE ARG_FORCE ARG_MINIMAL ARG_GITIGNORE_AGENT_ARTIFACTS \
-       SETUP_SCRIPT_DIR="${SCRIPT_DIR}"
+       ARG_MCP_SERVERS SETUP_SCRIPT_DIR="${SCRIPT_DIR}" LIB_DIR="${LIB_DIR}"
 
 while [[ $# -gt 0 ]]; do
   case "$1" in
@@ -113,6 +121,11 @@ while [[ $# -gt 0 ]]; do
       ARG_MINIMAL="true"; shift ;;
     --gitignore-agent-artifacts)
       ARG_GITIGNORE_AGENT_ARTIFACTS="true"; shift ;;
+    --mcp-servers)
+      [[ $# -lt 2 ]] && { echo "ERROR: --mcp-servers requires a value" >&2; exit 1; }
+      ARG_MCP_SERVERS="$2"; shift 2 ;;
+    --mcp-servers=*)
+      ARG_MCP_SERVERS="${1#*=}"; shift ;;
     --help|-h)
       # awk: portable on macOS (BSD sed) and Linux (GNU sed).
       awk '/^# setup-cursor-local.sh/,/^[^#]/ { if ($0 ~ /^#/) { sub(/^# ?/, ""); print } }' "$0"
@@ -157,6 +170,8 @@ source "${LIB_DIR}/build-mcp.sh"
 source "${LIB_DIR}/vendor.sh"
 # shellcheck source=lib/setup-cursor-local/link-framework.sh
 source "${LIB_DIR}/link-framework.sh"
+# shellcheck source=lib/setup-cursor-local/mcp-prompt.sh
+source "${LIB_DIR}/mcp-prompt.sh"
 # shellcheck source=lib/setup-cursor-local/mcp-merge.sh
 source "${LIB_DIR}/mcp-merge.sh"
 # shellcheck source=lib/setup-cursor-local/gitignore.sh
@@ -206,7 +221,8 @@ maybe_build_mcp "$COLLECTIONS_HOME"
 # Local: COLLECTIONS_HOME is the shared checkout; vendor: COLLECTIONS_HOME is vendor/cursor-collections/.
 link_framework_files
 
-# Phase F: merge mcp.json.
+# Phase F: resolve MCP selection + merge mcp.json.
+_resolve_mcp_selection
 merge_mcp_json
 
 # Phase G: gitignore + cursorignore.

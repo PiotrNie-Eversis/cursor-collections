@@ -54,26 +54,43 @@ This repository ships **`.cursor/mcp.json`**, including third-party servers and 
 
 ### Quick setup (script)
 
-From the **cursor-collections** checkout, run one command to bootstrap any existing project:
+The setup script lives in the **cursor-collections** repository (`scripts/setup-cursor-local.sh`), not in your consumer project. Run it either from the framework checkout (with optional `--target`) or from the consumer project using `$CURSOR_COLLECTIONS_HOME`:
+
+```bash
+# From the consumer project (recommended):
+cd ~/my-existing-project
+bash "$CURSOR_COLLECTIONS_HOME/scripts/setup-cursor-local.sh" --build-mcp
+
+# From the cursor-collections checkout:
+bash scripts/setup-cursor-local.sh --target ~/my-existing-project --build-mcp
+```
+
+Examples by install mode:
 
 ```bash
 # Local mode (framework lives outside the consumer repo — default):
-bash scripts/setup-cursor-local.sh --build-mcp
+bash "$CURSOR_COLLECTIONS_HOME/scripts/setup-cursor-local.sh" --build-mcp
 
 # Vendor as Git submodule (committed, versioned):
-bash scripts/setup-cursor-local.sh --vendor submodule --build-mcp
+bash "$CURSOR_COLLECTIONS_HOME/scripts/setup-cursor-local.sh" --vendor submodule --build-mcp
 
 # Vendor as file copy (simpler, no submodule overhead):
-bash scripts/setup-cursor-local.sh --vendor copy --build-mcp
+bash "$CURSOR_COLLECTIONS_HOME/scripts/setup-cursor-local.sh" --vendor copy --build-mcp
 
 # Optional: gitignore agent research/plan subfolders (local mode only):
-bash scripts/setup-cursor-local.sh --build-mcp --gitignore-agent-artifacts
+bash "$CURSOR_COLLECTIONS_HOME/scripts/setup-cursor-local.sh" --build-mcp --gitignore-agent-artifacts
+
+# Non-interactive MCP selection (CI / scripts):
+bash "$CURSOR_COLLECTIONS_HOME/scripts/setup-cursor-local.sh" --build-mcp --non-interactive \
+  --mcp-servers=context7,eversis-collections,figma
 ```
 
 The script:
 - Clones `cursor-collections` to `$CURSOR_COLLECTIONS_HOME` if missing (defaults to `~/.local/share/cursor-collections` on Unix).
 - Copies or symlinks `.cursor/rules/`, `.cursor/prompts/`, `.cursor/commands/`, `.cursor/skills/` into the target project.
-- Merges the `eversis-collections` entry into the project's `.cursor/mcp.json`.
+- With **`--build-mcp`** in an **interactive terminal**, asks whether to configure MCPs, then shows a **checkbox list** (↑↓ move, **Space** toggle, **Enter** confirm). Fallback: number toggle (`1` or `1,3,11` then Enter). Set `MCP_PROMPT_UI=toggle` to skip checkbox UI. Selected entries are merged into `.cursor/mcp.json`; `eversis-collections` gets the correct path to your checkout. This runs even when `.cursor/mcp.json` already exists from an earlier minimal setup.
+- **Re-run without `--build-mcp`** only refreshes the `eversis-collections` path. Use `--mcp-servers=…` to change the set non-interactively.
+- With `--non-interactive` and no `--mcp-servers`, only `eversis-collections` is merged.
 - Adds a `.gitignore` block in local mode (MCP paths, prompts, skills, and framework rules — `.cursor/rules/eversis-*.mdc` except `eversis-project-stack.mdc`).
 - Scaffolds `AGENTS.md` and `docs/specs/` if absent.
 - Prints a **Next steps** summary (enable MCP in Cursor, customise the stack rule, etc.).
@@ -112,7 +129,61 @@ bash "$CURSOR_COLLECTIONS_HOME/scripts/setup-cursor-local.sh" --build-mcp
 
 **`--gitignore-agent-artifacts` (local mode only, default off):** adds `docs/specs/*/` and `docs/context/*/` to `.gitignore` so Implement research/plan folders stay local. Ignored with a warning in vendor mode. Do not use if you commit specs/plans to git or run CI wiki sync into `docs/context/`.
 
-See `scripts/setup-cursor-local.sh --help` for the full flag reference.
+### Setup script flag reference
+
+The script bootstraps **cursor-collections** into a consumer project: `.cursor/rules`, `prompts`, `commands`, `skills`, `.cursor/mcp.json`, `AGENTS.md`, and related scaffolding.
+
+**Install mode** (the main decision — no flag means **local**):
+
+| Mode | How to enable | Where the framework lives |
+| ---- | ------------- | ------------------------- |
+| **Local** (default) | Omit `--vendor` | Outside the repo (`$CURSOR_COLLECTIONS_HOME`) |
+| **Vendor submodule** | `--vendor submodule` | `vendor/cursor-collections/` (Git submodule) |
+| **Vendor copy** | `--vendor copy` | `vendor/cursor-collections/` (file copy) |
+
+#### Flags
+
+| Flag | What it does | When to use |
+| ---- | ------------ | ----------- |
+| **`--build-mcp`** | Runs `npm install` + `npm run build` in `mcp/eversis-collections-mcp/` (produces `dist/index.js`). With this flag, always rebuilds even when `dist/` already exists. | First setup and after `git pull` on the framework. Without it, builds only when `dist/index.js` is missing. In an interactive TTY, also opens the MCP server picker (unless `--mcp-servers` is set). |
+| **`--collections-home DIR`** | Path to the `cursor-collections` checkout. Overrides `CURSOR_COLLECTIONS_HOME` and the OS default (`~/.local/share/cursor-collections` on Unix). | Non-default checkout location. |
+| **`--target DIR`** | Consumer project directory. Default: Git root of the current repo (with an interactive prompt in monorepos). | Run the script from somewhere other than the target project. |
+| **`--vendor submodule`** | Runs `git submodule add … vendor/cursor-collections`. Downstream steps use the vendored path; `.cursor/mcp.json` uses **relative** paths. | Team repos; pinned framework version in git. |
+| **`--vendor copy`** | Copies selected framework dirs into `vendor/cursor-collections/`. No submodule overhead. | Submodules not allowed; simpler inspection/diff. |
+| **`--vendor`** (no value) | Interactive menu: submodule vs copy. | When you want vendor mode but have not chosen a strategy. With `--non-interactive`, defaults to **copy**. |
+| **`--link-mode auto`** | Symlink on Unix, copy on Windows (default). | Default — usually no need to set. |
+| **`--link-mode symlink`** | Symlinks `.cursor/prompts`, `commands`, `skills`; per-file symlinks for framework rules. `eversis-project-stack.mdc` stays a **local file** in the project. | macOS/Linux; framework updates via `git pull` in `CURSOR_COLLECTIONS_HOME` apply immediately. |
+| **`--link-mode copy`** | Physical copy of framework `.cursor/*` into the project. | Windows without symlink permissions; air-gapped snapshots. |
+| **`--sync`** | Overwrites existing copied `.cursor/*` dirs (copy mode only). | After `git pull` on the framework when the script previously skipped existing dirs. |
+| **`--non-interactive`** | Skips all prompts; uses defaults. Monorepo → Git root. MCP → only `eversis-collections` unless `--mcp-servers` is set. | CI, scripts, unattended setup. |
+| **`--mcp-servers=LIST`** | Comma-separated MCP server ids merged into `.cursor/mcp.json` (no checkbox). Spaces in the list are ignored. Takes precedence over `--non-interactive` for MCP selection. | Scripted MCP config; see allowed ids below. |
+| **`--force`** | Continues when `COLLECTIONS_HOME` looks incomplete (normally aborts). | Rare recovery when you know the checkout is valid. |
+| **`--minimal`** | **Not implemented** — prints a warning and runs full setup. | Ignore for now. |
+| **`--gitignore-agent-artifacts`** | Local mode only: adds `docs/specs/*/` and `docs/context/*/` to `.gitignore`. Ignored (with warning) in vendor mode. | Solo work; keep Implement research/plan local. Do not use if specs/plans are committed or CI syncs wiki into `docs/context/`. |
+| **`--help`**, **`-h`** | Prints usage and exits. | Quick reference in the terminal. |
+
+**Allowed `--mcp-servers` ids** (from `scripts/lib/setup-cursor-local/mcp-server-list.json`):
+
+`context7`, `sequential-thinking`, `figma`, `atlassian`, `pdf-reader`, `awslabs.aws-api-mcp-server`, `awslabs.aws-documentation-mcp-server`, `gcp-gcloud`, `gcp-observability`, `gcp-storage`, `eversis-collections`, `playwright`
+
+**Common recipes:**
+
+```bash
+# Personal setup (interactive MCP picker):
+bash "$CURSOR_COLLECTIONS_HOME/scripts/setup-cursor-local.sh" --build-mcp
+
+# Team — submodule:
+bash "$CURSOR_COLLECTIONS_HOME/scripts/setup-cursor-local.sh" --vendor submodule --build-mcp
+
+# CI — no prompts, three MCP servers:
+bash "$CURSOR_COLLECTIONS_HOME/scripts/setup-cursor-local.sh" --build-mcp --non-interactive \
+  --mcp-servers=context7,eversis-collections,figma
+
+# Windows / copy mode — refresh after framework update:
+bash "$CURSOR_COLLECTIONS_HOME/scripts/setup-cursor-local.sh" --link-mode copy --build-mcp --sync
+```
+
+Run `bash scripts/setup-cursor-local.sh --help` from the framework checkout for the inline help text.
 
 #### Environment variables
 
@@ -120,6 +191,7 @@ See `scripts/setup-cursor-local.sh --help` for the full flag reference.
 | -------- | ------- |
 | `CURSOR_COLLECTIONS_HOME` | Canonical path to the `cursor-collections` checkout. Read by both the setup script and the `eversis-collections` MCP server. |
 | `CURSOR_COLLECTIONS_REPO_URL` | Override the Git clone URL (default: upstream GitHub repo). |
+| `MCP_PROMPT_UI=toggle` | Use the number-toggle MCP picker instead of the default checkbox UI (↑↓, Space, Enter). |
 
 Export `CURSOR_COLLECTIONS_HOME` in your shell profile (`~/.zshrc`, `~/.bashrc`) so re-runs and the MCP server resolve the path automatically:
 
@@ -141,7 +213,7 @@ Use **Git Bash** or **WSL** to run the script. Symlinks require Developer Mode o
 
 ```bash
 # Windows Git Bash — explicit copy mode:
-bash scripts/setup-cursor-local.sh --link-mode copy --build-mcp
+bash "$CURSOR_COLLECTIONS_HOME/scripts/setup-cursor-local.sh" --link-mode copy --build-mcp
 ```
 
 ### Manual bootstrap

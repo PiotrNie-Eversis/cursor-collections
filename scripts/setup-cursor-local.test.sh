@@ -16,6 +16,9 @@
 #   I — symlink re-run idempotent (stack unchanged)
 #   J — all framework rules gitignored (glob); stack not ignored
 #   K — re-run migrates legacy per-file rule list to glob
+#   L — --mcp-servers merge (context7 + eversis-collections)
+#   M — re-run with existing mcp.json refreshes without adding servers
+#   O — mcp.json top-level keys are only mcpServers + inputs
 
 set -euo pipefail
 
@@ -131,6 +134,63 @@ assert_git_not_ignores() {
   fi
 }
 
+assert_mcp_server_count() {
+  local mcp_file="$1" expected="$2" desc="${3:-}"
+  local count
+  count="$(node -e "
+    const j = JSON.parse(require('fs').readFileSync(process.argv[1], 'utf8'));
+    const n = Object.keys(j.mcpServers || {}).length;
+    process.stdout.write(String(n));
+  " "$mcp_file")"
+  local d="${desc:-mcpServers has ${expected} key(s)}"
+  if [[ "$count" -eq "$expected" ]]; then
+    _pass "$d"
+  else
+    _fail "$d (got: ${count}, file: ${mcp_file})"
+  fi
+}
+
+assert_mcp_top_level_only_allowed() {
+  local mcp_file="$1" desc="${2:-mcp.json top-level keys are mcpServers and inputs only}"
+  node -e "
+    const j = JSON.parse(require('fs').readFileSync(process.argv[1], 'utf8'));
+    const allowed = new Set(['mcpServers', 'inputs']);
+    const extra = Object.keys(j).filter((k) => !allowed.has(k));
+    if (extra.length) {
+      console.error('unexpected top-level keys: ' + extra.join(', '));
+      process.exit(1);
+    }
+  " "$mcp_file" && _pass "$desc" || _fail "$desc"
+}
+
+assert_mcp_eversis_absolute_path() {
+  local mcp_file="$1" expected_prefix="$2" desc="${3:-}"
+  local d="${desc:-eversis-collections uses absolute dist path}"
+  node -e "
+    const j = JSON.parse(require('fs').readFileSync(process.argv[1], 'utf8'));
+    const e = j.mcpServers && j.mcpServers['eversis-collections'];
+    if (!e || !Array.isArray(e.args) || !e.args[0]) process.exit(1);
+    const p = e.args[0];
+    if (!p.startsWith(process.argv[2])) process.exit(2);
+    if (!p.endsWith('mcp/eversis-collections-mcp/dist/index.js')) process.exit(3);
+  " "$mcp_file" "$expected_prefix" && _pass "$d" || _fail "$d"
+}
+
+assert_mcp_catalog_matches_framework() {
+  local desc="mcp-server-list.json matches framework mcpServers keys"
+  node -e "
+    const list = require('${REPO_ROOT}/scripts/lib/setup-cursor-local/mcp-server-list.json');
+    const tmpl = require('${REPO_ROOT}/.cursor/mcp.json');
+    const templateKeys = Object.keys(tmpl.mcpServers || {}).sort();
+    const listKeys = [...list.servers].sort();
+    if (JSON.stringify(templateKeys) !== JSON.stringify(listKeys)) {
+      console.error('template:', templateKeys.join(','));
+      console.error('list:    ', listKeys.join(','));
+      process.exit(1);
+    }
+  " && _pass "$desc" || _fail "$desc"
+}
+
 assert_common_outputs() {
   local project="$1"
 
@@ -143,7 +203,11 @@ assert_common_outputs() {
   assert_exists "${project}/.gitignore"               ".gitignore exists"
   assert_file_contains "${project}/.gitignore" "cursor-collections local [begin]" ".gitignore has marker block"
   assert_file_contains "${project}/.gitignore" ".cursor/mcp.json"                ".gitignore ignores .cursor/mcp.json"
-  assert_not_contains  "${project}/.gitignore" "eversis-project-stack.mdc"       ".gitignore does NOT ignore stack rule"
+  if grep -qE '^\.cursor/rules/eversis-project-stack\.mdc$' "${project}/.gitignore" 2>/dev/null; then
+    _fail ".gitignore does NOT ignore stack rule (positive ignore line present)"
+  else
+    _pass ".gitignore does NOT ignore stack rule (negation or absent)"
+  fi
   assert_exists "${project}/AGENTS.md"              "AGENTS.md"
   assert_exists "${project}/docs/specs"             "docs/specs/ directory"
   assert_exists "${project}/docs/specs/README.md"   "docs/specs/README.md"
@@ -389,6 +453,37 @@ assert_not_contains  "${TMP_K}/.gitignore" "eversis-agent-core.mdc"             
 assert_file_contains "${TMP_K}/.gitignore" "cursor-collections agent-artifacts [begin]" "artifacts sub-block preserved"
 assert_git_ignores "$TMP_K" ".cursor/rules/eversis-accessibility.mdc" "accessibility rule gitignored after migration"
 rm -rf "$TMP_K"
+echo ""
+
+# ─── Scenario L: --mcp-servers merge ───────────────────────────────────────────
+
+echo "Scenario L — --mcp-servers=context7,eversis-collections"
+echo "─────────────────────────────────────────────────────────────────"
+TMP_L="$(new_temp_project)"
+run_setup "$TMP_L" --build-mcp --mcp-servers=context7,eversis-collections
+echo ""
+assert_mcp_catalog_matches_framework
+assert_mcp_server_count "${TMP_L}/.cursor/mcp.json" 2 "two MCP servers merged"
+assert_mcp_eversis_absolute_path "${TMP_L}/.cursor/mcp.json" "${REPO_ROOT}" "eversis-collections absolute path"
+assert_file_contains "${TMP_L}/.cursor/mcp.json" '"context7"' "context7 entry present"
+assert_mcp_top_level_only_allowed "${TMP_L}/.cursor/mcp.json"
+echo ""
+
+# ─── Scenario M: re-run does not expand MCP set ───────────────────────────────
+
+echo "Scenario M — re-run keeps MCP server count"
+echo "─────────────────────────────────────────────────────────────────"
+run_setup "$TMP_L" --build-mcp
+echo ""
+assert_mcp_server_count "${TMP_L}/.cursor/mcp.json" 2 "re-run still has two MCP servers"
+echo ""
+
+# ─── Scenario O: top-level allowlist (standalone) ─────────────────────────────
+
+echo "Scenario O — mcp.json has no top-level server duplicates"
+echo "─────────────────────────────────────────────────────────────────"
+assert_mcp_top_level_only_allowed "${TMP_L}/.cursor/mcp.json" "no root eversis-collections duplicate"
+rm -rf "$TMP_L"
 echo ""
 
 # ─── gitignore unit tests ─────────────────────────────────────────────────────
