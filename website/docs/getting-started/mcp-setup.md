@@ -19,7 +19,7 @@ To unlock the full workflow, configure **Model Context Protocol (MCP)** servers.
 cd mcp/eversis-collections-mcp && npm install && npm run build
 ```
 
-Enable **`eversis-collections`** in **Settings → MCP** and restart Cursor. Tool reference: [MCP package README](https://github.com/PiotrNie-Eversis/cursor-collections/blob/main/mcp/eversis-collections-mcp/README.md).
+Enable **`eversis-collections`** in **Settings → MCP** and restart Cursor. Details: [Cursor Collections MCP](../integrations/eversis-collections). Per-tool reference: [MCP package README](https://github.com/PiotrNie-Eversis/cursor-collections/blob/main/mcp/eversis-collections-mcp/README.md).
 
 ### What each MCP is used for
 
@@ -30,7 +30,7 @@ Enable **`eversis-collections`** in **Settings → MCP** and restart Cursor. Too
 - **Sequential Thinking** — structured reasoning for complex analysis ([details](../integrations/sequential-thinking)).
 - **PDF Reader** — workshop PDFs for `@eversis-analyze-materials`.
 - **AWS / GCP MCPs** — cloud APIs and docs for DevOps and cost prompts.
-- **eversis-collections** — `eversis_skills_*` tools and Word `.docx` chapter tools.
+- **eversis-collections** — skills, Word `.docx` tools, repo scripts ([details](../integrations/eversis-collections)).
 
 ### Verify
 
@@ -78,9 +78,13 @@ Build **`eversis-collections`** once so `dist/index.js` exists (see the table be
 
 ### Local: `eversis-collections` (this repository)
 
-| MCP Server            | Type  | Purpose                                                                 | Build |
-| --------------------- | ----- | ----------------------------------------------------------------------- | ----- |
-| **eversis-collections** | stdio | List/read/validate **`eversis-*` skills** under `.cursor/skills/`, run allowlisted root scripts (`sync-prompts`, `sync-framework-doc`) and **`eversis_skill_run_script`** for allowlisted scripts under skill `scripts/`. Also provides **`.docx` chapter tools** (`generate_summary_map`, `read_chapter`, `update_chapter`, `upload_to_sharepoint`) for the Business Manager Docs workflow. | From repo: `cd mcp/eversis-collections-mcp && npm install && npm run build`. Cursor `args` use `mcp/eversis-collections-mcp/dist/index.js` relative to the repo root. **Not** published to npm. |
+**Required local server** — not an `npx` package. Build once so `dist/index.js` exists before Agent can call skill or Word tools. Unlike optional third-party MCPs, this server is **core to the framework** when you run `@eversis-implement`, `@eversis-review`, or BA Docs prompts.
+
+| MCP Server | Type | Purpose | Used By | Build | Details |
+| --- | --- | --- | --- | --- | --- |
+| **eversis-collections** | stdio | Skills (`eversis_skills_*`), Word `.docx` chapter tools, allowlisted repo scripts | Engineering Manager, Code Reviewer, BA Docs prompts, all agents (skill discovery), contributors | `cd mcp/eversis-collections-mcp && npm install && npm run build` — **not on npm** | [Cursor Collections MCP](../integrations/eversis-collections) |
+
+For the grouped **14-tool** inventory and **tool reference** (Focus / How to use / Outcome), see the integration page. Document compatibility and env vars: [MCP package README](https://github.com/PiotrNie-Eversis/cursor-collections/blob/main/mcp/eversis-collections-mcp/README.md).
 
 ### Third-party (external services)
 
@@ -142,9 +146,12 @@ Some MCP servers require additional setup:
 - **Context7** — Works without an API key (with rate limits). Optional API key for higher limits.
 - **Playwright** — No authentication required. Runs locally via npx.
 - **Sequential Thinking** — No authentication required. Runs locally via npx.
+- **eversis-collections** — No OAuth. Requires a **local build** (`npm install && npm run build` in `mcp/eversis-collections-mcp/`). Optional **`CURSOR_COLLECTIONS_HOME`** when the framework checkout lives outside your workspace — see [Cursor Collections MCP](../integrations/eversis-collections).
 
 ## Official Documentation
 
+- [Cursor Collections MCP](../integrations/eversis-collections) — local skills + Word tools (build required)
+- [MCP package README](https://github.com/PiotrNie-Eversis/cursor-collections/blob/main/mcp/eversis-collections-mcp/README.md) — per-tool reference
 - [Atlassian MCP](https://support.atlassian.com/atlassian-rovo-mcp-server/docs/getting-started-with-the-atlassian-remote-mcp-server/)
 - [Context7 MCP](https://github.com/upstash/context7)
 - [Playwright MCP](https://github.com/microsoft/playwright-mcp)

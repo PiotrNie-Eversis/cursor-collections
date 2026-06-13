@@ -125,6 +125,8 @@ After restart, Agent should expose tools such as **`eversis_skills_list`**. For 
 
 ## Tools at a glance
 
+Per-tool **Focus / How to use / Outcome** on the docs site: [Cursor Collections MCP — Tool reference](../../website/docs/integrations/eversis-collections.md#tool-reference).
+
 | Tool | Group |
 | ---- | ----- |
 | `eversis_skills_list` | Skills |
@@ -316,5 +318,6 @@ node dist/cli.js validate
 - [Root README](../../README.md) — full Ideate → Implement → Review overview
 - [cursor-collection.md](../../documentation/cursor-collection.md) — authoritative Cursor framework guide
 - [MCP setup (docs site)](../../website/docs/getting-started/mcp-setup.md) — workspace vs user MCP, third-party servers
+- [Cursor Collections MCP (docs site)](../../website/docs/integrations/eversis-collections.md) — integration page: capabilities, tool groups, **tool reference**, consumer setup
 - [Business Manager Docs workflow](../../website/docs/workflow/business-manager-docs.md) — planner/writer playbook
 - [AGENTS.md](../../AGENTS.md) — agent instructions for this repository

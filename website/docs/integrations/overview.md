@@ -7,13 +7,11 @@ title: Integrations Overview
 
 Cursor Collections integrates with **11 external services** via the **Model Context Protocol (MCP)**, plus **one local repository server** that is not a third-party SaaS.
 
-## Local server: `eversis-collections`
+## Local server: Cursor Collections MCP
 
-| Server | Type | Purpose |
-| --- | --- | --- |
-| **eversis-collections** | stdio | List, read, and validate **`.cursor/skills/eversis-*`** packages; run allowlisted root scripts (`sync-prompts`, `sync-framework-doc`) and allowlisted per-skill scripts (`eversis_skill_run_script`). Also exposes **`.docx` chapter tools** for the Business Manager Docs workflow (`generate_summary_map`, `read_chapter`, `update_chapter`, `upload_to_sharepoint`). Build from [`mcp/eversis-collections-mcp/`](https://github.com/PiotrNie-Eversis/cursor-collections/tree/main/mcp/eversis-collections-mcp) (`npm install && npm run build`). Not on npm. |
+Start here: build and enable **`eversis-collections`** before optional third-party MCPs. It is the **local first-party bridge** for skills, Word `.docx` tools, and allowlisted repo scripts — see [Cursor Collections MCP](./eversis-collections) for setup, the grouped tool inventory, and workflow mapping.
 
-This is configured in **`.cursor/mcp.json`** alongside the integrations below.
+Configured in **`.cursor/mcp.json`** alongside the integrations below.
 
 ## External services (11)
 
@@ -27,6 +25,7 @@ The Model Context Protocol allows **Cursor** (and compatible hosts) to call exte
 
 | Server | Type | Purpose | Used By |
 |---|---|---|---|
+| [Cursor Collections MCP](./eversis-collections) | stdio | Skills, Word `.docx` tools, allowlisted repo scripts | All agents (skills); BA Docs prompts; contributors |
 | [Atlassian](./atlassian) | HTTP | Jira & Confluence integration | BA, Architect, CR, CE, E2E, SE |
 | [Figma](./figma) | HTTP | Design extraction and verification | BA, Architect, SE, UI Reviewer, CR, E2E |
 | [Context7](./context7) | stdio | Library documentation search | Architect, SE, CR, UI Reviewer, E2E, DevOps, customization |
