@@ -333,8 +333,8 @@ flowchart LR
 
 **Definition of Done:**
 
-- [ ] Gate 0 opisany jako opcjonalny z warunkami skip
-- [ ] Ścieżka artefaktu: `docs/specs/<workshop>/intent-brief.md`
+- [x] Gate 0 opisany jako opcjonalny z warunkami skip
+- [x] Ścieżka artefaktu: `docs/specs/<workshop>/intent-brief.md`
 
 ### Task D.2 - [OPTIONAL] `eversis-explore-materials`
 
@@ -571,7 +571,7 @@ Po zmianach w `mcp/eversis-collections-mcp/` — `npm run build` w pakiecie MCP 
 
 Po **akceptacji tego planu:**
 
-1. ~~Faza 0~~ → ~~Faza A~~ → ~~A′~~ → ~~B~~ → ~~C~~ — **zrobione lokalnie** (commity na `main`).
-2. Następny PR planowy: **Faza D** (Gate 0 + intent brief).
+1. ~~Faza 0~~ → ~~Faza A~~ → ~~A′~~ → ~~B~~ → ~~C~~ → ~~D~~ — **zrobione lokalnie** (commity na `main`).
+2. Następny PR planowy: **Faza E** (task baseline + post-push verification).
 
-**Status:** Plan — **Fazy 0, A, A′, B, C zaimplementowane lokalnie**. Następna: **Faza D** (Gate 0 / intent-brief).
+**Status:** Plan — **Fazy 0, A, A′, B, C, D zaimplementowane lokalnie**. Następna: **Faza E** (baseline / Jira read-back).

@@ -28,55 +28,46 @@ In **Cursor**, attach the file above (or open it and reference it with `@`) plus
 
 ### Standard Workflow (workshop materials provided)
 
-1. **Process transcript** — Cleans raw transcript using the `eversis-transcript-processing` skill. Removes small talk, structures content by topics, extracts decisions and action items.
-2. **Analyze additional materials** — Reviews Figma designs (via Figma MCP), existing codebase (via `eversis-codebase-analysing`), and other reference documents.
-3. **Extract tasks** — Identifies epics and user stories from all processed materials using the `eversis-task-extracting` skill.
-4. **Gate 1 — Task Review** — Presents extracted tasks for user validation. Iterates until approved.
-5. **Quality review (Gate 1.5 prep)** — Runs **Lite** or **Full** analysis passes (per `eversis-task-quality-reviewing`) against the approved task list to find gaps, missing edge cases, and improvements.
-6. **Gate 1.5 — Suggestion Review** — Presents suggestions **one at a time** for accept/reject; saves `quality-review.md`.
-7. **Format for Jira** — Applies the benchmark template to all tasks using the `eversis-jira-task-formatting` skill.
-8. **Gate 2 — Push Approval** — Presents final formatted tasks for user review before Jira push.
-9. **Push to Jira** — Creates epics and stories in Jira with proper linking. Reports created issue keys.
+1. **Process transcript** — Cleans raw transcript using `eversis-transcript-processing`.
+2. **Analyze additional materials** — Reviews Figma (MCP), codebase (`eversis-codebase-analysing`), PDFs, and other references.
+3. **Draft intent brief** — Synthesizes `intent-brief.md` (goal, scope, exclusions, candidate epics) via `eversis-task-extracting`.
+4. **Gate 0 — Intent review (optional)** — Present brief for approval when materials are ambiguous; **skip** when scope is already clear (record `Skipped — materials unambiguous` in the brief).
+5. **Extract tasks** — Epics and stories with **Source** traceability and scenario acceptance criteria → `extracted-tasks.md`.
+6. **Gate 1 — Task review** — User validates epic/story breakdown.
+7. **Quality review** — Lite or Full passes (`eversis-task-quality-reviewing`).
+8. **Gate 1.5 — Suggestion review** — One suggestion per chat turn; saves `quality-review.md`.
+9. **Format for Jira** — `eversis-jira-task-formatting` → `jira-tasks.md`.
+10. **Gate 2 — Push approval** — User confirms before Jira sync.
+11. **Push to Jira** — Creates/updates issues; reports keys.
 
 ### Import Mode (Jira project key provided)
 
-When the user provides existing Jira issue keys or a project key instead of workshop materials, the agent skips transcript processing and task extraction. It fetches existing tasks from Jira, converts them into the local format, then proceeds to quality review and formatting.
+Skips transcript processing, intent brief, and extraction. Fetches existing backlog, then quality review and formatting.
 
 ## Skills Loaded
 
 - `eversis-transcript-processing` — Clean and structure raw transcripts.
-- `eversis-task-extracting` — Identify epics and user stories from materials.
-- `eversis-task-quality-reviewing` — Analyze tasks for gaps and improvements.
-- `eversis-jira-task-formatting` — Format tasks for Jira and manage push.
-- `eversis-codebase-analysing` — Understand existing codebase when relevant.
+- `eversis-task-extracting` — Intent brief, Gate 0, epics/stories with source traceability.
+- `eversis-task-quality-reviewing` — Gap analysis (Lite/Full).
+- `eversis-jira-task-formatting` — Jira formatting and push.
+- `eversis-codebase-analysing` — Codebase context when relevant.
+- `eversis-task-analysing` — Optional business-context exploration before extraction.
 
 ## Output
 
-A set of markdown files placed in `specifications/<workshop-name>/`:
+Artifacts under `docs/specs/<workshop-name>/` (or `specifications/<workshop-name>/`):
 
 ```text
-specifications/
-  user-onboarding/
-    cleaned-transcript.md       ← structured transcript
-    extracted-tasks.md          ← epics and stories (updated after quality review)
-    quality-review.md           ← quality review report
-    jira-tasks.md               ← final Jira-ready tasks
+docs/specs/user-onboarding/
+  cleaned-transcript.md
+  intent-brief.md             ← Gate 0 scope brief
+  extracted-tasks.md
+  quality-review.md
+  jira-tasks.md
 ```
 
-## Input Flexibility
-
-The command accepts various input types:
-
-| Input | Behavior |
-|---|---|
-| Raw transcript text | Runs full workflow starting from transcript processing |
-| Structured notes | Skips transcript processing, starts from task extraction |
-| Figma links | Analyzes designs for functional requirements |
-| Jira project key | Imports existing backlog for local iteration |
-| Combination | Processes all available materials together |
-
-:::tip
-The three review gates are mandatory. No data is pushed to Jira without your explicit approval at each gate. Review each output carefully — the agent produces business-oriented tasks that stakeholders should be able to understand without technical knowledge.
+:::tip Review gates
+**Gate 0** is optional when materials are unambiguous (skip noted in `intent-brief.md`). **Gates 1, 1.5, and 2** are mandatory before Jira push.
 :::
 
 ---
@@ -85,50 +76,59 @@ The three review gates are mandatory. No data is pushed to Jira without your exp
 
 Analyze the provided workshop materials (transcripts, Figma designs, PDF documents, codebase context, or other reference documents) and convert them into structured, Jira-ready epics and user stories. Alternatively, import an existing Jira backlog for local iteration and improvement.
 
-The file outcomes should be markdown files placed in `docs/specs/` (or your team's `specifications/` folder) under a folder named after the workshop topic in kebab-case format (e.g., `specifications/user-onboarding/`):
+Save markdown artifacts under `docs/specs/<workshop-topic>/` (or your team's `specifications/` folder):
+
 - `cleaned-transcript.md` — Cleaned and structured transcript
-- `extracted-tasks.md` — Extracted epics and stories (updated after quality review)
-- `quality-review.md` — Quality review report with all suggestions and decisions
+- `intent-brief.md` — Scope brief (Gate 0); required before extraction
+- `extracted-tasks.md` — Epics and stories (updated after quality review)
+- `quality-review.md` — Quality review report
 - `jira-tasks.md` — Final Jira-ready tasks
 
 ## Required Skills
 
 Before starting, load and follow these skills in order:
-- `eversis-transcript-processing` - for cleaning and structuring raw transcripts
-- `eversis-task-extracting` - for identifying epics and user stories from all materials
-- `eversis-task-quality-reviewing` - for analyzing extracted tasks for gaps, edge cases, and improvements
-- `eversis-jira-task-formatting` - for formatting tasks per the benchmark template and managing Jira push
-- `eversis-codebase-analysing` - for understanding the existing codebase when relevant
+
+- `eversis-transcript-processing` — cleaning and structuring raw transcripts
+- `eversis-task-extracting` — intent brief, Gate 0, extraction with source traceability
+- `eversis-task-quality-reviewing` — gap analysis (Lite/Full)
+- `eversis-jira-task-formatting` — Jira formatting and push
+- `eversis-codebase-analysing` — existing codebase when relevant
+- `eversis-task-analysing` — optional business-context exploration
 
 ## Workflow
 
 Determine the entry point based on what the user provides:
 
-**If the user provides existing Jira issue keys or a project key instead of workshop materials**, skip transcript processing and task extraction. Use the `eversis-jira-task-formatting` **Import Mode** to fetch and convert existing tasks into `jira-tasks.md`. Then proceed to quality review (Step 5) and formatting.
+**If the user provides existing Jira issue keys or a project key instead of workshop materials**, skip transcript processing, intent brief, and extraction. Use `eversis-jira-task-formatting` **Import Mode**. Then proceed to quality review and formatting.
 
 **Standard workflow (workshop materials provided):**
 
-1. **Process transcript**: If a raw transcript is provided, clean it using the `eversis-transcript-processing` skill. Remove small talk, structure by topics, extract decisions and action items. Save as `cleaned-transcript.md`.
-2. **Analyze additional materials**: Review Figma designs (using `figma` tool), read PDF documents (using `pdf-reader` tool), existing codebase (using `eversis-codebase-analysing` skill), and any other reference documents provided.
-3. **Extract tasks**: Using the `eversis-task-extracting` skill, identify epics and user stories from all processed materials. Save as `extracted-tasks.md`.
-4. **Review Gate 1**: Present the extracted task list to the user for validation. Ask if any tasks were missed, should be split, merged, or removed. Iterate until the user approves.
-5. **Quality review**: Using the `eversis-task-quality-reviewing` skill, run the analysis passes for the selected **Lite** or **Full** review mode against the Gate 1-approved task list. Build the domain model, identify gaps, and produce structured suggestions. Runs automatically after Gate 1 approval — do not ask whether to run it.
-6. **Review Gate 1.5**: Present quality review suggestions **one at a time in chat** for individual accept/reject (per skill Step 7). Apply accepted suggestions to `extracted-tasks.md` and save the report as `quality-review.md` following `quality-review.example.md`.
-7. **Confirm updated tasks**: After applying accepted suggestions, briefly summarize the changes made to `extracted-tasks.md` (new stories added, criteria added, stories modified). If the user wants to review the full updated task list, present it. Proceed when the user confirms.
-8. **Format for Jira**: Using the `eversis-jira-task-formatting` skill, apply the benchmark template to format all tasks for Jira. Save as `jira-tasks.md`.
-9. **Review Gate 2**: Present the final formatted tasks to the user. Confirm the target Jira project and get explicit approval before pushing.
-10. **Push to Jira**: Create or update issues in Jira. For new tasks (no Jira key), create epics first, then stories linked to their parent epics. For tasks with existing Jira keys, update the corresponding issues. Present a sync summary before pushing. Report created/updated issue keys back to the user.
+1. **Process transcript**: If a raw transcript is provided, clean it with `eversis-transcript-processing`. Save as `cleaned-transcript.md`.
+2. **Analyze additional materials**: Review Figma (`figma` MCP), PDFs (`pdf-reader`), codebase (`eversis-codebase-analysing`), and other references.
+3. **Draft intent brief**: Using `eversis-task-extracting`, synthesize `intent-brief.md` (goal, in/out of scope, stakeholders, candidate epics, baseline overlap, open questions). Follow `intent-brief.example.md`.
+4. **Review Gate 0 (optional)**:
+   - **When ambiguous** — Present the intent brief; iterate until **Approved**.
+   - **When unambiguous** — Record `Skipped — materials unambiguous` in **Gate 0 Approval** with rationale; confirm skip in chat.
+   - Do not extract until Gate 0 is Approved or Skipped per above.
+5. **Extract tasks**: Using `eversis-task-extracting` and the approved/skipped intent brief, produce `extracted-tasks.md` with **Source** per story and `GIVEN / WHEN / THEN` acceptance criteria.
+6. **Review Gate 1**: Present the task list; iterate until approved.
+7. **Quality review**: `eversis-task-quality-reviewing` (Lite or Full) — automatic after Gate 1.
+8. **Review Gate 1.5**: One suggestion per chat turn; apply accepted changes; save `quality-review.md`.
+9. **Confirm updated tasks**: Summarize changes; proceed when user confirms.
+10. **Format for Jira**: `eversis-jira-task-formatting` → `jira-tasks.md` (preserve source traceability).
+11. **Review Gate 2**: Confirm target Jira project; get explicit push approval.
+12. **Push to Jira**: Create/update issues; report keys.
 
 ## Important
 
-- Output must be **business-oriented** — no technical implementation details beyond what was explicitly discussed in the workshop.
-- Use `Ask the user in chat` proactively whenever confidence is low about scope, priority, or intent.
-- Both review gates are mandatory — no data is pushed to Jira without explicit user approval.
-- The quality review step (Gate 1.5) runs automatically after Gate 1 approval. The user reviews and accepts/rejects individual suggestions, but does not need to opt-in to the review itself.
-- When working with imported Jira tasks, the quality review step still applies — it can identify gaps in existing backlogs just as with newly extracted tasks.
-- After import or initial creation, individual task changes trigger a "Push to Jira now?" prompt. Batch pushes follow the standard Gate 2 approval.
-- If no transcript is provided (e.g., user provides structured notes or direct requirements), skip the transcript processing step and proceed directly to task extraction.
+- Output must be **business-oriented** — no technical implementation details beyond what was discussed.
+- Ask the user in chat when confidence is low about scope, priority, or intent.
+- Gate 0 may be skipped only when materials are unambiguous — document the skip in `intent-brief.md`.
+- Gates 1, 1.5, and 2 are mandatory — no Jira push without explicit approval.
+- Gate 1.5 runs automatically after Gate 1; user accepts/rejects suggestions individually.
+- Imported Jira backlogs still go through quality review.
+- If no transcript is provided, skip transcript processing and proceed from intent brief / extraction as appropriate.
 
-Follow the template structures and naming conventions from each skill strictly to ensure clarity and consistency.
+Follow template structures from each skill strictly.
 
-<!-- Eversis port; upstream: eversis-analyze-materials -->
+<!-- Eversis port; upstream: tsh-analyze-materials:v3 + optional Gate 0 -->

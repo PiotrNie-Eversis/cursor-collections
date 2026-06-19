@@ -8,6 +8,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ### Added
 
+- **Gate 0 + intent brief (Phase D upstream port):** `intent-brief.example.md`; optional Gate 0 in `eversis-task-extracting` (approve or skip with `Skipped — materials unambiguous`).
 - **Orchestration skill (Phase A′ upstream port):** **`eversis-orchestrating-implementation`** — canonical Implement workflow (Quick vs Full, planning readiness, routing table, UI gate, Fine + `eversis-fine-handoff`).
 - **Plan validation (Phase A upstream port):** Internal prompt **`eversis-review-plan`** — stress-tests `.plan.md` before implementation; produces `{task}.plan-review.md` with verdict `APPROVED` | `REVISIONS NEEDED`.
 - **Skill `eversis-creating-implementation-plans`** — owns `plan.example.md` (WIG, Technical Context, `Files:` per task, phase Verification, Stop Rules, runnable DoD commands) and `plan-review.example.md`.
@@ -16,6 +17,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ### Changed
 
+- **Gate 0 + task extraction (Phase D):** `eversis-task-extracting` — source traceability, scenario AC (`GIVEN/WHEN/THEN`), steps 1–11; `eversis-analyze-materials` — intent brief workflow; `workshop-flow.md`, `business-analyst.md`, `task-extraction.md` updated.
 - **Quick vs Full workflow docs (Phase B):** `standard-flow.md`, `frontend-flow.md`, `workflow/overview.md` — Step 0 selection, Quick example, Figma/UI Full-only.
 - **`eversis-implement`** — thin trigger delegating to orchestration skill (upstream `tsh-implement:v2`); plan validation and Technical Context rules moved into skill.
 - **`eversis-engineering-manager.mdc`** and **`eversis-implement` command** — pointer to orchestration skill as SSOT.

@@ -22,10 +22,11 @@ The Business Analyst role converts discovery workshop materials (transcripts, Fi
 
 ## What it produces
 
-Markdown artifacts under `specifications/<workshop-name>/`:
+Markdown artifacts under `docs/specs/<workshop-name>/` (or `specifications/<workshop-name>/`):
 
 - **`cleaned-transcript.md`** — Structured transcript with topics, decisions, action items, and open questions.
-- **`extracted-tasks.md`** — Epics and user stories with acceptance criteria and dependencies.
+- **`intent-brief.md`** — Gate 0 scope brief (goal, in/out of scope, candidate epics); may record skip when materials are unambiguous.
+- **`extracted-tasks.md`** — Epics and user stories with **Source** traceability and scenario acceptance criteria.
 - **`quality-review.md`** — Quality review with suggestions and dispositions.
 - **`jira-tasks.md`** — Jira-ready tasks per the benchmark template.
 
@@ -42,6 +43,7 @@ The Business Analyst enforces a strict review process — no data is pushed to J
 
 | Gate | When | What |
 |---|---|---|
+| **Gate 0** | After intent brief (optional) | Approve scope brief, or skip when materials are unambiguous (record skip in `intent-brief.md`) |
 | **Gate 1** | After task extraction | User reviews the epic/story breakdown |
 | **Gate 1.5** | After quality review | User accepts or rejects **individual** improvement suggestions (**one per chat turn**); Lite or Full review mode per skill |
 | **Gate 2** | After Jira formatting | User reviews final formatted tasks before Jira push |
@@ -60,7 +62,7 @@ The Business Analyst enforces a strict review process — no data is pushed to J
 ## Skills Loaded
 
 - [eversis-transcript-processing](../skills/transcript-processing) — Clean raw transcripts, structure by topics, extract decisions and action items.
-- [eversis-task-extracting](../skills/task-extraction) — Identify epics and user stories from all processed materials.
+- [eversis-task-extracting](../skills/task-extraction) — Intent brief (Gate 0), epics/stories with source traceability.
 - [eversis-task-quality-reviewing](../skills/task-quality-review) — Run analysis passes to find gaps, edge cases, and improvements.
 - [eversis-jira-task-formatting](../skills/jira-task-formatting) — Format tasks for Jira, manage review gates, handle import mode.
 - [eversis-codebase-analysing](../skills/codebase-analysis) — Understand existing system context when relevant to task scope.

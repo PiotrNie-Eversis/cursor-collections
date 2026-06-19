@@ -14,18 +14,26 @@ For converting discovery workshop materials into structured, Jira-ready epics an
    ↳ 📝 Agent processes transcript — cleans, structures, extracts decisions
    ↳ 📖 Review cleaned transcript for accuracy
    ↳ 🔍 Agent analyzes Figma designs and codebase context
-   ↳ 📋 Agent extracts epics and user stories
+   ↳ 📋 Agent drafts intent-brief.md (scope, exclusions, candidate epics)
 
-2️⃣ Gate 1 — Task Review
+2️⃣ Gate 0 — Intent Review (optional)
+   ↳ 📖 When materials are ambiguous — approve scope brief
+   ↳ ⏭️ When unambiguous — skip with note in intent-brief.md
+
+3️⃣ Task Extraction
+   ↳ 📋 Agent extracts epics and user stories (Source traceability, scenario AC)
+   ↳ 📄 → extracted-tasks.md
+
+4️⃣ Gate 1 — Task Review
    ↳ 📖 Review extracted tasks — check epic/story breakdown
    ↳ ✅ Approve, or request splits/merges/removals
 
-3️⃣ Gate 1.5 — Quality Review (automatic, Lite or Full mode)
-   ↳ 🔍 Agent runs 10 analysis passes for gaps and edge cases
+5️⃣ Gate 1.5 — Quality Review (automatic, Lite or Full mode)
+   ↳ 🔍 Agent runs analysis passes for gaps and edge cases
    ↳ 📖 Review each suggestion — accept or reject individually
    ↳ ✅ Agent applies accepted suggestions to the task list
 
-4️⃣ Gate 2 — Jira Push Approval
+6️⃣ Gate 2 — Jira Push Approval
    ↳ 📖 Review final formatted tasks
    ↳ ✅ Confirm target Jira project and approve push
    ↳ 🚀 Agent creates/updates issues in Jira
@@ -45,6 +53,16 @@ For converting discovery workshop materials into structured, Jira-ready epics an
 └──────────┬──────────────────┘
            ▼
 ┌─────────────────────────────┐
+│  Intent Brief               │
+│  → intent-brief.md          │
+└──────────┬──────────────────┘
+           ▼
+┌─────────────────────────────┐
+│  ★ Gate 0: Intent Review    │
+│  (optional — skip if clear) │
+└──────────┬──────────────────┘
+           ▼
+┌─────────────────────────────┐
 │  Task Extraction            │
 │  → extracted-tasks.md       │
 └──────────┬──────────────────┘
@@ -54,7 +72,7 @@ For converting discovery workshop materials into structured, Jira-ready epics an
 └──────────┬──────────────────┘
            ▼
 ┌─────────────────────────────┐
-│  Quality Review (10 passes) │
+│  Quality Review (Lite/Full) │
 │  → quality-review.md        │
 └──────────┬──────────────────┘
            ▼
@@ -102,7 +120,7 @@ To iterate on an existing Jira backlog instead of workshop materials:
 /eversis-analyze-materials PROJ-123
 ```
 
-The agent fetches existing issues from Jira, converts them into the local format, then runs quality review and formatting. Changes can be pushed back to Jira individually or in batch.
+The agent fetches existing issues from Jira, converts them into the local format, then runs quality review and formatting. Changes can be pushed back to Jira individually or in batch. Import mode skips transcript processing, intent brief, and extraction.
 
 ## Connecting to the Standard Flow
 
@@ -115,5 +133,5 @@ After workshop analysis, individual tasks can flow into the standard delivery wo
 Use the **Deep-dive Research per Task** handoff to transition a specific task to the Context Engineer for detailed requirements gathering, or the **Prepare Implementation Plan** handoff to send it to the Architect.
 
 :::warning Important
-Each gate requires your review and approval. The Business Analyst produces business-oriented outputs — validate that the extracted tasks accurately reflect workshop discussions and that no critical topics were missed. AI assistance does not replace stakeholder judgment.
+Gate 0 may be skipped when workshop materials are unambiguous — the skip must be recorded in `intent-brief.md`. Gates 1, 1.5, and 2 require your review and approval. The Business Analyst produces business-oriented outputs — validate that the extracted tasks accurately reflect workshop discussions and that no critical topics were missed. AI assistance does not replace stakeholder judgment.
 :::
