@@ -16,7 +16,9 @@ For UI-heavy tasks with Figma designs, use the specialized frontend workflow. Th
    ↳ ✅ Confirm to proceed to planning
    ↳ 🧱 Engineering Manager delegates to Architect for planning
    ↳ 📖 Review plan – check component breakdown, design references
-   ↳ ✅ Confirm phases align with Figma structure
+   ↳ 🧪 Engineering Manager delegates to Plan Reviewer via @eversis-review-plan for plan validation
+   ↳ 📖 Review the implementation plan and review summary
+   ↳ ✅ Confirm the approved plan before implementation begins
    ↳ 💻 Engineering Manager delegates UI tasks to Software Engineer
    ↳ 📖 Review code changes and UI Verification Summary
    ↳ ✅ Manually verify critical UI elements in browser

@@ -13,7 +13,7 @@ The Architect designs technical solutions and implementation plans from approved
 ## Responsibilities
 
 - Solution architecture: components, interactions, data flow.
-- Implementation plans with phases, tasks, and clear definition of done.
+- Implementation plans with phases, tasks, Technical Context, and clear definition of done.
 - Alignment with requirements, practices, and quality expectations.
 - Security and QA considerations at design time.
 - Clarifying ambiguities with product/analysis context.
@@ -41,7 +41,8 @@ The Architect designs technical solutions and implementation plans from approved
 
 ## Skills (Eversis naming)
 
-- [eversis-architecture-designing](../skills/architecture-design) — Solution design, components, data flows, implementation plan creation.
+- [eversis-architecture-designing](../skills/architecture-design) — Solution design, components, data flows.
+- [eversis-creating-implementation-plans](../skills/creating-implementation-plans) — Plan template, WIG, Technical Context, phased tasks, and DoD rules.
 - [eversis-codebase-analysing](../skills/codebase-analysis) — Analyze current architecture, components, and patterns.
 - [eversis-implementation-gap-analysing](../skills/implementation-gap-analysis) — Focus the plan on necessary changes without duplicating existing work.
 - [eversis-technical-context-discovering](../skills/technical-context-discovery) — Establish project conventions and patterns before designing.
@@ -57,4 +58,4 @@ The Architect designs technical solutions and implementation plans from approved
 
 ## Handoffs
 
-After human approval of the plan, implementation runs through **`@eversis-implement`** ([Implement](../prompts/public/implement)) and the [Engineering Manager](./engineering-manager), including UI flows via [Implement UI](../prompts/internal/implement-ui) when Figma is in scope.
+After human approval of the plan draft, the [Plan Reviewer](./plan-reviewer) stress-tests the plan via internal [Review Plan](../prompts/internal/review-plan). After verdict `APPROVED`, implementation runs through **`@eversis-implement`** ([Implement](../prompts/public/implement)) and the [Engineering Manager](./engineering-manager), including UI flows via [Implement UI](../prompts/internal/implement-ui) when Figma is in scope.

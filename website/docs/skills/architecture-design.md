@@ -8,7 +8,7 @@ title: Architecture Design
 **Folder:** `.cursor/skills/eversis-architecture-designing/`  
 **Used by:** Architect
 
-Provides a structured 5-step process for designing solution architecture and creating detailed implementation plans.
+Provides a structured 5-step process for designing solution architecture. Plan authoring is delegated to **`eversis-creating-implementation-plans`** — see [Creating Implementation Plans](./creating-implementation-plans).
 
 ## Process
 
@@ -28,9 +28,9 @@ Identify ambiguities and missing information before committing to a design.
 
 Create the architecture following established patterns and principles.
 
-### Step 5: Document the Plan
+### Step 5: Author the Plan
 
-Produce a structured implementation plan (`plan.example.md` template) with phased, checklist-style tasks.
+Load **`eversis-creating-implementation-plans`** to produce the `.plan.md` artifact using `plan.example.md`. The Plan Reviewer validates the plan via `@eversis-review-plan` before implementation.
 
 ## Enforced Patterns
 
@@ -41,16 +41,9 @@ Produce a structured implementation plan (`plan.example.md` template) with phase
 | **UI/UX** | Atomic Design, WCAG |
 | **Security** | OWASP TOP10 |
 
-## Plan Requirements
-
-- Each phase is independently runnable with quality gates.
-- Tasks have `[CREATE]`, `[MODIFY]`, or `[REUSE]` action types.
-- Every task has a clear definition of done.
-- A code review phase is mandatory at the end.
-- No deployment plans or manual QA steps.
-
 ## Connected Skills
 
+- `eversis-creating-implementation-plans` — plan template, structure, and definition-of-done rules
 - `eversis-codebase-analysing` — Understand existing architecture.
 - `eversis-implementation-gap-analysing` — Focus on necessary changes only.
 - `eversis-technical-context-discovering` — Establish project conventions.

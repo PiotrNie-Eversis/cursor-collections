@@ -8,7 +8,7 @@ title: Engineering Manager
 **Rule pack (canonical):** `.cursor/rules/eversis-role-engineering-manager.mdc`  
 **In this repository:** attach **`.cursor/rules/eversis-engineering-manager.mdc`** when running **`@eversis-implement`** (docs: [Implement](../prompts/public/implement)).
 
-The Engineering Manager orchestrates the **Implement** phase: it does not replace implementers — it follows the approved plan, delegates work by task type, and enforces human gates from **`eversis-agent-core.mdc`** (approve research, then plan, then code).
+The Engineering Manager orchestrates the **Implement** phase: it does not replace implementers — it follows the approved plan, delegates work by task type, and enforces human gates from **`eversis-agent-core.mdc`** (approve research, then plan, then plan validation, then code).
 
 ## Delegation flow
 
@@ -34,7 +34,8 @@ The Engineering Manager is bound to the public prompt **`@eversis-implement`**. 
 | **Software Engineer** | Application code, features, bug fixes | Task involves writing or modifying application code |
 | **E2E Engineer** | Playwright E2E | Task requires writing or updating E2E test suites |
 | **DevOps Engineer** | Infrastructure, CI/CD, deployments | Task involves infrastructure changes or pipeline configuration |
-| **Architect** | Codebase analysis, technical context | Before implementation starts, to establish codebase understanding (via [Plan](../prompts/internal/plan)) |
+| **Architect** | Codebase analysis, technical context, planning | Before implementation when plan or Technical Context is missing (via [Plan](../prompts/internal/plan)) |
+| **Plan Reviewer** | Plan stress-test before coding | After human plan review, before broad implementation (via [Review Plan](../prompts/internal/review-plan)) |
 | **Code Reviewer** | Code quality, best practices | After implementation completes, or when no review phase is defined |
 | **Prompt Engineer** | LLM application prompts | Task involves designing, optimizing, or securing LLM prompts |
 | **UI Reviewer** | Figma verification, visual correctness | After UI implementation, to verify against design specifications |
@@ -60,8 +61,10 @@ See also the [Implement](../prompts/public/implement) workflow documentation pag
 - **Delegates every task** — Never writes code itself; all implementation is routed to specialized agents.
 - **Routes based on task type** — Application code → Software Engineer, E2E tests → E2E Engineer, infrastructure → DevOps Engineer, LLM prompts → Prompt Engineer.
 - **Packages context automatically** — Each delegation includes structured context from the implementation plan.
-- **Runs codebase analysis first** — Invokes the [Architect](./architect) to establish technical context before starting implementation.
-- **Respects human gates** — Stops for approval after research and after planning before broad code changes (`eversis-agent-core.mdc`).
+- **Runs plan validation** — Delegates to the [Plan Reviewer](./plan-reviewer) after human plan review unless an approved `.plan-review.md` already exists.
+- **Uses Technical Context from the plan** — Skips redundant codebase discovery when the plan's Technical Context section is thorough.
+- **Runs codebase analysis when needed** — Invokes the [Architect](./architect) when Technical Context is incomplete.
+- **Respects human gates** — Stops for approval after research, after planning, and after plan validation before broad code changes (`eversis-agent-core.mdc`).
 - **Auto-triggers Code Reviewer** — Automatically runs the Code Reviewer at the end of implementation if no review phase is defined in the plan.
 - **Tracks progress** — Updates plan checkboxes after each completed task.
 - **Asks before deviating** — Requests user confirmation before deviating from the implementation plan.

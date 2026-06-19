@@ -17,7 +17,7 @@ Analysis progress:
 - [ ] Step 2: Analyse the current codebase
 - [ ] Step 3: Ask questions about ambiguous parts
 - [ ] Step 4: Design a solution
-- [ ] Step 5: Create an implementation plan document
+- [ ] Step 5: Author the implementation plan (via eversis-creating-implementation-plans)
 ```
 
 **Step 1: Understand the goal of the task**
@@ -62,26 +62,21 @@ The design has to meet quality assurance criteria, meaning it has to be fully te
 
 Don't duplicate any work.
 
-Make sure to use `eversis-implementation-gap-analysing` skill to verify what was already implemented from your plan and what should be added. Make sure to include the result in final plan.
+Use `eversis-implementation-gap-analysing` to verify what was already implemented and what should be added. Feed findings into the plan's Current Implementation Analysis section.
 
-Make sure to divide the plan into a small phases.Each phase should have a list of tasks with special place to mark the finished tasks later on. After phase is finished only the fast running tests and quality checks should be run to verify that the implementation is on the right track - unit tests, integration tests, static code analysis, linters, formatting check and project build.
+**Step 5: Author the implementation plan**
 
-The plan has to include code review phase at the end, fully done by the **Code Reviewer** (attach [`eversis-review.md`](../../../.cursor/prompts/public/eversis-review.md)). Make sure to pass e2e execution to that agent as a part of the prompt and do not run those tests by yourself.
+Do **not** duplicate plan-structure rules here. Load and follow **`eversis-creating-implementation-plans`** for:
 
-For features with UI components based on Figma designs, each UI implementation task should be followed by a `[REUSE]` UI verification task delegated to the **UI Reviewer** via [`eversis-review-ui.md`](../../../.cursor/prompts/public/eversis-review-ui.md). Include the Figma URL in every verification task. Do not run UI verification from the software engineer level — let the engineering manager orchestrate the verify-fix loop.
+- Wildly Important Goal, Technical Context, phased tasks, `Files:` per task, Stop Rules, and runnable DoD commands
+- Mandatory code review, UI verification, and prompt-engineering cross-cutting tasks
+- Saving the plan with `plan.example.md` under `docs/specs/<task-name>/` (or `specifications/<task-name>/`)
 
-For features involving LLM application prompts (system prompts, RAG templates, tool-calling instructions, classification/extraction prompts), add a `[REUSE]` prompt engineering task delegated to the **Prompt / LLM** workflow using [`eversis-engineer-prompt.md`](../../../.cursor/prompts/internal/eversis-engineer-prompt.md). Separate prompt design from application code — the software engineer implements the integration code, the prompt engineer designs the prompt content. Include the use case, target model, and any existing prompt drafts in the task description.
-
-Don't provide deployment plans, code pushing instructions, code review instructions on repository.
-
-**Step 5: Create a implementation plan document**
-
-Save the plan as a document following the `./plan.example.md` template.
-
-Don't add or remove any sections from the template. Follow the structure and naming conventions strictly to ensure clarity and consistency.
+After the plan is saved, it is stress-tested by the Plan Reviewer via [`eversis-review-plan.md`](../../../.cursor/prompts/internal/eversis-review-plan.md) before implementation begins.
 
 ## Connected Skills
 
+- `eversis-creating-implementation-plans` — owns plan template, structure, and definition-of-done rules
 - `eversis-codebase-analysing` - for analyzing the existing architecture, components, and patterns
 - `eversis-implementation-gap-analysing` - for verifying what was already implemented and what should be added
 - `eversis-technical-context-discovering` - for establishing project conventions and existing patterns before designing

@@ -36,7 +36,8 @@ In **Cursor**, attach the file above (or open it and reference it with `@`) plus
 6. Asks for confirmation before deviating from the plan.
 7. Documents all changes in the plan's Changelog section.
 8. **Automatically runs Code Reviewer** at the end if no review phase is defined.
-9. **Produces a mandatory QA comment draft** on declaring **Fine** — follows `eversis-qa-comment` for structure and readability rules; human approves before any Jira post.
+9. **Runs plan validation** after human plan review — delegates to Plan Reviewer via `@eversis-review-plan` unless an approved `.plan-review.md` already exists and the plan is unchanged (max 3 review iterations).
+10. **Produces a mandatory QA comment draft** on declaring **Fine** — follows `eversis-fine-handoff` for structure and readability rules; human approves before any Jira post.
 
 ## How Delegation Works
 
@@ -82,32 +83,36 @@ Your goal is to implement the feature according to the provided implementation p
 
 3. **Confirm dev server URL** — If your UI verification inventory from step 2 contains ANY tasks, **ask the user in chat** for the dev server URL now (e.g., "What URL is the frontend app running at?"). Do not defer this — you need the confirmed URL before any UI verification can start. Do not guess from running processes or port scans. Store the confirmed URL for all subsequent verifications.
 
-4. **Confirm with user before implementation** — After research and planning, **ask the user in chat** for confirmation before starting broad implementation.
+4. **Confirm with user before plan validation** — After the Architect produces or updates the plan, **ask the user in chat** to review scope, phases, and acceptance criteria before plan validation.
 
-5. **Delegate codebase analysis** — Use Architect agent to perform codebase analysis and technical context discovery to establish project conventions, coding standards, architecture patterns, and existing codebase patterns before implementing any feature. This will help you identify which agents to delegate specific tasks to during implementation.
+5. **Plan validation** — Unless `{task-name}.plan-review.md` already exists with verdict `APPROVED` and the `.plan.md` file is unchanged since that review, delegate plan stress-testing by attaching [`eversis-review-plan.md`](../internal/eversis-review-plan.md). If the verdict is `REVISIONS NEEDED`, send findings back to the Architect, update the plan, and re-run validation (max **3** iterations, then escalate to the human). Do not start broad implementation until the plan review verdict is `APPROVED`.
 
-6. **Process each task in plan order.** For each task, based on its type:
+6. **Confirm with user before implementation** — After an approved plan review, **ask the user in chat** for confirmation before starting broad implementation.
+
+7. **Delegate codebase analysis when needed** — If the plan's **Technical Context** section is thorough, use it directly and skip redundant discovery. Otherwise, use the Architect to perform codebase analysis and technical context discovery before implementing.
+
+8. **Process each task in plan order.** For each task, based on its type:
    - **`[CREATE]` or `[MODIFY]`** → delegate to the appropriate agent (Software engineer for application code, DevOps engineer for infrastructure, Prompt engineer for LLM prompts). After the agent completes, run quality checks (tsc, lint, build).
 
    - **`[REUSE]` — UI verification tasks** → These tasks MUST be processed — do NOT skip them. For each, run a focused **Agent** turn with [`eversis-review-ui.md`](./eversis-review-ui.md) attached, passing: the Figma URL (MCP: `figma`), the confirmed dev server URL from step 3 (MCP: `playwright`), and the component/section name. For the full verify-fix loop, follow [`eversis-implement-ui.md`](../internal/eversis-implement-ui.md).
 
    - **`[REUSE]` — other tasks** → execute as described in the task definition — the task specifies which agent to delegate to and what context to pass.
 
-7. **After each task**, update the relevant plan to reflect progress by checking the box for the completed task step and:
+9. **After each task**, update the relevant plan to reflect progress by checking the box for the completed task step and:
    - Review the implementation against the plan and feature context to ensure all requirements are met.
    - Run static code analysis, build the project, and run unit and integration tests to verify that the implementation works as expected and does not introduce new issues.
 
-8. **UI Verification Gate — MANDATORY before code review** — Before delegating code review, verify that **every** `[REUSE]` UI verification task from your step 2 inventory has been processed. Check each item:
+10. **UI Verification Gate — MANDATORY before code review** — Before delegating code review, verify that **every** `[REUSE]` UI verification task from your step 2 inventory has been processed. Check each item:
    - Was it delegated to UI reviewer?
    - Did it receive a PASS, or was it escalated to the user with explicit approval to skip?
 
    If ANY UI verification task was not processed, go back and process it now. Do NOT proceed to code review with unverified UI components. If verification cannot be completed (tool errors, missing Figma links), document it in the plan's Changelog and get explicit user approval before continuing.
 
-9. **Delegate code review** — Run code review with [`eversis-review.md`](./eversis-review.md) attached. Include E2E test execution as part of the review. The reviewer runs all quality gates (unit, integration, E2E tests, linting, build).
+11. **Delegate code review** — Run code review with [`eversis-review.md`](./eversis-review.md) attached. Include E2E test execution as part of the review. The reviewer runs all quality gates (unit, integration, E2E tests, linting, build).
 
-10. **Declare Fine and produce the QA comment draft** — When declaring **Fine**, produce the QA comment draft **in the same response** following the **`eversis-fine-handoff`** skill (load via `eversis-collections` MCP / `eversis_skills_get`, or read `.cursor/skills/eversis-fine-handoff/SKILL.md` directly). Label it: `**Draft QA comment — review before posting to Jira**`. Do **not** post to Jira in this turn. Only call `addCommentToJiraIssue` (Atlassian MCP) after the human **explicitly** approves the text and provides the issue key.
+12. **Declare Fine and produce the QA comment draft** — When declaring **Fine**, produce the QA comment draft **in the same response** following the **`eversis-fine-handoff`** skill (load via `eversis-collections` MCP / `eversis_skills_get`, or read `.cursor/skills/eversis-fine-handoff/SKILL.md` directly). Label it: `**Draft QA comment — review before posting to Jira**`. Do **not** post to Jira in this turn. Only call `addCommentToJiraIssue` (Atlassian MCP) after the human **explicitly** approves the text and provides the issue key.
 
-11. **Before making any changes** to the original solution during implementation, ask for confirmation. Document changes in the plan file's Changelog section with timestamps.
+13. **Before making any changes** to the original solution during implementation, ask for confirmation. Document changes in the plan file's Changelog section with timestamps.
 
 Ensure to write clean, efficient, and maintainable code following best practices and coding standards for the project.
 

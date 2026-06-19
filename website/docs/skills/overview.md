@@ -5,7 +5,7 @@ title: Skills Overview
 
 # Skills Overview
 
-Cursor Collections includes **33 reusable skills** — knowledge modules that provide specialized domain expertise, structured processes, and quality templates. They encode tested best practices for every phase of the product lifecycle. Skills are stored in `.cursor/skills/`. In Agent, use them through the **`eversis-collections` MCP** server (**`eversis_skills_list`**, **`eversis_skills_get`**, **`eversis_skill_run_script`** for allowlisted per-skill scripts, and related tools) after building [`mcp/eversis-collections-mcp/`](https://github.com/PiotrNie-Eversis/cursor-collections/tree/main/mcp/eversis-collections-mcp); do not register the folder separately as Cursor **Agent Skills** for this framework.
+Cursor Collections includes **34 reusable skills** — knowledge modules that provide specialized domain expertise, structured processes, and quality templates. They encode tested best practices for every phase of the product lifecycle. Skills are stored in `.cursor/skills/`. In Agent, use them through the **`eversis-collections` MCP** server (**`eversis_skills_list`**, **`eversis_skills_get`**, **`eversis_skill_run_script`** for allowlisted per-skill scripts, and related tools) after building [`mcp/eversis-collections-mcp/`](https://github.com/PiotrNie-Eversis/cursor-collections/tree/main/mcp/eversis-collections-mcp); do not register the folder separately as Cursor **Agent Skills** for this framework.
 
 ## How Skills Work
 
@@ -35,7 +35,8 @@ When an agent needs specialized procedures, it can pull **`SKILL.md` content** v
 
 | Skill                                                              | Description                                                   | Used By                    |
 | ------------------------------------------------------------------ | ------------------------------------------------------------- | -------------------------- |
-| [eversis-architecture-designing](./architecture-design)                | Solution architecture design and implementation plan creation | Architect                  |
+| [eversis-architecture-designing](./architecture-design)                | Solution architecture design | Architect                  |
+| [eversis-creating-implementation-plans](./creating-implementation-plans) | Plan template, WIG, Technical Context, phased tasks, DoD rules | Architect, Plan Reviewer |
 | [eversis-technical-context-discovering](./technical-context-discovery) | Project conventions and pattern discovery                     | Architect, CR, SE, E2E, CE |
 | [eversis-implementing-frontend](./frontend-implementation)             | UI component patterns, composition, design tokens             | Software Engineer          |
 | [eversis-implementing-forms](./implementing-forms)                     | Form architecture, schema validation, multi-step flows        | Software Engineer          |
@@ -83,6 +84,7 @@ When an agent needs specialized procedures, it can pull **`SKILL.md` content** v
 | Skill                                  | BA  | CE  | Architect | SE  | PE  | CR  | UI Reviewer | E2E | DevOps | Customize |
 | -------------------------------------- | --- | --- | --------- | --- | --- | --- | ----------- | --- | ------ | --------- |
 | eversis-architecture-designing             |     |     | ✅        |     |     |     |             |     |        |           |
+| eversis-creating-implementation-plans        |     |     | ✅        |     |     |     |             |     |        |           |
 | eversis-code-reviewing                     |     |     |           |     | ✅  | ✅  |             |     |        |           |
 | eversis-codebase-analysing                 | ✅  | ✅  | ✅        | ✅  |     |     |             |     | ✅     | ✅        |
 | eversis-creating-agents                    |     |     |           |     |     |     |             |     |        | ✅        |
