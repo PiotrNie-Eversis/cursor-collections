@@ -1,13 +1,13 @@
 # Plan: Improve Agents section in root `README.md`
 
-**Research:** [`readme-agents-descriptions.research.md`](./readme-agents-descriptions.research.md)  
+**Research:** [`readme-agents-descriptions.research.md`](./readme-agents-descriptions.research.md) 
 **Status:** Complete (2026-06-07).
 
 ---
 
 ## Goal
 
-Replace the condensed Agents table with phase-grouped **Focus** blocks aligned with [copilot-collections — Agents](https://github.com/TheSoftwareHouse/copilot-collections#%E2%80%8D%E2%80%8D-agents).
+Replace the condensed Agents table with phase-grouped **Focus** blocks aligned with product-engineering README benchmark — Agents.
 
 **Non-goals:** Change `website/docs/agents/` pages.
 

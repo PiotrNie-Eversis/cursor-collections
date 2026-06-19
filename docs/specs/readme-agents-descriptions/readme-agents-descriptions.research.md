@@ -1,6 +1,6 @@
 # Research: Improve Agents section in root `README.md`
 
-**Task:** Upgrade the **Agents** section in [`README.md`](../../../README.md) to follow the structure and depth of [copilot-collections — Agents](https://github.com/TheSoftwareHouse/copilot-collections#%E2%80%8D%E2%80%8D-agents).
+**Task:** Upgrade the **Agents** section in [`README.md`](../../../README.md) to follow the structure and depth of product-engineering README benchmark — Agents.
 
 **Parent work:** [`root-readme-rewrite`](../root-readme-rewrite/root-readme-rewrite.plan.md) (README restructure complete 2026-06-07).
 
@@ -10,7 +10,7 @@
 
 ## Problem statement
 
-After the README restructure, the **Agents** block (lines 169–187) is a **single two-column table** — one line per role. That satisfies a “condensed list” decision from the parent task but **under-delivers** compared to the copilot-collections benchmark the stakeholder cited.
+After the README restructure, the **Agents** block (lines 169–187) is a **single two-column table** — one line per role. That satisfies a “condensed list” decision from the parent task but **under-delivers** compared to the product-engineering README benchmark benchmark the stakeholder cited.
 
 ### Current README (gap)
 
@@ -24,41 +24,41 @@ After the README restructure, the **Agents** block (lines 169–187) is a **sing
 | Gap | Impact |
 | --- | ------ |
 | **No phase grouping** | Reader cannot map agents to 📋 Ideate / 🛠 Implement / ✅ Quality / ⚙️ Customize |
-| **No Focus-first pattern** | Copilot leads each agent with `Focus: **bold goal**` then supporting bullets — easier to scan |
-| **No per-agent emoji anchors** | Copilot uses 📋 📝 🧱 💻 🔍 etc. for visual filtering |
+| **No Focus-first pattern** | external benchmark leads each agent with `Focus: **bold goal**` then supporting bullets — easier to scan |
+| **No per-agent emoji anchors** | external benchmark uses 📋 📝 🧱 💻 🔍 etc. for visual filtering |
 | **Thin descriptions** | One line omits behaviors readers need (gates, delegation, MCP usage, UI loop) |
 | **Missing roles** | **Engineering Manager** and **Cursor customization orchestrator** not listed as agent blocks |
-| **Packaging not shown** | Copilot implies prompts; Cursor README should note `@` prompt + rule file where helpful |
+| **Packaging not shown** | external benchmark implies prompts; Cursor README should note `@` prompt + rule file where helpful |
 
-### Copilot-collections pattern (benchmark)
+### product-engineering README pattern (benchmark)
 
-Source: [README.md — Agents](https://github.com/TheSoftwareHouse/copilot-collections/blob/main/README.md) (§ lines 189–263).
+Source: README.md — Agents (§ lines 189–263).
 
 Structure:
 
 ```text
 ## 🧑‍🤝‍🧑 Agents
-  Intro: configured as agents/sub-agents, organized by lifecycle phase
+ Intro: configured as agents/sub-agents, organized by lifecycle phase
 
-  ### 📋 Product Ideation Agents
-    #### 📋 Business Analyst
-      - Focus: **main goal**
-      - 3–5 behavior bullets
+ ### 📋 Product Ideation Agents
+ #### 📋 Business Analyst
+ - Focus: **main goal**
+ - 3–5 behavior bullets
 
-  ### 🛠 Development Agents
-    #### Context Engineer, Architect, Software Engineer
-      (same pattern)
+ ### 🛠 Development Agents
+ #### Context Engineer, Architect, Software Engineer
+ (same pattern)
 
-  ### ✅ Quality Agents
-    #### Code Reviewer, UI Reviewer, E2E Engineer
+ ### ✅ Quality Agents
+ #### Code Reviewer, UI Reviewer, E2E Engineer
 
-  ### ⚙️ Copilot Customization Agents
-    #### Copilot Engineer, Copilot Orchestrator (experimental)
+ ### ⚙️ Cursor customization agents
+ #### Cursor customization engineer, Cursor customization orchestrator (experimental)
 
-  Closing: "Each agent is designed to be used together with the workflow prompts below."
+ Closing: "Each agent is designed to be used together with the workflow prompts below."
 ```
 
-**Notable:** Copilot does **not** list Engineering Manager, Prompt Engineer, or DevOps Engineer in the Agents README section — those are implied via `/tsh-implement` delegation. **Cursor Collections should list them explicitly** because the docs site and implement flow treat them as first-class roles ([`website/docs/agents/overview.md`](../../../website/docs/agents/overview.md)).
+**Notable:** external benchmark does **not** list Engineering Manager, Prompt Engineer, or DevOps Engineer in the Agents README section — those are implied via `/eversis-implement` delegation. **Cursor Collections should list them explicitly** because the docs site and implement flow treat them as first-class roles ([`website/docs/agents/overview.md`](../../../website/docs/agents/overview.md)).
 
 ---
 
@@ -67,8 +67,7 @@ Structure:
 | In scope | Out of scope |
 | -------- | ------------ |
 | Replace § **Agents (condensed)** in [`README.md`](../../../README.md) | Rewriting [`website/docs/agents/*.md`](../../../website/docs/agents/) |
-| Phase-grouped agent blocks with **Focus** + supporting bullets | Full copilot-style **Skills** encyclopedia (separate section; link to skills overview) |
-| Cursor-accurate naming: `@eversis-*`, `.cursor/rules/eversis-*.mdc` | Copilot `/tsh-*` or `.github/agents` paths |
+| Phase-grouped agent blocks with **Focus** + supporting bullets | Full external benchmark-style **Skills** encyclopedia (separate section; link to skills overview) |
 | Link to [agents overview](../../../website/docs/agents/) for deep dive | Internal customization workers (researcher, creator, reviewer) — docs site only |
 
 ---
@@ -113,7 +112,7 @@ Mapped from [`website/docs/agents/overview.md`](../../../website/docs/agents/ove
 
 ## Proposed content pattern (per agent)
 
-Adapt copilot **Focus + bullets**, compressed for README (not 6 bullets each):
+Adapt external benchmark **Focus + bullets**, compressed for README (not 6 bullets each):
 
 ```markdown
 #### 📋 Business Analyst
@@ -128,9 +127,9 @@ Adapt copilot **Focus + bullets**, compressed for README (not 6 bullets each):
 
 | Field | Required | Notes |
 | ----- | -------- | ----- |
-| **Focus** (bold) | Yes | One sentence — mirror copilot first bullet |
+| **Focus** (bold) | Yes | One sentence — mirror external benchmark first bullet |
 | Behavior bullets | 2–3 | Delegation, gates, outputs, MCP — pick highest-signal |
-| **Invoke** | Optional one line | Cursor-specific; copilot uses slash commands in separate Prompts section — we can add invoke here because README prompt table is above/below |
+| **Invoke** | Optional one line | Cursor-specific; external benchmark uses slash commands in separate Prompts section — we can add invoke here because README prompt table is above/below |
 
 **Do not duplicate** the full Skills section — one bullet may reference skills loaded automatically (e.g. “loads `eversis-task-analysing` during research”).
 
@@ -224,7 +223,7 @@ Adapt copilot **Focus + bullets**, compressed for README (not 6 bullets each):
 - Reduces context rot on large packaging changes; complements the customization engineer role.
 - **Invoke:** composed flow through `eversis-create-custom-*` prompts (see [orchestrator doc](../../../website/docs/agents/cursor-customization-orchestrator.md)).
 
-**Closing line (from copilot):** *Each role is expressed as Cursor **rules** and **prompts** — use them together with the workflow sections above.*
+**Closing line (from external benchmark):** *Each role is expressed as Cursor **rules** and **prompts** — use them together with the workflow sections above.*
 
 **Starter rules callout (keep):** `eversis-agent-core.mdc`, `eversis-engineering-manager.mdc`, `eversis-code-reviewer.mdc`.
 
@@ -236,23 +235,23 @@ Replace table with:
 
 ```text
 ## 🧑‍🤝‍🧑 Agents
-  1-line intro + link to website/docs/agents/
+ 1-line intro + link to website/docs/agents/
 
-  ### 📋 Product ideation
-    #### Business Analyst (4 bullets)
+ ### 📋 Product ideation
+ #### Business Analyst (4 bullets)
 
-  ### 🛠 Development
-    #### Context Engineer, Architect, Engineering Manager, Software Engineer,
-           Prompt Engineer, DevOps Engineer
+ ### 🛠 Development
+ #### Context Engineer, Architect, Engineering Manager, Software Engineer,
+ Prompt Engineer, DevOps Engineer
 
-  ### ✅ Quality
-    #### Code Reviewer, UI Reviewer, E2E Engineer
+ ### ✅ Quality
+ #### Code Reviewer, UI Reviewer, E2E Engineer
 
-  ### ⚙️ Cursor customization
-    #### customization engineer, orchestrator
+ ### ⚙️ Cursor customization
+ #### customization engineer, orchestrator
 
-  Starter rules callout
-  Closing sentence
+ Starter rules callout
+ Closing sentence
 ```
 
 **Estimated length:** ~95–115 lines (vs current ~18 lines). Acceptable within README target ~250–320 lines total (current ~308).
@@ -265,14 +264,14 @@ Replace table with:
 | ---- | ---------- |
 | README becomes too long | Cap at **3–4 bullets** per agent; link to docs site for encyclopedia |
 | Drift from agent pages | Copy aligned to `website/docs/agents/*.md` summaries, not invented |
-| Contradicts prior “one-line table” decision | Stakeholder explicitly requested copilot Agents depth — **supersedes** condensed table |
+| Contradicts prior “one-line table” decision | Stakeholder explicitly requested external benchmark Agents depth — **supersedes** condensed table |
 | Broken anchors / links | Run `validate-cursor-markdown-links.mjs --paths=README.md` after edit |
 
 ---
 
 ## Acceptance criteria (research)
 
-- [x] Gap between current Agents table and copilot benchmark documented
+- [x] Gap between current Agents table and external README benchmark documented
 - [x] Full agent inventory for Cursor Collections
 - [x] Per-agent draft copy prepared (Focus + bullets)
 - [x] Scope limited to README Agents section
@@ -293,7 +292,7 @@ Replace table with:
 
 ## References
 
-- Benchmark: [copilot-collections README — Agents](https://github.com/TheSoftwareHouse/copilot-collections#%E2%80%8D%E2%80%8D-agents)
+- Benchmark: product-engineering README benchmark README — Agents
 - Current: [`README.md`](../../../README.md) § Agents (condensed)
 - Canonical roles: [`website/docs/agents/overview.md`](../../../website/docs/agents/overview.md)
 - Parent spec: [`root-readme-rewrite.research.md`](../root-readme-rewrite/root-readme-rewrite.research.md)

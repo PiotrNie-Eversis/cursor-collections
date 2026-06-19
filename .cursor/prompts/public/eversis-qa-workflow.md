@@ -8,7 +8,7 @@ upstream_agent: "eversis-qa-workflow"
 ---
 # eversis-qa-workflow
 
-**Role:** QA practice orchestrator  
+**Role:** QA practice orchestrator 
 **File:** `.cursor/prompts/public/eversis-qa-workflow.md`
 
 Single entrypoint for **manual QA practice** — test plans, test cases, regression scope, AC verification, bug reports, quality health dashboards, and accessibility audits.
@@ -77,9 +77,9 @@ Single entrypoint for QA work. Route to the correct flow based on context:
 ## Phase behavior
 
 1. **Phase 0 — Kickoff** (minimal chat until questions)
-   - Accept Jira ticket ID or description; fetch ticket via Atlassian MCP when needed.
-   - **AC completeness gate:** if AC are missing or untestable, stop and redirect to `@eversis-analyze-materials` for backlog refinement.
-   - Ask delivery destination and API-testing relevance in chat (one question per turn when using checkpoints).
+ - Accept Jira ticket ID or description; fetch ticket via Atlassian MCP when needed.
+ - **AC completeness gate:** if AC are missing or untestable, stop and redirect to `@eversis-analyze-materials` for backlog refinement.
+ - Ask delivery destination and API-testing relevance in chat (one question per turn when using checkpoints).
 
 2. **Phases 1–5** — Load the matching skill; follow its workflow end to end. After each phase, ask in chat whether to continue, skip ahead, branch to a side-flow, or stop.
 
@@ -111,4 +111,4 @@ When destination is **Jira** or **Confluence** (not chat):
 - `eversis-accessibility-auditing`
 - `eversis-functional-testing` (templates and severity matrix)
 
-<!-- Eversis port; upstream: tsh-qa-workflow:v1 (PR #50) -->
+<!-- Eversis port; upstream: eversis-qa-workflow:v1 (PR #50) -->

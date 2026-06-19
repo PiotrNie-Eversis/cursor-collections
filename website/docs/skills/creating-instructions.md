@@ -8,7 +8,7 @@ title: Creating Instructions
 **Folder:** `.cursor/skills/eversis-creating-instructions/`  
 **Used by:** Framework maintainers (customization track)
 
-Helps place **declarative rules** for **Cursor**: **[AGENTS.md](https://github.com/PiotrNie-Eversis/cursor-collections/blob/main/AGENTS.md)**, **`.cursor/rules/eversis-*.mdc`**, and optional scoped rules. This framework does **not** use GitHub Copilot `copilot-instructions.md`.
+Helps place **declarative rules** for **Cursor**: **[AGENTS.md](https://github.com/PiotrNie-Eversis/cursor-collections/blob/main/AGENTS.md)**, **`.cursor/rules/eversis-*.mdc`**, and optional scoped rules — not legacy repo-root instruction files outside **`.cursor/`**.
 
 ## Instruction types (Cursor)
 

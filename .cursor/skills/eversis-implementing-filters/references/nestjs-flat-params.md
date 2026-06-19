@@ -1,6 +1,6 @@
 # Nest.js Flat List Query Patterns
 
-Nest.js + shared Zod contract patterns for `eversis-implementing-filters`. Load when the monorepo uses flat camelCase query params (not TSH `filter[field]` bracket notation).
+Nest.js + shared Zod contract patterns for `eversis-implementing-filters`. Load when the monorepo uses flat camelCase query params (not bracket `filter[field]` notation).
 
 ## Table of Contents
 

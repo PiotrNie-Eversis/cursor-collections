@@ -12,7 +12,7 @@ upstream_agent: "eversis-architect"
 Not invoked directly by users. To trigger implementation planning, use the [eversis-implement](../public/eversis-implement.md) public prompt — the [Engineering Manager](../../../website/docs/agents/engineering-manager.md) will automatically delegate to the [Architect](../../../website/docs/agents/architect.md) when a plan is needed.
 :::
 
-**Agent:** Architect  
+**Agent:** Architect 
 **File:** `.cursor/prompts/internal/eversis-plan.md`
 
 Creates a detailed, phased implementation plan from the research context.
@@ -53,9 +53,9 @@ A `.plan.md` file placed in `docs/specs/<task-name>/` (or `specifications/<task-
 
 ```text
 docs/specs/
-  user-authentication/
-    user-authentication.research.md
-    user-authentication.plan.md    ← new
+ user-authentication/
+ user-authentication.research.md
+ user-authentication.plan.md ← new
 ```
 
 The plan includes Wildly Important Goal, Technical Context, checklist-style phases, tasks with `[CREATE]`/`[MODIFY]`/`[REUSE]` action types, `Files:` per task, acceptance criteria, and security considerations.
@@ -92,11 +92,11 @@ Before starting, load and follow these skills:
 1. **Analyze context**: Review the feature context file (`.research.md`) thoroughly to understand the requirements and scope. Cross-check with industry, domain, and company best practices.
 2. **Analyze tech stack**: Understand the project's tech stack, industry, and domain to identify best practices for implementation.
 3. **Verify current implementation**: Before planning, perform a thorough analysis of the existing codebase:
-   - Use semantic search to find components, functions, hooks, utilities, or files related to the feature requirements.
-   - Identify what is already implemented and functional.
-   - Identify what exists but needs modification or extension.
-   - Identify what needs to be created from scratch.
-   - Document findings in the "Current Implementation Analysis" section.
+ - Use semantic search to find components, functions, hooks, utilities, or files related to the feature requirements.
+ - Identify what is already implemented and functional.
+ - Identify what exists but needs modification or extension.
+ - Identify what needs to be created from scratch.
+ - Document findings in the "Current Implementation Analysis" section.
 4. **Persist technical context**: During steps 2–3, capture all discovered project conventions, coding standards, architecture patterns, tech stack details, testing patterns, and relevant project rules. Save them in the **"Technical Context"** section of the plan file. This section is critical — downstream implementation agents will read it to avoid redundant codebase analysis. Be thorough: include framework conventions, naming patterns, test commands, linting rules, and any project-specific standards.
 5. **Understand project standards**: Review project best practices and quality standards (check `AGENTS.md`, `.cursor/rules/`, and `docs/context/`). Incorporate findings into the "Technical Context" section.
 6. **Design the solution architecture using `eversis-architecture-designing`**: Design the solution architecture (components, interactions, data flows, trade-offs) before structuring it into a plan.
@@ -106,4 +106,4 @@ In case of any ambiguities or missing information for the planning, ask for clar
 
 Update the plan file after each interaction if new information is gathered.
 
-<!-- Eversis port; upstream: tsh-plan:v3 -->
+<!-- Eversis port; upstream: eversis-plan:v3 -->

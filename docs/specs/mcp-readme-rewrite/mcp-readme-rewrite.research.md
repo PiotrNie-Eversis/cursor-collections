@@ -1,6 +1,6 @@
 # Research: Restructure `mcp/eversis-collections-mcp/README.md`
 
-**Task:** Improve readability of the MCP package README using progressive disclosure and visual workflow mapping (inspired by [TheSoftwareHouse/copilot-collections](https://github.com/TheSoftwareHouse/copilot-collections)).
+**Task:** Improve readability of the MCP package README using progressive disclosure and visual workflow mapping (inspired by a product-engineering README benchmark).
 
 **Status:** Approved — implementation complete (2026-06-07).
 
@@ -15,7 +15,7 @@ The current [`mcp/eversis-collections-mcp/README.md`](../../../mcp/eversis-colle
 3. A dense **tools table** (lines 38–51)
 4. Low-level **document engine** details (BOM, locale styles, section flags) before workflow context
 
-By contrast, [copilot-collections `README.md`](https://github.com/TheSoftwareHouse/copilot-collections) delivers:
+By contrast, product-engineering README benchmark `README.md` delivers:
 
 - **3-second comprehension:** one-liner + lifecycle tagline
 - **15-second architecture:** phased matrix (Ideation → Dev → Quality) with Agents / Prompts / Skills
@@ -31,7 +31,7 @@ Stakeholder feedback (product owner) confirms the MCP README “is very difficul
 | In scope | Out of scope (unless explicitly approved later) |
 | -------- | ----------------------------------------------- |
 | Rewrite **`mcp/eversis-collections-mcp/README.md`** only | Full root [`README.md`](../../../README.md) rewrite |
-| Align tone/structure with copilot-collections **principles**, adapted to **Cursor + MCP package** context | Duplicating the entire 900-line copilot-collections README into the MCP folder |
+| Align tone/structure with product-engineering README benchmark **principles**, adapted to **Cursor + MCP package** context | Duplicating the entire 900-line product-engineering README benchmark README into the MCP folder |
 | Preserve **all factual content** (tools, env vars, doc compatibility, security, CLI) — relocate, don’t delete | Changing MCP server code or `.cursor/mcp.json` |
 | Add **links** to authoritative framework docs where full lifecycle belongs | Rewriting `website/docs/getting-started/mcp-setup.md` in this task |
 
@@ -63,18 +63,17 @@ Stakeholder feedback (product owner) confirms the MCP README “is very difficul
 
 ---
 
-## Feature analysis: what works in copilot-collections README
+## Feature analysis: what works in product-engineering README benchmark README
 
 Applied to **this** task (principles, not copy-paste):
 
 1. **Visual anchors** — Phase emojis (📋 Ideate, 🛠 Implement, ✅ Review) map cleanly to Cursor Collections ([root README table](../../../README.md)).
-2. **WHO / HOW / WHAT** — Copilot: Agents / Skills / Prompts. Cursor Collections: **Rules** (`.cursor/rules/`), **Skills** (`.cursor/skills/`), **Prompts** (`.cursor/prompts/public/`), orchestrated via **`@eversis-*`** and **`/` commands**.
+2. **WHO / HOW / WHAT** — external benchmark: Agents / Skills / Prompts. Cursor Collections: **Rules** (`.cursor/rules/`), **Skills** (`.cursor/skills/`), **Prompts** (`.cursor/prompts/public/`), orchestrated via **`@eversis-*`** and **`/` commands**.
 3. **Progressive disclosure** — Value → workflows → prerequisites → install → deep reference.
 4. **Text flowcharts** — Example flows using `↳ 📖 Review`, `↳ ✅ Approve` match human gates in `eversis-implement`.
 5. **MCP section** — Option 1 (workspace) vs Option 2 (user / `CURSOR_COLLECTIONS_HOME`) — directly applicable.
 6. **Micro-templates** — Focus / How to use / Outcome for tools or tool **groups** (not 11 separate essays).
 
-**Do not import:** Copilot-specific paths (`.github/agents`, VS Code User Settings, `/tsh-*` commands). Cursor Collections uses **`eversis-*`** and **`.cursor/`** layout exclusively.
 
 ---
 
@@ -141,7 +140,7 @@ Order follows **progressive disclosure**:
 | Stale links | Run `node scripts/validate-cursor-markdown-links.mjs --context=source --paths=mcp/eversis-collections-mcp/README.md` after edit |
 | User template uses fictional `@cc-*` rules | Map to real **`eversis-*`** prompts and MCP tool names |
 | Breaking references from cursor-collection.md | Keep filename/path; anchor headings optional |
-| Emoji overload | Use phase emojis consistently (match root README / copilot-collections); avoid decorating every bullet |
+| Emoji overload | Use phase emojis consistently (match root README / product-engineering README benchmark); avoid decorating every bullet |
 
 ---
 
@@ -149,7 +148,7 @@ Order follows **progressive disclosure**:
 
 - [x] Current README pain points documented
 - [x] Scope limited to MCP package README
-- [x] Copilot-collections patterns mapped to Cursor Collections equivalents
+- [x] product-engineering README patterns mapped to Cursor Collections equivalents
 - [x] All technical facts inventoried for preservation
 - [x] Target IA proposed
 - [ ] **Human approval** to proceed to implementation plan
@@ -169,7 +168,7 @@ Order follows **progressive disclosure**:
 ## References
 
 - Current: [`mcp/eversis-collections-mcp/README.md`](../../../mcp/eversis-collections-mcp/README.md)
-- Benchmark: [copilot-collections README](https://github.com/TheSoftwareHouse/copilot-collections/blob/main/README.md)
+- Benchmark: product-engineering README benchmark README
 - Framework: [`README.md`](../../../README.md), [`documentation/cursor-collection.md`](../../../documentation/cursor-collection.md)
 - MCP setup (site): [`website/docs/getting-started/mcp-setup.md`](../../../website/docs/getting-started/mcp-setup.md)
 - BA Docs workflow: [`website/docs/workflow/business-manager-docs.md`](../../../website/docs/workflow/business-manager-docs.md)

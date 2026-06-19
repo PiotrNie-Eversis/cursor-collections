@@ -29,4 +29,4 @@ Where your prompts call external APIs (Jira, Figma, AWS, GCP, etc.), you need th
 
 ---
 
-**Not required:** GitHub Copilot, VS Code global `chat.*Locations` for prompts/agents, or `.github/prompts` / `.github/agents` — this repository is **Cursor-only** and does not ship those paths.
+**Not required:** VS Code global `chat.*Locations` for prompts/agents, or `.github/prompts` / `.github/agents` — this repository is **Cursor-only** and does not ship those paths.

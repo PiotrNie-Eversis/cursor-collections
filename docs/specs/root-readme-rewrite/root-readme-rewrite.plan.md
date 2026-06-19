@@ -1,6 +1,6 @@
 # Plan: Restructure root `README.md`
 
-**Research:** [`root-readme-rewrite.research.md`](./root-readme-rewrite.research.md)  
+**Research:** [`root-readme-rewrite.research.md`](./root-readme-rewrite.research.md) 
 **Status:** Complete (2026-06-07).
 
 ---
@@ -30,7 +30,7 @@ Rewrite the repository root README so a **new GitHub visitor** understands withi
 
 **File:** `README.md`
 
-- [x] Keep centered hero + Eversis / copilot-collections attribution
+- [x] Keep centered hero + Eversis / product-engineering README benchmark attribution
 - [x] Add crisp tagline under hero: Ideate → Implement → Review
 - [x] Replace dense opening with **🚀 What this repository provides** phase matrix
 - [x] Add `eversis-` prefix callout block

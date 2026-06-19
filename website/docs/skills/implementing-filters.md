@@ -17,7 +17,7 @@ URL-synced filter lists for **Next.js** with shareable query state, aligned to R
 ## When to use
 
 - New public or admin **list page** with filters in the **URL** (bookmarkable / shareable).
-- Next.js **App Router** + Nest (or REST) with flat Zod list queries **or** TSH DataGrid bracket notation.
+- Next.js **App Router** + Nest (or REST) with flat Zod list queries **or** bracket notation (`filter[field]=value`).
 - Refactoring duplicated `*-public-list-url.ts` helpers into a shared pattern.
 
 ## When NOT to use
@@ -30,7 +30,7 @@ URL-synced filter lists for **Next.js** with shareable query state, aligned to R
 
 | Variant | URL shape | Backend |
 | --- | --- | --- |
-| **TSH DataGrid** | `filter[field]=value`, `sort[field]=ASC` | See skill § Variant A |
+| **Bracket notation** | `filter[field]=value`, `sort[field]=ASC` | See skill § Variant A |
 | **Nest flat + Zod** | `city=Warsaw&page=1&sortBy=createdAt` | Shared `*ListQuerySchema` — see `references/nestjs-flat-params.md` |
 
 ## References (in skill package)

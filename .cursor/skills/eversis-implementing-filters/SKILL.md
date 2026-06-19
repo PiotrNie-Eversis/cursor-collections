@@ -15,7 +15,7 @@ Provides patterns for type-safe URL filter synchronization — schema definition
 | New or refactored **filterable list** with **shareable URL** | Liferay Headless **OData** `filter` strings, Elasticsearch facet URLs, bespoke `generateRouterQuery` — follow **project patterns** |
 | Next.js **App Router** + `useSearchParams` / `router.replace` | Marketing sites with no list API; filters only in `useState` |
 | Nest (or REST) list API with **documented flat or bracket** query contract | Task keywords alone ("filter", "search") without stack policy + plan |
-| Align URL serialize layer with `libs/contracts` Zod schemas | Forcing TSH `filter[field]` when project uses flat camelCase params |
+| Align URL serialize layer with `libs/contracts` Zod schemas | Forcing bracket notation `filter[field]` when project uses flat camelCase params |
 
 **Before Step 1:** Read **`eversis-project-stack.mdc` § Agent skills policy** and **`docs/context/*.md`**. Reuse existing URL helpers in the repo when present.
 
@@ -25,7 +25,7 @@ Provides patterns for type-safe URL filter synchronization — schema definition
 - [Filter Implementation Process](#filter-implementation-process)
 - [Serialization Quick Reference](#serialization-quick-reference)
 - [API Contract](#api-contract)
-  - [Variant A — TSH bracket notation (default upstream)](#variant-a--tsh-bracket-notation-default-upstream)
+  - [Variant A — Bracket notation (nested query params)](#variant-a--bracket-notation-nested-query-params)
   - [Variant B — Nest flat query + Zod (common Eversis consumer)](#variant-b--nest-flat-query--zod-common-eversis-consumer)
   - [Backend Considerations](#backend-considerations)
 - [Filter Quality Checklist](#filter-quality-checklist)
@@ -44,11 +44,11 @@ If removing a parameter changes what page or resource you are looking at, it bel
 </path-vs-query-golden-rule>
 
 <type-safe-serialization>
-Define a TypeScript schema for every filter set. Parse URL params through the schema on read (deserialize), and serialize through the schema on write. **Serialization shape follows the API contract** (bracket notation for TSH DataGrid; flat camelCase for many Nest+Zod monorepos). Never pass raw `string | null` from `searchParams` into application code — always validate and coerce to the schema type. Invalid or missing values fall back to schema defaults.
+Define a TypeScript schema for every filter set. Parse URL params through the schema on read (deserialize), and serialize through the schema on write. **Serialization shape follows the API contract** (bracket notation for DataGrid-style list APIs; flat camelCase for many Nest+Zod monorepos). Never pass raw `string | null` from `searchParams` into application code — always validate and coerce to the schema type. Invalid or missing values fall back to schema defaults.
 </type-safe-serialization>
 
 <api-first-serialization>
-The URL serialization format must match the API it talks to. **Bracket notation** (`filter[field]=value`) is the TSH DataGrid default. **Flat camelCase** (`status=active&page=1`) is common in Nest + shared Zod `*ListQuerySchema` packages. Adapt only the serialize/deserialize functions — the filter schema, hook shape (`{ filters, updateFilters, resetFilters }`), and navigation strategy stay the same.
+The URL serialization format must match the API it talks to. **Bracket notation** (`filter[field]=value`) suits list APIs that expect nested filter keys. **Flat camelCase** (`status=active&page=1`) is common in Nest + shared Zod `*ListQuerySchema` packages. Adapt only the serialize/deserialize functions — the filter schema, hook shape (`{ filters, updateFilters, resetFilters }`), and navigation strategy stay the same.
 </api-first-serialization>
 
 </principles>
@@ -71,7 +71,7 @@ Progress:
 
 - Stack policy allows this skill (`eversis-project-stack.mdc` § Agent skills policy).
 - Acceptance criteria require **shareable URL** filter state (not client-only unless migrating to URL).
-- Identify API variant: **TSH bracket** vs **Nest flat Zod** vs project-specific — see [API Contract](#api-contract).
+- Identify API variant: **bracket notation** vs **Nest flat Zod** vs project-specific — see [API Contract](#api-contract).
 - Search codebase for existing helpers (`*-public-list-url.ts`, `generateRouterQuery`, etc.) — **extend, do not replace** without approval.
 
 **Step 1: Define the filter schema**
@@ -129,7 +129,7 @@ Apply the path-vs-query golden rule to classify each piece of your URL:
 | Pagination              | Query string | `?page=2&limit=20`                    | Display modifier                                 |
 | Search term             | Query string | `?search=lightweight`                 | Display modifier                                 |
 
-**API alignment rule**: The URL serialization must match the API it communicates with. For TSH-owned APIs, this means bracket notation (`filter[field]=value`). For external APIs with different conventions, adapt the serialize/deserialize functions to match the external format. Common external patterns:
+**API alignment rule**: The URL serialization must match the API it communicates with. For APIs that use bracket notation, serialize as `filter[field]=value`. For APIs with different conventions, adapt the serialize/deserialize functions to match the external format. Common external patterns:
 
 | External API Pattern   | Example                    | Adaptation                                                          |
 | ---------------------- | -------------------------- | ------------------------------------------------------------------- |
@@ -244,7 +244,7 @@ For debounced inputs (range sliders, search fields), use `replace` during rapid 
 
 Pick **one variant** per feature. URL serialize/deserialize must match what the list endpoint expects. List **endpoint design** (Nest controller, DTO, repository) → **`eversis-implementing-backend`**; URL/hooks → this skill.
 
-### Variant A — TSH bracket notation (default upstream)
+### Variant A — Bracket notation (nested query params)
 
 #### Query Parameter Structure
 
@@ -310,7 +310,7 @@ Filter:
 - [ ] Filter schema defined with TypeScript types and defaults
 - [ ] URL structure follows path-vs-query golden rule
 - [ ] Serialization matches chosen API variant (bracket **or** flat — not both)
-- [ ] If TSH bracket: filters use `filter[field]=value`; sort uses `sort[field]=ASC|DESC`
+- [ ] If bracket notation: filters use `filter[field]=value`; sort uses `sort[field]=ASC|DESC`
 - [ ] Serialization omits default values from URL
 - [ ] Deserialization validates and coerces types
 - [ ] Range filters use separate bracket keys (filter[price_min]=10&filter[price_max]=50)
@@ -341,7 +341,7 @@ Filter:
 | Building one monolithic filter hook for all pages                  | Create filter schemas per-page/per-feature, share the serialization utility                                           |
 | Treating multi-value filter as AND                                 | Same-field repeated values are OR; different fields are AND                                                           |
 | Ignoring API response `meta` object                                | Verify URL filter state matches what the backend echoed in `meta`                                                     |
-| Using bracket notation when the external API expects flat keys     | Adapt serialization to match the API contract — bracket notation is the TSH default, not a universal rule             |
+| Using bracket notation when the external API expects flat keys     | Adapt serialization to match the API contract — bracket notation is one pattern, not a universal rule             |
 
 ## Framework-Specific Patterns
 
@@ -361,5 +361,3 @@ The patterns above are framework-agnostic. For framework-specific implementation
 - `eversis-optimizing-frontend` — rendering optimization for filter-heavy pages
 - `eversis-ensuring-accessibility` — accessible filter controls (keyboard, ARIA)
 - `eversis-sql-and-database-understanding` — query performance behind list APIs
-
-<!-- Eversis port; upstream: tsh-implementing-filters (PR #51); adapted Nest flat + OSS skills policy -->

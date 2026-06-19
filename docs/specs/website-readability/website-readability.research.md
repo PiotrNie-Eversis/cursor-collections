@@ -16,7 +16,7 @@
 
 ## Problem statement
 
-The root README is now a **high-quality scan surface**: phase matrix, progressive disclosure, copilot-style agent blocks, expanded workflow flowcharts, and a cohesive MCP section. The **docs site** (`website/`) remains the authoritative deep dive for agents, workflows, skills, and integrations — but it **does not yet mirror** the README’s readability wins. New readers who land on GitHub first, then open the site, hit **terminology drift**, **split narratives**, and **denser tables** before they reach the same mental model.
+The root README is now a **high-quality scan surface**: phase matrix, progressive disclosure, external benchmark-style agent blocks, expanded workflow flowcharts, and a cohesive MCP section. The **docs site** (`website/`) remains the authoritative deep dive for agents, workflows, skills, and integrations — but it **does not yet mirror** the README’s readability wins. New readers who land on GitHub first, then open the site, hit **terminology drift**, **split narratives**, and **denser tables** before they reach the same mental model.
 
 ### Observed pain points
 
@@ -142,12 +142,12 @@ The root README is now a **high-quality scan surface**: phase matrix, progressiv
 
 ```text
 Reader path A: github.com → README (good scan) → "website/docs/..." link → intro.md (dense)
-Reader path B: docs site / → Hero + Features (Copilot terms) → /docs (intro)
+Reader path B: docs site / → Hero + Features (external benchmark terms) → /docs (intro)
 ```
 
 **Approved unified story (site-wide):**
 
-1. **Full homepage marketing rewrite** — hero, feature cards, quick wins, getting-started section, and CTAs aligned with README (tagline, phase names, Eversis/copilot lineage, human gates).
+1. **Full homepage marketing rewrite** — hero, feature cards, quick wins, getting-started section, and CTAs aligned with README (tagline, phase names, Eversis/external benchmark lineage, human gates).
 2. **Tagline:** “Ideate → Implement → Review” everywhere (replace “Product Ideation / Development / Quality”).
 3. **Hero subcopy:** Mirror README centered hero — Cursor-native framework, full SDLC, human gates at each step.
 4. **Homepage CTA:** Primary → **`/docs/getting-started/start-here`**; secondary → workflow overview or intro.
@@ -209,9 +209,9 @@ Four approaches were evaluated. **Read this section before the implementation pl
 
 1. **A — Parity checklist** — Add a short **“README ↔ site parity”** subsection to the plan (and optionally a row in `CHANGELOG.md` contributor notes): when you edit README § X, update site page Y. Use the parity map below as the checklist body.
 2. **D — SSOT policy** — Document explicitly:
-   - **Site owns depth** — workflow flowcharts, agent tables, MCP tables, installation refresh table.
-   - **README owns GitHub scan** — summaries, one flowchart per variant max, links to site (`start-here`, `workflow/*`, `agents/overview`, `mcp-setup`).
-   - **Homepage owns marketing** — aligned messaging but links out; no long duplicated prose.
+ - **Site owns depth** — workflow flowcharts, agent tables, MCP tables, installation refresh table.
+ - **README owns GitHub scan** — summaries, one flowchart per variant max, links to site (`start-here`, `workflow/*`, `agents/overview`, `mcp-setup`).
+ - **Homepage owns marketing** — aligned messaging but links out; no long duplicated prose.
 
 **Defer B and C** for this initiative unless implementation reveals painful triple-copy (e.g. same 6-step quick start edited in four files in one PR).
 
@@ -262,7 +262,7 @@ Aligned with **human decisions** below. Plan should expand each phase with file-
 
 ### Phase 1 — Homepage full marketing rewrite (high impact)
 
-- [ ] **Hero** (`HeroSection`): README-aligned tagline — Cursor-native framework, **Ideate → Implement → Review**, human gates; Eversis + copilot-collections credit line; CTAs → `start-here` + GitHub.
+- [ ] **Hero** (`HeroSection`): README-aligned tagline — Cursor-native framework, **Ideate → Implement → Review**, human gates; Eversis + product-engineering README benchmark credit line; CTAs → `start-here` + GitHub.
 - [ ] **Feature cards** (`HomepageFeatures`): phase names, descriptions, and card grouping match README § What this repository provides (not “Product Ideation / Development / Quality”).
 - [ ] **Quick wins** (`QuickWins`): track labels → Ideate / Implement / Review.
 - [ ] **Workflow showcase** (`WorkflowShowcase`): fix `@` + `/eversis-*` caption; optional subcopy aligned with README workflow intro.
@@ -281,7 +281,6 @@ Aligned with **human decisions** below. Plan should expand each phase with file-
 
 - [ ] Keep `workflow/overview.md` **concise**: phase primers, Implement→Review table, variants **table**, human-gates admonition, existing diagram.
 - [ ] Add **`:::info` expand admonitions** per variant (standard, frontend/UI loop, workshop, E2E, BA docs) → child pages — **do not** paste README-length flowcharts on overview.
-- [ ] Grep site for “not slash commands” / legacy `/tsh-*` / “Product Ideation” — fix stragglers.
 
 ### Phase 4 — Agents and MCP scan surfaces
 
@@ -407,8 +406,8 @@ Copy **patterns**, not Atlassian assets or exact CSS:
 If you want **both** brand marketing and Confluence familiarity:
 
 ```text
-/ (homepage)     → keep purple/dark OR simplify to light “space home”
-/docs/**         → Confluence-like light chrome (Tier 1 CSS)
+/ (homepage) → keep purple/dark OR simplify to light “space home”
+/docs/** → Confluence-like light chrome (Tier 1 CSS)
 ```
 
 Docusaurus supports scoping CSS via `.docs-wrapper`, `[class*='docPage']`, and `data-theme` — implement Confluence tokens **only under docs**, not on `/`.
@@ -464,7 +463,7 @@ Add to **current plan** as content-only items (no extra phase).
 ## References
 
 - Updated README: [`README.md`](../../../README.md)
-- Benchmark (copilot-collections): [README](https://github.com/TheSoftwareHouse/copilot-collections/blob/main/README.md)
+- Benchmark (product-engineering README benchmark): README
 - Prior README research: [`root-readme-rewrite.research.md`](../root-readme-rewrite/root-readme-rewrite.research.md), [`readme-workflows-section.research.md`](../readme-workflows-section/readme-workflows-section.research.md), [`readme-agents-descriptions.research.md`](../readme-agents-descriptions/readme-agents-descriptions.research.md), [`readme-mcp-section.research.md`](../readme-mcp-section/readme-mcp-section.research.md)
 - Site entry: [`website/docs/intro.md`](../../../website/docs/intro.md), [`website/src/pages/index.tsx`](../../../website/src/pages/index.tsx)
 - Build/sync: [`website/package.json`](../../../website/package.json)

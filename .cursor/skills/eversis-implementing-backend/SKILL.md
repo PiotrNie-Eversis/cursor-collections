@@ -5,7 +5,7 @@ description: Backend service implementation patterns, standards, and procedures.
 
 # Implementing Backend
 
-Provides patterns for building backend API services with modular architecture, structured testing, and production-ready infrastructure following TSH best practices.
+Provides patterns for building backend API services with modular architecture, structured testing, and production-ready infrastructure following best practices.
 
 ## When to Use
 
@@ -37,34 +37,34 @@ Organize code by **domain/feature**, not by technical layer. All artifacts relat
 ```
 src/
 ├── users/
-│   ├── users.controller.ts      # HTTP layer (routes, request/response)
-│   ├── users.service.ts          # Business logic
-│   ├── users.repository.ts       # Data access
-│   ├── users.module.ts           # Module registration / DI wiring
-│   ├── dto/
-│   │   ├── create-user.dto.ts
-│   │   └── update-user.dto.ts
-│   ├── entities/
-│   │   └── user.entity.ts
-│   ├── tests/
-│   │   ├── users.integration.test.ts
-│   │   └── users.service.unit.test.ts
-│   └── users.swagger.yml         # (if using separate swagger files)
+│ ├── users.controller.ts # HTTP layer (routes, request/response)
+│ ├── users.service.ts # Business logic
+│ ├── users.repository.ts # Data access
+│ ├── users.module.ts # Module registration / DI wiring
+│ ├── dto/
+│ │ ├── create-user.dto.ts
+│ │ └── update-user.dto.ts
+│ ├── entities/
+│ │ └── user.entity.ts
+│ ├── tests/
+│ │ ├── users.integration.test.ts
+│ │ └── users.service.unit.test.ts
+│ └── users.swagger.yml # (if using separate swagger files)
 ├── orders/
-│   ├── orders.controller.ts
-│   ├── orders.service.ts
-│   ├── orders.repository.ts
-│   └── ...
-├── shared/                       # Cross-cutting concerns only
-│   ├── middleware/
-│   ├── guards/
-│   ├── filters/
-│   ├── interceptors/
-│   └── utils/
+│ ├── orders.controller.ts
+│ ├── orders.service.ts
+│ ├── orders.repository.ts
+│ └── ...
+├── shared/ # Cross-cutting concerns only
+│ ├── middleware/
+│ ├── guards/
+│ ├── filters/
+│ ├── interceptors/
+│ └── utils/
 └── config/
-    ├── database.config.ts
-    ├── auth.config.ts
-    └── app.config.ts
+ ├── database.config.ts
+ ├── auth.config.ts
+ └── app.config.ts
 ```
 
 **Rules:**
@@ -107,16 +107,16 @@ src/
 
 ```json
 {
-  "statusCode": 400,
-  "error": "Bad Request",
-  "message": "Validation failed",
-  "details": [
-    { "field": "email", "message": "must be a valid email address" }
-  ]
+ "statusCode": 400,
+ "error": "Bad Request",
+ "message": "Validation failed",
+ "details": [
+ { "field": "email", "message": "must be a valid email address" }
+ ]
 }
 ```
 
-## DataGrid: Filtering, Sorting & Pagination (TSH Standard)
+## DataGrid: Filtering, Sorting & Pagination ( Standard)
 
 Every list endpoint returning paginated data **MUST** follow this schema.
 
@@ -135,20 +135,20 @@ Every list endpoint returning paginated data **MUST** follow this schema.
 ### Filter Behavior
 
 - **Same field, multiple values** → interpreted as `OR`:
-  ```
-  ?filter[firstName]=Ewa&filter[firstName]=Adam
-  → WHERE (firstName = 'Ewa' OR firstName = 'Adam')
-  ```
+ ```
+ ?filter[firstName]=Ewa&filter[firstName]=Adam
+ → WHERE (firstName = 'Ewa' OR firstName = 'Adam')
+ ```
 - **Different fields** → interpreted as `AND`:
-  ```
-  ?filter[firstName]=Ewa&filter[lastName]=Kowalska
-  → WHERE (firstName = 'Ewa' AND lastName = 'Kowalska')
-  ```
+ ```
+ ?filter[firstName]=Ewa&filter[lastName]=Kowalska
+ → WHERE (firstName = 'Ewa' AND lastName = 'Kowalska')
+ ```
 - **LIKE search** → use URL-encoded `%25` suffix:
-  ```
-  ?filter[lastName]=Now%25
-  → WHERE lastName LIKE 'Now%'
-  ```
+ ```
+ ?filter[lastName]=Now%25
+ → WHERE lastName LIKE 'Now%'
+ ```
 
 ### Advanced Filter Operators (when applicable)
 
@@ -165,22 +165,22 @@ Every list endpoint returning paginated data **MUST** follow this schema.
 
 ```json
 {
-  "meta": {
-    "pagination": {
-      "page": 1,
-      "limit": 10,
-      "total": 57,
-      "totalPages": 6
-    },
-    "filter": {
-      "status": "active"
-    },
-    "sort": {
-      "lastName": "ASC"
-    },
-    "search": "john"
-  },
-  "data": [{ "..." }]
+ "meta": {
+ "pagination": {
+ "page": 1,
+ "limit": 10,
+ "total": 57,
+ "totalPages": 6
+ },
+ "filter": {
+ "status": "active"
+ },
+ "sort": {
+ "lastName": "ASC"
+ },
+ "search": "john"
+ },
+ "data": [{ "..." }]
 }
 ```
 
@@ -268,13 +268,13 @@ When integrating with external APIs, **always create a dedicated client/adapter 
 ```
 src/
 ├── integrations/
-│   ├── payment-gateway/
-│   │   ├── payment-gateway.client.ts   # HTTP calls, request/response mapping
-│   │   ├── payment-gateway.types.ts    # External API types/interfaces
-│   │   └── payment-gateway.module.ts   # DI registration
-│   ├── email-provider/
-│   │   ├── email-provider.client.ts
-│   │   └── ...
+│ ├── payment-gateway/
+│ │ ├── payment-gateway.client.ts # HTTP calls, request/response mapping
+│ │ ├── payment-gateway.types.ts # External API types/interfaces
+│ │ └── payment-gateway.module.ts # DI registration
+│ ├── email-provider/
+│ │ ├── email-provider.client.ts
+│ │ └── ...
 ```
 
 ### Rules
@@ -308,22 +308,22 @@ See the technology-specific references below for recommended testing tools per l
 
 ```
 describe('POST /users', () => {
-  it('should create a user and return 201', async () => {
-    // Arrange
-    const payload = { email: 'test@example.com', name: 'Test User' };
+ it('should create a user and return 201', async () => {
+ // Arrange
+ const payload = { email: 'test@example.com', name: 'Test User' };
 
-    // Act
-    const response = await request(app).post('/users').send(payload);
+ // Act
+ const response = await request(app).post('/users').send(payload);
 
-    // Assert
-    expect(response.status).toBe(201);
-    expect(response.body.data.email).toBe('test@example.com');
-  });
+ // Assert
+ expect(response.status).toBe(201);
+ expect(response.body.data.email).toBe('test@example.com');
+ });
 
-  it('should return 400 for invalid email', async () => {
-    const response = await request(app).post('/users').send({ email: 'invalid' });
-    expect(response.status).toBe(400);
-  });
+ it('should return 400 for invalid email', async () => {
+ const response = await request(app).post('/users').send({ email: 'invalid' });
+ expect(response.status).toBe(400);
+ });
 });
 ```
 
@@ -382,7 +382,7 @@ Every application **must** expose a `GET /health` endpoint:
 
 ```json
 {
-  "status": "ok"
+ "status": "ok"
 }
 ```
 
@@ -480,7 +480,7 @@ Generate migration files for all schema changes. Ensure both `up` and `down` are
 Create entity classes, repository interfaces and implementations, and service classes with business logic. Follow vertical slice structure.
 
 **Step 5: Implement the API layer**
-Create controllers with proper HTTP methods. Define DTOs for request/response. Add input validation. For **list endpoints**, follow the project's list-query contract — **TSH DataGrid bracket notation** or **flat Zod params** per plan; URL/hook patterns → **`eversis-implementing-filters`** when shareable URL filters apply.
+Create controllers with proper HTTP methods. Define DTOs for request/response. Add input validation. For **list endpoints**, follow the project's list-query contract — ** DataGrid bracket notation** or **flat Zod params** per plan; URL/hook patterns → **`eversis-implementing-filters`** when shareable URL filters apply.
 
 **Step 6: Add authentication/authorization guards**
 Apply JWT validation middleware. Add role/permission checks as needed. Implement resource-level authorization.

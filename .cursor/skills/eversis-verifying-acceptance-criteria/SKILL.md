@@ -43,4 +43,4 @@ Compares actual implementation against stated Acceptance Criteria to identify ga
 ## Connected Skills
 
 - `eversis-planning-tests` — for generating test plans from AC before verification
-- `tsh-task-analysing` — for gathering Jira/Confluence context when AC source is a ticket
+- `eversis-task-analysing` — for gathering Jira/Confluence context when AC source is a ticket

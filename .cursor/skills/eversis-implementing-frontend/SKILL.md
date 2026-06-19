@@ -44,11 +44,11 @@ Progress:
 
 - Extract specs from Figma (via MCP tool if available). Identify components, spacing, typography, colors, and interaction states.
 - Map every Figma value to an existing design token in the codebase:
-  1. Extract the raw value from Figma (e.g., `#3B82F6`, `16px`).
-  2. Search the codebase for a matching token.
-  3. If a token exists — use it.
-  4. If no exact match — find the closest existing token and document the deviation.
-  5. If truly new — flag it and ask the user before creating.
+ 1. Extract the raw value from Figma (e.g., `#3B82F6`, `16px`).
+ 2. Search the codebase for a matching token.
+ 3. If a token exists — use it.
+ 4. If no exact match — find the closest existing token and document the deviation.
+ 5. If truly new — flag it and ask the user before creating.
 - Identify all states the design implies: default, hover, focus, active, disabled, loading, error, empty.
 - Identify responsive breakpoints from the design. Check how the component should adapt across screen sizes — layout shifts, hidden/shown elements, typography scaling. Map breakpoints to the project's existing responsive tokens or media queries.
 
@@ -82,31 +82,30 @@ Apply barrel file rules from the Barrel File Guidelines table below:
 
 **Step 5: Verify implementation**
 
-- If a calling workflow provides a verification loop (e.g., the Engineering Manager runs the **UI Reviewer** automatically during the legacy `/tsh-implement` flow), defer to that workflow — do not duplicate verification here.
 - If no verification workflow is active, use the `ui-verifying` skill directly to compare the implementation against the Figma design.
 - Walk through each interaction state (hover, focus, disabled, error, loading, empty) and verify correctness.
 - Iterate on differences until the implementation matches the design within acceptable tolerances.
 
 ## State Decision Framework
 
-| State type   | When to use                 | Example                               |
+| State type | When to use | Example |
 | ------------ | --------------------------- | ------------------------------------- |
-| Local state  | UI-only, single component   | Modal open/close, input value         |
-| Lifted state | Shared between 2-3 siblings | Filter applied to a sibling list      |
-| Context / DI | Deeply nested consumption   | Theme, locale, auth status            |
+| Local state | UI-only, single component | Modal open/close, input value |
+| Lifted state | Shared between 2-3 siblings | Filter applied to a sibling list |
+| Context / DI | Deeply nested consumption | Theme, locale, auth status |
 | Global store | Complex cross-cutting state | Multi-step form wizard, shopping cart |
-| Server cache | Remote data with caching    | API responses, paginated lists        |
+| Server cache | Remote data with caching | API responses, paginated lists |
 
 ## Barrel File Guidelines
 
-| Rule               | Description                                                        |
+| Rule | Description |
 | ------------------ | ------------------------------------------------------------------ |
 | Create barrel when | Folder exports are consumed by OTHER modules (public API boundary) |
-| Avoid barrel when  | Internal utils serving a single parent component — import directly |
-| Re-export style    | Named re-exports only: `export { Button } from './Button'`         |
-| Never wildcard     | Avoid `export * from` — breaks tree shaking, hides API surface     |
-| Keep flat          | One level deep — no barrel importing another barrel                |
-| Test with build    | Verify barrel doesn't pull unused code into bundle                 |
+| Avoid barrel when | Internal utils serving a single parent component — import directly |
+| Re-export style | Named re-exports only: `export { Button } from './Button'` |
+| Never wildcard | Avoid `export * from` — breaks tree shaking, hides API surface |
+| Keep flat | One level deep — no barrel importing another barrel |
+| Test with build | Verify barrel doesn't pull unused code into bundle |
 
 ## Component Checklist
 
@@ -124,16 +123,16 @@ Component:
 
 ## Anti-Patterns
 
-| Anti-Pattern                                 | Instead Do                                                         |
+| Anti-Pattern | Instead Do |
 | -------------------------------------------- | ------------------------------------------------------------------ |
 | Hardcoded colors/spacing (`#3B82F6`, `16px`) | Use design tokens (`var(--color-primary-500)`, `theme.spacing(2)`) |
-| Monolithic component (300+ lines)            | Split into composed sub-components                                 |
-| Props drilling through 4+ levels             | Use context or composition pattern                                 |
-| Duplicating existing component               | Extend existing with variants                                      |
-| Inline styles for theming                    | Use design system's styling approach                               |
-| `export default`                             | Named exports for consistency and refactoring                      |
-| `any` type for props                         | Explicit type definitions                                          |
-| Barrel file for internal utils               | Direct imports for single-consumer folders                         |
+| Monolithic component (300+ lines) | Split into composed sub-components |
+| Props drilling through 4+ levels | Use context or composition pattern |
+| Duplicating existing component | Extend existing with variants |
+| Inline styles for theming | Use design system's styling approach |
+| `export default` | Named exports for consistency and refactoring |
+| `any` type for props | Explicit type definitions |
+| Barrel file for internal utils | Direct imports for single-consumer folders |
 
 ## Framework-Specific Patterns
 

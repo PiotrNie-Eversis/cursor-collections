@@ -10,7 +10,7 @@ title: Introduction
 
 > **Ideate → Implement → Review** — one toolchain, end to end.
 
-Maintained by [Eversis](https://eversis.com). Based on [Copilot Collections](https://github.com/TheSoftwareHouse/copilot-collections) from The Software House.
+Maintained by [Eversis](https://eversis.com).
 
 :::info Start here
 New reader? Follow the curated path: **[Start here](./getting-started/start-here)**.
@@ -57,7 +57,7 @@ Structured **roles**, **prompts** (`eversis-*.md`), **project rules** (`.cursor/
 All artifacts use the `eversis-` prefix (e.g. `@eversis-implement`) to avoid naming collisions with your own project-specific rules, skills, and prompts.
 :::
 
-`/` project commands live in **`.cursor/commands/`** — each loads the canonical `.cursor/prompts/public/` file. Legacy `/tsh-*` names are **not** used.
+`/` project commands live in **`.cursor/commands/`** — each loads the canonical `.cursor/prompts/public/` file.
 
 ## Inventory
 

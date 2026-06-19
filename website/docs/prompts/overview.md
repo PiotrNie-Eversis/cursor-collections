@@ -19,7 +19,7 @@ This framework includes **12 public prompts** — Markdown workflow definitions 
 | `/eversis-review` | `@eversis-review` | Review — code quality against plan |
 | `/eversis-review-ui` | `@eversis-review-ui` | Review — Figma vs implementation |
 
-> **Legacy `/tsh-*` names** (e.g. `/tsh-implement`) were a Copilot-era convention and are **not used in Cursor**. Use `@` attachment or the `/eversis-*` project commands above.
+> Use **`@`** attachment or the **`/eversis-*`** project commands above — both load the same canonical `.cursor/prompts/public/` files.
 
 The first column in the tables below lists each **prompt by file stem** (links go to the catalog page).
 

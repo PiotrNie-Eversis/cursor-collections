@@ -12,7 +12,7 @@
 </p>
 
 <p align="center">
-  Maintained by <a href="https://eversis.com" target="_blank">Eversis</a>. Based on <a href="https://github.com/TheSoftwareHouse/copilot-collections" target="_blank">Copilot Collections</a> from The Software House.
+  Maintained by <a href="https://eversis.com" target="_blank">Eversis</a>.
 </p>
 
 ---
@@ -57,7 +57,7 @@ Structured **roles**, **prompts** (`eversis-*.md`), **project rules** (`.cursor/
 
 > **Why the `eversis-` prefix?** All artifacts use the `eversis-` prefix (e.g. `@eversis-implement`) to avoid naming collisions with your own project-specific rules, skills, and prompts.
 
-`/` project commands live in **`.cursor/commands/`** — each instructs the agent to **load** the canonical `.cursor/prompts/public/` file before executing. Legacy `/tsh-*` names from the Copilot era are **not** used.
+`/` project commands live in **`.cursor/commands/`** — each instructs the agent to **load** the canonical `.cursor/prompts/public/` file before executing.
 
 ---
 

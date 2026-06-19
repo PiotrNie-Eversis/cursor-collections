@@ -22,7 +22,7 @@ Build **Cursor project rules** — **`.cursor/rules/eversis-*.mdc`** — that de
 | **Frontmatter** | `description`, `globs` or `alwaysApply`                              |
 | **Role**        | Responsibilities, tone, when to stop for human review                |
 | **Skills**      | Which `eversis-*` skills apply by name (references only)                 |
-| **Tools**       | Behavioral guidance for MCP / terminal (not a Copilot tool manifest) |
+| **Tools**       | Behavioral guidance for MCP / terminal (not a declarative tool manifest in frontmatter) |
 
 ## Validation
 

@@ -1,13 +1,13 @@
-# Plan: Align README MCP section with copilot-collections style
+# Plan: Align README MCP section with product-engineering README benchmark style
 
-**Research:** [`readme-mcp-section.research.md`](./readme-mcp-section.research.md)  
+**Research:** [`readme-mcp-section.research.md`](./readme-mcp-section.research.md) 
 **Status:** Complete (2026-06-07).
 
 ---
 
 ## Goal
 
-Restructure [`README.md`](../../../README.md) § **🔌 MCP Server Configuration** to match [copilot-collections — MCP Server Configuration](https://github.com/TheSoftwareHouse/copilot-collections#-mcp-server-configuration), while preserving Cursor-specific requirements.
+Restructure [`README.md`](../../../README.md) § **🔌 MCP Server Configuration** to match product-engineering README benchmark — MCP Server Configuration, while preserving Cursor-specific requirements.
 
 **Non-goals:** Change `.cursor/mcp.json`, MCP package code, or `website/docs/getting-started/mcp-setup.md`.
 

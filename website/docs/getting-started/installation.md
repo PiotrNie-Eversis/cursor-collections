@@ -42,7 +42,7 @@ bash "$CURSOR_COLLECTIONS_HOME/scripts/setup-cursor-local.sh" --build-mcp
 
 From the framework checkout you can pass `--target` to bootstrap another folder. For CI or scripted setup, add `--non-interactive` and optionally `--mcp-servers=context7,eversis-collections,figma`. Full flag reference is in [Quick setup (script)](#quick-setup-script) below.
 
-This replaces the upstream Copilot pattern of "ask Copilot to configure itself" — Cursor uses the setup script plus MCP merge, not VS Code `chat.*Locations` JSON.
+Cursor uses the setup script plus MCP merge — not VS Code `chat.*Locations` JSON for prompts or agents.
 
 ## 3. Prompts (attach with `@`)
 

@@ -4,18 +4,18 @@ This guide is the **authoritative** reference for using **Cursor** (rules, Agent
 
 **Naming:** In this monorepo, user-facing and internal **prompts** and **Cursor rules** use the **`eversis-`** prefix (see **`.cursor/prompts/`** and **`.cursor/rules/`**). **Skill packages** use the same **`eversis-`** prefix on topic directories under **`.cursor/skills/eversis-*/`**. Procedural text lives in **`SKILL.md`** in Git; use the **`eversis-collections` MCP** server ([mcp/eversis-collections-mcp](../mcp/eversis-collections-mcp/README.md)) to **list, read, validate, and (where allowlisted) run** those skills in Agent via **`eversis_*` tools** — do not rely on registering the folder under Cursor’s **Agent Skills** UI (that path is not used for this framework).
 
-**Background:** The workflow originated in [The Software House’s product engineering work](https://tsh.io) and an earlier [Copilot-oriented documentation set](https://copilot-collections.tsh.io/). **This repository is Cursor-only**; there is no second prompt tree under `.github/prompts/`.
+**This repository is Cursor-only** — prompts live under **`.cursor/prompts/`**; there is no parallel tree under `.github/prompts/`.
 
 ---
 
 ## Part A — Workflow (Ideate → Implement → Review)
 
-| Phase           | Primary role (conceptual)                                 | Cursor: attach (type **`@`** + stem, e.g. **`@eversis-implement`**) | Legacy slash name (not used in Cursor) |
-| --------------- | --------------------------------------------------------- | -------------------------------------------------------------------- | -------------------------------------- |
-| **Ideate**      | Business Analyst                                          | `eversis-analyze-materials`                                         | `tsh-analyze-materials`                |
-| **Implement**   | Engineering Manager (orchestrates research → plan → code) | `eversis-implement`                                                | `tsh-implement`                        |
-| **Review**      | Code Reviewer                                             | `eversis-review`                                                    | `tsh-review`                           |
-| **Review (UI)** | UI Reviewer                                               | `eversis-review-ui`                                                | `tsh-review-ui`                        |
+| Phase           | Primary role (conceptual)                                 | Cursor: attach (type **`@`** + stem, e.g. **`@eversis-implement`**) |
+| --------------- | --------------------------------------------------------- | -------------------------------------------------------------------- |
+| **Ideate**      | Business Analyst                                          | `eversis-analyze-materials`                                         |
+| **Implement**   | Engineering Manager (orchestrates research → plan → code) | `eversis-implement`                                                |
+| **Review**      | Code Reviewer                                             | `eversis-review`                                                    |
+| **Review (UI)** | UI Reviewer                                               | `eversis-review-ui`                                                |
 
 **Relay race:** Each phase produces a **named artifact** (transcript cleanup, Jira-ready stories, research doc, implementation plan, diffs, review with PASS / BLOCKER / SUGGESTION). The next phase must not start until a human has **reviewed and approved** the previous artifact. AI output is always a draft until you say otherwise.
 
@@ -68,23 +68,23 @@ When the Engineering Manager declares **Fine** (all implementation and code revi
 5. Attach context: ticket text, `@docs/specs/...`, `@docs/context/...`, and indexed **Docs** for your stack.
 6. Send a one-line instruction, e.g. “Execute this prompt for PROJ-123.”
 
-**Slash naming clarification:** Docusaurus may display a slug-style label (e.g. `/eversis-implement`) next to prompts — that is a URL slug, not a runtime command. The **legacy `/tsh-*` names** (e.g. `/tsh-implement`) from older Copilot-oriented docs are also not used in Cursor. The only native Cursor `/` invocation is via **`.cursor/commands/*.md`** files described in step 3 above.
+**Slash naming clarification:** Docusaurus may display a slug-style label (e.g. `/eversis-implement`) next to prompts — that is a URL slug, not a runtime command. The only native Cursor `/` invocation is via **`.cursor/commands/*.md`** files described in step 3 above.
 
-### Artifact mapping (catalog filenames)
+### Public prompt catalog
 
-| Legacy name                | Cursor prompt file in this repo                          |
-| -------------------------- | -------------------------------------------------------- |
-| `tsh-analyze-materials`    | `.cursor/prompts/public/eversis-analyze-materials.md`    |
-| `tsh-implement`            | `.cursor/prompts/public/eversis-implement.md`            |
-| `tsh-review`               | `.cursor/prompts/public/eversis-review.md`               |
-| `tsh-review-ui`            | `.cursor/prompts/public/eversis-review-ui.md`            |
-| `tsh-review-codebase`      | `.cursor/prompts/public/eversis-review-codebase.md`      |
-| `tsh-audit-infrastructure` | `.cursor/prompts/public/eversis-audit-infrastructure.md` |
-| `tsh-analyze-aws-costs`    | `.cursor/prompts/public/eversis-analyze-aws-costs.md`    |
-| `tsh-analyze-gcp-costs`    | `.cursor/prompts/public/eversis-analyze-gcp-costs.md`    |
-| `tsh-create-custom-*`      | `.cursor/prompts/public/eversis-create-custom-*.md`      |
+| Prompt stem | Cursor prompt file |
+| ----------- | ------------------ |
+| `eversis-analyze-materials` | `.cursor/prompts/public/eversis-analyze-materials.md` |
+| `eversis-implement` | `.cursor/prompts/public/eversis-implement.md` |
+| `eversis-review` | `.cursor/prompts/public/eversis-review.md` |
+| `eversis-review-ui` | `.cursor/prompts/public/eversis-review-ui.md` |
+| `eversis-review-codebase` | `.cursor/prompts/public/eversis-review-codebase.md` |
+| `eversis-audit-infrastructure` | `.cursor/prompts/public/eversis-audit-infrastructure.md` |
+| `eversis-analyze-aws-costs` | `.cursor/prompts/public/eversis-analyze-aws-costs.md` |
+| `eversis-analyze-gcp-costs` | `.cursor/prompts/public/eversis-analyze-gcp-costs.md` |
+| `eversis-create-custom-*` | `.cursor/prompts/public/eversis-create-custom-*.md` |
 
-**Deprecated flows** (no separate public file; behavior folded into ideate): old `tsh-clean-transcript` / `tsh-create-jira-tasks` style steps — use **`eversis-analyze-materials`** for the full ideate flow (see [CHANGELOG.md](../CHANGELOG.md)).
+**Folded into ideate:** transcript cleanup and Jira task drafting — use **`eversis-analyze-materials`** for the full ideate flow (see [CHANGELOG.md](../CHANGELOG.md)).
 
 **Internal prompts** (e.g. `eversis-implement-ui`, `eversis-deploy-kubernetes`) are referenced **from** public prompts such as `eversis-implement.md` and live only under **`.cursor/prompts/internal/`** (this repo has **no** `.github/internal-prompts/` mirror).
 

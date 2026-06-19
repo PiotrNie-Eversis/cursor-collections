@@ -1,6 +1,6 @@
 # Research: Improve README Supported workflows section
 
-**Task:** Expand [`README.md`](../../../README.md) § **🧭 Supported workflows** (~lines 72–135) to follow the structure and depth of [copilot-collections — Supported Workflow](https://github.com/TheSoftwareHouse/copilot-collections#-supported-workflow).
+**Task:** Expand [`README.md`](../../../README.md) § **🧭 Supported workflows** (~lines 72–135) to follow the structure and depth of product-engineering README benchmark — Supported Workflow.
 
 **Related README work:** [`root-readme-rewrite`](../root-readme-rewrite/), [`readme-agents-descriptions`](../readme-agents-descriptions/), [`readme-mcp-section`](../readme-mcp-section/) — all complete.
 
@@ -10,7 +10,7 @@
 
 ## Problem statement
 
-The current **Supported workflows** block has **four short flowcharts** and a one-line human-gates callout. It communicates the relay-race idea but **skips the copilot-collections “phase primer”** that helps newcomers understand *what each phase does* before reading example commands.
+The current **Supported workflows** block has **four short flowcharts** and a one-line human-gates callout. It communicates the relay-race idea but **skips the product-engineering README benchmark “phase primer”** that helps newcomers understand *what each phase does* before reading example commands.
 
 ### Current structure (README ~72–135)
 
@@ -24,7 +24,7 @@ The current **Supported workflows** block has **four short flowcharts** and a on
 
 **Strengths to keep:** `@eversis-*` naming, Fine → QA comment line in standard flow, BA Docs as Cursor-specific extra.
 
-### Copilot-collections structure (benchmark)
+### product-engineering README benchmark structure (benchmark)
 
 ```text
 1. Intro — full lifecycle, three phases
@@ -41,7 +41,7 @@ The current **Supported workflows** block has **four short flowcharts** and a on
 12. Example: Standalone Product Ideation — optional explore + gates + artifact list callout
 ```
 
-| Gap | Current README | Copilot benchmark |
+| Gap | Current README | external README benchmark |
 | --- | -------------- | ----------------- |
 | **Phase descriptions** | Absent | Three `### Phase N` sections with 4 bullets each |
 | **Implement → Review table** | Absent | Compact 2-row table |
@@ -50,8 +50,8 @@ The current **Supported workflows** block has **four short flowcharts** and a on
 | **Standalone ideation** | 3 lines | Flowchart + artifact filenames + gate callout |
 | **Jira vs free-form** | Not stated | Explicit sentence |
 | **Human judgment callout** | Short blockquote | Fuller ⚠️ Important paragraph |
-| **Ideate gates** | Generic “approve” | Named gates (copilot: 0–2; **Cursor: 1, 1.5, 2** per BA agent doc) |
-| **Explore before ideate** | N/A | `/tsh-explore-materials` optional — **not in Cursor Collections** |
+| **Ideate gates** | Generic “approve” | Named gates (external benchmark: 0–2; **Cursor: 1, 1.5, 2** per BA agent doc) |
+| **Explore before ideate** | N/A | `/eversis-explore-materials` optional — **not in Cursor Collections** |
 
 ---
 
@@ -60,8 +60,8 @@ The current **Supported workflows** block has **four short flowcharts** and a on
 | In scope | Out of scope |
 | -------- | ------------ |
 | Rewrite **Supported workflows** section in root [`README.md`](../../../README.md) only | `website/docs/workflow/overview.md` rewrite |
-| Map copilot patterns to **`eversis-*`** and Cursor gates/artifacts | Invent `/tsh-explore-materials` or Gate 0 if not in repo |
-| Preserve **Fine → QA comment** (Cursor-specific; copilot standard flow omits it) | Changing prompt bodies or implement workflow code |
+| Map external workflow patterns to **`eversis-*`** and Cursor gates/artifacts | Invent `/eversis-explore-materials` or Gate 0 if not in repo |
+| Preserve **Fine → QA comment** (Cursor-specific; external benchmark standard flow omits it) | Changing prompt bodies or implement workflow code |
 | Keep **BA Docs** as Cursor-specific example subsection | Duplicating full BA Docs playbook |
 
 **Accuracy source for gates/artifacts:** [`website/docs/agents/business-analyst.md`](../../../website/docs/agents/business-analyst.md), [`documentation/cursor-collection.md`](../../../documentation/cursor-collection.md).
@@ -73,7 +73,7 @@ The current **Supported workflows** block has **four short flowcharts** and a on
 ### Phase naming
 
 - **Ideate** (not “Product Ideation”) — align with README hero: **Ideate → Implement → Review**.
-- Copilot “Development” = Cursor **Implement**; copilot “Quality” = Cursor **Review** (+ UI/E2E/codebase prompts).
+- external benchmark “Development” = Cursor **Implement**; external benchmark “Quality” = Cursor **Review** (+ UI/E2E/codebase prompts).
 
 ### Ideate gates (this repo)
 
@@ -97,66 +97,66 @@ Research (`*.research.md`) → human gate → Plan (`*.plan.md`) → human gate 
 
 From `eversis-implement` / engineering-manager rules:
 
-1. `@eversis-implement` delegates UI work to Software Engineer  
-2. `@eversis-review-ui` — single-pass, read-only  
-3. Figma MCP (EXPECTED) + Playwright MCP (ACTUAL) → PASS/FAIL + diff  
-4. FAIL → fix → `@eversis-review-ui` again  
-5. Until PASS or max iterations / escalation  
+1. `@eversis-implement` delegates UI work to Software Engineer 
+2. `@eversis-review-ui` — single-pass, read-only 
+3. Figma MCP (EXPECTED) + Playwright MCP (ACTUAL) → PASS/FAIL + diff 
+4. FAIL → fix → `@eversis-review-ui` again 
+5. Until PASS or max iterations / escalation 
 
-### Review phase capabilities (map to copilot Phase 3 bullets)
+### Review phase capabilities (map to external benchmark Phase 3 bullets)
 
-- `@eversis-review` — structured code review  
-- `@eversis-review-ui` — Figma verification  
-- `@eversis-review-codebase` — codebase health (copilot mentions dead code / duplications)  
+- `@eversis-review` — structured code review 
+- `@eversis-review-ui` — Figma verification 
+- `@eversis-review-codebase` — codebase health (external benchmark mentions dead code / duplications) 
 - E2E via implement delegation (Playwright)
 
 ### Cursor-only workflows to retain
 
-- **Business Manager Docs** — planner → writer + MCP Word tools  
-- **Fine → QA comment** in standard implement flowchart  
+- **Business Manager Docs** — planner → writer + MCP Word tools 
+- **Fine → QA comment** in standard implement flowchart 
 
 ---
 
 ## Proposed information architecture (target section)
 
 ```text
-## 🧭 Supported Workflow   (or keep plural "workflows" — see open questions)
+## 🧭 Supported Workflow (or keep plural "workflows" — see open questions)
 
 Intro: full lifecycle; rules + prompts work sequentially
 
 > Ideate → Implement → Review
 
 ### Phase 1: 📋 Ideate — Requirements & planning
-  4 bullets (inputs, quality review, gates 1/1.5/2, artifacts)
+ 4 bullets (inputs, quality review, gates 1/1.5/2, artifacts)
 
 ### Phase 2: 🛠 Implement — Architecture & delivery
-  4 bullets (research/plan/code, scoped changes, UI Figma loop, Fine/QA)
-  **Single flow: Implement → Review** table (@eversis-implement | @eversis-review)
+ 4 bullets (research/plan/code, scoped changes, UI Figma loop, Fine/QA)
+ **Single flow: Implement → Review** table (@eversis-implement | @eversis-review)
 
 ### Phase 3: ✅ Review — Quality & testing
-  4 bullets (code review, UI verify, E2E, codebase health)
+ 4 bullets (code review, UI verify, E2E, codebase health)
 
 ---
 
 ### Example: Full lifecycle (standard flow)
-  Enhanced flowchart (gates named; Fine/QA line kept)
+ Enhanced flowchart (gates named; Fine/QA line kept)
 
 ### Example: Full lifecycle (UI flow with Figma)
-  Full 3-phase flowchart (like copilot)
+ Full 3-phase flowchart (like external benchmark)
 
 You can run any flow with Jira ticket ID or free-form task description.
 
 > Important: human judgment callout (expanded)
 
 ### How the UI verification loop works
-  5 numbered steps (@eversis-*)
+ 5 numbered steps (@eversis-*)
 
 ### Example: Standalone ideation
-  Flowchart + artifact list + Gate 1/1.5/2 callout
-  (no explore-materials — not in this repo)
+ Flowchart + artifact list + Gate 1/1.5/2 callout
+ (no explore-materials — not in this repo)
 
 ### Example: Business Manager Docs
-  (keep — Cursor-specific)
+ (keep — Cursor-specific)
 
 Links: workflow overview, eversis-qa-comment SKILL.md
 ```
@@ -176,11 +176,11 @@ Links: workflow overview, eversis-qa-comment SKILL.md
 
 ### UI verification loop (numbered)
 
-1. `@eversis-implement` delegates a UI component to the Software Engineer  
-2. Calls `@eversis-review-ui` for **single-pass** verification (read-only)  
-3. `@eversis-review-ui` uses **Figma MCP** (EXPECTED) + **Playwright MCP** (ACTUAL) → PASS or FAIL with diff table  
-4. If FAIL → Engineering Manager delegates fix and calls `@eversis-review-ui` again  
-5. Repeats until PASS or max iterations (then escalates per implement prompt)  
+1. `@eversis-implement` delegates a UI component to the Software Engineer 
+2. Calls `@eversis-review-ui` for **single-pass** verification (read-only) 
+3. `@eversis-review-ui` uses **Figma MCP** (EXPECTED) + **Playwright MCP** (ACTUAL) → PASS or FAIL with diff table 
+4. If FAIL → Engineering Manager delegates fix and calls `@eversis-review-ui` again 
+5. Repeats until PASS or max iterations (then escalates per implement prompt) 
 
 ### Standalone ideation callout
 
@@ -192,7 +192,7 @@ Links: workflow overview, eversis-qa-comment SKILL.md
 
 | Risk | Mitigation |
 | ---- | ---------- |
-| Copying copilot Gate 0 / explore-materials | Use Cursor BA doc gates only; no explore prompt |
+| Copying external benchmark Gate 0 / explore-materials | Use Cursor BA doc gates only; no explore prompt |
 | Section too long | Phase bullets capped at 4 lines each |
 | Duplicates Agents / Quick start | Workflows = *when to run what*; agents = *who* |
 | `/` vs `@` inconsistency | Show both where Quick start does (`@eversis-implement` or `/eversis-implement`) in table |
@@ -201,7 +201,7 @@ Links: workflow overview, eversis-qa-comment SKILL.md
 
 ## Acceptance criteria (research)
 
-- [x] Gap vs copilot Supported Workflow documented
+- [x] Gap vs external benchmark Supported Workflow documented
 - [x] Cursor-accurate gates, artifacts, UI loop inventoried
 - [x] Target IA and draft highlights prepared
 - [x] Scope limited to README workflows section
@@ -225,7 +225,7 @@ Links: workflow overview, eversis-qa-comment SKILL.md
 
 ## References
 
-- Benchmark: [copilot-collections — Supported Workflow](https://github.com/TheSoftwareHouse/copilot-collections#-supported-workflow)
+- Benchmark: product-engineering README benchmark — Supported Workflow
 - Current: [`README.md`](../../../README.md) § Supported workflows
 - Gates: [`website/docs/agents/business-analyst.md`](../../../website/docs/agents/business-analyst.md)
 - Workflow: [`website/docs/workflow/overview.md`](../../../website/docs/workflow/overview.md)

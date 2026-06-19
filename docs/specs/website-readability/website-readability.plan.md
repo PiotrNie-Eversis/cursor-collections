@@ -1,6 +1,6 @@
 # Plan: Improve `website/` readability after README rewrite
 
-**Research:** [`website-readability.research.md`](./website-readability.research.md)  
+**Research:** [`website-readability.research.md`](./website-readability.research.md) 
 **Status:** Complete (2026-06-07).
 
 ---
@@ -32,8 +32,8 @@ Apply **Confluence-like docs chrome** on `/docs/**` (split-theme): light canvas,
 ## Split-theme model
 
 ```text
-/  and marketing React     → purple/dark (Phases 3, 7 navbar exception on docs routes)
-/docs/**                    → Confluence-like light chrome (Phase 7)
+/ and marketing React → purple/dark (Phases 3, 7 navbar exception on docs routes)
+/docs/** → Confluence-like light chrome (Phase 7)
 ```
 
 | Surface | Theme |
@@ -75,12 +75,12 @@ When editing README sections listed in the [parity map](#readme--site-parity-che
 
 - [ ] Frontmatter: `sidebar_position: 0`, `title: Start here`
 - [ ] Ordered checklist (links only, ~40–60 lines):
-  1. [Prerequisites](./prerequisites) — Cursor, Node ≥ 18, Git
-  2. [Installation](./installation) — clone / consumer `setup-cursor-local.sh`
-  3. [MCP setup](./mcp-setup) — build `eversis-collections`, enable servers
-  4. First prompt — `@eversis-implement` or `/eversis-implement` + link to [prompts overview](../prompts/overview)
-  5. [Workflow overview](../workflow/overview) — pick a variant
-  6. Optional: [Framework reference](../framework), [Agents overview](../agents/overview)
+ 1. [Prerequisites](./prerequisites) — Cursor, Node ≥ 18, Git
+ 2. [Installation](./installation) — clone / consumer `setup-cursor-local.sh`
+ 3. [MCP setup](./mcp-setup) — build `eversis-collections`, enable servers
+ 4. First prompt — `@eversis-implement` or `/eversis-implement` + link to [prompts overview](../prompts/overview)
+ 5. [Workflow overview](../workflow/overview) — pick a variant
+ 6. Optional: [Framework reference](../framework), [Agents overview](../agents/overview)
 - [ ] One-line tagline: Ideate → Implement → Review; human gates callout (`:::tip`)
 - [ ] **Confluence hub pattern:** footer **“In this section”** — bullet list of sibling getting-started pages (prerequisites, installation, mcp-setup, quick-wins)
 
@@ -113,7 +113,7 @@ Repeat for other doc folders in Phase 7: `workflow/_category_.json`, `agents/_ca
 **Hero:** [`website/src/components/HeroSection/index.tsx`](../../../website/src/components/HeroSection/index.tsx)
 
 - [ ] Subcopy: Cursor-native framework; **Ideate → Implement → Review**; human gates
-- [ ] Optional credit line: Eversis; based on copilot-collections (match README tone)
+- [ ] Optional credit line: Eversis; based on product-engineering README benchmark (match README tone)
 - [ ] Primary CTA → `/docs/getting-started/start-here`; secondary → GitHub or `/docs/`
 
 **Features:** [`website/src/components/HomepageFeatures/index.tsx`](../../../website/src/components/HomepageFeatures/index.tsx)
@@ -136,17 +136,17 @@ Repeat for other doc folders in Phase 7: `workflow/_category_.json`, `agents/_ca
 **Getting started:** [`website/src/components/GettingStartedSection/index.tsx`](../../../website/src/components/GettingStartedSection/index.tsx)
 
 - [ ] Expand to **6 steps** (parity with README Quick start lines 254–259):
-  1. Open in Cursor
-  2. Read AGENTS.md + framework doc
-  3. Rules (`eversis-agent-core`, `eversis-project-stack`)
-  4. Attach `@eversis-implement` or `/eversis-implement`
-  5. MCP — build + enable `eversis-collections`
-  6. Skills via `eversis_skills_list` / `eversis_skills_get`
+ 1. Open in Cursor
+ 2. Read AGENTS.md + framework doc
+ 3. Rules (`eversis-agent-core`, `eversis-project-stack`)
+ 4. Attach `@eversis-implement` or `/eversis-implement`
+ 5. MCP — build + enable `eversis-collections`
+ 6. Skills via `eversis_skills_list` / `eversis_skills_get`
 - [ ] Primary button → `/docs/getting-started/start-here`
 
 **Other homepage:** [`website/src/components/SocialProof/index.tsx`](../../../website/src/components/SocialProof/index.tsx) — grep and align phase terminology if present
 
-**Layout meta:** [`website/src/pages/index.tsx`](../../../website/src/pages/index.tsx) — update `description` if it still says “ideation” in Copilot terms
+**Layout meta:** [`website/src/pages/index.tsx`](../../../website/src/pages/index.tsx) — update `description` if it still says “ideation” in external benchmark terms
 
 ---
 
@@ -160,11 +160,11 @@ Keep page **short** (~80–100 lines max). Do **not** paste README-length flowch
 - [ ] Add **Implement → Review** table (match README)
 - [ ] Replace bullet “Workflow Variants” with **variants table** (Variant | Entry | Use when) — mirror README
 - [ ] Add per-variant **`:::info`** admonitions with one-sentence teaser + link:
-  - [Standard flow](./standard-flow)
-  - [Frontend flow](./frontend-flow) — include UI loop one-liner + “5 steps” link to child page
-  - [Workshop analysis](./workshop-flow)
-  - [E2E testing](./e2e-flow)
-  - [Business Manager Docs](./business-manager-docs)
+ - [Standard flow](./standard-flow)
+ - [Frontend flow](./frontend-flow) — include UI loop one-liner + “5 steps” link to child page
+ - [Workshop analysis](./workshop-flow)
+ - [E2E testing](./e2e-flow)
+ - [Business Manager Docs](./business-manager-docs)
 - [ ] Keep existing `<SdlcDiagram />` and human-gates `:::warning`
 - [ ] Preserve **Fine → QA comment** block
 - [ ] **Hub footer:** “Workflow playbooks” — links to all variant pages (Confluence child-list pattern)
@@ -184,10 +184,10 @@ Keep page **short** (~80–100 lines max). Do **not** paste README-length flowch
 **Agents:** [`website/docs/agents/overview.md`](../../../website/docs/agents/overview.md)
 
 - [ ] Insert **phase-grouped Focus blocks** above tables (source: README § Agents lines 287–366):
-  - 📋 Product ideation — Business Analyst
-  - 🛠 Development — Context Engineer, Architect, Engineering Manager, Software Engineer, Prompt Engineer, DevOps Engineer
-  - ✅ Quality — Code Reviewer, UI Reviewer, E2E Engineer
-  - ⚙️ Cursor customization — engineer + orchestrator
+ - 📋 Product ideation — Business Analyst
+ - 🛠 Development — Context Engineer, Architect, Engineering Manager, Software Engineer, Prompt Engineer, DevOps Engineer
+ - ✅ Quality — Code Reviewer, UI Reviewer, E2E Engineer
+ - ⚙️ Cursor customization — engineer + orchestrator
 - [ ] Each block: **Focus** (bold), 2–4 bullets, **Invoke** line where applicable
 - [ ] Rename existing tables section to **Reference tables** — table content unchanged
 - [ ] Keep handoff diagram
@@ -195,11 +195,11 @@ Keep page **short** (~80–100 lines max). Do **not** paste README-length flowch
 **MCP:** [`website/docs/getting-started/mcp-setup.md`](../../../website/docs/getting-started/mcp-setup.md)
 
 - [ ] Add **executive summary** at top (before “This repository”):
-  - Option 1 User profile / Option 2 Workspace (short)
-  - Build `eversis-collections` one-liner + link to [MCP package README](https://github.com/PiotrNie-Eversis/cursor-collections/blob/main/mcp/eversis-collections-mcp/README.md)
-  - “What each MCP is used for” bullet list (emoji, match README)
-  - Sequential Thinking one paragraph + link to [sequential-thinking](../integrations/sequential-thinking)
-  - **Verify** checklist (open Agent, confirm `eversis_skills_list`)
+ - Option 1 User profile / Option 2 Workspace (short)
+ - Build `eversis-collections` one-liner + link to [MCP package README](https://github.com/PiotrNie-Eversis/cursor-collections/blob/main/mcp/eversis-collections-mcp/README.md)
+ - “What each MCP is used for” bullet list (emoji, match README)
+ - Sequential Thinking one paragraph + link to [sequential-thinking](../integrations/sequential-thinking)
+ - **Verify** checklist (open Agent, confirm `eversis_skills_list`)
 - [ ] Keep existing detailed sections below (no deletion)
 
 **Installation:** [`website/docs/getting-started/installation.md`](../../../website/docs/getting-started/installation.md)
@@ -216,9 +216,9 @@ Keep page **short** (~80–100 lines max). Do **not** paste README-length flowch
 **Optional A+ — grep gate:** [`scripts/check-readme-site-parity.mjs`](../../../scripts/check-readme-site-parity.mjs) *(new)*
 
 - [ ] Fail if scoped paths contain forbidden **current-guidance** strings:
-  - `Product Ideation` (phase name)
-  - `not built-in` + `slash command`
-  - `/tsh-`
+ - `Product Ideation` (phase name)
+ - `not built-in` + `slash command`
+ - `/eversis-`
 - [ ] Scope: `website/docs/`, `website/src/components/`, `README.md` (exclude `changelog.md` history)
 - [ ] Wire into `website/package.json` `prebuild` **or** manual script only — confirm at implementation
 
@@ -251,8 +251,8 @@ Keep page **short** (~80–100 lines max). Do **not** paste README-length flowch
 - [ ] `themeConfig.colorMode.defaultMode: 'light'`
 - [ ] `themeConfig.colorMode.disableSwitch: false` — allow user toggle; docs default light
 - [ ] Under `presets[classic].docs`:
-  - `breadcrumbs: true`
-  - `tableOfContents: { position: 'right', minHeadingLevel: 2, maxHeadingLevel: 4 }`
+ - `breadcrumbs: true`
+ - `tableOfContents: { position: 'right', minHeadingLevel: 2, maxHeadingLevel: 4 }`
 - [ ] Keep homepage dark: ensure marketing page CSS does not inherit docs-only tokens (scoped under `.docs-wrapper`)
 
 #### 7b — Confluence palette (docs only)
@@ -273,9 +273,9 @@ Add section **“Confluence-like docs chrome”** — variables scoped to `.docs
 - [ ] Doc article max-width readable (~900px content column feel)
 - [ ] **Tables** (`.theme-doc-markdown table`): header bg `#F4F5F7`, borders `#DFE1E6`, full width
 - [ ] **Panel admonitions** (`.alert`, `.alert--info`, `--tip`, `--warning`, `--danger`):
-  - Soft background fill (not heavy purple)
-  - `border-left: 4px solid` per type (info=blue, warning=amber, tip=teal/grey-green)
-  - Title font-weight 600
+ - Soft background fill (not heavy purple)
+ - `border-left: 4px solid` per type (info=blue, warning=amber, tip=teal/grey-green)
+ - Title font-weight 600
 - [ ] Retune **`alert--brand`** on docs pages only: either map to info-blue or keep purple as “Eversis” exception — **prefer info styling** for `:::brand` in docs hub pages
 - [ ] **Sidebar** (`.theme-doc-sidebar`): active link — blue text + left border or bg tint; slightly denser line-height; category label uppercase/muted
 - [ ] **TOC** right rail: smaller type, muted links, active heading blue

@@ -12,7 +12,7 @@ upstream_agent: "eversis-plan-reviewer"
 Not invoked directly by users. To trigger plan validation, use [eversis-implement](../public/eversis-implement.md) — the Engineering Manager delegates to the Plan Reviewer after the Architect produces or updates a plan (unless an approved `.plan-review.md` already exists and the plan is unchanged).
 :::
 
-**Agent:** Plan Reviewer  
+**Agent:** Plan Reviewer 
 **File:** `.cursor/prompts/internal/eversis-review-plan.md`
 
 Stress-tests implementation plans for likely failure modes, hidden assumptions, and costly rework before code is written.
@@ -126,4 +126,4 @@ Save the full structured review report as `{task-name}.plan-review.md` alongside
 
 See also `.cursor/skills/eversis-creating-implementation-plans/plan-review.example.md` for a skeleton (or MCP `eversis_skills_get` for `eversis-creating-implementation-plans`).
 
-<!-- Eversis port; upstream: tsh-review-plan:v2 -->
+<!-- Eversis port; upstream: eversis-review-plan:v2 -->

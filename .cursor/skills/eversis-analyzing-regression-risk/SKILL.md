@@ -16,17 +16,17 @@ Analyzes code changes, Jira context, and documentation to determine which existi
 1. Identify the changed files and their scope (use `get_changed_files` tool or accept a diff/PR description from the user)
 2. **Fetch Jira context**: Search for related Jira tickets — user stories, bugs, sub-tasks, and linked issues that touch the same feature area. Look at acceptance criteria, recent bugs, and reopened issues.
 
-   **Pagination & completeness (MANDATORY):**
-   - Set `maxResults: 100` for all JQL queries.
-   - After each query, compare the returned count to `totalCount`. If `totalCount` exceeds the returned results, paginate using `AND key < "{lastKeyFromPreviousPage}" ORDER BY key DESC` until all results are fetched.
-   - Do NOT proceed with partial data — analysis must be based on the complete dataset.
-   - Include ALL defect-related issue types: use `type in (Bug, "Story bug")` (or equivalent project-specific types). Check `getJiraProjectIssueTypesMetadata` if unsure which types exist.
+ **Pagination & completeness (MANDATORY):**
+ - Set `maxResults: 100` for all JQL queries.
+ - After each query, compare the returned count to `totalCount`. If `totalCount` exceeds the returned results, paginate using `AND key < "{lastKeyFromPreviousPage}" ORDER BY key DESC` until all results are fetched.
+ - Do NOT proceed with partial data — analysis must be based on the complete dataset.
+ - Include ALL defect-related issue types: use `type in (Bug, "Story bug")` (or equivalent project-specific types). Check `getJiraProjectIssueTypesMetadata` if unsure which types exist.
 
 3. **Fetch Confluence context** (if available): Search for relevant Confluence pages — feature specifications, regression checklists, release notes, QA documentation, or architecture docs that describe the affected area.
 4. Map changed code to functional areas:
-   - Which user-facing features depend on the changed modules?
-   - Which API endpoints or data flows are affected?
-   - Are there shared utilities or components that propagate risk?
+ - Which user-facing features depend on the changed modules?
+ - Which API endpoints or data flows are affected?
+ - Are there shared utilities or components that propagate risk?
 5. Classify regression risk per area:
 
 | Risk Level | Criteria |
@@ -97,4 +97,4 @@ These regression test cases serve dual purpose:
 
 - `eversis-planning-tests` — for test plan generation that may precede regression analysis
 - `eversis-analyzing-bugs` — for quality health reports that feed into regression priorities
-- `tsh-task-analysing` — for gathering broader Jira/Confluence context
+- `eversis-task-analysing` — for gathering broader Jira/Confluence context

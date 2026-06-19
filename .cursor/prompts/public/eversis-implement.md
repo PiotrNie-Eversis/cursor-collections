@@ -8,7 +8,7 @@ upstream_agent: "eversis-engineering-manager"
 ---
 # eversis-implement
 
-**Agent:** Engineering Manager  
+**Agent:** Engineering Manager 
 **File:** `.cursor/prompts/public/eversis-implement.md`
 
 Thin trigger for implementation delivery. The canonical orchestration workflow lives in the **`eversis-orchestrating-implementation`** skill — load it via MCP (`eversis_skills_get`) or read `.cursor/skills/eversis-orchestrating-implementation/SKILL.md`.
@@ -59,4 +59,4 @@ Start implementation delivery for a feature based on a task description, Jira it
 
 **Workflow:** Start at Step 0 in `eversis-orchestrating-implementation` and follow that skill through Step 5 (Fine + `eversis-fine-handoff` in the same response). Do not duplicate orchestration steps in this prompt.
 
-<!-- Eversis port; upstream: tsh-implement:v2 + eversis-orchestrating-implementation -->
+<!-- Eversis port; upstream: eversis-implement:v2 + eversis-orchestrating-implementation -->

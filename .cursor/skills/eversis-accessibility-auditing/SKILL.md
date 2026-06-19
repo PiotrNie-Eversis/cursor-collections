@@ -192,18 +192,18 @@ Ask these **before** the audit begins to establish baseline parameters.
 - **Header**: `Audit Scope`
 - **Question**: "What is the scope of this audit?"
 - **Options**:
-  - `Full site` — "Audit all unique page templates and key user journeys"
-  - `Specific pages` *(recommended)* — "Audit only the pages I specify"
-  - `Single component` — "Audit a single component or widget in isolation"
+ - `Full site` — "Audit all unique page templates and key user journeys"
+ - `Specific pages` *(recommended)* — "Audit only the pages I specify"
+ - `Single component` — "Audit a single component or widget in isolation"
 - **When to ask**: Always, unless the user already specified a URL or file path with clear scope.
 
 **Q2 — Compliance Level**
 - **Header**: `WCAG Compliance Target`
 - **Question**: "Which WCAG 2.2 conformance level should this audit target?"
 - **Options**:
-  - `Level A` — "Minimum — essential accessibility"
-  - `Level AA` *(recommended)* — "Standard — recommended for most projects"
-  - `Level AAA` — "Enhanced — highest conformance, often partially applied"
+ - `Level A` — "Minimum — essential accessibility"
+ - `Level AA` *(recommended)* — "Standard — recommended for most projects"
+ - `Level AAA` — "Enhanced — highest conformance, often partially applied"
 - **When to ask**: Always, unless the user explicitly stated the target level.
 
 **Q3 — Priority Focus Areas**
@@ -211,11 +211,11 @@ Ask these **before** the audit begins to establish baseline parameters.
 - **Question**: "Are there specific areas you want prioritized in this audit?"
 - **multiSelect**: true
 - **Options**:
-  - `Forms & inputs` — "Login, registration, checkout, contact forms"
-  - `Navigation & wayfinding` — "Menus, breadcrumbs, skip links, search"
-  - `Media content` — "Images, video, audio, animations"
-  - `Interactive widgets` — "Modals, tabs, accordions, carousels, drag-and-drop"
-  - `All areas equally` *(recommended)* — "No specific priority"
+ - `Forms & inputs` — "Login, registration, checkout, contact forms"
+ - `Navigation & wayfinding` — "Menus, breadcrumbs, skip links, search"
+ - `Media content` — "Images, video, audio, animations"
+ - `Interactive widgets` — "Modals, tabs, accordions, carousels, drag-and-drop"
+ - `All areas equally` *(recommended)* — "No specific priority"
 - **When to ask**: For multi-page or full-site audits where prioritization helps allocate effort.
 
 ### Pre-Manual-Testing — Testing Approach
@@ -226,13 +226,13 @@ Ask after automated tools complete, before manual testing begins.
 - **Header**: `Manual Testing Approach`
 - **Question**: "How should manual accessibility testing be performed?"
 - **Options**:
-  - `Automated with built-in browser` *(recommended)* — "Use VS Code built-in browser to test keyboard nav, focus order, and interactive component behavior"
-  - `Manual by me` — "Provide a step-by-step checklist and I'll test manually"
-  - `Hybrid` — "Automate what's possible with the built-in browser, give me a checklist for the rest"
+ - `Automated with built-in browser` *(recommended)* — "Use VS Code built-in browser to test keyboard nav, focus order, and interactive component behavior"
+ - `Manual by me` — "Provide a step-by-step checklist and I'll test manually"
+ - `Hybrid` — "Automate what's possible with the built-in browser, give me a checklist for the rest"
 - **When to ask**: Always at the start of Step 3 (manual testing).
 - **Follow-up behavior**:
-  - If `Automated with built-in browser` or `Hybrid`: use VS Code built-in browser tools to navigate the audit URL, test keyboard flows, and capture page state.
-  - If `Manual by me` or `Hybrid`: generate a printable manual testing checklist with pass/fail columns.
+ - If `Automated with built-in browser` or `Hybrid`: use VS Code built-in browser tools to navigate the audit URL, test keyboard flows, and capture page state.
+ - If `Manual by me` or `Hybrid`: generate a printable manual testing checklist with pass/fail columns.
 
 ### During-Audit — Clarifications
 
@@ -242,10 +242,10 @@ Ask these **during** the audit when the agent encounters ambiguity. One question
 - **Header**: `[SC 1.1.1] Image Purpose`
 - **Question**: "Is this image purely decorative or does it convey information? [image description/path]"
 - **Options**:
-  - `Decorative` — "Use empty alt=\"\", no information lost if hidden"
-  - `Informative` — "Needs descriptive alt text conveying its meaning"
-  - `Functional` — "It's a link/button — alt text should describe the action"
-  - `Complex` — "Chart, diagram, or infographic — needs long description"
+ - `Decorative` — "Use empty alt=\"\", no information lost if hidden"
+ - `Informative` — "Needs descriptive alt text conveying its meaning"
+ - `Functional` — "It's a link/button — alt text should describe the action"
+ - `Complex` — "Chart, diagram, or infographic — needs long description"
 - **When to ask**: When confidence in image purpose is < 80%.
 
 **Q6 — Link/Button Purpose**
@@ -253,10 +253,10 @@ Ask these **during** the audit when the agent encounters ambiguity. One question
 - **Question**: "What is the purpose of this link/button with text '[text]'? The surrounding context doesn't clarify it."
 - **allowFreeformInput**: true
 - **Options**:
-  - `Navigation` — "Takes user to another page/section"
-  - `Action` — "Triggers an operation (submit, delete, toggle)"
-  - `Download` — "Initiates a file download"
-  - `External` — "Opens a third-party site"
+ - `Navigation` — "Takes user to another page/section"
+ - `Action` — "Triggers an operation (submit, delete, toggle)"
+ - `Download` — "Initiates a file download"
+ - `External` — "Opens a third-party site"
 - **When to ask**: When link/button text is ambiguous (e.g., "Click here", "Read more", icon-only buttons without labels).
 
 **Q7 — Custom Widget Keyboard Behavior**
@@ -264,29 +264,29 @@ Ask these **during** the audit when the agent encounters ambiguity. One question
 - **Question**: "This custom [component type] has non-standard keyboard handling. What keys should activate/navigate it?"
 - **allowFreeformInput**: true
 - **Options**:
-  - `Standard ARIA pattern` *(recommended)* — "Follow WAI-ARIA Authoring Practices for this widget role"
-  - `Let me describe` — "I'll specify the expected keyboard interaction"
-  - `Skip — verify manually` — "Mark as Needs Manual Verification"
+ - `Standard ARIA pattern` *(recommended)* — "Follow WAI-ARIA Authoring Practices for this widget role"
+ - `Let me describe` — "I'll specify the expected keyboard interaction"
+ - `Skip — verify manually` — "Mark as Needs Manual Verification"
 - **When to ask**: When code reveals custom `onKeyDown`/`onKeyPress` handlers on non-native interactive elements.
 
 **Q8 — Dynamic Content Purpose**
 - **Header**: `[SC 4.1.3] Status Messages`
 - **Question**: "This dynamic content update [description] — should it be announced to screen readers?"
 - **Options**:
-  - `Yes — status message` — "Needs aria-live or role=status/alert"
-  - `Yes — error/warning` — "Needs role=alert for immediate announcement"
-  - `No — background update` — "Silent update, no announcement needed"
-  - `Unsure` — "Mark as Needs Manual Verification"
+ - `Yes — status message` — "Needs aria-live or role=status/alert"
+ - `Yes — error/warning` — "Needs role=alert for immediate announcement"
+ - `No — background update` — "Silent update, no announcement needed"
+ - `Unsure` — "Mark as Needs Manual Verification"
 - **When to ask**: When dynamic DOM changes are detected but no `aria-live` region or status role is present.
 
 **Q9 — Video/Audio Content Type**
 - **Header**: `[SC 1.2.1] Media Content Type`
 - **Question**: "What type of content does this media element contain?"
 - **Options**:
-  - `Pre-recorded with speech` — "Needs captions and transcript"
-  - `Pre-recorded — visual only` — "Needs audio description or text alternative"
-  - `Live stream` — "Needs live captions"
-  - `Decorative/ambient` — "Background music/video, no informational content"
+ - `Pre-recorded with speech` — "Needs captions and transcript"
+ - `Pre-recorded — visual only` — "Needs audio description or text alternative"
+ - `Live stream` — "Needs live captions"
+ - `Decorative/ambient` — "Background music/video, no informational content"
 - **When to ask**: When `<video>` or `<audio>` elements are found without `<track>` elements or transcript links.
 
 ### Finding Classification — Severity & Verification
@@ -297,20 +297,20 @@ Ask during Step 5 (classification) when the agent needs human judgment.
 - **Header**: `[SC X.X.X] Severity Confirmation`
 - **Question**: "I found [issue description]. How severe is the impact on users?"
 - **Options**:
-  - `Critical` — "Completely blocks task completion for assistive tech users"
-  - `Serious` — "Significant difficulty, major workarounds required"
-  - `Moderate` *(recommended — agent's best guess)* — "Inconvenient but usable"
-  - `Minor` — "Cosmetic, minimal user impact"
-  - `Not an issue` — "False positive, dismiss this finding"
+ - `Critical` — "Completely blocks task completion for assistive tech users"
+ - `Serious` — "Significant difficulty, major workarounds required"
+ - `Moderate` *(recommended — agent's best guess)* — "Inconvenient but usable"
+ - `Minor` — "Cosmetic, minimal user impact"
+ - `Not an issue` — "False positive, dismiss this finding"
 - **When to ask**: When the agent's severity confidence is below 80%, or when the issue is context-dependent.
 
 **Q11 — Finding Verification**
 - **Header**: `[SC X.X.X] Finding Verification`
 - **Question**: "Can you verify this finding? [description with element reference]"
 - **Options**:
-  - `Pass` — "This element is accessible as implemented"
-  - `Fail` — "Confirmed — this is a genuine accessibility issue"
-  - `Needs Manual Verification` — "Can't confirm without hands-on testing"
+ - `Pass` — "This element is accessible as implemented"
+ - `Fail` — "Confirmed — this is a genuine accessibility issue"
+ - `Needs Manual Verification` — "Can't confirm without hands-on testing"
 - **When to ask**: For issues that require visual or interaction verification the agent cannot fully simulate.
 
 ### Post-Audit — Report Delivery
@@ -321,13 +321,13 @@ Ask after all findings are collected, before report generation.
 - **Header**: `Remediation Detail Level`
 - **Question**: "How detailed should the fix recommendations be?"
 - **Options**:
-  - `Code fixes` *(recommended)* — "Provide corrected code snippets for each finding"
-  - `Guidance only` — "Describe what to fix conceptually, no code"
-  - `Quick wins first` — "Prioritize easy fixes, then detail complex ones"
+ - `Code fixes` *(recommended)* — "Provide corrected code snippets for each finding"
+ - `Guidance only` — "Describe what to fix conceptually, no code"
+ - `Quick wins first` — "Prioritize easy fixes, then detail complex ones"
 - **When to ask**: For audits with 10+ findings, to tailor the report output.
 
 ## Connected Skills
 
 - `eversis-functional-testing` — for test planning, edge-case detection, and regression analysis that complement accessibility audits
-- `tsh-ensuring-accessibility` — for implementation-time WCAG 2.2 AA patterns (this skill audits existing implementations; that skill builds accessible components from scratch)
-- `tsh-e2e-testing` — for automated accessibility checks integrated into e2e test suites
+- `eversis-ensuring-accessibility` — for implementation-time WCAG 2.2 AA patterns (this skill audits existing implementations; that skill builds accessible components from scratch)
+- `eversis-e2e-testing` — for automated accessibility checks integrated into e2e test suites

@@ -8,7 +8,7 @@ upstream_agent: "eversis-business-analyst"
 ---
 # eversis-analyze-materials
 
-**Agent:** Business Analyst  
+**Agent:** Business Analyst 
 **File:** `.cursor/prompts/public/eversis-analyze-materials.md`
 
 Processes discovery workshop materials and converts them into structured, Jira-ready epics and user stories. Can also import an existing Jira backlog for local iteration.
@@ -61,18 +61,18 @@ Artifacts under `docs/specs/<workshop-name>/` (or `specifications/<workshop-name
 
 ```text
 docs/specs/user-onboarding/
-  cleaned-transcript.md
-  intent-brief.md             ← Gate 0 scope brief
-  extracted-tasks.md
-  quality-review.md
-  jira-tasks.md
+ cleaned-transcript.md
+ intent-brief.md ← Gate 0 scope brief
+ extracted-tasks.md
+ quality-review.md
+ jira-tasks.md
 ```
 
 **Project continuity baseline** (optional, refreshed after successful Jira push):
 
 ```text
 docs/context/<project>/
-  task-baseline.md            ← epic/story index for future workshops
+ task-baseline.md ← epic/story index for future workshops
 ```
 
 :::tip Review gates
@@ -116,9 +116,9 @@ Determine the entry point based on what the user provides:
 2. **Analyze additional materials**: Review Figma (`figma` MCP), PDFs (`pdf-reader`), codebase (`eversis-codebase-analysing`), and other references.
 3. **Draft intent brief**: Using `eversis-task-extracting`, synthesize `intent-brief.md` (goal, in/out of scope, stakeholders, candidate epics, baseline overlap, open questions). Follow `intent-brief.example.md`.
 4. **Review Gate 0 (optional)**:
-   - **When ambiguous** — Present the intent brief; iterate until **Approved**.
-   - **When unambiguous** — Record `Skipped — materials unambiguous` in **Gate 0 Approval** with rationale; confirm skip in chat.
-   - Do not extract until Gate 0 is Approved or Skipped per above.
+ - **When ambiguous** — Present the intent brief; iterate until **Approved**.
+ - **When unambiguous** — Record `Skipped — materials unambiguous` in **Gate 0 Approval** with rationale; confirm skip in chat.
+ - Do not extract until Gate 0 is Approved or Skipped per above.
 5. **Extract tasks**: Using `eversis-task-extracting` and the approved/skipped intent brief, produce `extracted-tasks.md` with **Source** per story and `GIVEN / WHEN / THEN` acceptance criteria.
 6. **Review Gate 1**: Present the task list; iterate until approved.
 7. **Quality review**: `eversis-task-quality-reviewing` (Lite or Full) — automatic after Gate 1.
@@ -145,4 +145,4 @@ Determine the entry point based on what the user provides:
 
 Follow template structures from each skill strictly.
 
-<!-- Eversis port; upstream: tsh-analyze-materials:v3 + optional Gate 0 -->
+<!-- Eversis port; upstream: eversis-analyze-materials:v3 + optional Gate 0 -->

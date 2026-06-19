@@ -38,8 +38,7 @@ const HeroSection = () => {
           </Link>
         </div>
         <p className={styles.heroProof}>
-          Maintained by Eversis · Based on Copilot Collections · MIT ·
-          Cursor-native
+          Maintained by Eversis · MIT · Cursor-native
         </p>
       </div>
     </div>

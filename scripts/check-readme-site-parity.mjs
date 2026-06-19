@@ -14,10 +14,8 @@ const SCAN_ROOTS = [
   join(ROOT, "website/src/components"),
 ];
 
-const SKIP_PATH_PARTS = [
-  `${join("website", "docs", "prompts")}${join("", "")}`, // website/docs/prompts
-  join("website", "docs", "framework-reference.md"),
-];
+const FORBIDDEN_EXTERNAL =
+  /TSH|TheSoftwareHouse|copilot-collections|Copilot Collections|tsh\.io|\/tsh-|\btsh-/i;
 
 function shouldSkip(file) {
   const rel = relative(ROOT, file);
@@ -59,12 +57,11 @@ function checkFile(file) {
       violations.push({ loc, label: "not built-in slash commands" });
     }
 
-    if (/\/tsh-/.test(line)) {
-      const negated =
-        /not used|are not used|Legacy|no legacy|not used in Cursor/i.test(line);
-      if (!negated) {
-        violations.push({ loc, label: "/tsh- legacy commands (undocumented)" });
-      }
+    if (FORBIDDEN_EXTERNAL.test(line)) {
+      violations.push({
+        loc,
+        label: "forbidden external framework reference",
+      });
     }
   }
 

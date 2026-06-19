@@ -8,7 +8,7 @@ upstream_agent: "eversis-repo-docs-writer"
 ---
 # eversis-repo-docs-writer
 
-**Role:** Repo Docs writer  
+**Role:** Repo Docs writer 
 **File:** `.cursor/prompts/public/eversis-repo-docs-writer.md`
 
 Authors or updates **repository** documentation according to a delegated task or explicit user request. Targets: README, CHANGELOG, `docs/`, `docs/specs/`, and the published documentation site (`website/docs/`).
@@ -86,4 +86,4 @@ Return:
 2. Verification performed (link validate, `npm run build`, or manual path checks)
 3. Open dependencies or ambiguities outside documentation scope
 
-<!-- Eversis port; upstream: tsh-write-documentation:v1 + tsh-writing-documentation -->
+<!-- Eversis port; upstream: eversis-write-documentation:v1 + eversis-writing-documentation -->

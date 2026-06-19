@@ -110,4 +110,4 @@ Top 5-10 areas with justification from bug data.
 
 - `eversis-planning-tests` — for test plan generation that may follow quality health report findings
 - `eversis-analyzing-regression-risk` — for regression scope analysis based on bug density data
-- `tsh-task-analysing` — for gathering broader Jira/Confluence context before analysis
+- `eversis-task-analysing` — for gathering broader Jira/Confluence context before analysis
