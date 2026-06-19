@@ -26,10 +26,16 @@ Each phase passes a reviewed deliverable to the next. Workshop materials feed th
 
 ### 2. Implement
 
-- **Role:** Engineering Manager (delegates Context Engineer, Architect, implementers)
+- **Role:** Engineering Manager (delegates Context Engineer, Architect, Plan Reviewer, implementers)
 - **Prompt:** `@eversis-implement` with a Jira ID or task description
-- **Flow:** Quick or Full (see [Orchestrating Implementation](../skills/orchestrating-implementation)) → research → plan → plan validation → code → **Fine** + mandatory QA comment draft.
-- **Produces:** `*.research.md`, `*.plan.md`, `*.plan-review.md`, code changes.
+- **Flow selection:** Step 0 — EM recommends **Quick** or **Full** in chat (you may override). See [Orchestrating Implementation](../skills/orchestrating-implementation).
+- **Quick Flow:** implement → quality checks → `@eversis-review` → **Fine** + QA draft (skips full research/plan when criteria pass).
+- **Full Flow:** research → plan → plan validation → code → **Fine** + mandatory QA comment draft.
+- **Produces:** `*.research.md`, `*.plan.md`, `*.plan-review.md` (Full), code changes.
+
+:::info Quick vs Full
+**Hard exclusion:** Figma, UI verification tasks, cross-domain work, or likely >3 files → **Full Flow only**. Quick is for narrow, low-risk fixes after you confirm the EM recommendation.
+:::
 
 ### 3. Review
 
@@ -41,8 +47,9 @@ Each phase passes a reviewed deliverable to the next. Workshop materials feed th
 
 | Step | Attach | What happens |
 | ---- | ------ | ------------ |
-| Implement | `@eversis-implement` or `/eversis-implement` | Engineering Manager: research → plan → plan validation → implementation; declares Fine + QA draft |
-| Review | `@eversis-review` or `/eversis-review` | Structured code review |
+| Implement (Quick) | `@eversis-implement` | EM: implement → review → Fine + QA draft |
+| Implement (Full) | `@eversis-implement` | EM: research → plan → plan validation → implementation → Fine + QA draft |
+| Review | `@eversis-review` | Structured code review |
 
 ## Status: Fine — handoff
 
@@ -66,14 +73,14 @@ Each step requires your review. Open generated documents, iterate until correct,
 
 | Variant | Entry | Use when |
 | ------- | ----- | -------- |
-| **Standard flow** | `@eversis-implement` → `@eversis-review` | Backend / fullstack delivery |
+| **Standard flow** | `@eversis-implement` → `@eversis-review` | Backend / fullstack — Quick or Full at Step 0 |
 | **UI + Figma** | `@eversis-implement` + `@eversis-review-ui` loop | Design-driven UI |
 | **[Workshop analysis](./workshop-flow)** | `@eversis-analyze-materials` | Workshop → Jira only |
 | **[E2E testing](./e2e-flow)** | `@eversis-implement` (E2E tasks in plan) | Playwright coverage |
 | **[Business Manager Docs](./business-manager-docs)** | `@eversis-ba-docs-planner` → writer | Word `.docx` release docs |
 
 :::info Standard flow
-Full step-by-step: [Standard Flow](./standard-flow) — research, plan, implement, review with human gates at each stage.
+Full step-by-step: [Standard Flow](./standard-flow) — **Quick vs Full** at Step 0, then research, plan, implement, review with human gates.
 :::
 
 :::info Frontend / UI flow

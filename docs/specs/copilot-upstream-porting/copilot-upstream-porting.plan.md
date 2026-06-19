@@ -289,9 +289,13 @@ flowchart LR
 
 **Definition of Done:**
 
-- [ ] Tabela kryteriów Quick vs Full w skillu
-- [ ] `website/docs/workflow/overview.md` — wzmianka Quick vs Full
-- [ ] EM pyta w czacie przed wyborem Quick
+- [x] Tabela kryteriów Quick vs Full w skillu
+- [x] `website/docs/workflow/overview.md` — wzmianka Quick vs Full
+- [x] EM pyta w czacie przed wyborem Quick
+- [x] `standard-flow.md` — Quick vs Full + przykład Quick
+- [x] `frontend-flow.md` — Full wymuszony dla Figma/UI
+
+**Status:** ✅ Zaimplementowano (commit po A′).
 
 ---
 
@@ -310,8 +314,10 @@ flowchart LR
 
 **Definition of Done:**
 
-- [ ] Gate 1.5 produkuje `quality-review.md` zgodny z przykładem
-- [ ] Lite/Full mode opisane w skillu
+- [x] Gate 1.5 produkuje `quality-review.md` zgodny z przykładem
+- [x] Lite/Full mode opisane w skillu
+
+**Status:** ✅ Zaimplementowano.
 
 ---
 
@@ -565,8 +571,7 @@ Po zmianach w `mcp/eversis-collections-mcp/` — `npm run build` w pakiecie MCP 
 
 Po **akceptacji tego planu:**
 
-1. Otworzyć PR **Faza 0** (fine-handoff rename).
-2. Po merge 0 → PR **Faza A** (plan review + plan template).
-3. Nie łączyć faz 0+A w jednym PR.
+1. ~~Faza 0~~ → ~~Faza A~~ → ~~A′~~ → ~~B~~ → ~~C~~ — **zrobione lokalnie** (commity na `main`).
+2. Następny PR planowy: **Faza D** (Gate 0 + intent brief).
 
-**Status:** Plan — **Faza 0 zaimplementowana** (fine-handoff rename). Następny PR: **Faza A** (plan review + self-contained plan).
+**Status:** Plan — **Fazy 0, A, A′, B, C zaimplementowane lokalnie**. Następna: **Faza D** (Gate 0 / intent-brief).

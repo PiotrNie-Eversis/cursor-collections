@@ -7,10 +7,15 @@ title: Frontend Flow
 
 For UI-heavy tasks with Figma designs, use the specialized frontend workflow. This extends the standard flow with iterative Figma verification to ensure the implementation matches the design within tolerance.
 
+:::warning Full Flow required
+Any Figma involvement or `[REUSE]` UI verification task **disqualifies Quick Flow**. The Engineering Manager must run **Full Flow** (research → plan → plan validation → implement with per-item UI verification).
+:::
+
 ## Command Sequence
 
 ```text
 1️⃣ @eversis-implement <JIRA_ID or task description>  (or /eversis-implement)
+   ↳ 🔀 Engineering Manager recommends Full Flow (Figma/UI — Quick not allowed)
    ↳ 🔍 Engineering Manager delegates to Context Engineer for research
    ↳ 📖 Review research doc – verify Figma links, requirements
    ↳ ✅ Confirm to proceed to planning

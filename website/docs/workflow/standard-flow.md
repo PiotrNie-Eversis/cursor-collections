@@ -5,7 +5,24 @@ title: Standard Flow
 
 # Standard Flow
 
-The standard workflow is used for backend and fullstack tasks. The Engineering Manager orchestrates the full cycle: research → plan → plan validation → implement → review.
+The standard workflow is used for backend and fullstack tasks. The Engineering Manager orchestrates delivery via **Quick Flow** or **Full Flow** (see [Orchestrating Implementation](../skills/orchestrating-implementation)).
+
+## Quick Flow vs Full Flow
+
+At the start of `@eversis-implement`, the Engineering Manager assesses complexity and **recommends Quick or Full in chat**. You may override the recommendation.
+
+| | Quick Flow | Full Flow |
+| --- | --- | --- |
+| **Best for** | Narrow bugfixes and small changes (typically ≤3 files, one domain) | Cross-domain work, ambiguity, new modules, architecture changes |
+| **Skips** | Full research → plan → plan validation when criteria are met | Nothing — runs the full pipeline below |
+| **Path** | Implement → quality checks → `@eversis-review` → **Fine** + QA draft | Research → plan → plan validation → implement → review → **Fine** + QA draft |
+| **Hard rule** | — | **Any Figma link or `[REUSE]` UI verification task forces Full Flow** |
+
+Normative criteria and routing live in **`eversis-orchestrating-implementation`** — not duplicated here.
+
+## Full Flow (step-by-step)
+
+The Engineering Manager orchestrates the full cycle: research → plan → plan validation → implement → review.
 
 ## Step-by-Step Command Sequence
 
@@ -67,6 +84,18 @@ When the Engineering Manager declares **Fine**, it **always produces a QA commen
 - **Your action:** Review findings and recommendations. Address all blockers before merging.
 
 ## Example End-to-End Usage
+
+### Quick Flow (small fix)
+
+```text
+1⃣️ @eversis-implement <task description>
+   ↳ 🔀 Engineering Manager recommends Quick Flow — you confirm
+   ↳ 💻 Delegate implementation → run quality checks
+   ↳ 🔍 @eversis-review
+   ↳ ✅ Address blockers; Fine + QA comment draft in same response
+```
+
+### Full Flow (default for larger work)
 
 ```text
 1⃣️ /eversis-implement <JIRA_ID or task description>
