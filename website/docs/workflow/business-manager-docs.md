@@ -63,7 +63,7 @@ Cursor Collections has **two separate documentation playbooks** — do not mix t
 | Channel | Prompts | Format | Typical trigger |
 | ------- | ------- | ------ | ---------------- |
 | **BA Docs (Word)** | `@eversis-ba-docs-planner` → `@eversis-ba-docs-writer` | `.docx` | Jira release + Confluence rules |
-| **Repo Docs** *(planned)* | `@eversis-repo-docs-writer` | README, CHANGELOG, `website/docs` | Task from `@eversis-implement` |
+| **Repo Docs** | `@eversis-repo-docs-writer` | README, CHANGELOG, `website/docs`, `docs/` | Documentation task from `@eversis-implement` plan |
 
 This page documents **BA Docs (Word)** only.
 

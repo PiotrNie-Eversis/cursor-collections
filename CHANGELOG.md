@@ -8,6 +8,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ### Added
 
+- **Repo Docs writer (Phase G upstream port):** `eversis-writing-repo-documentation` skill, `@eversis-repo-docs-writer` prompt + command, [Repo Docs workflow](website/docs/workflow/repo-docs.md); EM routing in orchestration skill.
 - **Task baseline + post-push verification (Phase E):** Steps 10–11 in `eversis-jira-task-formatting`; `task-baseline.example.md`; baseline path `docs/context/<project>/task-baseline.md`.
 - **Gate 0 + intent brief (Phase D upstream port):** `intent-brief.example.md`; optional Gate 0 in `eversis-task-extracting` (approve or skip with `Skipped — materials unambiguous`).
 - **Orchestration skill (Phase A′ upstream port):** **`eversis-orchestrating-implementation`** — canonical Implement workflow (Quick vs Full, planning readiness, routing table, UI gate, Fine + `eversis-fine-handoff`).

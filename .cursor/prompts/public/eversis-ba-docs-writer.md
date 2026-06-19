@@ -14,7 +14,7 @@ upstream_agent: "eversis-ba-docs-writer"
 Applies an **approved** `docs-update-plan.md` to **Word `.docx`** files using **eversis-collections MCP** (`.docx` tools — do not paste whole documents into chat).
 
 :::note Not Repo Docs
-For **repository** documentation (README, CHANGELOG, `website/docs`, markdown under `/docs`), use the **Repo Docs** writer (`eversis-repo-docs-writer` when shipped) — typically delegated from `@eversis-implement`. This prompt is **only** for the **Business Manager Docs (Word)** playbook.
+For **repository** documentation (README, CHANGELOG, `website/docs`, markdown under `/docs`), use **`@eversis-repo-docs-writer`** — typically delegated from `@eversis-implement`. This prompt is **only** for the **Business Manager Docs (Word)** playbook.
 :::
 
 ## Usage

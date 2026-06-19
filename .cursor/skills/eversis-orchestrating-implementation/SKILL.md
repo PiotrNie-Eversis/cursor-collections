@@ -142,6 +142,7 @@ Process tasks in plan order. Consult the todo list before each task and update t
 | CI/CD | DevOps Engineer | [`eversis-implement-pipeline.md`](../../../.cursor/prompts/internal/eversis-implement-pipeline.md) | Pipeline work |
 | observability | DevOps Engineer | [`eversis-implement-observability.md`](../../../.cursor/prompts/internal/eversis-implement-observability.md) | Logging, metrics, or tracing |
 | LLM prompts | Prompt Engineer | [`eversis-engineer-prompt.md`](../../../.cursor/prompts/internal/eversis-engineer-prompt.md) | Prompt-engineering tasks |
+| repo documentation | Repo Docs Writer | [`eversis-repo-docs-writer.md`](../../../.cursor/prompts/public/eversis-repo-docs-writer.md) | README, CHANGELOG, `docs/`, `website/docs` only — not `.docx` |
 | `[REUSE]` UI verification | UI Reviewer | [`eversis-review-ui.md`](../../../.cursor/prompts/public/eversis-review-ui.md) | Review each UI item individually; do not batch |
 | `[REUSE]` other | per the task definition | — | Execute as defined; delegate to the matching implementer only when new product code is required |
 
@@ -178,5 +179,6 @@ When all validation and review gates pass:
 - `eversis-code-reviewing` — final review gate standards
 - `eversis-ui-verifying` — verification standard behind the per-item UI review gate
 - `eversis-fine-handoff` — mandatory QA comment draft on Fine (Cursor-only)
+- `eversis-writing-repo-documentation` — repository documentation tasks delegated from the plan
 - `eversis-task-analysing` — whether research context is complete before planning
 - `eversis-creating-implementation-plans` — plan structure and planning readiness signals

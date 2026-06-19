@@ -38,6 +38,10 @@ const replacements = [
     "./workflow/overview.md",
   ],
   [
+    "../website/docs/workflow/repo-docs.md",
+    "./workflow/repo-docs.md",
+  ],
+  [
     "[CHANGELOG.md](../CHANGELOG.md)",
     `[CHANGELOG.md](${GITHUB_BLOB}/CHANGELOG.md)`,
   ],

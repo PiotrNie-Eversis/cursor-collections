@@ -78,6 +78,7 @@ Each step requires your review. Open generated documents, iterate until correct,
 | **[Workshop analysis](./workshop-flow)** | `@eversis-analyze-materials` | Workshop → Jira only |
 | **[E2E testing](./e2e-flow)** | `@eversis-implement` (E2E tasks in plan) | Playwright coverage |
 | **[Business Manager Docs](./business-manager-docs)** | `@eversis-ba-docs-planner` → writer | Word `.docx` release docs |
+| **[Repo Docs](./repo-docs)** | `@eversis-repo-docs-writer` (or EM delegate) | README, CHANGELOG, `website/docs` after Implement |
 
 :::info Standard flow
 Full step-by-step: [Standard Flow](./standard-flow) — **Quick vs Full** at Step 0, then research, plan, implement, review with human gates.
@@ -95,6 +96,10 @@ Ideate-only with Gates 1, 1.5, 2: [Workshop Analysis Flow](./workshop-flow).
 Playwright work inside Implement: [E2E Testing Flow](./e2e-flow).
 :::
 
+:::info Repo Docs
+Repository markdown after Implement: [Repo Docs](./repo-docs) — `@eversis-repo-docs-writer` (not Word `.docx`).
+:::
+
 :::info Business Manager Docs
 Word `.docx` via `eversis-collections` MCP: [Business Manager Docs](./business-manager-docs).
 :::
@@ -106,3 +111,4 @@ Word `.docx` via `eversis-collections` MCP: [Business Manager Docs](./business-m
 - [Workshop Analysis Flow](./workshop-flow)
 - [E2E Testing Flow](./e2e-flow)
 - [Business Manager Docs](./business-manager-docs)
+- [Repo Docs](./repo-docs)

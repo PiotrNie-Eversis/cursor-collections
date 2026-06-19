@@ -389,12 +389,12 @@ flowchart LR
 
 **Start:** tylko po explicit approval + zakończeniu F.
 
-| Task | Deliverable |
-| ---- | ----------- |
-| G.1 | `.cursor/skills/eversis-writing-repo-documentation/SKILL.md` |
-| G.2 | `.cursor/prompts/public/eversis-repo-docs-writer.md` |
-| G.3 | `website/docs/workflow/` — rozdział Repo Docs (oddzielny od BA Docs Word) |
-| G.4 | Cross-link wykluczeń: Repo writer ≠ `.docx` / BA Docs |
+| Task | Deliverable | Status |
+| ---- | ----------- | ------ |
+| G.1 | `.cursor/skills/eversis-writing-repo-documentation/SKILL.md` | ✅ |
+| G.2 | `.cursor/prompts/public/eversis-repo-docs-writer.md` | ✅ |
+| G.3 | `website/docs/workflow/` — rozdział Repo Docs (oddzielny od BA Docs Word) | ✅ |
+| G.4 | Cross-link wykluczeń: Repo writer ≠ `.docx` / BA Docs | ✅ |
 
 ---
 
@@ -571,7 +571,7 @@ Po zmianach w `mcp/eversis-collections-mcp/` — `npm run build` w pakiecie MCP 
 
 Po **akceptacji tego planu:**
 
-1. ~~Faza 0~~ → ~~Faza A~~ → ~~A′~~ → ~~B~~ → ~~C~~ → ~~D~~ → ~~E~~ → ~~F~~ — **zrobione lokalnie** (commity na `main`).
-2. Opcjonalne fazy **G–I** wymagają explicit approval (Repo Docs, QA skille, filters).
+1. ~~Faza 0~~ → ~~Faza A~~ → ~~A′~~ → ~~B~~ → ~~C~~ → ~~D~~ → ~~E~~ → ~~F~~ → ~~G~~ — **zrobione lokalnie** (commity na `main`).
+2. Opcjonalne fazy **H–I** wymagają explicit approval (QA skille, filters).
 
-**Status:** Plan — **Fazy 0–F zaimplementowane lokalnie**. Opcjonalne: **Faza G** (Repo Docs writer), **H** (QA skille), **I** (implementing-filters).
+**Status:** Plan — **Fazy 0–G zaimplementowane lokalnie**. Opcjonalne: **Faza H** (QA skille), **I** (implementing-filters).

@@ -5,7 +5,7 @@ title: Skills Overview
 
 # Skills Overview
 
-Cursor Collections includes **35 reusable skills** — knowledge modules that provide specialized domain expertise, structured processes, and quality templates. They encode tested best practices for every phase of the product lifecycle. Skills are stored in `.cursor/skills/`. In Agent, use them through the **`eversis-collections` MCP** server (**`eversis_skills_list`**, **`eversis_skills_get`**, **`eversis_skill_run_script`** for allowlisted per-skill scripts, and related tools) after building [`mcp/eversis-collections-mcp/`](https://github.com/PiotrNie-Eversis/cursor-collections/tree/main/mcp/eversis-collections-mcp); do not register the folder separately as Cursor **Agent Skills** for this framework.
+Cursor Collections includes **36 reusable skills** — knowledge modules that provide specialized domain expertise, structured processes, and quality templates. They encode tested best practices for every phase of the product lifecycle. Skills are stored in `.cursor/skills/`. In Agent, use them through the **`eversis-collections` MCP** server (**`eversis_skills_list`**, **`eversis_skills_get`**, **`eversis_skill_run_script`** for allowlisted per-skill scripts, and related tools) after building [`mcp/eversis-collections-mcp/`](https://github.com/PiotrNie-Eversis/cursor-collections/tree/main/mcp/eversis-collections-mcp); do not register the folder separately as Cursor **Agent Skills** for this framework.
 
 ## How Skills Work
 
@@ -47,6 +47,7 @@ When an agent needs specialized procedures, it can pull **`SKILL.md` content** v
 | [eversis-implementation-gap-analysing](./implementation-gap-analysis)  | Gap analysis between plan and current state                   | Architect, CR, SE          |
 | [eversis-sql-and-database-understanding](./sql-and-database)           | Database engineering standards and ORM integration            | Architect, CR, SE          |
 | [eversis-codebase-analysing](./codebase-analysis)                      | Deep codebase analysis and dependency mapping                 | Architect, BA, CE, SE      |
+| [eversis-writing-repo-documentation](./writing-repo-documentation) | Repository docs: README, CHANGELOG, docs site | Repo Docs writer, EM delegate |
 | [eversis-engineering-prompts](./prompt-engineering)                    | LLM prompt design, optimization, security, and evaluation     | PE, SE, Architect, CR      |
 
 ### ☁️ Cloud & Infrastructure Skills
