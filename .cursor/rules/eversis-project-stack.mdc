@@ -36,7 +36,7 @@ npm run validate-cursor-links
 
 ## Conventions
 
-- **Specs / plans:** **`docs/specs/<issue-kebab>/`** — `*.research.md`, `*.plan.md`, `*.spec.md` (see **`docs/specs/README.md`**)
+- **Specs / plans:** **`docs/specs/<issue-kebab>/`** — `*.research.md`, `*.plan.md`, `*.spec.md` (see **`docs/specs/README.md`**). **In this framework repo**, `docs/specs/*/` is **gitignored** (local Implement artifacts only); normative BA Docs spec is on the docs site at **`website/docs/specs/business-docs-workflow.md`**.
 - **Internal notes:** **`docs/context/*.md`**
 - **Git commits:** JIRA-style first line — see **[AGENTS.md](../../AGENTS.md)** and team practice
 - **Template** for other projects: see **“Reference: Eversis stack example”** in [documentation/cursor-collection.md](../../documentation/cursor-collection.md)

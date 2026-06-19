@@ -23,6 +23,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ### Changed
 
+- **`docs/specs/*/` local-only (framework repo)** — Gitignore Implement subfolders; untrack historical research/plan artifacts from git; only `docs/specs/README.md` stays committed. Normative BA Docs spec migrated to [`website/docs/specs/business-docs-workflow.md`](website/docs/specs/business-docs-workflow.md). Consumer `setup-cursor-local.sh` defaults unchanged (`--gitignore-agent-artifacts` remains opt-in).
 - **Installation docs** — stack rule must include Agent skills policy after bootstrap.
 - **Docs cleanup (Phase F):** Architect read-only terminal guidance; integration-test emphasis in `eversis-code-reviewing`; agents overview + rule-pack template notes; Plan Reviewer in reference table; installation Cursor Agent bootstrap.
 - **Jira cycle (Phase E):** `eversis-analyze-materials` — post-push read-back and baseline refresh; `workshop-flow.md`, `business-analyst.md`, `jira-task-formatting.md`, `cursor-collection.md` updated.
@@ -161,7 +162,7 @@ After pulling this release:
 
 - **Markdown link validation** — [`scripts/validate-cursor-markdown-links.mjs`](scripts/validate-cursor-markdown-links.mjs) with `--context=source`, `--context=synced`, and `--context=agents`; wired into `website` **`validate-cursor-links`** (runs in **`prebuild`** / **`prestart`** after `sync-prompts` — broken links fail `npm run build`).
 - **Prompt link rewrite on sync** — [`scripts/lib/prompt-link-rewrite.mjs`](scripts/lib/prompt-link-rewrite.mjs) (`rewritePromptLinksForDocusaurus`, `buildPromptSlugMaps`, generated `prompt-slug-map.generated.json`); unit tests in [`scripts/lib/prompt-link-rewrite.test.mjs`](scripts/lib/prompt-link-rewrite.test.mjs).
-- **`docs/specs/cursor-md-link-refs/`** — research, implementation plan, and follow-up specs for prompt link fixes and agent-page links ([`cursor-md-link-refs-agents.*`](docs/specs/cursor-md-link-refs/)); dual-context skill follow-up in [`cursor-md-link-refs-creating-prompts-dual-context.*`](docs/specs/cursor-md-link-refs/).
+- **`docs/specs/cursor-md-link-refs/`** — research, implementation plan, and follow-up specs for prompt link fixes and agent-page links (`cursor-md-link-refs-agents.*`; dual-context skill follow-up in `cursor-md-link-refs-creating-prompts-dual-context.*`). *(Session artifacts; no longer committed — see 2026-06-19.)*
 
 ### Changed
 
@@ -193,7 +194,7 @@ After pulling this release:
 - **`.cursor/commands/`** — New directory with four thin Cursor `/` project command files (`eversis-implement.md`, `eversis-review.md`, `eversis-analyze-materials.md`, `eversis-review-ui.md`). Each file delegates to the canonical `.cursor/prompts/public/*.md` without duplicating workflow bodies. Type `/` in Cursor Chat or Agent to invoke from the dropdown.
 - **Business Manager Docs (Word)** — Public prompts **`eversis-ba-docs-planner`** / **`eversis-ba-docs-writer`** (`.cursor/prompts/public/`) with attach-on-demand rules **`eversis-ba-docs-planner.mdc`** / **`eversis-ba-docs-writer.mdc`**. Uses the same **`eversis-collections`** MCP `.docx` tools as the planner/writer workflows (no separate docs server in Cursor config).
 - **`eversis-collections` MCP — `.docx` chapter tools** — `generate_summary_map`, `read_chapter`, `update_chapter`, `upload_to_sharepoint` (stub); implementation under `mcp/eversis-collections-mcp/src/docx/` with unit tests in `mcp/eversis-collections-mcp/tests/chapters.test.ts`.
-- **`docs/specs/business-docs-workflow/`** — `business-docs-workflow.spec.md` and `business-docs-workflow.implementation-plan.md` for the BA Word documentation workflow.
+- **Business Docs normative spec** — [`website/docs/specs/business-docs-workflow.md`](website/docs/specs/business-docs-workflow.md) for the BA Word documentation workflow (migrated from local `docs/specs/business-docs-workflow/` in 2026-06-19).
 - **`website/docs/workflow/business-manager-docs.md`** — docs site page describing the Business Manager Docs workflow and prerequisites.
 
 ### Changed

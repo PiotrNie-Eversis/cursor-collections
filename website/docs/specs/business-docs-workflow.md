@@ -1,4 +1,11 @@
+---
+sidebar_position: 1
+title: Business Docs Workflow (normative spec)
+---
+
 # Specyfikacja Projektowa: Automatyzacja Aktualizacji Dokumentacji Biznesowej (Business Manager Docs)
+
+Normative requirements for the [Business Manager Docs workflow](../workflow/business-manager-docs). Playbook and command sequence live on that page; this document is the SSOT for roles, rules, and milestones.
 
 ## 1. Kontekst i Cel Biznesowy
 
@@ -15,7 +22,7 @@ Zgodnie z zasadami frameworka Cursor Collections, proces unika trzymania całoś
 - **Zadania (Jira):** Służy do pobierania surowego kontekstu biznesowego (Epiki, Taski, komentarze z Release'u) z Jiry.
 - **Reguły biznesowe (Confluence):** Służy do dynamicznego pobierania aktualnych zasad aktualizacji dokumentacji dla danego projektu (np. "DAWIS Documentation Definitions & Updating Rules").
 
-- **Narzędzia `.docx` na serwerze MCP `eversis-collections`** (`mcp/eversis-collections-mcp/`, Node: JSZip + `@xmldom/xmldom` na `word/document.xml`): Bezpieczna interakcja z plikami `.docx` przy zachowaniu stylów (bez pełnego round-tripu przez Pandoc).
+- **Narzędzia `.docx` na serwerze MCP `eversis-collections`** (`mcp/eversis-collections-mcp/`, Node: JSZip + `@xmldom/xmldom` na `word/document.xml`): Bezpieczna interakcja z plikami `.docx` przy zachowaniu styli (bez pełnego round-tripu przez Pandoc).
 - `generate_summary_map(docx_path)` -> Tworzy plik nawigacyjny `summary.md`.
 - `read_chapter(docx_path, chapter_id)` -> Pobiera treść konkretnego rozdziału.
 - `update_chapter(docx_path, chapter_id, new_content)` -> Nadpisuje treść.
@@ -25,7 +32,7 @@ Zgodnie z zasadami frameworka Cursor Collections, proces unika trzymania całoś
 
 ## 3. Role i Instrukcje (Cursor: prompty + reguły)
 
-Workflow opiera się na dwóch wyspecjalizowanych agentach współpracujących ze sobą i komunikujących się przez wspólny artefakt (`docs-update-plan.md`).
+Workflow opiera się na dwóch wyspecializowanych agentach współpracujących ze sobą i komunikujących się przez wspólny artefakt (`docs-update-plan.md`).
 
 ### 3.0. Prompty (`@eversis-ba-docs-*`) vs reguły (`.mdc`) w Cursor Collections
 
@@ -34,7 +41,7 @@ Zgodnie z konwencją monorepo **Cursor Collections** rozdzielamy:
 - **Publiczny prompt** — `.cursor/prompts/public/eversis-*.md`: treść **wykonywalnego workflow** (frontmatter Docusaurus + kroki SOP). W Cursorze **`@` + stem pliku** (np. `@eversis-ba-docs-planner`) zwykle rozwiązuje **właśnie ten prompt**.
 - **Reguła roli** — `.cursor/rules/eversis-*.mdc`: **kim jest agent**, granice, zachowanie przy narzędziach MCP; dołączana na żądanie (**`@`** do pliku `.mdc` lub wybór z pickera), często z `alwaysApply: false`.
 
-W praktyce dla tego workflow **obydwa artefakty są normatywne**: prompt uruchamia tor; reguła utrwala rolę i spójność z frameworkiem. Jeśli `@` nie łączy obu w jednej sesji, użytkownik **jawnie dołącza** drugi plik (pełna ścieżka pod `.cursor/…`), tak jak w [AGENTS.md](../../../AGENTS.md).
+W praktyce dla tego workflow **obydwa artefakty są normatywne**: prompt uruchamia tor; reguła utrwala rolę i spójność z frameworkiem. Jeśli `@` nie łączy obu w jednej sesji, użytkownik **jawnie dołącza** drugi plik (pełna ścieżka pod `.cursor/…`), tak jak w [AGENTS.md](https://github.com/PiotrNie-Eversis/cursor-collections/blob/main/AGENTS.md).
 
 ### Role 1: Główny Analityk (Planner)
 

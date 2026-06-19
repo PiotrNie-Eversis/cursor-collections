@@ -21,7 +21,7 @@ It follows the same **relay race** idea as the rest of Cursor Collections: each 
 - Release work is tracked in **Jira**, and **documentation update rules** live in **Confluence** (read dynamically; not baked into a single static prompt).
 - You need **incremental chapter edits** that preserve Word styling (avoid whole-document Markdown round-trips).
 
-Normative requirements and milestones are recorded in the repo spec: **`docs/specs/business-docs-workflow/business-docs-workflow.spec.md`**.
+Normative requirements and milestones are recorded in the published spec: [**Business Docs Workflow (normative spec)**](../specs/business-docs-workflow) (§3.0 prompt vs rule contract).
 
 ## Architecture (High Level)
 
