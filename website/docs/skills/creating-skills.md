@@ -35,7 +35,8 @@ eversis-<gerund-subject>/
 
 - Directory name uses gerund form with `eversis-` prefix
 - `name` field in frontmatter matches directory name
-- Description is concise (1–2 sentences)
+- Description includes WHAT, WHEN, and **Do NOT use when** (domain/stack skills)
+- Body includes **When to use / When NOT to use** for domain-specific skills
 - Body stays under 5000 tokens
 - No personality or behavioral content (agent territory)
 - No project-specific conventions (instructions territory)

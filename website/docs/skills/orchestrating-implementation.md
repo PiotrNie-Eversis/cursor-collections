@@ -39,8 +39,9 @@ The Engineering Manager recommends a flow in chat; the user may override.
 2. Human plan review → Plan Reviewer (`@eversis-review-plan`) → max 3 iterations.
 3. Use plan **Technical Context** when populated; otherwise delegate codebase discovery.
 4. Route each plan task via the execution routing table (Software Engineer, DevOps, E2E, Prompt Engineer, UI Reviewer).
-5. Enforce per-item UI verification before code review.
-6. Declare **Fine** and produce QA comment draft via `eversis-fine-handoff` in the same response.
+5. **Domain skills gate** — load stack-specific skills only when `eversis-project-stack.mdc` § Agent skills policy and the plan allow it.
+6. Enforce per-item UI verification before code review.
+7. Declare **Fine** and produce QA comment draft via `eversis-fine-handoff` in the same response.
 
 ## Connected Skills
 

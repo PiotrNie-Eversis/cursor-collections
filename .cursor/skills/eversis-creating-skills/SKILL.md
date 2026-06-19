@@ -179,13 +179,14 @@ The `description` field is the **primary discovery mechanism**. The agent reads 
 |---|---|
 | Length | 1–1024 characters. Non-empty. |
 | Point of view | Always third person. Never use "I", "you", or "we". |
-| Content | Must describe both WHAT the skill does AND WHEN to use it. |
+| Content | Must describe WHAT, WHEN to use, and **when NOT to use** (for stack-specific or domain skills). |
 | Keywords | Include specific trigger terms that help the agent identify relevant tasks. |
+| Exclusions | Domain skills MUST include `Do NOT use` triggers (stacks, patterns, or project types where the skill does not apply). |
 
 ### Formula
 
 ```
-{What the skill does — core capabilities}. {When to use it — triggers and contexts}.
+{What the skill does}. {When to use it — triggers}. {Do NOT use when — exclusions and what to use instead}.
 ```
 
 ### Good Examples
@@ -195,7 +196,11 @@ description: "Creates Cursor project rules in .cursor/rules/eversis-*.mdc for a 
 ```
 
 ```yaml
-description: "Extracts text and tables from PDF files, fills PDF forms, and merges multiple PDFs. Use when working with PDF documents or when the user mentions PDFs, forms, or document extraction."
+description: "Extracts text and tables from PDF files, fills PDF forms, and merges multiple PDFs. Use when working with PDF documents or when the user mentions PDFs, forms, or document extraction. Do NOT use for non-PDF office formats — use the appropriate document skill instead."
+```
+
+```yaml
+description: "URL-synced filter lists for Next.js with shareable query state. Use when implementing public list pages with filters in the URL aligned to REST list APIs. Do NOT use for Liferay/OData portals, static marketing sites, client-only filter state, or tasks where eversis-project-stack.mdc excludes this skill."
 ```
 
 ### Bad Examples
@@ -228,6 +233,7 @@ The Markdown body after the frontmatter contains the skill instructions. There a
 | Section | Required | Purpose |
 |---|---|---|
 | Introduction | **Yes** | 1-2 sentences describing what the skill does. |
+| When to use / When NOT to use | **Yes** for stack-specific or domain skills | Table or bullets: triggers and explicit exclusions (OSS consumers rely on this). |
 | Principles | No | Core design principles using `<principles>` XML tags — when the skill has foundational rules that constrain all decisions. |
 | Process / Workflow | **Yes** | Step-by-step checklist and detailed instructions. The core of the skill. |
 | Reference tables | No | Quick-reference tables for rules, patterns, or conventions. |

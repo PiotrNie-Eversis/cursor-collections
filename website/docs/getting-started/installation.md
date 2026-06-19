@@ -24,7 +24,7 @@ You can use any folder name; paths in [AGENTS.md](https://github.com/PiotrNie-Ev
 
 1. **File → Open Folder** and select the cloned `cursor-collections` directory (or add it to a multi-root workspace).
 2. Read **`AGENTS.md`** at the repo root and the [Framework reference](../framework) on this site (or **`documentation/cursor-collection.md`** in the repository) for the full model.
-3. Review **`.cursor/rules/`** — start with `eversis-agent-core.mdc` and customize `eversis-project-stack.mdc` when you copy rules into another project.
+3. Review **`.cursor/rules/`** — start with `eversis-agent-core.mdc` and customize `eversis-project-stack.mdc` (stack, quality commands, and **Agent skills policy**) when you copy rules into another project.
 
 ### Bootstrap a consumer project with Cursor Agent
 
@@ -141,7 +141,7 @@ bash "$CURSOR_COLLECTIONS_HOME/scripts/setup-cursor-local.sh" --build-mcp
 | ---- | ------------------ | ---------------------- |
 | Framework rules (`eversis-*.mdc` except stack) | Follows `CURSOR_COLLECTIONS_HOME` after `git pull` | Gitignored in consumer repo |
 | Prompts, commands, skills | Symlinked to HOME | Gitignored |
-| **`eversis-project-stack.mdc`** | Seeded once | **Commit in your project** |
+| **`eversis-project-stack.mdc`** | Seeded once | **Commit in your project** — include **Agent skills policy** (which `eversis-*` skills apply) |
 | **`AGENTS.md`**, `docs/specs/`, `docs/context/` | Scaffolded if missing | Your team owns content |
 | **`.cursor/mcp.json`** | Merged on re-run | Gitignored in local mode |
 

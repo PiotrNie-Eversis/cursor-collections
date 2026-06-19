@@ -113,6 +113,20 @@ You do not need every role as a separate file on day one: start with **`eversis-
 
 You may still namespace a **forked** copy of `SKILL.md` trees as `eversis-<topic>` in your own repo if you document your own MCP or consumption story.
 
+### Agent skills policy (consumer repos)
+
+The framework ships **many** optional skills. `setup-cursor-local` links or copies the full `.cursor/skills/` tree — that does **not** mean every skill applies to every project.
+
+| Skill class | Examples | Default |
+| ----------- | -------- | ------- |
+| **Universal** | `eversis-fine-handoff`, `eversis-code-reviewing`, `eversis-technical-context-discovering` | Safe on most tasks when relevant |
+| **Stack** | `eversis-implementing-frontend`, `eversis-implementing-backend`, `eversis-implementing-kubernetes` | Load only when the stack rule and task include that layer |
+| **Domain / optional** | `eversis-implementing-filters`, `eversis-ba-docs-*`, `eversis-accessibility-auditing` | Load only when stack policy, plan, or AC explicitly require it |
+
+**Mitigation (required for OSS consumers):** edit **`eversis-project-stack.mdc` § Agent skills policy** after bootstrap — list skills to **load when** and **do not load**, plus pointers to `docs/context/*.md`. The seeded template is [`eversis-project-stack.example.mdc`](https://github.com/PiotrNie-Eversis/cursor-collections/blob/main/scripts/setup-cursor-local/templates/eversis-project-stack.example.mdc).
+
+**Agent behavior:** `eversis-agent-core.mdc` instructs agents to read stack policy before `eversis_skills_get` and not to activate domain skills from keywords alone. Domain skills should document **When NOT to use** in `description` and `SKILL.md` (see `eversis-creating-skills`).
+
 ### MCP
 
 Use the same MCP servers (Atlassian, Figma, Playwright, Context7, etc.) in **Cursor Settings → MCP**, or open this repo and enable the workspace file [.cursor/mcp.json](../.cursor/mcp.json) when prompted. This repo lists **`eversis-collections`** (stdio) — build it from **`mcp/eversis-collections-mcp/`** (`npm install && npm run build`) before first use; it is **not** published to npm. That server exposes **skills** (`eversis_skills_*`, script runners) and **`.docx`** tools for the Business Manager Docs playbook.
@@ -271,7 +285,7 @@ After running the script, complete the steps marked *(always manual)* in the che
 
 *(Use this list for partial setups, audits, or when the script cannot be run.)*
 
-- [ ] Copy `.cursor/rules/` templates; **edit `eversis-project-stack.mdc`** for this repo's stack and quality commands.
+- [ ] Copy `.cursor/rules/` templates; **edit `eversis-project-stack.mdc`** for this repo's stack, **Agent skills policy**, and quality commands.
 - [ ] Copy **`.cursor/commands/`** if you want native **`/eversis-implement`** (and related) project commands; each command loads the matching file under `.cursor/prompts/public/`.
 - [ ] Ensure **`eversis-*.md`** prompts exist under `.cursor/prompts/public/` (and `internal/` as needed) — in **this** repository they are already present; in a **new** repo, start from the files you need (analyze / implement / review) and adapt.
 - [ ] Add `docs/specs/` and `docs/context/`; seed context with architecture or run wiki sync.

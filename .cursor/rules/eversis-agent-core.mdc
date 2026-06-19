@@ -21,9 +21,13 @@ When acting as Engineering Manager or running `eversis-implement`:
 
 Before broad implementation (after plan approval), check whether a skill package exists for the task domain:
 
-1. **Prefer** the **`eversis-collections` MCP** tools (`eversis_skills_list` / `eversis_skills_get`) to list and read skills when the server is running.
-2. **Otherwise** read the matching `SKILL.md` directly (Read tool or `@` attachment) for domain-specific work — e.g. SQL, accessibility, E2E, Terraform, CI/CD.
-3. Skill packages live under **`.cursor/skills/eversis-<topic>/`**. Do **not** register this folder as Cursor **Agent Skills** (see [AGENTS.md](../../AGENTS.md)).
+1. **Read `eversis-project-stack.mdc` § Agent skills policy** — respect **Do not load** rows; prefer **Load when** rows over keyword guessing.
+2. **Read `docs/context/*.md`** when present — project patterns override generic skill defaults.
+3. **Prefer** the **`eversis-collections` MCP** tools (`eversis_skills_list` / `eversis_skills_get`) when the server is running — only for skills allowed by the stack policy and the approved plan.
+4. **Otherwise** read the matching `SKILL.md` directly (Read tool or `@` attachment) for domain-specific work.
+5. Skill packages live under **`.cursor/skills/eversis-<topic>/`**. Do **not** register this folder as Cursor **Agent Skills** (see [AGENTS.md](../../AGENTS.md)).
+
+**Do not** load a domain skill solely because the user message mentions a related keyword (e.g. "filter", "list", "search"). Confirm stack policy, plan Technical Context, or explicit task scope first.
 
 ## Quality bar
 

@@ -41,6 +41,13 @@ npm run validate-cursor-links
 - **Git commits:** JIRA-style first line — see **[AGENTS.md](../../AGENTS.md)** and team practice
 - **Template** for other projects: see **“Reference: Eversis stack example”** in [documentation/cursor-collection.md](../../documentation/cursor-collection.md)
 
+## Agent skills policy (framework repo)
+
+| Do not load (product skills) | `eversis-implementing-filters`, `eversis-implementing-backend`, `eversis-implementing-frontend`, `eversis-ba-docs-*` — unless a spec explicitly requires them |
+| Load for framework work | `eversis-creating-skills`, `eversis-creating-prompts`, `eversis-writing-repo-documentation` |
+
+Consumer projects must replace this block per [installation](../../website/docs/getting-started/installation.md).
+
 ## Status: Fine — handoff (mandatory contract)
 
 Aligned with [workflow overview — Status: Fine](../../website/docs/workflow/overview.md):

@@ -150,19 +150,20 @@ Process tasks in plan order. Consult the todo list before each task and update t
 
 1. **Stay inside the approved plan** — If execution requires a material deviation, stop and get confirmation before changing direction.
 2. **Delegate by route, not by instinct** — Use the routing table; pass the plan section, Technical Context, and latest outputs.
-3. **Update after every task** — After each task, update plan checkboxes, the matching todo, and run appropriate checks.
-4. **Run checks after every task** — Lint, build, unit/integration tests, E2E, or infrastructure validation as appropriate for the changed area.
-5. **Handle `[REUSE]` UI verification as a per-item loop:**
+3. **Domain skills gate** — Before `eversis_skills_get` for stack-specific skills (frontend, backend, filters, BA Docs, etc.), confirm **`eversis-project-stack.mdc` § Agent skills policy** and the approved plan allow that skill. Do not load domain skills from task keywords alone.
+4. **Update after every task** — After each task, update plan checkboxes, the matching todo, and run appropriate checks.
+5. **Run checks after every task** — Lint, build, unit/integration tests, E2E, or infrastructure validation as appropriate for the changed area.
+6. **Handle `[REUSE]` UI verification as a per-item loop:**
    - Process each `[REUSE]` UI verification task one item at a time in plan order.
    - Delegate each item to UI Reviewer with `eversis-review-ui.md`, passing Figma URL, dev server URL, and component or section name.
    - Use [`eversis-implement-ui.md`](../../../.cursor/prompts/internal/eversis-implement-ui.md) as the workflow reference for the verify-fix loop.
    - Mark each item **PASSED** or **ESCALATED**. Never batch multiple UI verification items into one review step.
-6. **Enforce the UI verification gate** — Do not start code review until every `[REUSE]` UI verification item has been individually passed or escalated with explicit user approval.
-7. **Run code review after the UI gate clears** — Delegate to Code Reviewer with `eversis-review.md` only after the UI verification gate passes or is explicitly escalated per item.
-8. **Confirm before changing a reviewed solution** — If code review finds issues, ask for confirmation before changing the reviewed solution.
-9. **Route review fixes back through the correct implementer** — After confirmation, delegate fixes through the routing table, run affected checks, and re-run review when needed.
-10. **Treat direct implementation as a workflow violation** — If the orchestrator starts writing product code directly, stop and return to delegated execution.
-11. **Record solution changes in the plan Changelog** — When the approved solution changes during implementation, document it in the plan file's Changelog with timestamps after confirmation.
+7. **Enforce the UI verification gate** — Do not start code review until every `[REUSE]` UI verification item has been individually passed or escalated with explicit user approval.
+8. **Run code review after the UI gate clears** — Delegate to Code Reviewer with `eversis-review.md` only after the UI verification gate passes or is explicitly escalated per item.
+9. **Confirm before changing a reviewed solution** — If code review finds issues, ask for confirmation before changing the reviewed solution.
+10. **Route review fixes back through the correct implementer** — After confirmation, delegate fixes through the routing table, run affected checks, and re-run review when needed.
+11. **Treat direct implementation as a workflow violation** — If the orchestrator starts writing product code directly, stop and return to delegated execution.
+12. **Record solution changes in the plan Changelog** — When the approved solution changes during implementation, document it in the plan file's Changelog with timestamps after confirmation.
 
 ### Step 5 - Declare Fine and produce QA comment draft (Cursor-only)
 

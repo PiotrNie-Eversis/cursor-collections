@@ -16,7 +16,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ### Added
 
-- **QA workflow (Phase H):** `@eversis-qa-workflow` — manual test planning, regression, AC verification, quality health, accessibility audits; [QA Workflow](https://github.com/PiotrNie-Eversis/cursor-collections/blob/main/website/docs/workflow/qa-workflow.md). Distinct from [Fine Handoff](https://github.com/PiotrNie-Eversis/cursor-collections/blob/main/website/docs/skills/fine-handoff.md) and E2E automation.
+- **Agent skills policy (OSS governance):** stack template, agent-core, orchestration, and docs — mitigates wrong skill activation across consumer projects.
 
 ### Changed
 

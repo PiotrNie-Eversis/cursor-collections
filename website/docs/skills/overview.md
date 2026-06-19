@@ -17,6 +17,16 @@ Each skill folder contains a `SKILL.md` file with:
 
 When an agent needs specialized procedures, it can pull **`SKILL.md` content** via **MCP** (e.g. `eversis_skills_get`), run **allowlisted automation** under a skill via **`eversis_skill_run_script`** when one is registered for that topic, or follow rules and prompts. Multiple skills can be combined for tasks spanning different domains.
 
+**OSS consumers:** the full skill tree is vendored, but **`eversis-project-stack.mdc` § Agent skills policy** defines which skills apply to your project. See [Installation](../getting-started/installation) and [Framework reference](../framework) (Agent skills policy).
+
+### Skill classes (framework)
+
+| Class | Load default | Examples |
+| ----- | ------------ | -------- |
+| Universal | When task-relevant | `eversis-fine-handoff`, `eversis-code-reviewing` |
+| Stack | When stack rule + task match | `eversis-implementing-frontend`, `eversis-implementing-backend` |
+| Domain / optional | Only when stack policy or plan requires | `eversis-implementing-filters`, `eversis-ba-docs-*` |
+
 ## Available Skills
 
 > **Note:** The skill links below are for human browsing and overview only. Agents must use the `eversis-collections` MCP tools or read the `.cursor/skills/*/SKILL.md` files directly for normative procedures.

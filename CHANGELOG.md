@@ -8,6 +8,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ### Added
 
+- **Agent skills policy (OSS governance):** `eversis-project-stack.example.mdc` § Agent skills policy; `eversis-agent-core` stack-policy gate before `eversis_skills_get`; orchestration domain-skills gate; skill classes in `skills/overview.md`; framework doc § Agent skills policy.
+- **Creating skills:** domain skills require **Do NOT use** in `description` and **When NOT to use** body section.
 - **QA workflow (Phase H upstream port):** `@eversis-qa-workflow` prompt + command; skills `eversis-planning-tests`, `eversis-verifying-acceptance-criteria`, `eversis-analyzing-bugs`, `eversis-analyzing-regression-risk`, `eversis-accessibility-auditing`, `eversis-functional-testing` (templates); [QA Workflow](website/docs/workflow/qa-workflow.md) docs chapter. Separate from Fine handoff and E2E automation.
 - **Repo Docs writer (Phase G upstream port):** `eversis-writing-repo-documentation` skill, `@eversis-repo-docs-writer` prompt + command, [Repo Docs workflow](website/docs/workflow/repo-docs.md); EM routing in orchestration skill.
 - **Task baseline + post-push verification (Phase E):** Steps 10–11 in `eversis-jira-task-formatting`; `task-baseline.example.md`; baseline path `docs/context/<project>/task-baseline.md`.
@@ -20,6 +22,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ### Changed
 
+- **Installation docs** — stack rule must include Agent skills policy after bootstrap.
 - **Docs cleanup (Phase F):** Architect read-only terminal guidance; integration-test emphasis in `eversis-code-reviewing`; agents overview + rule-pack template notes; Plan Reviewer in reference table; installation Cursor Agent bootstrap.
 - **Jira cycle (Phase E):** `eversis-analyze-materials` — post-push read-back and baseline refresh; `workshop-flow.md`, `business-analyst.md`, `jira-task-formatting.md`, `cursor-collection.md` updated.
 - **Gate 0 + task extraction (Phase D):** `eversis-task-extracting` — source traceability, scenario AC (`GIVEN/WHEN/THEN`), steps 1–11; `eversis-analyze-materials` — intent brief workflow; `workshop-flow.md`, `business-analyst.md`, `task-extraction.md` updated.
