@@ -17,7 +17,8 @@ The Business Analyst role converts discovery workshop materials (transcripts, Fi
 - Extracting epics and user stories from all processed materials.
 - Running quality review passes to identify gaps and missing edge cases.
 - Formatting tasks for Jira using a benchmark template.
-- Managing a three-gate review process before pushing to Jira.
+- Post-push Jira read-back verification and project baseline refresh.
+- Managing a multi-gate review process before pushing to Jira.
 - Importing existing Jira backlogs for local iteration and improvement.
 
 ## What it produces
@@ -29,6 +30,10 @@ Markdown artifacts under `docs/specs/<workshop-name>/` (or `specifications/<work
 - **`extracted-tasks.md`** — Epics and user stories with **Source** traceability and scenario acceptance criteria.
 - **`quality-review.md`** — Quality review with suggestions and dispositions.
 - **`jira-tasks.md`** — Jira-ready tasks per the benchmark template.
+
+**Project continuity** (refreshed after successful Jira push):
+
+- **`docs/context/<project>/task-baseline.md`** — Epic/story index keyed by Jira Key for future workshop overlap checks.
 
 ## What it does NOT do
 

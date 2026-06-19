@@ -143,6 +143,7 @@ Use the same variants as the [README](../README.md); only **which prompts you at
 ### Workshop analysis only (ideate)
 
 - **Prompts:** `eversis-analyze-materials` only; respect **multi-gate** review between transcript cleanup, extracted tasks, and Jira formatting.
+- **Artifacts:** workshop outputs under `docs/specs/<workshop>/`; project continuity baseline at `docs/context/<project>/task-baseline.md` (refreshed after successful Jira push).
 - **MCP:** PDF Reader, Figma, Atlassian as needed.
 
 ### Business / regulatory documentation (.docx) — Business Manager Docs

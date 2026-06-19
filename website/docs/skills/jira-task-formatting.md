@@ -43,11 +43,27 @@ Present formatted output to the user. Review any changes made during formatting.
 
 ### Step 6: Save Output
 
-Save the Jira-ready tasks to `specifications/<workshop-name>/jira-tasks.md`.
+Save the Jira-ready tasks to `docs/specs/<workshop-name>/jira-tasks.md` (or `specifications/<workshop-name>/`).
 
 ### Step 7: Push Approval (Gate 2 - Part 2)
 
 Confirm target Jira project, get explicit approval, then create/update issues in Jira.
+
+### Step 8: Post-push verification
+
+After a successful sync, read back created or updated Jira issues via Atlassian MCP. Verify summary, parent epic linkage, acceptance criteria, description sections, and status against local `jira-tasks.md`. Surface mismatches before claiming the push is verified.
+
+### Step 9: Baseline refresh
+
+When verification succeeds, refresh `docs/context/<project>/task-baseline.md` (see `task-baseline.example.md` in the skill folder):
+
+| When to refresh | What happens |
+| --- | --- |
+| After successful workshop push | Merge verified epics/stories by Jira Key; index session at `docs/specs/<workshop-name>/` |
+| After Import Mode | Optional — seed or update baseline from fetched Jira state |
+| Before next workshop | Load existing baseline during intent brief and extraction for overlap checks |
+
+**Merge rules:** Jira Key is primary identity; replace same-key rows with latest verified content; preserve protected statuses (Done, Cancelled, PO APPROVE) as read from Jira.
 
 ## Import Mode
 

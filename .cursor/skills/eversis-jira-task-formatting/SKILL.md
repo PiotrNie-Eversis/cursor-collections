@@ -21,7 +21,9 @@ Formatting progress:
 - [ ] Step 6: Formatting Review — User reviews formatted markdown
 - [ ] Step 7: Save the Jira-ready tasks document
 - [ ] Step 8: Push Approval — User approves Jira push
-- [ ] Step 9: Create issues in Jira
+- [ ] Step 9: Create or update issues in Jira
+- [ ] Step 10: Post-push verification against Jira
+- [ ] Step 11: Refresh the project task baseline
 ```
 
 **Step 1: Load the benchmark template and extracted tasks**
@@ -60,6 +62,7 @@ For each user story, create a Jira-ready story entry with:
 - **Summary** (title): Follow the naming convention from the benchmark template
 - **Description**: Structured using the benchmark story description format, including:
   - Context paragraph linking to the parent epic
+  - Source Context section that preserves traceability from extracted tasks (when present)
   - User story in "As a… I want… So that…" format
   - Requirements as a numbered list
   - High-level technical notes (only if present in extracted tasks)
@@ -108,7 +111,7 @@ Generate the final output following the `./jira-task.example.md` template format
 
 Include the `Jira Key` field for every epic and story. For newly formatted tasks (not yet pushed to Jira), set the Jira Key to `—` as a placeholder. For tasks imported from Jira or previously pushed, preserve their existing Jira key.
 
-Save the file to `specifications/<workshop-name>/jira-tasks.md`.
+Save the file to `docs/specs/<workshop-name>/jira-tasks.md` (or `specifications/<workshop-name>/jira-tasks.md`).
 
 **Step 8: Push Approval — User approves Jira push**
 
@@ -146,7 +149,32 @@ Using the Atlassian tools, process issues based on their Jira Key:
 
 After all issues are processed, report the final state back to the user — showing all Jira keys in `jira-tasks.md` and confirming which were created, updated, and skipped (with their statuses).
 
-If any issue creation or update fails, inform the user immediately and ask how to proceed.
+If any issue creation or update fails, inform the user immediately and ask how to proceed. Do not run post-push verification or baseline refresh until the sync completes successfully (or the user explicitly acknowledges partial success).
+
+**Step 10: Post-push verification against Jira**
+
+After a successful Jira sync, read back the created or updated issues via Atlassian MCP and verify at least the following for each synced task (skip protected tasks that were not updated):
+
+- Summary/title
+- Parent epic linkage for stories
+- Acceptance criteria presence
+- Relevant description sections
+- Current status
+
+Compare read-back values to the local `jira-tasks.md`. If verification finds mismatches, surface them clearly and do not claim the push is fully verified until differences are resolved or explicitly acknowledged by the user.
+
+**Step 11: Refresh the project task baseline**
+
+When post-push verification succeeds (or the user acknowledges remaining differences), refresh the project-level continuity baseline:
+
+- **Path:** `docs/context/<project>/task-baseline.md` (follow `./task-baseline.example.md`)
+- **Project key:** Use the Jira project key when known; otherwise use the workshop folder name in kebab-case
+- **Merge rules:** Treat `Jira Key` as the primary identity — replace same-key entries with the latest verified content and status; add new entries for newly pushed tasks
+- **Protected status:** Preserve Done, Cancelled, and PO APPROVE tasks in the baseline exactly as read back from Jira; they remain read-only per the Protected Status Policy
+- **Session index:** Add or update a row in **Session Archive Index** pointing to `docs/specs/<workshop-name>/` (workshop session artifacts stay in place; do not duplicate files)
+- **Source of truth:** Jira is external source of truth; the baseline is a local continuity snapshot for future workshops and import cycles
+
+Load an existing baseline at the start of Import Mode or when the user provides workshop materials — use it for overlap checks during intent brief and extraction (`eversis-task-extracting`).
 
 ## Per-Change Modification Flow
 
@@ -168,6 +196,7 @@ When formatting descriptions and acceptance criteria for Jira:
 - Use `# item` for numbered lists
 - Use `{noformat}` or `{code}` blocks for preformatted text
 - Acceptance criteria should use `(/) criterion` for checklist items (Jira checkbox format)
+- Scenario-style acceptance criteria remain valid when expressed as `(/) GIVEN ... WHEN ... THEN ...`
 
 Note: The markdown file saved locally uses standard markdown. The Jira-specific formatting is applied only when creating the actual issues.
 
@@ -232,7 +261,9 @@ Present each imported task to the user for review using one `askQuestions` call 
 
 **Step I-6: Save to specifications directory**
 
-Save the final file to `specifications/<project-or-topic>/jira-tasks.md`.
+Save the final file to `docs/specs/<project-or-topic>/jira-tasks.md` (or `specifications/<project-or-topic>/jira-tasks.md`).
+
+After import, optionally refresh `docs/context/<project>/task-baseline.md` from the imported Jira state so future workshops have continuity context.
 
 After import, the user can modify the local file. For each change, the agent asks whether to push it to Jira immediately (using the Per-Change Modification Flow above). The user can also batch-push all local changes later using the standard push flow (Step 8 → Step 9).
 

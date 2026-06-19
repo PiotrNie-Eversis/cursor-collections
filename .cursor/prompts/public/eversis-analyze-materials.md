@@ -39,6 +39,8 @@ In **Cursor**, attach the file above (or open it and reference it with `@`) plus
 9. **Format for Jira** — `eversis-jira-task-formatting` → `jira-tasks.md`.
 10. **Gate 2 — Push approval** — User confirms before Jira sync.
 11. **Push to Jira** — Creates/updates issues; reports keys.
+12. **Post-push verification** — Read back Jira issues; verify summary, parent links, AC, status.
+13. **Baseline refresh** — Update `docs/context/<project>/task-baseline.md` after successful verification.
 
 ### Import Mode (Jira project key provided)
 
@@ -64,6 +66,13 @@ docs/specs/user-onboarding/
   extracted-tasks.md
   quality-review.md
   jira-tasks.md
+```
+
+**Project continuity baseline** (optional, refreshed after successful Jira push):
+
+```text
+docs/context/<project>/
+  task-baseline.md            ← epic/story index for future workshops
 ```
 
 :::tip Review gates
@@ -118,6 +127,10 @@ Determine the entry point based on what the user provides:
 10. **Format for Jira**: `eversis-jira-task-formatting` → `jira-tasks.md` (preserve source traceability).
 11. **Review Gate 2**: Confirm target Jira project; get explicit push approval.
 12. **Push to Jira**: Create/update issues; report keys.
+13. **Post-push verification**: Using `eversis-jira-task-formatting` Step 10, read back created/updated Jira issues. Verify summary, parent epic linkage, acceptance criteria, description sections, and status. Surface mismatches before claiming success.
+14. **Baseline refresh**: When verification succeeds, refresh `docs/context/<project>/task-baseline.md` per `eversis-jira-task-formatting` Step 11. Index the workshop session folder (`docs/specs/<workshop-topic>/`) in the baseline Session Archive Index.
+
+**Before extraction (standard workflow):** If `docs/context/<project>/task-baseline.md` exists, load it during material analysis and intent brief for overlap and continuity notes.
 
 ## Important
 
@@ -127,6 +140,7 @@ Determine the entry point based on what the user provides:
 - Gates 1, 1.5, and 2 are mandatory — no Jira push without explicit approval.
 - Gate 1.5 runs automatically after Gate 1; user accepts/rejects suggestions individually.
 - Imported Jira backlogs still go through quality review.
+- Post-push verification and baseline refresh run after every successful Jira sync (standard workflow and batch push).
 - If no transcript is provided, skip transcript processing and proceed from intent brief / extraction as appropriate.
 
 Follow template structures from each skill strictly.

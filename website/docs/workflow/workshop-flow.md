@@ -37,6 +37,13 @@ For converting discovery workshop materials into structured, Jira-ready epics an
    ↳ 📖 Review final formatted tasks
    ↳ ✅ Confirm target Jira project and approve push
    ↳ 🚀 Agent creates/updates issues in Jira
+
+7️⃣ Post-push verification
+   ↳ 🔍 Read back Jira issues — verify summary, links, AC, status
+
+8️⃣ Baseline refresh
+   ↳ 📁 Update `docs/context/<project>/task-baseline.md`
+   ↳ 🔗 Index workshop session at `docs/specs/<workshop-name>/`
 ```
 
 ## Workflow Diagram
@@ -92,6 +99,17 @@ For converting discovery workshop materials into structured, Jira-ready epics an
 ┌─────────────────────────────┐
 │  Push to Jira               │
 │  (create epics → stories)   │
+└──────────┬──────────────────┘
+           ▼
+┌─────────────────────────────┐
+│  Post-push verification     │
+│  (read-back from Jira)      │
+└──────────┬──────────────────┘
+           ▼
+┌─────────────────────────────┐
+│  Baseline refresh           │
+│  → docs/context/<project>/  │
+│    task-baseline.md         │
 └─────────────────────────────┘
 ```
 

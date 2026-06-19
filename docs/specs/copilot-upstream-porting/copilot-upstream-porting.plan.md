@@ -356,8 +356,8 @@ flowchart LR
 
 **Definition of Done:**
 
-- [ ] Dokumentacja opisuje baseline path i kiedy odświeżać
-- [ ] Spójność z Protected Status w jira-task-formatting docs
+- [x] Dokumentacja opisuje baseline path i kiedy odświeżać
+- [x] Spójność z Protected Status w jira-task-formatting docs
 
 ---
 
@@ -571,7 +571,7 @@ Po zmianach w `mcp/eversis-collections-mcp/` — `npm run build` w pakiecie MCP 
 
 Po **akceptacji tego planu:**
 
-1. ~~Faza 0~~ → ~~Faza A~~ → ~~A′~~ → ~~B~~ → ~~C~~ → ~~D~~ — **zrobione lokalnie** (commity na `main`).
-2. Następny PR planowy: **Faza E** (task baseline + post-push verification).
+1. ~~Faza 0~~ → ~~Faza A~~ → ~~A′~~ → ~~B~~ → ~~C~~ → ~~D~~ → ~~E~~ — **zrobione lokalnie** (commity na `main`).
+2. Następny PR planowy: **Faza F** (docs cleanup + drobne P2).
 
-**Status:** Plan — **Fazy 0, A, A′, B, C, D zaimplementowane lokalnie**. Następna: **Faza E** (baseline / Jira read-back).
+**Status:** Plan — **Fazy 0, A, A′, B, C, D, E zaimplementowane lokalnie**. Następna: **Faza F** (architect read-only, integration tests akapit, agents link sweep, installation).
