@@ -11,12 +11,16 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - **Orchestration skill (Phase A′ upstream port):** **`eversis-orchestrating-implementation`** — canonical Implement workflow (Quick vs Full, planning readiness, routing table, UI gate, Fine + `eversis-fine-handoff`).
 - **Plan validation (Phase A upstream port):** Internal prompt **`eversis-review-plan`** — stress-tests `.plan.md` before implementation; produces `{task}.plan-review.md` with verdict `APPROVED` | `REVISIONS NEEDED`.
 - **Skill `eversis-creating-implementation-plans`** — owns `plan.example.md` (WIG, Technical Context, `Files:` per task, phase Verification, Stop Rules, runnable DoD commands) and `plan-review.example.md`.
+- **Full `eversis-task-quality-reviewing` (Phase C):** Lite/Full modes, passes A–J, `quality-review.example.md`.
 - **Docs:** [Orchestrating Implementation](website/docs/skills/orchestrating-implementation.md), [Plan Reviewer agent](website/docs/agents/plan-reviewer.md), [Creating Implementation Plans skill](website/docs/skills/creating-implementation-plans.md).
 
 ### Changed
 
+- **Quick vs Full workflow docs (Phase B):** `standard-flow.md`, `frontend-flow.md`, `workflow/overview.md` — Step 0 selection, Quick example, Figma/UI Full-only.
 - **`eversis-implement`** — thin trigger delegating to orchestration skill (upstream `tsh-implement:v2`); plan validation and Technical Context rules moved into skill.
 - **`eversis-engineering-manager.mdc`** and **`eversis-implement` command** — pointer to orchestration skill as SSOT.
+- **`eversis-analyze-materials`** — Gate 1.5 sync with full quality-review skill (Lite/Full, one suggestion per chat turn).
+- **`eversis-task-quality-reviewing`** — full port from upstream (~344 lines); `task-quality-review.md`, `business-analyst.md`, `workshop-flow.md` updated.
 - **`eversis-plan`** — persist Technical Context; delegate plan structure to `eversis-creating-implementation-plans` (upstream `tsh-plan:v3`).
 - **`eversis-architecture-designing`** — design-only; plan template moved to `eversis-creating-implementation-plans`.
 - **Workflow and agent docs** — plan validation, Quick vs Full, engineering-manager, skills overview.

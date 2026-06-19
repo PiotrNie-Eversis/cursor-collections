@@ -20,7 +20,7 @@ For converting discovery workshop materials into structured, Jira-ready epics an
    ↳ 📖 Review extracted tasks — check epic/story breakdown
    ↳ ✅ Approve, or request splits/merges/removals
 
-3️⃣ Gate 1.5 — Quality Review (automatic)
+3️⃣ Gate 1.5 — Quality Review (automatic, Lite or Full mode)
    ↳ 🔍 Agent runs 10 analysis passes for gaps and edge cases
    ↳ 📖 Review each suggestion — accept or reject individually
    ↳ ✅ Agent applies accepted suggestions to the task list
@@ -79,7 +79,7 @@ For converting discovery workshop materials into structured, Jira-ready epics an
 
 ## Quality Review Passes
 
-The quality review step runs 10 domain-agnostic analysis passes against the approved task list:
+The quality review step runs domain-agnostic analysis passes (**Lite**: A, B, E, H, I; **Full**: A–J) against the approved task list. Suggestions are presented **one at a time** for accept/reject at Gate 1.5. See [Task Quality Review](../skills/task-quality-review).
 
 | Pass | Category | What It Checks |
 |---|---|---|

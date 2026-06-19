@@ -6,77 +6,67 @@ title: Task Quality Review
 # Task Quality Review
 
 **Folder:** `.cursor/skills/eversis-task-quality-reviewing/`  
-**Used by:** Business Analyst
+**Used by:** Business Analyst via [`eversis-analyze-materials`](../prompts/public/analyze-materials) (Gate 1.5)
 
-Performs a systematic quality analysis on an approved task list (epics and user stories) to identify gaps, missing edge cases, and improvement opportunities. Runs 10 domain-agnostic analysis passes and produces structured suggestions the user can individually accept or reject.
+Systematic quality analysis on a Gate 1-approved task list (`extracted-tasks.md`) to identify gaps, missing edge cases, and improvement opportunities. Produces structured suggestions the user accepts or rejects individually.
 
-## What It Produces
+## Review modes
 
-- **Suggestions** — Structured improvement proposals, each individually accept/reject.
-- **Domain model** — An intermediate actor–entity–lifecycle map derived from the task list.
-- **Quality review report** — Audit trail of all suggestions and decisions (`quality-review.md`).
-- **Updated task list** — Accepted suggestions applied to `extracted-tasks.md` in-place.
+| Mode | Use when | Active passes |
+| --- | --- | --- |
+| **Lite** | Default for small workshops (~≤3 epics, ~≤12 stories) unless user requests Full | A, B, E, H, I |
+| **Full** | Larger workshops, regulated domains, high-risk scope, or user requests deeper review | A–J |
 
-## Analysis Passes
+Tasks with status **Done**, **Cancelled**, or **PO APPROVE** are excluded from analysis (protected status filter).
 
-The quality review runs 10 independent analysis passes:
+## What it produces
 
-| Pass | Category | What It Checks | Confidence |
-|---|---|---|---|
-| A | Entity Lifecycle Completeness | CRUD operations for every business entity | High |
-| B | Cross-Feature State Validation | State checking when features consume shared entities | High |
-| C | Bulk Operation Idempotency | Pre-existing data and partial failure handling | High |
-| D | Actor Dashboard Completeness | Metrics, configuration, and history for management UIs | Medium |
-| E | Precondition Guards | Feature unlock dependencies and prerequisite enforcement | High |
-| F | Third-Party Boundary Clarity | External integration points and failure modes | Medium |
-| G | Platform Operations Perspective | Admin/operator tooling and monitoring | Medium |
-| H | Error State & Edge Case Coverage | Failure, empty, and boundary conditions | High |
-| I | Notification & Communication Gaps | Missing notifications for cross-actor state changes | High |
-| J | Domain-Specific Research | Industry patterns and compliance requirements | Low–Medium |
+- **Suggestions** — Improvement proposals with confidence (High / Medium / Low) and action type
+- **Domain model** — Actors, entities (lifecycle map), relationships
+- **`quality-review.md`** — Audit trail per `quality-review.example.md`
+- **Updated `extracted-tasks.md`** — In-place updates for accepted suggestions only
 
-## Suggestion Types
+## Analysis passes
 
-Each finding is classified into one of these action types:
+| Pass | Category | Confidence default |
+| --- | --- | --- |
+| A | Entity Lifecycle Completeness | High |
+| B | Cross-Feature State Validation | High |
+| C | Bulk Operation Idempotency | High |
+| D | Actor Dashboard Completeness | Medium |
+| E | Precondition Guards | High |
+| F | Third-Party Boundary Clarity | Medium |
+| G | Platform Operations Perspective | Medium |
+| H | Error State & Edge Case Coverage | High |
+| I | Notification & Communication Gaps | High |
+| J | Domain-Specific Research | Low–Medium |
 
-| Action Type | Description |
-|---|---|
-| `ADD_ACCEPTANCE_CRITERION` | Add a missing condition to an existing story |
+## Suggestion action types
+
+| Action | Meaning |
+| --- | --- |
+| `ADD_ACCEPTANCE_CRITERION` | Add a verifiable condition to an existing story |
 | `MODIFY_STORY` | Expand an existing story's scope |
-| `ADD_TECHNICAL_NOTE` | Add clarity or documentation to a story |
-| `NEW_STORY` | Create a new story for uncovered functionality |
-| `NEW_EPIC` | Create a new epic for a major capability gap |
+| `ADD_TECHNICAL_NOTE` | Clarify without changing functional scope |
+| `NEW_STORY` | Add uncovered functionality under an epic |
+| `NEW_EPIC` | Add a major capability area (rare) |
 
-## Process
+## Process (summary)
 
-### Step 1: Load Inputs
+1. Load `extracted-tasks.md` and source materials; select Lite or Full mode.
+2. Optionally enrich from Jira board (read-only).
+3. Build domain model (actors, entities, relationships).
+4. Run active analysis passes; respect protected status filter.
+5. Classify findings into structured suggestions.
+6. **Gate 1.5** — Present **one suggestion per chat turn** for accept/reject.
+7. Apply accepted changes to `extracted-tasks.md`.
+8. Save `quality-review.md` under `docs/specs/<workshop-name>/` (or `specifications/<workshop-name>/`).
 
-Collect the Gate 1-approved `extracted-tasks.md`, cleaned transcript, and any other source materials.
+## Templates
 
-### Step 2: Gather Jira Context (Optional)
+- `quality-review.example.md` in the skill folder — canonical report structure
 
-If Atlassian tools are available, optionally fetch existing board context to cross-reference against.
+## Connected skills
 
-### Step 3: Build Domain Model
-
-Construct a lightweight domain model from the task list: actors, entities (with lifecycle mapping), and relationships.
-
-### Step 4: Run Analysis Passes
-
-Execute all 10 passes against the domain model and task list. Each pass produces zero or more findings.
-
-### Step 5: Classify Suggestions
-
-Transform findings into structured suggestions with confidence levels, action types, and proposed changes.
-
-### Step 6: User Review (Gate 1.5)
-
-Present suggestions one at a time for individual accept/reject decisions. Each suggestion is self-contained with full context.
-
-### Step 7: Apply Accepted Changes
-
-Apply accepted suggestions to `extracted-tasks.md` and save the quality review report to `quality-review.md`.
-
-## Connected Skills
-
-- `eversis-task-extracting` — Provides the extracted tasks used as primary input.
-- `eversis-jira-task-formatting` — Consumes the updated task list after quality review.
+- `eversis-task-extracting` — upstream extracted tasks
+- `eversis-jira-task-formatting` — downstream Jira formatting after Gate 1.5

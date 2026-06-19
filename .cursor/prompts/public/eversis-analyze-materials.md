@@ -32,8 +32,8 @@ In **Cursor**, attach the file above (or open it and reference it with `@`) plus
 2. **Analyze additional materials** — Reviews Figma designs (via Figma MCP), existing codebase (via `eversis-codebase-analysing`), and other reference documents.
 3. **Extract tasks** — Identifies epics and user stories from all processed materials using the `eversis-task-extracting` skill.
 4. **Gate 1 — Task Review** — Presents extracted tasks for user validation. Iterates until approved.
-5. **Quality review** — Runs analysis passes against the approved task list to find gaps, missing edge cases, and improvements.
-6. **Gate 1.5 — Suggestion Review** — Presents quality review suggestions individually for accept/reject.
+5. **Quality review (Gate 1.5 prep)** — Runs **Lite** or **Full** analysis passes (per `eversis-task-quality-reviewing`) against the approved task list to find gaps, missing edge cases, and improvements.
+6. **Gate 1.5 — Suggestion Review** — Presents suggestions **one at a time** for accept/reject; saves `quality-review.md`.
 7. **Format for Jira** — Applies the benchmark template to all tasks using the `eversis-jira-task-formatting` skill.
 8. **Gate 2 — Push Approval** — Presents final formatted tasks for user review before Jira push.
 9. **Push to Jira** — Creates epics and stories in Jira with proper linking. Reports created issue keys.
@@ -112,8 +112,8 @@ Determine the entry point based on what the user provides:
 2. **Analyze additional materials**: Review Figma designs (using `figma` tool), read PDF documents (using `pdf-reader` tool), existing codebase (using `eversis-codebase-analysing` skill), and any other reference documents provided.
 3. **Extract tasks**: Using the `eversis-task-extracting` skill, identify epics and user stories from all processed materials. Save as `extracted-tasks.md`.
 4. **Review Gate 1**: Present the extracted task list to the user for validation. Ask if any tasks were missed, should be split, merged, or removed. Iterate until the user approves.
-5. **Quality review**: Using the `eversis-task-quality-reviewing` skill, run all analysis passes against the approved task list. Build the domain model, identify gaps, and produce structured suggestions. This step runs automatically after Gate 1 approval — do not ask the user whether to run it.
-6. **Review Gate 1.5**: Present all quality review suggestions to the user, grouped by epic and ordered by confidence. The user accepts or rejects each suggestion individually. Apply accepted suggestions to `extracted-tasks.md` and save the quality review report as `quality-review.md`.
+5. **Quality review**: Using the `eversis-task-quality-reviewing` skill, run the analysis passes for the selected **Lite** or **Full** review mode against the Gate 1-approved task list. Build the domain model, identify gaps, and produce structured suggestions. Runs automatically after Gate 1 approval — do not ask whether to run it.
+6. **Review Gate 1.5**: Present quality review suggestions **one at a time in chat** for individual accept/reject (per skill Step 7). Apply accepted suggestions to `extracted-tasks.md` and save the report as `quality-review.md` following `quality-review.example.md`.
 7. **Confirm updated tasks**: After applying accepted suggestions, briefly summarize the changes made to `extracted-tasks.md` (new stories added, criteria added, stories modified). If the user wants to review the full updated task list, present it. Proceed when the user confirms.
 8. **Format for Jira**: Using the `eversis-jira-task-formatting` skill, apply the benchmark template to format all tasks for Jira. Save as `jira-tasks.md`.
 9. **Review Gate 2**: Present the final formatted tasks to the user. Confirm the target Jira project and get explicit approval before pushing.

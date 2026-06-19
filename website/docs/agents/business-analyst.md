@@ -43,7 +43,7 @@ The Business Analyst enforces a strict review process — no data is pushed to J
 | Gate | When | What |
 |---|---|---|
 | **Gate 1** | After task extraction | User reviews the epic/story breakdown |
-| **Gate 1.5** | After quality review | User accepts or rejects individual improvement suggestions |
+| **Gate 1.5** | After quality review | User accepts or rejects **individual** improvement suggestions (**one per chat turn**); Lite or Full review mode per skill |
 | **Gate 2** | After Jira formatting | User reviews final formatted tasks before Jira push |
 
 ## Tool Access
