@@ -402,6 +402,18 @@ flowchart LR
 
 **Start:** po fazie 0 (fine-handoff); **nie** scalać z fine-handoff.
 
+| Task | Deliverable | Status |
+| ---- | ----------- | ------ |
+| H.1 | `.cursor/prompts/public/eversis-qa-workflow.md` + `.cursor/commands/eversis-qa-workflow.md` | ✅ |
+| H.2 | `.cursor/skills/eversis-verifying-acceptance-criteria/` | ✅ |
+| H.3 | `eversis-analyzing-bugs`, `eversis-functional-testing` (+ templates) | ✅ |
+| H.4 | `eversis-analyzing-regression-risk`, `eversis-accessibility-auditing` | ✅ |
+| H.5 | `eversis-planning-tests` (phases 1–2) | ✅ |
+| H.6 | `website/docs/workflow/qa-workflow.md` + skill pages + `overview` Quality | ✅ |
+| H.7 | Cross-link `fine-handoff` ↔ `qa-workflow` (separate layers) | ✅ |
+
+**Pominięto:** Jira admin skille, `tsh-generating-test-data`, pełny QA Engineer agent (E2E — `eversis-e2e-*`).
+
 | Priorytet portu | Upstream → Cursor |
 | --------------- | ----------------- |
 | 1 | `tsh-qa-workflow` → `eversis-qa-workflow` (public prompt lub skill entry) |
@@ -571,7 +583,7 @@ Po zmianach w `mcp/eversis-collections-mcp/` — `npm run build` w pakiecie MCP 
 
 Po **akceptacji tego planu:**
 
-1. ~~Faza 0~~ → ~~Faza A~~ → ~~A′~~ → ~~B~~ → ~~C~~ → ~~D~~ → ~~E~~ → ~~F~~ → ~~G~~ — **zrobione lokalnie** (commity na `main`).
-2. Opcjonalne fazy **H–I** wymagają explicit approval (QA skille, filters).
+1. ~~Faza 0~~ → ~~Faza A~~ → ~~A′~~ → ~~B~~ → ~~C~~ → ~~D~~ → ~~E~~ → ~~F~~ → ~~G~~ → ~~H~~ — **zrobione lokalnie** (commity na `main`).
+2. Opcjonalna faza **I** wymaga explicit approval (implementing-filters).
 
-**Status:** Plan — **Fazy 0–G zaimplementowane lokalnie**. Opcjonalne: **Faza H** (QA skille), **I** (implementing-filters).
+**Status:** Plan — **Fazy 0–H zaimplementowane lokalnie**. Opcjonalna: **Faza I** (implementing-filters).

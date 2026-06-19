@@ -59,7 +59,7 @@ Walk-up detection finds `.cursor/skills` from the repo root; set **`CURSOR_COLLE
 ```text
 🛠 IMPLEMENT
   @eversis-implement <ticket>
-    ↳ Agent calls eversis_skills_list / eversis_skills_get (e.g. eversis-fine-handoff on Fine)
+    ↳ Agent calls eversis_skills_list / eversis_skills_get (e.g. eversis-fine-handoff on Fine; eversis-planning-tests via @eversis-qa-workflow)
     ↳ 📖 You review research, plan, and code at human gates
     ↳ ✅ Approve before the next phase
 ```

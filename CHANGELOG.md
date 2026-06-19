@@ -8,6 +8,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ### Added
 
+- **QA workflow (Phase H upstream port):** `@eversis-qa-workflow` prompt + command; skills `eversis-planning-tests`, `eversis-verifying-acceptance-criteria`, `eversis-analyzing-bugs`, `eversis-analyzing-regression-risk`, `eversis-accessibility-auditing`, `eversis-functional-testing` (templates); [QA Workflow](website/docs/workflow/qa-workflow.md) docs chapter. Separate from Fine handoff and E2E automation.
 - **Repo Docs writer (Phase G upstream port):** `eversis-writing-repo-documentation` skill, `@eversis-repo-docs-writer` prompt + command, [Repo Docs workflow](website/docs/workflow/repo-docs.md); EM routing in orchestration skill.
 - **Task baseline + post-push verification (Phase E):** Steps 10–11 in `eversis-jira-task-formatting`; `task-baseline.example.md`; baseline path `docs/context/<project>/task-baseline.md`.
 - **Gate 0 + intent brief (Phase D upstream port):** `intent-brief.example.md`; optional Gate 0 in `eversis-task-extracting` (approve or skip with `Skipped — materials unambiguous`).

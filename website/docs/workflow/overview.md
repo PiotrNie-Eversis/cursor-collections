@@ -79,6 +79,7 @@ Each step requires your review. Open generated documents, iterate until correct,
 | **[E2E testing](./e2e-flow)** | `@eversis-implement` (E2E tasks in plan) | Playwright coverage |
 | **[Business Manager Docs](./business-manager-docs)** | `@eversis-ba-docs-planner` → writer | Word `.docx` release docs |
 | **[Repo Docs](./repo-docs)** | `@eversis-repo-docs-writer` (or EM delegate) | README, CHANGELOG, `website/docs` after Implement |
+| **[QA workflow](./qa-workflow)** | `@eversis-qa-workflow` | Manual test planning, regression, AC verify, quality health |
 
 :::info Standard flow
 Full step-by-step: [Standard Flow](./standard-flow) — **Quick vs Full** at Step 0, then research, plan, implement, review with human gates.
@@ -100,6 +101,10 @@ Playwright work inside Implement: [E2E Testing Flow](./e2e-flow).
 Repository markdown after Implement: [Repo Docs](./repo-docs) — `@eversis-repo-docs-writer` (not Word `.docx`).
 :::
 
+:::info QA workflow
+Manual QA practice (separate from Fine handoff): [QA Workflow](./qa-workflow) — `@eversis-qa-workflow`.
+:::
+
 :::info Business Manager Docs
 Word `.docx` via `eversis-collections` MCP: [Business Manager Docs](./business-manager-docs).
 :::
@@ -112,3 +117,4 @@ Word `.docx` via `eversis-collections` MCP: [Business Manager Docs](./business-m
 - [E2E Testing Flow](./e2e-flow)
 - [Business Manager Docs](./business-manager-docs)
 - [Repo Docs](./repo-docs)
+- [QA Workflow](./qa-workflow)

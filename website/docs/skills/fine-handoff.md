@@ -10,7 +10,7 @@ title: Fine Handoff
 
 This skill bridges communication between developers and Quality Assurance at the **end of Implement**. It generates a clear, English-language summary of changes written specifically for people who will **test the feature**, not read the code.
 
-The skill name reflects **when** it runs (status **Fine**), not the full QA practice layer. For test plans, regression, and formal AC verification, use **`eversis-qa-workflow`** when that playbook is available in your framework version.
+The skill name reflects **when** it runs (status **Fine**), not the full QA practice layer. For test plans, regression, and formal AC verification, use **[`@eversis-qa-workflow`](../workflow/qa-workflow)** and its supporting skills.
 
 ## How it fits the workflow
 

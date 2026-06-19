@@ -14,6 +14,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ## 2026-06-19
 
+### Added
+
+- **QA workflow (Phase H):** `@eversis-qa-workflow` — manual test planning, regression, AC verification, quality health, accessibility audits; [QA Workflow](https://github.com/PiotrNie-Eversis/cursor-collections/blob/main/website/docs/workflow/qa-workflow.md). Distinct from [Fine Handoff](https://github.com/PiotrNie-Eversis/cursor-collections/blob/main/website/docs/skills/fine-handoff.md) and E2E automation.
+
 ### Changed
 
 - **Breaking:** Skill rename **`eversis-qa-comment`** → **`eversis-fine-handoff`** — same Fine-turn QA comment draft contract; new docs page [Fine Handoff](https://github.com/PiotrNie-Eversis/cursor-collections/blob/main/website/docs/skills/fine-handoff.md). See [CHANGELOG.md](https://github.com/PiotrNie-Eversis/cursor-collections/blob/main/CHANGELOG.md) for consumer migration steps.

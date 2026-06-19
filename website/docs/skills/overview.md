@@ -5,7 +5,7 @@ title: Skills Overview
 
 # Skills Overview
 
-Cursor Collections includes **36 reusable skills** — knowledge modules that provide specialized domain expertise, structured processes, and quality templates. They encode tested best practices for every phase of the product lifecycle. Skills are stored in `.cursor/skills/`. In Agent, use them through the **`eversis-collections` MCP** server (**`eversis_skills_list`**, **`eversis_skills_get`**, **`eversis_skill_run_script`** for allowlisted per-skill scripts, and related tools) after building [`mcp/eversis-collections-mcp/`](https://github.com/PiotrNie-Eversis/cursor-collections/tree/main/mcp/eversis-collections-mcp); do not register the folder separately as Cursor **Agent Skills** for this framework.
+Cursor Collections includes **42 reusable skills** — knowledge modules that provide specialized domain expertise, structured processes, and quality templates. They encode tested best practices for every phase of the product lifecycle. Skills are stored in `.cursor/skills/`. In Agent, use them through the **`eversis-collections` MCP** server (**`eversis_skills_list`**, **`eversis_skills_get`**, **`eversis_skill_run_script`** for allowlisted per-skill scripts, and related tools) after building [`mcp/eversis-collections-mcp/`](https://github.com/PiotrNie-Eversis/cursor-collections/tree/main/mcp/eversis-collections-mcp); do not register the folder separately as Cursor **Agent Skills** for this framework.
 
 ## How Skills Work
 
@@ -71,6 +71,13 @@ When an agent needs specialized procedures, it can pull **`SKILL.md` content** v
 | [eversis-ui-verifying](./ui-verification)          | Figma vs implementation verification criteria                | UI Reviewer, SE |
 | [eversis-e2e-testing](./e2e-testing)               | Playwright E2E testing patterns and verification             | E2E Engineer    |
 | [eversis-fine-handoff](./fine-handoff)                 | Mandatory QA comment draft after Fine (Implement handoff); human approves before Jira post | Anyone (post-implement) |
+| [QA practice overview](./qa-workflow)            | `@eversis-qa-workflow` — test plans, regression, AC verify, quality health | QA / anyone     |
+| [eversis-planning-tests](./planning-tests)       | Test plans and test cases from acceptance criteria           | QA workflow     |
+| [eversis-analyzing-regression-risk](./analyzing-regression-risk) | Regression scope and suites from change context    | QA workflow     |
+| [eversis-verifying-acceptance-criteria](./verifying-acceptance-criteria) | AC gap table vs implementation           | QA workflow     |
+| [eversis-analyzing-bugs](./analyzing-bugs)       | Quality health dashboards from Jira defect history           | QA workflow     |
+| [eversis-accessibility-auditing](./accessibility-auditing) | WCAG 2.2 AA audit reports (manual QA)              | QA workflow     |
+| [eversis-functional-testing](./functional-testing) | Shared QA templates and severity matrix                    | QA workflow     |
 
 ### ⚙️ Framework customization skills
 
@@ -109,6 +116,12 @@ When an agent needs specialized procedures, it can pull **`SKILL.md` content** v
 | eversis-optimizing-cloud-cost              |     |     | ✅        |     |     |     |             |     | ✅     |           |
 | eversis-optimizing-frontend                |     |     |           | ✅  |     |     |             |     |        |           |
 | eversis-fine-handoff                         |     |     |           | ✅  |     | ✅  |             | ✅  |        |           |
+| eversis-planning-tests                     |     |     |           |     |     |     |             |     |        |           |
+| eversis-analyzing-regression-risk          |     |     |           |     |     |     |             |     |        |           |
+| eversis-verifying-acceptance-criteria      |     |     |           |     |     |     |             |     |        |           |
+| eversis-analyzing-bugs                     |     |     |           |     |     |     |             |     |        |           |
+| eversis-accessibility-auditing             |     |     |           |     |     |     |             |     |        |           |
+| eversis-functional-testing                 |     |     |           |     |     |     |             |     |        |           |
 | eversis-reviewing-frontend                 |     |     |           |     |     | ✅  |             |     |        |           |
 | eversis-sql-and-database-understanding     |     |     | ✅        | ✅  |     | ✅  |             |     |        |           |
 | eversis-task-analysing                     |     | ✅  |           |     |     |     |             | ✅  |        |           |

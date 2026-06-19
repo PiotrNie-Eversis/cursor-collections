@@ -24,6 +24,7 @@ Unlike third-party servers that run via `npx`, this server **must be built** bef
 | Agent / prompt | When |
 | --- | --- |
 | **Engineering Manager** (`@eversis-implement`) | Skill discovery during implement; **`eversis-fine-handoff`** on Fine |
+| **QA practice** (`@eversis-qa-workflow`) | QA skills on demand (`eversis-planning-tests`, regression, AC verify, …) |
 | **Code Reviewer** (`@eversis-review`) | Procedural review skills via `eversis_skills_get` |
 | **Business Analyst** (`@eversis-ba-docs-planner`, `@eversis-ba-docs-writer`) | Word chapter tools for release documentation |
 | **All agents** | When `eversis-agent-core` instructs skill discovery before broad implementation |
