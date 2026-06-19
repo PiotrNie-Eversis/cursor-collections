@@ -8,19 +8,21 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ### Added
 
-- **Plan validation (Phase A upstream port):** Internal prompt **`eversis-review-plan`** (`.cursor/prompts/internal/eversis-review-plan.md`) — stress-tests `.plan.md` before implementation; produces `{task}.plan-review.md` with verdict `APPROVED` | `REVISIONS NEEDED`.
+- **Orchestration skill (Phase A′ upstream port):** **`eversis-orchestrating-implementation`** — canonical Implement workflow (Quick vs Full, planning readiness, routing table, UI gate, Fine + `eversis-fine-handoff`).
+- **Plan validation (Phase A upstream port):** Internal prompt **`eversis-review-plan`** — stress-tests `.plan.md` before implementation; produces `{task}.plan-review.md` with verdict `APPROVED` | `REVISIONS NEEDED`.
 - **Skill `eversis-creating-implementation-plans`** — owns `plan.example.md` (WIG, Technical Context, `Files:` per task, phase Verification, Stop Rules, runnable DoD commands) and `plan-review.example.md`.
-- **Docs:** [Plan Reviewer agent](website/docs/agents/plan-reviewer.md), [Creating Implementation Plans skill](website/docs/skills/creating-implementation-plans.md).
+- **Docs:** [Orchestrating Implementation](website/docs/skills/orchestrating-implementation.md), [Plan Reviewer agent](website/docs/agents/plan-reviewer.md), [Creating Implementation Plans skill](website/docs/skills/creating-implementation-plans.md).
 
 ### Changed
 
-- **Plan validation (Phase A upstream port):** **`eversis-plan`** — persist Technical Context during planning; delegate plan structure to `eversis-creating-implementation-plans` (upstream `tsh-plan:v3`).
-- **`eversis-implement`** — plan validation step after human plan review (skip when approved `.plan-review.md` exists and plan unchanged); conditional skip of redundant codebase analysis when Technical Context is thorough.
-- **`eversis-architecture-designing`** — design-only; plan authoring cross-linked to `eversis-creating-implementation-plans` (removed local `plan.example.md`).
-- **Workflow docs** — `standard-flow`, `frontend-flow`, `overview`, architect, engineering-manager, agents overview, skills overview.
-- **Breaking:** Renamed skill **`eversis-qa-comment`** → **`eversis-fine-handoff`** (`.cursor/skills/eversis-fine-handoff/`). The **output** is unchanged (QA comment draft labeled `Draft QA comment — review before posting to Jira`). MCP `eversis_skills_get` now uses ID `eversis-fine-handoff`. Docs page: `website/docs/skills/fine-handoff.md` (replaces `qa-comment.md`).
-- **`.cursor/`** — `eversis-implement`, `eversis-project-stack.mdc`, `eversis-agent-core.mdc`, `eversis-engineering-manager.mdc`, `eversis-implement` command, setup template — pointers updated to `eversis-fine-handoff`.
-- **`website/docs/`** — workflow pages, skills overview, engineering-manager agent, integrations, framework-reference, workflow overview (new **Status: Fine — handoff** section).
+- **`eversis-implement`** — thin trigger delegating to orchestration skill (upstream `tsh-implement:v2`); plan validation and Technical Context rules moved into skill.
+- **`eversis-engineering-manager.mdc`** and **`eversis-implement` command** — pointer to orchestration skill as SSOT.
+- **`eversis-plan`** — persist Technical Context; delegate plan structure to `eversis-creating-implementation-plans` (upstream `tsh-plan:v3`).
+- **`eversis-architecture-designing`** — design-only; plan template moved to `eversis-creating-implementation-plans`.
+- **Workflow and agent docs** — plan validation, Quick vs Full, engineering-manager, skills overview.
+- **Breaking:** Renamed skill **`eversis-qa-comment`** → **`eversis-fine-handoff`**. MCP `eversis_skills_get` now uses ID `eversis-fine-handoff`. Docs page: `website/docs/skills/fine-handoff.md`.
+- **`.cursor/`** — fine-handoff pointers in project-stack, agent-core, engineering-manager, implement command, setup template.
+- **`website/docs/`** — workflow pages, skills overview, integrations, framework-reference.
 - **`AGENTS.md`**, **`README.md`**, **`documentation/cursor-collection.md`**, **`mcp/eversis-collections-mcp/README.md`**.
 
 ### Migration (consumer repos)

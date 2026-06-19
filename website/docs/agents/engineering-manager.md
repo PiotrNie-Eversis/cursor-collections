@@ -8,7 +8,7 @@ title: Engineering Manager
 **Rule pack (canonical):** `.cursor/rules/eversis-role-engineering-manager.mdc`  
 **In this repository:** attach **`.cursor/rules/eversis-engineering-manager.mdc`** when running **`@eversis-implement`** (docs: [Implement](../prompts/public/implement)).
 
-The Engineering Manager orchestrates the **Implement** phase: it does not replace implementers — it follows the approved plan, delegates work by task type, and enforces human gates from **`eversis-agent-core.mdc`** (approve research, then plan, then plan validation, then code).
+The Engineering Manager orchestrates the **Implement** phase via **`eversis-orchestrating-implementation`** (loaded when you run **`@eversis-implement`**). It does not replace implementers — it follows the approved plan, delegates work by task type, and enforces human gates from **`eversis-agent-core.mdc`**.
 
 ## Delegation flow
 
@@ -25,7 +25,7 @@ Implementation plan
     SE   E2E  DevOps Arch  CR   UIR   PE
 ```
 
-The Engineering Manager is bound to the public prompt **`@eversis-implement`**. When you run it, it parses the implementation plan, identifies individual tasks, and routes each one to the appropriate specialized role. For UI tasks with Figma references, it uses the internal prompt [Implement UI](../prompts/internal/implement-ui) to orchestrate the verification loop (including **`@eversis-review-ui`** — [Review UI](../prompts/public/review-ui) — when visual checks are required).
+The Engineering Manager is bound to the public prompt **`@eversis-implement`**. The canonical workflow lives in [Orchestrating Implementation](../skills/orchestrating-implementation) (`eversis-orchestrating-implementation` skill): Quick vs Full selection, planning readiness, task routing, UI verification gate, and Fine handoff.
 
 ## Agent Delegation
 

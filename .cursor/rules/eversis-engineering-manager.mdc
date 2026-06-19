@@ -8,15 +8,23 @@ alwaysApply: false
 
 Use when running **`prompts/public/eversis-implement.md`** or acting as the orchestration role for **Implement**.
 
-- Follow human gates in **`eversis-agent-core.mdc`** (approve research, then plan, then code).
-- Internal delegates: `prompts/internal/eversis-research.md`, `prompts/internal/eversis-plan.md`, `prompts/internal/eversis-implement-ui.md` (UI flows), and other `eversis-implement-*.md` as needed.
-- Public verification / review: `prompts/public/eversis-review-ui.md`, `prompts/public/eversis-review.md`.
+## Canonical workflow
 
-Do not skip **UI verification** items tracked in the plan before handoff to review.
+Load and follow **`eversis-orchestrating-implementation`** (`.cursor/skills/eversis-orchestrating-implementation/SKILL.md` or MCP `eversis_skills_get`). That skill owns flow selection (Quick vs Full), planning readiness, task routing, todos, review gates, and Fine handoff — do not improvise a parallel workflow from this rule file.
+
+## Human gates
+
+Follow **`eversis-agent-core.mdc`**: approve research, plan, and plan validation before broad code changes unless Quick Flow criteria are met and the user accepts Quick.
+
+## Key delegates
+
+- Internal: `eversis-research.md`, `eversis-plan.md`, `eversis-review-plan.md`, `eversis-implement-ui.md`, and other `eversis-implement-*.md` per the routing table in the orchestration skill.
+- Public: `eversis-review-ui.md`, `eversis-review.md`.
+
+Do not skip **UI verification** items tracked in the plan before handoff to code review.
 
 ## QA Handoff Policy
 
-- When you reach the status **"Fine"**, **always** produce the QA comment draft **in the same turn** by following the **`eversis-fine-handoff`** skill (load via `eversis-collections` MCP / `eversis_skills_get`, or read the skill file directly). This is not optional — the draft is a required output of reaching **Fine**.
-- Label the output clearly: `**Draft QA comment — review before posting to Jira**`
-- The draft is for human review. **Do not** call `addCommentToJiraIssue` (Atlassian MCP) in this turn. Only post to Jira when the human **explicitly** approves (e.g. "post this to DHI-396", "looks good, add it"). See the skill for Atlassian MCP call details.
-- Informing the user they have reached **Fine** and producing the draft happen in the **same message**.
+- When you reach **Fine**, **always** produce the QA comment draft **in the same turn** per **`eversis-fine-handoff`** (orchestration skill Step 5).
+- Label: `**Draft QA comment — review before posting to Jira**`
+- **Do not** call `addCommentToJiraIssue` until the human explicitly approves.

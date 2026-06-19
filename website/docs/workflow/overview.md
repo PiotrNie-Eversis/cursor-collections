@@ -28,7 +28,7 @@ Each phase passes a reviewed deliverable to the next. Workshop materials feed th
 
 - **Role:** Engineering Manager (delegates Context Engineer, Architect, implementers)
 - **Prompt:** `@eversis-implement` with a Jira ID or task description
-- **Flow:** Research → plan (human approval) → plan validation → code → **Fine** + mandatory QA comment draft.
+- **Flow:** Quick or Full (see [Orchestrating Implementation](../skills/orchestrating-implementation)) → research → plan → plan validation → code → **Fine** + mandatory QA comment draft.
 - **Produces:** `*.research.md`, `*.plan.md`, `*.plan-review.md`, code changes.
 
 ### 3. Review
