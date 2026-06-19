@@ -23,7 +23,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ### Changed
 
-- **`docs/specs/*/` local-only (framework repo)** — Gitignore Implement subfolders; untrack historical research/plan artifacts from git; only `docs/specs/README.md` stays committed. Normative BA Docs spec migrated to [`website/docs/specs/business-docs-workflow.md`](website/docs/specs/business-docs-workflow.md). Consumer `setup-cursor-local.sh` defaults unchanged (`--gitignore-agent-artifacts` remains opt-in).
+- **Agent artifacts local-only (framework repo)** — Gitignore `docs/specs/*/`, `docs/context/*/`, and `docs/plans/*` (except `docs/plans/README.md`); untrack historical research/plan artifacts and flat `docs/plans/cursor-rules-globs.md` from git while keeping files on disk. Only scaffold READMEs stay committed under `docs/specs/`, `docs/context/`, and `docs/plans/`. Normative BA Docs spec migrated to [`website/docs/specs/business-docs-workflow.md`](website/docs/specs/business-docs-workflow.md). Consumer `setup-cursor-local.sh` defaults unchanged (`--gitignore-agent-artifacts` remains opt-in).
 - **Installation docs** — stack rule must include Agent skills policy after bootstrap.
 - **Docs cleanup (Phase F):** Architect read-only terminal guidance; integration-test emphasis in `eversis-code-reviewing`; agents overview + rule-pack template notes; Plan Reviewer in reference table; installation Cursor Agent bootstrap.
 - **Jira cycle (Phase E):** `eversis-analyze-materials` — post-push read-back and baseline refresh; `workshop-flow.md`, `business-analyst.md`, `jira-task-formatting.md`, `cursor-collection.md` updated.
@@ -232,7 +232,7 @@ After pulling this release:
 
 ### Added
 
-- **`docs/plans/`** directory with [`docs/plans/README.md`](docs/plans/README.md) and [`docs/plans/cursor-rules-globs.md`](docs/plans/cursor-rules-globs.md) — canonical in-repo plan for `.mdc` frontmatter `globs` normalization.
+- **`docs/plans/`** directory with [`docs/plans/README.md`](docs/plans/README.md) and a local plan file for `.mdc` frontmatter `globs` normalization (plan file no longer committed after 2026-06-19 local-only policy).
 
 ### Changed
 

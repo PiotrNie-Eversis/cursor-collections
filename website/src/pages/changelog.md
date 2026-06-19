@@ -21,6 +21,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ### Changed
 
+- **Agent artifacts local-only (framework repo)** — `docs/specs/*/`, `docs/context/*/`, and `docs/plans/*` (except README) gitignored; normative BA Docs spec on [business-docs-workflow](https://github.com/PiotrNie-Eversis/cursor-collections/blob/main/website/docs/specs/business-docs-workflow.md).
 - **Breaking:** Skill rename **`eversis-qa-comment`** → **`eversis-fine-handoff`** — same Fine-turn QA comment draft contract; new docs page [Fine Handoff](https://github.com/PiotrNie-Eversis/cursor-collections/blob/main/website/docs/skills/fine-handoff.md). See [CHANGELOG.md](https://github.com/PiotrNie-Eversis/cursor-collections/blob/main/CHANGELOG.md) for consumer migration steps.
 
 ## 2026-05-13
@@ -75,7 +76,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ### Added
 
-- **`docs/plans/`** directory with [`docs/plans/README.md`](https://github.com/PiotrNie-Eversis/cursor-collections/blob/main/docs/plans/README.md) and [`docs/plans/cursor-rules-globs.md`](https://github.com/PiotrNie-Eversis/cursor-collections/blob/main/docs/plans/cursor-rules-globs.md) — canonical in-repo plan for `.mdc` frontmatter `globs` normalization.
+- **`docs/plans/`** directory with [`docs/plans/README.md`](https://github.com/PiotrNie-Eversis/cursor-collections/blob/main/docs/plans/README.md) and a local plan file for `.mdc` frontmatter `globs` normalization (plan file no longer committed after 2026-06-19 local-only policy).
 
 ### Changed
 

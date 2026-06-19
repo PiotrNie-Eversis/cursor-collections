@@ -10,6 +10,8 @@ Referenced by the Eversis **Implement** workflow and `.cursor/prompts/public/eve
 
 In **this** monorepo, **`docs/specs/*/` subfolders are gitignored** — research, plans, and session specs stay **local** and are not pushed. Only this **`README.md`** remains committed under `docs/specs/`.
 
+The same **local-only policy** applies to **`docs/context/*/`** and **`docs/plans/*.md`** (except [`docs/plans/README.md`](../plans/README.md)) — see those READMEs.
+
 - Use `@docs/specs/<task>/` in Cursor as today; files remain on disk.
 - Share approved plans via Jira, chat, or exports — not via git in this repo.
 - **Normative BA Docs spec** (Business Manager Docs) lives on the docs site: [Business Docs Workflow](../website/docs/specs/business-docs-workflow.md).

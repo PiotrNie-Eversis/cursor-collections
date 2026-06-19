@@ -17,8 +17,11 @@ scripts/lib/prompt-slug-map.generated.json
 .vercel
 .env*.local
 
-# Implement artifacts — local only (framework repo)
+# Agent artifacts — local only (framework repo)
 docs/specs/*/
+docs/context/*/
+docs/plans/*
+!docs/plans/README.md
 
 # cursor-collections local [begin]
 .cursor/mcp.json
