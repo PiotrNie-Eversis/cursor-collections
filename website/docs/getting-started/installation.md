@@ -26,6 +26,24 @@ You can use any folder name; paths in [AGENTS.md](https://github.com/PiotrNie-Ev
 2. Read **`AGENTS.md`** at the repo root and the [Framework reference](../framework) on this site (or **`documentation/cursor-collection.md`** in the repository) for the full model.
 3. Review **`.cursor/rules/`** — start with `eversis-agent-core.mdc` and customize `eversis-project-stack.mdc` when you copy rules into another project.
 
+### Bootstrap a consumer project with Cursor Agent
+
+Instead of copying paths manually, ask **Cursor Agent** in your target project:
+
+```text
+Run setup-cursor-local.sh from cursor-collections with --build-mcp for this workspace.
+```
+
+The agent should execute (adjust `CURSOR_COLLECTIONS_HOME` if needed):
+
+```bash
+bash "$CURSOR_COLLECTIONS_HOME/scripts/setup-cursor-local.sh" --build-mcp
+```
+
+From the framework checkout you can pass `--target` to bootstrap another folder. For CI or scripted setup, add `--non-interactive` and optionally `--mcp-servers=context7,eversis-collections,figma`. Full flag reference is in [Quick setup (script)](#quick-setup-script) below.
+
+This replaces the upstream Copilot pattern of "ask Copilot to configure itself" — Cursor uses the setup script plus MCP merge, not VS Code `chat.*Locations` JSON.
+
 ## 3. Prompts (attach with `@`)
 
 Public prompts live under **`.cursor/prompts/public/`** as **`eversis-*.md`**. In Chat or Agent, attach e.g.:

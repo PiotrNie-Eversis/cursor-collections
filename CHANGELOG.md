@@ -18,6 +18,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ### Changed
 
+- **Docs cleanup (Phase F):** Architect read-only terminal guidance; integration-test emphasis in `eversis-code-reviewing`; agents overview + rule-pack template notes; Plan Reviewer in reference table; installation Cursor Agent bootstrap.
 - **Jira cycle (Phase E):** `eversis-analyze-materials` — post-push read-back and baseline refresh; `workshop-flow.md`, `business-analyst.md`, `jira-task-formatting.md`, `cursor-collection.md` updated.
 - **Gate 0 + task extraction (Phase D):** `eversis-task-extracting` — source traceability, scenario AC (`GIVEN/WHEN/THEN`), steps 1–11; `eversis-analyze-materials` — intent brief workflow; `workshop-flow.md`, `business-analyst.md`, `task-extraction.md` updated.
 - **Quick vs Full workflow docs (Phase B):** `standard-flow.md`, `frontend-flow.md`, `workflow/overview.md` — Step 0 selection, Quick example, Figma/UI Full-only.

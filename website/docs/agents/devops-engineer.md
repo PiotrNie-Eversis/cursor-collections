@@ -5,7 +5,7 @@ title: DevOps Engineer
 
 # DevOps Engineer Agent
 
-**Rule pack (canonical):** `.cursor/rules/eversis-role-devops-engineer.mdc`  
+**Rule pack (canonical template):** `.cursor/rules/eversis-role-devops-engineer.mdc` — **not shipped** in cursor-collections; behavior via `@eversis-implement` internal delegates.  
 **Delegated prompts:** [Implement pipeline](../prompts/internal/implement-pipeline), [Implement Terraform](../prompts/internal/implement-terraform), [Implement observability](../prompts/internal/implement-observability), [Deploy Kubernetes](../prompts/internal/deploy-kubernetes) (composed from **`@eversis-implement`** — [Implement](../prompts/public/implement))
 
 The DevOps Engineer role maps to a senior DevOps engineer and consultant: DevOps culture, “Golden Path” templates, cloud infrastructure, CI/CD pipelines, observability, and cost optimization — expressed as IaC and automation in Cursor.

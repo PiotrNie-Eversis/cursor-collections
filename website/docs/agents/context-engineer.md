@@ -5,7 +5,7 @@ title: Context Engineer
 
 # Context Engineer Agent
 
-**Rule pack (canonical):** `.cursor/rules/eversis-role-context-engineer.mdc`  
+**Rule pack (canonical template):** `.cursor/rules/eversis-role-context-engineer.mdc` — **not shipped** in cursor-collections; behavior via delegated [Research](../prompts/internal/research) prompt.  
 **Delegated prompt:** [Research](../prompts/internal/research) (via `@eversis-implement` — [Implement](../prompts/public/implement) — and Engineering Manager orchestration)
 
 The Context Engineer gathers requirements, analyzes processes, and produces a research artifact before planning and implementation.

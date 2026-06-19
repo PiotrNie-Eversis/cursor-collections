@@ -5,7 +5,7 @@ title: UI Reviewer
 
 # UI Reviewer Agent
 
-**Rule pack (canonical):** `.cursor/rules/eversis-role-ui-reviewer.mdc`  
+**Rule pack (canonical template):** `.cursor/rules/eversis-role-ui-reviewer.mdc` — **not shipped** in cursor-collections; behavior via `@eversis-review-ui`.  
 **Primary prompt:** `@eversis-review-ui` (docs: [Review UI](../prompts/public/review-ui))
 
 The UI Reviewer performs **read-only** verification comparing implemented UI against **Figma** designs and reports differences. It can be run **directly** by a user (attach **`@eversis-review-ui`**) or **during the UI implementation loop** with the [Software Engineer](./software-engineer). It does **not** fix product code.

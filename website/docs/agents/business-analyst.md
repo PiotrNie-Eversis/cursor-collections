@@ -5,7 +5,7 @@ title: Business Analyst
 
 # Business Analyst Agent
 
-**Rule pack (canonical):** `.cursor/rules/eversis-role-business-analyst.mdc`  
+**Rule pack (canonical template):** `.cursor/rules/eversis-role-business-analyst.mdc` — **not shipped** in cursor-collections; behavior via `@eversis-analyze-materials` and BA skills.  
 **Primary prompt:** `@eversis-analyze-materials` (docs: [Analyze materials](../prompts/public/analyze-materials))
 
 The Business Analyst role converts discovery workshop materials (transcripts, Figma, codebase context) into structured, Jira-ready epics and user stories. It can also import and iterate on existing Jira backlogs.

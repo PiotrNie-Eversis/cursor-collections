@@ -381,7 +381,7 @@ flowchart LR
 
 **Definition of Done (faza F):**
 
-- [ ] `validate-cursor-links` + `npm run build`
+- [x] `validate-cursor-links` + `npm run build`
 
 ---
 
@@ -571,7 +571,7 @@ Po zmianach w `mcp/eversis-collections-mcp/` — `npm run build` w pakiecie MCP 
 
 Po **akceptacji tego planu:**
 
-1. ~~Faza 0~~ → ~~Faza A~~ → ~~A′~~ → ~~B~~ → ~~C~~ → ~~D~~ → ~~E~~ — **zrobione lokalnie** (commity na `main`).
-2. Następny PR planowy: **Faza F** (docs cleanup + drobne P2).
+1. ~~Faza 0~~ → ~~Faza A~~ → ~~A′~~ → ~~B~~ → ~~C~~ → ~~D~~ → ~~E~~ → ~~F~~ — **zrobione lokalnie** (commity na `main`).
+2. Opcjonalne fazy **G–I** wymagają explicit approval (Repo Docs, QA skille, filters).
 
-**Status:** Plan — **Fazy 0, A, A′, B, C, D, E zaimplementowane lokalnie**. Następna: **Faza F** (architect read-only, integration tests akapit, agents link sweep, installation).
+**Status:** Plan — **Fazy 0–F zaimplementowane lokalnie**. Opcjonalne: **Faza G** (Repo Docs writer), **H** (QA skille), **I** (implementing-filters).

@@ -5,7 +5,7 @@ title: Architect
 
 # Architect Agent
 
-**Rule pack (canonical):** `.cursor/rules/eversis-role-architect.mdc`  
+**Rule pack (canonical template):** `.cursor/rules/eversis-role-architect.mdc` — add when you split Architect behavior out of core packs; **not shipped** in this repository (planning runs via delegated [Plan](../prompts/internal/plan) prompt and `eversis-architecture-designing` skill).  
 **Delegated prompt:** [Plan](../prompts/internal/plan) (via `@eversis-implement` — [Implement](../prompts/public/implement))
 
 The Architect designs technical solutions and implementation plans from approved research, turning requirements into phased, executable work.
@@ -26,6 +26,11 @@ The Architect designs technical solutions and implementation plans from approved
 - **Security considerations** — What implementers must address.
 - **Quality assurance** — Standards for the implementation pass.
 
+## What it does NOT do
+
+- Does not implement application code or edit files outside research/plan artifacts.
+- Does not run build, test, lint, or deployment commands — specifies them in the plan for implementers and reviewers.
+
 ## Tools (typical)
 
 | Tool | Usage |
@@ -35,8 +40,8 @@ The Architect designs technical solutions and implementation plans from approved
 | **Figma** | Translate visual requirements into technical specifications  |
 | **PDF Reader** | Read and extract content from PDF requirement documents  |
 | **Sequential Thinking** | Design complex architectures, evaluate trade-offs, break down features |
-| **Terminal** | Run build tools, scripts, and validation commands   |
-| **Cursor Agent** | Read, search, and edit workspace files |
+| **Terminal** | **Read-only** — inspect command output when needed; do not run build, test, lint, or deploy from the Architect turn |
+| **Cursor Agent** | Read, search, and edit workspace files (research/plan artifacts only) |
 | **Todo** | Track task progress with structured checklists |
 
 ## Skills (Eversis naming)

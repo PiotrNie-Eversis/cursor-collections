@@ -5,7 +5,7 @@ title: E2E Engineer
 
 # E2E Engineer Agent
 
-**Rule pack (canonical):** `.cursor/rules/eversis-role-e2e-engineer.mdc`  
+**Rule pack (canonical template):** `.cursor/rules/eversis-role-e2e-engineer.mdc` — **not shipped** in cursor-collections; behavior via [Implement E2E](../prompts/internal/implement-e2e) delegate.  
 **Delegated prompt:** [Implement E2E](../prompts/internal/implement-e2e) (via **`@eversis-implement`** — [Implement](../prompts/public/implement))
 
 The E2E Engineer creates, maintains, and debugs end-to-end tests using **Playwright**. It produces reliable, maintainable, and meaningful test suites with accessibility-first locators, stable flows, and CI-ready runs.

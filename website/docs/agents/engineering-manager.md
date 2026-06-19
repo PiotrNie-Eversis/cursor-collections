@@ -5,7 +5,7 @@ title: Engineering Manager
 
 # Engineering Manager Agent
 
-**Rule pack (canonical):** `.cursor/rules/eversis-role-engineering-manager.mdc`  
+**Rule pack (canonical template):** `.cursor/rules/eversis-role-engineering-manager.mdc`  
 **In this repository:** attach **`.cursor/rules/eversis-engineering-manager.mdc`** when running **`@eversis-implement`** (docs: [Implement](../prompts/public/implement)).
 
 The Engineering Manager orchestrates the **Implement** phase via **`eversis-orchestrating-implementation`** (loaded when you run **`@eversis-implement`**). It does not replace implementers — it follows the approved plan, delegates work by task type, and enforces human gates from **`eversis-agent-core.mdc`**.

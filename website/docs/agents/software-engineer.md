@@ -5,7 +5,7 @@ title: Software Engineer
 
 # Software Engineer Agent
 
-**Rule pack (canonical):** `.cursor/rules/eversis-role-software-engineer.mdc`  
+**Rule pack (canonical template):** `.cursor/rules/eversis-role-software-engineer.mdc` — **not shipped** in cursor-collections; behavior via `@eversis-implement` internal delegates.  
 **Delegated prompts:** [Implement common task](../prompts/internal/implement-common-task), [Implement UI common task](../prompts/internal/implement-ui-common-task), and related paths composed from **`@eversis-implement`** ([Implement](../prompts/public/implement))
 
 The Software Engineer agent implements software solutions based on provided requirements and technical designs. It executes against implementation plans created by the Architect.

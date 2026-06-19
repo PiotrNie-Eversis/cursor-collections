@@ -74,6 +74,17 @@ Do **not** duplicate plan-structure rules here. Load and follow **`eversis-creat
 
 After the plan is saved, it is stress-tested by the Plan Reviewer via [`eversis-review-plan.md`](../../../.cursor/prompts/internal/eversis-review-plan.md) before implementation begins.
 
+## Terminal and implementation boundaries
+
+The Architect role is **design-only**. During architecture design and plan authoring:
+
+- **Do** use read-only inspection — file search, codebase analysis skills, MCP reads (Jira, Figma, PDF, Context7).
+- **Do not** run build, test, lint, typecheck, or deployment commands from the Architect turn — those belong to implementers and the Code Reviewer per the plan's verification phases.
+- **Do not** edit application source code — only research/plan artifacts under `docs/specs/<task>/` (or `specifications/<task>/`).
+- **Do** specify which fast checks and full test suites each plan phase and the final review phase should run; delegate execution to `@eversis-implement` and `@eversis-review`.
+
+This prevents the Architect from implementing or validating code during planning while still producing runnable DoD commands in the plan.
+
 ## Connected Skills
 
 - `eversis-creating-implementation-plans` — owns plan template, structure, and definition-of-done rules
