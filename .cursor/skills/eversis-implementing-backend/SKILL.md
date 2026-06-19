@@ -480,7 +480,7 @@ Generate migration files for all schema changes. Ensure both `up` and `down` are
 Create entity classes, repository interfaces and implementations, and service classes with business logic. Follow vertical slice structure.
 
 **Step 5: Implement the API layer**
-Create controllers with proper HTTP methods. Define DTOs for request/response. Add input validation. Follow the DataGrid standard for list endpoints.
+Create controllers with proper HTTP methods. Define DTOs for request/response. Add input validation. For **list endpoints**, follow the project's list-query contract — **TSH DataGrid bracket notation** or **flat Zod params** per plan; URL/hook patterns → **`eversis-implementing-filters`** when shareable URL filters apply.
 
 **Step 6: Add authentication/authorization guards**
 Apply JWT validation middleware. Add role/permission checks as needed. Implement resource-level authorization.
@@ -517,6 +517,7 @@ The patterns above are language-agnostic. For technology-specific implementation
 - `eversis-implementing-observability` — for logging, monitoring, and distributed tracing
 - `eversis-managing-secrets` — for secure credential storage and rotation
 - `eversis-e2e-testing` — for end-to-end testing with Playwright
+- `eversis-implementing-filters` — when list endpoints pair with Next.js URL-synced filters (not Liferay/OData-only portals)
 
 ## Connected Skills
 

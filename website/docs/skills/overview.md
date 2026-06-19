@@ -5,7 +5,7 @@ title: Skills Overview
 
 # Skills Overview
 
-Cursor Collections includes **42 reusable skills** — knowledge modules that provide specialized domain expertise, structured processes, and quality templates. They encode tested best practices for every phase of the product lifecycle. Skills are stored in `.cursor/skills/`. In Agent, use them through the **`eversis-collections` MCP** server (**`eversis_skills_list`**, **`eversis_skills_get`**, **`eversis_skill_run_script`** for allowlisted per-skill scripts, and related tools) after building [`mcp/eversis-collections-mcp/`](https://github.com/PiotrNie-Eversis/cursor-collections/tree/main/mcp/eversis-collections-mcp); do not register the folder separately as Cursor **Agent Skills** for this framework.
+Cursor Collections includes **43 reusable skills** — knowledge modules that provide specialized domain expertise, structured processes, and quality templates. They encode tested best practices for every phase of the product lifecycle. Skills are stored in `.cursor/skills/`. In Agent, use them through the **`eversis-collections` MCP** server (**`eversis_skills_list`**, **`eversis_skills_get`**, **`eversis_skill_run_script`** for allowlisted per-skill scripts, and related tools) after building [`mcp/eversis-collections-mcp/`](https://github.com/PiotrNie-Eversis/cursor-collections/tree/main/mcp/eversis-collections-mcp); do not register the folder separately as Cursor **Agent Skills** for this framework.
 
 ## How Skills Work
 
@@ -50,6 +50,7 @@ When an agent needs specialized procedures, it can pull **`SKILL.md` content** v
 | [eversis-creating-implementation-plans](./creating-implementation-plans) | Plan template, WIG, Technical Context, phased tasks, DoD rules | Architect, Plan Reviewer |
 | [eversis-technical-context-discovering](./technical-context-discovery) | Project conventions and pattern discovery                     | Architect, CR, SE, E2E, CE |
 | [eversis-implementing-frontend](./frontend-implementation)             | UI component patterns, composition, design tokens             | Software Engineer          |
+| [eversis-implementing-filters](./implementing-filters)               | URL-synced filter lists (Next + REST); stack policy required    | Software Engineer          |
 | [eversis-implementing-forms](./implementing-forms)                     | Form architecture, schema validation, multi-step flows        | Software Engineer          |
 | [eversis-writing-hooks](./writing-hooks)                               | Custom hook/composable patterns, lifecycle, testing           | Software Engineer          |
 | [eversis-ensuring-accessibility](./ensuring-accessibility)             | WCAG 2.1 AA compliance, semantic HTML, ARIA, keyboard nav     | Software Engineer          |
@@ -117,6 +118,7 @@ When an agent needs specialized procedures, it can pull **`SKILL.md` content** v
 | eversis-implementing-ci-cd                 |     |     | ✅        |     |     |     |             |     | ✅     |           |
 | eversis-implementing-forms                 |     |     |           | ✅  |     |     |             |     |        |           |
 | eversis-implementing-frontend              |     |     |           | ✅  |     |     |             |     |        |           |
+| eversis-implementing-filters               |     |     |           | ✅  |     |     |             |     |        |           |
 | eversis-implementing-kubernetes            |     |     | ✅        |     |     |     |             |     | ✅     |           |
 | eversis-implementing-observability         |     |     | ✅        |     |     |     |             |     | ✅     |           |
 | eversis-implementing-terraform-modules     |     |     | ✅        |     |     |     |             |     | ✅     |           |

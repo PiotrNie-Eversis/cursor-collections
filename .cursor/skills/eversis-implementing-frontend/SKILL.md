@@ -143,6 +143,7 @@ The patterns above are framework-agnostic. For framework-specific implementation
 
 ## Connected Skills
 
+- `eversis-implementing-filters` — URL-synced filter lists (when stack policy + AC require shareable URL; not Liferay/OData-only)
 - `eversis-ui-verifying` - for verifying implementation against Figma designs
 - `eversis-technical-context-discovering` - for understanding project conventions before implementing
 - `eversis-ensuring-accessibility` — to ensure components meet WCAG 2.1 AA standards

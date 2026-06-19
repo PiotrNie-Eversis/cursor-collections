@@ -16,6 +16,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ### Added
 
+- **Implementing filters (Phase I):** `eversis-implementing-filters` — Next.js URL-sync for filterable lists; Nest flat Zod variant; gated by Agent skills policy. Docs: [implementing-filters](https://github.com/PiotrNie-Eversis/cursor-collections/blob/main/website/docs/skills/implementing-filters.md).
 - **Agent skills policy (OSS governance):** stack template, agent-core, orchestration, and docs — mitigates wrong skill activation across consumer projects.
 
 ### Changed

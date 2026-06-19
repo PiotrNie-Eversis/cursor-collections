@@ -8,6 +8,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ### Added
 
+- **Implementing filters (Phase I upstream port):** `eversis-implementing-filters` skill — URL-sync for Next.js list pages; TSH bracket + Nest flat Zod variants; `references/nextjs-patterns.md`, `nestjs-flat-params.md`, `react-patterns.md`; [implementing-filters](website/docs/skills/implementing-filters.md) docs. Gated by Agent skills policy.
 - **Agent skills policy (OSS governance):** `eversis-project-stack.example.mdc` § Agent skills policy; `eversis-agent-core` stack-policy gate before `eversis_skills_get`; orchestration domain-skills gate; skill classes in `skills/overview.md`; framework doc § Agent skills policy.
 - **Creating skills:** domain skills require **Do NOT use** in `description` and **When NOT to use** body section.
 - **QA workflow (Phase H upstream port):** `@eversis-qa-workflow` prompt + command; skills `eversis-planning-tests`, `eversis-verifying-acceptance-criteria`, `eversis-analyzing-bugs`, `eversis-analyzing-regression-risk`, `eversis-accessibility-auditing`, `eversis-functional-testing` (templates); [QA Workflow](website/docs/workflow/qa-workflow.md) docs chapter. Separate from Fine handoff and E2E automation.

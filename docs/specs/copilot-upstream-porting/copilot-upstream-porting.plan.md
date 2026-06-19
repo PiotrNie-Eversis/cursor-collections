@@ -430,11 +430,14 @@ flowchart LR
 
 **Warunek:** consumer stack z DataGrid + shareable URL (React/Next).
 
-| Task | Deliverable |
-| ---- | ----------- |
-| I.1 | `.cursor/skills/eversis-implementing-filters/SKILL.md` + `references/*.md` |
-| I.2 | Cross-link w `eversis-implementing-backend` i `eversis-implementing-frontend` |
-| I.3 | `website/docs/skills/implementing-filters.md` |
+| Task | Deliverable | Status |
+| ---- | ----------- | ------ |
+| I.1 | `.cursor/skills/eversis-implementing-filters/SKILL.md` + `references/*.md` (Next, Nest flat, React Router) | ✅ |
+| I.2 | Cross-link w `eversis-implementing-backend` i `eversis-implementing-frontend` | ✅ |
+| I.3 | `website/docs/skills/implementing-filters.md` + `overview` | ✅ |
+| I.4 | Adaptacja Nest flat Zod + OSS skills policy (NOT triggers, Step 0) | ✅ |
+
+**Pominięto:** wymuszanie TSH bracket jako jedynego standardu — Variant B dla Nest+Zod.
 
 ---
 
@@ -583,7 +586,7 @@ Po zmianach w `mcp/eversis-collections-mcp/` — `npm run build` w pakiecie MCP 
 
 Po **akceptacji tego planu:**
 
-1. ~~Faza 0~~ → ~~Faza A~~ → ~~A′~~ → ~~B~~ → ~~C~~ → ~~D~~ → ~~E~~ → ~~F~~ → ~~G~~ → ~~H~~ — **zrobione lokalnie** (commity na `main`).
-2. Opcjonalna faza **I** wymaga explicit approval (implementing-filters).
+1. ~~Faza 0~~ → … → ~~H~~ → ~~I~~ — **zrobione lokalnie** (commity na `main`).
+2. Port upstream **zakończony** (fazy 0–I). Re-sync z TSH `main` opcjonalnie w osobnym PR.
 
-**Status:** Plan — **Fazy 0–H zaimplementowane lokalnie**. Opcjonalna: **Faza I** (implementing-filters).
+**Status:** Plan — **Fazy 0–I zaimplementowane lokalnie**.
