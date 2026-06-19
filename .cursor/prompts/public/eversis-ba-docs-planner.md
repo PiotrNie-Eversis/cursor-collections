@@ -1,14 +1,14 @@
 ---
 sidebar_position: 11
-title: "BA docs — Planner"
+title: "BA Docs (Word) — Planner"
 slug: ba-docs-planner
-prompt_role: "Business analyst (documentation)"
-prompt_description: "Build docs-update-plan.md from Confluence rules, a Jira release, and summary.md."
+prompt_role: "BA Docs (Word) planner"
+prompt_description: "Build docs-update-plan.md from Confluence rules, a Jira release, and summary.md — for .docx chapters."
 upstream_agent: "eversis-ba-docs-planner"
 ---
 # eversis-ba-docs-planner
 
-**Role:** Documentation planner (BA)  
+**Role:** BA Docs (Word) planner  
 **File:** `.cursor/prompts/public/eversis-ba-docs-planner.md`
 
 Produces `docs-update-plan.md`: which document chapters to update after a release, aligned with **Confluence** documentation rules and **Jira** release scope. Annotates each section with `content_type` classification (TEXT-SAFE / TABLE-CONTAINS / IMAGE-CONTAINS) when `.docx` is available.

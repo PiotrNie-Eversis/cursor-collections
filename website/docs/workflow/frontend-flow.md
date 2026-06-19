@@ -28,7 +28,7 @@ For UI-heavy tasks with Figma designs, use the specialized frontend workflow. Th
 ```
 
 :::note Mandatory QA comment draft after Fine
-When the Engineering Manager declares **Fine**, it **always produces a QA comment draft in the same response** following the **[QA Comment](../skills/qa-comment)** skill (`eversis-qa-comment`). Review the draft, edit if needed, then paste it into Jira or ask the agent to post it via Atlassian MCP. More context: [Workflow Overview](./overview).
+When the Engineering Manager declares **Fine**, it **always produces a QA comment draft in the same response** following the **[Fine Handoff](../skills/fine-handoff)** skill (`eversis-fine-handoff`). Review the draft, edit if needed, then paste it into Jira or ask the agent to post it via Atlassian MCP. More context: [Workflow Overview](./overview).
 :::
 
 ## How the Verification Loop Works

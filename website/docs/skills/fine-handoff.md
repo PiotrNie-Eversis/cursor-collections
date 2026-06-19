@@ -1,13 +1,16 @@
 ---
 sidebar_position: 33
-title: QA Comment
+title: Fine Handoff
 ---
 
-# QA Comment Generation
+# Fine Handoff (QA comment draft)
 
-**Folder:** `.cursor/skills/eversis-qa-comment/`
+**Skill:** `eversis-fine-handoff`  
+**Folder:** `.cursor/skills/eversis-fine-handoff/`
 
-This skill bridges communication between developers and Quality Assurance. It generates a clear, English-language summary of changes written specifically for people who will **test the feature**, not read the code.
+This skill bridges communication between developers and Quality Assurance at the **end of Implement**. It generates a clear, English-language summary of changes written specifically for people who will **test the feature**, not read the code.
+
+The skill name reflects **when** it runs (status **Fine**), not the full QA practice layer. For test plans, regression, and formal AC verification, use **`eversis-qa-workflow`** when that playbook is available in your framework version.
 
 ## How it fits the workflow
 
@@ -88,4 +91,4 @@ Below is an illustrative comment for a hypothetical MFA-in-settings task. An act
 - **API**: New endpoint `POST /api/v1/auth/mfa/verify` handles code validation.
 - **Error Handling**: Invalid codes return a `422 Unprocessable Entity` with a `code_expired` or `code_invalid` reason.
 
-The canonical few-shot template (including a readability contrast example for auth flows) is [`qa-comment.example.md`](https://github.com/PiotrNie-Eversis/cursor-collections/blob/main/.cursor/skills/eversis-qa-comment/qa-comment.example.md) under `.cursor/skills/eversis-qa-comment/`.
+The canonical few-shot template (including a readability contrast example for auth flows) is [`fine-handoff.example.md`](https://github.com/PiotrNie-Eversis/cursor-collections/blob/main/.cursor/skills/eversis-fine-handoff/fine-handoff.example.md) under `.cursor/skills/eversis-fine-handoff/`.

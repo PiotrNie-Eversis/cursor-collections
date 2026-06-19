@@ -87,7 +87,7 @@ We support the **full product development lifecycle**, organized into three phas
 - Translates tasks into research docs and phased implementation plans with acceptance checks.
 - Writes or modifies code in small, reviewable steps — scoped to the task, respecting existing architecture.
 - For UI tasks: includes iterative **Figma verification** via `@eversis-review-ui` until PASS or escalation.
-- Declares **Fine** when agent work is complete and produces a **mandatory QA comment draft** ([`eversis-qa-comment`](.cursor/skills/eversis-qa-comment/SKILL.md)) in the same response.
+- Declares **Fine** when agent work is complete and produces a **mandatory QA comment draft** ([`eversis-fine-handoff`](.cursor/skills/eversis-fine-handoff/SKILL.md)) in the same response.
 
 **Single flow: Implement → Review**
 
@@ -403,7 +403,7 @@ npm install && npm run build
 
 Enable **`eversis-collections`** in **Settings → MCP** and **restart Cursor**.
 
-- 🔌 **eversis-collections** — `eversis_skills_list` / `eversis_skills_get` load `.cursor/skills/` in Agent (`@eversis-implement`, `@eversis-review`; e.g. `eversis-qa-comment` on Fine).
+- 🔌 **eversis-collections** — `eversis_skills_list` / `eversis_skills_get` load `.cursor/skills/` in Agent (`@eversis-implement`, `@eversis-review`; e.g. `eversis-fine-handoff` on Fine).
 - 📄 **Word tools** — `generate_summary_map`, `read_chapter`, `append_chapter`, … for `@eversis-ba-docs-planner` / `@eversis-ba-docs-writer`.
 - 🛠 **Repo scripts** — `eversis_repo_run_script` (`sync-prompts`, `sync-framework-doc`) for contributors.
 

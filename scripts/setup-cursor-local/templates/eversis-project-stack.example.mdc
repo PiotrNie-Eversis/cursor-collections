@@ -41,7 +41,7 @@ For a **filled-in example** of this file (Earth observation / GIS web), see Part
 When **all** planned agent work for an **eversis-implement** thread is finished:
 
 1. Declare **`Fine`** explicitly.
-2. **In the same assistant response**, draft the QA comment following the **`eversis-qa-comment`** skill (`eversis_skills_get` via MCP, or read `.cursor/skills/eversis-qa-comment/SKILL.md` when vendored).
+2. **In the same assistant response**, draft the QA comment following the **`eversis-fine-handoff`** skill (`eversis_skills_get` via MCP, or read `.cursor/skills/eversis-fine-handoff/SKILL.md` when vendored).
 3. Label: **`Draft QA comment — review before posting to Jira`**
 4. **Never** post to Jira in that turn; publication only after explicit human approval.
 

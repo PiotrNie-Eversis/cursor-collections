@@ -56,9 +56,20 @@ Following Cursor Collections conventions:
 
 Both are normative; if **`@`** does not pull in the rule, add the **`.mdc`** path explicitly (see [AGENTS.md](https://github.com/PiotrNie-Eversis/cursor-collections/blob/main/AGENTS.md)).
 
+## Documentation channels (Word vs Repo)
+
+Cursor Collections has **two separate documentation playbooks** — do not mix them:
+
+| Channel | Prompts | Format | Typical trigger |
+| ------- | ------- | ------ | ---------------- |
+| **BA Docs (Word)** | `@eversis-ba-docs-planner` → `@eversis-ba-docs-writer` | `.docx` | Jira release + Confluence rules |
+| **Repo Docs** *(planned)* | `@eversis-repo-docs-writer` | README, CHANGELOG, `website/docs` | Task from `@eversis-implement` |
+
+This page documents **BA Docs (Word)** only.
+
 ## Roles
 
-### 1. Planner (Analyst)
+### 1. Planner — BA Docs (Word)
 
 - **Prompt:** **`@eversis-ba-docs-planner`**
 - **Rule (optional):** **`eversis-ba-docs-planner.mdc`**
@@ -66,7 +77,7 @@ Both are normative; if **`@`** does not pull in the rule, add the **`.mdc`** pat
 - **Output:** **`docs-update-plan.md`**
 - **Critical behavior:** Read **Confluence first** and use it as the decision matrix (e.g. N/A sections, version expectations), then map Jira work to chapters.
 
-### 2. Writer (Technical writer)
+### 2. Writer — BA Docs (Word)
 
 - **Prompt:** **`@eversis-ba-docs-writer`**
 - **Rule (optional):** **`eversis-ba-docs-writer.mdc`**

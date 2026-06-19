@@ -46,18 +46,18 @@ flowchart LR
 
 ### QA handoff after Fine
 
-When the Engineering Manager declares **Fine** (all implementation and code review done), it **always** produces a **QA comment draft in the same response** by following the **`eversis-qa-comment`** skill (`.cursor/skills/eversis-qa-comment/`). This is not optional.
+When the Engineering Manager declares **Fine** (all implementation and code review done), it **always** produces a **QA comment draft in the same response** by following the **`eversis-fine-handoff`** skill (`.cursor/skills/eversis-fine-handoff/`). This is not optional.
 
 **Human gate:** The draft is labeled `Draft QA comment — review before posting to Jira`. You review, edit, or rewrite it, then choose how to publish:
 
 - **Copy-paste** the approved text into the Jira issue comment field, or
 - **Ask the agent** to post via the **Atlassian MCP**: "Post this to PROJ-123 on example.atlassian.net." The agent then calls `addCommentToJiraIssue` with the approved body. It will never post without your explicit instruction, and never in the same turn as the draft.
 
-- **Normative procedure:** [`.cursor/skills/eversis-qa-comment/SKILL.md`](https://github.com/PiotrNie-Eversis/cursor-collections/blob/main/.cursor/skills/eversis-qa-comment/SKILL.md) (or `eversis_skills_get` / `@` that path in a consumer repo).
-- **Few-shot example:** [`qa-comment.example.md`](https://github.com/PiotrNie-Eversis/cursor-collections/blob/main/.cursor/skills/eversis-qa-comment/qa-comment.example.md) in the same folder.
-- **Optional (non-normative) overview:** [website/docs/skills/qa-comment.md](https://github.com/PiotrNie-Eversis/cursor-collections/blob/main/website/docs/skills/qa-comment.md) — docs-site narrative / onboarding, not full usage.
+- **Normative procedure:** [`.cursor/skills/eversis-fine-handoff/SKILL.md`](https://github.com/PiotrNie-Eversis/cursor-collections/blob/main/.cursor/skills/eversis-fine-handoff/SKILL.md) (or `eversis_skills_get` / `@` that path in a consumer repo).
+- **Few-shot example:** [`fine-handoff.example.md`](https://github.com/PiotrNie-Eversis/cursor-collections/blob/main/.cursor/skills/eversis-fine-handoff/fine-handoff.example.md) in the same folder.
+- **Optional (non-normative) overview:** [website/docs/skills/fine-handoff.md](https://github.com/PiotrNie-Eversis/cursor-collections/blob/main/website/docs/skills/fine-handoff.md) — docs-site narrative / onboarding, not full usage.
 
-**Do not** rely on `@website/docs/skills/qa-comment.md` in Agent when you need the exact output contract — attach **`SKILL.md`** or use MCP.
+**Do not** rely on `@website/docs/skills/fine-handoff.md` in Agent when you need the exact output contract — attach **`SKILL.md`** or use MCP.
 
 ### How to run a prompt in Cursor
 
@@ -147,7 +147,7 @@ Use the same variants as the [README](../README.md); only **which prompts you at
 
 ### Business / regulatory documentation (.docx) — Business Manager Docs
 
-- **What this is:** A **relay** for **business analysts / technical writers** updating large Word documents after a Jira release — **not** product software delivery. **Planner** builds `docs-update-plan.md` from Confluence rules + Jira release scope + `summary.md`; **Writer** applies edits via **`.docx` tools on `eversis-collections` MCP** (OOXML via JSZip + `@xmldom/xmldom`). Human reviews the plan before Writer runs and reviews `.docx` output (especially diagrams).
+- **What this is:** A **relay** for **business analysts** updating large **Word** documents after a Jira release — **not** product software delivery and **not** repository markdown docs. **Planner** builds `docs-update-plan.md` from Confluence rules + Jira release scope + `summary.md`; **Writer** applies edits via **`.docx` tools on `eversis-collections` MCP** (OOXML via JSZip + `@xmldom/xmldom`). Human reviews the plan before Writer runs and reviews `.docx` output (especially diagrams).
 - **Not** **`eversis-implement`:** `eversis-implement` orchestrates the **Engineering Manager** flow (research → implementation plan → code: Software / DevOps / E2E). This playbook does **not** replace that. Use **`eversis-implement`** for shipping application code; use **`eversis-ba-docs-planner`** / **`eversis-ba-docs-writer`** for regulated or project `.docx` maintenance.
 - **Prompts:** `eversis-ba-docs-planner` → (human gate on `docs-update-plan.md`) → `eversis-ba-docs-writer`. Optionally **`@`** attach `.cursor/rules/eversis-ba-docs-planner.mdc` / `eversis-ba-docs-writer.mdc` for role boundaries (see spec [business-docs-workflow.spec.md](https://github.com/PiotrNie-Eversis/cursor-collections/blob/main/docs/specs/business-docs-workflow/business-docs-workflow.spec.md) §3.0).
 - **MCP:** **Atlassian** (Jira + Confluence); **`eversis-collections`** (skills + `.docx` chapter tools — build `mcp/eversis-collections-mcp/` per README).
@@ -217,7 +217,7 @@ Markdown links in **`.cursor/`** use **repo-root-relative paths** that resolve i
 
 **CI (this repo):** GitHub Actions workflow **`eversis_cursor_rules_validate`** runs on PRs that touch **`.cursor/rules/**`** or the consumer stack template — same `--context=source` check plus `--paths=scripts/setup-cursor-local/templates/eversis-project-stack.example.mdc`.
 
-**Consumer repos** without `website/`: use `@` attachment and backtick paths (e.g. `.cursor/skills/eversis-qa-comment/SKILL.md`); fix **rules** and **commands** links with `../../` to repo root. Optional Docusaurus copy is not required for Implement to run.
+**Consumer repos** without `website/`: use `@` attachment and backtick paths (e.g. `.cursor/skills/eversis-fine-handoff/SKILL.md`); fix **rules** and **commands** links with `../../` to repo root. Optional Docusaurus copy is not required for Implement to run.
 
 ---
 

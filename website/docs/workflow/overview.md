@@ -44,6 +44,12 @@ Each phase passes a reviewed deliverable to the next. Workshop materials feed th
 | Implement | `@eversis-implement` or `/eversis-implement` | Engineering Manager: research → plan → implementation; declares Fine + QA draft |
 | Review | `@eversis-review` or `/eversis-review` | Structured code review |
 
+## Status: Fine — handoff
+
+When Implement is complete, the Engineering Manager declares **Fine** and **must** output a **QA comment draft in the same response** (not a separate turn). Normative procedure: [`.cursor/skills/eversis-fine-handoff/SKILL.md`](https://github.com/PiotrNie-Eversis/cursor-collections/blob/main/.cursor/skills/eversis-fine-handoff/SKILL.md) or MCP `eversis_skills_get` for `eversis-fine-handoff`. Onboarding overview: [Fine Handoff](../skills/fine-handoff).
+
+The draft is labeled **`Draft QA comment — review before posting to Jira`**. Post to Jira only after you approve (copy-paste or explicit Atlassian MCP instruction).
+
 ## Workflow diagram
 
 import SdlcDiagram from '@site/src/components/SdlcDiagram';

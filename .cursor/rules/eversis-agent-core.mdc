@@ -15,7 +15,7 @@ When acting as Engineering Manager or running `eversis-implement`:
 2. **Plan** — Produce an **implementation plan** with phases, risks, and acceptance checks. **Stop** for human approval before broad code changes.
 3. **Implement** — Make focused edits; run the repo's lint/test/typecheck commands after substantive changes (see `eversis-testing-and-terminal.mdc`).
 4. **Review** — Offer or request `eversis-review` with PASS / BLOCKER / SUGGESTION structure.
-5. **QA draft** — When declaring **Fine**, produce the QA comment draft in the same turn per `eversis-qa-comment`. Jira publication requires explicit human approval (copy-paste or Atlassian MCP — never automatic).
+5. **QA draft** — When declaring **Fine**, produce the QA comment draft in the same turn per `eversis-fine-handoff`. Jira publication requires explicit human approval (copy-paste or Atlassian MCP — never automatic).
 
 ## Skills discovery
 

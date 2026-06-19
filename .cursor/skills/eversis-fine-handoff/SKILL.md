@@ -1,13 +1,15 @@
 ---
-name: eversis-qa-comment
-description: "Mandatory QA comment draft after Fine. Agent outputs a labeled draft; human approves or rewrites; optionally post to Jira via Atlassian MCP only after explicit human approval. No file/line refs in Main Changes."
+name: eversis-fine-handoff
+description: "Mandatory QA comment draft after Fine (Implement handoff). Agent outputs a labeled draft; human approves or rewrites; optionally post to Jira via Atlassian MCP only after explicit human approval. No file/line refs in Main Changes. Not a full QA workflow — use eversis-qa-workflow when that skill exists for test plans and regression."
 ---
 
-# QA Comment Generation
+# Fine Handoff — QA Comment Draft
 
 ## Objective
 
 Generate a clear, human-friendly summary for the QA department in English. This skill **must** be executed in the **same turn** the orchestrating agent declares **"Fine"** (implementation complete). The output is always a **labeled draft** — the human reviews, edits, and decides how to publish it.
+
+This skill covers **Implement handoff only** (one Jira comment draft). For full test planning, regression, or AC gap analysis, use **`eversis-qa-workflow`** and related QA skills when available — do not expand this draft into a full test plan.
 
 ## When to run
 
@@ -91,4 +93,4 @@ The agent then calls `addCommentToJiraIssue` with the **approved** body. It neve
 
 ## Example
 
-See **`qa-comment.example.md`** in this folder for a full few-shot template.
+See **`fine-handoff.example.md`** in this folder for a full few-shot template.

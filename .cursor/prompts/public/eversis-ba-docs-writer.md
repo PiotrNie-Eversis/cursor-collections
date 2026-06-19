@@ -1,17 +1,21 @@
 ---
 sidebar_position: 12
-title: "BA docs — Writer"
+title: "BA Docs (Word) — Writer"
 slug: ba-docs-writer
-prompt_role: "Technical writer (Word)"
-prompt_description: "Apply docs-update-plan.md to .docx via eversis-collections MCP (.docx tools)."
+prompt_role: "BA Docs (Word) writer"
+prompt_description: "Apply docs-update-plan.md to .docx via eversis-collections MCP — not README or website markdown."
 upstream_agent: "eversis-ba-docs-writer"
 ---
 # eversis-ba-docs-writer
 
-**Role:** Documentation implementer (Word)  
+**Role:** BA Docs (Word) writer  
 **File:** `.cursor/prompts/public/eversis-ba-docs-writer.md`
 
-Applies an **approved** `docs-update-plan.md` to `.docx` files using **eversis-collections MCP** (`.docx` tools — do not paste whole documents into chat).
+Applies an **approved** `docs-update-plan.md` to **Word `.docx`** files using **eversis-collections MCP** (`.docx` tools — do not paste whole documents into chat).
+
+:::note Not Repo Docs
+For **repository** documentation (README, CHANGELOG, `website/docs`, markdown under `/docs`), use the **Repo Docs** writer (`eversis-repo-docs-writer` when shipped) — typically delegated from `@eversis-implement`. This prompt is **only** for the **Business Manager Docs (Word)** playbook.
+:::
 
 ## Usage
 

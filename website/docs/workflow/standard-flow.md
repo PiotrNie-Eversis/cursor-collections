@@ -44,7 +44,7 @@ If a `.research.md` or `.plan.md` file already exists for the task, the Engineer
 :::
 
 :::note Mandatory QA comment draft after Fine
-When the Engineering Manager declares **Fine**, it **always produces a QA comment draft in the same response** following the **[QA Comment](../skills/qa-comment)** skill (`eversis-qa-comment`). Review the draft, edit if needed, then paste it into Jira or ask the agent to post it via Atlassian MCP. See [Workflow Overview](./overview) for how **Fine** fits the lifecycle.
+When the Engineering Manager declares **Fine**, it **always produces a QA comment draft in the same response** following the **[Fine Handoff](../skills/fine-handoff)** skill (`eversis-fine-handoff`). Review the draft, edit if needed, then paste it into Jira or ask the agent to post it via Atlassian MCP. See [Workflow Overview](./overview) for how **Fine** fits the lifecycle.
 :::
 
 ### 2. Review

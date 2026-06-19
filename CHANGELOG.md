@@ -4,6 +4,25 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## 2026-06-19
+
+### Changed
+
+- **Breaking:** Renamed skill **`eversis-qa-comment`** → **`eversis-fine-handoff`** (`.cursor/skills/eversis-fine-handoff/`). The **output** is unchanged (QA comment draft labeled `Draft QA comment — review before posting to Jira`). MCP `eversis_skills_get` now uses ID `eversis-fine-handoff`. Docs page: `website/docs/skills/fine-handoff.md` (replaces `qa-comment.md`).
+- **`.cursor/`** — `eversis-implement`, `eversis-project-stack.mdc`, `eversis-agent-core.mdc`, `eversis-engineering-manager.mdc`, `eversis-implement` command, setup template — pointers updated to `eversis-fine-handoff`.
+- **`website/docs/`** — workflow pages, skills overview, engineering-manager agent, integrations, framework-reference, workflow overview (new **Status: Fine — handoff** section).
+- **`AGENTS.md`**, **`README.md`**, **`documentation/cursor-collection.md`**, **`mcp/eversis-collections-mcp/README.md`**.
+
+### Migration (consumer repos)
+
+After pulling this release:
+
+1. Replace `eversis-qa-comment` with **`eversis-fine-handoff`** in `eversis-project-stack.mdc`, `AGENTS.md`, and any custom rules/commands.
+2. Rebuild MCP if vendored: `cd mcp/eversis-collections-mcp && npm run build`.
+3. Run `setup-cursor-local.sh --sync` if you mirror framework files from a shared clone.
+
+---
+
 ## 2026-06-07
 
 ### Changed

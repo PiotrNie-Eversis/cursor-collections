@@ -67,7 +67,7 @@ When an agent needs specialized procedures, it can pull **`SKILL.md` content** v
 | [eversis-reviewing-frontend](./reviewing-frontend) | Frontend-specific review: components, hooks, rendering, a11y | Code Reviewer   |
 | [eversis-ui-verifying](./ui-verification)          | Figma vs implementation verification criteria                | UI Reviewer, SE |
 | [eversis-e2e-testing](./e2e-testing)               | Playwright E2E testing patterns and verification             | E2E Engineer    |
-| [eversis-qa-comment](./qa-comment)                 | Mandatory QA comment draft after Fine; human approves before Jira post | Anyone (post-implement) |
+| [eversis-fine-handoff](./fine-handoff)                 | Mandatory QA comment draft after Fine (Implement handoff); human approves before Jira post | Anyone (post-implement) |
 
 ### ⚙️ Framework customization skills
 
@@ -104,7 +104,7 @@ When an agent needs specialized procedures, it can pull **`SKILL.md` content** v
 | eversis-managing-secrets                   |     |     | ✅        |     |     |     |             |     | ✅     |           |
 | eversis-optimizing-cloud-cost              |     |     | ✅        |     |     |     |             |     | ✅     |           |
 | eversis-optimizing-frontend                |     |     |           | ✅  |     |     |             |     |        |           |
-| eversis-qa-comment                         |     |     |           | ✅  |     | ✅  |             | ✅  |        |           |
+| eversis-fine-handoff                         |     |     |           | ✅  |     | ✅  |             | ✅  |        |           |
 | eversis-reviewing-frontend                 |     |     |           |     |     | ✅  |             |     |        |           |
 | eversis-sql-and-database-understanding     |     |     | ✅        | ✅  |     | ✅  |             |     |        |           |
 | eversis-task-analysing                     |     | ✅  |           |     |     |     |             | ✅  |        |           |

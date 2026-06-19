@@ -28,7 +28,7 @@ E2E test implementation is handled by the Engineering Manager as part of the sta
 :::
 
 :::note Mandatory QA comment draft after Fine
-After implementation (including E2E tasks) reaches **Fine**, the agent **always produces a QA comment draft in the same response** following the **[QA Comment](../skills/qa-comment)** skill (`eversis-qa-comment`). Review the draft, edit if needed, then paste it into Jira or ask the agent to post it via Atlassian MCP. See [Workflow Overview](./overview).
+After implementation (including E2E tasks) reaches **Fine**, the agent **always produces a QA comment draft in the same response** following the **[Fine Handoff](../skills/fine-handoff)** skill (`eversis-fine-handoff`). Review the draft, edit if needed, then paste it into Jira or ask the agent to post it via Atlassian MCP. See [Workflow Overview](./overview).
 :::
 
 ## What the E2E Engineer Does

@@ -23,7 +23,7 @@ Unlike third-party servers that run via `npx`, this server **must be built** bef
 
 | Agent / prompt | When |
 | --- | --- |
-| **Engineering Manager** (`@eversis-implement`) | Skill discovery during implement; **`eversis-qa-comment`** on Fine |
+| **Engineering Manager** (`@eversis-implement`) | Skill discovery during implement; **`eversis-fine-handoff`** on Fine |
 | **Code Reviewer** (`@eversis-review`) | Procedural review skills via `eversis_skills_get` |
 | **Business Analyst** (`@eversis-ba-docs-planner`, `@eversis-ba-docs-writer`) | Word chapter tools for release documentation |
 | **All agents** | When `eversis-agent-core` instructs skill discovery before broad implementation |
@@ -141,7 +141,7 @@ When adding or changing MCP tools, update this section and the matching **Tool r
 
 ```text
 @eversis-implement <ticket>
-  ↳ Agent calls eversis_skills_list / eversis_skills_get (e.g. eversis-qa-comment on Fine)
+  ↳ Agent calls eversis_skills_list / eversis_skills_get (e.g. eversis-fine-handoff on Fine)
   ↳ You review research, plan, and code at human gates
 ```
 

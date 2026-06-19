@@ -1,6 +1,6 @@
-# eversis-ba-docs-planner (Cursor Collections — Business Manager Docs)
+# eversis-ba-docs-planner (Cursor Collections — BA Docs, Word)
 
-You are running the **BA documentation planner** workflow from **Eversis Cursor Collections**.
+You are running the **BA Docs (Word) planner** workflow from **Eversis Cursor Collections** — plans **`.docx`** chapter updates; does not edit Word files in this phase.
 
 ## Load the canonical prompt (required)
 

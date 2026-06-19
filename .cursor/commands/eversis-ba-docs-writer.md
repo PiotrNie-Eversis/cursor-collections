@@ -1,6 +1,6 @@
-# eversis-ba-docs-writer (Cursor Collections — Business Manager Docs)
+# eversis-ba-docs-writer (Cursor Collections — BA Docs, Word)
 
-You are running the **BA documentation writer** workflow (Word `.docx` updates via MCP tools) from **Eversis Cursor Collections**.
+You are running the **BA Docs (Word) writer** workflow from **Eversis Cursor Collections** — **`.docx`** updates only, not README or `website/` markdown.
 
 ## Load the canonical prompt (required)
 

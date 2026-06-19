@@ -105,7 +105,7 @@ Your goal is to implement the feature according to the provided implementation p
 
 9. **Delegate code review** — Run code review with [`eversis-review.md`](./eversis-review.md) attached. Include E2E test execution as part of the review. The reviewer runs all quality gates (unit, integration, E2E tests, linting, build).
 
-10. **Declare Fine and produce the QA comment draft** — When declaring **Fine**, produce the QA comment draft **in the same response** following the **`eversis-qa-comment`** skill (load via `eversis-collections` MCP / `eversis_skills_get`, or read `.cursor/skills/eversis-qa-comment/SKILL.md` directly). Label it: `**Draft QA comment — review before posting to Jira**`. Do **not** post to Jira in this turn. Only call `addCommentToJiraIssue` (Atlassian MCP) after the human **explicitly** approves the text and provides the issue key.
+10. **Declare Fine and produce the QA comment draft** — When declaring **Fine**, produce the QA comment draft **in the same response** following the **`eversis-fine-handoff`** skill (load via `eversis-collections` MCP / `eversis_skills_get`, or read `.cursor/skills/eversis-fine-handoff/SKILL.md` directly). Label it: `**Draft QA comment — review before posting to Jira**`. Do **not** post to Jira in this turn. Only call `addCommentToJiraIssue` (Atlassian MCP) after the human **explicitly** approves the text and provides the issue key.
 
 11. **Before making any changes** to the original solution during implementation, ask for confirmation. Document changes in the plan file's Changelog section with timestamps.
 
