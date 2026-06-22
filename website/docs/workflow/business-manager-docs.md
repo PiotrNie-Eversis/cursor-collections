@@ -29,7 +29,7 @@ This page is the **single source of truth** for the BA Docs workflow — playboo
 
 ### Context and business goal
 
-- **Problem:** Manually updating extensive project documents (e.g. `.docx` files over 400 pages, such as COS2, WUM, or DAWIS) after each TTO/Release is time-consuming, error-prone, and requires tedious mapping of code/Jira task changes to non-technical business language.
+- **Problem:** Manually updating extensive project documents (e.g. `.docx` files over 400 pages — regulatory specs, product manuals, or compliance binders) after each release is time-consuming, error-prone, and requires tedious mapping of code/Jira task changes to non-technical business language.
 - **Goal:** A fully integrated Cursor IDE workflow, based on AI agents and a **Relay Race** architecture, that reduces documentation update time while preserving the original formatting of base documents (including table structure and diagrams).
 
 Document guidelines are loaded dynamically from **Confluence** (not baked into a single static prompt).
@@ -91,7 +91,7 @@ The workflow relies on two specialized agents communicating through a shared art
 - **Output:** **`docs-update-plan.md`**
 - **Rules:**
 
-1. **[CRITICAL STEP]** Before analyzing tasks from the Release, use the Atlassian MCP tool to read the Confluence page (e.g. "DAWIS Documentation Definitions & Updating Rules"). Use these rules as a decision matrix defining update boundary conditions (e.g. whether a document gets "N/A" status, version requirements).
+1. **[CRITICAL STEP]** Before analyzing tasks from the Release, use the Atlassian MCP tool to read the Confluence page (e.g. "&lt;your product&gt; Documentation Definitions & Updating Rules"). Use these rules as a decision matrix defining update boundary conditions (e.g. whether a document gets "N/A" status, version requirements).
 2. Use Atlassian MCP to fetch all tasks linked to the Release in Jira.
 3. Identify which tasks affect business requirements and align them with the `summary.md` table of contents.
 4. Mark document chapter numbers that require updates and briefly describe WHAT must be changed.
@@ -140,7 +140,7 @@ The workflow relies on two specialized agents communicating through a shared art
 **Planner** (attach **`@eversis-ba-docs-planner`**; optionally **`.cursor/rules/eversis-ba-docs-planner.mdc`**):
 
 ```text
-@eversis-ba-docs-planner Prepare a DAWIS documentation update plan for Release 2.4.5. Project rules are on the Confluence page "DAWIS Documentation Definitions & Updating Rules".
+@eversis-ba-docs-planner Prepare a <your product> documentation update plan for Release 2.4.5. Project rules are on the Confluence page "<your product> Documentation Definitions & Updating Rules".
 ```
 
 **Writer** (attach **`@eversis-ba-docs-writer`**; optionally **`.cursor/rules/eversis-ba-docs-writer.mdc`**):
