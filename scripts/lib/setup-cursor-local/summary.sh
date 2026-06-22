@@ -65,8 +65,16 @@ print_summary() {
   fi
 
   if [[ "$mode" == "local" ]]; then
-    echo "  4. ${_BOLD}(Recommended) Export the env variable${_RESET} in your shell profile:"
+    echo "  4. ${_BOLD}(Required) Export CURSOR_COLLECTIONS_HOME${_RESET} where Cursor can see it:"
     echo "       export CURSOR_COLLECTIONS_HOME=\"${COLLECTIONS_HOME}\""
+    echo "       Add to ~/.zshrc (or ~/.bashrc), then launch Cursor from terminal (cursor .)"
+    echo "       or set the variable in your system/login environment."
+    echo "       Local mcp.json uses \${env:CURSOR_COLLECTIONS_HOME} — Dock-only launch may miss it."
+    echo ""
+    echo "  5. ${_BOLD}Privacy / local-only files:${_RESET}"
+    echo "       Do not commit .cursor/mcp.json or remove the managed .gitignore block."
+    echo "       Re-run this script if you move the project or framework checkout."
+    echo "       Shared teams: consider --vendor submodule instead of local mode."
     echo ""
   fi
 

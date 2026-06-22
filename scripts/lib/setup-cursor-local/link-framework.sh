@@ -13,7 +13,17 @@ _make_symlink() {
     cmd //c "mklink /J \"${dst}\" \"${src}\"" 2>/dev/null && return 0
     return 1
   fi
-  ln -sfn "$src" "$dst"
+  local rel=""
+  local rel_script="${LIB_DIR}/relative-path.mjs"
+  if [[ -f "$rel_script" ]] && command -v node >/dev/null 2>&1; then
+    rel="$(node "$rel_script" "$(dirname "$dst")" "$src" 2>/dev/null || true)"
+  fi
+  if [[ -n "$rel" ]] && [[ "$rel" != /* ]]; then
+    ln -sfn "$rel" "$dst"
+  else
+    [[ -n "$rel" ]] || log_warn "Relative symlink path unavailable for ${dst} — using absolute target."
+    ln -sfn "$src" "$dst"
+  fi
 }
 
 _copy_dir() {

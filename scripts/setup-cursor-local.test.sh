@@ -163,17 +163,34 @@ assert_mcp_top_level_only_allowed() {
   " "$mcp_file" && _pass "$desc" || _fail "$desc"
 }
 
-assert_mcp_eversis_absolute_path() {
-  local mcp_file="$1" expected_prefix="$2" desc="${3:-}"
-  local d="${desc:-eversis-collections uses absolute dist path}"
+assert_mcp_eversis_env_interpolation() {
+  local mcp_file="$1" desc="${2:-}"
+  local d="${desc:-eversis-collections uses env interpolation}"
   node -e "
     const j = JSON.parse(require('fs').readFileSync(process.argv[1], 'utf8'));
     const e = j.mcpServers && j.mcpServers['eversis-collections'];
     if (!e || !Array.isArray(e.args) || !e.args[0]) process.exit(1);
     const p = e.args[0];
-    if (!p.startsWith(process.argv[2])) process.exit(2);
+    const env = e.env || {};
+    if (!p.includes('\${env:CURSOR_COLLECTIONS_HOME}')) process.exit(2);
     if (!p.endsWith('mcp/eversis-collections-mcp/dist/index.js')) process.exit(3);
-  " "$mcp_file" "$expected_prefix" && _pass "$d" || _fail "$d"
+    if (env.CURSOR_COLLECTIONS_HOME !== '\${env:CURSOR_COLLECTIONS_HOME}') process.exit(4);
+    const blob = JSON.stringify(e);
+    if (blob.includes('/Users/') || blob.includes('/home/') || blob.includes('C:\\\\Users\\\\')) process.exit(5);
+  " "$mcp_file" && _pass "$d" || _fail "$d"
+}
+
+assert_symlink_relative() {
+  local path="$1" desc="${2:-$1 symlink is relative}"
+  local target
+  target="$(readlink "$path" 2>/dev/null || true)"
+  if [[ -z "$target" ]]; then
+    _fail "$desc (not a symlink)"
+  elif [[ "$target" == /* ]]; then
+    _fail "$desc (absolute: $target)"
+  else
+    _pass "$desc"
+  fi
 }
 
 assert_mcp_catalog_matches_framework() {
@@ -336,6 +353,8 @@ echo ""
 assert_common_outputs "$TMP_F"
 assert_not_symlink "${TMP_F}/.cursor/rules" "rules/ is a real directory (not symlink)"
 assert_symlink "${TMP_F}/.cursor/rules/eversis-agent-core.mdc" "framework rule is per-file symlink"
+assert_symlink_relative "${TMP_F}/.cursor/skills" "skills symlink is relative"
+assert_symlink_relative "${TMP_F}/.cursor/rules/eversis-agent-core.mdc" "framework rule symlink is relative"
 assert_file_contains "${TMP_F}/.cursor/rules/eversis-project-stack.mdc" "CUSTOMISE FOR THIS REPO" "stack seeded from template"
 assert_inode_diff \
   "${TMP_F}/.cursor/rules/eversis-project-stack.mdc" \
@@ -464,7 +483,7 @@ run_setup "$TMP_L" --build-mcp --mcp-servers=context7,eversis-collections
 echo ""
 assert_mcp_catalog_matches_framework
 assert_mcp_server_count "${TMP_L}/.cursor/mcp.json" 2 "two MCP servers merged"
-assert_mcp_eversis_absolute_path "${TMP_L}/.cursor/mcp.json" "${REPO_ROOT}" "eversis-collections absolute path"
+assert_mcp_eversis_env_interpolation "${TMP_L}/.cursor/mcp.json" "eversis-collections env interpolation"
 assert_file_contains "${TMP_L}/.cursor/mcp.json" '"context7"' "context7 entry present"
 assert_mcp_top_level_only_allowed "${TMP_L}/.cursor/mcp.json"
 echo ""

@@ -194,7 +194,7 @@ Paths in `args` are relative to the **repository root** that contains `.cursor/m
 2. Bootstrap with `setup-cursor-local.sh --build-mcp` — see [Installation §4](../getting-started/installation#4-skills--local-mcp-eversis-collections).
 3. Enable **`eversis-collections`** in Cursor MCP settings and restart.
 
-The setup script writes an absolute path to `dist/index.js` in your project's `.cursor/mcp.json`.
+The setup script writes `${env:CURSOR_COLLECTIONS_HOME}/mcp/eversis-collections-mcp/dist/index.js` in your project's `.cursor/mcp.json` (local mode). Export `CURSOR_COLLECTIONS_HOME` where the Cursor process can see it — see [Installation](../getting-started/installation.md#security--privacy-local-vs-vendor).
 
 ## Do not register skills as Agent Skills
 

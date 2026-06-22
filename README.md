@@ -560,7 +560,7 @@ bash "$CURSOR_COLLECTIONS_HOME/scripts/setup-cursor-local.sh" --link-mode copy -
 | Prompts, commands, skills | Symlinked to HOME — same pull | Gitignored |
 | **`eversis-project-stack.mdc`** | Seeded once from template | **Commit in your project** — stack, lint, test commands |
 | **`AGENTS.md`**, `docs/specs/`, `docs/context/` | Scaffolded if missing | Your team owns content |
-| **`.cursor/mcp.json`** | Merged on re-run (local: absolute path to HOME) | Gitignored in local mode; committed in vendor mode |
+| **`.cursor/mcp.json`** | Merged on re-run (local: `${env:CURSOR_COLLECTIONS_HOME}` interpolation) | Gitignored in local mode; committed in vendor mode |
 
 Read [CHANGELOG.md](CHANGELOG.md) after pulling the framework to see what changed. Deep reference: [installation.md](website/docs/getting-started/installation.md), [cursor-collection.md — Part C](documentation/cursor-collection.md) (per-project bootstrap).
 

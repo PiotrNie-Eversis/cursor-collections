@@ -143,7 +143,16 @@ bash "$CURSOR_COLLECTIONS_HOME/scripts/setup-cursor-local.sh" --build-mcp
 | Prompts, commands, skills | Symlinked to HOME | Gitignored |
 | **`eversis-project-stack.mdc`** | Seeded once | **Commit in your project** — include **Agent skills policy** (which `eversis-*` skills apply) |
 | **`AGENTS.md`**, `docs/specs/`, `docs/context/` | Scaffolded if missing | Your team owns content |
-| **`.cursor/mcp.json`** | Merged on re-run | Gitignored in local mode |
+| **`.cursor/mcp.json`** | Merged on re-run (local: `${env:CURSOR_COLLECTIONS_HOME}`) | Gitignored in local mode |
+
+### Security / privacy (local vs vendor) {#security--privacy-local-vs-vendor}
+
+Local mode avoids embedding your username in generated files:
+
+- **`.cursor/mcp.json`** — `eversis-collections` uses Cursor [config interpolation](https://cursor.com/docs/context/mcp#config-interpolation): `${env:CURSOR_COLLECTIONS_HOME}/mcp/eversis-collections-mcp/dist/index.js`. Export `CURSOR_COLLECTIONS_HOME` where the **Cursor process** can see it (shell profile + launch from terminal, or system env). Opening Cursor from Dock/Spotlight alone may not inherit shell exports.
+- **Symlinks** — `.cursor/skills`, `prompts`, `commands`, and framework rules use **relative** symlink targets (no `/Users/…` in link text). Re-run setup if you move the consumer project or the framework checkout.
+- **Gitignore** — the managed block keeps `.cursor/mcp.json` and symlinked dirs out of git. Do not remove it or `git add -f` those paths.
+- **Vendor mode** — for shared/CI repos, prefer `--vendor submodule` or `--vendor copy`; `mcp.json` uses `${workspaceFolder}/vendor/cursor-collections/...` and framework files are versioned in the consumer repo.
 
 **`--gitignore-agent-artifacts` (local mode only, default off):** adds `docs/specs/*/` and `docs/context/*/` to `.gitignore` so Implement research/plan folders stay local. Ignored with a warning in vendor mode. Do not use if you commit specs/plans to git or run CI wiki sync into `docs/context/`.
 
@@ -166,7 +175,7 @@ The script bootstraps **cursor-collections** into a consumer project: `.cursor/r
 | **`--build-mcp`** | Runs `npm install` + `npm run build` in `mcp/eversis-collections-mcp/` (produces `dist/index.js`). With this flag, always rebuilds even when `dist/` already exists. | First setup and after `git pull` on the framework. Without it, builds only when `dist/index.js` is missing. In an interactive TTY, also opens the MCP server picker (unless `--mcp-servers` is set). |
 | **`--collections-home DIR`** | Path to the `cursor-collections` checkout. Overrides `CURSOR_COLLECTIONS_HOME` and the OS default (`~/.local/share/cursor-collections` on Unix). | Non-default checkout location. |
 | **`--target DIR`** | Consumer project directory. Default: Git root of the current repo (with an interactive prompt in monorepos). | Run the script from somewhere other than the target project. |
-| **`--vendor submodule`** | Runs `git submodule add … vendor/cursor-collections`. Downstream steps use the vendored path; `.cursor/mcp.json` uses **relative** paths. | Team repos; pinned framework version in git. |
+| **`--vendor submodule`** | Runs `git submodule add … vendor/cursor-collections`. Downstream steps use the vendored path; `.cursor/mcp.json` uses `${workspaceFolder}/vendor/...`. | Team repos; pinned framework version in git. |
 | **`--vendor copy`** | Copies selected framework dirs into `vendor/cursor-collections/`. No submodule overhead. | Submodules not allowed; simpler inspection/diff. |
 | **`--vendor`** (no value) | Interactive menu: submodule vs copy. | When you want vendor mode but have not chosen a strategy. With `--non-interactive`, defaults to **copy**. |
 | **`--link-mode auto`** | Symlink on Unix, copy on Windows (default). | Default — usually no need to set. |

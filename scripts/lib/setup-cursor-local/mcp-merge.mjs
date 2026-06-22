@@ -4,7 +4,6 @@
  * Invoked from mcp-merge.sh via environment variables.
  */
 import fs from 'node:fs';
-import path from 'node:path';
 
 const targetDir = process.env.MCP_TARGET_DIR?.replace(/\\/g, '/');
 const distIndex = process.env.MCP_DIST_INDEX?.replace(/\\/g, '/');
@@ -59,14 +58,15 @@ for (const id of selected) {
 }
 
 if (picked['eversis-collections']) {
+  const distSuffix = 'mcp/eversis-collections-mcp/dist/index.js';
   let cmdPath;
   let envBlock;
   if (useRelative) {
-    cmdPath = path.posix.relative(targetDir, distIndex);
+    cmdPath = `\${workspaceFolder}/vendor/cursor-collections/${distSuffix}`;
     envBlock = {};
   } else {
-    cmdPath = distIndex;
-    envBlock = { CURSOR_COLLECTIONS_HOME: collections };
+    cmdPath = `\${env:CURSOR_COLLECTIONS_HOME}/${distSuffix}`;
+    envBlock = { CURSOR_COLLECTIONS_HOME: '${env:CURSOR_COLLECTIONS_HOME}' };
   }
   picked['eversis-collections'] = {
     command: 'node',

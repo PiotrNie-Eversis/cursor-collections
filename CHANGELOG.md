@@ -4,6 +4,14 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## 2026-06-22
+
+### Changed
+
+- **`setup-cursor-local.sh` local path privacy** — local mode now writes `${env:CURSOR_COLLECTIONS_HOME}` in merged `.cursor/mcp.json` (no literal home paths) and creates **relative** symlinks for `.cursor/skills`, `prompts`, `commands`, and per-file framework rules. Vendor mode uses `${workspaceFolder}/vendor/cursor-collections/...`. Re-run setup after moving the consumer project or framework checkout. See `scripts/lib/setup-cursor-local/relative-path.mjs`, `mcp-merge.mjs`, `link-framework.sh`.
+
+---
+
 ## 2026-06-19
 
 ### Added
