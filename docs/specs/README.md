@@ -14,6 +14,6 @@ The same **local-only policy** applies to **`docs/context/*/`** and **`docs/plan
 
 - Use `@docs/specs/<task>/` in Cursor as today; files remain on disk.
 - Share approved plans via Jira, chat, or exports — not via git in this repo.
-- **Normative BA Docs spec** (Business Manager Docs) lives on the docs site: [Business Docs Workflow](../website/docs/specs/business-docs-workflow.md).
+- **Normative BA Docs requirements** (Business Manager Docs) live on the docs site: [Business Manager Docs](../website/docs/workflow/business-manager-docs.md) (playbook + normative rules).
 
 **Consumer projects** using `setup-cursor-local.sh` may commit specs by default. Opt in to the same local-only pattern with **`--gitignore-agent-artifacts`** (see [installation](../website/docs/getting-started/installation.md)).

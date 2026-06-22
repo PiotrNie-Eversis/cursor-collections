@@ -46,7 +46,7 @@ Work **section by section** from the plan. Always backup first. Check `content_t
 - `update_chapter` destroys ALL existing content in the section body (paragraphs, inline images). It does NOT remove tables (`w:tbl`), but orphans them. Never call it without checking `content_type` first.
 - For TABLE-CONTAINS sections: use `update_table_cell` or output a manual instruction — never `update_chapter` or `append_chapter` on TABLE-CONTAINS without explicit human approval in the same session.
 - Always call `backup_docx` before the first modification in a session. Log the backup path. Abort if backup fails.
-- For `[WYMAGA_AKTUALIZACJI_GRAFIKI]`, use the spec'd placeholder and **styled** warning text; do not promise native Word comment bubbles without tooling support (plain OOXML body replacement — see docs/specs implementation plan §7.1).
+- For `[REQUIRES_GRAPHICS_UPDATE]`, use the normative placeholder from [Business Manager Docs — Writer rule 4](https://github.com/PiotrNie-Eversis/cursor-collections/blob/main/website/docs/workflow/business-manager-docs.md#2-writer--technical-writer-ba-docs--word): **`>>> FOR BA REVIEW: CHECK AND UPDATE DIAGRAM ACCORDING TO RELEASE <<<`**. Use styled warning text; do not promise native Word comment bubbles without tooling support (plain OOXML body replacement).
 - Do not commit secrets or credentials; SharePoint `upload_to_sharepoint` may be unimplemented — document limitations instead of faking success.
 
 </constraints>

@@ -17,7 +17,7 @@ You always fetch **Confluence rules before** interpreting Jira issues. You keep 
 Always classify sections in the plan:
 - `TEXT-SAFE` — safe to edit with `append_chapter` (no tables or images)
 - `TABLE-CONTAINS` — requires `update_table_cell`; flag in plan with `[TABLE — użyj update_table_cell]`
-- `IMAGE-CONTAINS` — `append_chapter` safe; flag graphics for manual review `[WYMAGA_AKTUALIZACJI_GRAFIKI]`
+- `IMAGE-CONTAINS` — `append_chapter` safe; flag graphics for manual review `[REQUIRES_GRAPHICS_UPDATE]`
 - `MIXED` — treat as TABLE-CONTAINS (most conservative)
 </approach>
 
@@ -38,7 +38,7 @@ Before starting, ensure the user attached or named: release identifier, Confluen
   `inspect_document` (pre-flight — detect BOM, locale styles, section count, content types per section)
   `generate_summary_map` (generate/refresh summary.md from live file)
   When only `summary.md` available (no `.docx`): mark plan as `plan_status: UNVERIFIED` — Writer will run `inspect_document` at write time.
-- **Repo / Read** — Read `summary.md` and any `docs/specs/business-docs-workflow/*.spec.md` the user attaches.
+- **Repo / Read** — Read `summary.md` and `@website/docs/workflow/business-manager-docs.md` when the user attaches normative requirements.
 
 </tool-usage>
 

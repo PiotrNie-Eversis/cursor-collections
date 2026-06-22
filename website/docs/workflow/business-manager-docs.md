@@ -21,7 +21,18 @@ It follows the same **relay race** idea as the rest of Cursor Collections: each 
 - Release work is tracked in **Jira**, and **documentation update rules** live in **Confluence** (read dynamically; not baked into a single static prompt).
 - You need **incremental chapter edits** that preserve Word styling (avoid whole-document Markdown round-trips).
 
-Normative requirements and milestones are recorded in the published spec: [**Business Docs Workflow (normative spec)**](../specs/business-docs-workflow) (§3.0 prompt vs rule contract).
+Normative requirements (roles, numbered rules, prompt vs rule contract) are on this page under [**Normative requirements**](#normative-requirements).
+
+## Normative requirements
+
+This page is the **single source of truth** for the BA Docs workflow — playbook steps below and normative rules here.
+
+### Context and business goal
+
+- **Problem:** Manually updating extensive project documents (e.g. `.docx` files over 400 pages, such as COS2, WUM, or DAWIS) after each TTO/Release is time-consuming, error-prone, and requires tedious mapping of code/Jira task changes to non-technical business language.
+- **Goal:** A fully integrated Cursor IDE workflow, based on AI agents and a **Relay Race** architecture, that reduces documentation update time while preserving the original formatting of base documents (including table structure and diagrams).
+
+Document guidelines are loaded dynamically from **Confluence** (not baked into a single static prompt).
 
 ## Architecture (High Level)
 
@@ -49,12 +60,12 @@ The `.docx` engine automatically handles two common issues with non-English Word
 
 ## Prompts vs Role Rules
 
-Following Cursor Collections conventions:
+Following **Cursor Collections** monorepo convention, we separate:
 
-- **Executable workflow (SOP)** — **`.cursor/prompts/public/eversis-ba-docs-*.md`**. In Cursor, attach with **`@`** and the file stem (e.g. **`@eversis-ba-docs-planner`**).
-- **Role boundaries** — **`.cursor/rules/eversis-ba-docs-*.mdc`**. Attach when you want explicit MCP and scope discipline (`alwaysApply` is typically off).
+- **Public prompt** — **`.cursor/prompts/public/eversis-*.md`**: **executable workflow** content (Docusaurus frontmatter + SOP steps). In Cursor, **`@` + file stem** (e.g. **`@eversis-ba-docs-planner`**) usually resolves **this prompt**.
+- **Role rule** — **`.cursor/rules/eversis-*.mdc`**: **who the agent is**, boundaries, MCP tool behavior; attached on demand (**`@`** to the `.mdc` file or picker selection), often with `alwaysApply: false`.
 
-Both are normative; if **`@`** does not pull in the rule, add the **`.mdc`** path explicitly (see [AGENTS.md](https://github.com/PiotrNie-Eversis/cursor-collections/blob/main/AGENTS.md)).
+In practice for this workflow **both artifacts are normative**: the prompt starts the track; the rule reinforces the role and framework consistency. If **`@`** does not pull both into one session, **explicitly attach** the second file (full path under `.cursor/…`), as in [AGENTS.md](https://github.com/PiotrNie-Eversis/cursor-collections/blob/main/AGENTS.md).
 
 ## Documentation channels (Word vs Repo)
 
@@ -69,21 +80,36 @@ This page documents **BA Docs (Word)** only.
 
 ## Roles
 
-### 1. Planner — BA Docs (Word)
+The workflow relies on two specialized agents communicating through a shared artifact (`docs-update-plan.md`).
 
-- **Prompt:** **`@eversis-ba-docs-planner`**
-- **Rule (optional):** **`eversis-ba-docs-planner.mdc`**
-- **Inputs:** Jira release (or scope), Confluence page title for documentation rules, `summary.md` (or path to `.docx` to generate a map first).
+### 1. Planner — Lead Analyst (BA Docs / Word)
+
+- **Prompt (workflow):** **`.cursor/prompts/public/eversis-ba-docs-planner.md`** — attach **`@eversis-ba-docs-planner`**
+- **Role rule:** **`.cursor/rules/eversis-ba-docs-planner.mdc`**
+- **Responsibility:** Understand the Release scope, verify Confluence guidelines, and map changes to the appropriate document sections.
+- **Input:** Jira Release ID + Confluence page title with update rules + `summary.md` (or path to `.docx` to generate a map first).
 - **Output:** **`docs-update-plan.md`**
-- **Critical behavior:** Read **Confluence first** and use it as the decision matrix (e.g. N/A sections, version expectations), then map Jira work to chapters.
+- **Rules:**
 
-### 2. Writer — BA Docs (Word)
+1. **[CRITICAL STEP]** Before analyzing tasks from the Release, use the Atlassian MCP tool to read the Confluence page (e.g. "DAWIS Documentation Definitions & Updating Rules"). Use these rules as a decision matrix defining update boundary conditions (e.g. whether a document gets "N/A" status, version requirements).
+2. Use Atlassian MCP to fetch all tasks linked to the Release in Jira.
+3. Identify which tasks affect business requirements and align them with the `summary.md` table of contents.
+4. Mark document chapter numbers that require updates and briefly describe WHAT must be changed.
+5. If a change affects architecture/a UML/Visio diagram, add the flag **`[REQUIRES_GRAPHICS_UPDATE]`** to the plan.
 
-- **Prompt:** **`@eversis-ba-docs-writer`**
-- **Rule (optional):** **`eversis-ba-docs-writer.mdc`**
+### 2. Writer — Technical Writer (BA Docs / Word)
+
+- **Prompt (workflow):** **`.cursor/prompts/public/eversis-ba-docs-writer.md`** — attach **`@eversis-ba-docs-writer`**
+- **Role rule:** **`.cursor/rules/eversis-ba-docs-writer.mdc`**
+- **Responsibility:** Physical content update in the `.docx` file using **`eversis-collections` MCP** `.docx` tools.
 - **Input:** Approved **`docs-update-plan.md`**
-- **Output:** Updated `.docx` via `read_chapter` / `update_chapter`
-- **Graphics flag:** Where the plan marks **`[REQUIRES_GRAPHICS_UPDATE]`**, follow the Writer prompt: leave a clear in-document marker for BA verification of UML/Visio-style diagrams (exact formatting depends on tooling; see spec §7.1 in the implementation plan discussion).
+- **Output:** Modified document ready for verification.
+- **Rules:**
+
+1. Work iteratively. Read the `docs-update-plan.md` plan section by section.
+2. Use the `read_chapter` tool, modify the text, translating any technical language into system behavior descriptions.
+3. Use the `update_chapter` tool to save the change.
+4. Where you encounter the flag **`[REQUIRES_GRAPHICS_UPDATE]`**, insert a clear in-document marker for BA verification of UML/Visio-style diagrams: **`>>> FOR BA REVIEW: CHECK AND UPDATE DIAGRAM ACCORDING TO RELEASE <<<`** (plain OOXML body text — not native Word comment bubbles).
 
 ## Command Sequence
 
@@ -107,6 +133,20 @@ This page documents **BA Docs (Word)** only.
 4️⃣ Gate — Document review (human)
    ↳ 📖 Open Word outputs; fix diagrams/tables if needed
    ↳ 🚀 Publish via your org process (SharePoint / Confluence / etc.)
+```
+
+### Example commands
+
+**Planner** (attach **`@eversis-ba-docs-planner`**; optionally **`.cursor/rules/eversis-ba-docs-planner.mdc`**):
+
+```text
+@eversis-ba-docs-planner Prepare a DAWIS documentation update plan for Release 2.4.5. Project rules are on the Confluence page "DAWIS Documentation Definitions & Updating Rules".
+```
+
+**Writer** (attach **`@eversis-ba-docs-writer`**; optionally **`.cursor/rules/eversis-ba-docs-writer.mdc`**):
+
+```text
+@eversis-ba-docs-writer Implement changes to the relevant documents according to the plan in docs-update-plan.md
 ```
 
 ## Workflow Diagram

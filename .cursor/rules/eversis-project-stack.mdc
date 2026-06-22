@@ -36,7 +36,7 @@ npm run validate-cursor-links
 
 ## Conventions
 
-- **Specs / plans:** **`docs/specs/<issue-kebab>/`** — `*.research.md`, `*.plan.md`, `*.spec.md` (see **`docs/specs/README.md`**). **In this framework repo**, `docs/specs/*/`, `docs/context/*/`, and `docs/plans/*` (except **`docs/plans/README.md`**) are **gitignored** — local agent artifacts only; normative BA Docs spec is on the docs site at **`website/docs/specs/business-docs-workflow.md`**. Legacy flat plans under **`docs/plans/`** are deprecated — prefer `docs/specs/<issue-kebab>/`.
+- **Specs / plans:** **`docs/specs/<issue-kebab>/`** — `*.research.md`, `*.plan.md`, `*.spec.md` (see **`docs/specs/README.md`**). **In this framework repo**, `docs/specs/*/`, `docs/context/*/`, and `docs/plans/*` (except **`docs/plans/README.md`**) are **gitignored** — local agent artifacts only. Normative BA Docs requirements live on the docs site at **`website/docs/workflow/business-manager-docs.md`** (playbook + normative rules). Legacy flat plans under **`docs/plans/`** are deprecated — prefer `docs/specs/<issue-kebab>/`.
 - **Internal notes:** **`docs/context/*.md`** (subfolders local-only in this repo — see **`docs/context/README.md`**)
 - **Git commits:** JIRA-style first line — see **[AGENTS.md](../../AGENTS.md)** and team practice
 - **Template** for other projects: see **“Reference: Eversis stack example”** in [documentation/cursor-collection.md](../../documentation/cursor-collection.md)
