@@ -30,7 +30,7 @@ Normative requirements and milestones are recorded in the published spec: [**Bus
 | **Atlassian MCP** | Read **Confluence** pages for documentation rules; pull **Jira** issues for the named release or scope. |
 | **`eversis-collections` MCP** | **`.docx` tools**: `generate_summary_map`, `read_chapter`, `update_chapter`, and `upload_to_sharepoint` (see server docs under `mcp/eversis-collections-mcp/`). Enable this server after a local build — see [MCP setup](../getting-started/mcp-setup) and [AGENTS.md](https://github.com/PiotrNie-Eversis/cursor-collections/blob/main/AGENTS.md). |
 | **`summary.md`** | Navigation map for the physical `.docx` (structure / chapter identifiers for agents). Each section entry now includes `hasTables` and `hasImages` flags so the Planner can mark chapters that require special handling. |
-| **`docs-update-plan.md`** | Planner output: which chapters change, what to change, and flags such as `[WYMAGA_AKTUALIZACJI_GRAFIKI]` where diagrams need a human pass. Sections detected as `hasTables: true` should be labelled `TABLE-CONTAINS` to signal the Writer to use read-first / append rather than full replace. |
+| **`docs-update-plan.md`** | Planner output: which chapters change, what to change, and flags such as `[REQUIRES_GRAPHICS_UPDATE]` where diagrams need a human pass. Sections detected as `hasTables: true` should be labelled `TABLE-CONTAINS` to signal the Writer to use read-first / append rather than full replace. |
 
 ### Document format compatibility
 
@@ -83,7 +83,7 @@ This page documents **BA Docs (Word)** only.
 - **Rule (optional):** **`eversis-ba-docs-writer.mdc`**
 - **Input:** Approved **`docs-update-plan.md`**
 - **Output:** Updated `.docx` via `read_chapter` / `update_chapter`
-- **Graphics flag:** Where the plan marks **`[WYMAGA_AKTUALIZACJI_GRAFIKI]`**, follow the Writer prompt: leave a clear in-document marker for BA verification of UML/Visio-style diagrams (exact formatting depends on tooling; see spec §7.1 in the implementation plan discussion).
+- **Graphics flag:** Where the plan marks **`[REQUIRES_GRAPHICS_UPDATE]`**, follow the Writer prompt: leave a clear in-document marker for BA verification of UML/Visio-style diagrams (exact formatting depends on tooling; see spec §7.1 in the implementation plan discussion).
 
 ## Command Sequence
 

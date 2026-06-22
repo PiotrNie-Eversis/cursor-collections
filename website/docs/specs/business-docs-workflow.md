@@ -3,102 +3,102 @@ sidebar_position: 1
 title: Business Docs Workflow (normative spec)
 ---
 
-# Specyfikacja Projektowa: Automatyzacja Aktualizacji Dokumentacji Biznesowej (Business Manager Docs)
+# Design Specification: Business Documentation Update Automation (Business Manager Docs)
 
 Normative requirements for the [Business Manager Docs workflow](../workflow/business-manager-docs). Playbook and command sequence live on that page; this document is the SSOT for roles, rules, and milestones.
 
-## 1. Kontekst i Cel Biznesowy
+## 1. Context and Business Goal
 
-- **Problem:** Ręczna aktualizacja obszernych dokumentów projektowych (np. plików `.docx` powyżej 400 stron, takich jak COS2, WUM czy DAWIS) po każdym TTO/Release jest czasochłonna, podatna na błędy i wymaga żmudnego dopasowywania zmian w kodzie/zadaniach Jira do nietechnicznego języka biznesowego.
-- **Cel:** Stworzenie w pełni zintegrowanego z Cursor IDE workflow, opartego na agentach AI i architekturze **Relay Race** (sztafety), który zredukuje czas aktualizacji dokumentacji o 70%, zachowując przy tym oryginalne formatowanie dokumentów bazowych (w tym strukturę tabel i diagramów).
+- **Problem:** Manually updating extensive project documents (e.g. `.docx` files over 400 pages, such as COS2, WUM, or DAWIS) after each TTO/Release is time-consuming, error-prone, and requires tedious mapping of code/Jira task changes to non-technical business language.
+- **Goal:** Create a fully integrated Cursor IDE workflow, based on AI agents and a **Relay Race** architecture, that reduces documentation update time by 70% while preserving the original formatting of base documents (including table structure and diagrams).
 
-## 2. Architektura Rozwiązania
+## 2. Solution Architecture
 
-Zgodnie z zasadami frameworka Cursor Collections, proces unika trzymania całości w oknie kontekstowym i bazuje na narzędziach serwerowych. Podejście **"Single Source of Truth"** zapewnia, że wytyczne dotyczące dokumentów są zaczytywane dynamicznie z zewnętrznych źródeł (Confluence).
+In line with Cursor Collections framework principles, the process avoids holding the entire document in the context window and relies on server-side tools. The **"Single Source of Truth"** approach ensures that document guidelines are loaded dynamically from external sources (Confluence).
 
-### 2.1. Komponenty Główne
+### 2.1. Main Components
 
-- **Atlassian MCP Server** (Kluczowy element integrujący Jira i Confluence):
-- **Zadania (Jira):** Służy do pobierania surowego kontekstu biznesowego (Epiki, Taski, komentarze z Release'u) z Jiry.
-- **Reguły biznesowe (Confluence):** Służy do dynamicznego pobierania aktualnych zasad aktualizacji dokumentacji dla danego projektu (np. "DAWIS Documentation Definitions & Updating Rules").
+- **Atlassian MCP Server** (Key element integrating Jira and Confluence):
+- **Issues (Jira):** Used to fetch raw business context (Epics, Tasks, Release comments) from Jira.
+- **Business rules (Confluence):** Used to dynamically fetch current documentation update rules for a given project (e.g. "DAWIS Documentation Definitions & Updating Rules").
 
-- **Narzędzia `.docx` na serwerze MCP `eversis-collections`** (`mcp/eversis-collections-mcp/`, Node: JSZip + `@xmldom/xmldom` na `word/document.xml`): Bezpieczna interakcja z plikami `.docx` przy zachowaniu styli (bez pełnego round-tripu przez Pandoc).
-- `generate_summary_map(docx_path)` -> Tworzy plik nawigacyjny `summary.md`.
-- `read_chapter(docx_path, chapter_id)` -> Pobiera treść konkretnego rozdziału.
-- `update_chapter(docx_path, chapter_id, new_content)` -> Nadpisuje treść.
-- `upload_to_sharepoint(docx_path)` -> Publikacja po akceptacji.
+- **`.docx` tools on the `eversis-collections` MCP server** (`mcp/eversis-collections-mcp/`, Node: JSZip + `@xmldom/xmldom` on `word/document.xml`): Safe interaction with `.docx` files while preserving styles (without a full round-trip through Pandoc).
+- `generate_summary_map(docx_path)` -> Creates the navigation file `summary.md`.
+- `read_chapter(docx_path, chapter_id)` -> Retrieves the content of a specific chapter.
+- `update_chapter(docx_path, chapter_id, new_content)` -> Overwrites the content.
+- `upload_to_sharepoint(docx_path)` -> Publication after approval.
 
-- **Plik Nawigacyjny (summary.md):** Mapa drogowa fizycznego dokumentu `.docx`. Zawiera spis treści i tagi dla Agenta, umożliwiające szybką nawigację strukturalną.
+- **Navigation file (summary.md):** Roadmap of the physical `.docx` document. Contains the table of contents and tags for the Agent, enabling fast structural navigation.
 
-## 3. Role i Instrukcje (Cursor: prompty + reguły)
+## 3. Roles and Instructions (Cursor: prompts + rules)
 
-Workflow opiera się na dwóch wyspecializowanych agentach współpracujących ze sobą i komunikujących się przez wspólny artefakt (`docs-update-plan.md`).
+The workflow relies on two specialized agents working together and communicating through a shared artifact (`docs-update-plan.md`).
 
-### 3.0. Prompty (`@eversis-ba-docs-*`) vs reguły (`.mdc`) w Cursor Collections
+### 3.0. Prompts (`@eversis-ba-docs-*`) vs rules (`.mdc`) in Cursor Collections
 
-Zgodnie z konwencją monorepo **Cursor Collections** rozdzielamy:
+Following **Cursor Collections** monorepo convention, we separate:
 
-- **Publiczny prompt** — `.cursor/prompts/public/eversis-*.md`: treść **wykonywalnego workflow** (frontmatter Docusaurus + kroki SOP). W Cursorze **`@` + stem pliku** (np. `@eversis-ba-docs-planner`) zwykle rozwiązuje **właśnie ten prompt**.
-- **Reguła roli** — `.cursor/rules/eversis-*.mdc`: **kim jest agent**, granice, zachowanie przy narzędziach MCP; dołączana na żądanie (**`@`** do pliku `.mdc` lub wybór z pickera), często z `alwaysApply: false`.
+- **Public prompt** — `.cursor/prompts/public/eversis-*.md`: **executable workflow** content (Docusaurus frontmatter + SOP steps). In Cursor, **`@` + file stem** (e.g. `@eversis-ba-docs-planner`) usually resolves **this prompt**.
+- **Role rule** — `.cursor/rules/eversis-*.mdc`: **who the agent is**, boundaries, MCP tool behavior; attached on demand (**`@`** to the `.mdc` file or picker selection), often with `alwaysApply: false`.
 
-W praktyce dla tego workflow **obydwa artefakty są normatywne**: prompt uruchamia tor; reguła utrwala rolę i spójność z frameworkiem. Jeśli `@` nie łączy obu w jednej sesji, użytkownik **jawnie dołącza** drugi plik (pełna ścieżka pod `.cursor/…`), tak jak w [AGENTS.md](https://github.com/PiotrNie-Eversis/cursor-collections/blob/main/AGENTS.md).
+In practice for this workflow **both artifacts are normative**: the prompt starts the track; the rule reinforces the role and framework consistency. If `@` does not pull both into one session, the user **explicitly attaches** the second file (full path under `.cursor/…`), as in [AGENTS.md](https://github.com/PiotrNie-Eversis/cursor-collections/blob/main/AGENTS.md).
 
-### Role 1: Główny Analityk (Planner)
+### Role 1: Lead Analyst (Planner)
 
 - **Prompt (workflow):** `.cursor/prompts/public/eversis-ba-docs-planner.md`
-- **Reguła roli:** `.cursor/rules/eversis-ba-docs-planner.mdc`
-- **Odpowiedzialność:** Zrozumienie zakresu Release'u, zweryfikowanie wytycznych na Confluence i zmapowanie zmian na odpowiednie sekcje w dokumentach.
-- **Wejście:** ID Release'u w Jirze + tytuł strony na Confluence z zasadami aktualizacji + plik `summary.md`.
-- **Wyjście:** Artefakt `docs-update-plan.md`.
-- **Zasady (Rules):**
+- **Role rule:** `.cursor/rules/eversis-ba-docs-planner.mdc`
+- **Responsibility:** Understand the Release scope, verify Confluence guidelines, and map changes to the appropriate document sections.
+- **Input:** Jira Release ID + Confluence page title with update rules + `summary.md` file.
+- **Output:** `docs-update-plan.md` artifact.
+- **Rules:**
 
-1. **[KROK KRYTYCZNY]** Zanim przystąpisz do analizy zadań z Release'u, użyj narzędzia Atlassian MCP, aby przeczytać stronę Confluence (np. "DAWIS Documentation Definitions & Updating Rules"). Wykorzystaj te zasady jako matrycę decyzyjną określającą warunki brzegowe aktualizacji (np. czy dokument dostaje status "N/A", wymogi co do wersji).
-2. Używaj Atlassian MCP do pobrania wszystkich zadań powiązanych z Release'em w Jirze.
-3. Zidentyfikuj, które taski wpływają na wymagania biznesowe i zestaw je ze spisem treści `summary.md`.
-4. Oznacz numery rozdziałów w dokumencie, które wymagają aktualizacji, i krótko opisz, CO musi zostać zmienione.
-5. Jeśli zmiana dotyczy architektury/diagramu UML/Visio, dodaj do planu flagę `[WYMAGA_AKTUALIZACJI_GRAFIKI]`.
+1. **[CRITICAL STEP]** Before analyzing tasks from the Release, use the Atlassian MCP tool to read the Confluence page (e.g. "DAWIS Documentation Definitions & Updating Rules"). Use these rules as a decision matrix defining update boundary conditions (e.g. whether a document gets "N/A" status, version requirements).
+2. Use Atlassian MCP to fetch all tasks linked to the Release in Jira.
+3. Identify which tasks affect business requirements and align them with the `summary.md` table of contents.
+4. Mark document chapter numbers that require updates and briefly describe WHAT must be changed.
+5. If a change affects architecture/a UML/Visio diagram, add the flag `[REQUIRES_GRAPHICS_UPDATE]` to the plan.
 
 ### Role 2: Technical Writer (Implementer)
 
 - **Prompt (workflow):** `.cursor/prompts/public/eversis-ba-docs-writer.md`
-- **Reguła roli:** `.cursor/rules/eversis-ba-docs-writer.mdc`
-- **Odpowiedzialność:** Fizyczna aktualizacja treści w pliku `.docx` za pomocą narzędzi Eversis Docs MCP.
-- **Wejście:** Plik `docs-update-plan.md`.
-- **Wyjście:** Zmodyfikowany dokument gotowy do weryfikacji.
-- **Zasady (Rules):**
+- **Role rule:** `.cursor/rules/eversis-ba-docs-writer.mdc`
+- **Responsibility:** Physical content update in the `.docx` file using Eversis Docs MCP tools.
+- **Input:** `docs-update-plan.md` file.
+- **Output:** Modified document ready for verification.
+- **Rules:**
 
-1. Pracuj iteracyjnie. Czytaj plan `docs-update-plan.md` sekcja po sekcji.
-2. Używaj narzędzia `read_chapter`, modyfikuj tekst, tłumacząc ewentualny język techniczny na opis zachowania systemu.
-3. Używaj narzędzia `update_chapter`, aby zapisać zmianę.
-4. Gdzie napotkasz flagę `[WYMAGA_AKTUALIZACJI_GRAFIKI]`, wstaw w dokumencie Word wyraźny, czerwony komentarz tekstowy: `>>> DO WERYFIKACJI BA: SPRAWDŹ I ZAKTUALIZUJ DIAGRAM ZGODNIE Z RELEASE <<<`.
+1. Work iteratively. Read the `docs-update-plan.md` plan section by section.
+2. Use the `read_chapter` tool, modify the text, translating any technical language into system behavior descriptions.
+3. Use the `update_chapter` tool to save the change.
+4. Where you encounter the flag `[REQUIRES_GRAPHICS_UPDATE]`, insert a clear, red text comment in the Word document: `>>> FOR BA REVIEW: CHECK AND UPDATE DIAGRAM ACCORDING TO RELEASE <<<`.
 
-## 4. Przepływ Pracy (Workflow Sztafetowy)
+## 4. Workflow (Relay Race)
 
-Procedura działania (SOP) z perspektywy Analityka Biznesowego używającego Cursora:
+Operating procedure (SOP) from the perspective of a Business Analyst using Cursor:
 
-### Krok 1: Research i Planowanie
+### Step 1: Research and Planning
 
-1. **Człowiek:** Wpisuje w oknie chatu/Composerze komendę z dołączonym promptem workflow (stem odpowiada plikowi z §3.0), np.:
-   `@eversis-ba-docs-planner Przygotuj plan aktualizacji dokumentacji DAWIS dla Release 2.4.5. Reguły projektowe znajdziesz na stronie Confluence "DAWIS Documentation Definitions & Updating Rules".`
-   W razie potrzeby **dodatkowo** dołącza regułę roli `.cursor/rules/eversis-ba-docs-planner.mdc` (pełna ścieżka), jeśli w danej sesji ma być wymuszony opis roli z `.mdc`.
-2. **Agent (Planner):** Pobiera zasady z Confluence przez MCP, następnie pobiera taski z Jiry (Release 2.4.5), filtruje je zgodnie z pobranymi zasadami i generuje listę ToDo w pliku `docs-update-plan.md`.
-3. **Bramka Weryfikacji (Człowiek):** BA przegląda wygenerowany plan. Odrzuca, koryguje lub zatwierdza wnioski Agenta w pliku markdown.
+1. **Human:** Enters a command in the chat/Composer window with the workflow prompt attached (stem matches the file from §3.0), e.g.:
+   `@eversis-ba-docs-planner Prepare a DAWIS documentation update plan for Release 2.4.5. Project rules are on the Confluence page "DAWIS Documentation Definitions & Updating Rules".`
+   If needed, **additionally** attaches the role rule `.cursor/rules/eversis-ba-docs-planner.mdc` (full path) when the session must enforce the role description from `.mdc`.
+2. **Agent (Planner):** Fetches rules from Confluence via MCP, then fetches tasks from Jira (Release 2.4.5), filters them according to the fetched rules, and generates a ToDo list in `docs-update-plan.md`.
+3. **Verification gate (Human):** BA reviews the generated plan. Rejects, corrects, or approves the Agent's conclusions in the markdown file.
 
-### Krok 2: Egzekucja (Wdrożenie zmian)
+### Step 2: Execution (Implementing Changes)
 
-1. **Człowiek:** Wydaje komendę drugiemu agentowi (prompt Writer z §3.0), ewentualnie z równoległym dołączeniem `.cursor/rules/eversis-ba-docs-writer.mdc`:
-   `@eversis-ba-docs-writer Wdróż zmiany do odpowiednich dokumentów zgodnie z planem w docs-update-plan.md`
-2. **Agent (Writer):** Korzystając ze swojego MCP (odpowiedzialnego za dokumenty), otwiera konkretne dokumenty Word, aktualizuje wskazane rozdziały, nadaje nowe numery wersji (zgodnie z zasadami wyciągniętymi w Kroku 1) i zapisuje pliki.
+1. **Human:** Issues a command to the second agent (Writer prompt from §3.0), optionally with parallel attachment of `.cursor/rules/eversis-ba-docs-writer.mdc`:
+   `@eversis-ba-docs-writer Implement changes to the relevant documents according to the plan in docs-update-plan.md`
+2. **Agent (Writer):** Using its MCP (responsible for documents), opens specific Word documents, updates the indicated chapters, assigns new version numbers (according to rules extracted in Step 1), and saves the files.
 
-### Krok 3: Review i Publikacja
+### Step 3: Review and Publication
 
-1. **Człowiek:** Przegląda gotowe pliki `.docx` (zwracając szczególną uwagę na czerwone znaczniki przy diagramach UML/Visio). Wprowadza ewentualne poprawki manualne na grafikach.
-2. **Człowiek:** Wywołuje skrypt/komendę wysyłającą pliki na docelowy SharePoint lub Confluence.
+1. **Human:** Reviews the finished `.docx` files (paying special attention to red markers at UML/Visio diagrams). Makes any manual corrections to graphics.
+2. **Human:** Invokes the script/command that sends files to the target SharePoint or Confluence.
 
-## 5. Kamienie Milowe Wdrożenia (Implementation Milestones)
+## 5. Implementation Milestones
 
-- [ ] **Faza 1:** Utworzenie w repozytorium **par: prompt publiczny** (`.cursor/prompts/public/eversis-ba-docs-*.md`) + **reguła roli** (`.cursor/rules/eversis-ba-docs-*.mdc`) dla Planner i Writer; prompty kierują m.in. na pobieranie zasad z Confluence (por. §3.0).
-- [ ] **Faza 2:** Skonfigurowanie serwera Atlassian MCP i dodanie dostępu do tokena Confluence (do odczytu przestrzeni z dokumentacją DAWIS / COS2).
-- [ ] **Faza 3:** Stworzenie serwera Eversis Docs MCP w Pythonie (`python-docx`), zdolnego do czytania i edycji tekstu z zachowaniem styli (zamiast formatu Markdown).
-- [ ] **Faza 4:** Przygotowanie skryptu lub akcji MCP generującej plik nawigacyjny `summary.md` (spis treści i metadane pliku `.docx`).
-- [ ] **Faza 5:** Wykonanie testu "na sucho" (E2E) aktualizacji dokumentu z historycznego sprintu i porównanie efektu z pracą wykonaną manualnie przez człowieka.
+- [ ] **Phase 1:** Create in the repository **pairs: public prompt** (`.cursor/prompts/public/eversis-ba-docs-*.md`) + **role rule** (`.cursor/rules/eversis-ba-docs-*.mdc`) for Planner and Writer; prompts direct among other things to fetching rules from Confluence (see §3.0).
+- [ ] **Phase 2:** Configure the Atlassian MCP server and add Confluence token access (to read spaces with DAWIS / COS2 documentation).
+- [ ] **Phase 3:** Create the Eversis Docs MCP server in Python (`python-docx`), capable of reading and editing text while preserving styles (instead of Markdown format).
+- [ ] **Phase 4:** Prepare a script or MCP action that generates the navigation file `summary.md` (table of contents and `.docx` file metadata).
+- [ ] **Phase 5:** Run a dry-run (E2E) test updating a document from a historical sprint and compare the result with work done manually by a human.

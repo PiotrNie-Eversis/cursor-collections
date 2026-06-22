@@ -16,7 +16,7 @@ import {
 import { loadDocx, saveDocx } from "./docx-io.js";
 
 const GRAPHICS_PLACEHOLDER =
-  ">>> DO WERYFIKACJI BA: SPRAWDŹ I ZAKTUALIZUJ DIAGRAM ZGODNIE Z RELEASE <<<";
+  ">>> FOR BA REVIEW: CHECK AND UPDATE DIAGRAM ACCORDING TO RELEASE <<<";
 
 function textResult(text: string) {
   return { content: [{ type: "text" as const, text }] };
