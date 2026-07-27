@@ -34,7 +34,7 @@
   border-radius: 3px;
 }
 
-[data-theme='dark'] .sub code {
+[data-theme="dark"] .sub code {
   background: rgba(255, 255, 255, 0.1);
 }
 
@@ -45,9 +45,9 @@
 }
 
 .btnPrimary {
-  background: rgba(180, 180, 255, 0.2);
-  border: 1px solid rgba(180, 180, 255, 0.4);
-  color: #B4B4FF;
+  background: var(--accent-lighter);
+  border: 1px solid var(--accent-light);
+  color: var(--accent);
   padding: 11px 22px;
   border-radius: 6px;
   font-size: 14px;
@@ -56,42 +56,42 @@
   transition: background 0.15s;
 }
 .btnPrimary:hover {
-  background: #D7D6FF;
-  color: #313435;
+  background: var(--accent-lighter);
+  color: var(--text);
   text-decoration: none;
 }
 
-[data-theme='dark'] .btnPrimary {
+[data-theme="dark"] .btnPrimary {
   background: rgba(180, 180, 255, 0.2);
   border-color: rgba(180, 180, 255, 0.4);
-  color: #B4B4FF;
+  color: #b4b4ff;
 }
-[data-theme='dark'] .btnPrimary:hover {
-  background: #D7D6FF;
+[data-theme="dark"] .btnPrimary:hover {
+  background: #d7d6ff;
   color: #313435;
 }
 
 .btnSecondary {
   background: transparent;
-  color: #EDF1F4;
+  color: var(--text);
   padding: 11px 22px;
   border-radius: 6px;
   font-size: 14px;
   font-weight: 500;
   text-decoration: none;
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  border: 1px solid var(--border);
   transition: background 0.15s;
 }
 .btnSecondary:hover {
-  background: rgba(237, 241, 244, 0.08);
-  color: #EDF1F4;
+  background: var(--bg-card);
+  color: var(--text);
   text-decoration: none;
 }
 
-[data-theme='dark'] .btnSecondary {
+[data-theme="dark"] .btnSecondary {
   border-color: rgba(255, 255, 255, 0.2);
 }
-[data-theme='dark'] .btnSecondary:hover {
+[data-theme="dark"] .btnSecondary:hover {
   background: rgba(237, 241, 244, 0.08);
 }
 
@@ -131,7 +131,7 @@
   margin-top: 2px;
 }
 
-[data-theme='dark'] .stepNum {
+[data-theme="dark"] .stepNum {
   background: var(--bg-dark);
   color: #ffffff;
 }
@@ -159,7 +159,7 @@
   color: var(--text);
 }
 
-[data-theme='dark'] .stepContent code {
+[data-theme="dark"] .stepContent code {
   background: rgba(255, 255, 255, 0.1);
 }
 

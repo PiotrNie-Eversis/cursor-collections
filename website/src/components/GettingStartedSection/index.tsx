@@ -50,7 +50,9 @@ const steps = [
     title: "Build MCP",
     description: (
       <>
-        <code>cd mcp/eversis-collections-mcp && npm install && npm run build</code>
+        <code>
+          cd mcp/eversis-collections-mcp && npm install && npm run build
+        </code>
         — enable <code>eversis-collections</code> from{" "}
         <code>.cursor/mcp.json</code>.
       </>
