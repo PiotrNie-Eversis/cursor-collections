@@ -1,6 +1,6 @@
 import type { Config, Plugin, ConfigureWebpackUtils } from "@docusaurus/types";
 import type * as Preset from "@docusaurus/preset-classic";
-import type { Configuration, WebpackError } from "webpack";
+import type { Compilation, Configuration, WebpackError } from "webpack";
 import type { ConfigureWebpackResult } from "@docusaurus/types/src/plugin";
 
 const config: Config = {
@@ -55,8 +55,10 @@ const config: Config = {
         ): ConfigureWebpackResult {
           return {
             ignoreWarnings: [
-              (w: WebpackError) =>
-                w.message?.includes("Critical dependency: require function is used") === true,
+              (warning: Error, compilation: Compilation) =>
+                warning.message?.includes(
+                  "Critical dependency: require function is used",
+                ) === true,
             ],
           };
         },

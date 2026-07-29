@@ -52,7 +52,7 @@
 
 /* ── Light/dark connector + pill defaults ── */
 .wrapper {
-  --conn-default: rgba(71, 85, 105, 0.3);
+  --conn-default: rgba(71, 85, 105, 0.5);
   --pill-border: rgba(71, 85, 105, 0.28);
   --pill-bg: rgba(71, 85, 105, 0.08);
   --pill-color: rgba(51, 65, 85, 0.85);

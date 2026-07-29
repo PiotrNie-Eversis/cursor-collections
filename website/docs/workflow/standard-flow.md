@@ -9,7 +9,9 @@ The standard workflow is used for backend and fullstack tasks. The Engineering M
 
 ## Quick Flow vs Full Flow
 
-At the start of `@eversis-implement`, the Engineering Manager assesses complexity and **recommends Quick or Full in chat**. You may override the recommendation.
+At the start of `@eversis-implement`, the Engineering Manager inspects existing specs and prints the **Implement readiness** block (Flow / Research / Plan / Next gate), then assesses complexity and **recommends Quick or Full in chat**. You may override the recommendation.
+
+Attach **`@docs/specs/<issue>/*.plan.md`** when research and plan already exist — the EM skips recreating them and enters the **implement phase** unless scope changed (then **DELTA** / **REFRESH**).
 
 | | Quick Flow | Full Flow |
 | --- | --- | --- |
@@ -37,6 +39,7 @@ The Engineering Manager automatically handles the full development cycle:
 
 #### Research Phase (internal)
 
+- **When:** Only if Implement readiness shows **Research: CREATE** (no adequate `*.research.md` for the task).
 - **Delegated to:** Context Engineer
 - **What it does:** Gathers all available information about the task from the codebase, Jira, Confluence, Figma, and other sources.
 - **What it produces:** A `.research.md` file with task summary, assumptions, open questions, and suggested next steps.
@@ -44,6 +47,7 @@ The Engineering Manager automatically handles the full development cycle:
 
 #### Planning Phase (internal)
 
+- **When:** Only if Implement readiness shows **Plan: CREATE** or **REFRESH** (no actionable plan, or scope changed).
 - **Delegated to:** Architect
 - **What it does:** Creates a multi-step implementation plan grouped into phases and tasks aligned with your repo structure.
 - **What it produces:** A `.plan.md` file with checklist-style phases that can be executed by specialized agents.

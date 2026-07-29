@@ -4,6 +4,28 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## 2026-07-29
+
+### Fixed
+
+- **Framework `.gitignore` authoring** — removed the `# cursor-collections local` block from this repo so `.cursor/commands/`, `.cursor/prompts/`, `.cursor/skills/`, `.cursor/rules/`, and `.cursor/mcp.json` stage normally. That block remains **consumer-only** via `setup-cursor-local`. Agent-artifact ignores (`docs/specs/*/`, etc.) are unchanged.
+- **SDLC diagram light connectors** — light-mode `--conn-default` opacity raised to `0.5` so AI Agent → Ideate → Implement continuity is visible.
+- **GCP Gcloud MCP docs** — troubleshooting for `gcloud executable not found` (Cloud SDK / PATH), clarifying it is an environment prerequisite failure.
+
+### Changed
+
+- **Workflow Overview** — Implement phase Role/Prompt/Produces aligned to the same bullet style as Ideate and Review; Quick/Full table retained under Flow selection.
+
+---
+
+## 2026-07-28
+
+### Changed
+
+- **Implement readiness (minimal workflow UX):** `@eversis-implement` / `/eversis-implement` now requires a mandatory **Implement readiness** block in the first agent response (Flow / Research / Plan / Next gate). **Entry signals** auto-detect when existing `*.research.md` + `@*.plan.md` allow skipping Ideate — users do not need to type “Research”. Artifacts are created only when a gap exists (**SKIP** / **CREATE** / **DELTA** / **REFRESH**). Updated: `eversis-implement` prompt, `eversis-orchestrating-implementation` skill, `eversis-engineering-manager` rule, `/eversis-implement` command, [Orchestrating Implementation](website/docs/skills/orchestrating-implementation.md), [Workflow Overview](website/docs/workflow/overview.md), [Standard Flow](website/docs/workflow/standard-flow.md), [Engineering Manager agent](website/docs/agents/engineering-manager.md).
+
+---
+
 ## 2026-06-22
 
 ### Changed

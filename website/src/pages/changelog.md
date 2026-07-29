@@ -12,6 +12,24 @@ The canonical source for this changelog is [CHANGELOG.md](https://github.com/Pio
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## 2026-07-29
+
+### Fixed
+
+- **Framework `.gitignore`** — removed consumer-local ignore block so framework `.cursor/` product paths and `mcp.json` stage normally; consumer setup still writes that block for app repos.
+- **SDLC diagram** — light connector opacity `0.5` for visible phase continuity.
+- **GCP Gcloud docs** — troubleshooting for `gcloud executable not found` (install SDK / PATH).
+
+### Changed
+
+- **Workflow Overview** — Implement Role/Prompt bullets aligned with Ideate and Review; Quick/Full table kept.
+
+## 2026-07-28
+
+### Changed
+
+- **Implement readiness:** `@eversis-implement` / `/eversis-implement` — mandatory first-response readiness block; entry signals skip Ideate when plan + research exist. See [Orchestrating Implementation](/docs/skills/orchestrating-implementation).
+
 ## 2026-06-19
 
 ### Added

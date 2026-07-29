@@ -6,9 +6,10 @@ prompt_role: "Engineering Manager"
 prompt_description: "Implement feature according to the plan."
 upstream_agent: "eversis-engineering-manager"
 ---
+
 # eversis-implement
 
-**Agent:** Engineering Manager 
+**Agent:** Engineering Manager
 **File:** `.cursor/prompts/public/eversis-implement.md`
 
 Thin trigger for implementation delivery. The canonical orchestration workflow lives in the **`eversis-orchestrating-implementation`** skill — load it via MCP (`eversis_skills_get`) or read `.cursor/skills/eversis-orchestrating-implementation/SKILL.md`.
@@ -37,7 +38,8 @@ Load **`eversis-orchestrating-implementation`** for the full workflow (docs: `we
 
 ## Output
 
-- `*.research.md`, `*.plan.md`, `*.plan-review.md` under `docs/specs/<task-name>/` (when Full flow runs)
+- `*.research.md`, `*.plan.md`, `*.plan-review.md` under `docs/specs/<task-name>/` **when a gap exists** (not required on every run)
+- **Implement readiness** block in the first agent response (Flow / Research / Plan / Next gate)
 - Code changes applied by delegated agents
 - Updated plan checkboxes and Changelog entries
 - Code review findings
@@ -53,10 +55,23 @@ Start implementation delivery for a feature based on a task description, Jira it
 
 **Required skill:** Load and follow **`eversis-orchestrating-implementation`** (MCP `eversis_skills_get` or `.cursor/skills/eversis-orchestrating-implementation/SKILL.md`).
 
-**Input:** Provide at least one of: task description, Jira ID, or `*.plan.md`. Include `*.research.md` when available.
+**Input:** Provide at least one of: task description, Jira ID, or `*.plan.md`. Include `*.research.md` when available. You do **not** need to type “Research” — the agent inspects existing artifacts and decides automatically (see **Entry signals** below).
 
-**Artifacts:** Write `*.research.md`, `*.plan.md`, and `*.plan-review.md` under `docs/specs/<issue-or-task-kebab>/` (or the team's `specifications/` folder).
+**Artifacts:** Create `*.research.md`, `*.plan.md`, and `*.plan-review.md` only when a gap exists — not on every run. Existing files in `docs/specs/<issue-or-task-kebab>/` may satisfy readiness.
 
 **Workflow:** Start at Step 0 in `eversis-orchestrating-implementation` and follow that skill through Step 5 (Fine + `eversis-fine-handoff` in the same response). Do not duplicate orchestration steps in this prompt.
+
+### Entry signals (automatic — no extra keywords required)
+
+Before research, planning, or code, inspect `docs/specs/<issue>/` (or paths attached with `@`):
+
+| Signal                                                                    | Default                                                                                             |
+| ------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- |
+| No `*.research.md` / `*.plan.md`                                          | Full Flow → create missing artifacts → human gate                                                   |
+| `@*.plan.md` attached **and** adequate `*.research.md` in the same folder | Implement phase — **SKIP** new research/plan unless scope changed                                   |
+| QA checklist, bugfix, or “DO SPRAWDZENIA” with existing plan              | Quick or Full implement phase — **SKIP** full research; note new findings in chat or plan Changelog |
+| Narrow fix, obvious solution, ≤3 files, plan/context ready                | Quick Flow allowed (orchestration skill Step 1)                                                     |
+
+**First response (mandatory):** Print the **Implement readiness** block from orchestration skill Step 1 before any artifact creation or code. Never skip it — even in Quick Flow or when continuing a thread.
 
 <!-- Eversis port; upstream: eversis-implement:v2 + eversis-orchestrating-implementation -->

@@ -27,15 +27,24 @@ Each phase passes a reviewed deliverable to the next. Workshop materials feed th
 ### 2. Implement
 
 - **Role:** Engineering Manager (delegates Context Engineer, Architect, Plan Reviewer, implementers)
-- **Prompt:** `@eversis-implement` with a Jira ID or task description
-- **Flow selection:** Step 0 — EM recommends **Quick** or **Full** in chat (you may override). See [Orchestrating Implementation](../skills/orchestrating-implementation).
-- **Quick Flow:** implement → quality checks → `@eversis-review` → **Fine** + QA draft (skips full research/plan when criteria pass).
-- **Full Flow:** research → plan → plan validation → code → **Fine** + mandatory QA comment draft.
-- **Produces:** `*.research.md`, `*.plan.md`, `*.plan-review.md` (Full), code changes.
+- **Prompt:** `@eversis-implement` with a Jira ID, task description, or `@docs/specs/.../*.plan.md`
+- The EM’s **first response** is always an **Implement readiness** block (Flow / Research / Plan / Next gate) — before any artifacts or code. See [Orchestrating Implementation](../skills/orchestrating-implementation#implement-readiness-mandatory-first-output).
+- **Entry signals** — existing `*.research.md` + attached plan → skip new research/plan (straight to **implement phase**). No need to type “Research” in the prompt.
+
+#### Flow selection
+
+At Step 0 the EM recommends **Quick** or **Full** (you may override). See [Orchestrating Implementation](../skills/orchestrating-implementation).
+
+| Flow | Steps | When to use |
+| ---- | ----- | ----------- |
+| **Quick** | implement → quality checks → `@eversis-review` → **Fine** + QA draft | Criteria pass, artifacts exist |
+| **Full** | research → plan → plan validation → code → **Fine** + QA draft | Artifacts missing or scope requires it |
 
 :::info Quick vs Full
 **Hard exclusion:** Figma, UI verification tasks, cross-domain work, or likely >3 files → **Full Flow only**. Quick is for narrow, low-risk fixes after you confirm the EM recommendation.
 :::
+
+- **Produces:** `*.research.md`, `*.plan.md`, `*.plan-review.md` **when a gap exists**; code changes; Implement readiness summary in chat.
 
 ### 3. Review
 

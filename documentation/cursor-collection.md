@@ -19,7 +19,7 @@ This guide is the **authoritative** reference for using **Cursor** (rules, Agent
 
 **Relay race:** Each phase produces a **named artifact** (transcript cleanup, Jira-ready stories, research doc, implementation plan, diffs, review with PASS / BLOCKER / SUGGESTION). The next phase must not start until a human has **reviewed and approved** the previous artifact. AI output is always a draft until you say otherwise.
 
-**Implement internals:** Engineering Manager delegates **Research** (Context Engineer) → **Plan** (Architect) → **Implement** (Software / DevOps / E2E / Prompt Engineer by task). **Pause for human confirmation** after research and after the plan, before large code changes.
+**Implement internals:** Engineering Manager prints **Implement readiness** (Flow / Research / Plan / Next gate) in the first response, then delegates **Research** (Context Engineer) → **Plan** (Architect) → **Implement** (Software / DevOps / E2E / Prompt Engineer by task) **only when artifacts are missing or scope changed**. Attaching `@docs/specs/<issue>/*.plan.md` with existing research skips recreating Ideate artifacts. **Pause for human confirmation** after research and after the plan, before large code changes.
 
 ### Workflow handoff (batons and gates)
 
@@ -417,8 +417,8 @@ The following is **one** filled-in profile (Earth observation / GIS web). Other 
 
 ## Spec-driven development (under **Implement**)
 
-1. Author `docs/specs/<feature>.spec.md` with acceptance criteria and links to context.
-2. In Agent, attach `@<feature>.spec.md`, relevant `@docs/context/`, and `@eversis-implement`.
+1. Author `docs/specs/<feature>.spec.md` with acceptance criteria and links to context (or reuse existing `*.research.md` + `*.plan.md`).
+2. In Agent, attach `@<feature>.spec.md` or `@docs/specs/<issue>/*.plan.md`, relevant `@docs/context/`, and `@eversis-implement`.
 3. Ask for implementation **per** `.cursor/rules` and project stack.
 4. After code changes, run the repo’s **documented** quality commands; fix failures before handoff.
 5. Run **eversis-review** (attach `eversis-review.md` with the same spec and diff context).

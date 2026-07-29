@@ -16,6 +16,8 @@ Load and follow **`eversis-orchestrating-implementation`** (`.cursor/skills/ever
 
 Follow **`eversis-agent-core.mdc`**: approve research, plan, and plan validation before broad code changes unless Quick Flow criteria are met and the user accepts Quick.
 
+On the **first response** of every `@eversis-implement` / `/eversis-implement` run, print the **Implement readiness** block (orchestration skill Step 1) before artifacts or code — even when existing plan/research allow skipping Ideate.
+
 ## Key delegates
 
 - Internal: `eversis-research.md`, `eversis-plan.md`, `eversis-review-plan.md`, `eversis-implement-ui.md`, and other `eversis-implement-*.md` per the routing table in the orchestration skill.

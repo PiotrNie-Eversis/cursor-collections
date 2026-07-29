@@ -7,7 +7,7 @@ export default function SdlcDiagram(): React.JSX.Element {
     <div
       className={styles.wrapper}
       role="img"
-      aria-label="SDLC workflow: invoke eversis prompts with @ (e.g. @eversis-implement) or / project commands (e.g. /eversis-implement, defined in .cursor/commands/) — eversis-analyze-materials, eversis-implement, eversis-review, eversis-review-ui"
+      aria-label="SDLC workflow: invoke eversis prompts with @ or / project commands. The flow moves from Human Intent to AI Agent to Ideate to Implement. Implement supports Quick and Full flow, where Quick skips research and planning delegates and Full uses them before implementation. Review can return issues or lead to approval, then Observe, Fine, QA Handoff, and Next Intent."
     >
       <div className={styles.diagram}>
         {/* Human Intent */}
@@ -73,7 +73,21 @@ export default function SdlcDiagram(): React.JSX.Element {
               implementation via specialized agents
             </div>
           </div>
-          <div className={styles.parallelLabel}>↓ delegates to</div>
+          <div className={styles.flowModes}>
+            <div className={styles.flowMode}>
+              <strong className={styles.flowModeTitle}>Quick</strong>
+              <span className={styles.flowModeText}>
+                skips research and planning delegates
+              </span>
+            </div>
+            <div className={styles.flowMode}>
+              <strong className={styles.flowModeTitle}>Full</strong>
+              <span className={styles.flowModeText}>
+                uses the full delegate chain before implementation
+              </span>
+            </div>
+          </div>
+          <div className={styles.parallelLabel}>↓ delegates by selected flow</div>
           <div className={styles.grid3}>
             <div className={styles.card}>
               <div className={styles.cardCmd}>
@@ -187,6 +201,13 @@ export default function SdlcDiagram(): React.JSX.Element {
           Fine
         </div>
         <div className={`${styles.conn} ${styles.conn20} ${styles.connBlue}`} />
+
+        {/* QA Handoff */}
+        <div className={`${styles.badge} ${styles.badgeHandoff}`}>
+          <span className={styles.badgeIcon} aria-hidden="true">≡</span>
+          QA Handoff
+        </div>
+        <div className={`${styles.conn} ${styles.conn20} ${styles.connViolet}`} />
 
         {/* Next Intent */}
         <div className={styles.pill}>

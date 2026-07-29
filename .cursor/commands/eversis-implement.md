@@ -10,9 +10,13 @@ You are running the **Engineering Manager / Implement** workflow from **Eversis 
 
 Follow the orchestration skill from **Step 0** through **Step 5** (Fine + `eversis-fine-handoff`). Do **not** improvise a shortened workflow from memory.
 
+## First response (mandatory)
+
+Before artifacts or code, inspect `docs/specs/<issue>/` and any `@`-attached plan/research paths, then print the **Implement readiness** block (orchestration skill Step 1). See **Entry signals** in `eversis-implement.md` — the user does **not** need to type “Research”.
+
 ## Research / plan artifacts
 
-Write **`*.research.md`**, **`*.plan.md`**, and **`*.plan-review.md`** under **`docs/specs/<issue-or-task-kebab>/`** (or the team's `specifications/` folder).
+Create **`*.research.md`**, **`*.plan.md`**, and **`*.plan-review.md`** under **`docs/specs/<issue-or-task-kebab>/`** (or the team's `specifications/` folder) **only when a gap exists** — not on every run. Existing artifacts may satisfy readiness (**SKIP**). Use **DELTA** / **REFRESH** when scope changed (QA findings, new AC).
 
 ## Status: Fine — handoff (same response, non-negotiable)
 

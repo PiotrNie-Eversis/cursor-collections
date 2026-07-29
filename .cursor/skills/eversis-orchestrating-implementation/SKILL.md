@@ -75,6 +75,25 @@ Use the following decision rules before any delegation.
 
 Recommend Quick Flow or Full Flow in chat with a short reason, and allow the user to override the recommendation.
 
+#### Implement readiness (mandatory first output)
+
+Before creating artifacts, delegating, or writing product code, inspect `docs/specs/<issue>/` and any `@`-attached plan/research paths. Then print this block in the **first response** of the thread (including Quick Flow and QA follow-ups). Do not skip it when continuing a summarized or handoff thread.
+
+```text
+## Implement readiness
+- **Flow:** Quick | Full | QA follow-up
+- **Research:** SKIP (<path>) | CREATE | DELTA (<reason>)
+- **Plan:** SKIP (<path>) | CREATE | REFRESH (<reason>)
+- **Next gate:** Awaiting approval before code | Proceeding (<one-line reason>)
+```
+
+Rules:
+
+- **SKIP** when an existing file adequately covers the current scope (attached `@*.plan.md` + matching `*.research.md` → default implement phase).
+- **CREATE** only when no adequate artifact exists for the task.
+- **DELTA / REFRESH** when scope changed (new QA findings, new AC) — brief note in chat or plan Changelog; full new research only if the gap is large.
+- **Proceeding** is allowed when artifacts are ready **and** the user attached an approved plan, gave a QA fix list, or explicitly asked to implement; otherwise **Awaiting approval**.
+
 ### Step 2 - Write the upfront execution plan
 
 Write the full ordered agent + prompt call sequence before the first delegation.
