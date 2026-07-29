@@ -16,7 +16,15 @@ Load and follow **`eversis-orchestrating-implementation`** (`.cursor/skills/ever
 
 Follow **`eversis-agent-core.mdc`**: approve research, plan, and plan validation before broad code changes unless Quick Flow criteria are met and the user accepts Quick.
 
-On the **first response** of every `@eversis-implement` / `/eversis-implement` run, print the **Implement readiness** block (orchestration skill Step 1) before artifacts or code — even when existing plan/research allow skipping Ideate.
+On the **first response** of every `@eversis-implement` / `/eversis-implement` run, output the **exact four-line** Implement readiness block as the **first content** (orchestration skill Step 1 — Readiness output contract) before artifacts or code — even when existing plan/research allow skipping Ideate.
+
+**Self-check before sending the first message:**
+
+1. Inspected `docs/specs/<issue>/` and any `@`-attached research/plan paths.
+2. First content is `## Implement readiness` with Flow, Research, Plan, Next gate (optional `Reason:`).
+3. Ran **adequacy checklist** before any `Research: SKIP` when artifacts exist.
+4. No A/B/C menu or Jira recap before the readiness block.
+5. Stopped at the correct gate (before plan or before code) unless Proceeding is allowed.
 
 ## Key delegates
 

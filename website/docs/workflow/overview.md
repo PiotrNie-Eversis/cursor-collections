@@ -29,7 +29,7 @@ Each phase passes a reviewed deliverable to the next. Workshop materials feed th
 - **Role:** Engineering Manager (delegates Context Engineer, Architect, Plan Reviewer, implementers)
 - **Prompt:** `@eversis-implement` with a Jira ID, task description, or `@docs/specs/.../*.plan.md`
 - The EM’s **first response** is always an **Implement readiness** block (Flow / Research / Plan / Next gate) — before any artifacts or code. See [Orchestrating Implementation](../skills/orchestrating-implementation#implement-readiness-mandatory-first-output).
-- **Entry signals** — existing `*.research.md` + attached plan → skip new research/plan (straight to **implement phase**). No need to type “Research” in the prompt.
+- **Entry signals** — existing adequate `*.research.md` + attached plan (after **adequacy checklist**) → skip new research/plan. No need to type “Research” in the prompt. Pure analysis without implement is also valid (chat + specs).
 
 #### Flow selection
 

@@ -22,6 +22,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ### Changed
 
+- **Implement readiness review suggestions** — Standard Flow first-content + Research DELTA; English **needs verification** QA signal; Plan REFRESH in mirror; agent-core Plan adequacy; `AGENTS.md` pointer. See [Orchestrating Implementation](/docs/skills/orchestrating-implementation).
+- **Implement readiness P0 hardening** — exact four-line readiness block as first content; adequacy checklist before Research SKIP; updated QA/bugfix and analyze entry signals; same-session research file for CREATE/DELTA. See [Orchestrating Implementation](/docs/skills/orchestrating-implementation).
 - **Workflow Overview** — Implement Role/Prompt bullets aligned with Ideate and Review; Quick/Full table kept.
 
 ## 2026-07-28

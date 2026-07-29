@@ -65,13 +65,17 @@ Start implementation delivery for a feature based on a task description, Jira it
 
 Before research, planning, or code, inspect `docs/specs/<issue>/` (or paths attached with `@`):
 
-| Signal                                                                    | Default                                                                                             |
-| ------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- |
-| No `*.research.md` / `*.plan.md`                                          | Full Flow → create missing artifacts → human gate                                                   |
-| `@*.plan.md` attached **and** adequate `*.research.md` in the same folder | Implement phase — **SKIP** new research/plan unless scope changed                                   |
-| QA checklist, bugfix, or “DO SPRAWDZENIA” with existing plan              | Quick or Full implement phase — **SKIP** full research; note new findings in chat or plan Changelog |
-| Narrow fix, obvious solution, ≤3 files, plan/context ready                | Quick Flow allowed (orchestration skill Step 1)                                                     |
+| Signal | Default |
+| --- | --- |
+| No `*.research.md` / `*.plan.md` | Full Flow → create missing artifacts → human gate |
+| `@*.plan.md` + adequate `*.research.md` (adequacy checklist pass) | Implement phase — **SKIP** new research/plan |
+| QA comment / bugfix / retest / needs verification | Run **adequacy checklist** on existing artifacts vs latest QA comment or AC |
+| Research + plan adequate for current comment/AC | Implement phase — Research **SKIP**, Plan **SKIP** or **REFRESH** if tasks missing |
+| Research exists but does **not** cover current comment/AC | **Research: DELTA** — update `*.research.md` (Changelog) in same session → human gate |
+| Plan exists but does **not** cover current fix | **Plan: REFRESH** → human gate |
+| User asks to **research**, **analyze**, **przeanalizuj**, **bug analysis**, **last QA comment** (via `/eversis-implement`) | **Flow: Full**; **Research: CREATE \| DELTA**; **Plan: SKIP (analysis-only — plan after research approval)**; **Next gate: Awaiting approval before plan**; write/update `*.research.md` in same session; no A/B/C menu |
+| Narrow fix, obvious solution, ≤3 files, plan/context ready, adequacy pass | Quick Flow allowed (orchestration skill Step 1) |
 
-**First response (mandatory):** Print the **Implement readiness** block from orchestration skill Step 1 before any artifact creation or code. Never skip it — even in Quick Flow or when continuing a thread.
+**First response (mandatory):** Output the **exact four-line** Implement readiness block from orchestration skill Step 1 as the **first content** before any artifact creation or code. Never skip it — even in Quick Flow or when continuing a thread. See **Readiness output contract** in the skill.
 
 <!-- Eversis port; upstream: eversis-implement:v2 + eversis-orchestrating-implementation -->

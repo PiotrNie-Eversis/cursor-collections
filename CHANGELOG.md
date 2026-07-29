@@ -14,6 +14,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ### Changed
 
+- **Implement readiness review suggestions** — doc drift fixes after P0 hardening: Standard Flow outputs readiness as first content and documents Research DELTA; English QA entry signal **needs verification** (prompt + orchestrating-implementation mirror); Plan REFRESH row in mirror; `eversis-agent-core` Plan adequacy symmetry; minimal Implement pointer in `AGENTS.md`.
+- **Implement readiness P0 hardening** — exact four-line readiness contract as first message content; **adequacy checklist** before Research SKIP (stale research → DELTA); updated entry signals for QA/bugfix and analyze intent; research file required in same session for CREATE/DELTA; consumer rules extend (not override). Updated: `eversis-orchestrating-implementation` skill, `eversis-implement` prompt/command, `eversis-engineering-manager` + `eversis-agent-core` rules, orchestrating-implementation / standard-flow / overview / engineering-manager docs, `documentation/cursor-collection.md`.
 - **Workflow Overview** — Implement phase Role/Prompt/Produces aligned to the same bullet style as Ideate and Review; Quick/Full table retained under Flow selection.
 
 ---

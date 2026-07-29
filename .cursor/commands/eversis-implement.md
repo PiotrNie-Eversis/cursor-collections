@@ -12,7 +12,7 @@ Follow the orchestration skill from **Step 0** through **Step 5** (Fine + `evers
 
 ## First response (mandatory)
 
-Before artifacts or code, inspect `docs/specs/<issue>/` and any `@`-attached plan/research paths, then print the **Implement readiness** block (orchestration skill Step 1). See **Entry signals** in `eversis-implement.md` — the user does **not** need to type “Research”.
+Before artifacts or code, inspect `docs/specs/<issue>/` and any `@`-attached plan/research paths, then output the **exact four-line** Implement readiness block as the **first content** in your response (orchestration skill Step 1 — Readiness output contract). See **Entry signals** in `eversis-implement.md` — the user does **not** need to type “Research”.
 
 ## Research / plan artifacts
 

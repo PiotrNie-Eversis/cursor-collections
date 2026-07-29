@@ -9,9 +9,9 @@ The standard workflow is used for backend and fullstack tasks. The Engineering M
 
 ## Quick Flow vs Full Flow
 
-At the start of `@eversis-implement`, the Engineering Manager inspects existing specs and prints the **Implement readiness** block (Flow / Research / Plan / Next gate), then assesses complexity and **recommends Quick or Full in chat**. You may override the recommendation.
+At the start of `@eversis-implement`, the Engineering Manager inspects existing specs and outputs the **exact four-line** **Implement readiness** block as the **first content** (Flow / Research / Plan / Next gate), then assesses complexity and **recommends Quick or Full in chat**. You may override the recommendation.
 
-Attach **`@docs/specs/<issue>/*.plan.md`** when research and plan already exist — the EM skips recreating them and enters the **implement phase** unless scope changed (then **DELTA** / **REFRESH**).
+Attach **`@docs/specs/<issue>/*.plan.md`** when research and plan already exist **and pass the adequacy checklist** — the EM skips recreating them and enters the **implement phase**. If scope changed (new QA comment, new AC), use **DELTA** / **REFRESH**.
 
 | | Quick Flow | Full Flow |
 | --- | --- | --- |
@@ -39,10 +39,10 @@ The Engineering Manager automatically handles the full development cycle:
 
 #### Research Phase (internal)
 
-- **When:** Only if Implement readiness shows **Research: CREATE** (no adequate `*.research.md` for the task).
+- **When:** Only if Implement readiness shows **Research: CREATE** or **DELTA** (no adequate `*.research.md`, or existing research is stale for current scope).
 - **Delegated to:** Context Engineer
 - **What it does:** Gathers all available information about the task from the codebase, Jira, Confluence, Figma, and other sources.
-- **What it produces:** A `.research.md` file with task summary, assumptions, open questions, and suggested next steps.
+- **What it produces:** A `.research.md` file with task summary, assumptions, open questions, and suggested next steps. **DELTA** updates the existing file (Changelog + new section) in the same session.
 - **Your action:** Review the generated research document. Verify accuracy. The Engineering Manager asks for confirmation before proceeding.
 
 #### Planning Phase (internal)
@@ -68,7 +68,7 @@ The Engineering Manager automatically handles the full development cycle:
 - **Your action:** Review code changes after each phase. Test functionality. Verify against the plan.
 
 :::tip
-If a `.research.md` or `.plan.md` file already exists for the task, the Engineering Manager skips that phase and proceeds directly to the next step. If a `.plan.md` is already approved and unchanged since the last review, the plan validation step is skipped.
+If `.research.md` and `.plan.md` exist **and pass the adequacy checklist** for the current scope, the Engineering Manager skips that phase. File existence alone is not enough — stale research (e.g. a new QA comment on a different bug) requires **DELTA**. If a `.plan.md` is already approved and unchanged since the last review, the plan validation step is skipped.
 :::
 
 :::note Mandatory QA comment draft after Fine
